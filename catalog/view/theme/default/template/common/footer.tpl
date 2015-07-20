@@ -44,10 +44,9 @@
 </footer>
 
 <!--
-MyCnCart is open source software and you are free to remove the powered by MyCnCart if you want, but its generally accepted practise to make a small donation.
-Please donate via PayPal to donate@mycncart.com
+MyCnCart 是开源软件，没有任何加密。您可以将【技术支持 MyCnCart】移除， 但希望您能够做一小额捐款。请使用支付宝捐款至支付宝账户：donate@mycncart.com  姓名： 杨兆锋
 //--> 
 
-<!-- Theme created by Welford Media for MyCnCart 2.0 www.welfordmedia.co.uk -->
+<!-- 本默认模版来自于 www.welfordmedia.co.uk -->
 
 </body></html>
