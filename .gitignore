@@ -1,6 +1,8 @@
 .htaccess
 /config.php
 admin/config.php
+/config-dist.php
+admin/config-dist.php
 
 !index.html
 
