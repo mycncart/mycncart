@@ -94,6 +94,7 @@ $_['button_unlock']                 = 'Unlock Account';
 $_['button_link']                   = 'Link';
 $_['button_currency']               = 'Refresh Currency Values';
 $_['button_apply']                  = 'Apply';
+$_['button_jump']                   = 'Jump';
 
 // Tab
 $_['tab_address']                   = 'Address';

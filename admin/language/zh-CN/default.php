@@ -95,6 +95,7 @@ $_['button_unlock']                 = '解锁账户';
 $_['button_link']                   = '链接';
 $_['button_currency']               = '刷新货币值';
 $_['button_apply']                  = '使用';
+$_['button_jump']                   = '跳转';
 
 // Tab
 $_['tab_address']                   = '地址';
