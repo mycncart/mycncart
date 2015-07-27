@@ -5,6 +5,13 @@ class ControllerCheckoutCheckout extends Controller {
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$this->response->redirect($this->url->link('checkout/cart'));
 		}
+		
+		//Check if customer logged
+		if (!$this->customer->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('checkout/cart', '', 'SSL');
+
+			$this->response->redirect($this->url->link('account/login', '', 'SSL'));
+		}
 
 		// Validate minimum quantity requirements.
 		$products = $this->cart->getProducts();
@@ -55,7 +62,6 @@ class ControllerCheckoutCheckout extends Controller {
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
-		$data['text_checkout_option'] = $this->language->get('text_checkout_option');
 		$data['text_checkout_account'] = $this->language->get('text_checkout_account');
 		$data['text_checkout_payment_address'] = $this->language->get('text_checkout_payment_address');
 		$data['text_checkout_shipping_address'] = $this->language->get('text_checkout_shipping_address');
