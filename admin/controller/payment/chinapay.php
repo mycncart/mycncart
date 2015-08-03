@@ -24,14 +24,11 @@ class ControllerPaymentchinapay extends Controller {
 		$data['text_all_zones'] = $this->language->get('text_all_zones');
 		$data['text_yes'] = $this->language->get('text_yes');
 		$data['text_no'] = $this->language->get('text_no');
-		$data['text_authorization'] = $this->language->get('text_authorization');
-		$data['text_sale'] = $this->language->get('text_sale');
-		$data['text_account_warning'] = $this->language->get('text_account_warning');
+		$data['text_edit'] = $this->language->get('text_edit');
 		
 		$data['entry_id'] = $this->language->get('entry_id');
 		$data['entry_key'] = $this->language->get("entry_key");
 	
-		$data['entry_callback'] = $this->language->get('entry_callback');
 		$data['entry_total'] = $this->language->get('entry_total');	
 		$data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$data['entry_status'] = $this->language->get('entry_status');
@@ -98,7 +95,6 @@ class ControllerPaymentchinapay extends Controller {
 
 	
 
-		$data['callback'] = HTTP_CATALOG . 'index.php?route=payment/chinapay/callback';
 
 		if (isset($this->request->post['chinapay_total'])) {
 			$data['chinapay_total'] = $this->request->post['chinapay_total'];
@@ -132,14 +128,10 @@ class ControllerPaymentchinapay extends Controller {
 			$data['chinapay_sort_order'] = $this->config->get('chinapay_sort_order');
 		}
 
-		$this->template = 'payment/chinapay.tpl';
-		#$this->children = array(
-			#'common/header',
-			#'common/footer'
-		#);
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
+
 		$this->response->setOutput($this->load->view('payment/chinapay.tpl', $data));
 	}
 
@@ -165,4 +157,3 @@ class ControllerPaymentchinapay extends Controller {
 		}
 	}
 }
-?>
