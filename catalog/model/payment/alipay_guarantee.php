@@ -14,6 +14,12 @@ class ModelPaymentAlipayGuarantee extends Model {
 		} else {
 			$status = false;
 		}
+		
+		//判断是否移动设备访问
+		$this->load->helper('mobile');
+		if (is_mobile()) {
+			$status = false;
+		}
 
 		$currencies = array(
 			'CNY',
