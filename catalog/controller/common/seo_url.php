@@ -104,6 +104,14 @@ class ControllerCommonSeoUrl extends Controller {
 					}
 
 					unset($data[$key]);
+				}else{
+					
+					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $this->db->escape($data['route']) . "'");
+					if ($query->num_rows) {
+						$url .= '/' . $query->row['keyword'];
+						
+						unset($data[$key]);
+					}	
 				}
 			}
 		}

@@ -88,3 +88,4 @@ $_['text_order_recurring']             = '分期付款訂單';
 $_['text_paypal_manage']               = 'PayPal';
 $_['text_paypal_search']               = '檢索';
 $_['text_others']               	   = '其它';
+$_['text_url_alias']               	   = 'SEO KeyWord 管理';

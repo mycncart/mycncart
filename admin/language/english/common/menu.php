@@ -87,3 +87,4 @@ $_['text_order_recurring']             = 'Recurring Orders';
 $_['text_paypal_manage']               = 'PayPal';
 $_['text_paypal_search']               = 'Search';
 $_['text_others']               	   = 'Others';
+$_['text_url_alias']               	   = 'SEO KeyWord Management';
