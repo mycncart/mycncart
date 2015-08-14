@@ -759,4 +759,6 @@ class ModelCheckoutOrder extends Model {
 
 		$this->event->trigger('post.order.history.add', $order_id);
 	}
+	
+	
 }
