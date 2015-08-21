@@ -183,11 +183,11 @@ class ControllerPaymentAlipayWap extends Controller {
 					
 					if (!$order_info['order_status_id']) {
 						
-						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id);
+						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id, '', true);
 						
 					} else {
 						
-						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id);
+						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id, '', true);
 						
 					}
 				
@@ -204,11 +204,11 @@ class ControllerPaymentAlipayWap extends Controller {
 					
 					if (!$order_info['order_status_id']) {
 						
-						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id);
+						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id, '', true);
 						
 					} else {
 						
-						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id);
+						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id, '', true);
 						
 					}
 			
