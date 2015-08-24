@@ -7,24 +7,6 @@ class ControllerPaymentAlipayWap extends Controller {
 
 		$this->document->settitle($this->language->get('heading_title'));
 		
-		if (isset($this->error['secrity_code'])) {
-			$data['error_secrity_code'] = $this->error['secrity_code'];
-		} else {
-			$data['error_secrity_code'] = '';
-		}
-
-		if (isset($this->error['email'])) {
-			$data['error_email'] = $this->error['email'];
-		} else {
-			$data['error_email'] = '';
-		}
-
-		if (isset($this->error['partner'])) {
-			$data['error_partner'] = $this->error['partner'];
-		} else {
-			$data['error_partner'] = '';
-		}
-		
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
