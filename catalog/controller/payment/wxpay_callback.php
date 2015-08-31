@@ -1,23 +1,21 @@
 <?php
 // Version
-define('VERSION', '2.0.0.0');
+define('VERSION', '1.0.2.0');
 
 // Configuration
-if (is_file('../../../config.php')) {
-	require_once('../../../config.php');
-}
-
-// Install
-if (!defined('DIR_APPLICATION')) {
-	header('Location: install/index.php');
-	exit;
-}
+require_once('../../../config.php');
 
 // Startup
 require_once(DIR_SYSTEM . 'startup.php');
 
 // Registry
 $registry = new Registry();
+
+$registry->set('shipping_origins', array(
+	'china' => 'China',
+	'new_zealand' => 'New Zealand',
+	'australia' => 'Australia',
+));
 
 // Loader
 $loader = new Loader($registry);
@@ -135,34 +133,27 @@ foreach ($query->rows as $result) {
 	$languages[$result['code']] = $result;
 }
 
-$detect = '';
-
-if (isset($request->server['HTTP_ACCEPT_LANGUAGE']) && $request->server['HTTP_ACCEPT_LANGUAGE']) {
-	$browser_languages = explode(',', $request->server['HTTP_ACCEPT_LANGUAGE']);
-
-	foreach ($browser_languages as $browser_language) {
-		foreach ($languages as $key => $value) {
-			if ($value['status']) {
-				$locale = explode(',', $value['locale']);
-
-				if (in_array($browser_language, $locale)) {
-					$detect = $key;
-
-					break 2;
-				}
-			}
-		}
-	}
-}
-
 if (isset($session->data['language']) && array_key_exists($session->data['language'], $languages) && $languages[$session->data['language']]['status']) {
 	$code = $session->data['language'];
 } elseif (isset($request->cookie['language']) && array_key_exists($request->cookie['language'], $languages) && $languages[$request->cookie['language']]['status']) {
 	$code = $request->cookie['language'];
-} elseif ($detect) {
-	$code = $detect;
 } else {
-	$code = $config->get('config_language');
+	$detect = '';
+	if (isset($request->server['HTTP_ACCEPT_LANGUAGE']) && $request->server['HTTP_ACCEPT_LANGUAGE']) {
+		$browser_languages = explode(',', $request->server['HTTP_ACCEPT_LANGUAGE']);
+		foreach ($browser_languages as $browser_language) {
+			foreach ($languages as $key => $value) {
+				if ($value['status']) {
+					$locale = explode(',', $value['locale']);
+					if (in_array($browser_language, $locale)) {
+						$detect = $key;
+						break 2;
+					}
+				}
+			}
+		}
+	}
+	$code = $detect ? $detect : $config->get('config_language');
 }
 
 if (!isset($session->data['language']) || $session->data['language'] != $code) {
@@ -178,7 +169,7 @@ $config->set('config_language', $languages[$code]['code']);
 
 // Language
 $language = new Language($languages[$code]['directory']);
-$language->load($languages[$code]['filename']);
+$language->load('default');
 $registry->set('language', $language);
 
 // Document
@@ -191,10 +182,10 @@ $registry->set('customer', $customer);
 // Customer Group
 if ($customer->isLogged()) {
 	$config->set('config_customer_group_id', $customer->getGroupId());
-} elseif (isset($session->data['customer'])) {
+} elseif (isset($session->data['customer']) && isset($session->data['customer']['customer_group_id'])) {
 	// For API calls
 	$config->set('config_customer_group_id', $session->data['customer']['customer_group_id']);
-} elseif (isset($session->data['guest'])) {
+} elseif (isset($session->data['guest']) && isset($session->data['guest']['customer_group_id'])) {
 	$config->set('config_customer_group_id', $session->data['guest']['customer_group_id']);
 }
 
@@ -226,9 +217,6 @@ $registry->set('cart', new Cart($registry));
 // Encryption
 $registry->set('encryption', new Encryption($config->get('config_encryption')));
 
-//OpenBay Pro
-$registry->set('openbay', new Openbay($registry));
-
 // Event
 $event = new Event($registry);
 $registry->set('event', $event);
@@ -249,11 +237,7 @@ $controller->addPreAction(new Action('common/maintenance'));
 $controller->addPreAction(new Action('common/seo_url'));
 
 // Router
-if (isset($request->get['route'])) {
-	$action = new Action($request->get['route']);
-} else {
-	$action = new Action('payment/weipay/notifycallback');
-}
+$action = new Action('payment/wxpay/callback');
 
 // Dispatch
 $controller->dispatch($action, new Action('error/not_found'));
