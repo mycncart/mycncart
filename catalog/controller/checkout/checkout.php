@@ -6,11 +6,20 @@ class ControllerCheckoutCheckout extends Controller {
 			$this->response->redirect($this->url->link('checkout/cart'));
 		}
 		
-		//Check if customer logged
-		if (!$this->customer->isLogged()) {
-			$this->session->data['redirect'] = $this->url->link('checkout/cart', '', 'SSL');
-
-			$this->response->redirect($this->url->link('account/login', '', 'SSL'));
+		//判断是否微信访问，是否获得了微信openid
+		$this->load->helper('mobile');
+		
+		unset($this->session->data['redirect']);
+		
+		//如果是微信浏览器，并且不存在微信openid，则转去获取微信openid获取程序
+		if((is_weixin()) && (!isset($this->session->data['weixin_openid']))) {
+			
+			
+			$this->session->data['redirect'] = HTTPS_SERVER . 'index.php?route=checkout/checkout';
+			
+			header('Location: ' . HTTPS_SERVER.'system/weixin/get_weixin_openid.php');
+			//exit();
+				
 		}
 
 		// Validate minimum quantity requirements.
@@ -62,6 +71,7 @@ class ControllerCheckoutCheckout extends Controller {
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
+		$data['text_checkout_option'] = $this->language->get('text_checkout_option');
 		$data['text_checkout_account'] = $this->language->get('text_checkout_account');
 		$data['text_checkout_payment_address'] = $this->language->get('text_checkout_payment_address');
 		$data['text_checkout_shipping_address'] = $this->language->get('text_checkout_shipping_address');

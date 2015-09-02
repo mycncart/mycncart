@@ -11,3 +11,19 @@ function is_mobile() {
 	}    
 	return $is_mobile;  
 }
+
+function is_weixin(){ 
+	if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
+		return true;
+	} 
+	
+	return false;
+}
+
+function is_iphone_ipad() {
+	if (( strpos($_SERVER['HTTP_USER_AGENT'], 'iphone') !== false ) || ( strpos($_SERVER['HTTP_USER_AGENT'], 'ipad') !== false )) {
+		return true;
+	} 
+	
+	return false;
+}

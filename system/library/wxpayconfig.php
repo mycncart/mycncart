@@ -22,10 +22,10 @@ class WxPayConfig
 	 * 获取地址：https://mp.weixin.qq.com/advanced/advanced?action=dev&t=advanced/dev&token=2005451881&lang=zh_CN
 	 * @var string
 	 */
-	const APPID = 'wx6d981cefafd6babc';
-	const MCHID = '1264633601';
-	const KEY = 'LI27954210531XiaoXiaChangYuBeiJK';
-	const APPSECRET = 'e13c346c2dd11279502a40dcfda9039b';
+	const APPID = '';
+	const MCHID = '';
+	const KEY = '';
+	const APPSECRET = '';
 	
 	//=======【证书路径设置】=====================================
 	/**
@@ -34,8 +34,11 @@ class WxPayConfig
 	 * API证书下载地址：https://pay.weixin.qq.com/index.php/account/api_cert，下载之前需要安装商户操作证书）
 	 * @var path
 	 */
-	const SSLCERT_PATH = '/var/www/html/system/helper/wxpay_api/apiclient_cert.pem'; 
-	const SSLKEY_PATH = '/var/www/html/system/helper/wxpay_api/apiclient_key.pem';
+	//const SSLCERT_PATH = '/var/www/html/system/helper/wxpay_api/apiclient_cert.pem'; 
+	//const SSLKEY_PATH = '/var/www/html/system/helper/wxpay_api/apiclient_key.pem';
+	
+	const SSLCERT_PATH = ''; 
+	const SSLKEY_PATH = '';
 	
 	//=======【curl代理设置】===================================
 	/**

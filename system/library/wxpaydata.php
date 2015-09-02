@@ -2724,7 +2724,7 @@ class WxPayJsApiPay extends WxPayDataBase
 	**/
 	public function SetTimeStamp($value)
 	{
-		$this->values['timeStamp'] = $value;
+		$this->values['timeStamp'] = (string)$value;
 	}
 	/**
 	* 获取支付时间戳的值

@@ -23,7 +23,9 @@ class ControllerCheckoutWxPayOpenId extends Controller {
 		//echo "微信支付测试中......";
 		//exit;
 		
-		header('Location: http://www.suubuy.cn/index.php?route=checkout/checkout');
+		$url = $this->url->link('checkout/checkout', '', 'SSL');
+		
+		header("Location: $url");
 		//exit();
 		
 		//$this->response->redirect(str_replace('&amp;', '&', $this->sesssion->data['redirect']));
