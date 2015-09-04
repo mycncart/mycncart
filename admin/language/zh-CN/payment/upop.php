@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']      				= '中国银联在线支付';
+$_['heading_title']      				= '中国银联在线支付（测试）';
 
 $_['text_payment']						= '支付方式';
 $_['text_success']						= '成功: 已修改中国银联在线支付方式信息！';

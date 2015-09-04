@@ -5,7 +5,18 @@ class ControllerCheckoutWxPayOpenId extends Controller {
 		//echo "one";
 		$this->load->library('wxpayexception');
 		//echo "two";
-		$this->load->library('wxpayconfig');
+		
+		
+		define('APPID', $this->config->get('wxpay_appid'));
+		define('MCHID', $this->config->get('wxpay_mchid'));
+		define('KEY', $this->config->get('wxpay_key'));
+		define('APPSECRET', $this->config->get('wxpay_appsecret'));
+		define('SSLCERT_PATH', DIR_SYSTEM.'helper/wxpay_api/apiclient_cert.pem');
+		define('SSLKEY_PATH', DIR_SYSTEM.'helper/wxpay_api/apiclient_key.pem');
+		define('CURL_PROXY_HOST', '0.0.0.0');
+		define('CURL_PROXY_PORT', 0);
+		define('REPORT_LEVENL', 1);
+
 		//echo "three";
 		$this->load->library('wxpaydata');
 		//echo "four";

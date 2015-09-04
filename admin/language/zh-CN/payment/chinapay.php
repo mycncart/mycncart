@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']					 = '网银在线(ChinaPay)';
+$_['heading_title']					 = '网银在线(ChinaPay)（测试）';
 
 // Text
 $_['text_payment']					 = '支付';

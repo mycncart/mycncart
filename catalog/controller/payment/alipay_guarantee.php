@@ -1,5 +1,5 @@
 <?php
-/* 本支付宝担保交易支付插件由 杨兆锋 开发，并授权仅在 http://www.mycncart.com 上销售，任何其它销售的地方，均为侵权违法行为。 如有任何问题请联系 support@mycncart.com*/
+
 class ControllerPaymentAlipayGuarantee extends Controller {
 	public function index() {
 		
