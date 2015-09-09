@@ -81,6 +81,7 @@ class ControllerCommonDashboard extends Controller {
 			$message = '';	
 		}
 		
+		
          
 		return $message;
 		
