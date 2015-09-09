@@ -10,7 +10,9 @@ class ControllerCommonFooter extends Controller {
 		} else {
 			$data['text_version'] = '';
 		}
-
+		
 		return $this->load->view('common/footer.tpl', $data);
 	}
+	
+	
 }
