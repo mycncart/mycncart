@@ -28,6 +28,7 @@ $_['text_google_analytics']            = '谷歌分析代碼';
 $_['entry_name']                       = '商店名稱';
 $_['entry_owner']                      = '商店擁有者';
 $_['entry_address']                    = '地址';
+$_['entry_miit']                       = '網站備案號';
 $_['entry_geocode']                    = '地理代碼';
 $_['entry_email']                      = 'E-Mail';
 $_['entry_telephone']                  = '電話';

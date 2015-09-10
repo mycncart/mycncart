@@ -40,6 +40,9 @@
     </div>
     <hr>
     <p><?php echo $powered; ?></p> 
+    <?php if($miit) { ?>
+    <p><a target="_blank" href="http://www.miitbeian.gov.cn/"><?php echo $miit; ?></a></p>
+    <?php } ?>
   </div>
 </footer>
 

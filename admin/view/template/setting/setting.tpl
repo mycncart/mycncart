@@ -60,6 +60,7 @@
                   <?php } ?>
                 </div>
               </div>
+              
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-address"><?php echo $entry_address; ?></label>
                 <div class="col-sm-10">
@@ -67,6 +68,13 @@
                   <?php if ($error_address) { ?>
                   <div class="text-danger"><?php echo $error_address; ?></div>
                   <?php } ?>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-owner"><?php echo $entry_miit; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_miit" value="<?php echo $config_miit; ?>" placeholder="<?php echo $entry_miit; ?>" id="input-miit" class="form-control" />
                 </div>
               </div>
               

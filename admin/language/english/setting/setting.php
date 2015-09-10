@@ -25,6 +25,7 @@ $_['text_google_analytics']            = 'Google Analytics';
 $_['entry_name']                       = 'Store Name';
 $_['entry_owner']                      = 'Store Owner';
 $_['entry_address']                    = 'Address';
+$_['entry_miit']                       = 'MIIT';
 $_['entry_geocode']                    = 'Geocode';
 $_['entry_email']                      = 'E-Mail';
 $_['entry_telephone']                  = 'Telephone';

@@ -53,6 +53,7 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_owner'] = $this->language->get('entry_owner');
 		$data['entry_address'] = $this->language->get('entry_address');
+		$data['entry_miit'] = $this->language->get('entry_miit');
 		$data['entry_geocode'] = $this->language->get('entry_geocode');
 		$data['entry_email'] = $this->language->get('entry_email');
 		$data['entry_telephone'] = $this->language->get('entry_telephone');
@@ -484,6 +485,12 @@ class ControllerSettingSetting extends Controller {
 			$data['config_address'] = $this->request->post['config_address'];
 		} else {
 			$data['config_address'] = $this->config->get('config_address');
+		}
+		
+		if (isset($this->request->post['config_miit'])) {
+			$data['config_miit'] = $this->request->post['config_miit'];
+		} else {
+			$data['config_miit'] = $this->config->get('config_miit');
 		}
 		
 		if (isset($this->request->post['config_map_select'])) {
