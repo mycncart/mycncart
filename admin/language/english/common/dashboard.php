@@ -18,8 +18,8 @@ $_['text_week']                    = 'Week';
 $_['text_month']                   = 'Month';
 $_['text_year']                    = 'Year';
 $_['text_view']                    = 'View more...';
-$_['text_no_update'] 			= 'Congratulation! Your mycncart version is the newest!';
-$_['text_available_update'] 	= 'There is a new version of MyCnCart, You can visit http://www.mycncart.com to download.';
+$_['text_no_update'] 			   = '';
+$_['text_available_update'] 	   = 'There is a new version of MyCnCart, You can visit http://www.mycncart.com to download.';
 
 // Error
 $_['error_install']                = 'Warning: Install folder still exists and should be deleted for security reasons!';

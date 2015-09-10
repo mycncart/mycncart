@@ -19,7 +19,7 @@ $_['text_week']                    = '周';
 $_['text_month']                   = '月';
 $_['text_year']                    = '年';
 $_['text_view'] 				   = '查看更多......';
-$_['text_no_update'] 			   = '祝賀！ 您所使用的 MyCnCart 系統為最新版本。';
+$_['text_no_update'] 			   = '';
 $_['text_available_update'] 	   = '已經有了新版 MyCnCart ！ 您可以訪問 <a href="http://www.mycncart.com" target="_blank">MyCnCart官網 (http://www.mycncart.com)</a> 下載使用最新版本。';
 
 // Error
