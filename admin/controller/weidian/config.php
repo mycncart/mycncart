@@ -23,42 +23,16 @@ class ControllerWeidianConfig extends Controller {
 		$data['text_select'] = $this->language->get('text_select');
 		
 		
-		$data['entry_title'] = $this->language->get('entry_title');
-		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
-		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
-		$data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
-		$data['entry_weidian_seo_keyword'] = $this->language->get('entry_weidian_seo_keyword');
-		$data['entry_weidian_license_id'] = $this->language->get('entry_weidian_license_id');
-		$data['entry_weidian_template'] = $this->language->get('entry_weidian_template');
+		$data['entry_weidian_appkey'] = $this->language->get('entry_weidian_appkey');
+		$data['entry_weidian_secret'] = $this->language->get('entry_weidian_secret');
 
-		$data['help_weidian_seo_keyword'] = $this->language->get('help_weidian_seo_keyword');
-		$data['help_weidian_license_id'] = $this->language->get('help_weidian_license_id');
+		$data['help_weidian_appkey'] = $this->language->get('help_weidian_appkey');
+		$data['help_weidian_secret'] = $this->language->get('help_weidian_secret');
 
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
 
-		$data['tab_general'] = $this->language->get('tab_general');
-		$data['tab_data'] = $this->language->get('tab_data');
-		$data['tab_license'] = $this->language->get('tab_license');
-		
-		$data['need_license'] = '';
-		
-		if(stristr(HTTP_SERVER, 'localhost')) {
-			
-			
-		}else{
-			
-			if($this->config->get('weidian_license_id')) {
-				
-				
-				
-			}else{
-				
-				$data['need_license'] = 'This extension is used for 10 days for free, please enter license code in license tab page and save.';
-			
-			}
-			
-		}
+
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -66,26 +40,18 @@ class ControllerWeidianConfig extends Controller {
 			$data['error_warning'] = '';
 		}
 		
-		if(stristr(HTTP_SERVER, 'localhost')) {
-			
-		}else{
-			
-			
-		}
 
-		if (isset($this->error['weidian_seo_keyword'])) {
-			$data['error_weidian_seo_keyword'] = $this->error['weidian_seo_keyword'];
+		if (isset($this->error['weidian_appkey'])) {
+			$data['error_weidian_appkey'] = $this->error['weidian_appkey'];
 		} else {
-			$data['error_weidian_seo_keyword'] = '';
+			$data['error_weidian_appkey'] = '';
 		}
 		
-		if (isset($this->error['weidian_license_id'])) {
-			$data['error_weidian_license_id'] = $this->error['weidian_license_id'];
+		if (isset($this->error['weidian_secret'])) {
+			$data['error_weidian_secret'] = $this->error['weidian_secret'];
 		} else {
-			$data['error_weidian_license_id'] = '';
+			$data['error_weidian_secret'] = '';
 		}
-
-
 
 		$data['breadcrumbs'] = array();
 
@@ -118,39 +84,18 @@ class ControllerWeidianConfig extends Controller {
 
 		$data['token'] = $this->session->data['token'];
 		
-		if (isset($this->request->post['weidian_seo_keyword'])) {
-			$data['weidian_seo_keyword'] = $this->request->post['weidian_seo_keyword'];
+		if (isset($this->request->post['weidian_appkey'])) {
+			$data['weidian_appkey'] = $this->request->post['weidian_appkey'];
 		} else {
-			$data['weidian_seo_keyword'] = $this->config->get('weidian_seo_keyword');
+			$data['weidian_appkey'] = $this->config->get('weidian_appkey');
 		}
 		
-		if (isset($this->request->post['weidian_license_id'])) {
-			$data['weidian_license_id'] = $this->request->post['weidian_license_id'];
+		if (isset($this->request->post['weidian_secret'])) {
+			$data['weidian_secret'] = $this->request->post['weidian_secret'];
 		} else {
-			$data['weidian_license_id'] = $this->config->get('weidian_license_id');
+			$data['weidian_secret'] = $this->config->get('weidian_secret');
 		}
 		
-		if (isset($this->request->post['weidian_template'])) {
-			$data['weidian_template'] = $this->request->post['weidian_template'];
-		} elseif ($this->config->get('weidian_template')) {
-			$data['weidian_template'] = $this->config->get('weidian_template');
-		} else {
-			$data['weidian_template'] = 'default';
-		}
-
-		$this->load->model('localisation/language');
-
-		$data['languages'] = $this->model_localisation_language->getLanguages();
-
-		if (isset($this->request->post['weidian_description'])) {
-			$data['weidian_description'] = $this->request->post['weidian_description'];
-		} elseif ($this->config->get('weidian_description')) {
-			$data['weidian_description'] = $this->config->get('weidian_description');
-		} else {
-			$data['weidian_description'] = array();
-		}
-		
-
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
@@ -164,27 +109,17 @@ class ControllerWeidianConfig extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 		
-		foreach ($this->request->post['weidian_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 64)) {
-				$this->error['title'][$language_id] = $this->language->get('error_title');
-			}
-
-			if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {
-				$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
-			}
+		if (utf8_strlen($this->request->post['weidian_appkey']) < 1) {
+			
+			$this->error['weidian_appkey'] = $this->language->get('error_weidian_appkey');
+			
 		}
-
-		if (utf8_strlen($this->request->post['weidian_seo_keyword']) > 0) {
-			$this->load->model('catalog/url_alias');
-
-			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['weidian_seo_keyword']);
-
-			if ($url_alias_info) {
-				$this->error['weidian_seo_keyword'] = sprintf($this->language->get('error_weidian_seo_keyword'));
-			}
-
+		
+		if (utf8_strlen($this->request->post['weidian_secret']) < 1) {
+			
+			$this->error['weidian_secret'] = $this->language->get('error_weidian_secret');
+			
 		}
-
 
 		if ($this->error && !isset($this->error['warning'])) {
 			$this->error['warning'] = $this->language->get('error_warning');
