@@ -41,6 +41,6 @@ $_['help_column']            = '在页面顶部菜单的子目录显示时排列
 // Error
 $_['error_warning']          = '警告: 存在错误，请检查！';
 $_['error_permission']       = '警告: 无权限修改分类！';
-$_['error_name']             = '分类名称必须介于2-32字符之间！';
+$_['error_name']             = '分类名称必须介于2-255字符之间！';
 $_['error_meta_title']       = 'Meta 标题必须介于3-255字符之间！';
 $_['error_keyword']          = '该 SEO keyword 已经存在了！';

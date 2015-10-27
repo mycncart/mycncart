@@ -9,6 +9,8 @@ $_['text_approved']             = '已審核通過 %s 會員！';
 $_['text_list']                 = '推广會員列表';
 $_['text_add']                  = '添加推廣會員';
 $_['text_edit']                 = '編輯推广會員';
+$_['text_affiliate_detail']     = '推广会员信息';
+$_['text_affiliate_address']    = '推广会员地址';
 $_['text_balance']              = '收支';
 $_['text_cheque']               = '支票';
 $_['text_paypal']               = 'PayPal(貝寶)';
@@ -64,6 +66,7 @@ $_['help_code']                 = 'T跟蹤碼被用來跟蹤被推薦人。';
 $_['help_commission']           = '該會員從每個訂單中獲取到的傭金百分比。';
 
 // Error
+$_['error_warning']             = '警告: 请详细检查表单中的错误！';
 $_['error_permission']          = '警告: 無權限修改推广會員！';
 $_['error_exists']              = '警告: 電郵地址已被註冊使用！';
 $_['error_fullname']            = '姓名必須為1-32字符！';

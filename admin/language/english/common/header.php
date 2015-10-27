@@ -4,7 +4,7 @@ $_['heading_title']        = 'MyCnCart';
 
 // Text
 $_['text_order']           = 'Orders';
-$_['text_order_status']    = 'Pending';
+$_['text_processing_status'] = 'Processing';
 $_['text_complete_status'] = 'Completed';
 $_['text_customer']        = 'Customers';
 $_['text_online']          = 'Customers Online';

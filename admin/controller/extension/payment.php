@@ -15,6 +15,8 @@ class ControllerExtensionPayment extends Controller {
 	public function install() {
 		$this->load->language('extension/payment');
 
+		$this->document->setTitle($this->language->get('heading_title'));
+
 		$this->load->model('extension/extension');
 
 		if ($this->validate()) {
@@ -73,9 +75,9 @@ class ControllerExtensionPayment extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL')
 		);
-				
+
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_list'] = $this->language->get('text_list');
 		$data['text_no_results'] = $this->language->get('text_no_results');
 		$data['text_confirm'] = $this->language->get('text_confirm');

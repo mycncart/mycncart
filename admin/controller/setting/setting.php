@@ -41,13 +41,17 @@ class ControllerSettingSetting extends Controller {
 		$data['text_stock'] = $this->language->get('text_stock');
 		$data['text_affiliate'] = $this->language->get('text_affiliate');
 		$data['text_return'] = $this->language->get('text_return');
+		$data['text_captcha'] = $this->language->get('text_captcha');
+		$data['text_register'] = $this->language->get('text_register');
 		$data['text_shipping'] = $this->language->get('text_shipping');
 		$data['text_payment'] = $this->language->get('text_payment');
 		$data['text_mail'] = $this->language->get('text_mail');
 		$data['text_smtp'] = $this->language->get('text_smtp');
 		$data['text_baidu'] = $this->language->get('text_baidu');
-		$data['text_google'] = $this->language->get('text_google');
-		$data['text_google_analytics'] = $this->language->get('text_google_analytics');
+		$data['text_general'] = $this->language->get('text_general');
+		$data['text_security'] = $this->language->get('text_security');
+		$data['text_upload'] = $this->language->get('text_upload');
+		$data['text_error'] = $this->language->get('text_error');
 
 
 		$data['entry_name'] = $this->language->get('entry_name');
@@ -95,14 +99,15 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_account'] = $this->language->get('entry_account');
 		$data['entry_account_mail'] = $this->language->get('entry_account_mail');
 		$data['entry_invoice_prefix'] = $this->language->get('entry_invoice_prefix');
-		$data['entry_api'] = $this->language->get('entry_api');
 		$data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
 		$data['entry_checkout_guest'] = $this->language->get('entry_checkout_guest');
 		$data['entry_checkout'] = $this->language->get('entry_checkout');
 		$data['entry_order_status'] = $this->language->get('entry_order_status');
 		$data['entry_processing_status'] = $this->language->get('entry_processing_status');
 		$data['entry_complete_status'] = $this->language->get('entry_complete_status');
+		$data['entry_fraud_status'] = $this->language->get('entry_fraud_status');
 		$data['entry_order_mail'] = $this->language->get('entry_order_mail');
+		$data['entry_api'] = $this->language->get('entry_api');
 		$data['entry_stock_display'] = $this->language->get('entry_stock_display');
 		$data['entry_stock_warning'] = $this->language->get('entry_stock_warning');
 		$data['entry_stock_checkout'] = $this->language->get('entry_stock_checkout');
@@ -113,6 +118,8 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_affiliate_mail'] = $this->language->get('entry_affiliate_mail');
 		$data['entry_return'] = $this->language->get('entry_return');
 		$data['entry_return_status'] = $this->language->get('entry_return_status');
+		$data['entry_captcha'] = $this->language->get('entry_captcha');
+		$data['entry_captcha_page'] = $this->language->get('entry_captcha_page');
 		$data['entry_logo'] = $this->language->get('entry_logo');
 		$data['entry_icon'] = $this->language->get('entry_icon');
 		$data['entry_image_category'] = $this->language->get('entry_image_category');
@@ -191,6 +198,7 @@ class ControllerSettingSetting extends Controller {
 		$data['help_order_status'] = $this->language->get('help_order_status');
 		$data['help_processing_status'] = $this->language->get('help_processing_status');
 		$data['help_complete_status'] = $this->language->get('help_complete_status');
+		$data['help_fraud_status'] = $this->language->get('help_fraud_status');
 		$data['help_order_mail'] = $this->language->get('help_order_mail');
 		$data['help_stock_display'] = $this->language->get('help_stock_display');
 		$data['help_stock_warning'] = $this->language->get('help_stock_warning');
@@ -203,6 +211,7 @@ class ControllerSettingSetting extends Controller {
 		$data['help_commission'] = $this->language->get('help_commission');
 		$data['help_return'] = $this->language->get('help_return');
 		$data['help_return_status'] = $this->language->get('help_return_status');
+		$data['help_captcha'] = $this->language->get('help_captcha');
 		$data['help_icon'] = $this->language->get('help_icon');
 		$data['help_ftp_root'] = $this->language->get('help_ftp_root');
 		$data['help_mail_protocol'] = $this->language->get('help_mail_protocol');
@@ -761,9 +770,9 @@ class ControllerSettingSetting extends Controller {
 			$data['config_customer_group_id'] = $this->config->get('config_customer_group_id');
 		}
 
-		$this->load->model('sale/customer_group');
+		$this->load->model('customer/customer_group');
 
-		$data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups();
+		$data['customer_groups'] = $this->model_customer_customer_group->getCustomerGroups();
 
 		if (isset($this->request->post['config_customer_group_display'])) {
 			$data['config_customer_group_display'] = $this->request->post['config_customer_group_display'];
@@ -803,15 +812,6 @@ class ControllerSettingSetting extends Controller {
 			$data['config_account_mail'] = $this->config->get('config_account_mail');
 		}
 
-		if (isset($this->request->post['config_api_id'])) {
-			$data['config_api_id'] = $this->request->post['config_api_id'];
-		} else {
-			$data['config_api_id'] = $this->config->get('config_api_id');
-		}
-
-		$this->load->model('user/api');
-
-		$data['apis'] = $this->model_user_api->getApis();
 
 		if (isset($this->request->post['config_cart_weight'])) {
 			$data['config_cart_weight'] = $this->request->post['config_cart_weight'];
@@ -860,6 +860,12 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$data['config_complete_status'] = array();
 		}
+		
+		if (isset($this->request->post['config_order_status_id'])) {
+			$data['config_fraud_status_id'] = $this->request->post['config_fraud_status_id'];
+		} else {
+			$data['config_fraud_status_id'] = $this->config->get('config_fraud_status_id');
+		}
 
 		$this->load->model('localisation/order_status');
 
@@ -870,6 +876,16 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$data['config_order_mail'] = $this->config->get('config_order_mail');
 		}
+		
+		if (isset($this->request->post['config_api_id'])) {
+			$data['config_api_id'] = $this->request->post['config_api_id'];
+		} else {
+			$data['config_api_id'] = $this->config->get('config_api_id');
+		}
+
+		$this->load->model('user/api');
+
+		$data['apis'] = $this->model_user_api->getApis();
 
 		if (isset($this->request->post['config_stock_display'])) {
 			$data['config_stock_display'] = $this->request->post['config_stock_display'];
@@ -942,6 +958,61 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/return_status');
 
 		$data['return_statuses'] = $this->model_localisation_return_status->getReturnStatuses();
+		
+		if (isset($this->request->post['config_captcha'])) {
+			$data['config_captcha'] = $this->request->post['config_captcha'];
+		} else {
+			$data['config_captcha'] = $this->config->get('config_captcha');
+		}
+
+		$this->load->model('extension/extension');
+
+		$data['captchas'] = array();
+
+		// Get a list of installed captchas
+		$extensions = $this->model_extension_extension->getInstalled('captcha');
+
+		foreach ($extensions as $code) {
+			$this->load->language('captcha/' . $code);
+
+			if ($this->config->has($code . '_status')) {
+				$data['captchas'][] = array(
+					'text'  => $this->language->get('heading_title'),
+					'value' => $code
+				);
+			}
+		}
+
+		if (isset($this->request->post['config_captcha_page'])) {
+			$data['config_captcha_page'] = $this->request->post['config_captcha_page'];
+		} elseif ($this->config->has('config_captcha_page')) {
+		   	$data['config_captcha_page'] = $this->config->get('config_captcha_page');
+		} else {
+			$data['config_captcha_page'] = array();
+		}
+
+		$data['captcha_pages'] = array();
+
+		$data['captcha_pages'][] = array(
+			'text'  => $this->language->get('text_register'),
+			'value' => 'register'
+		);
+
+		$data['captcha_pages'][] = array(
+			'text'  => $this->language->get('text_review'),
+			'value' => 'review'
+		);
+
+		$data['captcha_pages'][] = array(
+			'text'  => $this->language->get('text_return'),
+			'value' => 'return'
+		);
+
+		$data['captcha_pages'][] = array(
+			'text'  => $this->language->get('text_contact'),
+			'value' => 'contact'
+		);
+
 
 		if (isset($this->request->post['config_logo'])) {
 			$data['config_logo'] = $this->request->post['config_logo'];
@@ -1269,18 +1340,6 @@ class ControllerSettingSetting extends Controller {
 			$data['config_error_filename'] = $this->config->get('config_error_filename');
 		}
 
-		if (isset($this->request->post['config_google_analytics'])) {
-			$data['config_google_analytics'] = $this->request->post['config_google_analytics'];
-		} else {
-			$data['config_google_analytics'] = $this->config->get('config_google_analytics');
-		}
-		
-		if (isset($this->request->post['config_google_analytics_status'])) {
-			$data['config_google_analytics_status'] = $this->request->post['config_google_analytics_status'];
-		} else {
-			$data['config_google_analytics_status'] = $this->config->get('config_google_analytics_status');
-		}
-
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
@@ -1419,7 +1478,7 @@ class ControllerSettingSetting extends Controller {
 			$this->error['limit_admin'] = $this->language->get('error_limit');
 		}
 
-		if ((utf8_strlen($this->request->post['config_encryption']) < 3) || (utf8_strlen($this->request->post['config_encryption']) > 32)) {
+		if ((utf8_strlen($this->request->post['config_encryption']) < 32) || (utf8_strlen($this->request->post['config_encryption']) > 1024)) {
 			$this->error['encryption'] = $this->language->get('error_encryption');
 		}
 
@@ -1444,29 +1503,4 @@ class ControllerSettingSetting extends Controller {
 		}
 	}
 
-	public function country() {
-		$json = array();
-
-		$this->load->model('localisation/country');
-
-		$country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
-
-		if ($country_info) {
-			$this->load->model('localisation/zone');
-
-			$json = array(
-				'country_id'        => $country_info['country_id'],
-				'name'              => $country_info['name'],
-				'iso_code_2'        => $country_info['iso_code_2'],
-				'iso_code_3'        => $country_info['iso_code_3'],
-				'address_format'    => $country_info['address_format'],
-				'postcode_required' => $country_info['postcode_required'],
-				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            => $country_info['status']
-			);
-		}
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
 }

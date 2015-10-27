@@ -22,5 +22,6 @@ $_['entry_sort_order']      = '排序';
 
 // Error
 $_['error_permission']      = '警告: 无权限修改属性！';
+$_['error_attribute_group'] = '属性分组必选！';
 $_['error_name']            = '属性名称必须介于3-64字符之间！';
 $_['error_product']         = '警告: 无法删除此属性，该属性已经关联到 %s 个商品中！';

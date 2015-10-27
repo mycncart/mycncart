@@ -1,12 +1,13 @@
 <?php
-
 // Text
+$_['text_analytics']                   = '搜索引擎';
 $_['text_affiliate']                   = '加盟';
 $_['text_api']                         = 'API接口';
 $_['text_attribute']                   = '属性';
 $_['text_attribute_group']             = '属性组';
 $_['text_backup']                      = '备份 / 恢复';
 $_['text_banner']                      = '横幅广告';
+$_['text_captcha']                     = '验证码';
 $_['text_catalog']                     = '商品目录';
 $_['text_category']                    = '商品分类';
 $_['text_country']                     = '国家';
@@ -14,7 +15,6 @@ $_['text_coupon']                      = '折扣券';
 $_['text_currency']                    = '货币';
 $_['text_customer']                    = '会员';
 $_['text_customer_group']              = '会员等级';
-$_['text_customer_ban_ip']             = '禁止 IP';
 $_['text_custom_field']                = '自定义字段';
 $_['text_dashboard']                   = '仪表盘';
 $_['text_design']                      = '规划设计';

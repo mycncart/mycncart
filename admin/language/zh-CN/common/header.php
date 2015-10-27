@@ -5,7 +5,7 @@ $_['heading_title']        = 'MyCnCart China';
 
 // Text
 $_['text_order']           = '订单';
-$_['text_order_status']    = '挂起';
+$_['text_order_status']    = '处理中';
 $_['text_complete_status'] = '已完成';
 $_['text_customer']        = '会员';
 $_['text_online']          = '在线会员';

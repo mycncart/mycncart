@@ -10,7 +10,8 @@ class ControllerCommonProfile extends Controller {
 		$user_info = $this->model_user_user->getUser($this->user->getId());
 
 		if ($user_info) {
-			$data['fullname'] = $user_info['fullname'];
+			$data['firstname'] = $user_info['firstname'];
+			$data['lastname'] = $user_info['lastname'];
 			$data['username'] = $user_info['username'];
 
 			$data['user_group'] = $user_info['user_group'] ;
@@ -18,7 +19,7 @@ class ControllerCommonProfile extends Controller {
 			if (is_file(DIR_IMAGE . $user_info['image'])) {
 				$data['image'] = $this->model_tool_image->resize($user_info['image'], 45, 45);
 			} else {
-				$data['image'] = $this->model_tool_image->resize('no_image.png', 45, 45);
+				$data['image'] = '';
 			}
 		} else {
 			$data['username'] = '';

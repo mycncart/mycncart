@@ -31,7 +31,7 @@ $_['entry_description']      = '描述';
 $_['entry_meta_title'] 	     = 'Meta Tag 標題';
 $_['entry_meta_keyword'] 	 = 'Meta Tag 關鍵詞';
 $_['entry_meta_description'] = 'Meta Tag 描述';
-$_['entry_keyword']          = 'SEO Keyword';
+$_['entry_keyword']          = 'SEO URL';
 $_['entry_model']            = '型號';
 $_['entry_sku']              = 'SKU';
 $_['entry_upc']              = 'UPC';
@@ -82,7 +82,7 @@ $_['entry_layout']           = '布局覆蓋';
 $_['entry_recurring']        = '分期付款';
 
 // Help
-$_['help_keyword']           = '不要用空格，使用-鏈接關鍵字，確保該關鍵詞為全站唯壹。';
+$_['help_keyword']           = '不要用空格，使用-鏈接 SEO URL 關鍵字，確保該關鍵詞為全站唯壹。';
 $_['help_sku']               = 'Stock Keeping Unit';
 $_['help_upc']               = 'Universal Product Code';
 $_['help_ean']               = 'European Article Number';
