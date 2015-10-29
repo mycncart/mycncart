@@ -90,7 +90,7 @@ class ModelSaleOrder extends Model {
 				'email'                   => $order_query->row['email'],
 				'telephone'               => $order_query->row['telephone'],
 				'fax'                     => $order_query->row['fax'],
-				'custom_field'            => unserialize($order_query->row['custom_field']),
+				'custom_field'            => json_decode($order_query->row['custom_field'], true),
 				'payment_fullname'       => $order_query->row['payment_fullname'],
 				'payment_company'         => $order_query->row['payment_company'],
 				'payment_address'       => $order_query->row['payment_address'],
@@ -104,7 +104,7 @@ class ModelSaleOrder extends Model {
 				'payment_iso_code_2'      => $payment_iso_code_2,
 				'payment_iso_code_3'      => $payment_iso_code_3,
 				'payment_address_format'  => $order_query->row['payment_address_format'],
-				'payment_custom_field'    => unserialize($order_query->row['payment_custom_field']),
+				'payment_custom_field'    => json_decode($order_query->row['payment_custom_field'], true),
 				'payment_method'          => $order_query->row['payment_method'],
 				'payment_code'            => $order_query->row['payment_code'],
 				'shipping_fullname'      => $order_query->row['shipping_fullname'],
@@ -120,7 +120,7 @@ class ModelSaleOrder extends Model {
 				'shipping_iso_code_2'     => $shipping_iso_code_2,
 				'shipping_iso_code_3'     => $shipping_iso_code_3,
 				'shipping_address_format' => $order_query->row['shipping_address_format'],
-				'shipping_custom_field'   => unserialize($order_query->row['shipping_custom_field']),
+				'shipping_custom_field'   => json_decode($order_query->row['shipping_custom_field'], true),
 				'shipping_method'         => $order_query->row['shipping_method'],
 				'shipping_code'           => $order_query->row['shipping_code'],
 				'shipping_telephone'      => $order_query->row['shipping_telephone'],
@@ -163,8 +163,6 @@ class ModelSaleOrder extends Model {
 
 			if ($implode) {
 				$sql .= " WHERE (" . implode(" OR ", $implode) . ")";
-			} else {
-
 			}
 		} else {
 			$sql .= " WHERE o.order_status_id > '0'";
@@ -234,12 +232,6 @@ class ModelSaleOrder extends Model {
 		return $query->rows;
 	}
 
-	public function getOrderOption($order_id, $order_option_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int)$order_id . "' AND order_option_id = '" . (int)$order_option_id . "'");
-
-		return $query->row;
-	}
-
 	public function getOrderOptions($order_id, $order_product_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int)$order_id . "' AND order_product_id = '" . (int)$order_product_id . "'");
 
@@ -267,7 +259,7 @@ class ModelSaleOrder extends Model {
 	public function getTotalOrders($data = array()) {
 		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order`";
 
-		if (!empty($data['filter_order_status'])) {
+		if (isset($data['filter_order_status'])) {
 			$implode = array();
 
 			$order_statuses = explode(',', $data['filter_order_status']);
