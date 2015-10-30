@@ -388,6 +388,10 @@ class ModelWeidianProduct extends Model {
 		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
 			$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
 		}
+		
+		if (isset($data['filter_sent']) && !is_null($data['filter_sent'])) {
+			$sql .= " AND p.sent = '" . (int)$data['filter_sent'] . "'";
+		}
 
 		$sql .= " GROUP BY p.product_id";
 
@@ -424,6 +428,7 @@ class ModelWeidianProduct extends Model {
 
 			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
 		}
+		
 
 		$query = $this->db->query($sql);
 
@@ -672,82 +677,21 @@ class ModelWeidianProduct extends Model {
 		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
 			$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
 		}
+		
+		if (isset($data['filter_sent']) && !is_null($data['filter_sent'])) {
+			$sql .= " AND p.sent = '" . (int)$data['filter_sent'] . "'";
+		}
 
 		$query = $this->db->query($sql);
 
 		return $query->row['total'];
 	}
 
-	public function getTotalProductsByTaxClassId($tax_class_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product WHERE tax_class_id = '" . (int)$tax_class_id . "'");
 
-		return $query->row['total'];
-	}
-
-	public function getTotalProductsByStockStatusId($stock_status_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product WHERE stock_status_id = '" . (int)$stock_status_id . "'");
-
-		return $query->row['total'];
-	}
-
-	public function getTotalProductsByWeightClassId($weight_class_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product WHERE weight_class_id = '" . (int)$weight_class_id . "'");
-
-		return $query->row['total'];
-	}
-
-	public function getTotalProductsByLengthClassId($length_class_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product WHERE length_class_id = '" . (int)$length_class_id . "'");
-
-		return $query->row['total'];
-	}
-
-	public function getTotalProductsByDownloadId($download_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_to_download WHERE download_id = '" . (int)$download_id . "'");
-
-		return $query->row['total'];
-	}
-
-	public function getTotalProductsByManufacturerId($manufacturer_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product WHERE manufacturer_id = '" . (int)$manufacturer_id . "'");
-
-		return $query->row['total'];
-	}
-
-	public function getTotalProductsByAttributeId($attribute_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_attribute WHERE attribute_id = '" . (int)$attribute_id . "'");
-
-		return $query->row['total'];
-	}
-
-	public function getTotalProductsByOptionId($option_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_option WHERE option_id = '" . (int)$option_id . "'");
-
-		return $query->row['total'];
-	}
-
-	public function getTotalProductsByProfileId($recurring_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_recurring WHERE recurring_id = '" . (int)$recurring_id . "'");
-
-		return $query->row['total'];
-	}
-
-	public function getTotalProductsByLayoutId($layout_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_to_layout WHERE layout_id = '" . (int)$layout_id . "'");
-
-		return $query->row['total'];
-	}
-	
-	public function getTotalProductsByShippingOriginId($shipping_origin_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product WHERE shipping_origin_id = '" . (int)$shipping_origin_id . "'");
-
-		return $query->row['total'];
-	}
 	
 	public function getTotalProductsByCategoryID($data = array()) {
 		$sql = "SELECT COUNT(DISTINCT p.product_id) AS total";
 
-		
 		$sql .= " FROM " . DB_PREFIX . "product p";
 			
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p2c.product_id = p.product_id)";
@@ -759,11 +703,6 @@ class ModelWeidianProduct extends Model {
 		$sql .= " AND p2c.category_id = '" . (int)$data['filter_category_id'] . "'";
 			
 
-			
-		
-		
-		//echo $sql;
-		
 
 		$query = $this->db->query($sql);
 

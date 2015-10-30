@@ -95,6 +95,7 @@ $_['entry_reward']           = '奖励积分';
 $_['entry_layout']           = '布局覆盖';
 $_['entry_recurring']        = '分期付款';
 $_['entry_maxbuy']           = '限购数量';
+$_['entry_sent']             = '推送状态';
 
 // Help
 $_['help_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
