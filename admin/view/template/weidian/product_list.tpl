@@ -38,6 +38,24 @@
                 <label class="control-label" for="input-model"><?php echo $entry_model; ?></label>
                 <input type="text" name="filter_model" value="<?php echo $filter_model; ?>" placeholder="<?php echo $entry_model; ?>" id="input-model" class="form-control" />
               </div>
+              
+              <div class="form-group">
+                <label class="control-label" for="input-sent"><?php echo $entry_sent; ?></label>
+                <select name="filter_sent" id="input-sent" class="form-control">
+                  <option value="*"></option>
+                  <?php if ($filter_sent) { ?>
+                  <option value="1" selected="selected"><?php echo $text_push; ?></option>
+                  <?php } else { ?>
+                  <option value="1"><?php echo $text_push; ?></option>
+                  <?php } ?>
+                  <?php if (!$filter_sent && !is_null($filter_sent)) { ?>
+                  <option value="0" selected="selected"><?php echo $text_unpush; ?></option>
+                  <?php } else { ?>
+                  <option value="0"><?php echo $text_unpush; ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              
             </div>
             <div class="col-sm-4">
               <div class="form-group">
@@ -216,6 +234,12 @@ $('#button-filter').on('click', function() {
 
 	if (filter_status != '*') {
 		url += '&filter_status=' + encodeURIComponent(filter_status);
+	}
+	
+	var filter_sent = $('select[name=\'filter_sent\']').val();
+
+	if (filter_sent != '*') {
+		url += '&filter_sent=' + encodeURIComponent(filter_sent);
 	}
 
 	location = url;
