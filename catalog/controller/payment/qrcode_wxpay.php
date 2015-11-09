@@ -197,14 +197,6 @@ class ControllerPaymentQrcodeWxPay extends Controller {
 						
 					}
 					
-					//更新子订单状态
-					$childs = $this->model_checkout_order->getChildOrders($order_id);
-					if($childs) {
-						foreach($childs as $child) {
-							$this->model_checkout_order->addOrderHistory($child['order_id'], $order_status_id);
-						}
-					}
-					
 					//清除sesssion，避免客户返回不到成功页面而无法清除原有的购物车等信息
 					$this->cart->clear();
 					unset($this->session->data['shipping_method']);

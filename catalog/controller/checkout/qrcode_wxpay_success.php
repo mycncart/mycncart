@@ -64,53 +64,9 @@ class ControllerCheckoutQrcodeWxPaySuccess extends Controller {
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
-		
-		
-		$data['include_aus_goods'] = 0;	
-		
-		if($order_id) {
-			$this->load->model('account/order');
-			
-			$ifincludechildorder = $this->model_account_order->ifIncludeChildOrder($order_id);
-			
-			if($ifincludechildorder) {
-				$ifausorder = $this->model_account_order->getAusChildOrder($order_id);
-				
-				if($ifausorder) {
-					
-					$data['include_aus_goods'] = 1;	
-					
-				}
-			}else{
-			
-				//没有子订单时判断订单本身是否包含了境外商品
-				
-				$ifselfaus = $this->model_account_order->checkAusOrderProduct($order_id);
-				if($ifselfaus) {
-					$data['include_aus_goods'] = 1;	
-				}
-			}
-			
-			//如果该地址已经有了身份证相关资料，则无需提示再提交了
-			
-			$order_info = $this->model_account_order->getOrder($order_id);
-			
-			$this->load->model('account/address');
-			
-			$address_info = $this->model_account_address->getAddress($order_info['address_id']);
-			
-			if($address_info['personal_card_number'] && $address_info['personal_card_front'] && $address_info['personal_card_back']) {
-			
-				$data['include_aus_goods'] = 0;	
-				
-			}
-			
-			
-		
-		}
-		
+
 		$data['code_url'] = $this->session->data['code_url'];
-		
+
 		$data['address'] = $this->url->link('account/address', '', 'SSL');
 
 
