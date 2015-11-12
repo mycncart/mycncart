@@ -239,14 +239,6 @@ class ControllerPaymentWxPay extends Controller {
 						
 					}
 					
-					//更新子订单状态
-					$childs = $this->model_checkout_order->getChildOrders($order_id);
-					if($childs) {
-						foreach($childs as $child) {
-							$this->model_checkout_order->addOrderHistory($child['order_id'], $order_status_id);
-						}
-					}
-					
 					//清除sesssion，避免客户返回不到成功页面而无法清除原有的购物车等信息
 					$this->cart->clear();
 					unset($this->session->data['shipping_method']);
@@ -372,17 +364,9 @@ class ControllerPaymentWxPay extends Controller {
 						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id, '', true);
 						
 					}
-					
-					//更新子订单状态
-					$childs = $this->model_checkout_order->getChildOrders($order_id);
-					if($childs) {
-						foreach($childs as $child) {
-							$this->model_checkout_order->addOrderHistory($child['order_id'], $order_status_id);
-						}
-					}
 				
 						
-					echo "success";	
+					echo "success";
 			
 				} else if ($_POST['trade_status'] == 'TRADE_SUCCESS') {
 					
@@ -401,16 +385,8 @@ class ControllerPaymentWxPay extends Controller {
 						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id, '', true);
 						
 					}
-					
-					//更新子订单状态
-					$childs = $this->model_checkout_order->getChildOrders($order_id);
-					if($childs) {
-						foreach($childs as $child) {
-							$this->model_checkout_order->addOrderHistory($child['order_id'], $order_status_id);
-						}
-					}
 						
-					echo "success";	
+					echo "success";
 			
 				}
 				
