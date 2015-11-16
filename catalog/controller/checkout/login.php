@@ -80,8 +80,13 @@ class ControllerCheckoutLogin extends Controller {
 		}
 
 		if (!$json) {
+			// Trigger customer pre login event
+			$this->event->trigger('pre.customer.login');
+
+			// Unset guest
 			unset($this->session->data['guest']);
 
+			// Default Shipping Address
 			$this->load->model('account/address');
 
 			if ($this->config->get('config_tax_customer') == 'payment') {
@@ -92,7 +97,16 @@ class ControllerCheckoutLogin extends Controller {
 				$this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
 			}
 
-			$json['redirect'] = $this->url->link('checkout/checkout', '', 'SSL');
+			// Wishlist
+			if (isset($this->session->data['wishlist']) && is_array($this->session->data['wishlist'])) {
+				$this->load->model('account/wishlist');
+
+				foreach ($this->session->data['wishlist'] as $key => $product_id) {
+					$this->model_account_wishlist->addWishlist($product_id);
+
+					unset($this->session->data['wishlist'][$key]);
+				}
+			}
 
 			// Add to activity log
 			$this->load->model('account/activity');
@@ -103,6 +117,11 @@ class ControllerCheckoutLogin extends Controller {
 			);
 
 			$this->model_account_activity->addActivity('login', $activity_data);
+			
+			// Trigger customer post login event
+			$this->event->trigger('post.customer.login');
+
+			$json['redirect'] = $this->url->link('checkout/checkout', '', 'SSL');
 		}
 
 		$this->response->addHeader('Content-Type: application/json');

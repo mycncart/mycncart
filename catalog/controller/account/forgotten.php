@@ -7,7 +7,7 @@ class ControllerAccountForgotten extends Controller {
 			$this->response->redirect($this->url->link('account/account', '', 'SSL'));
 		}
 
-		$this->load->language('account/forgotten');
+		$this->language->load('account/forgotten');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -117,6 +117,12 @@ class ControllerAccountForgotten extends Controller {
 			$this->error['warning'] = $this->language->get('error_email');
 		} elseif (!$this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
 			$this->error['warning'] = $this->language->get('error_email');
+		}
+
+		$customer_info = $this->model_account_customer->getCustomerByEmail($this->request->post['email']);
+
+		if ($customer_info && !$customer_info['approved']) {
+		    $this->error['warning'] = $this->language->get('error_approved');
 		}
 
 		return !$this->error;

@@ -16,7 +16,7 @@ class ControllerAffiliateForgotten extends Controller {
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->load->language('mail/forgotten');
 
-			$password = substr(md5(mt_rand()), 0, 10);
+			$password = token(10);
 
 			$this->model_affiliate_affiliate->editPassword($this->request->post['email'], $password);
 
@@ -52,7 +52,7 @@ class ControllerAffiliateForgotten extends Controller {
 
 				$activity_data = array(
 					'affiliate_id' => $affiliate_info['affiliate_id'],
-					'name'         => $affiliate_info['fullname']
+					'name'         => $affiliate_info['firstname'] . ' ' . $affiliate_info['lastname']
 				);
 
 				$this->model_affiliate_activity->addActivity('forgotten', $activity_data);
@@ -117,6 +117,12 @@ class ControllerAffiliateForgotten extends Controller {
 			$this->error['warning'] = $this->language->get('error_email');
 		} elseif (!$this->model_affiliate_affiliate->getTotalAffiliatesByEmail($this->request->post['email'])) {
 			$this->error['warning'] = $this->language->get('error_email');
+		}
+
+		$affiliate_info = $this->model_affiliate_affiliate->getAffiliateByEmail($this->request->post['email']);
+
+		if ($affiliate_info && !$affiliate_info['approved']) {
+		    $this->error['warning'] = $this->language->get('error_approved');
 		}
 
 		return !$this->error;

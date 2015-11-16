@@ -19,6 +19,18 @@ class ControllerApiOrder extends Controller {
 			}
 
 			// Payment Method
+			if (!$json && !empty($this->request->post['payment_method'])) {
+				if (empty($this->session->data['payment_methods'])) {
+					$json['error'] = $this->language->get('error_no_payment');
+				} elseif (!isset($this->session->data['payment_methods'][$this->request->post['payment_method']])) {
+					$json['error'] = $this->language->get('error_payment_method');
+				}
+
+				if (!$json) {
+					$this->session->data['payment_method'] = $this->session->data['payment_methods'][$this->request->post['payment_method']];
+				}
+			}
+
 			if (!isset($this->session->data['payment_method'])) {
 				$json['error'] = $this->language->get('error_payment_method');
 			}
@@ -31,7 +43,24 @@ class ControllerApiOrder extends Controller {
 				}
 
 				// Shipping Method
-				if (!isset($this->request->post['shipping_method'])) {
+				if (!$json && !empty($this->request->post['shipping_method'])) {
+					if (empty($this->session->data['shipping_methods'])) {
+						$json['error'] = $this->language->get('error_no_shipping');
+					} else {
+						$shipping = explode('.', $this->request->post['shipping_method']);
+
+						if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {
+							$json['error'] = $this->language->get('error_shipping_method');
+						}
+					}
+
+					if (!$json) {
+						$this->session->data['shipping_method'] = $this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]];
+					}
+				}
+
+				// Shipping Method
+				if (!isset($this->session->data['shipping_method'])) {
 					$json['error'] = $this->language->get('error_shipping_method');
 				}
 			} else {
@@ -110,7 +139,6 @@ class ControllerApiOrder extends Controller {
 				// Shipping Details
 				if ($this->cart->hasShipping()) {
 					$order_data['shipping_fullname'] = $this->session->data['shipping_address']['fullname'];
-					$order_data['shipping_telephone'] = $this->session->data['shipping_address']['shipping_telephone'];
 					$order_data['shipping_company'] = $this->session->data['shipping_address']['company'];
 					$order_data['shipping_address'] = $this->session->data['shipping_address']['address'];
 					$order_data['shipping_city'] = $this->session->data['shipping_address']['city'];
@@ -135,7 +163,6 @@ class ControllerApiOrder extends Controller {
 					}
 				} else {
 					$order_data['shipping_fullname'] = '';
-					$order_data['shipping_telephone'] = '';
 					$order_data['shipping_company'] = '';
 					$order_data['shipping_address'] = '';
 					$order_data['shipping_city'] = '';
@@ -190,7 +217,7 @@ class ControllerApiOrder extends Controller {
 					foreach ($this->session->data['vouchers'] as $voucher) {
 						$order_data['vouchers'][] = array(
 							'description'      => $voucher['description'],
-							'code'             => substr(md5(mt_rand()), 0, 10),
+							'code'             => substr(token(32), 0, 10),
 							'to_name'          => $voucher['to_name'],
 							'to_email'         => $voucher['to_email'],
 							'from_name'        => $voucher['from_name'],
@@ -307,8 +334,16 @@ class ControllerApiOrder extends Controller {
 				}
 
 				$this->model_checkout_order->addOrderHistory($json['order_id'], $order_status_id);
-				$json['success'] = $this->language->get('text_success');				
+
+				$json['success'] = $this->language->get('text_success');
 			}
+		}
+
+		if (isset($this->request->server['HTTP_ORIGIN'])) {
+			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+			$this->response->addHeader('Access-Control-Max-Age: 1000');
+			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
@@ -345,6 +380,18 @@ class ControllerApiOrder extends Controller {
 				}
 
 				// Payment Method
+				if (!$json && !empty($this->request->post['payment_method'])) {
+					if (empty($this->session->data['payment_methods'])) {
+						$json['error'] = $this->language->get('error_no_payment');
+					} elseif (!isset($this->session->data['payment_methods'][$this->request->post['payment_method']])) {
+						$json['error'] = $this->language->get('error_payment_method');
+					}
+
+					if (!$json) {
+						$this->session->data['payment_method'] = $this->session->data['payment_methods'][$this->request->post['payment_method']];
+					}
+				}
+
 				if (!isset($this->session->data['payment_method'])) {
 					$json['error'] = $this->language->get('error_payment_method');
 				}
@@ -357,7 +404,23 @@ class ControllerApiOrder extends Controller {
 					}
 
 					// Shipping Method
-					if (!isset($this->request->post['shipping_method'])) {
+					if (!$json && !empty($this->request->post['shipping_method'])) {
+						if (empty($this->session->data['shipping_methods'])) {
+							$json['error'] = $this->language->get('error_no_shipping');
+						} else {
+							$shipping = explode('.', $this->request->post['shipping_method']);
+
+							if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {
+								$json['error'] = $this->language->get('error_shipping_method');
+							}
+						}
+
+						if (!$json) {
+							$this->session->data['shipping_method'] = $this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]];
+						}
+					}
+
+					if (!isset($this->session->data['shipping_method'])) {
 						$json['error'] = $this->language->get('error_shipping_method');
 					}
 				} else {
@@ -436,7 +499,6 @@ class ControllerApiOrder extends Controller {
 					// Shipping Details
 					if ($this->cart->hasShipping()) {
 						$order_data['shipping_fullname'] = $this->session->data['shipping_address']['fullname'];
-						$order_data['shipping_telephone'] = $this->session->data['shipping_address']['shipping_telephone'];
 						$order_data['shipping_company'] = $this->session->data['shipping_address']['company'];
 						$order_data['shipping_address'] = $this->session->data['shipping_address']['address'];
 						$order_data['shipping_city'] = $this->session->data['shipping_address']['city'];
@@ -461,7 +523,6 @@ class ControllerApiOrder extends Controller {
 						}
 					} else {
 						$order_data['shipping_fullname'] = '';
-						$order_data['shipping_telephone'] = '';
 						$order_data['shipping_company'] = '';
 						$order_data['shipping_address'] = '';
 						$order_data['shipping_city'] = '';
@@ -516,7 +577,7 @@ class ControllerApiOrder extends Controller {
 						foreach ($this->session->data['vouchers'] as $voucher) {
 							$order_data['vouchers'][] = array(
 								'description'      => $voucher['description'],
-								'code'             => substr(md5(mt_rand()), 0, 10),
+								'code'             => token(10),
 								'to_name'          => $voucher['to_name'],
 								'to_email'         => $voucher['to_email'],
 								'from_name'        => $voucher['from_name'],
@@ -607,6 +668,13 @@ class ControllerApiOrder extends Controller {
 			}
 		}
 
+		if (isset($this->request->server['HTTP_ORIGIN'])) {
+			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+			$this->response->addHeader('Access-Control-Max-Age: 1000');
+			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+		}
+
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
@@ -636,6 +704,13 @@ class ControllerApiOrder extends Controller {
 			} else {
 				$json['error'] = $this->language->get('error_not_found');
 			}
+		}
+
+		if (isset($this->request->server['HTTP_ORIGIN'])) {
+			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+			$this->response->addHeader('Access-Control-Max-Age: 1000');
+			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
@@ -675,12 +750,19 @@ class ControllerApiOrder extends Controller {
 			$order_info = $this->model_checkout_order->getOrder($order_id);
 
 			if ($order_info) {
-				$this->model_checkout_order->addOrderHistory($order_id, $this->request->post['order_status_id'], $this->request->post['comment'], $this->request->post['notify']);
+				$this->model_checkout_order->addOrderHistory($order_id, $this->request->post['order_status_id'], $this->request->post['comment'], $this->request->post['notify'], $this->request->post['override']);
 
 				$json['success'] = $this->language->get('text_success');
 			} else {
 				$json['error'] = $this->language->get('error_not_found');
 			}
+		}
+
+		if (isset($this->request->server['HTTP_ORIGIN'])) {
+			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+			$this->response->addHeader('Access-Control-Max-Age: 1000');
+			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 		}
 
 		$this->response->addHeader('Content-Type: application/json');

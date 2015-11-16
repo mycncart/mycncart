@@ -140,8 +140,8 @@ class ControllerPaymentPPExpress extends Controller {
 		if ($this->session->data['paypal']['guest'] == true) {
 
 			$this->session->data['guest']['customer_group_id'] = $this->config->get('config_customer_group_id');
-			$this->session->data['guest']['firstname'] = trim($result['FIRSTNAME']);
-			$this->session->data['guest']['lastname'] = trim($result['LASTNAME']);
+			$this->session->data['guest']['fullname'] = trim($result['FULLNAME']);
+			$this->session->data['guest']['lastname'] = '';
 			$this->session->data['guest']['email'] = trim($result['EMAIL']);
 
 			if (isset($result['PHONENUM'])) {
@@ -152,8 +152,8 @@ class ControllerPaymentPPExpress extends Controller {
 
 			$this->session->data['guest']['fax'] = '';
 
-			$this->session->data['guest']['payment']['firstname'] = trim($result['FIRSTNAME']);
-			$this->session->data['guest']['payment']['lastname'] = trim($result['LASTNAME']);
+			$this->session->data['guest']['payment']['fullname'] = trim($result['FULLNAME']);
+			$this->session->data['guest']['payment']['lastname'] = '';
 
 			if (isset($result['BUSINESS'])) {
 				$this->session->data['guest']['payment']['company'] = $result['BUSINESS'];
@@ -180,7 +180,7 @@ class ControllerPaymentPPExpress extends Controller {
 				$this->session->data['guest']['payment']['postcode'] = $result['PAYMENTREQUEST_0_SHIPTOZIP'];
 				$this->session->data['guest']['payment']['city'] = $result['PAYMENTREQUEST_0_SHIPTOCITY'];
 
-				$this->session->data['guest']['shipping']['firstname'] = $shipping_first_name;
+				$this->session->data['guest']['shipping']['fullname'] = $shipping_first_name;
 				$this->session->data['guest']['shipping']['lastname'] = $shipping_last_name;
 				$this->session->data['guest']['shipping']['company'] = '';
 				$this->session->data['guest']['shipping']['address_1'] = $result['PAYMENTREQUEST_0_SHIPTOSTREET'];
@@ -319,7 +319,7 @@ class ControllerPaymentPPExpress extends Controller {
 					$zone_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` WHERE `name` = '" . $this->db->escape($result['PAYMENTREQUEST_0_SHIPTOSTATE']) . "' AND `status` = '1' AND `country_id` = '" . (int)$country_info['country_id'] . "'")->row;
 
 					$address_data = array(
-						'firstname'  => $shipping_first_name,
+						'fullname'  => $shipping_first_name,
 						'lastname'   => $shipping_last_name,
 						'company'    => '',
 						'company_id' => '',
@@ -441,6 +441,8 @@ class ControllerPaymentPPExpress extends Controller {
 
 		$data['action'] = $this->url->link('payment/pp_express/expressConfirm', '', 'SSL');
 
+		$this->load->model('tool/upload');
+
 		$products = $this->cart->getProducts();
 
 		foreach ($products as $product) {
@@ -466,11 +468,15 @@ class ControllerPaymentPPExpress extends Controller {
 
 			foreach ($product['option'] as $option) {
 				if ($option['type'] != 'file') {
-					$value = $option['option_value'];
+					$value = $option['value'];
 				} else {
-					$filename = $this->encryption->decrypt($option['option_value']);
+					$upload_info = $this->model_tool_upload->getUploadByCode($option['value']);
 
-					$value = utf8_substr($filename, 0, utf8_strrpos($filename, '.'));
+					if ($upload_info) {
+						$value = $upload_info['name'];
+					} else {
+						$value = '';
+					}
 				}
 
 				$option_data[] = array(
@@ -519,19 +525,19 @@ class ControllerPaymentPPExpress extends Controller {
 			}
 
 			$data['products'][] = array(
-				'key'                 => $product['key'],
-				'thumb'               => $image,
-				'name'                => $product['name'],
-				'model'               => $product['model'],
-				'option'              => $option_data,
-				'quantity'            => $product['quantity'],
-				'stock'               => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
-				'reward'              => ($product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : ''),
-				'price'               => $price,
-				'total'               => $total,
-				'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id']),
-				'remove'              => $this->url->link('checkout/cart', 'remove=' . $product['key']),
-				'recurring'           => $product['recurring'],
+				'cart_id'               => $product['cart_id'],
+				'thumb'                 => $image,
+				'name'                  => $product['name'],
+				'model'                 => $product['model'],
+				'option'                => $option_data,
+				'quantity'              => $product['quantity'],
+				'stock'                 => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
+				'reward'                => ($product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : ''),
+				'price'                 => $price,
+				'total'                 => $total,
+				'href'                  => $this->url->link('product/product', 'product_id=' . $product['product_id']),
+				'remove'                => $this->url->link('checkout/cart', 'remove=' . $product['cart_id']),
+				'recurring'             => $product['recurring'],
 				'recurring_name'        => (isset($product['recurring']['recurring_name']) ? $product['recurring']['recurring_name'] : ''),
 				'recurring_description' => $recurring_description
 			);
@@ -853,7 +859,7 @@ class ControllerPaymentPPExpress extends Controller {
 			if ($this->customer->isLogged() && isset($this->session->data['payment_address_id'])) {
 				$data['customer_id'] = $this->customer->getId();
 				$data['customer_group_id'] = $this->config->get('config_customer_group_id');
-				$data['firstname'] = $this->customer->getFirstName();
+				$data['fullname'] = $this->customer->getFullName();
 				$data['lastname'] = $this->customer->getLastName();
 				$data['email'] = $this->customer->getEmail();
 				$data['telephone'] = $this->customer->getTelephone();
@@ -865,7 +871,7 @@ class ControllerPaymentPPExpress extends Controller {
 			} elseif (isset($this->session->data['guest'])) {
 				$data['customer_id'] = 0;
 				$data['customer_group_id'] = $this->session->data['guest']['customer_group_id'];
-				$data['firstname'] = $this->session->data['guest']['firstname'];
+				$data['fullname'] = $this->session->data['guest']['fullname'];
 				$data['lastname'] = $this->session->data['guest']['lastname'];
 				$data['email'] = $this->session->data['guest']['email'];
 				$data['telephone'] = $this->session->data['guest']['telephone'];
@@ -874,7 +880,7 @@ class ControllerPaymentPPExpress extends Controller {
 				$payment_address = $this->session->data['guest']['payment'];
 			}
 
-			$data['payment_firstname'] = isset($payment_address['firstname']) ? $payment_address['firstname'] : '';
+			$data['payment_fullname'] = isset($payment_address['fullname']) ? $payment_address['fullname'] : '';
 			$data['payment_lastname'] = isset($payment_address['lastname']) ? $payment_address['lastname'] : '';
 			$data['payment_company'] = isset($payment_address['company']) ? $payment_address['company'] : '';
 			$data['payment_company_id'] = isset($payment_address['company_id']) ? $payment_address['company_id'] : '';
@@ -908,7 +914,7 @@ class ControllerPaymentPPExpress extends Controller {
 					$shipping_address = $this->session->data['guest']['shipping'];
 				}
 
-				$data['shipping_firstname'] = $shipping_address['firstname'];
+				$data['shipping_fullname'] = $shipping_address['fullname'];
 				$data['shipping_lastname'] = $shipping_address['lastname'];
 				$data['shipping_company'] = $shipping_address['company'];
 				$data['shipping_address_1'] = $shipping_address['address_1'];
@@ -931,7 +937,7 @@ class ControllerPaymentPPExpress extends Controller {
 					$data['shipping_code'] = $this->session->data['shipping_method']['code'];
 				}
 			} else {
-				$data['shipping_firstname'] = '';
+				$data['shipping_fullname'] = '';
 				$data['shipping_lastname'] = '';
 				$data['shipping_company'] = '';
 				$data['shipping_address_1'] = '';
@@ -953,19 +959,13 @@ class ControllerPaymentPPExpress extends Controller {
 				$option_data = array();
 
 				foreach ($product['option'] as $option) {
-					if ($option['type'] != 'file') {
-						$value = $option['option_value'];
-					} else {
-						$value = $this->encryption->decrypt($option['option_value']);
-					}
-
 					$option_data[] = array(
 						'product_option_id'       => $option['product_option_id'],
 						'product_option_value_id' => $option['product_option_value_id'],
 						'option_id'               => $option['option_id'],
 						'option_value_id'         => $option['option_value_id'],
 						'name'                    => $option['name'],
-						'value'                   => $value,
+						'value'                   => $option['value'],
 						'type'                    => $option['type']
 					);
 				}
@@ -992,7 +992,7 @@ class ControllerPaymentPPExpress extends Controller {
 				foreach ($this->session->data['vouchers'] as $voucher) {
 					$voucher_data[] = array(
 						'description'      => $voucher['description'],
-						'code'             => substr(md5(mt_rand()), 0, 10),
+						'code'             => token(10),
 						'to_name'          => $voucher['to_name'],
 						'to_email'         => $voucher['to_email'],
 						'from_name'        => $voucher['from_name'],
@@ -1279,7 +1279,7 @@ class ControllerPaymentPPExpress extends Controller {
 		if ($this->cart->hasShipping()) {
 			$shipping = 0;
 			$data_shipping = array(
-				'PAYMENTREQUEST_0_SHIPTONAME'        => html_entity_decode($order_info['shipping_firstname'] . ' ' . $order_info['shipping_lastname'], ENT_QUOTES, 'UTF-8'),
+				'PAYMENTREQUEST_0_SHIPTONAME'        => html_entity_decode($order_info['shipping_fullname'] . ' ' . $order_info['shipping_lastname'], ENT_QUOTES, 'UTF-8'),
 				'PAYMENTREQUEST_0_SHIPTOSTREET'      => html_entity_decode($order_info['shipping_address_1'], ENT_QUOTES, 'UTF-8'),
 				'PAYMENTREQUEST_0_SHIPTOSTREET2'     => html_entity_decode($order_info['shipping_address_2'], ENT_QUOTES, 'UTF-8'),
 				'PAYMENTREQUEST_0_SHIPTOCITY'        => html_entity_decode($order_info['shipping_city'], ENT_QUOTES, 'UTF-8'),
@@ -1904,9 +1904,9 @@ class ControllerPaymentPPExpress extends Controller {
 	}
 
 	protected function validateCoupon() {
-		$this->load->model('checkout/coupon');
+		$this->load->model('total/coupon');
 
-		$coupon_info = $this->model_checkout_coupon->getCoupon($this->request->post['coupon']);
+		$coupon_info = $this->model_total_coupon->getCoupon($this->request->post['coupon']);
 
 		$error = '';
 
@@ -1923,9 +1923,9 @@ class ControllerPaymentPPExpress extends Controller {
 	}
 
 	protected function validateVoucher() {
-		$this->load->model('checkout/voucher');
+		$this->load->model('total/coupon');
 
-		$voucher_info = $this->model_checkout_voucher->getVoucher($this->request->post['voucher']);
+		$voucher_info = $this->model_total_voucher->getVoucher($this->request->post['voucher']);
 
 		$error = '';
 

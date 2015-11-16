@@ -60,7 +60,7 @@ class ControllerProductSearch extends Controller {
 		}
 
 		if (isset($this->request->get['limit'])) {
-			$limit = $this->request->get['limit'];
+			$limit = (int)$this->request->get['limit'];
 		} else {
 			$limit = $this->config->get('config_product_limit');
 		}
@@ -429,6 +429,19 @@ class ControllerProductSearch extends Controller {
 			$data['pagination'] = $pagination->render();
 
 			$data['results'] = sprintf($this->language->get('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
+
+			// http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
+			if ($page == 1) {
+			    $this->document->addLink($this->url->link('product/search', '', 'SSL'), 'canonical');
+			} elseif ($page == 2) {
+			    $this->document->addLink($this->url->link('product/search', '', 'SSL'), 'prev');
+			} else {
+			    $this->document->addLink($this->url->link('product/search', $url . '&page='. ($page - 1), 'SSL'), 'prev');
+			}
+
+			if ($limit && ceil($product_total / $limit) > $page) {
+			    $this->document->addLink($this->url->link('product/search', $url . '&page='. ($page + 1), 'SSL'), 'next');
+			}
 		}
 
 		$data['search'] = $search;
@@ -449,6 +462,7 @@ class ControllerProductSearch extends Controller {
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/search.tpl')) {
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/search.tpl', $data));
+
 		} else {
 			$this->response->setOutput($this->load->view('default/template/product/search.tpl', $data));
 		}
