@@ -15,3 +15,4 @@ $_['entry_email']     = 'E-Mail 地址';
 
 // Error
 $_['error_email']     = '警告： 该邮箱地址不在我们的记录中， 请重试！';
+$_['error_approved']  = '警告: 账户尚未审核通过。';

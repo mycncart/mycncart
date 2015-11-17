@@ -18,7 +18,6 @@ $_['text_success']   = '<p>您的咨詢內容已發送給網站管理員！</p>'
 $_['entry_name']     = '姓名';
 $_['entry_email']    = 'E-Mail';
 $_['entry_enquiry']  = '咨詢內容';
-$_['entry_captcha']  = '請在下框輸入驗證碼';
 
 // Email
 $_['email_subject']  = '咨詢 %s';
@@ -27,4 +26,3 @@ $_['email_subject']  = '咨詢 %s';
 $_['error_name']     = '姓名必須爲 3 - 32字符！';
 $_['error_email']    = 'E-Mail 無效！';
 $_['error_enquiry']  = '咨詢內容必須爲 10 - 3000字符！';
-$_['error_captcha']  = '驗證碼與圖像提供的驗證號碼不一致！';

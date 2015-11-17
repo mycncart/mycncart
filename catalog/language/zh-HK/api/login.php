@@ -4,4 +4,5 @@
 $_['text_success'] = '成功: API 會話成功開啓！';
 
 // Error
-$_['error_login']  = '警告: 用戶名或密碼不正確。';
+$_['error_key']  = '警告: 错误的接口 Key!';
+$_['error_ip']   = '警告: 您的 IP %s 不允许访问此接口！';

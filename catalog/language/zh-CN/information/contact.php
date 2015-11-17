@@ -18,7 +18,6 @@ $_['text_success']   = '<p>您的咨询内容已发送给网站管理员！</p>'
 $_['entry_name']     = '姓名';
 $_['entry_email']    = 'E-Mail';
 $_['entry_enquiry']  = '咨询内容';
-$_['entry_captcha']  = '请在下框输入验证码';
 
 // Email
 $_['email_subject']  = '咨询 %s';
@@ -27,4 +26,3 @@ $_['email_subject']  = '咨询 %s';
 $_['error_name']     = '姓名必须为 3 - 32字符！';
 $_['error_email']    = 'E-Mail 无效！';
 $_['error_enquiry']  = '咨询内容必须为 10 - 3000字符！';
-$_['error_captcha']  = '验证码与图像提供的验证号码不一致！';

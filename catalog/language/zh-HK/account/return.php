@@ -59,5 +59,4 @@ $_['error_telephone']    = '電話必須爲 3 - 32字符！';
 $_['error_product']      = '商品名稱必須爲 3-255字符！';
 $_['error_model']        = '商品型號必須爲3 - 64字符！';
 $_['error_reason']       = '必須選擇退換原因！';
-$_['error_captcha']      = '驗證碼錯誤！';
 $_['error_agree']        = '警告:必須同意 %s!';
