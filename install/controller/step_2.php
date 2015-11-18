@@ -157,15 +157,15 @@ class ControllerStep2 extends Controller {
 			$this->error['warning'] = 'Warning: admin/config.php needs to be writable for MyCnCart to be installed!';
 		}
 
-		if (!is_writable(DIR_OPENCART . 'image')) {
+		if (!is_writable(DIR_MYCNCART . 'image')) {
 			$this->error['warning'] = 'Warning: Image directory needs to be writable for MyCnCart to work!';
 		}
 
-		if (!is_writable(DIR_OPENCART . 'image/cache')) {
+		if (!is_writable(DIR_MYCNCART . 'image/cache')) {
 			$this->error['warning'] = 'Warning: Image cache directory needs to be writable for MyCnCart to work!';
 		}
 
-		if (!is_writable(DIR_OPENCART . 'image/catalog')) {
+		if (!is_writable(DIR_MYCNCART . 'image/catalog')) {
 			$this->error['warning'] = 'Warning: Image catalog directory needs to be writable for MyCnCart to work!';
 		}
 		

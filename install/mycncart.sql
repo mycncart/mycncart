@@ -1,5 +1,6 @@
 SET SQL_MODE = "";
-CREATE TABLE IF NOT EXISTS `mcc_address` (
+DROP TABLE IF EXISTS `mcc_address`;
+CREATE TABLE `mcc_address` (
   `address_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `fullname` varchar(32) NOT NULL,
@@ -13,10 +14,11 @@ CREATE TABLE IF NOT EXISTS `mcc_address` (
   `shipping_telephone` varchar(32) NOT NULL,
   PRIMARY KEY (`address_id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=22 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_affiliate` (
+DROP TABLE IF EXISTS `mcc_affiliate`;
+CREATE TABLE `mcc_affiliate` (
   `affiliate_id` int(11) NOT NULL AUTO_INCREMENT,
   `fullname` varchar(32) NOT NULL,
   `email` varchar(96) NOT NULL,
@@ -47,10 +49,11 @@ CREATE TABLE IF NOT EXISTS `mcc_affiliate` (
   `approved` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`affiliate_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_affiliate_activity` (
+DROP TABLE IF EXISTS `mcc_affiliate_activity`;
+CREATE TABLE `mcc_affiliate_activity` (
   `activity_id` int(11) NOT NULL AUTO_INCREMENT,
   `affiliate_id` int(11) NOT NULL,
   `key` varchar(64) NOT NULL,
@@ -58,10 +61,11 @@ CREATE TABLE IF NOT EXISTS `mcc_affiliate_activity` (
   `ip` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`activity_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_affiliate_login` (
+DROP TABLE IF EXISTS `mcc_affiliate_login`;
+CREATE TABLE `mcc_affiliate_login` (
   `affiliate_login_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(96) NOT NULL,
   `ip` varchar(40) NOT NULL,
@@ -71,10 +75,11 @@ CREATE TABLE IF NOT EXISTS `mcc_affiliate_login` (
   PRIMARY KEY (`affiliate_login_id`),
   KEY `email` (`email`),
   KEY `ip` (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_affiliate_transaction` (
+DROP TABLE IF EXISTS `mcc_affiliate_transaction`;
+CREATE TABLE `mcc_affiliate_transaction` (
   `affiliate_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `affiliate_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -82,19 +87,19 @@ CREATE TABLE IF NOT EXISTS `mcc_affiliate_transaction` (
   `amount` decimal(15,4) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`affiliate_transaction_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_api` (
+DROP TABLE IF EXISTS `mcc_api`;
+CREATE TABLE `mcc_api` (
   `api_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(64) NOT NULL,
-  `fullname` varchar(64) NOT NULL,
-  `password` text NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `key` text NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`api_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 DROP TABLE IF EXISTS `mcc_api_ip`;
@@ -103,7 +108,7 @@ CREATE TABLE `mcc_api_ip` (
   `api_id` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL,
   PRIMARY KEY (`api_ip_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COLLATE=utf8_general_ci;
 
 
 DROP TABLE IF EXISTS `mcc_api_session`;
@@ -117,18 +122,19 @@ CREATE TABLE `mcc_api_session` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`api_session_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
 
-CREATE TABLE IF NOT EXISTS `mcc_attribute` (
+DROP TABLE IF EXISTS `mcc_attribute`;
+CREATE TABLE `mcc_attribute` (
   `attribute_id` int(11) NOT NULL AUTO_INCREMENT,
   `attribute_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`attribute_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=12 ;
 
 
 INSERT INTO `mcc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) VALUES
@@ -145,12 +151,13 @@ INSERT INTO `mcc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`)
 (11, 3, 8);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_attribute_description` (
+DROP TABLE IF EXISTS `mcc_attribute_description`;
+CREATE TABLE `mcc_attribute_description` (
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`attribute_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_attribute_description` (`attribute_id`, `language_id`, `name`) VALUES
@@ -188,12 +195,12 @@ INSERT INTO `mcc_attribute_description` (`attribute_id`, `language_id`, `name`) 
 (1, 3, '描述'),
 (2, 3, '核数');
 
-
-CREATE TABLE IF NOT EXISTS `mcc_attribute_group` (
+DROP TABLE IF EXISTS `mcc_attribute_group`;
+CREATE TABLE `mcc_attribute_group` (
   `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`attribute_group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=7 ;
 
 
 INSERT INTO `mcc_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
@@ -203,12 +210,13 @@ INSERT INTO `mcc_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
 (6, 4);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_attribute_group_description` (
+DROP TABLE IF EXISTS `mcc_attribute_group_description`;
+CREATE TABLE `mcc_attribute_group_description` (
   `attribute_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`attribute_group_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_attribute_group_description` (`attribute_group_id`, `language_id`, `name`) VALUES
@@ -226,12 +234,13 @@ INSERT INTO `mcc_attribute_group_description` (`attribute_group_id`, `language_i
 (5, 3, '主板');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_banner` (
+DROP TABLE IF EXISTS `mcc_banner`;
+CREATE TABLE `mcc_banner` (
   `banner_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`banner_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=9 ;
 
 
 INSERT INTO `mcc_banner` (`banner_id`, `name`, `status`) VALUES
@@ -240,14 +249,15 @@ INSERT INTO `mcc_banner` (`banner_id`, `name`, `status`) VALUES
 (8, '品牌/制造商', 1);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_banner_image` (
+DROP TABLE IF EXISTS `mcc_banner_image`;
+CREATE TABLE `mcc_banner_image` (
   `banner_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `banner_id` int(11) NOT NULL,
   `link` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`banner_image_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=140 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=140 ;
 
 
 INSERT INTO `mcc_banner_image` (`banner_image_id`, `banner_id`, `link`, `image`, `sort_order`) VALUES
@@ -268,13 +278,14 @@ INSERT INTO `mcc_banner_image` (`banner_image_id`, `banner_id`, `link`, `image`,
 (127, 7, '', 'catalog/demo/banners/home2.jpg', 0);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_banner_image_description` (
+DROP TABLE IF EXISTS `mcc_banner_image_description`;
+CREATE TABLE `mcc_banner_image_description` (
   `banner_image_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `banner_id` int(11) NOT NULL,
   `title` varchar(64) NOT NULL,
   PRIMARY KEY (`banner_image_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_banner_image_description` (`banner_image_id`, `language_id`, `banner_id`, `title`) VALUES
@@ -336,10 +347,11 @@ CREATE TABLE `mcc_cart` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`cart_id`),
   KEY `cart_id` (`customer_id`,`session_id`,`product_id`,`recurring_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_category` (
+DROP TABLE IF EXISTS `mcc_category`;
+CREATE TABLE `mcc_category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) DEFAULT NULL,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -351,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `mcc_category` (
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`category_id`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=59 ;
 
 
 INSERT INTO `mcc_category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
@@ -395,7 +407,8 @@ INSERT INTO `mcc_category` (`category_id`, `image`, `parent_id`, `top`, `column`
 (58, '', 52, 0, 0, 0, 1, '2011-05-08 13:44:16', '2015-06-12 20:10:32');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_category_description` (
+DROP TABLE IF EXISTS `mcc_category_description`;
+CREATE TABLE `mcc_category_description` (
   `category_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -405,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `mcc_category_description` (
   `meta_keyword` varchar(255) NOT NULL,
   PRIMARY KEY (`category_id`,`language_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
@@ -524,20 +537,21 @@ INSERT INTO `mcc_category_description` (`category_id`, `language_id`, `name`, `d
 (18, 1, '笔记本', '分类描述案例文本', '笔记本', '', ''),
 (34, 3, 'MP3 播放器', '&lt;span id=&quot;result_box&quot; class=&quot;&quot; lang=&quot;zh-CN&quot;&gt;&lt;span&gt;本店&lt;/span&gt;&lt;span&gt;MP3播放器为世界著名品牌。&lt;/span&gt;&lt;span class=&quot;&quot;&gt;&lt;/span&gt;&lt;/span&gt;', 'MP3 播放器', '', '');
 
-
-CREATE TABLE IF NOT EXISTS `mcc_category_filter` (
+DROP TABLE IF EXISTS `mcc_category_filter`;
+CREATE TABLE `mcc_category_filter` (
   `category_id` int(11) NOT NULL,
   `filter_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`filter_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_category_path` (
+DROP TABLE IF EXISTS `mcc_category_path`;
+CREATE TABLE `mcc_category_path` (
   `category_id` int(11) NOT NULL,
   `path_id` int(11) NOT NULL,
   `level` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`path_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_category_path` (`category_id`, `path_id`, `level`) VALUES
@@ -614,12 +628,13 @@ INSERT INTO `mcc_category_path` (`category_id`, `path_id`, `level`) VALUES
 (57, 57, 0);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_category_to_layout` (
+DROP TABLE IF EXISTS `mcc_category_to_layout`;
+CREATE TABLE `mcc_category_to_layout` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_category_to_layout` (`category_id`, `store_id`, `layout_id`) VALUES
@@ -662,12 +677,12 @@ INSERT INTO `mcc_category_to_layout` (`category_id`, `store_id`, `layout_id`) VA
 (45, 0, 0),
 (58, 0, 0);
 
-
-CREATE TABLE IF NOT EXISTS `mcc_category_to_store` (
+DROP TABLE IF EXISTS `mcc_category_to_store`;
+CREATE TABLE `mcc_category_to_store` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_category_to_store` (`category_id`, `store_id`) VALUES
@@ -711,7 +726,8 @@ INSERT INTO `mcc_category_to_store` (`category_id`, `store_id`) VALUES
 (58, 0);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_country` (
+DROP TABLE IF EXISTS `mcc_country`;
+CREATE TABLE `mcc_country` (
   `country_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   `iso_code_2` varchar(2) NOT NULL,
@@ -720,7 +736,7 @@ CREATE TABLE IF NOT EXISTS `mcc_country` (
   `postcode_required` tinyint(1) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`country_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=258 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=258 ;
 
 
 INSERT INTO `mcc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `address_format`, `postcode_required`, `status`) VALUES
@@ -979,7 +995,8 @@ INSERT INTO `mcc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `ad
 (257, 'Jersey', 'JE', 'JEY', '', 0, 1);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_coupon` (
+DROP TABLE IF EXISTS `mcc_coupon`;
+CREATE TABLE `mcc_coupon` (
   `coupon_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   `code` varchar(10) NOT NULL,
@@ -995,7 +1012,7 @@ CREATE TABLE IF NOT EXISTS `mcc_coupon` (
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`coupon_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=7 ;
 
 
 INSERT INTO `mcc_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logged`, `shipping`, `total`, `date_start`, `date_end`, `uses_total`, `uses_customer`, `status`, `date_added`) VALUES
@@ -1004,14 +1021,16 @@ INSERT INTO `mcc_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logg
 (6, '10元折扣券', '1111', 'F', '10.0000', 0, 0, '10.0000', '2015-01-01', '2020-01-01', 100000, '10000', 0, '2009-03-14 21:15:18');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_coupon_category` (
+DROP TABLE IF EXISTS `mcc_coupon_category`;
+CREATE TABLE `mcc_coupon_category` (
   `coupon_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`coupon_id`,`category_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_coupon_history` (
+DROP TABLE IF EXISTS `mcc_coupon_history`;
+CREATE TABLE `mcc_coupon_history` (
   `coupon_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -1019,18 +1038,20 @@ CREATE TABLE IF NOT EXISTS `mcc_coupon_history` (
   `amount` decimal(15,4) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`coupon_history_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_coupon_product` (
+DROP TABLE IF EXISTS `mcc_coupon_product`;
+CREATE TABLE `mcc_coupon_product` (
   `coupon_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   PRIMARY KEY (`coupon_product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_currency` (
+DROP TABLE IF EXISTS `mcc_currency`;
+CREATE TABLE `mcc_currency` (
   `currency_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) NOT NULL,
   `code` varchar(3) NOT NULL,
@@ -1041,7 +1062,7 @@ CREATE TABLE IF NOT EXISTS `mcc_currency` (
   `status` tinyint(1) NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`currency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=7 ;
 
 
 INSERT INTO `mcc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
@@ -1050,7 +1071,8 @@ INSERT INTO `mcc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symb
 (4, '人民币', 'CNY', '￥', '', '2', 1.00000000, 1, '2015-09-04 06:49:30');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_customer` (
+DROP TABLE IF EXISTS `mcc_customer`;
+CREATE TABLE `mcc_customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_group_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0',
@@ -1072,10 +1094,11 @@ CREATE TABLE IF NOT EXISTS `mcc_customer` (
   `token` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=16 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_customer_activity` (
+DROP TABLE IF EXISTS `mcc_customer_activity`;
+CREATE TABLE `mcc_customer_activity` (
   `activity_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `key` varchar(64) NOT NULL,
@@ -1083,29 +1106,31 @@ CREATE TABLE IF NOT EXISTS `mcc_customer_activity` (
   `ip` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`activity_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
 
-CREATE TABLE IF NOT EXISTS `mcc_customer_group` (
+DROP TABLE IF EXISTS `mcc_customer_group`;
+CREATE TABLE `mcc_customer_group` (
   `customer_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `approval` int(1) NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`customer_group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2 ;
 
 
 INSERT INTO `mcc_customer_group` (`customer_group_id`, `approval`, `sort_order`) VALUES
 (1, 0, 1);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_customer_group_description` (
+DROP TABLE IF EXISTS `mcc_customer_group_description`;
+CREATE TABLE `mcc_customer_group_description` (
   `customer_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`customer_group_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES
@@ -1114,26 +1139,18 @@ INSERT INTO `mcc_customer_group_description` (`customer_group_id`, `language_id`
 (1, 1, '普通', '测试');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_customer_history` (
+DROP TABLE IF EXISTS `mcc_customer_history`;
+CREATE TABLE `mcc_customer_history` (
   `customer_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `comment` text NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_history_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_customer_ip` (
-  `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT,
-  `customer_id` int(11) NOT NULL,
-  `ip` varchar(40) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`customer_ip_id`),
-  KEY `ip` (`ip`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
-
-
-CREATE TABLE IF NOT EXISTS `mcc_customer_login` (
+DROP TABLE IF EXISTS `mcc_customer_login`;
+CREATE TABLE `mcc_customer_login` (
   `customer_login_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(96) NOT NULL,
   `ip` varchar(40) NOT NULL,
@@ -1143,20 +1160,31 @@ CREATE TABLE IF NOT EXISTS `mcc_customer_login` (
   PRIMARY KEY (`customer_login_id`),
   KEY `email` (`email`),
   KEY `ip` (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_customer_online` (
+DROP TABLE IF EXISTS `mcc_customer_ip`;
+CREATE TABLE `mcc_customer_ip` (
+  `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_ip_id`),
+  KEY `ip` (`ip`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COLLATE=utf8_general_ci;
+DROP TABLE IF EXISTS `mcc_customer_online`;
+CREATE TABLE `mcc_customer_online` (
   `ip` varchar(40) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `url` text NOT NULL,
   `referer` text NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_customer_reward` (
+DROP TABLE IF EXISTS `mcc_customer_reward`;
+CREATE TABLE `mcc_customer_reward` (
   `customer_reward_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL DEFAULT '0',
   `order_id` int(11) NOT NULL DEFAULT '0',
@@ -1164,10 +1192,11 @@ CREATE TABLE IF NOT EXISTS `mcc_customer_reward` (
   `points` int(8) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_reward_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_customer_transaction` (
+DROP TABLE IF EXISTS `mcc_customer_transaction`;
+CREATE TABLE `mcc_customer_transaction` (
   `customer_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -1175,7 +1204,7 @@ CREATE TABLE IF NOT EXISTS `mcc_customer_transaction` (
   `amount` decimal(15,4) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_transaction_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
 
 DROP TABLE IF EXISTS `mcc_customer_wishlist`;
 CREATE TABLE `mcc_customer_wishlist` (
@@ -1183,10 +1212,11 @@ CREATE TABLE `mcc_customer_wishlist` (
   `product_id` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_id`,`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_custom_field` (
+DROP TABLE IF EXISTS `mcc_custom_field`;
+CREATE TABLE `mcc_custom_field` (
   `custom_field_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) NOT NULL,
   `value` text NOT NULL,
@@ -1194,76 +1224,84 @@ CREATE TABLE IF NOT EXISTS `mcc_custom_field` (
   `status` tinyint(1) NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`custom_field_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_custom_field_customer_group` (
+DROP TABLE IF EXISTS `mcc_custom_field_customer_group`;
+CREATE TABLE `mcc_custom_field_customer_group` (
   `custom_field_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   `required` tinyint(1) NOT NULL,
   PRIMARY KEY (`custom_field_id`,`customer_group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_custom_field_description` (
+DROP TABLE IF EXISTS `mcc_custom_field_description`;
+CREATE TABLE `mcc_custom_field_description` (
   `custom_field_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`custom_field_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_custom_field_value` (
+DROP TABLE IF EXISTS `mcc_custom_field_value`;
+CREATE TABLE `mcc_custom_field_value` (
   `custom_field_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `custom_field_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`custom_field_value_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_custom_field_value_description` (
+DROP TABLE IF EXISTS `mcc_custom_field_value_description`;
+CREATE TABLE `mcc_custom_field_value_description` (
   `custom_field_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`custom_field_value_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_download` (
+DROP TABLE IF EXISTS `mcc_download`;
+CREATE TABLE `mcc_download` (
   `download_id` int(11) NOT NULL AUTO_INCREMENT,
   `filename` varchar(128) NOT NULL,
   `mask` varchar(128) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`download_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_download_description` (
+DROP TABLE IF EXISTS `mcc_download_description`;
+CREATE TABLE `mcc_download_description` (
   `download_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`download_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_event` (
+DROP TABLE IF EXISTS `mcc_event`;
+CREATE TABLE `mcc_event` (
   `event_id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(32) NOT NULL,
   `trigger` text NOT NULL,
   `action` text NOT NULL,
   PRIMARY KEY (`event_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2 ;
 
 INSERT INTO `mcc_event` (`event_id`, `code`, `trigger`, `action`) VALUES
 (1, 'voucher', 'post.order.history.add', 'total/voucher/send');
 
-CREATE TABLE IF NOT EXISTS `mcc_extension` (
+DROP TABLE IF EXISTS `mcc_extension`;
+CREATE TABLE `mcc_extension` (
   `extension_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) NOT NULL,
   `code` varchar(32) NOT NULL,
   PRIMARY KEY (`extension_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=451 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=451 ;
 
 
 INSERT INTO `mcc_extension` (`extension_id`, `type`, `code`) VALUES
@@ -1288,46 +1326,51 @@ INSERT INTO `mcc_extension` (`extension_id`, `type`, `code`) VALUES
 (19, 'module', 'slideshow');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_filter` (
+DROP TABLE IF EXISTS `mcc_filter`;
+CREATE TABLE `mcc_filter` (
   `filter_id` int(11) NOT NULL AUTO_INCREMENT,
   `filter_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`filter_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_filter_description` (
+DROP TABLE IF EXISTS `mcc_filter_description`;
+CREATE TABLE `mcc_filter_description` (
   `filter_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `filter_group_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`filter_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_filter_group` (
+DROP TABLE IF EXISTS `mcc_filter_group`;
+CREATE TABLE `mcc_filter_group` (
   `filter_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`filter_group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_filter_group_description` (
+DROP TABLE IF EXISTS `mcc_filter_group_description`;
+CREATE TABLE `mcc_filter_group_description` (
   `filter_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`filter_group_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_geo_zone` (
+DROP TABLE IF EXISTS `mcc_geo_zone`;
+CREATE TABLE `mcc_geo_zone` (
   `geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
   `date_modified` datetime NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`geo_zone_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=6 ;
 
 
 INSERT INTO `mcc_geo_zone` (`geo_zone_id`, `name`, `description`, `date_modified`, `date_added`) VALUES
@@ -1336,13 +1379,14 @@ INSERT INTO `mcc_geo_zone` (`geo_zone_id`, `name`, `description`, `date_modified
 (5, '中国特别地区', '中国特别地区', '0000-00-00 00:00:00', '2015-04-01 22:24:09');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_information` (
+DROP TABLE IF EXISTS `mcc_information`;
+CREATE TABLE `mcc_information` (
   `information_id` int(11) NOT NULL AUTO_INCREMENT,
   `bottom` int(1) NOT NULL DEFAULT '0',
   `sort_order` int(3) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`information_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=7 ;
 
 
 INSERT INTO `mcc_information` (`information_id`, `bottom`, `sort_order`, `status`) VALUES
@@ -1352,7 +1396,8 @@ INSERT INTO `mcc_information` (`information_id`, `bottom`, `sort_order`, `status
 (6, 1, 2, 1);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_information_description` (
+DROP TABLE IF EXISTS `mcc_information_description`;
+CREATE TABLE `mcc_information_description` (
   `information_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(64) NOT NULL,
@@ -1361,7 +1406,7 @@ CREATE TABLE IF NOT EXISTS `mcc_information_description` (
   `meta_description` varchar(255) NOT NULL,
   `meta_keyword` varchar(255) NOT NULL,
   PRIMARY KEY (`information_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO `mcc_information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
 (6, 2, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n', 'Delivery Information', '', ''),
@@ -1377,13 +1422,13 @@ INSERT INTO `mcc_information_description` (`information_id`, `language_id`, `tit
 (3, 3, '隱私政策', '&lt;p&gt;\r\n	隱私政策&lt;/p&gt;\r\n', '隱私政策', '', ''),
 (4, 3, '关于我们', '&lt;p&gt;\r\n	关于我们&lt;/p&gt;\r\n', '关于我们', '', '');
 
-
-CREATE TABLE IF NOT EXISTS `mcc_information_to_layout` (
+DROP TABLE IF EXISTS `mcc_information_to_layout`;
+CREATE TABLE `mcc_information_to_layout` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
   PRIMARY KEY (`information_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_information_to_layout` (`information_id`, `store_id`, `layout_id`) VALUES
@@ -1392,12 +1437,12 @@ INSERT INTO `mcc_information_to_layout` (`information_id`, `store_id`, `layout_i
 (3, 0, 0),
 (6, 0, 0);
 
-
-CREATE TABLE IF NOT EXISTS `mcc_information_to_store` (
+DROP TABLE IF EXISTS `mcc_information_to_store`;
+CREATE TABLE `mcc_information_to_store` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`information_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_information_to_store` (`information_id`, `store_id`) VALUES
@@ -1407,7 +1452,8 @@ INSERT INTO `mcc_information_to_store` (`information_id`, `store_id`) VALUES
 (6, 0);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_language` (
+DROP TABLE IF EXISTS `mcc_language`;
+CREATE TABLE `mcc_language` (
   `language_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `code` varchar(5) NOT NULL,
@@ -1418,7 +1464,7 @@ CREATE TABLE IF NOT EXISTS `mcc_language` (
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`language_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=4 ;
 
 
 INSERT INTO `mcc_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `sort_order`, `status`) VALUES
@@ -1427,11 +1473,12 @@ INSERT INTO `mcc_language` (`language_id`, `name`, `code`, `locale`, `image`, `d
 (3, '繁体中文', 'zh_HK', 'zh_HK.UTF-8,zh_HK,zh-hk,hongkong', 'hk.png', 'zh-HK', 3, 1);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_layout` (
+DROP TABLE IF EXISTS `mcc_layout`;
+CREATE TABLE `mcc_layout` (
   `layout_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`layout_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=16 ;
 
 
 INSERT INTO `mcc_layout` (`layout_id`, `name`) VALUES
@@ -1452,14 +1499,15 @@ INSERT INTO `mcc_layout` (`layout_id`, `name`) VALUES
 (15, '注册');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_layout_module` (
+DROP TABLE IF EXISTS `mcc_layout_module`;
+CREATE TABLE `mcc_layout_module` (
   `layout_module_id` int(11) NOT NULL AUTO_INCREMENT,
   `layout_id` int(11) NOT NULL,
   `code` varchar(64) NOT NULL,
   `position` varchar(14) NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`layout_module_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=88 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=88 ;
 
 
 INSERT INTO `mcc_layout_module` (`layout_module_id`, `layout_id`, `code`, `position`, `sort_order`) VALUES
@@ -1473,13 +1521,14 @@ INSERT INTO `mcc_layout_module` (`layout_module_id`, `layout_id`, `code`, `posit
 (84, 5, 'account', 'column_left', 2);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_layout_route` (
+DROP TABLE IF EXISTS `mcc_layout_route`;
+CREATE TABLE `mcc_layout_route` (
   `layout_route_id` int(11) NOT NULL AUTO_INCREMENT,
   `layout_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `route` varchar(255) NOT NULL,
   PRIMARY KEY (`layout_route_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=73 ;
 
 
 INSERT INTO `mcc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `route`) VALUES
@@ -1500,11 +1549,12 @@ INSERT INTO `mcc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `rou
 (72, 15, 0, 'account/login');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_length_class` (
+DROP TABLE IF EXISTS `mcc_length_class`;
+CREATE TABLE `mcc_length_class` (
   `length_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` decimal(15,8) NOT NULL,
   PRIMARY KEY (`length_class_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=4 ;
 
 
 INSERT INTO `mcc_length_class` (`length_class_id`, `value`) VALUES
@@ -1513,13 +1563,14 @@ INSERT INTO `mcc_length_class` (`length_class_id`, `value`) VALUES
 (3, '0.39370000');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_length_class_description` (
+DROP TABLE IF EXISTS `mcc_length_class_description`;
+CREATE TABLE `mcc_length_class_description` (
   `length_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
   `unit` varchar(4) NOT NULL,
   PRIMARY KEY (`length_class_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=4 ;
 
 
 INSERT INTO `mcc_length_class_description` (`length_class_id`, `language_id`, `title`, `unit`) VALUES
@@ -1534,7 +1585,8 @@ INSERT INTO `mcc_length_class_description` (`length_class_id`, `language_id`, `t
 (2, 3, '毫米', 'mm');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_location` (
+DROP TABLE IF EXISTS `mcc_location`;
+CREATE TABLE `mcc_location` (
   `location_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `address` text NOT NULL,
@@ -1547,16 +1599,17 @@ CREATE TABLE IF NOT EXISTS `mcc_location` (
 
   PRIMARY KEY (`location_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_manufacturer` (
+DROP TABLE IF EXISTS `mcc_manufacturer`;
+CREATE TABLE `mcc_manufacturer` (
   `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`manufacturer_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=11 ;
 
 
 INSERT INTO `mcc_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`) VALUES
@@ -1568,11 +1621,12 @@ INSERT INTO `mcc_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`
 (10, 'Sony', 'catalog/demo/sony_logo.jpg', 0);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_manufacturer_to_store` (
+DROP TABLE IF EXISTS `mcc_manufacturer_to_store`;
+CREATE TABLE `mcc_manufacturer_to_store` (
   `manufacturer_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`manufacturer_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
@@ -1584,7 +1638,8 @@ INSERT INTO `mcc_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
 (10, 0);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_marketing` (
+DROP TABLE IF EXISTS `mcc_marketing`;
+CREATE TABLE `mcc_marketing` (
   `marketing_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` text NOT NULL,
@@ -1592,10 +1647,11 @@ CREATE TABLE IF NOT EXISTS `mcc_marketing` (
   `clicks` int(5) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`marketing_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_modification` (
+DROP TABLE IF EXISTS `mcc_modification`;
+CREATE TABLE `mcc_modification` (
   `modification_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `code` varchar(64) NOT NULL,
@@ -1606,16 +1662,17 @@ CREATE TABLE IF NOT EXISTS `mcc_modification` (
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`modification_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_module` (
+DROP TABLE IF EXISTS `mcc_module`;
+CREATE TABLE `mcc_module` (
   `module_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `code` varchar(32) NOT NULL,
   `setting` text NOT NULL,
   PRIMARY KEY (`module_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=31 ;
 
 
 INSERT INTO `mcc_module` (`module_id`, `name`, `code`, `setting`) VALUES
@@ -1627,12 +1684,13 @@ INSERT INTO `mcc_module` (`module_id`, `name`, `code`, `setting`) VALUES
 
 
 
-CREATE TABLE IF NOT EXISTS `mcc_option` (
+DROP TABLE IF EXISTS `mcc_option`;
+CREATE TABLE `mcc_option` (
   `option_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`option_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=13 ;
 
 
 INSERT INTO `mcc_option` (`option_id`, `type`, `sort_order`) VALUES
@@ -1649,12 +1707,13 @@ INSERT INTO `mcc_option` (`option_id`, `type`, `sort_order`) VALUES
 (12, 'date', 11);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_option_description` (
+DROP TABLE IF EXISTS `mcc_option_description`;
+CREATE TABLE `mcc_option_description` (
   `option_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`option_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_option_description` (`option_id`, `language_id`, `name`) VALUES
@@ -1692,14 +1751,14 @@ INSERT INTO `mcc_option_description` (`option_id`, `language_id`, `name`) VALUES
 (1, 1, '单选按钮组'),
 (5, 1, '下拉列表');
 
-
-CREATE TABLE IF NOT EXISTS `mcc_option_value` (
+DROP TABLE IF EXISTS `mcc_option_value`;
+CREATE TABLE `mcc_option_value` (
   `option_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `option_id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`option_value_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=49 ;
 
 
 INSERT INTO `mcc_option_value` (`option_value_id`, `option_id`, `image`, `sort_order`) VALUES
@@ -1719,13 +1778,14 @@ INSERT INTO `mcc_option_value` (`option_value_id`, `option_id`, `image`, `sort_o
 (46, 11, '', 1);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_option_value_description` (
+DROP TABLE IF EXISTS `mcc_option_value_description`;
+CREATE TABLE `mcc_option_value_description` (
   `option_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`option_value_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_option_value_description` (`option_value_id`, `language_id`, `option_id`, `name`) VALUES
@@ -1773,7 +1833,8 @@ INSERT INTO `mcc_option_value_description` (`option_value_id`, `language_id`, `o
 (43, 3, 1, '大');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_order` (
+DROP TABLE IF EXISTS `mcc_order`;
+CREATE TABLE `mcc_order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `invoice_no` int(11) NOT NULL DEFAULT '0',
   `invoice_prefix` varchar(26) NOT NULL,
@@ -1832,11 +1893,12 @@ CREATE TABLE IF NOT EXISTS `mcc_order` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=67 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=67 ;
 
 
 
-CREATE TABLE IF NOT EXISTS `mcc_order_custom_field` (
+DROP TABLE IF EXISTS `mcc_order_custom_field`;
+CREATE TABLE `mcc_order_custom_field` (
   `order_custom_field_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
@@ -1846,10 +1908,11 @@ CREATE TABLE IF NOT EXISTS `mcc_order_custom_field` (
   `type` varchar(32) NOT NULL,
   `location` varchar(16) NOT NULL,
   PRIMARY KEY (`order_custom_field_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_order_history` (
+DROP TABLE IF EXISTS `mcc_order_history`;
+CREATE TABLE `mcc_order_history` (
   `order_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `order_status_id` int(11) NOT NULL,
@@ -1857,10 +1920,11 @@ CREATE TABLE IF NOT EXISTS `mcc_order_history` (
   `comment` text NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`order_history_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=49 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_order_option` (
+DROP TABLE IF EXISTS `mcc_order_option`;
+CREATE TABLE `mcc_order_option` (
   `order_option_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `order_product_id` int(11) NOT NULL,
@@ -1870,10 +1934,11 @@ CREATE TABLE IF NOT EXISTS `mcc_order_option` (
   `value` text NOT NULL,
   `type` varchar(32) NOT NULL,
   PRIMARY KEY (`order_option_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_order_product` (
+DROP TABLE IF EXISTS `mcc_order_product`;
+CREATE TABLE `mcc_order_product` (
   `order_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -1885,10 +1950,11 @@ CREATE TABLE IF NOT EXISTS `mcc_order_product` (
   `tax` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `reward` int(8) NOT NULL,
   PRIMARY KEY (`order_product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_order_recurring` (
+DROP TABLE IF EXISTS `mcc_order_recurring`;
+CREATE TABLE `mcc_order_recurring` (
   `order_recurring_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `reference` varchar(255) NOT NULL,
@@ -1910,10 +1976,11 @@ CREATE TABLE IF NOT EXISTS `mcc_order_recurring` (
   `status` tinyint(4) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`order_recurring_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_order_recurring_transaction` (
+DROP TABLE IF EXISTS `mcc_order_recurring_transaction`;
+CREATE TABLE `mcc_order_recurring_transaction` (
   `order_recurring_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_recurring_id` int(11) NOT NULL,
   `reference` varchar(255) NOT NULL,
@@ -1921,15 +1988,16 @@ CREATE TABLE IF NOT EXISTS `mcc_order_recurring_transaction` (
   `amount` decimal(10,4) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`order_recurring_transaction_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_order_status` (
+DROP TABLE IF EXISTS `mcc_order_status`;
+CREATE TABLE `mcc_order_status` (
   `order_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`order_status_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=17 ;
 
 
 INSERT INTO `mcc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
@@ -1973,8 +2041,8 @@ INSERT INTO `mcc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 (13, 3, '拒付'),
 (5, 3, '完成');
 
-
-CREATE TABLE IF NOT EXISTS `mcc_order_total` (
+DROP TABLE IF EXISTS `mcc_order_total`;
+CREATE TABLE `mcc_order_total` (
   `order_total_id` int(10) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `code` varchar(32) NOT NULL,
@@ -1983,7 +2051,7 @@ CREATE TABLE IF NOT EXISTS `mcc_order_total` (
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`order_total_id`),
   KEY `order_id` (`order_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=14 ;
 
 
 INSERT INTO `mcc_order_total` (`order_total_id`, `order_id`, `code`, `title`, `value`, `sort_order`) VALUES
@@ -1993,8 +2061,8 @@ INSERT INTO `mcc_order_total` (`order_total_id`, `order_id`, `code`, `title`, `v
 (4, 64, 'tax', '生态税(-2.00)', '2.0000', 5),
 (5, 64, 'total', '总计', '123.2000', 9);
 
-
-CREATE TABLE IF NOT EXISTS `mcc_order_voucher` (
+DROP TABLE IF EXISTS `mcc_order_voucher`;
+CREATE TABLE `mcc_order_voucher` (
   `order_voucher_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `voucher_id` int(11) NOT NULL,
@@ -2008,10 +2076,11 @@ CREATE TABLE IF NOT EXISTS `mcc_order_voucher` (
   `message` text NOT NULL,
   `amount` decimal(15,4) NOT NULL,
   PRIMARY KEY (`order_voucher_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product` (
+DROP TABLE IF EXISTS `mcc_product`;
+CREATE TABLE `mcc_product` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `model` varchar(64) NOT NULL,
   `sku` varchar(64) NOT NULL,
@@ -2044,7 +2113,7 @@ CREATE TABLE IF NOT EXISTS `mcc_product` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=50 ;
 
 
 INSERT INTO `mcc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`) VALUES
@@ -2069,13 +2138,14 @@ INSERT INTO `mcc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `i
 (49, 'SAM1', '', '', '', '', '', '', '', 0, 8, 'catalog/demo/49_1.jpg', 0, 1, '199.9900', 0, 9, '2011-04-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2011-04-26 08:57:34', '2015-06-04 22:20:15');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_attribute` (
+DROP TABLE IF EXISTS `mcc_product_attribute`;
+CREATE TABLE `mcc_product_attribute` (
   `product_id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `text` text NOT NULL,
   PRIMARY KEY (`product_id`,`attribute_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
@@ -2096,7 +2166,8 @@ INSERT INTO `mcc_product_attribute` (`product_id`, `attribute_id`, `language_id`
 (47, 2, 1, '4');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_description` (
+DROP TABLE IF EXISTS `mcc_product_description`;
+CREATE TABLE `mcc_product_description` (
   `product_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -2107,7 +2178,7 @@ CREATE TABLE IF NOT EXISTS `mcc_product_description` (
   `meta_keyword` varchar(255) NOT NULL,
   PRIMARY KEY (`product_id`,`language_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
@@ -2171,7 +2242,8 @@ INSERT INTO `mcc_product_description` (`product_id`, `language_id`, `name`, `des
 (47, 1, 'HP LP3065', '&lt;p&gt;\r\n	Stop your co-workers in their tracks with the stunning new 30-inch diagonal HP LP3065 Flat Panel Monitor. This flagship monitor features best-in-class performance and presentation features on a huge wide-aspect screen while letting you work as comfortably as possible - you might even forget you''re at the office&lt;/p&gt;\r\n', '', 'HP LP3065', '', '');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_discount` (
+DROP TABLE IF EXISTS `mcc_product_discount`;
+CREATE TABLE `mcc_product_discount` (
   `product_discount_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
@@ -2182,7 +2254,7 @@ CREATE TABLE IF NOT EXISTS `mcc_product_discount` (
   `date_end` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`product_discount_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=453 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=453 ;
 
 
 INSERT INTO `mcc_product_discount` (`product_discount_id`, `product_id`, `customer_group_id`, `quantity`, `priority`, `price`, `date_start`, `date_end`) VALUES
@@ -2191,21 +2263,23 @@ INSERT INTO `mcc_product_discount` (`product_discount_id`, `product_id`, `custom
 (450, 42, 1, 10, 1, '88.0000', '0000-00-00', '0000-00-00');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_filter` (
+DROP TABLE IF EXISTS `mcc_product_filter`;
+CREATE TABLE `mcc_product_filter` (
   `product_id` int(11) NOT NULL,
   `filter_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`filter_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_image` (
+DROP TABLE IF EXISTS `mcc_product_image`;
+CREATE TABLE `mcc_product_image` (
   `product_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_image_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2420 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2420 ;
 
 
 INSERT INTO `mcc_product_image` (`product_image_id`, `product_id`, `image`, `sort_order`) VALUES
@@ -2268,14 +2342,15 @@ INSERT INTO `mcc_product_image` (`product_image_id`, `product_id`, `image`, `sor
 (2410, 42, 'catalog/demo/42_1.jpg', 0);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_option` (
+DROP TABLE IF EXISTS `mcc_product_option`;
+CREATE TABLE `mcc_product_option` (
   `product_option_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
   `value` text NOT NULL,
   `required` tinyint(1) NOT NULL,
   PRIMARY KEY (`product_option_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=227 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=227 ;
 
 
 INSERT INTO `mcc_product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES
@@ -2293,7 +2368,8 @@ INSERT INTO `mcc_product_option` (`product_option_id`, `product_id`, `option_id`
 (220, 42, 10, '2011-02-20 22:25', 1);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_option_value` (
+DROP TABLE IF EXISTS `mcc_product_option_value`;
+CREATE TABLE `mcc_product_option_value` (
   `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_option_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -2308,7 +2384,7 @@ CREATE TABLE IF NOT EXISTS `mcc_product_option_value` (
   `weight` decimal(15,8) NOT NULL,
   `weight_prefix` varchar(1) NOT NULL,
   PRIMARY KEY (`product_option_value_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=17 ;
 
 
 INSERT INTO `mcc_product_option_value` (`product_option_value_id`, `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES
@@ -2330,19 +2406,21 @@ INSERT INTO `mcc_product_option_value` (`product_option_value_id`, `product_opti
 (11, 223, 42, 2, 45, 3998, 1, '40.0000', '+', 0, '+', '40.00000000', '+');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_recurring` (
+DROP TABLE IF EXISTS `mcc_product_recurring`;
+CREATE TABLE `mcc_product_recurring` (
   `product_id` int(11) NOT NULL,
   `recurring_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`recurring_id`,`customer_group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_related` (
+DROP TABLE IF EXISTS `mcc_product_related`;
+CREATE TABLE `mcc_product_related` (
   `product_id` int(11) NOT NULL,
   `related_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`related_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_product_related` (`product_id`, `related_id`) VALUES
@@ -2352,14 +2430,15 @@ INSERT INTO `mcc_product_related` (`product_id`, `related_id`) VALUES
 (42, 41);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_reward` (
+DROP TABLE IF EXISTS `mcc_product_reward`;
+CREATE TABLE `mcc_product_reward` (
   `product_reward_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL DEFAULT '0',
   `customer_group_id` int(11) NOT NULL DEFAULT '0',
   `points` int(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_reward_id`)
 
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=563 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=563 ;
 
 
 INSERT INTO `mcc_product_reward` (`product_reward_id`, `product_id`, `customer_group_id`, `points`) VALUES
@@ -2381,7 +2460,8 @@ INSERT INTO `mcc_product_reward` (`product_reward_id`, `product_id`, `customer_g
 (558, 49, 1, 1000);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_special` (
+DROP TABLE IF EXISTS `mcc_product_special`;
+CREATE TABLE `mcc_product_special` (
   `product_special_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
@@ -2391,7 +2471,7 @@ CREATE TABLE IF NOT EXISTS `mcc_product_special` (
   `date_end` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`product_special_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=450 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=450 ;
 
 
 INSERT INTO `mcc_product_special` (`product_special_id`, `product_id`, `customer_group_id`, `priority`, `price`, `date_start`, `date_end`) VALUES
@@ -2400,12 +2480,13 @@ INSERT INTO `mcc_product_special` (`product_special_id`, `product_id`, `customer
 (448, 30, 1, 1, '80.0000', '0000-00-00', '0000-00-00');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_to_category` (
+DROP TABLE IF EXISTS `mcc_product_to_category`;
+CREATE TABLE `mcc_product_to_category` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`category_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_product_to_category` (`product_id`, `category_id`) VALUES
@@ -2441,19 +2522,21 @@ INSERT INTO `mcc_product_to_category` (`product_id`, `category_id`) VALUES
 (49, 57);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_to_download` (
+DROP TABLE IF EXISTS `mcc_product_to_download`;
+CREATE TABLE `mcc_product_to_download` (
   `product_id` int(11) NOT NULL,
   `download_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`download_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_product_to_layout` (
+DROP TABLE IF EXISTS `mcc_product_to_layout`;
+CREATE TABLE `mcc_product_to_layout` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_product_to_layout` (`product_id`, `store_id`, `layout_id`) VALUES
@@ -2466,12 +2549,12 @@ INSERT INTO `mcc_product_to_layout` (`product_id`, `store_id`, `layout_id`) VALU
 (49, 0, 0),
 (32, 0, 0);
 
-
-CREATE TABLE IF NOT EXISTS `mcc_product_to_store` (
+DROP TABLE IF EXISTS `mcc_product_to_store`;
+CREATE TABLE `mcc_product_to_store` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_product_to_store` (`product_id`, `store_id`) VALUES
@@ -2496,7 +2579,8 @@ INSERT INTO `mcc_product_to_store` (`product_id`, `store_id`) VALUES
 (49, 0);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_recurring` (
+DROP TABLE IF EXISTS `mcc_recurring`;
+CREATE TABLE `mcc_recurring` (
   `recurring_id` int(11) NOT NULL AUTO_INCREMENT,
   `price` decimal(10,4) NOT NULL,
   `frequency` enum('day','week','semi_month','month','year') NOT NULL,
@@ -2510,26 +2594,28 @@ CREATE TABLE IF NOT EXISTS `mcc_recurring` (
   `status` tinyint(4) NOT NULL,
   `sort_order` int(11) NOT NULL,
   PRIMARY KEY (`recurring_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2 ;
 
 
 INSERT INTO `mcc_recurring` (`recurring_id`, `price`, `frequency`, `duration`, `cycle`, `trial_status`, `trial_price`, `trial_frequency`, `trial_duration`, `trial_cycle`, `status`, `sort_order`) VALUES
 (1, '100.0000', 'month', 3, 1, 0, '0.0000', 'day', 0, 1, 1, 0);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_recurring_description` (
+DROP TABLE IF EXISTS `mcc_recurring_description`;
+CREATE TABLE `mcc_recurring_description` (
   `recurring_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`recurring_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_recurring_description` (`recurring_id`, `language_id`, `name`) VALUES
 (1, 1, '测试分期付款');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_return` (
+DROP TABLE IF EXISTS `mcc_return`;
+CREATE TABLE `mcc_return` (
   `return_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -2549,15 +2635,16 @@ CREATE TABLE IF NOT EXISTS `mcc_return` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`return_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=4 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_return_action` (
+DROP TABLE IF EXISTS `mcc_return_action`;
+CREATE TABLE `mcc_return_action` (
   `return_action_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`return_action_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=4 ;
 
 
 INSERT INTO `mcc_return_action` (`return_action_id`, `language_id`, `name`) VALUES
@@ -2572,7 +2659,8 @@ INSERT INTO `mcc_return_action` (`return_action_id`, `language_id`, `name`) VALU
 (3, 3, '已换货配送');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_return_history` (
+DROP TABLE IF EXISTS `mcc_return_history`;
+CREATE TABLE `mcc_return_history` (
   `return_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `return_id` int(11) NOT NULL,
   `return_status_id` int(11) NOT NULL,
@@ -2580,15 +2668,16 @@ CREATE TABLE IF NOT EXISTS `mcc_return_history` (
   `comment` text NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`return_history_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_return_reason` (
+DROP TABLE IF EXISTS `mcc_return_reason`;
+CREATE TABLE `mcc_return_reason` (
   `return_reason_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`return_reason_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=6 ;
 
 
 INSERT INTO `mcc_return_reason` (`return_reason_id`, `language_id`, `name`) VALUES
@@ -2609,12 +2698,13 @@ INSERT INTO `mcc_return_reason` (`return_reason_id`, `language_id`, `name`) VALU
 (5, 1, '其他，请提供详细信息');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_return_status` (
+DROP TABLE IF EXISTS `mcc_return_status`;
+CREATE TABLE `mcc_return_status` (
   `return_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`return_status_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=4 ;
 
 
 INSERT INTO `mcc_return_status` (`return_status_id`, `language_id`, `name`) VALUES
@@ -2629,7 +2719,8 @@ INSERT INTO `mcc_return_status` (`return_status_id`, `language_id`, `name`) VALU
 (3, 3, '完成');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_review` (
+DROP TABLE IF EXISTS `mcc_review`;
+CREATE TABLE `mcc_review` (
   `review_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -2641,7 +2732,7 @@ CREATE TABLE IF NOT EXISTS `mcc_review` (
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`review_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=4 ;
 
 
 INSERT INTO `mcc_review` (`review_id`, `product_id`, `customer_id`, `author`, `text`, `rating`, `status`, `date_added`, `date_modified`) VALUES
@@ -2649,8 +2740,8 @@ INSERT INTO `mcc_review` (`review_id`, `product_id`, `customer_id`, `author`, `t
 (2, 47, 1, 'TESTER', 'JUSTFORTESTINGJUSTFORTESTINGJUSTFORTESTING', 4, 0, '2015-06-10 21:40:11', '0000-00-00 00:00:00'),
 (3, 47, 1, 'JUST ', 'JUSTFORTESTINGJUSTFORTESTINGJUSTFORTESTING', 4, 1, '2015-06-10 21:40:56', '2015-06-10 21:50:27');
 
-
-CREATE TABLE IF NOT EXISTS `mcc_setting` (
+DROP TABLE IF EXISTS `mcc_setting`;
+CREATE TABLE `mcc_setting` (
   `setting_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL DEFAULT '0',
   `code` varchar(32) NOT NULL,
@@ -2658,7 +2749,7 @@ CREATE TABLE IF NOT EXISTS `mcc_setting` (
   `value` text NOT NULL,
   `serialized` tinyint(1) NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2143 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2143 ;
 
 
 INSERT INTO `mcc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serialized`) VALUES
@@ -2812,8 +2903,8 @@ INSERT INTO `mcc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `se
 (289, 0, 'config', 'config_login_attempts', '5', 0);
 
 
-
-CREATE TABLE IF NOT EXISTS `mcc_sms_mobile` (
+DROP TABLE IF EXISTS `mcc_sms_mobile`;
+CREATE TABLE `mcc_sms_mobile` (
   `sms_mobile_id` int(11) NOT NULL AUTO_INCREMENT,
   `sms_mobile` varchar(15) NOT NULL,
   `verify_code` varchar(6) NOT NULL,
@@ -2825,13 +2916,13 @@ INSERT INTO `mcc_sms_mobile` (`sms_mobile_id`, `sms_mobile`, `verify_code`) VALU
 (8, '18362370053', '718566'),
 (15, '18362370057', '137177');
 
-
-CREATE TABLE IF NOT EXISTS `mcc_stock_status` (
+DROP TABLE IF EXISTS `mcc_stock_status`;
+CREATE TABLE `mcc_stock_status` (
   `stock_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`stock_status_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=9 ;
 
 
 INSERT INTO `mcc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
@@ -2849,23 +2940,25 @@ INSERT INTO `mcc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
 (6, 1, '等待 2 -3 天');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_store` (
+DROP TABLE IF EXISTS `mcc_store`;
+CREATE TABLE `mcc_store` (
   `store_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `url` varchar(255) NOT NULL,
   `ssl` varchar(255) NOT NULL,
   PRIMARY KEY (`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_tax_class` (
+DROP TABLE IF EXISTS `mcc_tax_class`;
+CREATE TABLE `mcc_tax_class` (
   `tax_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`tax_class_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=11 ;
 
 
 INSERT INTO `mcc_tax_class` (`tax_class_id`, `title`, `description`, `date_added`, `date_modified`) VALUES
@@ -2873,7 +2966,8 @@ INSERT INTO `mcc_tax_class` (`tax_class_id`, `title`, `description`, `date_added
 (10, '下载类商品', '下载类', '2011-09-21 22:19:39', '2015-04-01 22:29:46');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_tax_rate` (
+DROP TABLE IF EXISTS `mcc_tax_rate`;
+CREATE TABLE `mcc_tax_rate` (
   `tax_rate_id` int(11) NOT NULL AUTO_INCREMENT,
   `geo_zone_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(32) NOT NULL,
@@ -2882,7 +2976,7 @@ CREATE TABLE IF NOT EXISTS `mcc_tax_rate` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`tax_rate_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=88 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=88 ;
 
 
 INSERT INTO `mcc_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`, `date_added`, `date_modified`) VALUES
@@ -2890,11 +2984,12 @@ INSERT INTO `mcc_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`
 (87, 3, '生态税(-2.00)', '2.0000', 'F', '2011-09-21 21:49:23', '2015-04-01 22:33:22');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_tax_rate_to_customer_group` (
+DROP TABLE IF EXISTS `mcc_tax_rate_to_customer_group`;
+CREATE TABLE `mcc_tax_rate_to_customer_group` (
   `tax_rate_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   PRIMARY KEY (`tax_rate_id`,`customer_group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group_id`) VALUES
@@ -2902,14 +2997,15 @@ INSERT INTO `mcc_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group_id`
 (87, 1);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_tax_rule` (
+DROP TABLE IF EXISTS `mcc_tax_rule`;
+CREATE TABLE `mcc_tax_rule` (
   `tax_rule_id` int(11) NOT NULL AUTO_INCREMENT,
   `tax_class_id` int(11) NOT NULL,
   `tax_rate_id` int(11) NOT NULL,
   `based` varchar(10) NOT NULL,
   `priority` int(5) NOT NULL DEFAULT '1',
   PRIMARY KEY (`tax_rule_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=133 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=133 ;
 
 
 INSERT INTO `mcc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`, `priority`) VALUES
@@ -2919,24 +3015,26 @@ INSERT INTO `mcc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based
 (130, 10, 87, 'store', 0);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_upload` (
+DROP TABLE IF EXISTS `mcc_upload`;
+CREATE TABLE `mcc_upload` (
   `upload_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`upload_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_url_alias` (
+DROP TABLE IF EXISTS `mcc_url_alias`;
+CREATE TABLE `mcc_url_alias` (
   `url_alias_id` int(11) NOT NULL AUTO_INCREMENT,
   `query` varchar(255) NOT NULL,
   `keyword` varchar(255) NOT NULL,
   PRIMARY KEY (`url_alias_id`),
   KEY `query` (`query`),
   KEY `keyword` (`keyword`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=988 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=988 ;
 
 
 INSERT INTO `mcc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
@@ -3009,7 +3107,8 @@ INSERT INTO `mcc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (895, 'information_id=5', 'terms');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_user` (
+DROP TABLE IF EXISTS `mcc_user`;
+CREATE TABLE `mcc_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_group_id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
@@ -3023,15 +3122,16 @@ CREATE TABLE IF NOT EXISTS `mcc_user` (
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_user_group` (
+DROP TABLE IF EXISTS `mcc_user_group`;
+CREATE TABLE `mcc_user_group` (
   `user_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `permission` text NOT NULL,
   PRIMARY KEY (`user_group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=11 ;
 
 
 INSERT INTO `mcc_user_group` (`user_group_id`, `name`, `permission`) VALUES
@@ -3039,7 +3139,8 @@ INSERT INTO `mcc_user_group` (`user_group_id`, `name`, `permission`) VALUES
 (10, '演示用管理员群组', '');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_voucher` (
+DROP TABLE IF EXISTS `mcc_voucher`;
+CREATE TABLE `mcc_voucher` (
   `voucher_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `code` varchar(10) NOT NULL,
@@ -3053,24 +3154,26 @@ CREATE TABLE IF NOT EXISTS `mcc_voucher` (
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`voucher_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_voucher_history` (
+DROP TABLE IF EXISTS `mcc_voucher_history`;
+CREATE TABLE `mcc_voucher_history` (
   `voucher_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `voucher_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `amount` decimal(15,4) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`voucher_history_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_voucher_theme` (
+DROP TABLE IF EXISTS `mcc_voucher_theme`;
+CREATE TABLE `mcc_voucher_theme` (
   `voucher_theme_id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`voucher_theme_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=9 ;
 
 
 INSERT INTO `mcc_voucher_theme` (`voucher_theme_id`, `image`) VALUES
@@ -3079,12 +3182,13 @@ INSERT INTO `mcc_voucher_theme` (`voucher_theme_id`, `image`) VALUES
 (6, 'catalog/demo/apple_logo.jpg');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_voucher_theme_description` (
+DROP TABLE IF EXISTS `mcc_voucher_theme_description`;
+CREATE TABLE `mcc_voucher_theme_description` (
   `voucher_theme_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`voucher_theme_id`,`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 INSERT INTO `mcc_voucher_theme_description` (`voucher_theme_id`, `language_id`, `name`) VALUES
@@ -3099,11 +3203,12 @@ INSERT INTO `mcc_voucher_theme_description` (`voucher_theme_id`, `language_id`, 
 (7, 3, '生日');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_weight_class` (
+DROP TABLE IF EXISTS `mcc_weight_class`;
+CREATE TABLE `mcc_weight_class` (
   `weight_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` decimal(15,8) NOT NULL DEFAULT '0.00000000',
   PRIMARY KEY (`weight_class_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=7 ;
 
 
 INSERT INTO `mcc_weight_class` (`weight_class_id`, `value`) VALUES
@@ -3113,13 +3218,14 @@ INSERT INTO `mcc_weight_class` (`weight_class_id`, `value`) VALUES
 (6, '35.27400000');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_weight_class_description` (
+DROP TABLE IF EXISTS `mcc_weight_class_description`;
+CREATE TABLE `mcc_weight_class_description` (
   `weight_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
   `unit` varchar(4) NOT NULL,
   PRIMARY KEY (`weight_class_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=7 ;
 
 
 INSERT INTO `mcc_weight_class_description` (`weight_class_id`, `language_id`, `title`, `unit`) VALUES
@@ -3137,14 +3243,15 @@ INSERT INTO `mcc_weight_class_description` (`weight_class_id`, `language_id`, `t
 (5, 3, '磅', 'lb');
 
 
-CREATE TABLE IF NOT EXISTS `mcc_zone` (
+DROP TABLE IF EXISTS `mcc_zone`;
+CREATE TABLE `mcc_zone` (
   `zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `code` varchar(32) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`zone_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4227 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=4227 ;
 
 
 INSERT INTO `mcc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
@@ -7256,7 +7363,8 @@ INSERT INTO `mcc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUE
 (4226, 44, '台湾省', 'TW', 1);
 
 
-CREATE TABLE IF NOT EXISTS `mcc_zone_to_geo_zone` (
+DROP TABLE IF EXISTS `mcc_zone_to_geo_zone`;
+CREATE TABLE `mcc_zone_to_geo_zone` (
   `zone_to_geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL,
   `zone_id` int(11) NOT NULL DEFAULT '0',
@@ -7264,7 +7372,7 @@ CREATE TABLE IF NOT EXISTS `mcc_zone_to_geo_zone` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`zone_to_geo_zone_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=142 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=142 ;
 
 
 INSERT INTO `mcc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id`, `geo_zone_id`, `date_added`, `date_modified`) VALUES

@@ -140,7 +140,7 @@ function install($options) {
 
 function check_requirements() {
 	$error = null;
-	if (phpversion() < '5.0') {
+	if (phpversion() < '5.3') {
 		$error = '警告: 需要至少PHP5.3 版本！';
 	}
 
@@ -201,11 +201,11 @@ function write_config_files($options) {
 	$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_MYCNCART . 'catalog/view/theme/\');' . "\n";
 	$output .= 'define(\'DIR_CONFIG\', \'' . DIR_MYCNCART . 'system/config/\');' . "\n";
 	$output .= 'define(\'DIR_IMAGE\', \'' . DIR_MYCNCART . 'image/\');' . "\n";
-	$output .= 'define(\'DIR_CACHE\', \'' . DIR_OPENCART . 'system/storage/cache/\');' . "\n";
-	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'system/storage/download/\');' . "\n";
-	$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/storage/upload/\');' . "\n";
-	$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_OPENCART . 'system/storage/modification/\');' . "\n";
-	$output .= 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/storage/logs/\');' . "\n\n";
+	$output .= 'define(\'DIR_CACHE\', \'' . DIR_MYCNCART . 'system/storage/cache/\');' . "\n";
+	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_MYCNCART . 'system/storage/download/\');' . "\n";
+	$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_MYCNCART . 'system/storage/upload/\');' . "\n";
+	$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_MYCNCART . 'system/storage/modification/\');' . "\n";
+	$output .= 'define(\'DIR_LOGS\', \'' . DIR_MYCNCART . 'system/storage/logs/\');' . "\n\n";
 
 	$output .= '// DB' . "\n";
 	$output .= 'define(\'DB_DRIVER\', \'' . addslashes($options['db_driver']) . '\');' . "\n";
@@ -240,12 +240,12 @@ function write_config_files($options) {
 	$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_MYCNCART . 'admin/view/template/\');' . "\n";
 	$output .= 'define(\'DIR_CONFIG\', \'' . DIR_MYCNCART . 'system/config/\');' . "\n";
 	$output .= 'define(\'DIR_IMAGE\', \'' . DIR_MYCNCART . 'image/\');' . "\n";
-	$output .= 'define(\'DIR_CACHE\', \'' . DIR_OPENCART . 'system/storage/cache/\');' . "\n";
-	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'system/storage/download/\');' . "\n";
-	$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/storage/upload/\');' . "\n";
-	$output .= 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/storage/logs/\');' . "\n";
-	$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_OPENCART . 'system/storage/modification/\');' . "\n";
-	$output .= 'define(\'DIR_CATALOG\', \'' . DIR_OPENCART . 'catalog/\');' . "\n\n";
+	$output .= 'define(\'DIR_CACHE\', \'' . DIR_MYCNCART . 'system/storage/cache/\');' . "\n";
+	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_MYCNCART . 'system/storage/download/\');' . "\n";
+	$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_MYCNCART . 'system/storage/upload/\');' . "\n";
+	$output .= 'define(\'DIR_LOGS\', \'' . DIR_MYCNCART . 'system/storage/logs/\');' . "\n";
+	$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_MYCNCART . 'system/storage/modification/\');' . "\n";
+	$output .= 'define(\'DIR_CATALOG\', \'' . DIR_MYCNCART . 'catalog/\');' . "\n\n";
 
 	$output .= '// DB' . "\n";
 	$output .= 'define(\'DB_DRIVER\', \'' . addslashes($options['db_driver']) . '\');' . "\n";
@@ -267,12 +267,12 @@ function write_config_files($options) {
 
 function dir_permissions() {
 	$dirs = array(
-		DIR_OPENCART . 'image/',
-		DIR_OPENCART . 'system/storage/download/',
-		DIR_OPENCART . 'system/storage/upload/',
-		DIR_OPENCART . 'system/storage/cache/',
-		DIR_OPENCART . 'system/storage/logs/',
-		DIR_OPENCART . 'system/storage/modification/',
+		DIR_MYCNCART . 'image/',
+		DIR_MYCNCART . 'system/storage/download/',
+		DIR_MYCNCART . 'system/storage/upload/',
+		DIR_MYCNCART . 'system/storage/cache/',
+		DIR_MYCNCART . 'system/storage/logs/',
+		DIR_MYCNCART . 'system/storage/modification/',
 	);
 	exec('chmod o+w -R ' . implode(' ', $dirs));
 }

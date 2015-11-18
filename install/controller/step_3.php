@@ -10,23 +10,23 @@ class ControllerStep3 extends Controller {
 
 			$output  = '<?php' . "\n";
 			$output .= '// HTTP' . "\n";
-			$output .= 'define(\'HTTP_SERVER\', \'' . HTTP_OPENCART . '\');' . "\n\n";
+			$output .= 'define(\'HTTP_SERVER\', \'' . HTTP_MYCNCART . '\');' . "\n\n";
 
 			$output .= '// HTTPS' . "\n";
-			$output .= 'define(\'HTTPS_SERVER\', \'' . HTTP_OPENCART . '\');' . "\n\n";
+			$output .= 'define(\'HTTPS_SERVER\', \'' . HTTP_MYCNCART . '\');' . "\n\n";
 
 			$output .= '// DIR' . "\n";
-			$output .= 'define(\'DIR_APPLICATION\', \'' . DIR_OPENCART . 'catalog/\');' . "\n";
-			$output .= 'define(\'DIR_SYSTEM\', \'' . DIR_OPENCART . 'system/\');' . "\n";
-			$output .= 'define(\'DIR_LANGUAGE\', \'' . DIR_OPENCART . 'catalog/language/\');' . "\n";
-			$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_OPENCART . 'catalog/view/theme/\');' . "\n";
-			$output .= 'define(\'DIR_CONFIG\', \'' . DIR_OPENCART . 'system/config/\');' . "\n";
-			$output .= 'define(\'DIR_IMAGE\', \'' . DIR_OPENCART . 'image/\');' . "\n";
-			$output .= 'define(\'DIR_CACHE\', \'' . DIR_OPENCART . 'system/storage/cache/\');' . "\n";
-			$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'system/storage/download/\');' . "\n";
-			$output .= 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/storage/logs/\');' . "\n";
-			$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_OPENCART . 'system/storage/modification/\');' . "\n";
-			$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/storage/upload/\');' . "\n\n";
+			$output .= 'define(\'DIR_APPLICATION\', \'' . DIR_MYCNCART . 'catalog/\');' . "\n";
+			$output .= 'define(\'DIR_SYSTEM\', \'' . DIR_MYCNCART . 'system/\');' . "\n";
+			$output .= 'define(\'DIR_LANGUAGE\', \'' . DIR_MYCNCART . 'catalog/language/\');' . "\n";
+			$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_MYCNCART . 'catalog/view/theme/\');' . "\n";
+			$output .= 'define(\'DIR_CONFIG\', \'' . DIR_MYCNCART . 'system/config/\');' . "\n";
+			$output .= 'define(\'DIR_IMAGE\', \'' . DIR_MYCNCART . 'image/\');' . "\n";
+			$output .= 'define(\'DIR_CACHE\', \'' . DIR_MYCNCART . 'system/storage/cache/\');' . "\n";
+			$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_MYCNCART . 'system/storage/download/\');' . "\n";
+			$output .= 'define(\'DIR_LOGS\', \'' . DIR_MYCNCART . 'system/storage/logs/\');' . "\n";
+			$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_MYCNCART . 'system/storage/modification/\');' . "\n";
+			$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_MYCNCART . 'system/storage/upload/\');' . "\n\n";
 
 			$output .= '// DB' . "\n";
 			$output .= 'define(\'DB_DRIVER\', \'' . addslashes($this->request->post['db_driver']) . '\');' . "\n";
@@ -37,7 +37,7 @@ class ControllerStep3 extends Controller {
 			$output .= 'define(\'DB_PORT\', \'' . addslashes($this->request->post['db_port']) . '\');' . "\n";
 			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n";
 
-			$file = fopen(DIR_OPENCART . 'config.php', 'w');
+			$file = fopen(DIR_MYCNCART . 'config.php', 'w');
 
 			fwrite($file, $output);
 
@@ -45,26 +45,26 @@ class ControllerStep3 extends Controller {
 
 			$output  = '<?php' . "\n";
 			$output .= '// HTTP' . "\n";
-			$output .= 'define(\'HTTP_SERVER\', \'' . HTTP_OPENCART . 'admin/\');' . "\n";
-			$output .= 'define(\'HTTP_CATALOG\', \'' . HTTP_OPENCART . '\');' . "\n\n";
+			$output .= 'define(\'HTTP_SERVER\', \'' . HTTP_MYCNCART . 'admin/\');' . "\n";
+			$output .= 'define(\'HTTP_CATALOG\', \'' . HTTP_MYCNCART . '\');' . "\n\n";
 
 			$output .= '// HTTPS' . "\n";
-			$output .= 'define(\'HTTPS_SERVER\', \'' . HTTP_OPENCART . 'admin/\');' . "\n";
-			$output .= 'define(\'HTTPS_CATALOG\', \'' . HTTP_OPENCART . '\');' . "\n\n";
+			$output .= 'define(\'HTTPS_SERVER\', \'' . HTTP_MYCNCART . 'admin/\');' . "\n";
+			$output .= 'define(\'HTTPS_CATALOG\', \'' . HTTP_MYCNCART . '\');' . "\n\n";
 
 			$output .= '// DIR' . "\n";
-			$output .= 'define(\'DIR_APPLICATION\', \'' . DIR_OPENCART . 'admin/\');' . "\n";
-			$output .= 'define(\'DIR_SYSTEM\', \'' . DIR_OPENCART . 'system/\');' . "\n";
-			$output .= 'define(\'DIR_LANGUAGE\', \'' . DIR_OPENCART . 'admin/language/\');' . "\n";
-			$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_OPENCART . 'admin/view/template/\');' . "\n";
-			$output .= 'define(\'DIR_CONFIG\', \'' . DIR_OPENCART . 'system/config/\');' . "\n";
-			$output .= 'define(\'DIR_IMAGE\', \'' . DIR_OPENCART . 'image/\');' . "\n";
-			$output .= 'define(\'DIR_CACHE\', \'' . DIR_OPENCART . 'system/storage/cache/\');' . "\n";
-			$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'system/storage/download/\');' . "\n";
-			$output .= 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/storage/logs/\');' . "\n";
-			$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_OPENCART . 'system/storage/modification/\');' . "\n";
-			$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/storage/upload/\');' . "\n";
-			$output .= 'define(\'DIR_CATALOG\', \'' . DIR_OPENCART . 'catalog/\');' . "\n\n";
+			$output .= 'define(\'DIR_APPLICATION\', \'' . DIR_MYCNCART . 'admin/\');' . "\n";
+			$output .= 'define(\'DIR_SYSTEM\', \'' . DIR_MYCNCART . 'system/\');' . "\n";
+			$output .= 'define(\'DIR_LANGUAGE\', \'' . DIR_MYCNCART . 'admin/language/\');' . "\n";
+			$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_MYCNCART . 'admin/view/template/\');' . "\n";
+			$output .= 'define(\'DIR_CONFIG\', \'' . DIR_MYCNCART . 'system/config/\');' . "\n";
+			$output .= 'define(\'DIR_IMAGE\', \'' . DIR_MYCNCART . 'image/\');' . "\n";
+			$output .= 'define(\'DIR_CACHE\', \'' . DIR_MYCNCART . 'system/storage/cache/\');' . "\n";
+			$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_MYCNCART . 'system/storage/download/\');' . "\n";
+			$output .= 'define(\'DIR_LOGS\', \'' . DIR_MYCNCART . 'system/storage/logs/\');' . "\n";
+			$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_MYCNCART . 'system/storage/modification/\');' . "\n";
+			$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_MYCNCART . 'system/storage/upload/\');' . "\n";
+			$output .= 'define(\'DIR_CATALOG\', \'' . DIR_MYCNCART . 'catalog/\');' . "\n\n";
 
 			$output .= '// DB' . "\n";
 			$output .= 'define(\'DB_DRIVER\', \'' . addslashes($this->request->post['db_driver']) . '\');' . "\n";
@@ -75,7 +75,7 @@ class ControllerStep3 extends Controller {
 			$output .= 'define(\'DB_PORT\', \'' . addslashes($this->request->post['db_port']) . '\');' . "\n";
 			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n";
 
-			$file = fopen(DIR_OPENCART . 'admin/config.php', 'w');
+			$file = fopen(DIR_MYCNCART . 'admin/config.php', 'w');
 
 			fwrite($file, $output);
 
@@ -208,7 +208,7 @@ class ControllerStep3 extends Controller {
 		if (isset($this->request->post['db_prefix'])) {
 			$data['db_prefix'] = $this->request->post['db_prefix'];
 		} else {
-			$data['db_prefix'] = 'oc_';
+			$data['db_prefix'] = 'mcc_';
 		}
 
 		if (isset($this->request->post['username'])) {
@@ -291,12 +291,12 @@ class ControllerStep3 extends Controller {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
-		if (!is_writable(DIR_OPENCART . 'config.php')) {
-			$this->error['warning'] = $this->language->get('error_config') . DIR_OPENCART . 'config.php!';
+		if (!is_writable(DIR_MYCNCART . 'config.php')) {
+			$this->error['warning'] = $this->language->get('error_config') . DIR_MYCNCART . 'config.php!';
 		}
 
-		if (!is_writable(DIR_OPENCART . 'admin/config.php')) {
-			$this->error['warning'] = $this->language->get('error_config') . DIR_OPENCART . 'admin/config.php!';
+		if (!is_writable(DIR_MYCNCART . 'admin/config.php')) {
+			$this->error['warning'] = $this->language->get('error_config') . DIR_MYCNCART . 'admin/config.php!';
 		}
 
 		return !$this->error;
