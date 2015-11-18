@@ -97,10 +97,31 @@ CREATE TABLE IF NOT EXISTS `mcc_api` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 
-INSERT INTO `mcc_api` (`api_id`, `username`, `fullname`, `password`, `status`, `date_added`, `date_modified`) VALUES
-(1, 'cUIaGVLhmg4pe7gqoOu3ldxJTOXyNmusUPkMFLHHcCFx53qGcVnWgeKaF59nluUz', '', 'Eh4W5Y5EK5HTPMs4IzYNT3ZEtAdz1PxTqMG3o9mZuLDLb2mErqCa8phFPczY9GJLKPLyQ6LGNy0bf6YmH4iBfzhdoREUAWWZhpIFtSmLizfEcXDiaf695VZP5dLn28cBwc8uFA5ovNDERLk0leMVNPKYECKUn8aB3mpwTFHd08db8W9go0VEXgw4F9BYQVQX3KPMZiLqxGwMh4QjkjWKZLRx9Tu0wF9HuFr8YYHQnm6U90aAYqPnUMoEvBWoKMjO', 1, '2015-04-13 17:26:08', '2015-04-13 17:26:08'),
-(3, 'LUsgVrFhe0QNH2bYKYWYHdOE7svvINMVmiOH20F63pfKHIpnhyTqlypJStbYEn1Q', '', '5KmFSX8sK2ldAuvPwlJU7g9lfG9Z3cXiGI3akRs0TbkKvutO3v0XLmKbk2ZwknxOJeBJuiVXUYbOYHjk2TawREOohArhJLERFOCPwM0QOsLp31RUuO2jP4KOXg2plHOs2U5srONhAZxeR82begMsGI8LFZ5K5aPfiyrjdncLoeRqhdV5GLZQzspfqp0CHHKqHpUxJZkMK6nPpVqxlOeKaqONISnSLK6Oh30Yqikkjv1Lpk4B7obb4BpSdTT5IllK', 1, '2015-07-20 14:38:53', '2015-07-20 14:38:53');
+DROP TABLE IF EXISTS `mcc_api_ip`;
+CREATE TABLE `mcc_api_ip` (
+  `api_ip_id` int(11) NOT NULL AUTO_INCREMENT,
+  `api_id` int(11) NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  PRIMARY KEY (`api_ip_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+
+DROP TABLE IF EXISTS `mcc_api_session`;
+CREATE TABLE `mcc_api_session` (
+  `api_session_id` int(11) NOT NULL AUTO_INCREMENT,
+  `api_id` int(11) NOT NULL,
+  `token` varchar(32) NOT NULL,
+  `session_id` varchar(32) NOT NULL,
+  `session_name` varchar(32) NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`api_session_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 
 CREATE TABLE IF NOT EXISTS `mcc_attribute` (
   `attribute_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -302,6 +323,20 @@ INSERT INTO `mcc_banner_image_description` (`banner_image_id`, `language_id`, `b
 (139, 1, 8, 'Nintendo'),
 (139, 2, 8, 'Nintendo'),
 (139, 3, 8, 'Nintendo');
+
+DROP TABLE IF EXISTS `mcc_cart`;
+CREATE TABLE `mcc_cart` (
+  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) NOT NULL,
+  `session_id` varchar(32) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `recurring_id` int(11) NOT NULL,
+  `option` text NOT NULL,
+  `quantity` int(5) NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`cart_id`),
+  KEY `cart_id` (`customer_id`,`session_id`,`product_id`,`recurring_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 CREATE TABLE IF NOT EXISTS `mcc_category` (
@@ -1051,13 +1086,6 @@ CREATE TABLE IF NOT EXISTS `mcc_customer_activity` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE IF NOT EXISTS `mcc_customer_ban_ip` (
-  `customer_ban_ip_id` int(11) NOT NULL AUTO_INCREMENT,
-  `ip` varchar(40) NOT NULL,
-  PRIMARY KEY (`customer_ban_ip_id`),
-  KEY `ip` (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
 
 CREATE TABLE IF NOT EXISTS `mcc_customer_group` (
   `customer_group_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1149,6 +1177,14 @@ CREATE TABLE IF NOT EXISTS `mcc_customer_transaction` (
   PRIMARY KEY (`customer_transaction_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
+DROP TABLE IF EXISTS `mcc_customer_wishlist`;
+CREATE TABLE `mcc_customer_wishlist` (
+  `customer_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`customer_id`,`product_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 
 CREATE TABLE IF NOT EXISTS `mcc_custom_field` (
   `custom_field_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1219,6 +1255,8 @@ CREATE TABLE IF NOT EXISTS `mcc_event` (
   PRIMARY KEY (`event_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
+INSERT INTO `mcc_event` (`event_id`, `code`, `trigger`, `action`) VALUES
+(1, 'voucher', 'post.order.history.add', 'total/voucher/send');
 
 CREATE TABLE IF NOT EXISTS `mcc_extension` (
   `extension_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1229,27 +1267,25 @@ CREATE TABLE IF NOT EXISTS `mcc_extension` (
 
 
 INSERT INTO `mcc_extension` (`extension_id`, `type`, `code`) VALUES
-(23, 'payment', 'cod'),
-(22, 'total', 'shipping'),
-(57, 'total', 'sub_total'),
-(58, 'total', 'tax'),
-(59, 'total', 'total'),
-(410, 'module', 'banner'),
-(426, 'module', 'carousel'),
-(390, 'total', 'credit'),
-(387, 'shipping', 'flat'),
-(349, 'total', 'handling'),
-(350, 'total', 'low_order_fee'),
-(389, 'total', 'coupon'),
-(413, 'module', 'category'),
-(408, 'module', 'account'),
-(393, 'total', 'reward'),
-(398, 'total', 'voucher'),
-(407, 'payment', 'free_checkout'),
-(427, 'module', 'featured'),
-(419, 'module', 'slideshow'),
-(434, 'module', 'affiliate'),
-(436, 'shipping', 'free');
+(1, 'payment', 'cod'),
+(2, 'total', 'shipping'),
+(3, 'total', 'sub_total'),
+(4, 'total', 'tax'),
+(5, 'total', 'total'),
+(6, 'module', 'banner'),
+(7, 'module', 'carousel'),
+(8, 'total', 'credit'),
+(9, 'shipping', 'flat'),
+(10, 'total', 'handling'),
+(11, 'total', 'low_order_fee'),
+(12, 'total', 'coupon'),
+(13, 'module', 'category'),
+(14, 'module', 'account'),
+(15, 'total', 'reward'),
+(16, 'total', 'voucher'),
+(17, 'payment', 'free_checkout'),
+(18, 'module', 'featured'),
+(19, 'module', 'slideshow');
 
 
 CREATE TABLE IF NOT EXISTS `mcc_filter` (
@@ -1583,10 +1619,12 @@ CREATE TABLE IF NOT EXISTS `mcc_module` (
 
 
 INSERT INTO `mcc_module` (`module_id`, `name`, `code`, `setting`) VALUES
-(30, '分类', 'banner', 'a:5:{s:4:"name";s:6:"分类";s:9:"banner_id";s:1:"6";s:5:"width";s:3:"300";s:6:"height";s:3:"300";s:6:"status";s:1:"1";}'),
-(29, '首页', 'carousel', 'a:5:{s:4:"name";s:6:"首页";s:9:"banner_id";s:1:"8";s:5:"width";s:3:"130";s:6:"height";s:3:"100";s:6:"status";s:1:"1";}'),
-(28, '主页', 'featured', 'a:6:{s:4:"name";s:6:"主页";s:7:"product";a:4:{i:0;s:2:"43";i:1;s:2:"40";i:2;s:2:"42";i:3;s:2:"30";}s:5:"limit";s:1:"4";s:5:"width";s:3:"200";s:6:"height";s:3:"200";s:6:"status";s:1:"1";}'),
-(27, '首页', 'slideshow', 'a:5:{s:4:"name";s:6:"首页";s:9:"banner_id";s:1:"7";s:5:"width";s:4:"1140";s:6:"height";s:3:"380";s:6:"status";s:1:"1";}');
+(30, '分类', 'banner', '{"name":"分类","banner_id":"6","width":"182","height":"182","status":"1"}'),
+(29, '首页', 'carousel', '{"name":"首页","banner_id":"8","width":"130","height":"100","status":"1"}'),
+(28, '首页', 'featured', '{"name":"首页","product":["43","40","42","30"],"limit":"4","width":"200","height":"200","status":"1"}'),
+(27, '首页', 'slideshow', '{"name":"首页","banner_id":"7","width":"1140","height":"380","status":"1"}'),
+(31, '广告 1', 'banner', '{"name":"广告 1","banner_id":"6","width":"182","height":"182","status":"1"}');
+
 
 
 CREATE TABLE IF NOT EXISTS `mcc_option` (
@@ -2652,136 +2690,127 @@ INSERT INTO `mcc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `se
 (54, 0, 'reward', 'reward_status', '1', 0),
 (146, 0, 'category', 'category_status', '1', 0),
 (158, 0, 'account', 'account_status', '1', 0),
-(1393, 0, 'affiliate', 'affiliate_status', '1', 0),
-(2018, 0, 'config', 'config_account_id', '3', 0),
-(2019, 0, 'config', 'config_account_mail', '0', 0),
-(2020, 0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
-(2098, 0, 'config', 'config_api_id', '3', 0),
-(2022, 0, 'config', 'config_cart_weight', '1', 0),
-(2023, 0, 'config', 'config_checkout_guest', '1', 0),
-(2024, 0, 'config', 'config_checkout_id', '5', 0),
-(2025, 0, 'config', 'config_order_status_id', '1', 0),
-(2026, 0, 'config', 'config_processing_status', 'a:1:{i:0;s:1:"2";}', 1),
-(2027, 0, 'config', 'config_complete_status', 'a:1:{i:0;s:1:"5";}', 1),
-(2008, 0, 'config', 'config_voucher_min', '1', 0),
-(2009, 0, 'config', 'config_voucher_max', '1000', 0),
-(2010, 0, 'config', 'config_tax', '1', 0),
-(2011, 0, 'config', 'config_tax_default', 'shipping', 0),
-(2012, 0, 'config', 'config_tax_customer', 'shipping', 0),
-(2013, 0, 'config', 'config_customer_online', '0', 0),
-(2014, 0, 'config', 'config_customer_group_id', '1', 0),
-(2015, 0, 'config', 'config_customer_group_display', 'a:1:{i:0;s:1:"1";}', 1),
+(159, 0, 'affiliate', 'affiliate_status', '1', 0),
+(267, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
+(266, 0, 'config', 'config_shared', '0', 0),
+(265, 0, 'config', 'config_secure', '0', 0),
 (94, 0, 'voucher', 'voucher_sort_order', '8', 0),
 (95, 0, 'voucher', 'voucher_status', '1', 0),
-(2087, 0, 'config', 'config_error_log', '1', 0),
-(2088, 0, 'config', 'config_error_filename', 'error.txt', 0),
-(2089, 0, 'config', 'config_google_analytics', '', 0),
+(261, 0, 'config', 'config_fraud_detection', '0', 0),
+(260, 0, 'config', 'config_mail_alert', '', 0),
 (103, 0, 'free_checkout', 'free_checkout_status', '1', 0),
 (104, 0, 'free_checkout', 'free_checkout_order_status_id', '1', 0),
-(2085, 0, 'config', 'config_compression', '0', 0),
-(2086, 0, 'config', 'config_error_display', '1', 0),
-(2003, 0, 'config', 'config_product_description_length', '100', 0),
-(2097, 0, 'config', 'config_encryption', '03303ed95d5669267672bd921954d80b', 0),
-(2083, 0, 'config', 'config_password', '1', 0),
-(2082, 0, 'config', 'config_maintenance', '0', 0),
-(2081, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
-(2080, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
-(2079, 0, 'config', 'config_file_max_size', '300000', 0),
-(2078, 0, 'config', 'config_seo_url', '0', 0),
-(2040, 0, 'config', 'config_icon', 'catalog/cart.png', 0),
-(2041, 0, 'config', 'config_image_category_width', '80', 0),
-(2042, 0, 'config', 'config_image_category_height', '80', 0),
-(2043, 0, 'config', 'config_image_thumb_width', '228', 0),
-(2044, 0, 'config', 'config_image_thumb_height', '228', 0),
-(2045, 0, 'config', 'config_image_popup_width', '500', 0),
-(2046, 0, 'config', 'config_image_popup_height', '500', 0),
-(2047, 0, 'config', 'config_image_product_width', '228', 0),
-(2048, 0, 'config', 'config_image_product_height', '228', 0),
-(2049, 0, 'config', 'config_image_additional_width', '74', 0),
-(2050, 0, 'config', 'config_image_additional_height', '74', 0),
-(2051, 0, 'config', 'config_image_related_width', '80', 0),
-(2052, 0, 'config', 'config_image_related_height', '80', 0),
-(2053, 0, 'config', 'config_image_compare_width', '90', 0),
-(2054, 0, 'config', 'config_image_compare_height', '90', 0),
-(2055, 0, 'config', 'config_image_wishlist_width', '47', 0),
-(2056, 0, 'config', 'config_image_wishlist_height', '47', 0),
-(2057, 0, 'config', 'config_image_cart_width', '47', 0),
-(2058, 0, 'config', 'config_image_cart_height', '47', 0),
-(2059, 0, 'config', 'config_image_location_width', '268', 0),
-(2060, 0, 'config', 'config_image_location_height', '50', 0),
-(2061, 0, 'config', 'config_ftp_hostname', 'localhost', 0),
-(2062, 0, 'config', 'config_ftp_port', '21', 0),
-(2063, 0, 'config', 'config_ftp_username', '', 0),
-(2064, 0, 'config', 'config_ftp_password', '', 0),
-(2065, 0, 'config', 'config_ftp_root', '', 0),
-(2066, 0, 'config', 'config_ftp_status', '0', 0),
-(2067, 0, 'config', 'config_mail_protocol', 'mail', 0),
-(2068, 0, 'config', 'config_mail_parameter', '', 0),
-(2069, 0, 'config', 'config_mail_smtp_hostname', '', 0),
-(2070, 0, 'config', 'config_mail_smtp_username', '', 0),
-(2071, 0, 'config', 'config_mail_smtp_password', '', 0),
-(2072, 0, 'config', 'config_mail_smtp_port', '25', 0),
-(2073, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
-(2074, 0, 'config', 'config_mail_alert', '', 0),
-(2075, 0, 'config', 'config_secure', '0', 0),
-(2076, 0, 'config', 'config_shared', '0', 0),
-(2077, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m\r\n2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
-(2038, 0, 'config', 'config_return_status_id', '2', 0),
-(2039, 0, 'config', 'config_logo', 'catalog/logo.png', 0),
-(2028, 0, 'config', 'config_order_mail', '0', 0),
-(2029, 0, 'config', 'config_stock_display', '0', 0),
-(2030, 0, 'config', 'config_stock_warning', '0', 0),
-(2031, 0, 'config', 'config_stock_checkout', '0', 0),
-(2032, 0, 'config', 'config_affiliate_approval', '0', 0),
-(2033, 0, 'config', 'config_affiliate_auto', '0', 0),
-(2034, 0, 'config', 'config_affiliate_commission', '5', 0),
-(2035, 0, 'config', 'config_affiliate_id', '4', 0),
-(2036, 0, 'config', 'config_affiliate_mail', '0', 0),
-(2037, 0, 'config', 'config_return_id', '0', 0),
-(1424, 0, 'free', 'free_total', '', 0),
-(1425, 0, 'free', 'free_geo_zone_id', '0', 0),
-(1426, 0, 'free', 'free_status', '1', 0),
-(1427, 0, 'free', 'free_sort_order', '', 0),
-(2090, 0, 'config', 'config_google_analytics_status', '0', 0),
-(2017, 0, 'config', 'config_login_attempts', '5', 0),
-(2016, 0, 'config', 'config_customer_price', '0', 0),
-(2007, 0, 'config', 'config_review_mail', '0', 0),
-(2005, 0, 'config', 'config_review_status', '1', 0),
-(2006, 0, 'config', 'config_review_guest', '1', 0),
-(2004, 0, 'config', 'config_limit_admin', '20', 0),
-(2002, 0, 'config', 'config_product_limit', '15', 0),
-(2001, 0, 'config', 'config_product_count', '1', 0),
-(2000, 0, 'config', 'config_weight_class_id', '1', 0),
-(1999, 0, 'config', 'config_length_class_id', '1', 0),
-(1998, 0, 'config', 'config_currency_auto', '1', 0),
-(1997, 0, 'config', 'config_currency', 'CNY', 0),
-(1996, 0, 'config', 'config_admin_language', 'cn', 0),
-(1995, 0, 'config', 'config_language', 'cn', 0),
-(1994, 0, 'config', 'config_zone_id', '', 0),
-(1993, 0, 'config', 'config_country_id', '44', 0),
-(1992, 0, 'config', 'config_layout_id', '4', 0),
-(1991, 0, 'config', 'config_template', 'default', 0),
-(1987, 0, 'config', 'config_comment', '', 0),
-(1988, 0, 'config', 'config_meta_title', '我的中国网店', 0),
-(1989, 0, 'config', 'config_meta_description', '我的中国网店', 0),
-(1990, 0, 'config', 'config_meta_keyword', '我的中国网店', 0),
-(1986, 0, 'config', 'config_open', '', 0),
-(1985, 0, 'config', 'config_image', '', 0),
-(1984, 0, 'config', 'config_fax', '', 0),
-(1981, 0, 'config', 'config_geocode', '116.403866,39.91523', 0),
-(1983, 0, 'config', 'config_telephone', '123456789', 0),
-(2095, 0, 'config', 'config_email', 'opencartchina@qq.com', 0),
-(1978, 0, 'config', 'config_owner', '您的姓名', 0),
-(1979, 0, 'config', 'config_address', '中国北京市天安门', 0),
-(1980, 0, 'config', 'config_map_select', 'google', 0),
-(1977, 0, 'config', 'config_name', '我的中国网店', 0),
-(2096, 0, 'config', 'config_url', 'http://localhost/mycncart/', 0),
-(2099, 0, '', 'chinapay_id', '45688899', 0),
-(2100, 0, '', 'chinapay_key', '876756756756756', 0),
-(2101, 0, '', 'chinapay_total', '0.01', 0),
-(2102, 0, '', 'chinapay_sort_order', '1', 0),
-(2103, 0, '', 'chinapay_geo_zone_id', '0', 0),
-(2104, 0, '', 'chinapay_status', '1', 0);
+(258, 0, 'config', 'config_ftp_status', '0', 0),
+(257, 0, 'config', 'config_ftp_root', '', 0),
+(256, 0, 'config', 'config_ftp_password', '', 0),
+(255, 0, 'config', 'config_ftp_username', '', 0),
+(254, 0, 'config', 'config_ftp_port', '21', 0),
+(253, 0, 'config', 'config_ftp_hostname', '', 0),
+(252, 0, 'config', 'config_image_location_height', '50', 0),
+(251, 0, 'config', 'config_image_location_width', '268', 0),
+(250, 0, 'config', 'config_image_cart_height', '47', 0),
+(249, 0, 'config', 'config_image_cart_width', '47', 0),
+(248, 0, 'config', 'config_image_wishlist_height', '47', 0),
+(181, 0, 'config', 'config_meta_title', 'Your Store', 0),
+(182, 0, 'config', 'config_meta_description', 'My Store', 0),
+(183, 0, 'config', 'config_meta_keyword', '', 0),
+(184, 0, 'config', 'config_template', 'default', 0),
+(185, 0, 'config', 'config_layout_id', '4', 0),
+(186, 0, 'config', 'config_country_id', '222', 0),
+(187, 0, 'config', 'config_zone_id', '3563', 0),
+(188, 0, 'config', 'config_language', 'en', 0),
+(189, 0, 'config', 'config_admin_language', 'en', 0),
+(190, 0, 'config', 'config_currency', 'USD', 0),
+(191, 0, 'config', 'config_currency_auto', '1', 0),
+(192, 0, 'config', 'config_length_class_id', '1', 0),
+(193, 0, 'config', 'config_weight_class_id', '1', 0),
+(194, 0, 'config', 'config_product_count', '1', 0),
+(195, 0, 'config', 'config_product_limit', '15', 0),
+(196, 0, 'config', 'config_product_description_length', '100', 0),
+(197, 0, 'config', 'config_limit_admin', '20', 0),
+(198, 0, 'config', 'config_review_status', '1', 0),
+(199, 0, 'config', 'config_review_guest', '1', 0),
+(200, 0, 'config', 'config_review_mail', '0', 0),
+(201, 0, 'config', 'config_voucher_min', '1', 0),
+(202, 0, 'config', 'config_voucher_max', '1000', 0),
+(203, 0, 'config', 'config_tax', '1', 0),
+(204, 0, 'config', 'config_tax_default', 'shipping', 0),
+(205, 0, 'config', 'config_tax_customer', 'shipping', 0),
+(206, 0, 'config', 'config_customer_online', '0', 0),
+(207, 0, 'config', 'config_customer_group_id', '1', 0),
+(208, 0, 'config', 'config_customer_group_display', '["1"]', 1),
+(209, 0, 'config', 'config_customer_price', '0', 0),
+(210, 0, 'config', 'config_account_id', '3', 0),
+(211, 0, 'config', 'config_account_mail', '0', 0),
+(212, 0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
+(213, 0, 'config', 'config_api_id', '1', 0),
+(214, 0, 'config', 'config_cart_weight', '1', 0),
+(215, 0, 'config', 'config_checkout_guest', '1', 0),
+(216, 0, 'config', 'config_checkout_id', '5', 0),
+(217, 0, 'config', 'config_order_status_id', '1', 0),
+(218, 0, 'config', 'config_processing_status', '["5","1","2","12","3"]', 1),
+(219, 0, 'config', 'config_complete_status', '["5","3"]', 1),
+(220, 0, 'config', 'config_order_mail', '0', 0),
+(221, 0, 'config', 'config_stock_display', '0', 0),
+(222, 0, 'config', 'config_stock_warning', '0', 0),
+(223, 0, 'config', 'config_stock_checkout', '0', 0),
+(224, 0, 'config', 'config_affiliate_approval', '0', 0),
+(225, 0, 'config', 'config_affiliate_auto', '0', 0),
+(226, 0, 'config', 'config_affiliate_commission', '5', 0),
+(227, 0, 'config', 'config_affiliate_id', '4', 0),
+(228, 0, 'config', 'config_affiliate_mail', '0', 0),
+(229, 0, 'config', 'config_return_id', '0', 0),
+(230, 0, 'config', 'config_return_status_id', '2', 0),
+(231, 0, 'config', 'config_logo', 'catalog/logo.png', 0),
+(232, 0, 'config', 'config_icon', 'catalog/cart.png', 0),
+(233, 0, 'config', 'config_image_category_width', '80', 0),
+(234, 0, 'config', 'config_image_category_height', '80', 0),
+(235, 0, 'config', 'config_image_thumb_width', '228', 0),
+(236, 0, 'config', 'config_image_thumb_height', '228', 0),
+(237, 0, 'config', 'config_image_popup_width', '500', 0),
+(238, 0, 'config', 'config_image_popup_height', '500', 0),
+(239, 0, 'config', 'config_image_product_width', '228', 0),
+(240, 0, 'config', 'config_image_product_height', '228', 0),
+(241, 0, 'config', 'config_image_additional_width', '74', 0),
+(242, 0, 'config', 'config_image_additional_height', '74', 0),
+(243, 0, 'config', 'config_image_related_width', '80', 0),
+(244, 0, 'config', 'config_image_related_height', '80', 0),
+(245, 0, 'config', 'config_image_compare_width', '90', 0),
+(246, 0, 'config', 'config_image_compare_height', '90', 0),
+(247, 0, 'config', 'config_image_wishlist_width', '47', 0),
+(180, 0, 'config', 'config_comment', '', 0),
+(179, 0, 'config', 'config_open', '', 0),
+(178, 0, 'config', 'config_image', '', 0),
+(177, 0, 'config', 'config_fax', '', 0),
+(176, 0, 'config', 'config_telephone', '123456789', 0),
+(175, 0, 'config', 'config_email', 'demo@opencart.com', 0),
+(174, 0, 'config', 'config_geocode', '', 0),
+(172, 0, 'config', 'config_owner', 'Your Name', 0),
+(173, 0, 'config', 'config_address', 'Address 1', 0),
+(171, 0, 'config', 'config_name', 'Your Store', 0),
+(268, 0, 'config', 'config_seo_url', '0', 0),
+(269, 0, 'config', 'config_file_max_size', '300000', 0),
+(270, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
+(271, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
+(272, 0, 'config', 'config_maintenance', '0', 0),
+(273, 0, 'config', 'config_password', '1', 0),
+(274, 0, 'config', 'config_encryption', '87431d38e7edce36d5153707d4cd2bf9', 0),
+(275, 0, 'config', 'config_compression', '0', 0),
+(276, 0, 'config', 'config_error_display', '1', 0),
+(277, 0, 'config', 'config_error_log', '1', 0),
+(278, 0, 'config', 'config_error_filename', 'error.log', 0),
+(279, 0, 'config', 'config_google_analytics', '', 0),
+(280, 0, 'config', 'config_mail_protocol', 'mail', 0),
+(281, 0, 'config', 'config_mail_parameter', '', 0),
+(282, 0, 'config', 'config_mail_smtp_hostname', '', 0),
+(283, 0, 'config', 'config_mail_smtp_username', '', 0),
+(284, 0, 'config', 'config_mail_smtp_password', '', 0),
+(285, 0, 'config', 'config_mail_smtp_port', '25', 0),
+(286, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
+(287, 0, 'config', 'config_captcha', 'basic_captcha', 0),
+(288, 0, 'config', 'config_captcha_page', '["review","return","contact"]', 1),
+(289, 0, 'config', 'config_login_attempts', '5', 0);
+
 
 
 CREATE TABLE IF NOT EXISTS `mcc_sms_mobile` (
@@ -3006,7 +3035,7 @@ CREATE TABLE IF NOT EXISTS `mcc_user_group` (
 
 
 INSERT INTO `mcc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, '超级管理员群组', 'a:2:{s:6:"access";a:144:{i:0;s:17:"catalog/attribute";i:1;s:23:"catalog/attribute_group";i:2;s:16:"catalog/category";i:3;s:16:"catalog/download";i:4;s:14:"catalog/filter";i:5;s:19:"catalog/information";i:6;s:20:"catalog/manufacturer";i:7;s:14:"catalog/option";i:8;s:15:"catalog/product";i:9;s:17:"catalog/recurring";i:10;s:14:"catalog/review";i:11;s:17:"catalog/url_alias";i:12;s:18:"common/column_left";i:13;s:18:"common/filemanager";i:14;s:11:"common/menu";i:15;s:14:"common/profile";i:16;s:12:"common/stats";i:17;s:13:"design/banner";i:18;s:13:"design/layout";i:19;s:14:"extension/feed";i:20;s:15:"extension/fraud";i:21;s:19:"extension/installer";i:22;s:22:"extension/modification";i:23;s:16:"extension/module";i:24;s:17:"extension/openbay";i:25;s:17:"extension/payment";i:26;s:18:"extension/shipping";i:27;s:13:"extension/sms";i:28;s:15:"extension/total";i:29;s:16:"feed/google_base";i:30;s:19:"feed/google_sitemap";i:31;s:18:"fraud/fraudlabspro";i:32;s:13:"fraud/maxmind";i:33;s:20:"localisation/country";i:34;s:21:"localisation/currency";i:35;s:21:"localisation/geo_zone";i:36;s:21:"localisation/language";i:37;s:25:"localisation/length_class";i:38;s:21:"localisation/location";i:39;s:25:"localisation/order_status";i:40;s:26:"localisation/return_action";i:41;s:26:"localisation/return_reason";i:42;s:26:"localisation/return_status";i:43;s:25:"localisation/stock_status";i:44;s:22:"localisation/tax_class";i:45;s:21:"localisation/tax_rate";i:46;s:25:"localisation/weight_class";i:47;s:17:"localisation/zone";i:48;s:19:"marketing/affiliate";i:49;s:17:"marketing/contact";i:50;s:16:"marketing/coupon";i:51;s:19:"marketing/marketing";i:52;s:14:"module/account";i:53;s:16:"module/affiliate";i:54;s:13:"module/banner";i:55;s:17:"module/bestseller";i:56;s:15:"module/carousel";i:57;s:15:"module/category";i:58;s:15:"module/featured";i:59;s:13:"module/filter";i:60;s:11:"module/html";i:61;s:18:"module/information";i:62;s:13:"module/latest";i:63;s:16:"module/pp_button";i:64;s:15:"module/pp_login";i:65;s:16:"module/slideshow";i:66;s:14:"module/special";i:67;s:12:"module/store";i:68;s:21:"payment/alipay_direct";i:69;s:24:"payment/alipay_guarantee";i:70;s:18:"payment/alipay_wap";i:71;s:21:"payment/bank_transfer";i:72;s:14:"payment/cheque";i:73;s:16:"payment/chinapay";i:74;s:11:"payment/cod";i:75;s:15:"payment/ebatong";i:76;s:21:"payment/free_checkout";i:77;s:18:"payment/pp_express";i:78;s:18:"payment/pp_payflow";i:79;s:25:"payment/pp_payflow_iframe";i:80;s:14:"payment/pp_pro";i:81;s:21:"payment/pp_pro_iframe";i:82;s:19:"payment/pp_standard";i:83;s:17:"payment/precharge";i:84;s:12:"payment/upop";i:85;s:13:"payment/wxpay";i:86;s:16:"report/affiliate";i:87;s:25:"report/affiliate_activity";i:88;s:22:"report/affiliate_login";i:89;s:24:"report/customer_activity";i:90;s:22:"report/customer_credit";i:91;s:21:"report/customer_login";i:92;s:22:"report/customer_online";i:93;s:21:"report/customer_order";i:94;s:22:"report/customer_reward";i:95;s:16:"report/marketing";i:96;s:24:"report/product_purchased";i:97;s:21:"report/product_viewed";i:98;s:18:"report/sale_coupon";i:99;s:17:"report/sale_order";i:100;s:18:"report/sale_return";i:101;s:20:"report/sale_shipping";i:102;s:15:"report/sale_tax";i:103;s:17:"sale/custom_field";i:104;s:13:"sale/customer";i:105;s:20:"sale/customer_ban_ip";i:106;s:19:"sale/customer_group";i:107;s:10:"sale/order";i:108;s:14:"sale/recurring";i:109;s:11:"sale/return";i:110;s:12:"sale/voucher";i:111;s:18:"sale/voucher_theme";i:112;s:15:"setting/setting";i:113;s:13:"setting/store";i:114;s:16:"shipping/auspost";i:115;s:17:"shipping/citylink";i:116;s:14:"shipping/fedex";i:117;s:13:"shipping/flat";i:118;s:13:"shipping/free";i:119;s:13:"shipping/item";i:120;s:23:"shipping/parcelforce_48";i:121;s:15:"shipping/pickup";i:122;s:19:"shipping/royal_mail";i:123;s:12:"shipping/ups";i:124;s:13:"shipping/usps";i:125;s:15:"shipping/weight";i:126;s:11:"sms/chengyu";i:127;s:11:"tool/backup";i:128;s:14:"tool/error_log";i:129;s:11:"tool/upload";i:130;s:12:"total/coupon";i:131;s:12:"total/credit";i:132;s:14:"total/handling";i:133;s:16:"total/klarna_fee";i:134;s:19:"total/low_order_fee";i:135;s:12:"total/reward";i:136;s:14:"total/shipping";i:137;s:15:"total/sub_total";i:138;s:9:"total/tax";i:139;s:11:"total/total";i:140;s:13:"total/voucher";i:141;s:8:"user/api";i:142;s:9:"user/user";i:143;s:20:"user/user_permission";}s:6:"modify";a:144:{i:0;s:17:"catalog/attribute";i:1;s:23:"catalog/attribute_group";i:2;s:16:"catalog/category";i:3;s:16:"catalog/download";i:4;s:14:"catalog/filter";i:5;s:19:"catalog/information";i:6;s:20:"catalog/manufacturer";i:7;s:14:"catalog/option";i:8;s:15:"catalog/product";i:9;s:17:"catalog/recurring";i:10;s:14:"catalog/review";i:11;s:17:"catalog/url_alias";i:12;s:18:"common/column_left";i:13;s:18:"common/filemanager";i:14;s:11:"common/menu";i:15;s:14:"common/profile";i:16;s:12:"common/stats";i:17;s:13:"design/banner";i:18;s:13:"design/layout";i:19;s:14:"extension/feed";i:20;s:15:"extension/fraud";i:21;s:19:"extension/installer";i:22;s:22:"extension/modification";i:23;s:16:"extension/module";i:24;s:17:"extension/openbay";i:25;s:17:"extension/payment";i:26;s:18:"extension/shipping";i:27;s:13:"extension/sms";i:28;s:15:"extension/total";i:29;s:16:"feed/google_base";i:30;s:19:"feed/google_sitemap";i:31;s:18:"fraud/fraudlabspro";i:32;s:13:"fraud/maxmind";i:33;s:20:"localisation/country";i:34;s:21:"localisation/currency";i:35;s:21:"localisation/geo_zone";i:36;s:21:"localisation/language";i:37;s:25:"localisation/length_class";i:38;s:21:"localisation/location";i:39;s:25:"localisation/order_status";i:40;s:26:"localisation/return_action";i:41;s:26:"localisation/return_reason";i:42;s:26:"localisation/return_status";i:43;s:25:"localisation/stock_status";i:44;s:22:"localisation/tax_class";i:45;s:21:"localisation/tax_rate";i:46;s:25:"localisation/weight_class";i:47;s:17:"localisation/zone";i:48;s:19:"marketing/affiliate";i:49;s:17:"marketing/contact";i:50;s:16:"marketing/coupon";i:51;s:19:"marketing/marketing";i:52;s:14:"module/account";i:53;s:16:"module/affiliate";i:54;s:13:"module/banner";i:55;s:17:"module/bestseller";i:56;s:15:"module/carousel";i:57;s:15:"module/category";i:58;s:15:"module/featured";i:59;s:13:"module/filter";i:60;s:11:"module/html";i:61;s:18:"module/information";i:62;s:13:"module/latest";i:63;s:16:"module/pp_button";i:64;s:15:"module/pp_login";i:65;s:16:"module/slideshow";i:66;s:14:"module/special";i:67;s:12:"module/store";i:68;s:21:"payment/alipay_direct";i:69;s:24:"payment/alipay_guarantee";i:70;s:18:"payment/alipay_wap";i:71;s:21:"payment/bank_transfer";i:72;s:14:"payment/cheque";i:73;s:16:"payment/chinapay";i:74;s:11:"payment/cod";i:75;s:15:"payment/ebatong";i:76;s:21:"payment/free_checkout";i:77;s:18:"payment/pp_express";i:78;s:18:"payment/pp_payflow";i:79;s:25:"payment/pp_payflow_iframe";i:80;s:14:"payment/pp_pro";i:81;s:21:"payment/pp_pro_iframe";i:82;s:19:"payment/pp_standard";i:83;s:17:"payment/precharge";i:84;s:12:"payment/upop";i:85;s:13:"payment/wxpay";i:86;s:16:"report/affiliate";i:87;s:25:"report/affiliate_activity";i:88;s:22:"report/affiliate_login";i:89;s:24:"report/customer_activity";i:90;s:22:"report/customer_credit";i:91;s:21:"report/customer_login";i:92;s:22:"report/customer_online";i:93;s:21:"report/customer_order";i:94;s:22:"report/customer_reward";i:95;s:16:"report/marketing";i:96;s:24:"report/product_purchased";i:97;s:21:"report/product_viewed";i:98;s:18:"report/sale_coupon";i:99;s:17:"report/sale_order";i:100;s:18:"report/sale_return";i:101;s:20:"report/sale_shipping";i:102;s:15:"report/sale_tax";i:103;s:17:"sale/custom_field";i:104;s:13:"sale/customer";i:105;s:20:"sale/customer_ban_ip";i:106;s:19:"sale/customer_group";i:107;s:10:"sale/order";i:108;s:14:"sale/recurring";i:109;s:11:"sale/return";i:110;s:12:"sale/voucher";i:111;s:18:"sale/voucher_theme";i:112;s:15:"setting/setting";i:113;s:13:"setting/store";i:114;s:16:"shipping/auspost";i:115;s:17:"shipping/citylink";i:116;s:14:"shipping/fedex";i:117;s:13:"shipping/flat";i:118;s:13:"shipping/free";i:119;s:13:"shipping/item";i:120;s:23:"shipping/parcelforce_48";i:121;s:15:"shipping/pickup";i:122;s:19:"shipping/royal_mail";i:123;s:12:"shipping/ups";i:124;s:13:"shipping/usps";i:125;s:15:"shipping/weight";i:126;s:11:"sms/chengyu";i:127;s:11:"tool/backup";i:128;s:14:"tool/error_log";i:129;s:11:"tool/upload";i:130;s:12:"total/coupon";i:131;s:12:"total/credit";i:132;s:14:"total/handling";i:133;s:16:"total/klarna_fee";i:134;s:19:"total/low_order_fee";i:135;s:12:"total/reward";i:136;s:14:"total/shipping";i:137;s:15:"total/sub_total";i:138;s:9:"total/tax";i:139;s:11:"total/total";i:140;s:13:"total/voucher";i:141;s:8:"user/api";i:142;s:9:"user/user";i:143;s:20:"user/user_permission";}}'),
+(1, '超级管理员群组', '{"access":["analytics\\/google_analytics","captcha\\/basic_captcha","captcha\\/google_captcha","catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/recurring","catalog\\/review","common\\/column_left","common\\/filemanager","common\\/menu","common\\/profile","common\\/stats","customer\\/custom_field","customer\\/customer","customer\\/customer_group","design\\/banner","design\\/layout","extension\\/analytics","extension\\/captcha","extension\\/feed","extension\\/fraud","extension\\/installer","extension\\/modification","extension\\/module","extension\\/openbay","extension\\/payment","extension\\/shipping","extension\\/total","feed\\/google_base","feed\\/google_sitemap","feed\\/openbaypro","fraud\\/fraudlabspro","fraud\\/ip","fraud\\/maxmind","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","marketing\\/affiliate","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","module\\/account","module\\/affiliate","module\\/amazon_login","module\\/amazon_pay","module\\/banner","module\\/bestseller","module\\/carousel","module\\/category","module\\/ebay_listing","module\\/featured","module\\/filter","module\\/google_hangouts","module\\/html","module\\/information","module\\/latest","module\\/pp_button","module\\/pp_login","module\\/slideshow","module\\/special","module\\/store","openbay\\/amazon","openbay\\/amazon_listing","openbay\\/amazon_product","openbay\\/amazonus","openbay\\/amazonus_listing","openbay\\/amazonus_product","openbay\\/ebay","openbay\\/ebay_profile","openbay\\/ebay_template","openbay\\/etsy","openbay\\/etsy_product","openbay\\/etsy_shipping","openbay\\/etsy_shop","payment\\/amazon_login_pay","payment\\/authorizenet_aim","payment\\/authorizenet_sim","payment\\/bank_transfer","payment\\/bluepay_hosted","payment\\/bluepay_redirect","payment\\/cheque","payment\\/cod","payment\\/firstdata","payment\\/firstdata_remote","payment\\/free_checkout","payment\\/g2apay","payment\\/globalpay","payment\\/globalpay_remote","payment\\/klarna_account","payment\\/klarna_invoice","payment\\/liqpay","payment\\/nochex","payment\\/paymate","payment\\/paypoint","payment\\/payza","payment\\/perpetual_payments","payment\\/pp_express","payment\\/pp_payflow","payment\\/pp_payflow_iframe","payment\\/pp_pro","payment\\/pp_pro_iframe","payment\\/pp_standard","payment\\/realex","payment\\/realex_remote","payment\\/sagepay_direct","payment\\/sagepay_server","payment\\/sagepay_us","payment\\/securetrading_pp","payment\\/securetrading_ws","payment\\/skrill","payment\\/twocheckout","payment\\/web_payment_software","payment\\/worldpay","report\\/affiliate","report\\/affiliate_activity","report\\/affiliate_login","report\\/customer_activity","report\\/customer_credit","report\\/customer_login","report\\/customer_online","report\\/customer_order","report\\/customer_reward","report\\/marketing","report\\/product_purchased","report\\/product_viewed","report\\/sale_coupon","report\\/sale_order","report\\/sale_return","report\\/sale_shipping","report\\/sale_tax","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","shipping\\/auspost","shipping\\/citylink","shipping\\/fedex","shipping\\/flat","shipping\\/free","shipping\\/item","shipping\\/parcelforce_48","shipping\\/pickup","shipping\\/royal_mail","shipping\\/ups","shipping\\/usps","shipping\\/weight","tool\\/backup","tool\\/error_log","tool\\/upload","total\\/coupon","total\\/credit","total\\/handling","total\\/klarna_fee","total\\/low_order_fee","total\\/reward","total\\/shipping","total\\/sub_total","total\\/tax","total\\/total","total\\/voucher","user\\/api","user\\/user","user\\/user_permission"],"modify":["analytics\\/google_analytics","captcha\\/basic_captcha","captcha\\/google_captcha","catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/recurring","catalog\\/review","common\\/column_left","common\\/filemanager","common\\/menu","common\\/profile","common\\/stats","customer\\/custom_field","customer\\/customer","customer\\/customer_group","design\\/banner","design\\/layout","extension\\/analytics","extension\\/captcha","extension\\/feed","extension\\/fraud","extension\\/installer","extension\\/modification","extension\\/module","extension\\/openbay","extension\\/payment","extension\\/shipping","extension\\/total","feed\\/google_base","feed\\/google_sitemap","feed\\/openbaypro","fraud\\/fraudlabspro","fraud\\/ip","fraud\\/maxmind","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","marketing\\/affiliate","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","module\\/account","module\\/affiliate","module\\/amazon_login","module\\/amazon_pay","module\\/banner","module\\/bestseller","module\\/carousel","module\\/category","module\\/ebay_listing","module\\/featured","module\\/filter","module\\/google_hangouts","module\\/html","module\\/information","module\\/latest","module\\/pp_button","module\\/pp_login","module\\/slideshow","module\\/special","module\\/store","openbay\\/amazon","openbay\\/amazon_listing","openbay\\/amazon_product","openbay\\/amazonus","openbay\\/amazonus_listing","openbay\\/amazonus_product","openbay\\/ebay","openbay\\/ebay_profile","openbay\\/ebay_template","openbay\\/etsy","openbay\\/etsy_product","openbay\\/etsy_shipping","openbay\\/etsy_shop","payment\\/amazon_login_pay","payment\\/authorizenet_aim","payment\\/authorizenet_sim","payment\\/bank_transfer","payment\\/bluepay_hosted","payment\\/bluepay_redirect","payment\\/cheque","payment\\/cod","payment\\/firstdata","payment\\/firstdata_remote","payment\\/free_checkout","payment\\/g2apay","payment\\/globalpay","payment\\/globalpay_remote","payment\\/klarna_account","payment\\/klarna_invoice","payment\\/liqpay","payment\\/nochex","payment\\/paymate","payment\\/paypoint","payment\\/payza","payment\\/perpetual_payments","payment\\/pp_express","payment\\/pp_payflow","payment\\/pp_payflow_iframe","payment\\/pp_pro","payment\\/pp_pro_iframe","payment\\/pp_standard","payment\\/realex","payment\\/realex_remote","payment\\/sagepay_direct","payment\\/sagepay_server","payment\\/sagepay_us","payment\\/securetrading_pp","payment\\/securetrading_ws","payment\\/skrill","payment\\/twocheckout","payment\\/web_payment_software","payment\\/worldpay","report\\/affiliate","report\\/affiliate_activity","report\\/affiliate_login","report\\/customer_activity","report\\/customer_credit","report\\/customer_login","report\\/customer_online","report\\/customer_order","report\\/customer_reward","report\\/marketing","report\\/product_purchased","report\\/product_viewed","report\\/sale_coupon","report\\/sale_order","report\\/sale_return","report\\/sale_shipping","report\\/sale_tax","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","shipping\\/auspost","shipping\\/citylink","shipping\\/fedex","shipping\\/flat","shipping\\/free","shipping\\/item","shipping\\/parcelforce_48","shipping\\/pickup","shipping\\/royal_mail","shipping\\/ups","shipping\\/usps","shipping\\/weight","tool\\/backup","tool\\/error_log","tool\\/upload","total\\/coupon","total\\/credit","total\\/handling","total\\/klarna_fee","total\\/low_order_fee","total\\/reward","total\\/shipping","total\\/sub_total","total\\/tax","total\\/total","total\\/voucher","user\\/api","user\\/user","user\\/user_permission"]}'),
 (10, '演示用管理员群组', '');
 
 

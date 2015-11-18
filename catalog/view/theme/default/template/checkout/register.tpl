@@ -275,6 +275,7 @@
       <?php } ?>
       <?php } ?>
     </fieldset>
+    <?php echo $captcha; ?>
   </div>
 </div>
 <div class="checkbox">

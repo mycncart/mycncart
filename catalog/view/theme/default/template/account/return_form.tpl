@@ -155,6 +155,7 @@
               <?php } ?>
             </div>
           </div>
+          <?php echo $captcha; ?>
         </fieldset>
         <?php if ($text_agree) { ?>
         <div class="buttons clearfix">

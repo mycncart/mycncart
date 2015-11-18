@@ -28,7 +28,7 @@
               </address>
               <?php if ($geocode) { ?>
               	<?php if($map_select == 'google') { ?>
-              		<a href="https://maps.google.com/maps?q=<?php echo urlencode($geocode); ?>&hl=en&t=m&z=15" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> <?php echo $button_map; ?></a>
+              		<a href="https://maps.google.com/maps?q=<?php echo urlencode($geocode); ?>&hl=<?php echo $geocode_hl; ?>&t=m&z=15" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> <?php echo $button_map; ?></a>
               	<?php }else{ ?>
               	 	<a href="<?php echo $baidu_map ?>" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> <?php echo $button_baidu_map; ?></a>
               	<?php } ?>
@@ -75,7 +75,7 @@
                   <?php echo $location['address']; ?>
                   </address>
                   <?php if ($location['geocode']) { ?>
-                  <a href="https://maps.google.com/maps?q=<?php echo urlencode($location['geocode']); ?>&hl=en&t=m&z=15" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> <?php echo $button_map; ?></a>
+                  <a href="https://maps.google.com/maps?q=<?php echo urlencode($location['geocode']); ?>&hl=<?php echo $geocode_hl; ?>&t=m&z=15" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> <?php echo $button_map; ?></a>
                   <?php } ?>
                 </div>
                 <div class="col-sm-3"> <strong><?php echo $text_telephone; ?></strong><br>
@@ -106,7 +106,7 @@
       <?php } ?>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
         <fieldset>
-          <h3><?php echo $text_contact; ?></h3>
+          <legend><?php echo $text_contact; ?></legend>
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-name"><?php echo $entry_name; ?></label>
             <div class="col-sm-10">
@@ -148,6 +148,7 @@
               <?php } ?>
             </div>
           </div>
+          <?php echo $captcha; ?>
         </fieldset>
         <div class="buttons">
           <div class="pull-right">
