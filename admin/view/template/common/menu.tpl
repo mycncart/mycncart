@@ -155,6 +155,13 @@
       </li>
     </ul>
   </li>
+  <li id="weidian"><a class="parent"><i class="fa fa-university"></i> <span><?php echo $text_weidian; ?></span></a>
+    <ul>
+      <li><a href="<?php echo $wdcategory; ?>"><?php echo $text_wdcategory; ?></a></li>
+      <li><a href="<?php echo $wdproduct; ?>"><?php echo $text_wdproduct; ?></a></li>
+      <li><a href="<?php echo $config; ?>"><?php echo $text_config; ?></a></li>
+    </ul>
+  </li>
   <li id="others"><a class="parent"><i class="fa fa-key fa-fw"></i> <span><?php echo $text_others; ?></span></a>
   </li>
 </ul>

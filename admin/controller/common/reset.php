@@ -6,10 +6,12 @@ class ControllerCommonReset extends Controller {
 		if ($this->user->isLogged() && isset($this->request->get['token']) && ($this->request->get['token'] == $this->session->data['token'])) {
 			$this->response->redirect($this->url->link('common/dashboard', '', 'SSL'));
 		}
-
+		
+		/*
 		if (!$this->config->get('config_password')) {
 			$this->response->redirect($this->url->link('common/login', '', 'SSL'));
 		}
+		*/
 
 		if (isset($this->request->get['code'])) {
 			$code = $this->request->get['code'];

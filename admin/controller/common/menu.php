@@ -97,6 +97,10 @@ class ControllerCommonMenu extends Controller {
 		$data['text_order_recurring'] = $this->language->get('text_order_recurring');
 		$data['text_others'] = $this->language->get('text_others');
 		$data['text_url_alias'] = $this->language->get('text_url_alias');
+		$data['text_weidian'] = $this->language->get('text_weidian');
+		$data['text_wdcategory'] = $this->language->get('text_wdcategory');
+		$data['text_wdproduct'] = $this->language->get('text_wdproduct');
+		$data['text_config'] = $this->language->get('text_config');
 
 		$data['analytics'] = $this->url->link('extension/analytics', 'token=' . $this->session->data['token'], 'SSL');
 		$data['home'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL');
@@ -175,6 +179,9 @@ class ControllerCommonMenu extends Controller {
 		$data['zone'] = $this->url->link('localisation/zone', 'token=' . $this->session->data['token'], 'SSL');
 		$data['recurring'] = $this->url->link('catalog/recurring', 'token=' . $this->session->data['token'], 'SSL');
 		$data['order_recurring'] = $this->url->link('sale/recurring', 'token=' . $this->session->data['token'], 'SSL');
+		$data['wdcategory'] = $this->url->link('weidian/category', 'token=' . $this->session->data['token'], 'SSL');
+		$data['wdproduct'] = $this->url->link('weidian/product', 'token=' . $this->session->data['token'], 'SSL');
+		$data['config'] = $this->url->link('weidian/config', 'token=' . $this->session->data['token'], 'SSL');
 
 		$data['openbay_show_menu'] = $this->config->get('openbaypro_menu');
 		$data['openbay_link_extension'] = $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL');

@@ -31,7 +31,6 @@ class ControllerCommonDashboard extends Controller {
 			$data['error_install'] = '';
 		}
 		
-		$data['compare_version_message'] = $this->version_check();
 
 		$data['token'] = $this->session->data['token'];
 
@@ -57,34 +56,5 @@ class ControllerCommonDashboard extends Controller {
 		$this->response->setOutput($this->load->view('common/dashboard.tpl', $data));
 	}
 	
-	private function version_check(){
-		
-		$this->load->language('common/dashboard');
-		
-		$check_version_url = 'http://www.mycncart.com/index.php?route=version/version&store_url=' . HTTP_SERVER . '&mycncart_version=' . VERSION . '&ip='.$this->request->server['REMOTE_ADDR'];
-		
-		$return_code = file_get_contents($check_version_url);
-		
-		$message = '';
-
-      	if ($return_code == '1') {
-        
-	  		$message = $this->language->get('text_no_update') ;
-		
-	  	}elseif($return_code == '2') {
-		  
-		  	$message = $this->language->get('text_available_update');
-			
-	  	}elseif($return_code == '4'){
-			$message = '无法判断您的 MyCnCart 版本！';	
-		}elseif($return_code == '3') {
-			$message = '';	
-		}
-		
-		
-         
-		return $message;
-		
-	  
-   }
+	
 }

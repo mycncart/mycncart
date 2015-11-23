@@ -89,3 +89,7 @@ $_['text_paypal_manage']               = 'PayPal';
 $_['text_paypal_search']               = '檢索';
 $_['text_others']               	   = '其它';
 $_['text_url_alias']               	   = 'SEO KeyWord 管理';
+$_['text_weidian']	 			       = '微店管理';
+$_['text_wdcategory'] 			       = '微店分类';
+$_['text_wdproduct'] 			       = '微店商品';
+$_['text_config'] 				       = '微店参数设置';

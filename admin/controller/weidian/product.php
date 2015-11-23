@@ -982,7 +982,6 @@ class ControllerWeidianProduct extends Controller {
 				'image'      => $image,
 				'name'       => $result['name'],
 				'model'      => $result['model'],
-				'shipping_origin_id'      => $result['shipping_origin_id'],
 				'price'      => $result['price'],
 				'special'    => $special,
 				'quantity'   => $result['quantity'],

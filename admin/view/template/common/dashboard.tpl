@@ -16,7 +16,7 @@
       <button type="button" class="close" data-dismiss="alert">&times;</button>
     </div>
     <?php } ?>
-    <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> <?php echo $compare_version_message; ?> MyCnCart 官方QQ群： 473071696</div>
+    <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> MyCnCart 官方QQ群： 473071696</div>
     <div class="row">
       <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $order; ?></div>
       <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $sale; ?></div>

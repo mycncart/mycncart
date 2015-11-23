@@ -52,7 +52,7 @@ class ControllerAffiliateForgotten extends Controller {
 
 				$activity_data = array(
 					'affiliate_id' => $affiliate_info['affiliate_id'],
-					'name'         => $affiliate_info['firstname'] . ' ' . $affiliate_info['lastname']
+					'name'         => $affiliate_info['fullname']
 				);
 
 				$this->model_affiliate_activity->addActivity('forgotten', $activity_data);

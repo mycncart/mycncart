@@ -383,7 +383,7 @@ class ControllerProductProduct extends Controller {
 			}
 
 			if ($this->customer->isLogged()) {
-				$data['customer_name'] = $this->customer->getFirstName() . '&nbsp;' . $this->customer->getLastName();
+				$data['customer_name'] = $this->customer->getFullName();
 			} else {
 				$data['customer_name'] = '';
 			}

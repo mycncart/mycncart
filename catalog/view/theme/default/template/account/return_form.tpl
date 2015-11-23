@@ -147,14 +147,6 @@
               <input type="text" name="captcha" value="" placeholder="<?php echo $entry_captcha; ?>" id="input-captcha" class="form-control" />
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-sm-10 pull-right">
-              <img src="index.php?route=tool/captcha" alt="" />
-              <?php if ($error_captcha) { ?>
-                <div class="text-danger"><?php echo $error_captcha; ?></div>
-              <?php } ?>
-            </div>
-          </div>
           <?php echo $captcha; ?>
         </fieldset>
         <?php if ($text_agree) { ?>

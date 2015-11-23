@@ -1,6 +1,5 @@
 SET SQL_MODE = "";
-DROP TABLE IF EXISTS `mcc_address`;
-CREATE TABLE `mcc_address` (
+CREATE TABLE IF NOT EXISTS `mcc_address` (
   `address_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `fullname` varchar(32) NOT NULL,
@@ -14,11 +13,10 @@ CREATE TABLE `mcc_address` (
   `shipping_telephone` varchar(32) NOT NULL,
   PRIMARY KEY (`address_id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=22 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_affiliate`;
-CREATE TABLE `mcc_affiliate` (
+CREATE TABLE IF NOT EXISTS `mcc_affiliate` (
   `affiliate_id` int(11) NOT NULL AUTO_INCREMENT,
   `fullname` varchar(32) NOT NULL,
   `email` varchar(96) NOT NULL,
@@ -52,8 +50,7 @@ CREATE TABLE `mcc_affiliate` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
 
 
-DROP TABLE IF EXISTS `mcc_affiliate_activity`;
-CREATE TABLE `mcc_affiliate_activity` (
+CREATE TABLE IF NOT EXISTS `mcc_affiliate_activity` (
   `activity_id` int(11) NOT NULL AUTO_INCREMENT,
   `affiliate_id` int(11) NOT NULL,
   `key` varchar(64) NOT NULL,
@@ -64,8 +61,7 @@ CREATE TABLE `mcc_affiliate_activity` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
 
 
-DROP TABLE IF EXISTS `mcc_affiliate_login`;
-CREATE TABLE `mcc_affiliate_login` (
+CREATE TABLE IF NOT EXISTS `mcc_affiliate_login` (
   `affiliate_login_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(96) NOT NULL,
   `ip` varchar(40) NOT NULL,
@@ -78,8 +74,7 @@ CREATE TABLE `mcc_affiliate_login` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_affiliate_transaction`;
-CREATE TABLE `mcc_affiliate_transaction` (
+CREATE TABLE IF NOT EXISTS `mcc_affiliate_transaction` (
   `affiliate_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `affiliate_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -90,8 +85,7 @@ CREATE TABLE `mcc_affiliate_transaction` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_api`;
-CREATE TABLE `mcc_api` (
+CREATE TABLE IF NOT EXISTS `mcc_api` (
   `api_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `key` text NOT NULL,
@@ -99,20 +93,18 @@ CREATE TABLE `mcc_api` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`api_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_api_ip`;
-CREATE TABLE `mcc_api_ip` (
+CREATE TABLE IF NOT EXISTS `mcc_api_ip` (
   `api_ip_id` int(11) NOT NULL AUTO_INCREMENT,
   `api_id` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL,
   PRIMARY KEY (`api_ip_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_api_session`;
-CREATE TABLE `mcc_api_session` (
+CREATE TABLE IF NOT EXISTS `mcc_api_session` (
   `api_session_id` int(11) NOT NULL AUTO_INCREMENT,
   `api_id` int(11) NOT NULL,
   `token` varchar(32) NOT NULL,
@@ -122,14 +114,10 @@ CREATE TABLE `mcc_api_session` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`api_session_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
 
---
-
-DROP TABLE IF EXISTS `mcc_attribute`;
-CREATE TABLE `mcc_attribute` (
+CREATE TABLE IF NOT EXISTS `mcc_attribute` (
   `attribute_id` int(11) NOT NULL AUTO_INCREMENT,
   `attribute_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL,
@@ -151,8 +139,7 @@ INSERT INTO `mcc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`)
 (11, 3, 8);
 
 
-DROP TABLE IF EXISTS `mcc_attribute_description`;
-CREATE TABLE `mcc_attribute_description` (
+CREATE TABLE IF NOT EXISTS `mcc_attribute_description` (
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
@@ -195,8 +182,7 @@ INSERT INTO `mcc_attribute_description` (`attribute_id`, `language_id`, `name`) 
 (1, 3, '描述'),
 (2, 3, '核数');
 
-DROP TABLE IF EXISTS `mcc_attribute_group`;
-CREATE TABLE `mcc_attribute_group` (
+CREATE TABLE IF NOT EXISTS `mcc_attribute_group` (
   `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`attribute_group_id`)
@@ -210,8 +196,7 @@ INSERT INTO `mcc_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
 (6, 4);
 
 
-DROP TABLE IF EXISTS `mcc_attribute_group_description`;
-CREATE TABLE `mcc_attribute_group_description` (
+CREATE TABLE IF NOT EXISTS `mcc_attribute_group_description` (
   `attribute_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
@@ -234,8 +219,7 @@ INSERT INTO `mcc_attribute_group_description` (`attribute_group_id`, `language_i
 (5, 3, '主板');
 
 
-DROP TABLE IF EXISTS `mcc_banner`;
-CREATE TABLE `mcc_banner` (
+CREATE TABLE IF NOT EXISTS `mcc_banner` (
   `banner_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `status` tinyint(1) NOT NULL,
@@ -249,8 +233,7 @@ INSERT INTO `mcc_banner` (`banner_id`, `name`, `status`) VALUES
 (8, '品牌/制造商', 1);
 
 
-DROP TABLE IF EXISTS `mcc_banner_image`;
-CREATE TABLE `mcc_banner_image` (
+CREATE TABLE IF NOT EXISTS `mcc_banner_image` (
   `banner_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `banner_id` int(11) NOT NULL,
   `link` varchar(255) NOT NULL,
@@ -278,8 +261,7 @@ INSERT INTO `mcc_banner_image` (`banner_image_id`, `banner_id`, `link`, `image`,
 (127, 7, '', 'catalog/demo/banners/home2.jpg', 0);
 
 
-DROP TABLE IF EXISTS `mcc_banner_image_description`;
-CREATE TABLE `mcc_banner_image_description` (
+CREATE TABLE IF NOT EXISTS `mcc_banner_image_description` (
   `banner_image_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `banner_id` int(11) NOT NULL,
@@ -335,8 +317,7 @@ INSERT INTO `mcc_banner_image_description` (`banner_image_id`, `language_id`, `b
 (139, 2, 8, 'Nintendo'),
 (139, 3, 8, 'Nintendo');
 
-DROP TABLE IF EXISTS `mcc_cart`;
-CREATE TABLE `mcc_cart` (
+CREATE TABLE IF NOT EXISTS `mcc_cart` (
   `cart_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `session_id` varchar(32) NOT NULL,
@@ -347,11 +328,10 @@ CREATE TABLE `mcc_cart` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`cart_id`),
   KEY `cart_id` (`customer_id`,`session_id`,`product_id`,`recurring_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COLLATE=utf8_general_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=23 ;
 
 
-DROP TABLE IF EXISTS `mcc_category`;
-CREATE TABLE `mcc_category` (
+CREATE TABLE IF NOT EXISTS `mcc_category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) DEFAULT NULL,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -361,6 +341,8 @@ CREATE TABLE `mcc_category` (
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
+  `sent` tinyint(1) NOT NULL,
+  `weidian_category_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`),
   KEY `parent_id` (`parent_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=59 ;
@@ -407,8 +389,7 @@ INSERT INTO `mcc_category` (`category_id`, `image`, `parent_id`, `top`, `column`
 (58, '', 52, 0, 0, 0, 1, '2011-05-08 13:44:16', '2015-06-12 20:10:32');
 
 
-DROP TABLE IF EXISTS `mcc_category_description`;
-CREATE TABLE `mcc_category_description` (
+CREATE TABLE IF NOT EXISTS `mcc_category_description` (
   `category_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -537,16 +518,14 @@ INSERT INTO `mcc_category_description` (`category_id`, `language_id`, `name`, `d
 (18, 1, '笔记本', '分类描述案例文本', '笔记本', '', ''),
 (34, 3, 'MP3 播放器', '&lt;span id=&quot;result_box&quot; class=&quot;&quot; lang=&quot;zh-CN&quot;&gt;&lt;span&gt;本店&lt;/span&gt;&lt;span&gt;MP3播放器为世界著名品牌。&lt;/span&gt;&lt;span class=&quot;&quot;&gt;&lt;/span&gt;&lt;/span&gt;', 'MP3 播放器', '', '');
 
-DROP TABLE IF EXISTS `mcc_category_filter`;
-CREATE TABLE `mcc_category_filter` (
+CREATE TABLE IF NOT EXISTS `mcc_category_filter` (
   `category_id` int(11) NOT NULL,
   `filter_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_category_path`;
-CREATE TABLE `mcc_category_path` (
+CREATE TABLE IF NOT EXISTS `mcc_category_path` (
   `category_id` int(11) NOT NULL,
   `path_id` int(11) NOT NULL,
   `level` int(11) NOT NULL,
@@ -628,8 +607,7 @@ INSERT INTO `mcc_category_path` (`category_id`, `path_id`, `level`) VALUES
 (57, 57, 0);
 
 
-DROP TABLE IF EXISTS `mcc_category_to_layout`;
-CREATE TABLE `mcc_category_to_layout` (
+CREATE TABLE IF NOT EXISTS `mcc_category_to_layout` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
@@ -677,8 +655,7 @@ INSERT INTO `mcc_category_to_layout` (`category_id`, `store_id`, `layout_id`) VA
 (45, 0, 0),
 (58, 0, 0);
 
-DROP TABLE IF EXISTS `mcc_category_to_store`;
-CREATE TABLE `mcc_category_to_store` (
+CREATE TABLE IF NOT EXISTS `mcc_category_to_store` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`store_id`)
@@ -726,8 +703,7 @@ INSERT INTO `mcc_category_to_store` (`category_id`, `store_id`) VALUES
 (58, 0);
 
 
-DROP TABLE IF EXISTS `mcc_country`;
-CREATE TABLE `mcc_country` (
+CREATE TABLE IF NOT EXISTS `mcc_country` (
   `country_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   `iso_code_2` varchar(2) NOT NULL,
@@ -812,7 +788,7 @@ INSERT INTO `mcc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `ad
 (70, 'Faroe Islands', 'FO', 'FRO', '', 0, 1),
 (71, 'Fiji', 'FJ', 'FJI', '', 0, 1),
 (72, 'Finland', 'FI', 'FIN', '', 0, 1),
-(74, 'France, Metropolitan', 'FR', 'FRA', '{firstname}\r\n{company}\r\n{address_1}\r\n{postcode} {city}\r\n{country}', 1, 1),
+(74, 'France, Metropolitan', 'FR', 'FRA', '{fullname}\r\n{company}\r\n{address}\r\n{postcode} {city}\r\n{country}', 1, 1),
 (75, 'French Guiana', 'GF', 'GUF', '', 0, 1),
 (76, 'French Polynesia', 'PF', 'PYF', '', 0, 1),
 (77, 'French Southern Territories', 'TF', 'ATF', '', 0, 1),
@@ -927,7 +903,7 @@ INSERT INTO `mcc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `ad
 (186, 'Seychelles', 'SC', 'SYC', '', 0, 1),
 (187, 'Sierra Leone', 'SL', 'SLE', '', 0, 1),
 (188, 'Singapore', 'SG', 'SGP', '', 0, 1),
-(189, 'Slovak Republic', 'SK', 'SVK', '{firstname}\r\n{company}\r\n{address_1}\r\n{city} {postcode}\r\n{zone}\r\n{country}', 0, 1),
+(189, 'Slovak Republic', 'SK', 'SVK', '{fullname}\r\n{company}\r\n{address}\r\n{city} {postcode}\r\n{zone}\r\n{country}', 0, 1),
 (190, 'Slovenia', 'SI', 'SVN', '', 0, 1),
 (191, 'Solomon Islands', 'SB', 'SLB', '', 0, 1),
 (192, 'Somalia', 'SO', 'SOM', '', 0, 1),
@@ -941,7 +917,7 @@ INSERT INTO `mcc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `ad
 (200, 'Suriname', 'SR', 'SUR', '', 0, 1),
 (201, 'Svalbard and Jan Mayen Islands', 'SJ', 'SJM', '', 0, 1),
 (202, 'Swaziland', 'SZ', 'SWZ', '', 0, 1),
-(203, 'Sweden', 'SE', 'SWE', '{company}\r\n{firstname}\r\n{address_1}\r\n{postcode} {city}\r\n{country}', 1, 1),
+(203, 'Sweden', 'SE', 'SWE', '{company}\r\n{fullname}\r\n{address}\r\n{postcode} {city}\r\n{country}', 1, 1),
 (204, 'Switzerland', 'CH', 'CHE', '', 0, 1),
 (205, 'Syrian Arab Republic', 'SY', 'SYR', '', 0, 1),
 (206, 'Taiwan', 'TW', 'TWN', '', 0, 1),
@@ -961,7 +937,7 @@ INSERT INTO `mcc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `ad
 (220, 'Ukraine', 'UA', 'UKR', '', 0, 1),
 (221, 'United Arab Emirates', 'AE', 'ARE', '', 0, 1),
 (222, 'United Kingdom', 'GB', 'GBR', '', 1, 1),
-(223, 'United States', 'US', 'USA', '{firstname}\r\n{company}\r\n{address_1}\r\n{city}, {zone} {postcode}\r\n{country}', 0, 1),
+(223, 'United States', 'US', 'USA', '{fullname}\r\n{company}\r\n{address}\r\n{city}, {zone} {postcode}\r\n{country}', 0, 1),
 (224, 'United States Minor Outlying Islands', 'UM', 'UMI', '', 0, 1),
 (225, 'Uruguay', 'UY', 'URY', '', 0, 1),
 (226, 'Uzbekistan', 'UZ', 'UZB', '', 0, 1),
@@ -995,8 +971,7 @@ INSERT INTO `mcc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `ad
 (257, 'Jersey', 'JE', 'JEY', '', 0, 1);
 
 
-DROP TABLE IF EXISTS `mcc_coupon`;
-CREATE TABLE `mcc_coupon` (
+CREATE TABLE IF NOT EXISTS `mcc_coupon` (
   `coupon_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   `code` varchar(10) NOT NULL,
@@ -1021,16 +996,14 @@ INSERT INTO `mcc_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logg
 (6, '10元折扣券', '1111', 'F', '10.0000', 0, 0, '10.0000', '2015-01-01', '2020-01-01', 100000, '10000', 0, '2009-03-14 21:15:18');
 
 
-DROP TABLE IF EXISTS `mcc_coupon_category`;
-CREATE TABLE `mcc_coupon_category` (
+CREATE TABLE IF NOT EXISTS `mcc_coupon_category` (
   `coupon_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`coupon_id`,`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_coupon_history`;
-CREATE TABLE `mcc_coupon_history` (
+CREATE TABLE IF NOT EXISTS `mcc_coupon_history` (
   `coupon_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -1041,8 +1014,7 @@ CREATE TABLE `mcc_coupon_history` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_coupon_product`;
-CREATE TABLE `mcc_coupon_product` (
+CREATE TABLE IF NOT EXISTS `mcc_coupon_product` (
   `coupon_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -1050,8 +1022,7 @@ CREATE TABLE `mcc_coupon_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_currency`;
-CREATE TABLE `mcc_currency` (
+CREATE TABLE IF NOT EXISTS `mcc_currency` (
   `currency_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) NOT NULL,
   `code` varchar(3) NOT NULL,
@@ -1066,13 +1037,12 @@ CREATE TABLE `mcc_currency` (
 
 
 INSERT INTO `mcc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(6, '港币', 'HKD', '$', '', '2', 1.21889997, 1, '2015-09-03 10:45:40'),
-(5, 'US Dollar', 'USD', '$', '', '2', 0.15730000, 1, '2015-09-03 10:45:40'),
-(4, '人民币', 'CNY', '￥', '', '2', 1.00000000, 1, '2015-09-04 06:49:30');
+(6, '港币', 'HKD', '$', '', '2', 1.14999998, 1, '2015-11-18 17:18:16'),
+(5, 'US Dollar', 'USD', '$', '', '2', 0.16000000, 1, '2015-11-18 17:18:05'),
+(4, '人民币', 'CNY', '￥', '', '2', 1.00000000, 1, '2015-11-18 10:40:52');
 
 
-DROP TABLE IF EXISTS `mcc_customer`;
-CREATE TABLE `mcc_customer` (
+CREATE TABLE IF NOT EXISTS `mcc_customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_group_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0',
@@ -1094,11 +1064,10 @@ CREATE TABLE `mcc_customer` (
   `token` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=19 ;
 
 
-DROP TABLE IF EXISTS `mcc_customer_activity`;
-CREATE TABLE `mcc_customer_activity` (
+CREATE TABLE IF NOT EXISTS `mcc_customer_activity` (
   `activity_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `key` varchar(64) NOT NULL,
@@ -1110,8 +1079,7 @@ CREATE TABLE `mcc_customer_activity` (
 
 
 
-DROP TABLE IF EXISTS `mcc_customer_group`;
-CREATE TABLE `mcc_customer_group` (
+CREATE TABLE IF NOT EXISTS `mcc_customer_group` (
   `customer_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `approval` int(1) NOT NULL,
   `sort_order` int(3) NOT NULL,
@@ -1123,8 +1091,7 @@ INSERT INTO `mcc_customer_group` (`customer_group_id`, `approval`, `sort_order`)
 (1, 0, 1);
 
 
-DROP TABLE IF EXISTS `mcc_customer_group_description`;
-CREATE TABLE `mcc_customer_group_description` (
+CREATE TABLE IF NOT EXISTS `mcc_customer_group_description` (
   `customer_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
@@ -1134,13 +1101,12 @@ CREATE TABLE `mcc_customer_group_description` (
 
 
 INSERT INTO `mcc_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES
-(1, 3, '普通', '测试'),
+(1, 1, '普通', '测试'),
 (1, 2, 'Default', 'Test'),
-(1, 1, '普通', '测试');
+(1, 3, '普通', '测试');
 
 
-DROP TABLE IF EXISTS `mcc_customer_history`;
-CREATE TABLE `mcc_customer_history` (
+CREATE TABLE IF NOT EXISTS `mcc_customer_history` (
   `customer_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `comment` text NOT NULL,
@@ -1149,8 +1115,7 @@ CREATE TABLE `mcc_customer_history` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_customer_login`;
-CREATE TABLE `mcc_customer_login` (
+CREATE TABLE IF NOT EXISTS `mcc_customer_login` (
   `customer_login_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(96) NOT NULL,
   `ip` varchar(40) NOT NULL,
@@ -1163,17 +1128,16 @@ CREATE TABLE `mcc_customer_login` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_customer_ip`;
-CREATE TABLE `mcc_customer_ip` (
+CREATE TABLE IF NOT EXISTS `mcc_customer_ip` (
   `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_ip_id`),
   KEY `ip` (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COLLATE=utf8_general_ci;
-DROP TABLE IF EXISTS `mcc_customer_online`;
-CREATE TABLE `mcc_customer_online` (
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `mcc_customer_online` (
   `ip` varchar(40) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `url` text NOT NULL,
@@ -1183,8 +1147,7 @@ CREATE TABLE `mcc_customer_online` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_customer_reward`;
-CREATE TABLE `mcc_customer_reward` (
+CREATE TABLE IF NOT EXISTS `mcc_customer_reward` (
   `customer_reward_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL DEFAULT '0',
   `order_id` int(11) NOT NULL DEFAULT '0',
@@ -1195,8 +1158,7 @@ CREATE TABLE `mcc_customer_reward` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_customer_transaction`;
-CREATE TABLE `mcc_customer_transaction` (
+CREATE TABLE IF NOT EXISTS `mcc_customer_transaction` (
   `customer_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -1206,17 +1168,15 @@ CREATE TABLE `mcc_customer_transaction` (
   PRIMARY KEY (`customer_transaction_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
 
-DROP TABLE IF EXISTS `mcc_customer_wishlist`;
-CREATE TABLE `mcc_customer_wishlist` (
+CREATE TABLE IF NOT EXISTS `mcc_customer_wishlist` (
   `customer_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_id`,`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_custom_field`;
-CREATE TABLE `mcc_custom_field` (
+CREATE TABLE IF NOT EXISTS `mcc_custom_field` (
   `custom_field_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) NOT NULL,
   `value` text NOT NULL,
@@ -1227,8 +1187,7 @@ CREATE TABLE `mcc_custom_field` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_custom_field_customer_group`;
-CREATE TABLE `mcc_custom_field_customer_group` (
+CREATE TABLE IF NOT EXISTS `mcc_custom_field_customer_group` (
   `custom_field_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   `required` tinyint(1) NOT NULL,
@@ -1236,8 +1195,7 @@ CREATE TABLE `mcc_custom_field_customer_group` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_custom_field_description`;
-CREATE TABLE `mcc_custom_field_description` (
+CREATE TABLE IF NOT EXISTS `mcc_custom_field_description` (
   `custom_field_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
@@ -1245,8 +1203,7 @@ CREATE TABLE `mcc_custom_field_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_custom_field_value`;
-CREATE TABLE `mcc_custom_field_value` (
+CREATE TABLE IF NOT EXISTS `mcc_custom_field_value` (
   `custom_field_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `custom_field_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL,
@@ -1254,8 +1211,7 @@ CREATE TABLE `mcc_custom_field_value` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_custom_field_value_description`;
-CREATE TABLE `mcc_custom_field_value_description` (
+CREATE TABLE IF NOT EXISTS `mcc_custom_field_value_description` (
   `custom_field_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
@@ -1264,8 +1220,7 @@ CREATE TABLE `mcc_custom_field_value_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_download`;
-CREATE TABLE `mcc_download` (
+CREATE TABLE IF NOT EXISTS `mcc_download` (
   `download_id` int(11) NOT NULL AUTO_INCREMENT,
   `filename` varchar(128) NOT NULL,
   `mask` varchar(128) NOT NULL,
@@ -1274,8 +1229,7 @@ CREATE TABLE `mcc_download` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_download_description`;
-CREATE TABLE `mcc_download_description` (
+CREATE TABLE IF NOT EXISTS `mcc_download_description` (
   `download_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
@@ -1283,8 +1237,7 @@ CREATE TABLE `mcc_download_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_event`;
-CREATE TABLE `mcc_event` (
+CREATE TABLE IF NOT EXISTS `mcc_event` (
   `event_id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(32) NOT NULL,
   `trigger` text NOT NULL,
@@ -1295,13 +1248,12 @@ CREATE TABLE `mcc_event` (
 INSERT INTO `mcc_event` (`event_id`, `code`, `trigger`, `action`) VALUES
 (1, 'voucher', 'post.order.history.add', 'total/voucher/send');
 
-DROP TABLE IF EXISTS `mcc_extension`;
-CREATE TABLE `mcc_extension` (
+CREATE TABLE IF NOT EXISTS `mcc_extension` (
   `extension_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) NOT NULL,
   `code` varchar(32) NOT NULL,
   PRIMARY KEY (`extension_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=451 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=458 ;
 
 
 INSERT INTO `mcc_extension` (`extension_id`, `type`, `code`) VALUES
@@ -1314,7 +1266,7 @@ INSERT INTO `mcc_extension` (`extension_id`, `type`, `code`) VALUES
 (7, 'module', 'carousel'),
 (8, 'total', 'credit'),
 (9, 'shipping', 'flat'),
-(10, 'total', 'handling'),
+(457, 'total', 'handling'),
 (11, 'total', 'low_order_fee'),
 (12, 'total', 'coupon'),
 (13, 'module', 'category'),
@@ -1323,11 +1275,12 @@ INSERT INTO `mcc_extension` (`extension_id`, `type`, `code`) VALUES
 (16, 'total', 'voucher'),
 (17, 'payment', 'free_checkout'),
 (18, 'module', 'featured'),
-(19, 'module', 'slideshow');
+(19, 'module', 'slideshow'),
+(453, 'captcha', 'basic_captcha'),
+(456, 'payment', 'precharge');
 
 
-DROP TABLE IF EXISTS `mcc_filter`;
-CREATE TABLE `mcc_filter` (
+CREATE TABLE IF NOT EXISTS `mcc_filter` (
   `filter_id` int(11) NOT NULL AUTO_INCREMENT,
   `filter_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL,
@@ -1335,8 +1288,7 @@ CREATE TABLE `mcc_filter` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_filter_description`;
-CREATE TABLE `mcc_filter_description` (
+CREATE TABLE IF NOT EXISTS `mcc_filter_description` (
   `filter_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `filter_group_id` int(11) NOT NULL,
@@ -1345,16 +1297,14 @@ CREATE TABLE `mcc_filter_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_filter_group`;
-CREATE TABLE `mcc_filter_group` (
+CREATE TABLE IF NOT EXISTS `mcc_filter_group` (
   `filter_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`filter_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_filter_group_description`;
-CREATE TABLE `mcc_filter_group_description` (
+CREATE TABLE IF NOT EXISTS `mcc_filter_group_description` (
   `filter_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
@@ -1362,8 +1312,7 @@ CREATE TABLE `mcc_filter_group_description` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_geo_zone`;
-CREATE TABLE `mcc_geo_zone` (
+CREATE TABLE IF NOT EXISTS `mcc_geo_zone` (
   `geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -1379,8 +1328,7 @@ INSERT INTO `mcc_geo_zone` (`geo_zone_id`, `name`, `description`, `date_modified
 (5, '中国特别地区', '中国特别地区', '0000-00-00 00:00:00', '2015-04-01 22:24:09');
 
 
-DROP TABLE IF EXISTS `mcc_information`;
-CREATE TABLE `mcc_information` (
+CREATE TABLE IF NOT EXISTS `mcc_information` (
   `information_id` int(11) NOT NULL AUTO_INCREMENT,
   `bottom` int(1) NOT NULL DEFAULT '0',
   `sort_order` int(3) NOT NULL DEFAULT '0',
@@ -1396,8 +1344,7 @@ INSERT INTO `mcc_information` (`information_id`, `bottom`, `sort_order`, `status
 (6, 1, 2, 1);
 
 
-DROP TABLE IF EXISTS `mcc_information_description`;
-CREATE TABLE `mcc_information_description` (
+CREATE TABLE IF NOT EXISTS `mcc_information_description` (
   `information_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(64) NOT NULL,
@@ -1408,12 +1355,14 @@ CREATE TABLE `mcc_information_description` (
   PRIMARY KEY (`information_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+
+
 INSERT INTO `mcc_information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
 (6, 2, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n', 'Delivery Information', '', ''),
 (4, 2, 'About Us', '&lt;p&gt;\r\n	About Us&lt;/p&gt;\r\n', 'About Us', '', ''),
 (3, 2, 'Privacy Policy', '&lt;p&gt;\r\n	Privacy Policy&lt;/p&gt;\r\n', 'Privacy Policy', '', ''),
 (5, 2, 'Terms &amp; Conditions', 'Terms &amp;amp; Conditions', 'Terms &amp; Conditions', '', ''),
-(4, 1, '关于我们', '&lt;p&gt;\r\n	About Us&lt;/p&gt;\r\n', '关于我们', '', ''),
+(4, 1, '关于我们', '&lt;p&gt;\r\n	关于我们&lt;/p&gt;\r\n', '关于我们', '', ''),
 (3, 1, '隐私政策', '&lt;p&gt;\r\n	隐私政策&lt;/p&gt;\r\n', '隐私政策', '', ''),
 (6, 1, '物流配送', '&lt;p&gt;\r\n	物流配送&lt;/p&gt;\r\n', '物流配送', '', ''),
 (5, 1, '使用条款', '&lt;p&gt;使用条款&lt;br&gt;&lt;/p&gt;', '使用条款', '', ''),
@@ -1422,8 +1371,7 @@ INSERT INTO `mcc_information_description` (`information_id`, `language_id`, `tit
 (3, 3, '隱私政策', '&lt;p&gt;\r\n	隱私政策&lt;/p&gt;\r\n', '隱私政策', '', ''),
 (4, 3, '关于我们', '&lt;p&gt;\r\n	关于我们&lt;/p&gt;\r\n', '关于我们', '', '');
 
-DROP TABLE IF EXISTS `mcc_information_to_layout`;
-CREATE TABLE `mcc_information_to_layout` (
+CREATE TABLE IF NOT EXISTS `mcc_information_to_layout` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
@@ -1437,8 +1385,7 @@ INSERT INTO `mcc_information_to_layout` (`information_id`, `store_id`, `layout_i
 (3, 0, 0),
 (6, 0, 0);
 
-DROP TABLE IF EXISTS `mcc_information_to_store`;
-CREATE TABLE `mcc_information_to_store` (
+CREATE TABLE IF NOT EXISTS `mcc_information_to_store` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`information_id`,`store_id`)
@@ -1452,8 +1399,7 @@ INSERT INTO `mcc_information_to_store` (`information_id`, `store_id`) VALUES
 (6, 0);
 
 
-DROP TABLE IF EXISTS `mcc_language`;
-CREATE TABLE `mcc_language` (
+CREATE TABLE IF NOT EXISTS `mcc_language` (
   `language_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `code` varchar(5) NOT NULL,
@@ -1473,8 +1419,7 @@ INSERT INTO `mcc_language` (`language_id`, `name`, `code`, `locale`, `image`, `d
 (3, '繁体中文', 'zh_HK', 'zh_HK.UTF-8,zh_HK,zh-hk,hongkong', 'hk.png', 'zh-HK', 3, 1);
 
 
-DROP TABLE IF EXISTS `mcc_layout`;
-CREATE TABLE `mcc_layout` (
+CREATE TABLE IF NOT EXISTS `mcc_layout` (
   `layout_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`layout_id`)
@@ -1499,8 +1444,7 @@ INSERT INTO `mcc_layout` (`layout_id`, `name`) VALUES
 (15, '注册');
 
 
-DROP TABLE IF EXISTS `mcc_layout_module`;
-CREATE TABLE `mcc_layout_module` (
+CREATE TABLE IF NOT EXISTS `mcc_layout_module` (
   `layout_module_id` int(11) NOT NULL AUTO_INCREMENT,
   `layout_id` int(11) NOT NULL,
   `code` varchar(64) NOT NULL,
@@ -1521,8 +1465,7 @@ INSERT INTO `mcc_layout_module` (`layout_module_id`, `layout_id`, `code`, `posit
 (84, 5, 'account', 'column_left', 2);
 
 
-DROP TABLE IF EXISTS `mcc_layout_route`;
-CREATE TABLE `mcc_layout_route` (
+CREATE TABLE IF NOT EXISTS `mcc_layout_route` (
   `layout_route_id` int(11) NOT NULL AUTO_INCREMENT,
   `layout_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
@@ -1549,8 +1492,7 @@ INSERT INTO `mcc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `rou
 (72, 15, 0, 'account/login');
 
 
-DROP TABLE IF EXISTS `mcc_length_class`;
-CREATE TABLE `mcc_length_class` (
+CREATE TABLE IF NOT EXISTS `mcc_length_class` (
   `length_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` decimal(15,8) NOT NULL,
   PRIMARY KEY (`length_class_id`)
@@ -1563,8 +1505,7 @@ INSERT INTO `mcc_length_class` (`length_class_id`, `value`) VALUES
 (3, '0.39370000');
 
 
-DROP TABLE IF EXISTS `mcc_length_class_description`;
-CREATE TABLE `mcc_length_class_description` (
+CREATE TABLE IF NOT EXISTS `mcc_length_class_description` (
   `length_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
@@ -1585,8 +1526,7 @@ INSERT INTO `mcc_length_class_description` (`length_class_id`, `language_id`, `t
 (2, 3, '毫米', 'mm');
 
 
-DROP TABLE IF EXISTS `mcc_location`;
-CREATE TABLE `mcc_location` (
+CREATE TABLE IF NOT EXISTS `mcc_location` (
   `location_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `address` text NOT NULL,
@@ -1596,14 +1536,12 @@ CREATE TABLE `mcc_location` (
   `image` varchar(255) DEFAULT NULL,
   `open` text NOT NULL,
   `comment` text NOT NULL,
-
   PRIMARY KEY (`location_id`),
   KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_manufacturer`;
-CREATE TABLE `mcc_manufacturer` (
+CREATE TABLE IF NOT EXISTS `mcc_manufacturer` (
   `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
@@ -1621,8 +1559,7 @@ INSERT INTO `mcc_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`
 (10, 'Sony', 'catalog/demo/sony_logo.jpg', 0);
 
 
-DROP TABLE IF EXISTS `mcc_manufacturer_to_store`;
-CREATE TABLE `mcc_manufacturer_to_store` (
+CREATE TABLE IF NOT EXISTS `mcc_manufacturer_to_store` (
   `manufacturer_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`manufacturer_id`,`store_id`)
@@ -1638,8 +1575,7 @@ INSERT INTO `mcc_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
 (10, 0);
 
 
-DROP TABLE IF EXISTS `mcc_marketing`;
-CREATE TABLE `mcc_marketing` (
+CREATE TABLE IF NOT EXISTS `mcc_marketing` (
   `marketing_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` text NOT NULL,
@@ -1650,8 +1586,7 @@ CREATE TABLE `mcc_marketing` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_modification`;
-CREATE TABLE `mcc_modification` (
+CREATE TABLE IF NOT EXISTS `mcc_modification` (
   `modification_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `code` varchar(64) NOT NULL,
@@ -1665,14 +1600,13 @@ CREATE TABLE `mcc_modification` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2 ;
 
 
-DROP TABLE IF EXISTS `mcc_module`;
-CREATE TABLE `mcc_module` (
+CREATE TABLE IF NOT EXISTS `mcc_module` (
   `module_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `code` varchar(32) NOT NULL,
   `setting` text NOT NULL,
   PRIMARY KEY (`module_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=32 ;
 
 
 INSERT INTO `mcc_module` (`module_id`, `name`, `code`, `setting`) VALUES
@@ -1684,8 +1618,7 @@ INSERT INTO `mcc_module` (`module_id`, `name`, `code`, `setting`) VALUES
 
 
 
-DROP TABLE IF EXISTS `mcc_option`;
-CREATE TABLE `mcc_option` (
+CREATE TABLE IF NOT EXISTS `mcc_option` (
   `option_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) NOT NULL,
   `sort_order` int(3) NOT NULL,
@@ -1707,8 +1640,7 @@ INSERT INTO `mcc_option` (`option_id`, `type`, `sort_order`) VALUES
 (12, 'date', 11);
 
 
-DROP TABLE IF EXISTS `mcc_option_description`;
-CREATE TABLE `mcc_option_description` (
+CREATE TABLE IF NOT EXISTS `mcc_option_description` (
   `option_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
@@ -1751,8 +1683,7 @@ INSERT INTO `mcc_option_description` (`option_id`, `language_id`, `name`) VALUES
 (1, 1, '单选按钮组'),
 (5, 1, '下拉列表');
 
-DROP TABLE IF EXISTS `mcc_option_value`;
-CREATE TABLE `mcc_option_value` (
+CREATE TABLE IF NOT EXISTS `mcc_option_value` (
   `option_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `option_id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
@@ -1778,8 +1709,7 @@ INSERT INTO `mcc_option_value` (`option_value_id`, `option_id`, `image`, `sort_o
 (46, 11, '', 1);
 
 
-DROP TABLE IF EXISTS `mcc_option_value_description`;
-CREATE TABLE `mcc_option_value_description` (
+CREATE TABLE IF NOT EXISTS `mcc_option_value_description` (
   `option_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
@@ -1833,8 +1763,7 @@ INSERT INTO `mcc_option_value_description` (`option_value_id`, `language_id`, `o
 (43, 3, 1, '大');
 
 
-DROP TABLE IF EXISTS `mcc_order`;
-CREATE TABLE `mcc_order` (
+CREATE TABLE IF NOT EXISTS `mcc_order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `invoice_no` int(11) NOT NULL DEFAULT '0',
   `invoice_prefix` varchar(26) NOT NULL,
@@ -1893,12 +1822,11 @@ CREATE TABLE `mcc_order` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=67 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
 
-DROP TABLE IF EXISTS `mcc_order_custom_field`;
-CREATE TABLE `mcc_order_custom_field` (
+CREATE TABLE IF NOT EXISTS `mcc_order_custom_field` (
   `order_custom_field_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
@@ -1911,8 +1839,7 @@ CREATE TABLE `mcc_order_custom_field` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_order_history`;
-CREATE TABLE `mcc_order_history` (
+CREATE TABLE IF NOT EXISTS `mcc_order_history` (
   `order_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `order_status_id` int(11) NOT NULL,
@@ -1920,11 +1847,10 @@ CREATE TABLE `mcc_order_history` (
   `comment` text NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`order_history_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=49 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_order_option`;
-CREATE TABLE `mcc_order_option` (
+CREATE TABLE IF NOT EXISTS `mcc_order_option` (
   `order_option_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `order_product_id` int(11) NOT NULL,
@@ -1937,8 +1863,7 @@ CREATE TABLE `mcc_order_option` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_order_product`;
-CREATE TABLE `mcc_order_product` (
+CREATE TABLE IF NOT EXISTS `mcc_order_product` (
   `order_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -1953,8 +1878,7 @@ CREATE TABLE `mcc_order_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_order_recurring`;
-CREATE TABLE `mcc_order_recurring` (
+CREATE TABLE IF NOT EXISTS `mcc_order_recurring` (
   `order_recurring_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `reference` varchar(255) NOT NULL,
@@ -1979,8 +1903,7 @@ CREATE TABLE `mcc_order_recurring` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_order_recurring_transaction`;
-CREATE TABLE `mcc_order_recurring_transaction` (
+CREATE TABLE IF NOT EXISTS `mcc_order_recurring_transaction` (
   `order_recurring_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_recurring_id` int(11) NOT NULL,
   `reference` varchar(255) NOT NULL,
@@ -1991,8 +1914,7 @@ CREATE TABLE `mcc_order_recurring_transaction` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_order_status`;
-CREATE TABLE `mcc_order_status` (
+CREATE TABLE IF NOT EXISTS `mcc_order_status` (
   `order_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
@@ -2041,8 +1963,7 @@ INSERT INTO `mcc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 (13, 3, '拒付'),
 (5, 3, '完成');
 
-DROP TABLE IF EXISTS `mcc_order_total`;
-CREATE TABLE `mcc_order_total` (
+CREATE TABLE IF NOT EXISTS `mcc_order_total` (
   `order_total_id` int(10) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `code` varchar(32) NOT NULL,
@@ -2051,7 +1972,7 @@ CREATE TABLE `mcc_order_total` (
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`order_total_id`),
   KEY `order_id` (`order_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=14 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=24 ;
 
 
 INSERT INTO `mcc_order_total` (`order_total_id`, `order_id`, `code`, `title`, `value`, `sort_order`) VALUES
@@ -2059,10 +1980,19 @@ INSERT INTO `mcc_order_total` (`order_total_id`, `order_id`, `code`, `title`, `v
 (2, 64, 'shipping', '免运费', '0.0000', 3),
 (3, 64, 'tax', '增值税 (20%)', '20.2000', 5),
 (4, 64, 'tax', '生态税(-2.00)', '2.0000', 5),
-(5, 64, 'total', '总计', '123.2000', 9);
+(5, 64, 'total', '总计', '123.2000', 9),
+(14, 73, 'sub_total', '小计', '182.0000', 1),
+(15, 73, 'shipping', '固定运费率', '0.0000', 3),
+(16, 73, 'tax', '增值税 (20%)', '36.2000', 5),
+(17, 73, 'tax', '生态税(-2.00)', '4.0000', 5),
+(18, 73, 'total', '总计', '222.2000', 9),
+(19, 74, 'sub_total', '小计', '102.0000', 1),
+(20, 74, 'shipping', '固定运费率', '0.0000', 3),
+(21, 74, 'tax', '增值税 (20%)', '20.2000', 5),
+(22, 74, 'tax', '生态税(-2.00)', '2.0000', 5),
+(23, 74, 'total', '总计', '124.2000', 9);
 
-DROP TABLE IF EXISTS `mcc_order_voucher`;
-CREATE TABLE `mcc_order_voucher` (
+CREATE TABLE IF NOT EXISTS `mcc_order_voucher` (
   `order_voucher_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `voucher_id` int(11) NOT NULL,
@@ -2079,8 +2009,7 @@ CREATE TABLE `mcc_order_voucher` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_product`;
-CREATE TABLE `mcc_product` (
+CREATE TABLE IF NOT EXISTS `mcc_product` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `model` varchar(64) NOT NULL,
   `sku` varchar(64) NOT NULL,
@@ -2112,34 +2041,35 @@ CREATE TABLE `mcc_product` (
   `viewed` int(5) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
+  `sent` tinyint(1) NOT NULL,
+  `weidian_product_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=50 ;
 
 
 INSERT INTO `mcc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`) VALUES
-(28, 'Product 1', '', '', '', '', '', '', '', 939, 7, 'catalog/demo/28_1.jpg', 5, 1, '100.0000', 200, 9, '2009-02-03', '146.40000000', 2, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:06:50', '2011-09-30 01:05:39'),
+(28, 'Product 1', '', '', '', '', '', '', '', 937, 7, 'catalog/demo/28_1.jpg', 5, 1, '100.0000', 200, 9, '2009-02-03', '146.40000000', 2, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:06:50', '2011-09-30 01:05:39'),
 (29, 'Product 2', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/29_1.jpg', 6, 1, '279.9900', 0, 9, '2009-02-03', '133.00000000', 2, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, 0, '2009-02-03 16:42:17', '2011-09-30 01:06:08'),
-(30, 'Product 3', '', '', '', '', '', '', '', 7, 6, 'catalog/demo/30_1.jpg', 9, 1, '100.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 2, '2009-02-03 16:59:00', '2015-06-12 20:16:45'),
+(30, 'Product 3', '', '', '', '', '', '', '', 5, 6, 'catalog/demo/30_1.jpg', 9, 1, '100.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 2, '2009-02-03 16:59:00', '2015-11-18 15:02:21'),
 (31, 'Product 4', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/31_1.jpg', 0, 1, '80.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, 0, '2009-02-03 17:00:10', '2011-09-30 01:06:00'),
 (32, 'Product 5', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/32_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 17:07:26', '2015-06-04 22:28:17'),
 (33, 'Product 6', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/33.jpg', 0, 1, '200.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 17:08:31', '2015-06-04 22:11:40'),
 (34, 'Product 7', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/34_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 18:07:54', '2011-09-30 01:07:17'),
 (35, 'Product 8', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/35_1.jpg', 0, 0, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 18:08:31', '2011-09-30 01:06:17'),
 (36, 'Product 9', '', '', '', '', '', '', '', 994, 6, 'catalog/demo/36_1.jpg', 8, 0, '100.0000', 100, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 18:09:19', '2011-09-30 01:07:12'),
-(40, 'product 11', '', '', '', '', '', '', '', 970, 5, 'catalog/demo/40_1.jpg', 8, 1, '101.0000', 0, 9, '2009-02-03', '10.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 1, '2009-02-03 21:07:12', '2015-06-04 22:25:46'),
+(40, 'product 11', '', '', '', '', '', '', '', 967, 5, 'catalog/demo/40_1.jpg', 8, 1, '101.0000', 0, 9, '2009-02-03', '10.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:12', '2015-06-04 22:25:46'),
 (41, 'Product 14', '', '', '', '', '', '', '', 977, 5, 'catalog/demo/41_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:26', '2011-09-30 01:06:44'),
 (42, 'Product 15', '', '', '', '', '', '', '', 990, 5, 'catalog/demo/42_1.jpg', 8, 1, '100.0000', 400, 9, '2009-02-04', '12.50000000', 1, '1.00000000', '2.00000000', '3.00000000', 1, 1, 2, 0, 1, 1, '2009-02-03 21:07:37', '2015-06-12 20:14:32'),
-(43, 'Product 16', '', '', '', '', '', '', '', 929, 5, 'catalog/demo/43_1.jpg', 8, 0, '1.0000', 0, 0, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:07:49', '2015-05-15 10:49:34'),
+(43, 'Product 16', '', '', '', '', '', '', '', 927, 5, 'catalog/demo/43_1.jpg', 8, 0, '1.0000', 0, 0, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:07:49', '2015-05-15 10:49:34'),
 (44, 'Product 17', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/44_1.jpg', 8, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:00', '2011-09-30 01:05:53'),
 (45, 'Product 18', '', '', '', '', '', '', '', 998, 5, 'catalog/demo/45_1.jpg', 8, 1, '2000.0000', 0, 100, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:17', '2011-09-15 22:22:01'),
 (46, 'Product 19', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/46_1.jpg', 10, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:29', '2011-09-30 01:06:39'),
 (47, 'Product 21', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/47_1.jpg', 7, 1, '100.0000', 400, 9, '2009-02-03', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 0, 1, 0, 1, 0, '2009-02-03 21:08:40', '2015-06-12 20:14:35'),
 (48, 'product 20', 'test 1', '', '', '', '', '', 'test 2', 995, 5, 'catalog/demo/48_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-08', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-08 17:21:51', '2011-09-30 01:07:06'),
-(49, 'SAM1', '', '', '', '', '', '', '', 0, 8, 'catalog/demo/49_1.jpg', 0, 1, '199.9900', 0, 9, '2011-04-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2011-04-26 08:57:34', '2015-06-04 22:20:15');
+(49, 'SAM1', '', '', '', '', '', '', '', 0, 8, 'catalog/demo/49_1.jpg', 0, 1, '199.9900', 0, 9, '2011-04-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 9, '2011-04-26 08:57:34', '2015-06-04 22:20:15');
 
 
-DROP TABLE IF EXISTS `mcc_product_attribute`;
-CREATE TABLE `mcc_product_attribute` (
+CREATE TABLE IF NOT EXISTS `mcc_product_attribute` (
   `product_id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -2166,8 +2096,7 @@ INSERT INTO `mcc_product_attribute` (`product_id`, `attribute_id`, `language_id`
 (47, 2, 1, '4');
 
 
-DROP TABLE IF EXISTS `mcc_product_description`;
-CREATE TABLE `mcc_product_description` (
+CREATE TABLE IF NOT EXISTS `mcc_product_description` (
   `product_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -2217,18 +2146,18 @@ INSERT INTO `mcc_product_description` (`product_id`, `language_id`, `name`, `des
 (31, 2, 'Nikon D300', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combines brand new technologies with advanced features inherited from Nikon&amp;#39;s newly announced D3 professional digital SLR camera to offer serious photographers remarkable performance combined with agility.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		Similar to the D3, the D300 features Nikon&amp;#39;s exclusive EXPEED Image Processing System that is central to driving the speed and processing power needed for many of the camera&amp;#39;s new features. The D300 features a new 51-point autofocus system with Nikon&amp;#39;s 3D Focus Tracking feature and two new LiveView shooting modes that allow users to frame a photograph using the camera&amp;#39;s high-resolution LCD monitor. The D300 shares a similar Scene Recognition System as is found in the D3; it promises to greatly enhance the accuracy of autofocus, autoexposure, and auto white balance by recognizing the subject or scene being photographed and applying this information to the calculations for the three functions.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 reacts with lightning speed, powering up in a mere 0.13 seconds and shooting with an imperceptible 45-millisecond shutter release lag time. The D300 is capable of shooting at a rapid six frames per second and can go as fast as eight frames per second when using the optional MB-D10 multi-power battery pack. In continuous bursts, the D300 can shoot up to 100 shots at full 12.3-megapixel resolution. (NORMAL-LARGE image setting, using a SanDisk Extreme IV 1GB CompactFlash card.)&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 incorporates a range of innovative technologies and features that will significantly improve the accuracy, control, and performance photographers can get from their equipment. Its new Scene Recognition System advances the use of Nikon&amp;#39;s acclaimed 1,005-segment sensor to recognize colors and light patterns that help the camera determine the subject and the type of scene being photographed before a picture is taken. This information is used to improve the accuracy of autofocus, autoexposure, and auto white balance functions in the D300. For example, the camera can track moving subjects better and by identifying them, it can also automatically select focus points faster and with greater accuracy. It can also analyze highlights and more accurately determine exposure, as well as infer light sources to deliver more accurate white balance detection.&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', '', '', ''),
 (49, 2, 'Samsung Galaxy Tab 10.1', '&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, measuring 8.6 mm thickness, running with Android 3.0 Honeycomb OS on a 1GHz dual-core Tegra 2 processor, similar to its younger brother Samsung Galaxy Tab 8.9.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 gives pure Android 3.0 experience, adding its new TouchWiz UX or TouchWiz 4.0 – includes a live panel, which lets you to customize with different content, such as your pictures, bookmarks, and social feeds, sporting a 10.1 inches WXGA capacitive touch screen with 1280 x 800 pixels of resolution, equipped with 3 megapixel rear camera with LED flash and a 2 megapixel front camera, HSPA+ connectivity up to 21Mbps, 720p HD video recording capability, 1080p HD playback, DLNA support, Bluetooth 2.1, USB 2.0, gyroscope, Wi-Fi 802.11 a/b/g/n, micro-SD slot, 3.5mm headphone jack, and SIM slot, including the Samsung Stick – a Bluetooth microphone that can be carried in a pocket like a pen and sound dock with powered subwoofer.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 will come in 16GB / 32GB / 64GB verities and pre-loaded with Social Hub, Reader’s Hub, Music Hub and Samsung Mini Apps Tray – which gives you access to more commonly used apps to help ease multitasking and it is capable of Adobe Flash Player 10.2, powered by 6860mAh battery that gives you 10hours of video-playback time.&amp;nbsp;äö&lt;/p&gt;\r\n', '', 'Samsung Galaxy Tab 10.1', '', ''),
 (42, 1, 'Apple Cinema 30&quot;', '&lt;p&gt;AMD 785G，一个定位于AMD 780G和AMD 790GX之间的产品，近期成为所有主板厂商推广的重点，同时也是所有DIY用户关注的焦点。抛开其整合DirectX 10.1规格的Radeon HD 4200图形显示核心不提，全新升级的UVD2.0高清解码引擎，让AMD 785G更适合高清应用。诚然，目前在卖场里攒HTPC专用电脑的人并不多，但随着广大民众生活水平的不断提高，这种个性化应用必将是未来大势所趋，故在AMD 785G上设计更多的HTPC应用功能，也成为有实力的主板品牌必须做的一件事。&lt;/p&gt;&lt;p&gt;一向以代工著称的富士康在个性化产品上的设计近年来有了很大的改观，除了推出面向超频玩家的&quot;Quantum Force（量子力量）&quot;系列外，还针对高品质家庭用户推出了Digital Life（数字家庭）系列，其在DIY产品线上的用心程度不言而喻。&lt;br&gt;&lt;/p&gt;', '', 'Apple Cinema 30&quot;', '', ''),
-(30, 3, '佳能EOS-5D', '&lt;p&gt;　佳能EOS-5D终于揭开了其神秘的面纱，相信大家都对佳能EOS-5D的性能感到满意，但是佳能EOS-5D拍出来的片子如何呢？为此，我们特\r\n地从佳能网站上找到几张原尺寸的佳能EOS-5D实拍样张。准备点击放大的朋友做好思想准备，每张都在7MB左右，更有11MB的，因为佳能EOS-5D\r\n是1280万像素的机型，产生如此大的图象文件也就不奇怪了。&lt;br&gt;从上面的样片看来，佳能EOS-5的表现几近完美，当然，本身机身档次也是在这里摆着的。而使用了全画幅的CMOS，使广角风景拍摄更加顺畅。希望佳能EOS-5D早日达到中国市场，届时我们也会第一时间进行测试，敬请关注中关村在线数码相机频道。&lt;/p&gt;', '', '佳能EOS-5D', '', ''),
+(30, 1, '佳能EOS-5D', '&lt;p&gt;佳能EOS-5D终于揭开了其神秘的面纱，相信大家都对佳能EOS-5D的性能感到满意，但是佳能EOS-5D拍出来的片子如何呢？为此，我们特地从佳能网站上找到几张原尺寸的佳能EOS-5D实拍样张。&lt;/p&gt;', '', '佳能EOS-5D', '', ''),
 (30, 2, 'Canon EOS 5D', '&lt;p&gt;\r\n	Canon''s press material for the EOS 5D states that it ''defines (a) new D-SLR category'', while we''re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably ''chunkier''). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR''s, an important difference when compared to the latter is that the EOS 5D doesn''t have any environmental seals. While Canon don''t specifically refer to the EOS 5D as a ''professional'' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they''ve not bought too many EF-S lenses...) äë&lt;/p&gt;\r\n', '', 'Canon EOS 5D', '', ''),
-(30, 1, '佳能EOS-5D', '&lt;p&gt;　佳能EOS-5D终于揭开了其神秘的面纱，相信大家都对佳能EOS-5D的性能感到满意，但是佳能EOS-5D拍出来的片子如何呢？为此，我们特地从佳能网站上找到几张原尺寸的佳能EOS-5D实拍样张。准备点击放大的朋友做好思想准备，每张都在7MB左右，更有11MB的，因为佳能EOS-5D是1280万像素的机型，产生如此大的图象文件也就不奇怪&lt;br&gt;从上面的样片看来，佳能EOS-5D的表现几近完美，当然，本身机身档次也是在这里摆着的。而使用了全画幅的CMOS，使广角风景拍摄更加顺畅。希望佳能EOS-5D早日达到中国市场，届时我们也会第一时间进行测试，敬请关注中关村在线数码相机频道。&lt;/p&gt;', '', '佳能EOS-5D', '', ''),
+(30, 3, '佳能EOS-5D', '&lt;p&gt;佳能EOS-5D终于揭开了其神秘的面纱，相信大家都对佳能EOS-5D的性能感到满意，但是佳能EOS-5D拍出来的片子如何呢？为此，我们特地从佳能网站上找到几张原尺寸的佳能EOS-5D实拍样张。&lt;/p&gt;', '', '佳能EOS-5D', '', ''),
 (35, 3, 'Product 8', '&lt;p&gt;\r\n	Product 8&lt;/p&gt;\r\n', '', '', '', ''),
 (48, 3, 'iPod Classic', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;More room to move.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Sleeker design.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Beautiful, durable, and sleeker than ever, iPod classic now features an anodized aluminum and polished stainless steel enclosure with rounded edges.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', '', '', ''),
 (28, 3, 'HTC Touch HD', '&lt;p&gt;\r\n	HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high definition clarity for a mobile experience you never thought possible. Seductively sleek, the HTC Touch HD provides the next generation of mobile functionality, all at a simple touch. Fully integrated with Windows Mobile Professional 6.1, ultrafast 3.5G, GPS, 5MP camera, plus lots more - all delivered on a breathtakingly crisp 3.8&amp;quot; WVGA touchscreen - you can take control of your mobile world with the HTC Touch HD.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Processor Qualcomm&amp;reg; MSM 7201A&amp;trade; 528 MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Operating System&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Memory: 512 MB ROM, 288 MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Dimensions: 115 mm x 62.8 mm x 12 mm / 146.4 grams&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.8-inch TFT-LCD flat touch-sensitive screen with 480 x 800 WVGA resolution&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/WCDMA: Europe/Asia: 900/2100 MHz; Up to 2 Mbps up-link and 7.2 Mbps down-link speeds&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM/GPRS/EDGE: Europe/Asia: 850/900/1800/1900 MHz (Band frequency, HSUPA availability, and data speed are operator dependent.)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Device Control via HTC TouchFLO&amp;trade; 3D &amp;amp; Touch-sensitive front panel buttons&lt;/li&gt;\r\n	&lt;li&gt;\r\n		GPS and A-GPS ready&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth&amp;reg; 2.0 with Enhanced Data Rate and A2DP for wireless stereo headsets&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wi-Fi&amp;reg;: IEEE 802.11 b/g&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HTC ExtUSB&amp;trade; (11-pin mini-USB 2.0)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		5 megapixel color camera with auto focus&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VGA CMOS color camera&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in 3.5 mm audio jack, microphone, speaker, and FM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Ring tone formats: AAC, AAC+, eAAC+, AMR-NB, AMR-WB, QCP, MP3, WMA, WAV&lt;/li&gt;\r\n	&lt;li&gt;\r\n		40 polyphonic and standard MIDI format 0 and 1 (SMF)/SP MIDI&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Rechargeable Lithium-ion or Lithium-ion polymer 1350 mAh battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Expansion Slot: microSD&amp;trade; memory card (SD 2.0 compatible)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AC Adapter Voltage range/frequency: 100 ~ 240V AC, 50/60 Hz DC output: 5V and 1A&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Special Features: FM Radio, G-Sensor&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', '', '', ''),
 (44, 3, 'MacBook Air', '&lt;div&gt;\r\n	MacBook Air is ultrathin, ultraportable, and ultra unlike anything else. But you don&amp;rsquo;t lose inches and pounds overnight. It&amp;rsquo;s the result of rethinking conventions. Of multiple wireless innovations. And of breakthrough design. With MacBook Air, mobile computing suddenly has a new standard.&lt;/div&gt;\r\n', '', '', '', ''),
 (45, 3, 'MacBook Pro', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Latest Intel mobile architecture&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Powered by the most advanced mobile processors from Intel, the new Core 2 Duo MacBook Pro is over 50% faster than the original Core Duo MacBook Pro and now supports up to 4GB of RAM.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Leading-edge graphics&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			The NVIDIA GeForce 8600M GT delivers exceptional graphics processing power. For the ultimate creative canvas, you can even configure the 17-inch model with a 1920-by-1200 resolution display.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Designed for life on the road&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Innovations such as a magnetic power connection and an illuminated keyboard with ambient light sensor put the MacBook Pro in a class by itself.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Connect. Create. Communicate.&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Quickly set up a video conference with the built-in iSight camera. Control presentations and media from up to 30 feet away with the included Apple Remote. Connect to high-bandwidth peripherals with FireWire 800 and DVI.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Next-generation wireless&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Featuring 802.11n wireless technology, the MacBook Pro delivers up to five times the performance and up to twice the range of previous-generation technologies.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', '', '', ''),
-(29, 3, 'Palm Treo Pro', '&lt;p&gt;\r\n	Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to business and personal email, stay on top of appointments and contacts, and use Wi-Fi or GPS when you&amp;rsquo;re out and about. Then watch a video on YouTube, catch up with news and sports on the web, or listen to a few songs. Balance your work and play the way you like it, with the Palm Treo Pro.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Edition&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Qualcomm&amp;reg; MSM7201 400MHz Processor&lt;/li&gt;\r\n	&lt;li&gt;\r\n		320x320 transflective colour TFT touchscreen&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/UMTS/EDGE/GPRS/GSM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Tri-band UMTS &amp;mdash; 850MHz, 1900MHz, 2100MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM &amp;mdash; 850/900/1800/1900&lt;/li&gt;\r\n	&lt;li&gt;\r\n		802.11b/g with WPA, WPA2, and 801.1x authentication&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in GPS&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth Version: 2.0 + Enhanced Data Rate&lt;/li&gt;\r\n	&lt;li&gt;\r\n		256MB storage (100MB user available), 128MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2.0 megapixel camera, up to 8x digital zoom and video capture&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Removable, rechargeable 1500mAh lithium-ion battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Up to 5.0 hours talk time and up to 250 hours standby&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroSDHC card expansion (up to 32GB supported)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroUSB 2.0 for synchronization and charging&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.5mm stereo headset jack&lt;/li&gt;\r\n	&lt;li&gt;\r\n		60mm (W) x 114mm (L) x 13.5mm (D) / 133g&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', '', '', '');
-INSERT INTO `mcc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+(29, 3, 'Palm Treo Pro', '&lt;p&gt;\r\n	Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to business and personal email, stay on top of appointments and contacts, and use Wi-Fi or GPS when you&amp;rsquo;re out and about. Then watch a video on YouTube, catch up with news and sports on the web, or listen to a few songs. Balance your work and play the way you like it, with the Palm Treo Pro.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Edition&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Qualcomm&amp;reg; MSM7201 400MHz Processor&lt;/li&gt;\r\n	&lt;li&gt;\r\n		320x320 transflective colour TFT touchscreen&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/UMTS/EDGE/GPRS/GSM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Tri-band UMTS &amp;mdash; 850MHz, 1900MHz, 2100MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM &amp;mdash; 850/900/1800/1900&lt;/li&gt;\r\n	&lt;li&gt;\r\n		802.11b/g with WPA, WPA2, and 801.1x authentication&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in GPS&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth Version: 2.0 + Enhanced Data Rate&lt;/li&gt;\r\n	&lt;li&gt;\r\n		256MB storage (100MB user available), 128MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2.0 megapixel camera, up to 8x digital zoom and video capture&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Removable, rechargeable 1500mAh lithium-ion battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Up to 5.0 hours talk time and up to 250 hours standby&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroSDHC card expansion (up to 32GB supported)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroUSB 2.0 for synchronization and charging&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.5mm stereo headset jack&lt;/li&gt;\r\n	&lt;li&gt;\r\n		60mm (W) x 114mm (L) x 13.5mm (D) / 133g&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', '', '', ''),
 (36, 3, 'iPod Nano', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Video in your pocket.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Its the small iPod with one very big idea: video. The worlds most popular music player now lets you enjoy movies, TV shows, and more on a two-inch display thats 65% brighter than before.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Sleek and colorful.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		With an anodized aluminum and polished stainless steel enclosure and a choice of five colors, iPod nano is dressed to impress.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;iTunes.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Available as a free download, iTunes makes it easy to browse and buy millions of songs, movies, TV shows, audiobooks, and games and download free podcasts all at the iTunes Store. And you can import your own music, manage your whole media library, and sync your iPod or iPhone with ease.&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', '', '', ''),
-(46, 3, 'Sony VAIO', '&lt;div&gt;\r\n	Unprecedented power. The next generation of processing technology has arrived. Built into the newest VAIO notebooks lies Intel&amp;#39;s latest, most powerful innovation yet: Intel&amp;reg; Centrino&amp;reg; 2 processor technology. Boasting incredible speed, expanded wireless connectivity, enhanced multimedia support and greater energy efficiency, all the high-performance essentials are seamlessly combined into a single chip.&lt;/div&gt;\r\n', '', '', '', ''),
+(46, 3, 'Sony VAIO', '&lt;div&gt;\r\n	Unprecedented power. The next generation of processing technology has arrived. Built into the newest VAIO notebooks lies Intel&amp;#39;s latest, most powerful innovation yet: Intel&amp;reg; Centrino&amp;reg; 2 processor technology. Boasting incredible speed, expanded wireless connectivity, enhanced multimedia support and greater energy efficiency, all the high-performance essentials are seamlessly combined into a single chip.&lt;/div&gt;\r\n', '', '', '', '');
+INSERT INTO `mcc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
 (32, 1, 'iPod Touch', '&lt;p&gt;\r\n	&lt;strong&gt;Revolutionary multi-touch interface.&lt;/strong&gt;&lt;br&gt;\r\n	iPod touch features the same multi-touch screen technology as iPhone. Pinch to zoom in on a photo. Scroll through your songs and videos with a flick. Flip through your library by album artwork with Cover Flow.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Gorgeous 3.5-inch widescreen display.&lt;/strong&gt;&lt;br&gt;\r\n	Watch your movies, TV shows, and photos come alive with bright, vivid color on the 320-by-480-pixel display.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Music downloads straight from iTunes.&lt;/strong&gt;&lt;br&gt;\r\n	Shop the iTunes Wi-Fi Music Store from anywhere with Wi-Fi.1 Browse or search to find the music youre looking for, preview it, and buy it with just a tap.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Surf the web with Wi-Fi.&lt;/strong&gt;&lt;br&gt;\r\n	Browse the web using Safari and watch YouTube videos on the first iPod with Wi-Fi built in&lt;br&gt;\r\n	&amp;nbsp;&lt;/p&gt;\r\n', '', 'iPod Touch', '', ''),
 (41, 3, 'iMac', '&lt;div&gt;\r\n	Just when you thought iMac had everything, now there&acute;s even more. More powerful Intel Core 2 Duo processors. And more memory standard. Combine this with Mac OS X Leopard and iLife &acute;08, and it&acute;s more all-in-one than ever. iMac packs amazing performance into a stunningly slim space.&lt;/div&gt;\r\n', '', '', '', ''),
 (33, 3, '三星 941BW', '是一款19英寸，拥有16:10黄金屏幕比例的产品。这款产品在外观上采用了黑色烤漆工艺，底边框位置我们看到了其印有品牌LOGO，非常精致。而我们在其它边框位置看到了产品信息，方便了用户购买时挑选。\r\n', '', '三星 941BW', '', ''),
@@ -2242,8 +2171,7 @@ INSERT INTO `mcc_product_description` (`product_id`, `language_id`, `name`, `des
 (47, 1, 'HP LP3065', '&lt;p&gt;\r\n	Stop your co-workers in their tracks with the stunning new 30-inch diagonal HP LP3065 Flat Panel Monitor. This flagship monitor features best-in-class performance and presentation features on a huge wide-aspect screen while letting you work as comfortably as possible - you might even forget you''re at the office&lt;/p&gt;\r\n', '', 'HP LP3065', '', '');
 
 
-DROP TABLE IF EXISTS `mcc_product_discount`;
-CREATE TABLE `mcc_product_discount` (
+CREATE TABLE IF NOT EXISTS `mcc_product_discount` (
   `product_discount_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
@@ -2263,27 +2191,25 @@ INSERT INTO `mcc_product_discount` (`product_discount_id`, `product_id`, `custom
 (450, 42, 1, 10, 1, '88.0000', '0000-00-00', '0000-00-00');
 
 
-DROP TABLE IF EXISTS `mcc_product_filter`;
-CREATE TABLE `mcc_product_filter` (
+CREATE TABLE IF NOT EXISTS `mcc_product_filter` (
   `product_id` int(11) NOT NULL,
   `filter_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_product_image`;
-CREATE TABLE `mcc_product_image` (
+CREATE TABLE IF NOT EXISTS `mcc_product_image` (
   `product_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_image_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2420 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2422 ;
 
 
 INSERT INTO `mcc_product_image` (`product_image_id`, `product_id`, `image`, `sort_order`) VALUES
-(2419, 30, 'catalog/demo/30_3.jpg', 0),
+(2421, 30, 'catalog/demo/30_2.jpg', 0),
 (2417, 47, 'catalog/demo/47_5.jpg', 0),
 (2035, 28, 'catalog/demo/28_2.jpg', 0),
 (2351, 41, 'catalog/demo/41_3.jpg', 0),
@@ -2306,7 +2232,7 @@ INSERT INTO `mcc_product_image` (`product_image_id`, `product_id`, `image`, `sor
 (1990, 48, 'catalog/demo/48_3.jpg', 0),
 (2406, 40, 'catalog/demo/40_4.jpg', 0),
 (2405, 40, 'catalog/demo/40_3.jpg', 0),
-(2418, 30, 'catalog/demo/30_2.jpg', 0),
+(2420, 30, 'catalog/demo/30_3.jpg', 0),
 (2416, 47, 'catalog/demo/47_2.jpg', 0),
 (2034, 28, 'catalog/demo/28_3.jpg', 0),
 (2350, 41, 'catalog/demo/41_2.jpg', 0),
@@ -2342,8 +2268,7 @@ INSERT INTO `mcc_product_image` (`product_image_id`, `product_id`, `image`, `sor
 (2410, 42, 'catalog/demo/42_1.jpg', 0);
 
 
-DROP TABLE IF EXISTS `mcc_product_option`;
-CREATE TABLE `mcc_product_option` (
+CREATE TABLE IF NOT EXISTS `mcc_product_option` (
   `product_option_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
@@ -2368,8 +2293,7 @@ INSERT INTO `mcc_product_option` (`product_option_id`, `product_id`, `option_id`
 (220, 42, 10, '2011-02-20 22:25', 1);
 
 
-DROP TABLE IF EXISTS `mcc_product_option_value`;
-CREATE TABLE `mcc_product_option_value` (
+CREATE TABLE IF NOT EXISTS `mcc_product_option_value` (
   `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_option_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -2397,8 +2321,8 @@ INSERT INTO `mcc_product_option_value` (`product_option_value_id`, `product_opti
 (12, 224, 35, 11, 46, 0, 1, '5.0000', '+', 0, '+', '0.00000000', '+'),
 (13, 224, 35, 11, 47, 10, 1, '10.0000', '+', 0, '+', '0.00000000', '+'),
 (14, 224, 35, 11, 48, 15, 1, '15.0000', '+', 0, '+', '0.00000000', '+'),
-(15, 226, 30, 5, 39, 2, 1, '0.0000', '+', 0, '+', '0.00000000', '+'),
-(16, 226, 30, 5, 40, 5, 1, '0.0000', '+', 0, '+', '0.00000000', '+'),
+(16, 226, 30, 5, 40, 4, 1, '0.0000', '+', 0, '+', '0.00000000', '+'),
+(15, 226, 30, 5, 39, 1, 1, '0.0000', '+', 0, '+', '0.00000000', '+'),
 (5, 218, 42, 1, 32, 96, 1, '10.0000', '+', 1, '+', '10.00000000', '+'),
 (7, 218, 42, 1, 43, 300, 1, '30.0000', '+', 3, '+', '30.00000000', '+'),
 (10, 223, 42, 2, 44, 2696, 1, '30.0000', '+', 0, '+', '30.00000000', '+'),
@@ -2406,8 +2330,7 @@ INSERT INTO `mcc_product_option_value` (`product_option_value_id`, `product_opti
 (11, 223, 42, 2, 45, 3998, 1, '40.0000', '+', 0, '+', '40.00000000', '+');
 
 
-DROP TABLE IF EXISTS `mcc_product_recurring`;
-CREATE TABLE `mcc_product_recurring` (
+CREATE TABLE IF NOT EXISTS `mcc_product_recurring` (
   `product_id` int(11) NOT NULL,
   `recurring_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
@@ -2415,8 +2338,7 @@ CREATE TABLE `mcc_product_recurring` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_product_related`;
-CREATE TABLE `mcc_product_related` (
+CREATE TABLE IF NOT EXISTS `mcc_product_related` (
   `product_id` int(11) NOT NULL,
   `related_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`related_id`)
@@ -2430,15 +2352,14 @@ INSERT INTO `mcc_product_related` (`product_id`, `related_id`) VALUES
 (42, 41);
 
 
-DROP TABLE IF EXISTS `mcc_product_reward`;
-CREATE TABLE `mcc_product_reward` (
+CREATE TABLE IF NOT EXISTS `mcc_product_reward` (
   `product_reward_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL DEFAULT '0',
   `customer_group_id` int(11) NOT NULL DEFAULT '0',
   `points` int(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_reward_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=564 ;
 
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=563 ;
 
 
 INSERT INTO `mcc_product_reward` (`product_reward_id`, `product_id`, `customer_group_id`, `points`) VALUES
@@ -2448,7 +2369,7 @@ INSERT INTO `mcc_product_reward` (`product_reward_id`, `product_id`, `customer_g
 (557, 43, 1, 600),
 (339, 29, 1, 0),
 (343, 48, 1, 0),
-(562, 30, 1, 200),
+(563, 30, 1, 200),
 (331, 44, 1, 700),
 (333, 45, 1, 800),
 (337, 31, 1, 0),
@@ -2460,8 +2381,7 @@ INSERT INTO `mcc_product_reward` (`product_reward_id`, `product_id`, `customer_g
 (558, 49, 1, 1000);
 
 
-DROP TABLE IF EXISTS `mcc_product_special`;
-CREATE TABLE `mcc_product_special` (
+CREATE TABLE IF NOT EXISTS `mcc_product_special` (
   `product_special_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
@@ -2471,17 +2391,16 @@ CREATE TABLE `mcc_product_special` (
   `date_end` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`product_special_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=450 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=452 ;
 
 
 INSERT INTO `mcc_product_special` (`product_special_id`, `product_id`, `customer_group_id`, `priority`, `price`, `date_start`, `date_end`) VALUES
 (447, 42, 1, 1, '90.0000', '0000-00-00', '0000-00-00'),
-(449, 30, 1, 2, '90.0000', '0000-00-00', '0000-00-00'),
-(448, 30, 1, 1, '80.0000', '0000-00-00', '0000-00-00');
+(451, 30, 1, 2, '90.0000', '0000-00-00', '0000-00-00'),
+(450, 30, 1, 1, '80.0000', '0000-00-00', '0000-00-00');
 
 
-DROP TABLE IF EXISTS `mcc_product_to_category`;
-CREATE TABLE `mcc_product_to_category` (
+CREATE TABLE IF NOT EXISTS `mcc_product_to_category` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`category_id`),
@@ -2522,16 +2441,14 @@ INSERT INTO `mcc_product_to_category` (`product_id`, `category_id`) VALUES
 (49, 57);
 
 
-DROP TABLE IF EXISTS `mcc_product_to_download`;
-CREATE TABLE `mcc_product_to_download` (
+CREATE TABLE IF NOT EXISTS `mcc_product_to_download` (
   `product_id` int(11) NOT NULL,
   `download_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`download_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-DROP TABLE IF EXISTS `mcc_product_to_layout`;
-CREATE TABLE `mcc_product_to_layout` (
+CREATE TABLE IF NOT EXISTS `mcc_product_to_layout` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
@@ -2549,8 +2466,7 @@ INSERT INTO `mcc_product_to_layout` (`product_id`, `store_id`, `layout_id`) VALU
 (49, 0, 0),
 (32, 0, 0);
 
-DROP TABLE IF EXISTS `mcc_product_to_store`;
-CREATE TABLE `mcc_product_to_store` (
+CREATE TABLE IF NOT EXISTS `mcc_product_to_store` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_id`,`store_id`)
@@ -2579,8 +2495,7 @@ INSERT INTO `mcc_product_to_store` (`product_id`, `store_id`) VALUES
 (49, 0);
 
 
-DROP TABLE IF EXISTS `mcc_recurring`;
-CREATE TABLE `mcc_recurring` (
+CREATE TABLE IF NOT EXISTS `mcc_recurring` (
   `recurring_id` int(11) NOT NULL AUTO_INCREMENT,
   `price` decimal(10,4) NOT NULL,
   `frequency` enum('day','week','semi_month','month','year') NOT NULL,
@@ -2601,8 +2516,7 @@ INSERT INTO `mcc_recurring` (`recurring_id`, `price`, `frequency`, `duration`, `
 (1, '100.0000', 'month', 3, 1, 0, '0.0000', 'day', 0, 1, 1, 0);
 
 
-DROP TABLE IF EXISTS `mcc_recurring_description`;
-CREATE TABLE `mcc_recurring_description` (
+CREATE TABLE IF NOT EXISTS `mcc_recurring_description` (
   `recurring_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -2611,11 +2525,12 @@ CREATE TABLE `mcc_recurring_description` (
 
 
 INSERT INTO `mcc_recurring_description` (`recurring_id`, `language_id`, `name`) VALUES
-(1, 1, '测试分期付款');
+(1, 1, '测试分期付款'),
+(1, 2, '测试分期付款'),
+(1, 3, '测试分期付款');
 
 
-DROP TABLE IF EXISTS `mcc_return`;
-CREATE TABLE `mcc_return` (
+CREATE TABLE IF NOT EXISTS `mcc_return` (
   `return_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -2638,8 +2553,7 @@ CREATE TABLE `mcc_return` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=4 ;
 
 
-DROP TABLE IF EXISTS `mcc_return_action`;
-CREATE TABLE `mcc_return_action` (
+CREATE TABLE IF NOT EXISTS `mcc_return_action` (
   `return_action_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(64) NOT NULL,
@@ -2659,8 +2573,7 @@ INSERT INTO `mcc_return_action` (`return_action_id`, `language_id`, `name`) VALU
 (3, 3, '已换货配送');
 
 
-DROP TABLE IF EXISTS `mcc_return_history`;
-CREATE TABLE `mcc_return_history` (
+CREATE TABLE IF NOT EXISTS `mcc_return_history` (
   `return_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `return_id` int(11) NOT NULL,
   `return_status_id` int(11) NOT NULL,
@@ -2671,8 +2584,7 @@ CREATE TABLE `mcc_return_history` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
 
 
-DROP TABLE IF EXISTS `mcc_return_reason`;
-CREATE TABLE `mcc_return_reason` (
+CREATE TABLE IF NOT EXISTS `mcc_return_reason` (
   `return_reason_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(128) NOT NULL,
@@ -2698,8 +2610,7 @@ INSERT INTO `mcc_return_reason` (`return_reason_id`, `language_id`, `name`) VALU
 (5, 1, '其他，请提供详细信息');
 
 
-DROP TABLE IF EXISTS `mcc_return_status`;
-CREATE TABLE `mcc_return_status` (
+CREATE TABLE IF NOT EXISTS `mcc_return_status` (
   `return_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(32) NOT NULL,
@@ -2719,8 +2630,7 @@ INSERT INTO `mcc_return_status` (`return_status_id`, `language_id`, `name`) VALU
 (3, 3, '完成');
 
 
-DROP TABLE IF EXISTS `mcc_review`;
-CREATE TABLE `mcc_review` (
+CREATE TABLE IF NOT EXISTS `mcc_review` (
   `review_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -2736,12 +2646,18 @@ CREATE TABLE `mcc_review` (
 
 
 INSERT INTO `mcc_review` (`review_id`, `product_id`, `customer_id`, `author`, `text`, `rating`, `status`, `date_added`, `date_modified`) VALUES
-(1, 42, 0, '中', '我', 4, 0, '2015-06-10 21:29:09', '2015-06-10 21:31:05'),
-(2, 47, 1, 'TESTER', 'JUSTFORTESTINGJUSTFORTESTINGJUSTFORTESTING', 4, 0, '2015-06-10 21:40:11', '0000-00-00 00:00:00'),
-(3, 47, 1, 'JUST ', 'JUSTFORTESTINGJUSTFORTESTINGJUSTFORTESTING', 4, 1, '2015-06-10 21:40:56', '2015-06-10 21:50:27');
+(1, 42, 0, '中', '测试测试测试测试测试测试测试测试测试', 5, 1, '2015-06-10 21:29:09', '2015-11-18 15:08:25'),
+(2, 47, 1, '测试', '测试测试测试测试测试测试测试测试测试', 4, 0, '2015-06-10 21:40:11', '2015-11-18 15:07:56'),
+(3, 47, 1, 'JUST ', '测试测试测试测试测试测试测试测试', 4, 1, '2015-06-10 21:40:56', '2015-11-18 15:08:05');
 
-DROP TABLE IF EXISTS `mcc_setting`;
-CREATE TABLE `mcc_setting` (
+
+
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS `mcc_setting` (
   `setting_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL DEFAULT '0',
   `code` varchar(32) NOT NULL,
@@ -2749,165 +2665,167 @@ CREATE TABLE `mcc_setting` (
   `value` text NOT NULL,
   `serialized` tinyint(1) NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2143 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=161 ;
 
 
 INSERT INTO `mcc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serialized`) VALUES
-(1, 0, 'shipping', 'shipping_sort_order', '3', 0),
-(2, 0, 'sub_total', 'sub_total_sort_order', '1', 0),
-(3, 0, 'sub_total', 'sub_total_status', '1', 0),
-(4, 0, 'tax', 'tax_status', '1', 0),
-(5, 0, 'total', 'total_sort_order', '9', 0),
-(6, 0, 'total', 'total_status', '1', 0),
-(7, 0, 'tax', 'tax_sort_order', '5', 0),
-(8, 0, 'free_checkout', 'free_checkout_sort_order', '1', 0),
-(9, 0, 'cod', 'cod_sort_order', '5', 0),
-(10, 0, 'cod', 'cod_total', '0.01', 0),
-(11, 0, 'cod', 'cod_order_status_id', '1', 0),
-(12, 0, 'cod', 'cod_geo_zone_id', '0', 0),
-(13, 0, 'cod', 'cod_status', '1', 0),
-(14, 0, 'shipping', 'shipping_status', '1', 0),
-(15, 0, 'shipping', 'shipping_estimator', '1', 0),
-(27, 0, 'coupon', 'coupon_sort_order', '4', 0),
-(28, 0, 'coupon', 'coupon_status', '1', 0),
-(34, 0, 'flat', 'flat_sort_order', '1', 0),
-(35, 0, 'flat', 'flat_status', '1', 0),
-(36, 0, 'flat', 'flat_geo_zone_id', '0', 0),
-(37, 0, 'flat', 'flat_tax_class_id', '9', 0),
-(41, 0, 'flat', 'flat_cost', '5.00', 0),
-(42, 0, 'credit', 'credit_sort_order', '7', 0),
-(43, 0, 'credit', 'credit_status', '1', 0),
-(53, 0, 'reward', 'reward_sort_order', '2', 0),
-(54, 0, 'reward', 'reward_status', '1', 0),
-(146, 0, 'category', 'category_status', '1', 0),
-(158, 0, 'account', 'account_status', '1', 0),
-(159, 0, 'affiliate', 'affiliate_status', '1', 0),
-(267, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
-(266, 0, 'config', 'config_shared', '0', 0),
-(265, 0, 'config', 'config_secure', '0', 0),
-(94, 0, 'voucher', 'voucher_sort_order', '8', 0),
-(95, 0, 'voucher', 'voucher_status', '1', 0),
-(261, 0, 'config', 'config_fraud_detection', '0', 0),
-(260, 0, 'config', 'config_mail_alert', '', 0),
-(103, 0, 'free_checkout', 'free_checkout_status', '1', 0),
-(104, 0, 'free_checkout', 'free_checkout_order_status_id', '1', 0),
-(258, 0, 'config', 'config_ftp_status', '0', 0),
-(257, 0, 'config', 'config_ftp_root', '', 0),
-(256, 0, 'config', 'config_ftp_password', '', 0),
-(255, 0, 'config', 'config_ftp_username', '', 0),
-(254, 0, 'config', 'config_ftp_port', '21', 0),
-(253, 0, 'config', 'config_ftp_hostname', '', 0),
-(252, 0, 'config', 'config_image_location_height', '50', 0),
-(251, 0, 'config', 'config_image_location_width', '268', 0),
-(250, 0, 'config', 'config_image_cart_height', '47', 0),
-(249, 0, 'config', 'config_image_cart_width', '47', 0),
-(248, 0, 'config', 'config_image_wishlist_height', '47', 0),
-(181, 0, 'config', 'config_meta_title', 'Your Store', 0),
-(182, 0, 'config', 'config_meta_description', 'My Store', 0),
-(183, 0, 'config', 'config_meta_keyword', '', 0),
-(184, 0, 'config', 'config_template', 'default', 0),
-(185, 0, 'config', 'config_layout_id', '4', 0),
-(186, 0, 'config', 'config_country_id', '222', 0),
-(187, 0, 'config', 'config_zone_id', '3563', 0),
-(188, 0, 'config', 'config_language', 'en', 0),
-(189, 0, 'config', 'config_admin_language', 'en', 0),
-(190, 0, 'config', 'config_currency', 'USD', 0),
-(191, 0, 'config', 'config_currency_auto', '1', 0),
-(192, 0, 'config', 'config_length_class_id', '1', 0),
-(193, 0, 'config', 'config_weight_class_id', '1', 0),
-(194, 0, 'config', 'config_product_count', '1', 0),
-(195, 0, 'config', 'config_product_limit', '15', 0),
-(196, 0, 'config', 'config_product_description_length', '100', 0),
-(197, 0, 'config', 'config_limit_admin', '20', 0),
-(198, 0, 'config', 'config_review_status', '1', 0),
-(199, 0, 'config', 'config_review_guest', '1', 0),
-(200, 0, 'config', 'config_review_mail', '0', 0),
-(201, 0, 'config', 'config_voucher_min', '1', 0),
-(202, 0, 'config', 'config_voucher_max', '1000', 0),
-(203, 0, 'config', 'config_tax', '1', 0),
-(204, 0, 'config', 'config_tax_default', 'shipping', 0),
-(205, 0, 'config', 'config_tax_customer', 'shipping', 0),
-(206, 0, 'config', 'config_customer_online', '0', 0),
-(207, 0, 'config', 'config_customer_group_id', '1', 0),
-(208, 0, 'config', 'config_customer_group_display', '["1"]', 1),
-(209, 0, 'config', 'config_customer_price', '0', 0),
-(210, 0, 'config', 'config_account_id', '3', 0),
-(211, 0, 'config', 'config_account_mail', '0', 0),
-(212, 0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
-(213, 0, 'config', 'config_api_id', '1', 0),
-(214, 0, 'config', 'config_cart_weight', '1', 0),
-(215, 0, 'config', 'config_checkout_guest', '1', 0),
-(216, 0, 'config', 'config_checkout_id', '5', 0),
-(217, 0, 'config', 'config_order_status_id', '1', 0),
-(218, 0, 'config', 'config_processing_status', '["5","1","2","12","3"]', 1),
-(219, 0, 'config', 'config_complete_status', '["5","3"]', 1),
-(220, 0, 'config', 'config_order_mail', '0', 0),
-(221, 0, 'config', 'config_stock_display', '0', 0),
-(222, 0, 'config', 'config_stock_warning', '0', 0),
-(223, 0, 'config', 'config_stock_checkout', '0', 0),
-(224, 0, 'config', 'config_affiliate_approval', '0', 0),
-(225, 0, 'config', 'config_affiliate_auto', '0', 0),
-(226, 0, 'config', 'config_affiliate_commission', '5', 0),
-(227, 0, 'config', 'config_affiliate_id', '4', 0),
-(228, 0, 'config', 'config_affiliate_mail', '0', 0),
-(229, 0, 'config', 'config_return_id', '0', 0),
-(230, 0, 'config', 'config_return_status_id', '2', 0),
-(231, 0, 'config', 'config_logo', 'catalog/logo.png', 0),
-(232, 0, 'config', 'config_icon', 'catalog/cart.png', 0),
-(233, 0, 'config', 'config_image_category_width', '80', 0),
-(234, 0, 'config', 'config_image_category_height', '80', 0),
-(235, 0, 'config', 'config_image_thumb_width', '228', 0),
-(236, 0, 'config', 'config_image_thumb_height', '228', 0),
-(237, 0, 'config', 'config_image_popup_width', '500', 0),
-(238, 0, 'config', 'config_image_popup_height', '500', 0),
-(239, 0, 'config', 'config_image_product_width', '228', 0),
-(240, 0, 'config', 'config_image_product_height', '228', 0),
-(241, 0, 'config', 'config_image_additional_width', '74', 0),
-(242, 0, 'config', 'config_image_additional_height', '74', 0),
-(243, 0, 'config', 'config_image_related_width', '80', 0),
-(244, 0, 'config', 'config_image_related_height', '80', 0),
-(245, 0, 'config', 'config_image_compare_width', '90', 0),
-(246, 0, 'config', 'config_image_compare_height', '90', 0),
-(247, 0, 'config', 'config_image_wishlist_width', '47', 0),
-(180, 0, 'config', 'config_comment', '', 0),
-(179, 0, 'config', 'config_open', '', 0),
-(178, 0, 'config', 'config_image', '', 0),
-(177, 0, 'config', 'config_fax', '', 0),
-(176, 0, 'config', 'config_telephone', '123456789', 0),
-(175, 0, 'config', 'config_email', 'demo@opencart.com', 0),
-(174, 0, 'config', 'config_geocode', '', 0),
-(172, 0, 'config', 'config_owner', 'Your Name', 0),
-(173, 0, 'config', 'config_address', 'Address 1', 0),
-(171, 0, 'config', 'config_name', 'Your Store', 0),
-(268, 0, 'config', 'config_seo_url', '0', 0),
-(269, 0, 'config', 'config_file_max_size', '300000', 0),
-(270, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
-(271, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
-(272, 0, 'config', 'config_maintenance', '0', 0),
-(273, 0, 'config', 'config_password', '1', 0),
-(274, 0, 'config', 'config_encryption', '87431d38e7edce36d5153707d4cd2bf9', 0),
-(275, 0, 'config', 'config_compression', '0', 0),
-(276, 0, 'config', 'config_error_display', '1', 0),
-(277, 0, 'config', 'config_error_log', '1', 0),
-(278, 0, 'config', 'config_error_filename', 'error.log', 0),
-(279, 0, 'config', 'config_google_analytics', '', 0),
-(280, 0, 'config', 'config_mail_protocol', 'mail', 0),
-(281, 0, 'config', 'config_mail_parameter', '', 0),
-(282, 0, 'config', 'config_mail_smtp_hostname', '', 0),
-(283, 0, 'config', 'config_mail_smtp_username', '', 0),
-(284, 0, 'config', 'config_mail_smtp_password', '', 0),
-(285, 0, 'config', 'config_mail_smtp_port', '25', 0),
-(286, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
-(287, 0, 'config', 'config_captcha', 'basic_captcha', 0),
-(288, 0, 'config', 'config_captcha_page', '["review","return","contact"]', 1),
-(289, 0, 'config', 'config_login_attempts', '5', 0);
+(1, 0, 'config', 'config_meta_title', '我的B2C中国网店', 0),
+(2, 0, 'config', 'config_meta_description', '我的B2C中国网店', 0),
+(3, 0, 'config', 'config_meta_keyword', '我的B2C中国网店', 0),
+(4, 0, 'config', 'config_template', 'default', 0),
+(5, 0, 'config', 'config_layout_id', '4', 0),
+(6, 0, 'config', 'config_name', '我的B2C中国网店', 0),
+(7, 0, 'config', 'config_owner', '商店拥有者', 0),
+(8, 0, 'config', 'config_address', '中国北京市', 0),
+(9, 0, 'config', 'config_map_select', 'baidu', 0),
+(10, 0, 'config', 'config_geocode', '', 0),
+(11, 0, 'config', 'config_email', 'opencartchina@qq.com', 0),
+(12, 0, 'config', 'config_telephone', '123456789', 0),
+(13, 0, 'config', 'config_fax', '', 0),
+(14, 0, 'config', 'config_image', '', 0),
+(15, 0, 'config', 'config_open', '', 0),
+(16, 0, 'config', 'config_comment', '', 0),
+(17, 0, 'config', 'config_country_id', '44', 0),
+(18, 0, 'config', 'config_zone_id', '685', 0),
+(19, 0, 'config', 'config_language', 'cn', 0),
+(20, 0, 'config', 'config_admin_language', 'cn', 0),
+(21, 0, 'config', 'config_currency', 'CNY', 0),
+(22, 0, 'config', 'config_currency_auto', '1', 0),
+(23, 0, 'config', 'config_length_class_id', '1', 0),
+(24, 0, 'config', 'config_weight_class_id', '1', 0),
+(25, 0, 'config', 'config_product_count', '1', 0),
+(26, 0, 'config', 'config_product_limit', '15', 0),
+(27, 0, 'config', 'config_product_description_length', '100', 0),
+(28, 0, 'config', 'config_limit_admin', '20', 0),
+(29, 0, 'config', 'config_review_status', '1', 0),
+(30, 0, 'config', 'config_review_guest', '1', 0),
+(31, 0, 'config', 'config_review_mail', '0', 0),
+(32, 0, 'config', 'config_voucher_min', '1', 0),
+(33, 0, 'config', 'config_voucher_max', '1000', 0),
+(34, 0, 'config', 'config_tax', '1', 0),
+(35, 0, 'config', 'config_tax_default', 'shipping', 0),
+(36, 0, 'config', 'config_tax_customer', 'shipping', 0),
+(37, 0, 'config', 'config_customer_online', '0', 0),
+(38, 0, 'config', 'config_customer_group_id', '1', 0),
+(39, 0, 'config', 'config_customer_group_display', '["1"]', 1),
+(40, 0, 'config', 'config_customer_price', '0', 0),
+(41, 0, 'config', 'config_login_attempts', '5', 0),
+(42, 0, 'config', 'config_account_id', '3', 0),
+(43, 0, 'config', 'config_account_mail', '0', 0),
+(44, 0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
+(45, 0, 'config', 'config_cart_weight', '1', 0),
+(46, 0, 'config', 'config_checkout_guest', '1', 0),
+(47, 0, 'config', 'config_checkout_id', '5', 0),
+(48, 0, 'config', 'config_order_status_id', '1', 0),
+(49, 0, 'config', 'config_processing_status', '["2","5","3","1"]', 1),
+(50, 0, 'config', 'config_complete_status', '["5","3"]', 1),
+(51, 0, 'config', 'config_fraud_status_id', '7', 0),
+(52, 0, 'config', 'config_order_mail', '0', 0),
+(53, 0, 'config', 'config_api_id', '1', 0),
+(54, 0, 'config', 'config_stock_display', '0', 0),
+(55, 0, 'config', 'config_stock_warning', '0', 0),
+(56, 0, 'config', 'config_stock_checkout', '0', 0),
+(57, 0, 'config', 'config_affiliate_approval', '0', 0),
+(58, 0, 'config', 'config_affiliate_auto', '0', 0),
+(59, 0, 'config', 'config_affiliate_commission', '5', 0),
+(60, 0, 'config', 'config_affiliate_id', '4', 0),
+(61, 0, 'config', 'config_affiliate_mail', '0', 0),
+(62, 0, 'config', 'config_return_id', '0', 0),
+(63, 0, 'config', 'config_return_status_id', '2', 0),
+(64, 0, 'config', 'config_captcha', 'basic_captcha', 0),
+(65, 0, 'config', 'config_captcha_page', '["register","review","return","contact"]', 1),
+(66, 0, 'config', 'config_logo', 'catalog/logo.png', 0),
+(67, 0, 'config', 'config_icon', 'catalog/cart.png', 0),
+(68, 0, 'config', 'config_image_category_width', '80', 0),
+(69, 0, 'config', 'config_image_category_height', '80', 0),
+(70, 0, 'config', 'config_image_thumb_width', '228', 0),
+(71, 0, 'config', 'config_image_thumb_height', '228', 0),
+(72, 0, 'config', 'config_image_popup_width', '500', 0),
+(73, 0, 'config', 'config_image_popup_height', '500', 0),
+(74, 0, 'config', 'config_image_product_width', '228', 0),
+(75, 0, 'config', 'config_image_product_height', '228', 0),
+(76, 0, 'config', 'config_image_additional_width', '74', 0),
+(77, 0, 'config', 'config_image_additional_height', '74', 0),
+(78, 0, 'config', 'config_image_related_width', '80', 0),
+(79, 0, 'config', 'config_image_related_height', '80', 0),
+(80, 0, 'config', 'config_image_compare_width', '90', 0),
+(81, 0, 'config', 'config_image_compare_height', '90', 0),
+(82, 0, 'config', 'config_image_wishlist_width', '47', 0),
+(83, 0, 'config', 'config_image_wishlist_height', '47', 0),
+(84, 0, 'config', 'config_image_cart_width', '47', 0),
+(85, 0, 'config', 'config_image_cart_height', '47', 0),
+(86, 0, 'config', 'config_image_location_width', '268', 0),
+(87, 0, 'config', 'config_image_location_height', '50', 0),
+(88, 0, 'config', 'config_ftp_hostname', 'localhost', 0),
+(89, 0, 'config', 'config_ftp_port', '21', 0),
+(90, 0, 'config', 'config_ftp_username', '', 0),
+(91, 0, 'config', 'config_ftp_password', '', 0),
+(92, 0, 'config', 'config_ftp_root', '', 0),
+(93, 0, 'config', 'config_ftp_status', '0', 0),
+(94, 0, 'config', 'config_mail_protocol', 'mail', 0),
+(95, 0, 'config', 'config_mail_parameter', '', 0),
+(96, 0, 'config', 'config_mail_smtp_hostname', '', 0),
+(97, 0, 'config', 'config_mail_smtp_username', '', 0),
+(98, 0, 'config', 'config_mail_smtp_password', '', 0),
+(99, 0, 'config', 'config_mail_smtp_port', '25', 0),
+(100, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
+(101, 0, 'config', 'config_mail_alert', '', 0),
+(102, 0, 'config', 'config_maintenance', '0', 0),
+(103, 0, 'config', 'config_seo_url', '0', 0),
+(104, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
+(105, 0, 'config', 'config_compression', '0', 0),
+(106, 0, 'config', 'config_secure', '0', 0),
+(107, 0, 'config', 'config_password', '1', 0),
+(108, 0, 'config', 'config_shared', '0', 0),
+(109, 0, 'config', 'config_encryption', 'Lc543EJYJUbc3bzZ5jVERN2HxI8NacDxPyLxQryqAnWkNTBFkVjF3hQPO174ac0uwhBfeFnbaXuGwdq7if5Kis0rKDrGSpsprRtB4PVMajS85zUq5PoHpiuuyuHRvOPBEiGE6B3xHghcJLEcqkwCSLjdmZMzRkxpMxMLt9BOd0wBlOmsCxuG6KwGMlLzwQ1UHI6U0lGNklIlF5STEv2ps3Kc9YPDKQlUba5kdAnqOPzTF4VrOFytZUYMxPiIHd162M8iJQzQXa8BUrXQejcl9uZzgNIgMqwvWsPTqSOYqRk5CD3pP3FMGiex5vHRb52jJeCO1ulTD6eNgS5IhlaDRPWWL3rjGQMrkiWAqlQU7kZDzASntXzAVoOmc0zNlrfS6FIzuPVeDLFPre49WzSWZlC7hVBI2wBFj6sSiX8eiy1yq8qP52TYsl19MLPHNyHKDE7k5jII8e6MLA9qa26IcUGu2REeR1wM1Ft0NEJgHm0ZmnAn1hLQRfLaLldwqJtxpETOMjHxa9gzcEopcTqQTXmJy9D5A2Dk5ebjo758ILtlGlm2IZ9tfMXJZmNvHDmUR6WH9YnYwRuNHVagew7AH4m6C7xVk2YauZuo3dtjwO6RmebxFRrPMwAHlIhr5mUK5q5scRSJmu69KJ2r3VL2eSSt5VDIrZ6kf6b7BgERaomS8rTiTWdkItwr647EDBaArRx4gbNXhOAGdWZnuL5aJZSTC2WX6LuNUgMJZ4P81nBYTU35aCEE9symB4LSW6ra9XJPz0ZiiptvcFltjHQzqJzxVbP4ZublliXDFI68AdXz9VeRVvnX8RwKGN0nNFXK4GpGrXUbjXsXxZ34crINweqp12FKtrPshVfV8XY0IIIJEQ8lB8knPV1rkRWczXDv5oXmTWIrBXTjbCmlkuldP5HjbUWlcZOeGcU8MRM4KtrKz6M5oYFzxg0WAvOs3pXRCYge1l3qj1pyCu1w0TqA3DMOBZVTnY63PwckowkxRSOupxyB54lBm20lqyFoYF4G', 0),
+(110, 0, 'config', 'config_file_max_size', '300000', 0),
+(111, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
+(112, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
+(113, 0, 'config', 'config_error_display', '1', 0),
+(114, 0, 'config', 'config_error_log', '1', 0),
+(115, 0, 'config', 'config_error_filename', 'error.log', 0),
+(116, 0, 'basic_captcha', 'basic_captcha_status', '1', 0),
+(130, 0, 'cod', 'cod_status', '1', 0),
+(129, 0, 'cod', 'cod_geo_zone_id', '0', 0),
+(128, 0, 'cod', 'cod_order_status_id', '2', 0),
+(127, 0, 'cod', 'cod_total', '0.01', 0),
+(122, 0, 'flat', 'flat_cost', '', 0),
+(123, 0, 'flat', 'flat_tax_class_id', '0', 0),
+(124, 0, 'flat', 'flat_geo_zone_id', '0', 0),
+(125, 0, 'flat', 'flat_status', '1', 0),
+(126, 0, 'flat', 'flat_sort_order', '', 0),
+(131, 0, 'cod', 'cod_sort_order', '1', 0),
+(132, 0, 'free_checkout', 'free_checkout_order_status_id', '2', 0),
+(133, 0, 'free_checkout', 'free_checkout_status', '1', 0),
+(134, 0, 'free_checkout', 'free_checkout_sort_order', '2', 0),
+(135, 0, 'precharge', 'precharge_total', '0.01', 0),
+(136, 0, 'precharge', 'precharge_order_status_id', '2', 0),
+(137, 0, 'precharge', 'precharge_geo_zone_id', '0', 0),
+(138, 0, 'precharge', 'precharge_status', '1', 0),
+(139, 0, 'precharge', 'precharge_sort_order', '', 0),
+(145, 0, 'coupon', 'coupon_sort_order', '4', 0),
+(144, 0, 'coupon', 'coupon_status', '1', 0),
+(147, 0, 'credit', 'credit_sort_order', '7', 0),
+(146, 0, 'credit', 'credit_status', '1', 0),
+(148, 0, 'reward', 'reward_status', '1', 0),
+(149, 0, 'reward', 'reward_sort_order', '2', 0),
+(150, 0, 'shipping', 'shipping_estimator', '1', 0),
+(151, 0, 'shipping', 'shipping_status', '1', 0),
+(152, 0, 'shipping', 'shipping_sort_order', '3', 0),
+(153, 0, 'sub_total', 'sub_total_status', '1', 0),
+(154, 0, 'sub_total', 'sub_total_sort_order', '1', 0),
+(155, 0, 'tax', 'tax_status', '1', 0),
+(156, 0, 'tax', 'tax_sort_order', '5', 0),
+(157, 0, 'total', 'total_status', '1', 0),
+(158, 0, 'total', 'total_sort_order', '9', 0),
+(159, 0, 'voucher', 'voucher_status', '1', 0),
+(160, 0, 'voucher', 'voucher_sort_order', '8', 0);
 
 
-DROP TABLE IF EXISTS `mcc_sms_mobile`;
-CREATE TABLE `mcc_sms_mobile` (
+CREATE TABLE IF NOT EXISTS `mcc_sms_mobile` (
   `sms_mobile_id` int(11) NOT NULL AUTO_INCREMENT,
-  `sms_mobile` varchar(15) NOT NULL,
-  `verify_code` varchar(6) NOT NULL,
+  `sms_mobile` varchar(15) CHARACTER SET utf8 NOT NULL,
+  `verify_code` varchar(6) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`sms_mobile_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
@@ -2916,8 +2834,7 @@ INSERT INTO `mcc_sms_mobile` (`sms_mobile_id`, `sms_mobile`, `verify_code`) VALU
 (8, '18362370053', '718566'),
 (15, '18362370057', '137177');
 
-DROP TABLE IF EXISTS `mcc_stock_status`;
-CREATE TABLE `mcc_stock_status` (
+CREATE TABLE IF NOT EXISTS `mcc_stock_status` (
   `stock_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
@@ -2940,8 +2857,7 @@ INSERT INTO `mcc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
 (6, 1, '等待 2 -3 天');
 
 
-DROP TABLE IF EXISTS `mcc_store`;
-CREATE TABLE `mcc_store` (
+CREATE TABLE IF NOT EXISTS `mcc_store` (
   `store_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `url` varchar(255) NOT NULL,
@@ -2950,8 +2866,7 @@ CREATE TABLE `mcc_store` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_tax_class`;
-CREATE TABLE `mcc_tax_class` (
+CREATE TABLE IF NOT EXISTS `mcc_tax_class` (
   `tax_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -2966,8 +2881,7 @@ INSERT INTO `mcc_tax_class` (`tax_class_id`, `title`, `description`, `date_added
 (10, '下载类商品', '下载类', '2011-09-21 22:19:39', '2015-04-01 22:29:46');
 
 
-DROP TABLE IF EXISTS `mcc_tax_rate`;
-CREATE TABLE `mcc_tax_rate` (
+CREATE TABLE IF NOT EXISTS `mcc_tax_rate` (
   `tax_rate_id` int(11) NOT NULL AUTO_INCREMENT,
   `geo_zone_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(32) NOT NULL,
@@ -2984,8 +2898,7 @@ INSERT INTO `mcc_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`
 (87, 3, '生态税(-2.00)', '2.0000', 'F', '2011-09-21 21:49:23', '2015-04-01 22:33:22');
 
 
-DROP TABLE IF EXISTS `mcc_tax_rate_to_customer_group`;
-CREATE TABLE `mcc_tax_rate_to_customer_group` (
+CREATE TABLE IF NOT EXISTS `mcc_tax_rate_to_customer_group` (
   `tax_rate_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   PRIMARY KEY (`tax_rate_id`,`customer_group_id`)
@@ -2997,8 +2910,7 @@ INSERT INTO `mcc_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group_id`
 (87, 1);
 
 
-DROP TABLE IF EXISTS `mcc_tax_rule`;
-CREATE TABLE `mcc_tax_rule` (
+CREATE TABLE IF NOT EXISTS `mcc_tax_rule` (
   `tax_rule_id` int(11) NOT NULL AUTO_INCREMENT,
   `tax_class_id` int(11) NOT NULL,
   `tax_rate_id` int(11) NOT NULL,
@@ -3015,8 +2927,7 @@ INSERT INTO `mcc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based
 (130, 10, 87, 'store', 0);
 
 
-DROP TABLE IF EXISTS `mcc_upload`;
-CREATE TABLE `mcc_upload` (
+CREATE TABLE IF NOT EXISTS `mcc_upload` (
   `upload_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,
@@ -3026,15 +2937,14 @@ CREATE TABLE `mcc_upload` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_url_alias`;
-CREATE TABLE `mcc_url_alias` (
+CREATE TABLE IF NOT EXISTS `mcc_url_alias` (
   `url_alias_id` int(11) NOT NULL AUTO_INCREMENT,
   `query` varchar(255) NOT NULL,
   `keyword` varchar(255) NOT NULL,
   PRIMARY KEY (`url_alias_id`),
   KEY `query` (`query`),
   KEY `keyword` (`keyword`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=988 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=990 ;
 
 
 INSERT INTO `mcc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
@@ -3042,7 +2952,7 @@ INSERT INTO `mcc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (980, 'category_id=20', 'desktops'),
 (914, 'category_id=26', 'pc'),
 (915, 'category_id=27', 'mac'),
-(730, 'manufacturer_id=8', 'apple'),
+(989, 'manufacturer_id=8', 'apple'),
 (897, 'information_id=4', 'about_us'),
 (985, 'product_id=42', 'test'),
 (937, 'category_id=34', 'mp3-players'),
@@ -3080,7 +2990,7 @@ INSERT INTO `mcc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (971, 'category_id=40', 'test7'),
 (972, 'category_id=41', 'test8'),
 (973, 'category_id=42', 'test9'),
-(987, 'product_id=30', 'canon-eos-5d'),
+(988, 'product_id=30', 'canon-eos-5d'),
 (986, 'product_id=47', 'hp-lp3065'),
 (811, 'product_id=28', 'htc-touch-hd'),
 (946, 'product_id=43', 'macbook'),
@@ -3107,8 +3017,7 @@ INSERT INTO `mcc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (895, 'information_id=5', 'terms');
 
 
-DROP TABLE IF EXISTS `mcc_user`;
-CREATE TABLE `mcc_user` (
+CREATE TABLE IF NOT EXISTS `mcc_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_group_id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
@@ -3125,8 +3034,7 @@ CREATE TABLE `mcc_user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_user_group`;
-CREATE TABLE `mcc_user_group` (
+CREATE TABLE IF NOT EXISTS `mcc_user_group` (
   `user_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `permission` text NOT NULL,
@@ -3135,12 +3043,11 @@ CREATE TABLE `mcc_user_group` (
 
 
 INSERT INTO `mcc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, '超级管理员群组', '{"access":["analytics\\/google_analytics","captcha\\/basic_captcha","captcha\\/google_captcha","catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/recurring","catalog\\/review","common\\/column_left","common\\/filemanager","common\\/menu","common\\/profile","common\\/stats","customer\\/custom_field","customer\\/customer","customer\\/customer_group","design\\/banner","design\\/layout","extension\\/analytics","extension\\/captcha","extension\\/feed","extension\\/fraud","extension\\/installer","extension\\/modification","extension\\/module","extension\\/openbay","extension\\/payment","extension\\/shipping","extension\\/total","feed\\/google_base","feed\\/google_sitemap","feed\\/openbaypro","fraud\\/fraudlabspro","fraud\\/ip","fraud\\/maxmind","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","marketing\\/affiliate","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","module\\/account","module\\/affiliate","module\\/amazon_login","module\\/amazon_pay","module\\/banner","module\\/bestseller","module\\/carousel","module\\/category","module\\/ebay_listing","module\\/featured","module\\/filter","module\\/google_hangouts","module\\/html","module\\/information","module\\/latest","module\\/pp_button","module\\/pp_login","module\\/slideshow","module\\/special","module\\/store","openbay\\/amazon","openbay\\/amazon_listing","openbay\\/amazon_product","openbay\\/amazonus","openbay\\/amazonus_listing","openbay\\/amazonus_product","openbay\\/ebay","openbay\\/ebay_profile","openbay\\/ebay_template","openbay\\/etsy","openbay\\/etsy_product","openbay\\/etsy_shipping","openbay\\/etsy_shop","payment\\/amazon_login_pay","payment\\/authorizenet_aim","payment\\/authorizenet_sim","payment\\/bank_transfer","payment\\/bluepay_hosted","payment\\/bluepay_redirect","payment\\/cheque","payment\\/cod","payment\\/firstdata","payment\\/firstdata_remote","payment\\/free_checkout","payment\\/g2apay","payment\\/globalpay","payment\\/globalpay_remote","payment\\/klarna_account","payment\\/klarna_invoice","payment\\/liqpay","payment\\/nochex","payment\\/paymate","payment\\/paypoint","payment\\/payza","payment\\/perpetual_payments","payment\\/pp_express","payment\\/pp_payflow","payment\\/pp_payflow_iframe","payment\\/pp_pro","payment\\/pp_pro_iframe","payment\\/pp_standard","payment\\/realex","payment\\/realex_remote","payment\\/sagepay_direct","payment\\/sagepay_server","payment\\/sagepay_us","payment\\/securetrading_pp","payment\\/securetrading_ws","payment\\/skrill","payment\\/twocheckout","payment\\/web_payment_software","payment\\/worldpay","report\\/affiliate","report\\/affiliate_activity","report\\/affiliate_login","report\\/customer_activity","report\\/customer_credit","report\\/customer_login","report\\/customer_online","report\\/customer_order","report\\/customer_reward","report\\/marketing","report\\/product_purchased","report\\/product_viewed","report\\/sale_coupon","report\\/sale_order","report\\/sale_return","report\\/sale_shipping","report\\/sale_tax","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","shipping\\/auspost","shipping\\/citylink","shipping\\/fedex","shipping\\/flat","shipping\\/free","shipping\\/item","shipping\\/parcelforce_48","shipping\\/pickup","shipping\\/royal_mail","shipping\\/ups","shipping\\/usps","shipping\\/weight","tool\\/backup","tool\\/error_log","tool\\/upload","total\\/coupon","total\\/credit","total\\/handling","total\\/klarna_fee","total\\/low_order_fee","total\\/reward","total\\/shipping","total\\/sub_total","total\\/tax","total\\/total","total\\/voucher","user\\/api","user\\/user","user\\/user_permission"],"modify":["analytics\\/google_analytics","captcha\\/basic_captcha","captcha\\/google_captcha","catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/recurring","catalog\\/review","common\\/column_left","common\\/filemanager","common\\/menu","common\\/profile","common\\/stats","customer\\/custom_field","customer\\/customer","customer\\/customer_group","design\\/banner","design\\/layout","extension\\/analytics","extension\\/captcha","extension\\/feed","extension\\/fraud","extension\\/installer","extension\\/modification","extension\\/module","extension\\/openbay","extension\\/payment","extension\\/shipping","extension\\/total","feed\\/google_base","feed\\/google_sitemap","feed\\/openbaypro","fraud\\/fraudlabspro","fraud\\/ip","fraud\\/maxmind","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","marketing\\/affiliate","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","module\\/account","module\\/affiliate","module\\/amazon_login","module\\/amazon_pay","module\\/banner","module\\/bestseller","module\\/carousel","module\\/category","module\\/ebay_listing","module\\/featured","module\\/filter","module\\/google_hangouts","module\\/html","module\\/information","module\\/latest","module\\/pp_button","module\\/pp_login","module\\/slideshow","module\\/special","module\\/store","openbay\\/amazon","openbay\\/amazon_listing","openbay\\/amazon_product","openbay\\/amazonus","openbay\\/amazonus_listing","openbay\\/amazonus_product","openbay\\/ebay","openbay\\/ebay_profile","openbay\\/ebay_template","openbay\\/etsy","openbay\\/etsy_product","openbay\\/etsy_shipping","openbay\\/etsy_shop","payment\\/amazon_login_pay","payment\\/authorizenet_aim","payment\\/authorizenet_sim","payment\\/bank_transfer","payment\\/bluepay_hosted","payment\\/bluepay_redirect","payment\\/cheque","payment\\/cod","payment\\/firstdata","payment\\/firstdata_remote","payment\\/free_checkout","payment\\/g2apay","payment\\/globalpay","payment\\/globalpay_remote","payment\\/klarna_account","payment\\/klarna_invoice","payment\\/liqpay","payment\\/nochex","payment\\/paymate","payment\\/paypoint","payment\\/payza","payment\\/perpetual_payments","payment\\/pp_express","payment\\/pp_payflow","payment\\/pp_payflow_iframe","payment\\/pp_pro","payment\\/pp_pro_iframe","payment\\/pp_standard","payment\\/realex","payment\\/realex_remote","payment\\/sagepay_direct","payment\\/sagepay_server","payment\\/sagepay_us","payment\\/securetrading_pp","payment\\/securetrading_ws","payment\\/skrill","payment\\/twocheckout","payment\\/web_payment_software","payment\\/worldpay","report\\/affiliate","report\\/affiliate_activity","report\\/affiliate_login","report\\/customer_activity","report\\/customer_credit","report\\/customer_login","report\\/customer_online","report\\/customer_order","report\\/customer_reward","report\\/marketing","report\\/product_purchased","report\\/product_viewed","report\\/sale_coupon","report\\/sale_order","report\\/sale_return","report\\/sale_shipping","report\\/sale_tax","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","shipping\\/auspost","shipping\\/citylink","shipping\\/fedex","shipping\\/flat","shipping\\/free","shipping\\/item","shipping\\/parcelforce_48","shipping\\/pickup","shipping\\/royal_mail","shipping\\/ups","shipping\\/usps","shipping\\/weight","tool\\/backup","tool\\/error_log","tool\\/upload","total\\/coupon","total\\/credit","total\\/handling","total\\/klarna_fee","total\\/low_order_fee","total\\/reward","total\\/shipping","total\\/sub_total","total\\/tax","total\\/total","total\\/voucher","user\\/api","user\\/user","user\\/user_permission"]}'),
+(1, '超级管理员群组', '{"access":["analytics\\/google_analytics","captcha\\/basic_captcha","captcha\\/google_captcha","catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/recurring","catalog\\/review","catalog\\/url_alias","common\\/column_left","common\\/filemanager","common\\/menu","common\\/profile","common\\/sass","common\\/stats","customer\\/custom_field","customer\\/customer","customer\\/customer_group","design\\/banner","design\\/layout","extension\\/analytics","extension\\/captcha","extension\\/feed","extension\\/fraud","extension\\/installer","extension\\/modification","extension\\/module","extension\\/openbay","extension\\/payment","extension\\/shipping","extension\\/sms","extension\\/total","feed\\/google_base","feed\\/google_sitemap","feed\\/openbaypro","fraud\\/fraudlabspro","fraud\\/ip","fraud\\/maxmind","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","marketing\\/affiliate","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","module\\/account","module\\/affiliate","module\\/banner","module\\/bestseller","module\\/carousel","module\\/category","module\\/featured","module\\/filter","module\\/html","module\\/information","module\\/latest","module\\/pp_button","module\\/pp_login","module\\/slideshow","module\\/special","module\\/store","openbay\\/amazon","openbay\\/amazon_listing","openbay\\/amazon_product","openbay\\/amazonus","openbay\\/amazonus_listing","openbay\\/amazonus_product","openbay\\/ebay","openbay\\/ebay_profile","openbay\\/ebay_template","openbay\\/etsy","openbay\\/etsy_product","openbay\\/etsy_shipping","openbay\\/etsy_shop","payment\\/alipay_direct","payment\\/alipay_guarantee","payment\\/alipay_wap","payment\\/bank_transfer","payment\\/cheque","payment\\/chinapay","payment\\/cod","payment\\/ebatong","payment\\/free_checkout","payment\\/pp_express","payment\\/pp_payflow","payment\\/pp_payflow_iframe","payment\\/pp_pro","payment\\/pp_pro_iframe","payment\\/pp_standard","payment\\/precharge","payment\\/qrcode_wxpay","payment\\/upop","payment\\/wxpay","report\\/affiliate","report\\/affiliate_activity","report\\/affiliate_login","report\\/customer_activity","report\\/customer_credit","report\\/customer_login","report\\/customer_online","report\\/customer_order","report\\/customer_reward","report\\/marketing","report\\/product_purchased","report\\/product_viewed","report\\/sale_coupon","report\\/sale_order","report\\/sale_return","report\\/sale_shipping","report\\/sale_tax","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","shipping\\/auspost","shipping\\/citylink","shipping\\/fedex","shipping\\/flat","shipping\\/free","shipping\\/item","shipping\\/parcelforce_48","shipping\\/pickup","shipping\\/royal_mail","shipping\\/ups","shipping\\/usps","shipping\\/weight","sms\\/chengyu","tool\\/backup","tool\\/error_log","tool\\/upload","total\\/coupon","total\\/credit","total\\/handling","total\\/klarna_fee","total\\/low_order_fee","total\\/reward","total\\/shipping","total\\/sub_total","total\\/tax","total\\/total","total\\/voucher","user\\/api","user\\/user","user\\/user_permission","weidian\\/category","weidian\\/config","weidian\\/product","analytics\\/google_analytics","analytics\\/google_analytics","captcha\\/basic_captcha","feed\\/google_sitemap","feed\\/google_base","payment\\/precharge","total\\/handling"],"modify":["analytics\\/google_analytics","captcha\\/basic_captcha","captcha\\/google_captcha","catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/recurring","catalog\\/review","catalog\\/url_alias","common\\/column_left","common\\/filemanager","common\\/menu","common\\/profile","common\\/sass","common\\/stats","customer\\/custom_field","customer\\/customer","customer\\/customer_group","design\\/banner","design\\/layout","extension\\/analytics","extension\\/captcha","extension\\/feed","extension\\/fraud","extension\\/installer","extension\\/modification","extension\\/module","extension\\/openbay","extension\\/payment","extension\\/shipping","extension\\/sms","extension\\/total","feed\\/google_base","feed\\/google_sitemap","feed\\/openbaypro","fraud\\/fraudlabspro","fraud\\/ip","fraud\\/maxmind","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","marketing\\/affiliate","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","module\\/account","module\\/affiliate","module\\/banner","module\\/bestseller","module\\/carousel","module\\/category","module\\/featured","module\\/filter","module\\/html","module\\/information","module\\/latest","module\\/pp_button","module\\/pp_login","module\\/slideshow","module\\/special","module\\/store","openbay\\/amazon","openbay\\/amazon_listing","openbay\\/amazon_product","openbay\\/amazonus","openbay\\/amazonus_listing","openbay\\/amazonus_product","openbay\\/ebay","openbay\\/ebay_profile","openbay\\/ebay_template","openbay\\/etsy","openbay\\/etsy_product","openbay\\/etsy_shipping","openbay\\/etsy_shop","payment\\/alipay_direct","payment\\/alipay_guarantee","payment\\/alipay_wap","payment\\/bank_transfer","payment\\/cheque","payment\\/chinapay","payment\\/cod","payment\\/ebatong","payment\\/free_checkout","payment\\/pp_express","payment\\/pp_payflow","payment\\/pp_payflow_iframe","payment\\/pp_pro","payment\\/pp_pro_iframe","payment\\/pp_standard","payment\\/precharge","payment\\/qrcode_wxpay","payment\\/upop","payment\\/wxpay","report\\/affiliate","report\\/affiliate_activity","report\\/affiliate_login","report\\/customer_activity","report\\/customer_credit","report\\/customer_login","report\\/customer_online","report\\/customer_order","report\\/customer_reward","report\\/marketing","report\\/product_purchased","report\\/product_viewed","report\\/sale_coupon","report\\/sale_order","report\\/sale_return","report\\/sale_shipping","report\\/sale_tax","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","shipping\\/auspost","shipping\\/citylink","shipping\\/fedex","shipping\\/flat","shipping\\/free","shipping\\/item","shipping\\/parcelforce_48","shipping\\/pickup","shipping\\/royal_mail","shipping\\/ups","shipping\\/usps","shipping\\/weight","sms\\/chengyu","tool\\/backup","tool\\/error_log","tool\\/upload","total\\/coupon","total\\/credit","total\\/handling","total\\/klarna_fee","total\\/low_order_fee","total\\/reward","total\\/shipping","total\\/sub_total","total\\/tax","total\\/total","total\\/voucher","user\\/api","user\\/user","user\\/user_permission","weidian\\/category","weidian\\/config","weidian\\/product","analytics\\/google_analytics","analytics\\/google_analytics","captcha\\/basic_captcha","feed\\/google_sitemap","feed\\/google_base","payment\\/precharge","total\\/handling"]}'),
 (10, '演示用管理员群组', '');
 
 
-DROP TABLE IF EXISTS `mcc_voucher`;
-CREATE TABLE `mcc_voucher` (
+CREATE TABLE IF NOT EXISTS `mcc_voucher` (
   `voucher_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `code` varchar(10) NOT NULL,
@@ -3157,8 +3064,7 @@ CREATE TABLE `mcc_voucher` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_voucher_history`;
-CREATE TABLE `mcc_voucher_history` (
+CREATE TABLE IF NOT EXISTS `mcc_voucher_history` (
   `voucher_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `voucher_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -3168,8 +3074,7 @@ CREATE TABLE `mcc_voucher_history` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 
-DROP TABLE IF EXISTS `mcc_voucher_theme`;
-CREATE TABLE `mcc_voucher_theme` (
+CREATE TABLE IF NOT EXISTS `mcc_voucher_theme` (
   `voucher_theme_id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`voucher_theme_id`)
@@ -3182,8 +3087,7 @@ INSERT INTO `mcc_voucher_theme` (`voucher_theme_id`, `image`) VALUES
 (6, 'catalog/demo/apple_logo.jpg');
 
 
-DROP TABLE IF EXISTS `mcc_voucher_theme_description`;
-CREATE TABLE `mcc_voucher_theme_description` (
+CREATE TABLE IF NOT EXISTS `mcc_voucher_theme_description` (
   `voucher_theme_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
@@ -3203,8 +3107,7 @@ INSERT INTO `mcc_voucher_theme_description` (`voucher_theme_id`, `language_id`, 
 (7, 3, '生日');
 
 
-DROP TABLE IF EXISTS `mcc_weight_class`;
-CREATE TABLE `mcc_weight_class` (
+CREATE TABLE IF NOT EXISTS `mcc_weight_class` (
   `weight_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` decimal(15,8) NOT NULL DEFAULT '0.00000000',
   PRIMARY KEY (`weight_class_id`)
@@ -3218,8 +3121,7 @@ INSERT INTO `mcc_weight_class` (`weight_class_id`, `value`) VALUES
 (6, '35.27400000');
 
 
-DROP TABLE IF EXISTS `mcc_weight_class_description`;
-CREATE TABLE `mcc_weight_class_description` (
+CREATE TABLE IF NOT EXISTS `mcc_weight_class_description` (
   `weight_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
@@ -3243,8 +3145,7 @@ INSERT INTO `mcc_weight_class_description` (`weight_class_id`, `language_id`, `t
 (5, 3, '磅', 'lb');
 
 
-DROP TABLE IF EXISTS `mcc_zone`;
-CREATE TABLE `mcc_zone` (
+CREATE TABLE IF NOT EXISTS `mcc_zone` (
   `zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
@@ -3465,6 +3366,7 @@ INSERT INTO `mcc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUE
 (208, 15, 'Ali Bayramli', 'AB', 1),
 (209, 15, 'Abseron', 'ABS', 1),
 (210, 15, 'AgcabAdi', 'AGC', 1),
+
 (211, 15, 'Agdam', 'AGM', 1),
 (212, 15, 'Agdas', 'AGS', 1),
 (213, 15, 'Agstafa', 'AGA', 1),
@@ -3577,7 +3479,6 @@ INSERT INTO `mcc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUE
 (320, 18, 'Barisal', 'BAR', 1),
 (321, 18, 'Chittagong', 'CHI', 1),
 (322, 18, 'Dhaka', 'DHA', 1),
-
 (323, 18, 'Khulna', 'KHU', 1),
 (324, 18, 'Rajshahi', 'RAJ', 1),
 (325, 18, 'Sylhet', 'SYL', 1),
@@ -5506,7 +5407,6 @@ INSERT INTO `mcc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUE
 (2342, 152, 'Nord', 'N', 1),
 (2343, 152, 'Sud', 'S', 1),
 (2344, 153, 'Auckland', 'AUK', 1),
-
 (2345, 153, 'Bay of Plenty', 'BOP', 1),
 (2346, 153, 'Canterbury', 'CAN', 1),
 (2347, 153, 'Coromandel', 'COR', 1),
@@ -5738,7 +5638,6 @@ INSERT INTO `mcc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUE
 (2573, 168, 'Capiz', 'CAP', 1),
 (2574, 168, 'Catanduanes', 'CAT', 1),
 (2575, 168, 'Cavite', 'CAV', 1),
-
 (2576, 168, 'Cebu', 'CEB', 1),
 (2577, 168, 'Compostela', 'CMP', 1),
 (2578, 168, 'Davao del Norte', 'DNO', 1),
@@ -7363,8 +7262,7 @@ INSERT INTO `mcc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUE
 (4226, 44, '台湾省', 'TW', 1);
 
 
-DROP TABLE IF EXISTS `mcc_zone_to_geo_zone`;
-CREATE TABLE `mcc_zone_to_geo_zone` (
+CREATE TABLE IF NOT EXISTS `mcc_zone_to_geo_zone` (
   `zone_to_geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL,
   `zone_id` int(11) NOT NULL DEFAULT '0',

@@ -123,6 +123,13 @@
                 </div>
                 
                 <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-miit"><?php echo $entry_miit; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_miit" value="<?php echo $config_miit; ?>" placeholder="<?php echo $entry_miit; ?>" id="input-miit" class="form-control" />
+                  </div>
+                </div>
+                
+                <div class="form-group">
                   <label class="col-sm-2 control-label"><?php echo $entry_map_select; ?></label>
                   <div class="col-sm-10">
                     <label class="radio-inline">
@@ -216,7 +223,7 @@
                 </div>
                 <?php } ?>
 
-            
+            </div>
             
             <div class="tab-pane" id="tab-local">
               <div class="form-group">
@@ -778,6 +785,29 @@
                     </div>
                     <?php if ($error_processing_status) { ?>
                     <div class="text-danger"><?php echo $error_processing_status; ?></div>
+                    <?php } ?>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-complete-status"><span data-toggle="tooltip" title="<?php echo $help_complete_status; ?>"><?php echo $entry_complete_status; ?></span></label>
+                  <div class="col-sm-10">
+                    <div class="well well-sm" style="height: 150px; overflow: auto;">
+                      <?php foreach ($order_statuses as $order_status) { ?>
+                      <div class="checkbox">
+                        <label>
+                          <?php if (in_array($order_status['order_status_id'], $config_complete_status)) { ?>
+                          <input type="checkbox" name="config_complete_status[]" value="<?php echo $order_status['order_status_id']; ?>" checked="checked" />
+                          <?php echo $order_status['name']; ?>
+                          <?php } else { ?>
+                          <input type="checkbox" name="config_complete_status[]" value="<?php echo $order_status['order_status_id']; ?>" />
+                          <?php echo $order_status['name']; ?>
+                          <?php } ?>
+                        </label>
+                      </div>
+                      <?php } ?>
+                    </div>
+                    <?php if ($error_complete_status) { ?>
+                    <div class="text-danger"><?php echo $error_complete_status; ?></div>
                     <?php } ?>
                   </div>
                 </div>
@@ -1594,26 +1624,7 @@
                   <?php } ?>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-google-analytics"><?php echo $entry_google_analytics; ?></label>
-                <div class="col-sm-10">
-                  <textarea name="config_google_analytics" rows="5" placeholder="<?php echo $entry_google_analytics; ?>" id="input-google-analytics" class="form-control"><?php echo $config_google_analytics; ?></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-google-analytics-status"><?php echo $entry_status; ?></label>
-                <div class="col-sm-10">
-                  <select name="config_google_analytics_status" id="input-google-analytics-status" class="form-control">
-                    <?php if ($config_google_analytics_status) { ?>
-                    <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                    <option value="0"><?php echo $text_disabled; ?></option>
-                    <?php } else { ?>
-                    <option value="1"><?php echo $text_enabled; ?></option>
-                    <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
+              
               </fieldset>  
             </div>
           </div>

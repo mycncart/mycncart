@@ -27,7 +27,7 @@ $_['text_close']                    = '关闭';
 $_['text_pagination']               = '显示 %d 到 %d / %d (总 %d 页)';
 $_['text_loading']                  = '加载中...';
 $_['text_no_results']               = '没有符合条件的结果！';
-$_['text_confirm']                  = '确定吗？?';
+$_['text_confirm']                  = '确定吗？';
 $_['text_home']                     = '首页';
 
 // Button
@@ -111,6 +111,7 @@ $_['button_disable']                = '批量禁用';
 
 // Tab
 $_['tab_address']                   = '地址';
+$_['tab_additional']                = '其他';
 $_['tab_admin']                     = '管理';
 $_['tab_attribute']                 = '属性';
 $_['tab_customer']                  = '会员详情';

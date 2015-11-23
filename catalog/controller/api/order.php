@@ -141,6 +141,7 @@ class ControllerApiOrder extends Controller {
 					$order_data['shipping_fullname'] = $this->session->data['shipping_address']['fullname'];
 					$order_data['shipping_company'] = $this->session->data['shipping_address']['company'];
 					$order_data['shipping_address'] = $this->session->data['shipping_address']['address'];
+					$order_data['shipping_telephone'] = $this->session->data['shipping_address']['shipping_telephone'];
 					$order_data['shipping_city'] = $this->session->data['shipping_address']['city'];
 					$order_data['shipping_postcode'] = $this->session->data['shipping_address']['postcode'];
 					$order_data['shipping_zone'] = $this->session->data['shipping_address']['zone'];
@@ -166,6 +167,7 @@ class ControllerApiOrder extends Controller {
 					$order_data['shipping_company'] = '';
 					$order_data['shipping_address'] = '';
 					$order_data['shipping_city'] = '';
+					$order_data['shipping_telephone'] = '';
 					$order_data['shipping_postcode'] = '';
 					$order_data['shipping_zone'] = '';
 					$order_data['shipping_zone_id'] = '';
@@ -501,6 +503,7 @@ class ControllerApiOrder extends Controller {
 						$order_data['shipping_fullname'] = $this->session->data['shipping_address']['fullname'];
 						$order_data['shipping_company'] = $this->session->data['shipping_address']['company'];
 						$order_data['shipping_address'] = $this->session->data['shipping_address']['address'];
+						$order_data['shipping_telephone'] = $this->session->data['shipping_address']['shipping_telephone'];
 						$order_data['shipping_city'] = $this->session->data['shipping_address']['city'];
 						$order_data['shipping_postcode'] = $this->session->data['shipping_address']['postcode'];
 						$order_data['shipping_zone'] = $this->session->data['shipping_address']['zone'];
@@ -526,6 +529,7 @@ class ControllerApiOrder extends Controller {
 						$order_data['shipping_company'] = '';
 						$order_data['shipping_address'] = '';
 						$order_data['shipping_city'] = '';
+						$order_data['shipping_telephone'] = '';
 						$order_data['shipping_postcode'] = '';
 						$order_data['shipping_zone'] = '';
 						$order_data['shipping_zone_id'] = '';

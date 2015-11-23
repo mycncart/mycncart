@@ -94,7 +94,6 @@ $_['button_unlock']                 = 'Unlock Account';
 $_['button_link']                   = 'Link';
 $_['button_currency']               = 'Refresh Currency Values';
 $_['button_apply']                  = 'Apply';
-$_['button_jump']                   = 'Jump';
 $_['button_category_add']           = 'Add Category';
 
 // Tab
@@ -134,6 +133,7 @@ $_['tab_online']                    = 'People Online';
 $_['tab_activity']                  = 'Recent Activity';
 $_['tab_recurring']                 = 'Recurring';
 $_['tab_action']                    = 'Action';
+$_['tab_google']                    = 'Google';
 
 // Error
 $_['error_exception']               = 'Error Code(%s): %s in %s on line %s';

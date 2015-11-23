@@ -25,6 +25,7 @@ $_['text_payment']                     = '账单地址';
 $_['text_mail']                        = 'Mail';
 $_['text_smtp']                        = 'SMTP';
 $_['text_baidu']                       = '百度';
+$_['text_google']                      = '谷歌';
 $_['text_general']                     = '常规';
 $_['text_security']                    = '安全';
 $_['text_upload']                      = '上传';

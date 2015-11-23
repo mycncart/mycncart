@@ -57,7 +57,7 @@
                 <?php } ?></td>
             </tr>
             <tr>
-              <td><?php echo $text_shipping_telephone; ?></td>
+              <td><button data-toggle="tooltip" title="<?php echo $text_shipping_telephone; ?>" class="btn btn-info btn-xs"><i class="fa fa-mobile fa-fw"></i></button></td>
               <td><?php echo $shipping_telephone; ?></td>
             </tr>
             <tr>

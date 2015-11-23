@@ -1,8 +1,7 @@
 <?php
 class Customer {
 	private $customer_id;
-	private $firstname;
-	private $lastname;
+	private $fullname;
 	private $customer_group_id;
 	private $email;
 	private $telephone;
@@ -21,8 +20,7 @@ class Customer {
 
 			if ($customer_query->num_rows) {
 				$this->customer_id = $customer_query->row['customer_id'];
-				$this->firstname = $customer_query->row['firstname'];
-				$this->lastname = $customer_query->row['lastname'];
+				$this->fullname = $customer_query->row['fullname'];
 				$this->customer_group_id = $customer_query->row['customer_group_id'];
 				$this->email = $customer_query->row['email'];
 				$this->telephone = $customer_query->row['telephone'];
@@ -54,8 +52,7 @@ class Customer {
 			$this->session->data['customer_id'] = $customer_query->row['customer_id'];
 
 			$this->customer_id = $customer_query->row['customer_id'];
-			$this->firstname = $customer_query->row['firstname'];
-			$this->lastname = $customer_query->row['lastname'];
+			$this->fullname = $customer_query->row['fullname'];
 			$this->customer_group_id = $customer_query->row['customer_group_id'];
 			$this->email = $customer_query->row['email'];
 			$this->telephone = $customer_query->row['telephone'];
@@ -75,8 +72,7 @@ class Customer {
 		unset($this->session->data['customer_id']);
 
 		$this->customer_id = '';
-		$this->firstname = '';
-		$this->lastname = '';
+		$this->fullname = '';
 		$this->customer_group_id = '';
 		$this->email = '';
 		$this->telephone = '';
@@ -93,12 +89,8 @@ class Customer {
 		return $this->customer_id;
 	}
 
-	public function getFirstName() {
-		return $this->firstname;
-	}
-
-	public function getLastName() {
-		return $this->lastname;
+	public function getFullName() {
+		return $this->fullname;
 	}
 
 	public function getGroupId() {

@@ -48,6 +48,7 @@ class ControllerSettingSetting extends Controller {
 		$data['text_mail'] = $this->language->get('text_mail');
 		$data['text_smtp'] = $this->language->get('text_smtp');
 		$data['text_baidu'] = $this->language->get('text_baidu');
+		$data['text_google'] = $this->language->get('text_google');
 		$data['text_general'] = $this->language->get('text_general');
 		$data['text_security'] = $this->language->get('text_security');
 		$data['text_upload'] = $this->language->get('text_upload');
@@ -1348,6 +1349,7 @@ class ControllerSettingSetting extends Controller {
 	}
 
 	protected function validate() {
+		
 		if (!$this->user->hasPermission('modify', 'setting/setting')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
@@ -1356,7 +1358,7 @@ class ControllerSettingSetting extends Controller {
 			$this->error['name'] = $this->language->get('error_name');
 		}
 
-		if ((utf8_strlen($this->request->post['config_owner']) < 3) || (utf8_strlen($this->request->post['config_owner']) > 64)) {
+		if ((utf8_strlen($this->request->post['config_owner']) < 1) || (utf8_strlen($this->request->post['config_owner']) > 64)) {
 			$this->error['owner'] = $this->language->get('error_owner');
 		}
 
@@ -1485,7 +1487,7 @@ class ControllerSettingSetting extends Controller {
 		if ($this->error && !isset($this->error['warning'])) {
 			$this->error['warning'] = $this->language->get('error_warning');
 		}
-
+		
 		return !$this->error;
 	}
 

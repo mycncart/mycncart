@@ -25,7 +25,7 @@ $_['text_close']                    = '關閉';
 $_['text_pagination']               = '顯示 %d 到 %d / %d (總 %d 頁)';
 $_['text_loading']                  = '加載中...';
 $_['text_no_results']               = '沒有符合條件的結果！';
-$_['text_confirm']                  = '確定嗎？?';
+$_['text_confirm']                  = '確定嗎？';
 $_['text_home']                     = '首頁';
 
 // Button

@@ -113,11 +113,9 @@ class ControllerTotalShipping extends Controller {
 			}
 
 			$this->session->data['shipping_address'] = array(
-				'firstname'      => '',
-				'lastname'       => '',
+				'fullname'      => '',
 				'company'        => '',
-				'address_1'      => '',
-				'address_2'      => '',
+				'address'        => '',
 				'postcode'       => $this->request->post['postcode'],
 				'city'           => '',
 				'zone_id'        => $this->request->post['zone_id'],
