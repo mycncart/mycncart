@@ -141,12 +141,6 @@
               <textarea name="comment" rows="10" placeholder="<?php echo $entry_fault_detail; ?>" id="input-comment" class="form-control"><?php echo $comment; ?></textarea>
             </div>
           </div>
-          <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-captcha"><?php echo $entry_captcha; ?></label>
-            <div class="col-sm-10">
-              <input type="text" name="captcha" value="" placeholder="<?php echo $entry_captcha; ?>" id="input-captcha" class="form-control" />
-            </div>
-          </div>
           <?php echo $captcha; ?>
         </fieldset>
         <?php if ($text_agree) { ?>
