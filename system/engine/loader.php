@@ -91,6 +91,17 @@ final class Loader {
 
 		return $output;
 	}
+	
+	public function library($library) {
+		$file = DIR_SYSTEM . 'library/' . $library . '.php';
+
+		if (file_exists($file)) {
+			include_once($file);
+		} else {
+			trigger_error('Error: Could not load library ' . $file . '!');
+			exit();
+		}
+	}
 
 	public function helper($helper) {
 		$file = DIR_SYSTEM . 'helper/' . str_replace('../', '', (string)$helper) . '.php';
