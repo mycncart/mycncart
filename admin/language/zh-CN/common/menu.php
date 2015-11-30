@@ -93,3 +93,6 @@ $_['text_weidian']	 			       = '微店管理';
 $_['text_wdcategory'] 			       = '微店分类';
 $_['text_wdproduct'] 			       = '微店商品';
 $_['text_config'] 				       = '微店参数设置';
+$_['text_baidu_seo'] 				   = '百度推广';
+$_['text_baidu'] 					   = '百度参数';
+$_['text_pushurl'] 					   = '百度URL提交';

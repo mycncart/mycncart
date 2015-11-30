@@ -2494,6 +2494,13 @@ INSERT INTO `mcc_product_to_store` (`product_id`, `store_id`) VALUES
 (48, 0),
 (49, 0);
 
+CREATE TABLE IF NOT EXISTS `mcc_pushurl` (
+  `pushurl_id` int(11) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `pushed` tinyint(1) NOT NULL,
+  `push_date` datetime NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1;
+
 
 CREATE TABLE IF NOT EXISTS `mcc_recurring` (
   `recurring_id` int(11) NOT NULL AUTO_INCREMENT,

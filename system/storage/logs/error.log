@@ -195,3 +195,8 @@
 2015-11-18 10:39:41 - PHP Warning:  vsprintf(): Too few arguments in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
 2015-11-18 10:39:41 - PHP Notice:  unserialize(): Error at offset 0 of 37 bytes in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
 2015-11-18 10:39:41 - PHP Warning:  vsprintf(): Too few arguments in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
+2015-11-30 4:29:12 - PHP Notice:  Error: Table 'mycncart_master.mcc_pushurl' doesn't exist<br />Error No: 1146<br />SELECT COUNT(*) AS total FROM mcc_pushurl WHERE pushurl_id != 0 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2015-11-30 4:29:12 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\baidu\pushurl.php on line 147
+2015-11-30 4:29:12 - PHP Notice:  Error: Table 'mycncart_master.mcc_pushurl' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_pushurl WHERE pushurl_id != 0 ORDER BY pushurl_id ASC LIMIT 0,20 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2015-11-30 4:29:12 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\baidu\pushurl.php on line 130
+2015-11-30 4:29:12 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\baidu\pushurl.php on line 483

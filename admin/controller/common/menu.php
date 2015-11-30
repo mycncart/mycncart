@@ -101,6 +101,9 @@ class ControllerCommonMenu extends Controller {
 		$data['text_wdcategory'] = $this->language->get('text_wdcategory');
 		$data['text_wdproduct'] = $this->language->get('text_wdproduct');
 		$data['text_config'] = $this->language->get('text_config');
+		$data['text_baidu_seo'] = $this->language->get('text_baidu_seo');
+		$data['text_baidu'] = $this->language->get('text_baidu');
+		$data['text_pushurl'] = $this->language->get('text_pushurl');
 
 		$data['analytics'] = $this->url->link('extension/analytics', 'token=' . $this->session->data['token'], 'SSL');
 		$data['home'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL');
@@ -182,6 +185,8 @@ class ControllerCommonMenu extends Controller {
 		$data['wdcategory'] = $this->url->link('weidian/category', 'token=' . $this->session->data['token'], 'SSL');
 		$data['wdproduct'] = $this->url->link('weidian/product', 'token=' . $this->session->data['token'], 'SSL');
 		$data['config'] = $this->url->link('weidian/config', 'token=' . $this->session->data['token'], 'SSL');
+		$data['baidu'] = $this->url->link('baidu/baidu', 'token=' . $this->session->data['token'], 'SSL');
+		$data['pushurl'] = $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'], 'SSL');
 
 		$data['openbay_show_menu'] = $this->config->get('openbaypro_menu');
 		$data['openbay_link_extension'] = $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL');
