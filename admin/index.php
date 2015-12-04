@@ -1,6 +1,6 @@
 <?php
 // Version
-define('VERSION', '1.2.0.1');
+define('VERSION', '1.3');
 
 // Configuration
 if (is_file('config.php')) {
@@ -12,6 +12,8 @@ if (!defined('DIR_APPLICATION')) {
 	header('Location: ../install/index.php');
 	exit;
 }
+
+date_default_timezone_set('PRC');
 
 // Startup
 require_once(DIR_SYSTEM . 'startup.php');
