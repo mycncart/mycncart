@@ -19,7 +19,7 @@ $_['entry_email']    = 'E-Mail Address';
 $_['entry_enquiry']  = 'Enquiry';
 
 // Email
-$_['email_subject']  = 'Enquiry %s';
+$_['email_subject']  = 'Enquiry From %s (%s)';
 
 // Errors
 $_['error_name']     = 'Name must be between 3 and 32 characters!';

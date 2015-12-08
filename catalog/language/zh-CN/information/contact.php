@@ -20,7 +20,7 @@ $_['entry_email']    = 'E-Mail';
 $_['entry_enquiry']  = '咨询内容';
 
 // Email
-$_['email_subject']  = '咨询 %s';
+$_['email_subject']  = '来自于 %s (%s) 的咨询';
 
 // Errors
 $_['error_name']     = '姓名必须为 3 - 32字符！';
