@@ -223,7 +223,7 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->getList();
 	}
-
+	
 	protected function getList() {
 		if (isset($this->request->get['filter_name'])) {
 			$filter_name = $this->request->get['filter_name'];
@@ -1337,7 +1337,7 @@ class ControllerCatalogProduct extends Controller {
 
 		return !$this->error;
 	}
-
+	
 	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'catalog/product')) {
 			$this->error['warning'] = $this->language->get('error_permission');
