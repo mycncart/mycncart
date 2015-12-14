@@ -161,13 +161,24 @@
       </li>
     </ul>
   </li>
-  <li id="weidian"><a class="parent"><i class="fa fa-university"></i> <span><?php echo $text_weidian; ?></span></a>
+  <li id="thirdparty"><a class="parent"><i class="fa fa-university"></i> <span><?php echo $text_thirdparty; ?></span></a>
     <ul>
-      <li><a href="<?php echo $wdcategory; ?>"><?php echo $text_wdcategory; ?></a></li>
-      <li><a href="<?php echo $wdproduct; ?>"><?php echo $text_wdproduct; ?></a></li>
-      <li><a href="<?php echo $config; ?>"><?php echo $text_config; ?></a></li>
+      <li><a class="parent"><?php echo $text_weidian; ?></a>
+        <ul>
+          <li><a href="<?php echo $weidian_category; ?>"><?php echo $text_weidian_category; ?></a></li>
+          <li><a href="<?php echo $weidian_product; ?>"><?php echo $text_weidian_product; ?></a></li>
+          <li><a href="<?php echo $weidian_config; ?>"><?php echo $text_weidian_config; ?></a></li>
+        </ul>
+      </li>
+      <li><a class="parent"><?php echo $text_youzan; ?></a>
+        <ul>
+          <li><a href="<?php echo $youzan_product; ?>"><?php echo $text_youzan_product; ?></a></li>
+          <li><a href="<?php echo $youzan_config; ?>"><?php echo $text_youzan_config; ?></a></li>
+        </ul>
+      </li>
     </ul>
   </li>
+  
   <li id="others"><a class="parent"><i class="fa fa-key fa-fw"></i> <span><?php echo $text_others; ?></span></a>
   </li>
 </ul>

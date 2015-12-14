@@ -12,7 +12,7 @@ class ControllerYouzanProduct extends Controller {
 		$this->getList();
 	}
 	
-	public function edit() {
+	public function push() {
 		$this->language->load('youzan/product');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -21,30 +21,42 @@ class ControllerYouzanProduct extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			
-			$this->addYouZanProduct($this->request->get['product_id'], $this->request->post);
-
-			$this->session->data['success'] = $this->language->get('text_success');
+			$result = $this->addYouZanProduct($this->request->get['product_id'], $this->request->post);
+			
+			if($result) {
+				$this->session->data['success'] = $this->language->get('text_success');
+			}else{
+				$this->session->data['warning'] = $this->language->get('text_add_youzan_warning');
+			}
 
 			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 			}
-
+	
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
 			}
-
+	
 			if (isset($this->request->get['filter_price'])) {
 				$url .= '&filter_price=' . $this->request->get['filter_price'];
 			}
-
+	
 			if (isset($this->request->get['filter_quantity'])) {
 				$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
 			}
-
+			
+			if (isset($this->request->get['filter_product_id'])) {
+				$url .= '&filter_product_id=' . $this->request->get['filter_product_id'];
+			}
+	
 			if (isset($this->request->get['filter_status'])) {
 				$url .= '&filter_status=' . $this->request->get['filter_status'];
+			}
+			
+			if (isset($this->request->get['filter_sent'])) {
+				$url .= '&filter_sent=' . $this->request->get['filter_sent'];
 			}
 
 			if (isset($this->request->get['sort'])) {
@@ -59,573 +71,28 @@ class ControllerYouzanProduct extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 		}
 
 		$this->getForm();
 	}
-
-	public function push() {
-		
-		$this->load->language('youzan/product');
-		
-		$product_id = $this->request->get['product_id'];
-		
-		$this->load->model('youzan/product');
-		
-		$appid = $this->config->get('youzan_appid');
-		
-		
-		
-		$appsecret = $this->config->get('youzan_appsecret');
-		
-		
-		
-		$url = 'https://api.vdian.com/token?grant_type=client_credential&appid='.trim($appid).'&appsecret='.trim($appsecret);
-		
-		$return_json = file_get_contents($url);
-		
-		//echo $return_json;
-		
-		$return_info = json_decode($return_json);
-		
-		$token_status_code = $return_info->status->status_code;
-		
-		$token_status_reason = $return_info->status->status_reason;
-		
-		
-		if(($token_status_code == 0) && ($token_status_reason == 'success')) {
-		
-			$access_token = $return_info->result->access_token;
-			
-			$product_info = $this->model_youzan_product->getProduct($product_id);
-			
-			//获取并上传图片
-			$main_image = $product_info['image'];		
-			
-			$upload_result = $this->uploadImage($main_image,$access_token);
-			
-			if($upload_result) {
-				
-				//添加商品
-				
-				//获取该商品的已经推送到微店的分类开始
-				
-				$wd_categories = '';
-				
-				$categories = $this->model_youzan_product->getCategoresByProductId($product_id);
-				if($categories) {
-					
-					$i = count($categories);
-					
-					$k = 0;
-					
-					foreach($categories as $category) {
-						if($k == ($i - 1)) {
-							$wd_categories .= $category['youzan_category_id'];
-						}else{
-							$wd_categories .= $category['youzan_category_id'].',';
-						}
-						
-						$k++;
-					}
-				}
-				
-				
-				//获取该商品的已经推送到微店的分类结束
-				
-				//获取价格start
-				$special = 0;
-
-				$product_specials = $this->model_youzan_product->getProductSpecials($product_id);
 	
-				foreach ($product_specials  as $product_special) {
-					if (($product_special['date_start'] == '0000-00-00' || strtotime($product_special['date_start']) < time()) && ($product_special['date_end'] == '0000-00-00' || strtotime($product_special['date_end']) > time())) {
-						$special = $product_special['price'];
-	
-						break;
-					}
-				}
-			
-				if($special) {
-					$price = round($special, 2);
-				}else{
-					$price = round($product_info['price'], 2);
-				}
-				//获取价格end
-				
-				
-				
-				$product_option_values = $this->model_youzan_product->getProductOptionValues($product_id);
-				
-				$skus = '';
-				
-				if($product_option_values) {
-					
-					
-					foreach($product_option_values as $value) {
-						
-						if($value['quantity']) {
-							$quantity = (int)$value['quantity'];	
-						}else{
-							$quantity = (int)$product_info['quantity'];
-						}
-						
-						if($value['price_prefix'] == '+') {
-							$option_price = round(($price + $value['price']), 2);
-						}else{
-							$option_price = round(($price - $value['price']), 2);
-						}
-						
-						
-						$skus .= '{"title":"'.urlencode($value["name"]).'","price":"'.$option_price.'","stock":"'.$quantity.'","sku_merchant_code":""}';
-						
-					}
-					
-					$submit_url = 'http://api.vdian.com/api?public={"method":"vdian.item.add","access_token":"'.$access_token.'","version":"1.0","format":"json"}&param={"imgs":["'.urlencode($upload_result['result']).'"],"stock":"60","price":"'.$price.'","cate_ids":['.$wd_categories.'],"item_name":"'.urlencode($product_info['name']).'","fx_fee_rate":"1","skus":['.$skus.'],"merchant_code":"'.urlencode($product_info['model']).'"}';
-					
-					
-					
-				}else{
-				
-					$submit_url = 'http://api.vdian.com/api?public={"method":"vdian.item.add","access_token":"'.$access_token.'","version":"1.0","format":"json"}&param={"imgs":["'.urlencode($upload_result['result']).'"],"stock":"60","price":"'.$price.'","cate_ids":['.$wd_categories.'],"item_name":"'.urlencode($product_info['name']).'","fx_fee_rate":"1","skus":[],"merchant_code":"'.urlencode($product_info['model']).'"}';
-				
-				}
-				
-				
-			
-				$submit_return_json = file_get_contents($submit_url);
-				
-				$submit_info = json_decode($submit_return_json, true);
-				
-				
-				$status_code = $submit_info['status']['status_code'];
-				
-				$status_reason = $submit_info['status']['status_reason'];
-				
-				
-				
-				if(($status_code == 0) && ($status_reason == 'success')) {
-					
-					$this->model_youzan_product->updateSent($product_id,  $submit_info['result']['itemid']);
-					
-					
-					foreach($submit_info['result']['skus'] as $skuinfo) {
-						
-						echo $skuinfo['title'].': '.$skuinfo['id'].'<br>';
-						
-						$option_info = $this->model_youzan_product->getOptionValueId($skuinfo, $product_id);
-						
-						if($option_info) {
-							$this->model_youzan_product->updateSkus($option_info['option_value_id'], $product_id, $skuinfo['id']);
-						}
-						
-					}
-					
-					$this->session->data['success'] = $this->language->get('text_success');
-		
-					$url = '';
-					
-					if (isset($this->request->get['filter_name'])) {
-						$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-					}
-			
-					if (isset($this->request->get['filter_model'])) {
-						$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
-					}
-			
-					if (isset($this->request->get['filter_price'])) {
-						$url .= '&filter_price=' . $this->request->get['filter_price'];
-					}
-			
-					if (isset($this->request->get['filter_quantity'])) {
-						$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
-					}
-					
-					if (isset($this->request->get['filter_product_id'])) {
-						$url .= '&filter_product_id=' . $this->request->get['filter_product_id'];
-					}
-			
-					if (isset($this->request->get['filter_status'])) {
-						$url .= '&filter_status=' . $this->request->get['filter_status'];
-					}
-
-					if (isset($this->request->get['filter_sent'])) {
-						$url .= '&filter_sent=' . $this->request->get['filter_sent'];
-					}
-		
-					if (isset($this->request->get['sort'])) {
-						$url .= '&sort=' . $this->request->get['sort'];
-					}
-		
-					if (isset($this->request->get['order'])) {
-						$url .= '&order=' . $this->request->get['order'];
-					}
-		
-					if (isset($this->request->get['page'])) {
-						$url .= '&page=' . $this->request->get['page'];
-					}
-					
-					
-		
-					$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-				}else{
-					$this->session->data['warning'] = $this->language->get('text_warning');
-		
-					$url = '';
-					
-					if (isset($this->request->get['filter_name'])) {
-						$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-					}
-			
-					if (isset($this->request->get['filter_model'])) {
-						$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
-					}
-			
-					if (isset($this->request->get['filter_price'])) {
-						$url .= '&filter_price=' . $this->request->get['filter_price'];
-					}
-			
-					if (isset($this->request->get['filter_quantity'])) {
-						$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
-					}
-					
-					if (isset($this->request->get['filter_product_id'])) {
-						$url .= '&filter_product_id=' . $this->request->get['filter_product_id'];
-					}
-			
-					if (isset($this->request->get['filter_status'])) {
-						$url .= '&filter_status=' . $this->request->get['filter_status'];
-					}
-					
-					if (isset($this->request->get['filter_sent'])) {
-						$url .= '&filter_sent=' . $this->request->get['filter_sent'];
-					}
-		
-					if (isset($this->request->get['sort'])) {
-						$url .= '&sort=' . $this->request->get['sort'];
-					}
-		
-					if (isset($this->request->get['order'])) {
-						$url .= '&order=' . $this->request->get['order'];
-					}
-		
-					if (isset($this->request->get['page'])) {
-						$url .= '&page=' . $this->request->get['page'];
-					}
-		
-					$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-				}
-			
-			
-			}
-		
-		}else{
-			
-			$this->session->data['warning'] = $this->language->get('text_warning');
-	
-			$url = '';
-			
-			if (isset($this->request->get['filter_name'])) {
-				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-			}
-	
-			if (isset($this->request->get['filter_model'])) {
-				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
-			}
-	
-			if (isset($this->request->get['filter_price'])) {
-				$url .= '&filter_price=' . $this->request->get['filter_price'];
-			}
-	
-			if (isset($this->request->get['filter_quantity'])) {
-				$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
-			}
-			
-			if (isset($this->request->get['filter_product_id'])) {
-				$url .= '&filter_product_id=' . $this->request->get['filter_product_id'];
-			}
-	
-			if (isset($this->request->get['filter_status'])) {
-				$url .= '&filter_status=' . $this->request->get['filter_status'];
-			}
-			
-			if (isset($this->request->get['filter_sent'])) {
-				$url .= '&filter_sent=' . $this->request->get['filter_sent'];
-			}
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-			$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));	
-		}
-
-		
-	}
-	
-	//更新微店商品
+	//update youzan product
 	public function update() {
-		
-		$this->load->language('youzan/product');
-		
-		$product_id = $this->request->get['product_id'];
-		
+		$this->language->load('youzan/product');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
 		$this->load->model('youzan/product');
 		
-		$appid = $this->config->get('youzan_appid');
-		
-		
-		
-		$appsecret = $this->config->get('youzan_appsecret');
-		
-		
-		
-		$url = 'https://api.vdian.com/token?grant_type=client_credential&appid='.trim($appid).'&appsecret='.trim($appsecret);
-		
-		$return_json = file_get_contents($url);
-		
-		//echo $return_json;
-		
-		$return_info = json_decode($return_json);
-		
-		$token_status_code = $return_info->status->status_code;
-		
-		$token_status_reason = $return_info->status->status_reason;
-		
-		
-		if(($token_status_code == 0) && ($token_status_reason == 'success')) {
-		
-			$access_token = $return_info->result->access_token;
+		$youzan_info = $this->model_youzan_product->getProductToYouZan($this->request->get['product_id']);
 			
-			$product_info = $this->model_youzan_product->getProduct($product_id);
+		if(!$youzan_info) {
 			
-			//获取并上传图片
-			$main_image = $product_info['image'];		
-			
-			$upload_result = $this->uploadImage($main_image,$access_token);
-			
-			if($upload_result) {
-				
-				//添加商品
-				
-				//获取该商品的已经推送到微店的分类开始
-				
-				$wd_categories = '';
-				
-				$categories = $this->model_youzan_product->getCategoresByProductId($product_id);
-				if($categories) {
-					
-					$i = count($categories);
-					
-					$k = 0;
-					
-					foreach($categories as $category) {
-						if($k == ($i - 1)) {
-							$wd_categories .= $category['youzan_category_id'];
-						}else{
-							$wd_categories .= $category['youzan_category_id'].',';
-						}
-						
-						$k++;
-					}
-				}
-				
-				
-				//获取该商品的已经推送到微店的分类结束
-				
-				//获取价格start
-				$special = 0;
+			$this->session->data['warning'] = $this->language->get('text_no_youzan_warning');
 
-				$product_specials = $this->model_youzan_product->getProductSpecials($product_id);
-	
-				foreach ($product_specials  as $product_special) {
-					if (($product_special['date_start'] == '0000-00-00' || strtotime($product_special['date_start']) < time()) && ($product_special['date_end'] == '0000-00-00' || strtotime($product_special['date_end']) > time())) {
-						$special = $product_special['price'];
-	
-						break;
-					}
-				}
-			
-				if($special) {
-					$price = round($special, 2);
-				}else{
-					$price = round($product_info['price'], 2);
-				}
-				//获取价格end
-				
-				
-				
-				$product_option_values = $this->model_youzan_product->getProductOptionValues($product_id);
-				
-				$skus = '';
-				
-				if($product_option_values) {
-					
-					
-					foreach($product_option_values as $value) {
-						
-						if($value['quantity']) {
-							$quantity = (int)$value['quantity'];	
-						}else{
-							$quantity = (int)$product_info['quantity'];
-						}
-						
-						if($value['price_prefix'] == '+') {
-							$option_price = round(($price + $value['price']), 2);
-						}else{
-							$option_price = round(($price - $value['price']), 2);
-						}
-						
-						
-						$skus .= '{"id":"'.$value['youzan_sku_id'].'","title":"'.urlencode($value["name"]).'","price":"'.$option_price.'","stock":"'.$quantity.'","sku_merchant_code":""}';
-						
-					}
-					
-					
-					$submit_url = 'http://api.vdian.com/api?public={"method":"vdian.item.update","access_token":"'.$access_token.'","version":"1.0","format":"json"}&param={"stock":"60","price":"'.$price.'","cate_ids":['.$wd_categories.'],"item_name":"'.urlencode($product_info['name']).'","fx_fee_rate":"1","itemid":"'.$product_info['youzan_product_id'].'","skus":['.$skus.'],"merchant_code":"'.urlencode($product_info['model']).'"}';
-					
-					
-					
-				}else{
-				
-					
-					$submit_url = 'http://api.vdian.com/api?public={"method":"vdian.item.update","access_token":"'.$access_token.'","version":"1.0","format":"json"}&param={"stock":"60","price":"'.$price.'","cate_ids":['.$wd_categories.'],"item_name":"'.urlencode($product_info['name']).'","fx_fee_rate":"1","itemid":"'.$product_info['youzan_product_id'].'","skus":[],"merchant_code":"'.urlencode($product_info['model']).'"}';
-				
-				}
-				
-				
-			
-				$submit_return_json = file_get_contents($submit_url);
-				
-				$submit_info = json_decode($submit_return_json, true);
-				
-				
-				
-
-				$status_code = $submit_info['status']['status_code'];
-				
-				$status_reason = $submit_info['status']['status_reason'];
-				
-				
-				
-				if(($status_code == 0) && ($status_reason == 'success')) {
-					
-					
-					
-					
-					$this->session->data['success'] = $this->language->get('text_success');
-		
-					$url = '';
-					
-					if (isset($this->request->get['filter_name'])) {
-						$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-					}
-			
-					if (isset($this->request->get['filter_model'])) {
-						$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
-					}
-			
-					if (isset($this->request->get['filter_price'])) {
-						$url .= '&filter_price=' . $this->request->get['filter_price'];
-					}
-			
-					if (isset($this->request->get['filter_quantity'])) {
-						$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
-					}
-					
-					if (isset($this->request->get['filter_product_id'])) {
-						$url .= '&filter_product_id=' . $this->request->get['filter_product_id'];
-					}
-			
-					if (isset($this->request->get['filter_status'])) {
-						$url .= '&filter_status=' . $this->request->get['filter_status'];
-					}
-					
-					if (isset($this->request->get['filter_sent'])) {
-						$url .= '&filter_sent=' . $this->request->get['filter_sent'];
-					}
-		
-					if (isset($this->request->get['sort'])) {
-						$url .= '&sort=' . $this->request->get['sort'];
-					}
-		
-					if (isset($this->request->get['order'])) {
-						$url .= '&order=' . $this->request->get['order'];
-					}
-		
-					if (isset($this->request->get['page'])) {
-						$url .= '&page=' . $this->request->get['page'];
-					}
-					
-					
-		
-					$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-				}else{
-					$this->session->data['warning'] = $this->language->get('text_warning');
-		
-					$url = '';
-					
-					if (isset($this->request->get['filter_name'])) {
-						$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-					}
-			
-					if (isset($this->request->get['filter_model'])) {
-						$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
-					}
-			
-					if (isset($this->request->get['filter_price'])) {
-						$url .= '&filter_price=' . $this->request->get['filter_price'];
-					}
-			
-					if (isset($this->request->get['filter_quantity'])) {
-						$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
-					}
-					
-					if (isset($this->request->get['filter_product_id'])) {
-						$url .= '&filter_product_id=' . $this->request->get['filter_product_id'];
-					}
-			
-					if (isset($this->request->get['filter_status'])) {
-						$url .= '&filter_status=' . $this->request->get['filter_status'];
-					}
-					
-					if (isset($this->request->get['filter_sent'])) {
-						$url .= '&filter_sent=' . $this->request->get['filter_sent'];
-					}
-		
-					if (isset($this->request->get['sort'])) {
-						$url .= '&sort=' . $this->request->get['sort'];
-					}
-		
-					if (isset($this->request->get['order'])) {
-						$url .= '&order=' . $this->request->get['order'];
-					}
-		
-					if (isset($this->request->get['page'])) {
-						$url .= '&page=' . $this->request->get['page'];
-					}
-		
-					$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-				}
-			
-			
-			}
-		
-		}else{
-			
-			$this->session->data['warning'] = $this->language->get('text_warning');
-	
 			$url = '';
-			
+
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 			}
@@ -666,163 +133,106 @@ class ControllerYouzanProduct extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));	
+			$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		
 		}
 
-		
-	}
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+			
+			$result = $this->updateYouZanProduct($this->request->get['product_id'], $youzan_info['youzan_id'], $this->request->post);
+			
+			if($result) {
+				$this->session->data['success'] = $this->language->get('text_success');
+			}else{
+				$this->session->data['warning'] = $this->language->get('text_update_youzan_warning');
+			}
+			
+			$url = '';
+
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
 	
-	//删除微店商品
+			if (isset($this->request->get['filter_model'])) {
+				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
+			}
+	
+			if (isset($this->request->get['filter_price'])) {
+				$url .= '&filter_price=' . $this->request->get['filter_price'];
+			}
+	
+			if (isset($this->request->get['filter_quantity'])) {
+				$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
+			}
+			
+			if (isset($this->request->get['filter_product_id'])) {
+				$url .= '&filter_product_id=' . $this->request->get['filter_product_id'];
+			}
+	
+			if (isset($this->request->get['filter_status'])) {
+				$url .= '&filter_status=' . $this->request->get['filter_status'];
+			}
+			
+			if (isset($this->request->get['filter_sent'])) {
+				$url .= '&filter_sent=' . $this->request->get['filter_sent'];
+			}
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		}
+
+		$this->getUpdateForm();
+	}
+
+	
+	//delete youzan product
 	public function unpush() {
 		
-		$this->load->language('youzan/product');
-		
-		$product_id = $this->request->get['product_id'];
-		
+		$this->language->load('youzan/product');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
 		$this->load->model('youzan/product');
-		
-		$appid = $this->config->get('youzan_appid');
-		
-		
-		
-		$appsecret = $this->config->get('youzan_appsecret');
-		
-		
-		
-		$url = 'https://api.vdian.com/token?grant_type=client_credential&appid='.trim($appid).'&appsecret='.trim($appsecret);
-		
-		$return_json = file_get_contents($url);
-		
-		$return_info = json_decode($return_json);
-		
-		$token_status_code = $return_info->status->status_code;
-		$token_status_reason = $return_info->status->status_reason;
-		
-		if(($token_status_code == 0) && ($token_status_reason == 'success')) {
-		
+
+		if (isset($this->request->get['product_id'])) {
 			
-			$access_token = $return_info->result->access_token;
+			$youzan_info = $this->model_youzan_product->getProductToYouZan($this->request->get['product_id']);
 			
-			$product_info = $this->model_youzan_product->getProduct($product_id);
-			
-			
-			$submit_url = 'http://api.vdian.com/api?param={"itemid":"'.$product_info['youzan_product_id'].'"}
-&public={"method":"vdian.item.delete","access_token":"'.$access_token.'",
-"version":"1.0","format":"json"}';
-			
-			$submit_return_json = file_get_contents($submit_url);
-			
-			
-			$submit_info = json_decode($submit_return_json);
-			
-			
-			
-			$status_code = $submit_info->status->status_code;
-			$status_reason = $submit_info->status->status_reason;
-			
-			if(($status_code == 0) && ($status_reason == 'success')) {
+			if($youzan_info) {
 				
-				$this->model_youzan_product->deleteSent($product_id);
-				
-				$this->session->data['success'] = $this->language->get('text_delete_success');
-	
-				$url = '';
-				
-				if (isset($this->request->get['filter_name'])) {
-					$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-				}
-		
-				if (isset($this->request->get['filter_model'])) {
-					$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
-				}
-		
-				if (isset($this->request->get['filter_price'])) {
-					$url .= '&filter_price=' . $this->request->get['filter_price'];
-				}
-		
-				if (isset($this->request->get['filter_quantity'])) {
-					$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
+				$result = $this->deleteYouZanProduct($youzan_info['youzan_id']);
+			
+				if($result) {
+					
+					$this->model_youzan_product->deleteProductToYouZan($this->request->get['product_id']);
+					
+					$this->session->data['success'] = $this->language->get('text_success');
+					
+				}else{
+					
+					$this->session->data['warning'] = $this->language->get('text_delete_youzan_warning');
+					
 				}
 				
-				if (isset($this->request->get['filter_product_id'])) {
-					$url .= '&filter_product_id=' . $this->request->get['filter_product_id'];
-				}
-		
-				if (isset($this->request->get['filter_status'])) {
-					$url .= '&filter_status=' . $this->request->get['filter_status'];
-				}
-				
-				if (isset($this->request->get['filter_sent'])) {
-					$url .= '&filter_sent=' . $this->request->get['filter_sent'];
-				}
-	
-				if (isset($this->request->get['sort'])) {
-					$url .= '&sort=' . $this->request->get['sort'];
-				}
-	
-				if (isset($this->request->get['order'])) {
-					$url .= '&order=' . $this->request->get['order'];
-				}
-	
-				if (isset($this->request->get['page'])) {
-					$url .= '&page=' . $this->request->get['page'];
-				}
-	
-				$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 			}else{
-				$this->session->data['warning'] = $this->language->get('text_warning');
-	
-				$url = '';
-				
-				if (isset($this->request->get['filter_name'])) {
-					$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-				}
-		
-				if (isset($this->request->get['filter_model'])) {
-					$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
-				}
-		
-				if (isset($this->request->get['filter_price'])) {
-					$url .= '&filter_price=' . $this->request->get['filter_price'];
-				}
-		
-				if (isset($this->request->get['filter_quantity'])) {
-					$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
-				}
-				
-				if (isset($this->request->get['filter_product_id'])) {
-					$url .= '&filter_product_id=' . $this->request->get['filter_product_id'];
-				}
-		
-				if (isset($this->request->get['filter_status'])) {
-					$url .= '&filter_status=' . $this->request->get['filter_status'];
-				}
-				
-				if (isset($this->request->get['filter_sent'])) {
-					$url .= '&filter_sent=' . $this->request->get['filter_sent'];
-				}
-	
-				if (isset($this->request->get['sort'])) {
-					$url .= '&sort=' . $this->request->get['sort'];
-				}
-	
-				if (isset($this->request->get['order'])) {
-					$url .= '&order=' . $this->request->get['order'];
-				}
-	
-				if (isset($this->request->get['page'])) {
-					$url .= '&page=' . $this->request->get['page'];
-				}
-	
-				$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+				$this->session->data['warning'] = $this->language->get('text_delete_youzan_warning');
 			}
-		
-		}else{
 			
-			$this->session->data['warning'] = $this->language->get('text_warning');
-	
+			
+
 			$url = '';
-			
+
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 			}
@@ -863,10 +273,11 @@ class ControllerYouzanProduct extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));	
+			$this->response->redirect($this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 		}
 
-		
+		$this->getList();
+	
 	}
 
 	protected function getList() {
@@ -1028,6 +439,14 @@ class ControllerYouzanProduct extends Controller {
 					break;
 				}
 			}
+			
+			$youzan_exist = $this->model_youzan_product->getProductToYouZan($result['product_id']);
+			
+			if($youzan_exist) {
+				$sent = 1;	
+			}else{
+				$sent = 0;
+			}
 
 			$data['products'][] = array(
 				'product_id' => $result['product_id'],
@@ -1037,7 +456,7 @@ class ControllerYouzanProduct extends Controller {
 				'price'      => $result['price'],
 				'special'    => $special,
 				'quantity'   => $result['quantity'],
-				'sent'   => $result['sent'],
+				'sent'  	 => $sent,
 				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'edit'       => $this->url->link('youzan/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'] . $url, 'SSL'),
 				'push'        => $this->url->link('youzan/product/push', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'] . $url, 'SSL'),
@@ -1086,6 +505,10 @@ class ControllerYouzanProduct extends Controller {
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
+		} elseif(isset($this->session->data['warning'])) {
+			$data['error_warning'] = $this->session->data['warning'];
+			
+			unset($this->session->data['warning']);
 		} else {
 			$data['error_warning'] = '';
 		}
@@ -1357,23 +780,23 @@ class ControllerYouzanProduct extends Controller {
 		} else {
 			$data['error_name'] = array();
 		}
-
-		if (isset($this->error['meta_title'])) {
-			$data['error_meta_title'] = $this->error['meta_title'];
+		
+		if (isset($this->error['description'])) {
+			$data['error_description'] = $this->error['description'];
 		} else {
-			$data['error_meta_title'] = array();
+			$data['error_description'] = array();
 		}
 
-		if (isset($this->error['model'])) {
-			$data['error_model'] = $this->error['model'];
+		if (isset($this->error['price'])) {
+			$data['error_price'] = $this->error['price'];
 		} else {
-			$data['error_model'] = '';
+			$data['error_price'] = array();
 		}
 
-		if (isset($this->error['keyword'])) {
-			$data['error_keyword'] = $this->error['keyword'];
+		if (isset($this->error['outer_id'])) {
+			$data['error_outer_id'] = $this->error['outer_id'];
 		} else {
-			$data['error_keyword'] = '';
+			$data['error_outer_id'] = '';
 		}
 		
 		$url = '';
@@ -1393,9 +816,17 @@ class ControllerYouzanProduct extends Controller {
 		if (isset($this->request->get['filter_quantity'])) {
 			$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
 		}
+		
+		if (isset($this->request->get['filter_product_id'])) {
+			$url .= '&filter_product_id=' . $this->request->get['filter_product_id'];
+		}
 
 		if (isset($this->request->get['filter_status'])) {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
+		}
+		
+		if (isset($this->request->get['filter_sent'])) {
+			$url .= '&filter_sent=' . $this->request->get['filter_sent'];
 		}
 
 		if (isset($this->request->get['sort'])) {
@@ -1422,13 +853,11 @@ class ControllerYouzanProduct extends Controller {
 			'href' => $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL')
 		);
 
-		if (!isset($this->request->get['product_id'])) {
-			$data['action'] = $this->url->link('catalog/product/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		} else {
-			$data['action'] = $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL');
-		}
+		
+		$data['action'] = $this->url->link('youzan/product/push', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL');
+		
 
-		$data['cancel'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['cancel'] = $this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 		if (isset($this->request->get['product_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			
@@ -1451,26 +880,255 @@ class ControllerYouzanProduct extends Controller {
 			$data['product_description'] = array();
 		}
 
-		if (isset($this->request->post['image'])) {
-			$data['image'] = $this->request->post['image'];
-		} elseif (!empty($product_info)) {
-			$data['image'] = $product_info['image'];
-		} else {
-			$data['image'] = '';
-		}
-
-		$this->load->model('tool/image');
-
-		if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
-			$data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
-		} elseif (!empty($product_info) && is_file(DIR_IMAGE . $product_info['image'])) {
-			$data['thumb'] = $this->model_tool_image->resize($product_info['image'], 100, 100);
-		} else {
-			$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-		}
-
-		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+		$data['youzan_categories'] = $this->getYouZanCategories();
 		
+		$data['youzan_promotions'] = $this->getYouZanPromotionCids();
+		
+		$data['youzan_tags'] = $this->getYouZanTags();
+		
+		if (isset($this->request->post['youzan_category_id'])) {
+			$data['youzan_category_id'] = $this->request->post['youzan_category_id'];
+		} else {
+			$data['youzan_category_id'] = 0;
+		}
+		
+		if (isset($this->request->post['youzan_promotion_id'])) {
+			$data['youzan_promotion_id'] = $this->request->post['youzan_promotion_id'];
+		} else {
+			$data['youzan_promotion_id'] = 0;
+		}
+		
+		if (isset($this->request->post['youzan_tag_id'])) {
+			$data['youzan_tag_id'] = $this->request->post['youzan_tag_id'];
+		} else {
+			$data['youzan_tag_id'] = 0;
+		}
+		
+		if (isset($this->request->post['post_fee'])) {
+			$data['post_fee'] = $this->request->post['post_fee'];
+		} else {
+			$data['post_fee'] = '';
+		}
+
+		if (isset($this->request->post['price'])) {
+			$data['price'] = $this->request->post['price'];
+		} elseif (!empty($product_info)) {
+			$data['price'] = $product_info['price'];
+		} else {
+			$data['price'] = '';
+		}
+		
+		if (isset($this->request->post['origin_price'])) {
+			$data['origin_price'] = $this->request->post['origin_price'];
+		} elseif (!empty($product_info)) {
+			$data['origin_price'] = $product_info['price'];
+		} else {
+			$data['origin_price'] = '';
+		}
+
+		if (isset($this->request->post['buy_url'])) {
+			$data['buy_url'] = $this->request->post['buy_url'];
+		} else {
+			$data['buy_url'] = HTTP_CATALOG.'index.php?route=product/product&product_id='.$this->request->get['product_id'];
+		}
+
+		if (isset($this->request->post['outer_id'])) {
+			$data['outer_id'] = $this->request->post['outer_id'];
+		} elseif (!empty($product_info)) {
+			$data['outer_id'] = $product_info['model'];
+		} else {
+			$data['outer_id'] = '';
+		}
+
+		if (isset($this->request->post['buy_quota'])) {
+			$data['buy_quota'] = $this->request->post['buy_quota'];
+		} else {
+			$data['buy_quota'] = '';
+		}
+
+		if (isset($this->request->post['quantity'])) {
+			$data['quantity'] = $this->request->post['quantity'];
+		} elseif (!empty($product_info)) {
+			$data['quantity'] = $product_info['quantity'];
+		} else {
+			$data['quantity'] = '';
+		}
+
+		if (isset($this->request->post['hide_quantity'])) {
+			$data['hide_quantity'] = $this->request->post['hide_quantity'];
+		} else {
+			$data['hide_quantity'] = '';
+		}
+
+		if (isset($this->request->post['is_display'])) {
+			$data['is_display'] = $this->request->post['is_display'];
+		} else {
+			$data['is_display'] = 1;
+		}
+		
+		if (isset($this->request->post['join_level_discount'])) {
+			$data['join_level_discount'] = $this->request->post['join_level_discount'];
+		} else {
+			$data['join_level_discount'] = 1;
+		}
+
+		
+
+		$data['header'] = $this->load->controller('common/header');
+		$data['column_left'] = $this->load->controller('common/column_left');
+		$data['footer'] = $this->load->controller('common/footer');
+
+		$this->response->setOutput($this->load->view('youzan/product_form.tpl', $data));
+	}
+	
+	
+	protected function getUpdateForm() {
+		$data['heading_title'] = $this->language->get('heading_title');
+		
+		$data['text_form'] = !isset($this->request->get['product_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
+		$data['text_enabled'] = $this->language->get('text_enabled');
+		$data['text_disabled'] = $this->language->get('text_disabled');
+		$data['text_none'] = $this->language->get('text_none');
+		$data['text_yes'] = $this->language->get('text_yes');
+		$data['text_no'] = $this->language->get('text_no');
+		$data['text_select'] = $this->language->get('text_select');
+
+		$data['entry_name'] = $this->language->get('entry_name');
+		$data['entry_description'] = $this->language->get('entry_description');
+
+		$data['entry_youzan_category'] = $this->language->get('entry_youzan_category');
+		$data['entry_youzan_promotion'] = $this->language->get('entry_youzan_promotion');
+		$data['entry_youzan_tag'] = $this->language->get('entry_youzan_tag');
+		$data['entry_youzan_is_virtual'] = $this->language->get('entry_youzan_is_virtual');
+		$data['entry_youzan_post_fee'] = $this->language->get('entry_youzan_post_fee');
+		$data['entry_youzan_price'] = $this->language->get('entry_youzan_price');
+		$data['entry_youzan_origin_price'] = $this->language->get('entry_youzan_origin_price');
+		$data['entry_youzan_buy_url'] = $this->language->get('entry_youzan_buy_url');
+		$data['entry_youzan_outer_id'] = $this->language->get('entry_youzan_outer_id');
+		$data['entry_youzan_buy_quota'] = $this->language->get('entry_youzan_buy_quota');
+		$data['entry_youzan_quantity'] = $this->language->get('entry_youzan_quantity');
+		$data['entry_youzan_hide_quantity'] = $this->language->get('entry_youzan_hide_quantity');
+		$data['entry_youzan_is_display'] = $this->language->get('entry_youzan_is_display');
+		$data['entry_youzan_join_level_discount'] = $this->language->get('entry_youzan_join_level_discount');
+		
+		$data['button_save'] = $this->language->get('button_save');
+		$data['button_cancel'] = $this->language->get('button_cancel');
+
+		$data['tab_general'] = $this->language->get('tab_general');
+		$data['tab_data'] = $this->language->get('tab_data');
+
+		if (isset($this->error['warning'])) {
+			$data['error_warning'] = $this->error['warning'];
+		} else {
+			$data['error_warning'] = '';
+		}
+
+		if (isset($this->error['name'])) {
+			$data['error_name'] = $this->error['name'];
+		} else {
+			$data['error_name'] = array();
+		}
+		
+		if (isset($this->error['description'])) {
+			$data['error_description'] = $this->error['description'];
+		} else {
+			$data['error_description'] = array();
+		}
+
+		if (isset($this->error['price'])) {
+			$data['error_price'] = $this->error['price'];
+		} else {
+			$data['error_price'] = array();
+		}
+
+		if (isset($this->error['outer_id'])) {
+			$data['error_outer_id'] = $this->error['outer_id'];
+		} else {
+			$data['error_outer_id'] = '';
+		}
+		
+		$url = '';
+
+		if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['filter_model'])) {
+			$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['filter_price'])) {
+			$url .= '&filter_price=' . $this->request->get['filter_price'];
+		}
+
+		if (isset($this->request->get['filter_quantity'])) {
+			$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
+		}
+		
+		if (isset($this->request->get['filter_product_id'])) {
+			$url .= '&filter_product_id=' . $this->request->get['filter_product_id'];
+		}
+
+		if (isset($this->request->get['filter_status'])) {
+			$url .= '&filter_status=' . $this->request->get['filter_status'];
+		}
+		
+		if (isset($this->request->get['filter_sent'])) {
+			$url .= '&filter_sent=' . $this->request->get['filter_sent'];
+		}
+
+		if (isset($this->request->get['sort'])) {
+			$url .= '&sort=' . $this->request->get['sort'];
+		}
+
+		if (isset($this->request->get['order'])) {
+			$url .= '&order=' . $this->request->get['order'];
+		}
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
+		}
+
+		$data['breadcrumbs'] = array();
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('text_home'),
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+		);
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('heading_title'),
+			'href' => $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL')
+		);
+
+		
+		$data['action'] = $this->url->link('youzan/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL');
+		
+
+		$data['cancel'] = $this->url->link('youzan/product', 'token=' . $this->session->data['token'] . $url, 'SSL');
+
+		if (isset($this->request->get['product_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+			
+			$product_info = $this->model_youzan_product->getProduct($this->request->get['product_id']);
+			
+		}
+		
+		
+
+		$data['token'] = $this->session->data['token'];
+		
+		$this->load->model('localisation/language');
+
+		$data['languages'] = $this->model_localisation_language->getLanguages();
+
+		if (isset($this->request->post['product_description'])) {
+			$data['product_description'] = $this->request->post['product_description'];
+		} elseif (isset($this->request->get['product_id'])) {
+			$data['product_description'] = $this->model_youzan_product->getProductDescriptions($this->request->get['product_id']);
+		} else {
+			$data['product_description'] = array();
+		}
+
 		$data['youzan_categories'] = $this->getYouZanCategories();
 		
 		$data['youzan_promotions'] = $this->getYouZanPromotionCids();
@@ -1582,17 +1240,17 @@ class ControllerYouzanProduct extends Controller {
 				$this->error['name'][$language_id] = $this->language->get('error_name');
 			}
 
-			if ((utf8_strlen($value['description']) < 10) || (utf8_strlen($value['description']) > 25000)) {
+			if ((utf8_strlen($value['description']) < 12) || (utf8_strlen($value['description']) > 25000)) {
 				$this->error['description'][$language_id] = $this->language->get('error_description');
 			}
 		}
 
-		if ($this->request->post['post_fee'] <= 0) {
-			$this->error['post_fee'] = $this->language->get('error_post_fee');
-		}
-		
 		if ($this->request->post['price'] <= 0) {
 			$this->error['price'] = $this->language->get('error_price');
+		}
+		
+		if ((utf8_strlen($this->request->post['outer_id']) < 1) || (utf8_strlen($this->request->post['outer_id']) > 64)) {
+			$this->error['outer_id'] = $this->language->get('error_outer_id');
 		}
 		
 		if ($this->error && !isset($this->error['warning'])) {
@@ -1603,131 +1261,11 @@ class ControllerYouzanProduct extends Controller {
 	}
 
 
-	public function autocomplete() {
-		$json = array();
-
-		if (isset($this->request->get['filter_name']) || isset($this->request->get['filter_model'])) {
-			$this->load->model('youzan/product');
-			$this->load->model('youzan/option');
-
-			if (isset($this->request->get['filter_name'])) {
-				$filter_name = $this->request->get['filter_name'];
-			} else {
-				$filter_name = '';
-			}
-
-			if (isset($this->request->get['filter_model'])) {
-				$filter_model = $this->request->get['filter_model'];
-			} else {
-				$filter_model = '';
-			}
-
-			if (isset($this->request->get['limit'])) {
-				$limit = $this->request->get['limit'];
-			} else {
-				$limit = 50;
-			}
-
-			$filter_data = array(
-				'filter_name'  => $filter_name,
-				'filter_model' => $filter_model,
-				'start'        => 0,
-				'limit'        => $limit
-			);
-
-			$results = $this->model_youzan_product->getProducts($filter_data);
-
-			foreach ($results as $result) {
-				$option_data = array();
-
-				$product_options = $this->model_youzan_product->getProductOptions($result['product_id']);
-
-				foreach ($product_options as $product_option) {
-					$option_info = $this->model_youzan_option->getOption($product_option['option_id']);
-
-					if ($option_info) {
-						$product_option_value_data = array();
-
-						foreach ($product_option['product_option_value'] as $product_option_value) {
-							$option_value_info = $this->model_youzan_option->getOptionValue($product_option_value['option_value_id']);
-
-							if ($option_value_info) {
-								$product_option_value_data[] = array(
-									'product_option_value_id' => $product_option_value['product_option_value_id'],
-									'option_value_id'         => $product_option_value['option_value_id'],
-									'name'                    => $option_value_info['name'],
-									'price'                   => (float)$product_option_value['price'] ? $this->currency->format($product_option_value['price'], $this->config->get('config_currency')) : false,
-									'price_prefix'            => $product_option_value['price_prefix']
-								);
-							}
-						}
-
-						$option_data[] = array(
-							'product_option_id'    => $product_option['product_option_id'],
-							'product_option_value' => $product_option_value_data,
-							'option_id'            => $product_option['option_id'],
-							'name'                 => $option_info['name'],
-							'type'                 => $option_info['type'],
-							'value'                => $product_option['value'],
-							'required'             => $product_option['required']
-						);
-					}
-				}
-
-				$json[] = array(
-					'product_id' => $result['product_id'],
-					'name'       => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
-					'model'      => $result['model'],
-					'shipping_origin_id'      => $result['shipping_origin_id'],
-					'option'     => $option_data,
-					'price'      => $result['price']
-				);
-			}
-		}
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
-	
-	protected function uploadImage($image, $access_token) {
-		
-		$response = array();
-	
-		$file = DIR_IMAGE.$image;
-		
-		$post_data = array(
-		   "title"=>"PIC！！！",
-		   
-		   "media"=>'@'.$file
-		);
-		
-		$url  = "http://api.vdian.com/media/upload?access_token=".$access_token; 
-		
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url );
-		curl_setopt($ch, CURLOPT_POST, 1 );
-		curl_setopt($ch, CURLOPT_HEADER, false );
-		curl_setopt($ch, CURLOPT_NOBODY, true );
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data );
-		
-		
-		$json = curl_exec($ch);
-		
-		if (!$json) {
-			echo curl_error($ch), curl_errno($ch);
-		} else {
-			$response = json_decode($json, true);
-		}
-		
-		return $response;
-		
-	}
 	
 	protected function getYouZanCategories() {
-		$appid = $this->config->get('youzan_appid');
+		$appid = $this->config->get('config_youzan_appid');
 		
-		$appsecret = $this->config->get('youzan_appsecret');
+		$appsecret = $this->config->get('config_youzan_appsecret');
 		
 		date_default_timezone_set('PRC');
 		
@@ -1779,9 +1317,9 @@ class ControllerYouzanProduct extends Controller {
 	}
 	
 	protected function getYouZanPromotionCids() {
-		$appid = $this->config->get('youzan_appid');
+		$appid = $this->config->get('config_youzan_appid');
 		
-		$appsecret = $this->config->get('youzan_appsecret');
+		$appsecret = $this->config->get('config_youzan_appsecret');
 		
 		date_default_timezone_set('PRC');
 		
@@ -1803,9 +1341,9 @@ class ControllerYouzanProduct extends Controller {
 	}
 	
 	protected function getYouZanTags() {
-		$appid = $this->config->get('youzan_appid');
+		$appid = $this->config->get('config_youzan_appid');
 		
-		$appsecret = $this->config->get('youzan_appsecret');
+		$appsecret = $this->config->get('config_youzan_appsecret');
 		
 		date_default_timezone_set('PRC');
 		
@@ -1826,10 +1364,12 @@ class ControllerYouzanProduct extends Controller {
 		return $youzan_tags['response']['tags'];
 	}
 	
-	protected function getProductFromYouZan($youzan_id) {
-		$appid = $this->config->get('youzan_appid');
+	public function getProductFromYouZan($youzan_id) {
 		
-		$appsecret = $this->config->get('youzan_appsecret');
+		
+		$appid = $this->config->get('config_youzan_appid');
+		
+		$appsecret = $this->config->get('config_youzan_appsecret');
 		
 		date_default_timezone_set('PRC');
 		
@@ -1851,13 +1391,31 @@ class ControllerYouzanProduct extends Controller {
 		
 		$youzan_info = json_decode($result, true);
 		
+		if(isset($youzan_info['response']['item']['num_iid'])) {
+			
+			if((int)$youzan_info['response']['item']['num_iid'] == $youzan_id) {
+				
+				$youzan_info = $youzan_info['response']['item'];
+				
+			}else{
+				
+				$youzan_info = false;
+				
+			}
+			
+		}else{
+			$youzan_info = false;	
+		}
+		
 		return $youzan_info;
 	}
 	
-	public function addYouZanProduct() {
-		$appid = $this->config->get('youzan_appid');
+	public function addYouZanProduct($product_id, $data) {
 		
-		$appsecret = $this->config->get('youzan_appsecret');
+		
+		$appid = $this->config->get('config_youzan_appid');
+		
+		$appsecret = $this->config->get('config_youzan_appsecret');
 		
 		$this->load->library('youzan/kdtapiprotocol');
 		
@@ -1865,24 +1423,254 @@ class ControllerYouzanProduct extends Controller {
 		
 		$this->load->library('youzan/kdtapiclient');
 		
+		$this->load->model('youzan/product');
+		
 		
 		date_default_timezone_set('PRC');
 		
 		$client = new KdtApiClient($appid, $appsecret);
 
 		$method = 'kdt.item.add';
-		$params = array('title' => '测试商品来自于舒优派', 'desc' => 'description here', 'post_fee' => 0.2,	'price'	=>100.85);
-		
-		$files = '';
-		
-		
-		echo '<pre>';
-		var_dump( 
-			$client->post($method, $params, $files)
+		$params = array(
+			'cid'					=> (int)$data['youzan_category_id'],
+			'promotion_cid'			=> (int)$data['youzan_promotion_id'],
+			'price'					=> (float)$data['price'],
+			'title' 				=> html_entity_decode($data['product_description'][(int)$this->config->get('config_language_id')]['name'], ENT_QUOTES, 'UTF-8'), 
+			'desc' 					=> html_entity_decode($data['product_description'][(int)$this->config->get('config_language_id')]['description'], ENT_QUOTES, 'UTF-8'), 
+			'is_virtual'			=> (int)$data['is_virtual'],
+			'post_fee' 				=> (float)$data['post_fee'],	
+			'origin_price'			=> $data['origin_price'],
+			'buy_url'				=> urlencode($data['buy_url']),
+			'outer_id'				=> trim($data['outer_id']),
+			'buy_quota'				=> (int)$data['buy_quota'],
+			'quantity'				=> (int)$data['quantity'],
+			'hide_quantity'			=> (int)$data['hide_quantity'],
+			'is_display'			=> (int)$data['is_display'],
+			'join_level_discount'	=> (int)$data['join_level_discount'],
+			
 		);
-		echo '</pre>';
 		
 		
+		$product_info = $this->model_youzan_product->getProduct($product_id);
+		
+		$files = array();
+		
+		$files[] = array(
+			'url' => DIR_IMAGE.$product_info['image'],
+			'field' => 'images[]',
+		);
+		
+		$product_images = $this->model_youzan_product->getProductImages($product_id);
+		
+		if($product_images) {
+			foreach($product_images as $product_image) {
+				$files[] = array(
+					'url' => DIR_IMAGE.$product_image['image'],
+					'field' => 'images[]',
+				);
+			}
+		}
+		
+		$result = $client->post($method, $params, $files);
+		
+		
+		if((int)$result['response']['item']['num_iid']) {
+			$this->model_youzan_product->addProductYouZan($product_id, (int)$result['response']['item']['num_iid']);
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
+	public function updateYouZanProduct($product_id, $youzan_id, $data) {
+		
+		
+		$appid = $this->config->get('config_youzan_appid');
+		
+		$appsecret = $this->config->get('config_youzan_appsecret');
+		
+		$this->load->library('youzan/kdtapiprotocol');
+		
+		$this->load->library('youzan/simplehttpclient');
+		
+		$this->load->library('youzan/kdtapiclient');
+		
+		$this->load->model('youzan/product');
+		
+		
+		date_default_timezone_set('PRC');
+		
+		$client = new KdtApiClient($appid, $appsecret);
+
+		$method = 'kdt.item.update';
+		$params = array(
+			'num_iid'				=> $youzan_id,
+			'cid'					=> (int)$data['youzan_category_id'],
+			'promotion_cid'			=> (int)$data['youzan_promotion_id'],
+			'price'					=> (float)$data['price'],
+			'title' 				=> html_entity_decode($data['product_description'][(int)$this->config->get('config_language_id')]['name'], ENT_QUOTES, 'UTF-8'), 
+			'desc' 					=> html_entity_decode($data['product_description'][(int)$this->config->get('config_language_id')]['description'], ENT_QUOTES, 'UTF-8'), 
+			'is_virtual'			=> (int)$data['is_virtual'],
+			'post_fee' 				=> (float)$data['post_fee'],	
+			'origin_price'			=> $data['origin_price'],
+			'buy_url'				=> urlencode($data['buy_url']),
+			'outer_id'				=> trim($data['outer_id']),
+			'buy_quota'				=> (int)$data['buy_quota'],
+			'quantity'				=> (int)$data['quantity'],
+			'hide_quantity'			=> (int)$data['hide_quantity'],
+			'is_display'			=> (int)$data['is_display'],
+			'join_level_discount'	=> (int)$data['join_level_discount'],
+			
+		);
+		
+		
+		$product_info = $this->model_youzan_product->getProduct($product_id);
+		
+		$files = array();
+		
+		$files[] = array(
+			'url' => DIR_IMAGE.$product_info['image'],
+			'field' => 'images[]',
+		);
+		
+		$product_images = $this->model_youzan_product->getProductImages($product_id);
+		
+		if($product_images) {
+			foreach($product_images as $product_image) {
+				$files[] = array(
+					'url' => DIR_IMAGE.$product_image['image'],
+					'field' => 'images[]',
+				);
+			}
+		}
+		
+		$result = $client->post($method, $params, $files);
+		
+		
+		if((int)$result['response']['item']['num_iid']) {
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
+	public function deleteYouZanProduct($youzan_id) {
+		
+		
+		$appid = $this->config->get('config_youzan_appid');
+		
+		$appsecret = $this->config->get('config_youzan_appsecret');
+		
+		$this->load->library('youzan/kdtapiprotocol');
+		
+		$this->load->library('youzan/simplehttpclient');
+		
+		$this->load->library('youzan/kdtapiclient');
+		
+		date_default_timezone_set('PRC');
+		
+		$client = new KdtApiClient($appid, $appsecret);
+
+		$method = 'kdt.item.delete';
+		$params = array(
+			'num_iid'				=> $youzan_id,
+		);
+
+		$result = $client->post($method, $params);
+		
+		if($result['response']['is_success']) {
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
+	public function autocomplete() {
+		$json = array();
+
+		if (isset($this->request->get['filter_name']) || isset($this->request->get['filter_model'])) {
+			$this->load->model('youzan/product');
+			$this->load->model('catalog/option');
+
+			if (isset($this->request->get['filter_name'])) {
+				$filter_name = $this->request->get['filter_name'];
+			} else {
+				$filter_name = '';
+			}
+
+			if (isset($this->request->get['filter_model'])) {
+				$filter_model = $this->request->get['filter_model'];
+			} else {
+				$filter_model = '';
+			}
+
+			if (isset($this->request->get['limit'])) {
+				$limit = $this->request->get['limit'];
+			} else {
+				$limit = 50;
+			}
+
+			$filter_data = array(
+				'filter_name'  => $filter_name,
+				'filter_model' => $filter_model,
+				'start'        => 0,
+				'limit'        => $limit
+			);
+
+			$results = $this->model_youzan_product->getProducts($filter_data);
+
+			foreach ($results as $result) {
+				$option_data = array();
+
+				$product_options = $this->model_youzan_product->getProductOptions($result['product_id']);
+
+				foreach ($product_options as $product_option) {
+					$option_info = $this->model_catalog_option->getOption($product_option['option_id']);
+
+					if ($option_info) {
+						$product_option_value_data = array();
+
+						foreach ($product_option['product_option_value'] as $product_option_value) {
+							$option_value_info = $this->model_catalog_option->getOptionValue($product_option_value['option_value_id']);
+
+							if ($option_value_info) {
+								$product_option_value_data[] = array(
+									'product_option_value_id' => $product_option_value['product_option_value_id'],
+									'option_value_id'         => $product_option_value['option_value_id'],
+									'name'                    => $option_value_info['name'],
+									'price'                   => (float)$product_option_value['price'] ? $this->currency->format($product_option_value['price'], $this->config->get('config_currency')) : false,
+									'price_prefix'            => $product_option_value['price_prefix']
+								);
+							}
+						}
+
+						$option_data[] = array(
+							'product_option_id'    => $product_option['product_option_id'],
+							'product_option_value' => $product_option_value_data,
+							'option_id'            => $product_option['option_id'],
+							'name'                 => $option_info['name'],
+							'type'                 => $option_info['type'],
+							'value'                => $product_option['value'],
+							'required'             => $product_option['required']
+						);
+					}
+				}
+
+				$json[] = array(
+					'product_id' => $result['product_id'],
+					'name'       => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
+					'model'      => $result['model'],
+					'option'     => $option_data,
+					'price'      => $result['price']
+				);
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 	
 }

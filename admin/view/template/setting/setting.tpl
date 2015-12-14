@@ -39,6 +39,7 @@
             <li><a href="#tab-ftp" data-toggle="tab"><?php echo $tab_ftp; ?></a></li>
             <li><a href="#tab-mail" data-toggle="tab"><?php echo $tab_mail; ?></a></li>
             <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+            <li><a href="#tab-thirdparty" data-toggle="tab"><?php echo $tab_thirdparty; ?></a></li>
           </ul>
           <div class="tab-content">
             
@@ -1626,6 +1627,60 @@
               </div>
               
               </fieldset>  
+            </div>
+            <div class="tab-pane" id="tab-thirdparty">
+              
+              <fieldset>
+                <legend><?php echo $text_baidu; ?></legend>
+                <div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $text_baidu_signup; ?>
+            	<button type="button" class="close" data-dismiss="alert">&times;</button></div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-baidu-api"><?php echo $entry_baidu_api; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_baidu_api" value="<?php echo $config_baidu_api; ?>" placeholder="<?php echo $entry_baidu_api; ?>" id="input-baidu-api" class="form-control" />
+                  </div>
+                </div>
+                
+              </fieldset>
+              
+              <fieldset>
+                <legend><?php echo $text_weidian; ?></legend>
+                <div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $text_weidian_signup; ?>
+            	<button type="button" class="close" data-dismiss="alert">&times;</button></div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-weidian-appkey"><?php echo $entry_weidian_appkey; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_weidian_appkey" value="<?php echo $config_weidian_appkey; ?>" placeholder="<?php echo $entry_weidian_appkey; ?>" id="input-weidian-appkey" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-weidian-secret"><?php echo $entry_weidian_secret; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_weidian_secret" value="<?php echo $config_weidian_secret; ?>" placeholder="<?php echo $entry_weidian_secret; ?>" id="input-weidian-secret" class="form-control" />
+                  </div>
+                </div>
+                
+              </fieldset>
+              
+             <fieldset>
+                <legend><?php echo $text_youzan; ?></legend>
+                <div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $text_youzan_signup; ?>
+            	<button type="button" class="close" data-dismiss="alert">&times;</button></div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-youzan-appid"><?php echo $entry_youzan_appid; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_youzan_appid" value="<?php echo $config_youzan_appid; ?>" placeholder="<?php echo $entry_youzan_appid; ?>" id="input-youzan-appid" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-youzan-appsecret"><?php echo $entry_youzan_appsecret; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_youzan_appsecret" value="<?php echo $config_youzan_appsecret; ?>" placeholder="<?php echo $entry_youzan_appsecret; ?>" id="input-youzan-appsecret" class="form-control" />
+                  </div>
+                </div>
+                
+              </fieldset>
+              
             </div>
           </div>
         </form>

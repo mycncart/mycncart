@@ -53,6 +53,12 @@ class ControllerSettingSetting extends Controller {
 		$data['text_security'] = $this->language->get('text_security');
 		$data['text_upload'] = $this->language->get('text_upload');
 		$data['text_error'] = $this->language->get('text_error');
+		$data['text_baidu'] = $this->language->get('text_baidu');
+		$data['text_weidian'] = $this->language->get('text_weidian');
+		$data['text_youzan'] = $this->language->get('text_youzan');
+		$data['text_baidu_signup'] = $this->language->get('text_baidu_signup');
+		$data['text_weidian_signup'] = $this->language->get('text_weidian_signup');
+		$data['text_youzan_signup'] = $this->language->get('text_youzan_signup');
 
 
 		$data['entry_name'] = $this->language->get('entry_name');
@@ -166,6 +172,11 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_google_analytics'] = $this->language->get('entry_google_analytics');
 		$data['entry_map_select'] = $this->language->get('entry_map_select');
 		$data['entry_status'] = $this->language->get('entry_status');
+		$data['entry_baidu_api'] = $this->language->get('entry_baidu_api');
+		$data['entry_weidian_appkey'] = $this->language->get('entry_weidian_appkey');
+		$data['entry_weidian_secret'] = $this->language->get('entry_weidian_secret');
+		$data['entry_youzan_appid'] = $this->language->get('entry_youzan_appid');
+		$data['entry_youzan_appsecret'] = $this->language->get('entry_youzan_appsecret');
 
 		$data['help_geocode'] = $this->language->get('help_geocode');
 		$data['help_open'] = $this->language->get('help_open');
@@ -243,6 +254,7 @@ class ControllerSettingSetting extends Controller {
 		$data['tab_ftp'] = $this->language->get('tab_ftp');
 		$data['tab_mail'] = $this->language->get('tab_mail');
 		$data['tab_server'] = $this->language->get('tab_server');
+		$data['tab_thirdparty'] = $this->language->get('tab_thirdparty');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -1339,6 +1351,36 @@ class ControllerSettingSetting extends Controller {
 			$data['config_error_filename'] = $this->request->post['config_error_filename'];
 		} else {
 			$data['config_error_filename'] = $this->config->get('config_error_filename');
+		}
+		
+		if (isset($this->request->post['config_baidu_api'])) {
+			$data['config_baidu_api'] = $this->request->post['config_baidu_api'];
+		} else {
+			$data['config_baidu_api'] = $this->config->get('config_baidu_api');
+		}
+		
+		if (isset($this->request->post['config_weidian_appkey'])) {
+			$data['config_weidian_appkey'] = $this->request->post['config_weidian_appkey'];
+		} else {
+			$data['config_weidian_appkey'] = $this->config->get('config_weidian_appkey');
+		}
+		
+		if (isset($this->request->post['config_weidian_secret'])) {
+			$data['config_weidian_secret'] = $this->request->post['config_weidian_secret'];
+		} else {
+			$data['config_weidian_secret'] = $this->config->get('config_weidian_secret');
+		}
+		
+		if (isset($this->request->post['config_youzan_appid'])) {
+			$data['config_youzan_appid'] = $this->request->post['config_youzan_appid'];
+		} else {
+			$data['config_youzan_appid'] = $this->config->get('config_youzan_appid');
+		}
+		
+		if (isset($this->request->post['config_youzan_appsecret'])) {
+			$data['config_youzan_appsecret'] = $this->request->post['config_youzan_appsecret'];
+		} else {
+			$data['config_youzan_appsecret'] = $this->config->get('config_youzan_appsecret');
 		}
 
 		$data['header'] = $this->load->controller('common/header');

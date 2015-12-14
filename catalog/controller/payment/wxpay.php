@@ -186,6 +186,7 @@ class ControllerPaymentWxPay extends Controller {
 		$notify->Handle(false);
 		
 		$getxml = $GLOBALS['HTTP_RAW_POST_DATA'];
+		//$getxml = file_get_contents('php://input');
 		
 		libxml_disable_entity_loader(true);
 		

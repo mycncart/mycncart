@@ -21,11 +21,11 @@ class ControllerWeidianProduct extends Controller {
 		
 		$this->load->model('weidian/product');
 		
-		$appkey = $this->config->get('weidian_appkey');
+		$appkey = $this->config->get('config_weidian_appkey');
 		
 		
 		
-		$secret = $this->config->get('weidian_secret');
+		$secret = $this->config->get('config_weidian_secret');
 		
 		
 		
@@ -329,11 +329,11 @@ class ControllerWeidianProduct extends Controller {
 		
 		$this->load->model('weidian/product');
 		
-		$appkey = $this->config->get('weidian_appkey');
+		$appkey = $this->config->get('config_weidian_appkey');
 		
 		
 		
-		$secret = $this->config->get('weidian_secret');
+		$secret = $this->config->get('config_weidian_secret');
 		
 		
 		
@@ -629,11 +629,11 @@ class ControllerWeidianProduct extends Controller {
 		
 		$this->load->model('weidian/product');
 		
-		$appkey = $this->config->get('weidian_appkey');
+		$appkey = $this->config->get('config_weidian_appkey');
 		
 		
 		
-		$secret = $this->config->get('weidian_secret');
+		$secret = $this->config->get('config_weidian_secret');
 		
 		
 		
@@ -1171,7 +1171,7 @@ class ControllerWeidianProduct extends Controller {
 
 		if (isset($this->request->get['filter_name']) || isset($this->request->get['filter_model'])) {
 			$this->load->model('weidian/product');
-			$this->load->model('weidian/option');
+			$this->load->model('catalog/option');
 
 			if (isset($this->request->get['filter_name'])) {
 				$filter_name = $this->request->get['filter_name'];
@@ -1206,13 +1206,13 @@ class ControllerWeidianProduct extends Controller {
 				$product_options = $this->model_weidian_product->getProductOptions($result['product_id']);
 
 				foreach ($product_options as $product_option) {
-					$option_info = $this->model_weidian_option->getOption($product_option['option_id']);
+					$option_info = $this->model_catalog_option->getOption($product_option['option_id']);
 
 					if ($option_info) {
 						$product_option_value_data = array();
 
 						foreach ($product_option['product_option_value'] as $product_option_value) {
-							$option_value_info = $this->model_weidian_option->getOptionValue($product_option_value['option_value_id']);
+							$option_value_info = $this->model_catalog_option->getOptionValue($product_option_value['option_value_id']);
 
 							if ($option_value_info) {
 								$product_option_value_data[] = array(
@@ -1241,7 +1241,6 @@ class ControllerWeidianProduct extends Controller {
 					'product_id' => $result['product_id'],
 					'name'       => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
 					'model'      => $result['model'],
-					'shipping_origin_id'      => $result['shipping_origin_id'],
 					'option'     => $option_data,
 					'price'      => $result['price']
 				);

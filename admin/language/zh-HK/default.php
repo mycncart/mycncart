@@ -136,6 +136,7 @@ $_['tab_online']                    = '在線會員';
 $_['tab_activity']                  = '最新活動';
 $_['tab_recurring']                 = '分期付款';
 $_['tab_action']                    = '操作';
+$_['tab_thirdparty']                = '外部接口';
 
 // Error
 $_['error_exception']               = '錯讀代碼(%s): %s in %s on line %s';

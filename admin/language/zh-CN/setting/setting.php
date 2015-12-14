@@ -30,6 +30,12 @@ $_['text_general']                     = '常规';
 $_['text_security']                    = '安全';
 $_['text_upload']                      = '上传';
 $_['text_error']                       = '错误处理';
+$_['text_baidu']                	   = '百度参数';
+$_['text_weidian']              	   = '微店参数';
+$_['text_youzan']               	   = '有赞微商城参数';
+$_['text_baidu_signup']                = '登录您在 <a href="http://zhanzhang.baidu.com" target="_blank"><u>百度站长平台</u></a> 的账户，然后创建您的网站资料，然后复制并粘贴API到此处。';
+$_['text_weidian_signup']              = '请到<a href="http://open.weidian.com" target="_blank"><u>微店开放平台(http://open.weidian.com)</u></a>登录微店平台后创建自用型管理应用后获得。';
+$_['text_youzan_signup']               = '登录您在 <a href="http://www.youzan.com" target="_blank"><u>有赞微商城</u></a> 的账户，点击左侧的【有赞开放API】，点击【启用】后获得 AppID 和 AppSecret';
 
 
 // Entry
@@ -144,6 +150,11 @@ $_['entry_error_filename']             = '错误日志文件名';
 $_['entry_google_analytics']           = '百度或谷歌分析代码';
 $_['entry_map_select']           	   = '使用地图';
 $_['entry_status']                     = '状态';
+$_['entry_baidu_api']                  = '百度API';
+$_['entry_weidian_appkey']             = '微店 APPKEY';
+$_['entry_weidian_secret']             = '微店 Secret';
+$_['entry_youzan_appid']               = '有赞 APPID';
+$_['entry_youzan_appsecret']           = '有赞 APPSECRET';
 
 // Help
 $_['help_geocode']                     = '请手动输入您的地理代码，百度地图代码请访问 http://api.map.baidu.com/lbsapi/creatmap/ 获取。';

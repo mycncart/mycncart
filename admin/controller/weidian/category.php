@@ -21,11 +21,11 @@ class ControllerWeidianCategory extends Controller {
 		
 		$this->load->model('weidian/category');
 		
-		$appkey = $this->config->get('weidian_appkey');
+		$appkey = $this->config->get('config_weidian_appkey');
 		
 		
 		
-		$secret = $this->config->get('weidian_secret');
+		$secret = $this->config->get('config_weidian_secret');
 		
 		
 		
@@ -157,11 +157,11 @@ class ControllerWeidianCategory extends Controller {
 		
 		$this->load->model('weidian/category');
 		
-		$appkey = $this->config->get('weidian_appkey');
+		$appkey = $this->config->get('config_weidian_appkey');
 		
 		
 		
-		$secret = $this->config->get('weidian_secret');
+		$secret = $this->config->get('config_weidian_secret');
 		
 		
 		
@@ -272,11 +272,11 @@ class ControllerWeidianCategory extends Controller {
 		
 		$this->load->model('weidian/category');
 		
-		$appkey = $this->config->get('weidian_appkey');
+		$appkey = $this->config->get('config_weidian_appkey');
 		
 		
 		
-		$secret = $this->config->get('weidian_secret');
+		$secret = $this->config->get('config_weidian_secret');
 		
 		
 		

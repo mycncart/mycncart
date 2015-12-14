@@ -148,7 +148,7 @@ class ControllerBaiDuPushUrl extends Controller {
 				$urls[] = $pushurl_info['url'];
 			}
 			
-			$api = html_entity_decode($this->config->get('baidu_api'), ENT_QUOTES, 'UTF-8');
+			$api = html_entity_decode($this->config->get('config_baidu_api'), ENT_QUOTES, 'UTF-8');
 			
 			$ch = curl_init();
 			$options =  array(

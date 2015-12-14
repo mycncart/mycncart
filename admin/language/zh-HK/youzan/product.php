@@ -1,12 +1,12 @@
 <?php
 
 // Heading
-$_['heading_title']          = '微店商品';
+$_['heading_title']          = '有赞微商城商品';
 
 // Text
-$_['text_list']              = '微店商品列表';
-$_['text_add']               = '添加微店商品';
-$_['text_edit']              = '編輯微店商品';
+$_['text_list']              = '有赞微商城商品列表';
+$_['text_add']               = '添加有赞微商城商品';
+$_['text_edit']              = '編輯有赞微商城商品';
 $_['text_plus']              = '+';
 $_['text_minus']             = '-';
 $_['text_default']           = '默認';
@@ -15,12 +15,17 @@ $_['text_option_value']      = '選項值';
 $_['text_percent']           = '百分比';
 $_['text_amount']            = '固定值';
 
-$_['text_success']           = '成功推送或更新微店商品到微店';
-$_['text_delete_success']    = '成功取消該微店微店商品';
-$_['text_warning']           = '出現問題，請檢查微店參數設置是否正確，以及該微店商品是否已經存在於微店。';
+$_['text_success']           = '成功推送或更新有赞微商城商品到有赞微商城';
+$_['text_delete_success']    = '成功取消該有赞微商城有赞微商城商品';
+$_['text_warning']           = '出現問題，請檢查有赞微商城參數設置是否正確，以及該有赞微商城商品是否已經存在於有赞微商城。';
+$_['text_no_youzan_warning']         = '有赞商城无此商品，请先点击删除，然后再新增！';
+$_['text_add_youzan_warning']        = '添加商品到有赞商城出现错误，请向 <a href="http://www.mycncart.com" target="_blank">MyCnCart官网</a> 或您的技术人员寻求技术支持！';
+$_['text_update_youzan_warning']     = '更新有赞商城商品出现错误，请向 <a href="http://www.mycncart.com" target="_blank">MyCnCart官网</a> 或您的技术人员寻求技术支持！';
+$_['text_delete_youzan_warning']     = '删除有赞商城商品出现错误，请先检查您是否在有赞微商城已经删除了该商品，或者向 <a href="http://www.mycncart.com" target="_blank">MyCnCart官网</a> 或您的技术人员寻求技术支持！';
+
 
 // Column
-$_['column_name']            = '微店商品名稱';
+$_['column_name']            = '有赞微商城商品名稱';
 $_['column_model']           = '型號';
 $_['column_image']           = '圖像';
 $_['column_id']              = '產品ID';
@@ -30,7 +35,7 @@ $_['column_status']          = '狀態';
 $_['column_action']          = '操作';
 
 // Entry
-$_['entry_name']             = '微店商品名稱';
+$_['entry_name']             = '有赞微商城商品名稱';
 $_['entry_short_description']      = '簡介';
 $_['entry_description']      = '描述';
 $_['entry_meta_title'] 	     = 'Meta Tag 標題';
@@ -39,7 +44,7 @@ $_['entry_meta_description'] = 'Meta Tag 描述';
 $_['entry_keyword']          = 'SEO Keyword';
 $_['entry_model']            = '型號';
 $_['entry_shipping_origin']  = '發貨地';
-$_['entry_product_id']  	 = '微店商品 ID';
+$_['entry_product_id']  	 = '有赞微商城商品 ID';
 $_['China']  = '中國';
 $_['New Zealand']  = '新西蘭';
 $_['Australia']  = '澳大利亞';
@@ -86,11 +91,11 @@ $_['entry_required']         = '必填項';
 $_['entry_status']           = '狀態';
 $_['entry_sort_order']       = '排序';
 $_['entry_category']         = '分類';
-$_['entry_feature']          = '活動微店商品主題';
+$_['entry_feature']          = '活動有赞微商城商品主題';
 $_['entry_filter']           = '篩選';
 $_['entry_download']         = '下載文件';
-$_['entry_related']          = '相關微店商品';
-$_['entry_tag']          	 = '微店商品標簽';
+$_['entry_related']          = '相關有赞微商城商品';
+$_['entry_tag']          	 = '有赞微商城商品標簽';
 $_['entry_reward']           = '獎勵積分';
 $_['entry_layout']           = '布局覆蓋';
 $_['entry_recurring']        = '分期付款';
@@ -106,8 +111,8 @@ $_['help_isbn']              = 'International Standard Book Number';
 $_['help_mpn']               = 'Manufacturer Part Number';
 $_['help_manufacturer']      = '(輸入時自動篩選結果)';
 $_['help_minimum']           = '加入訂單時所需最小數量';
-$_['help_stock_status']      = '缺少該微店商品時所顯示的數量';
-$_['help_points']            = '購買此微店商品所需獎勵積分。如果您不想讓客戶使用獎勵積分來購買此產品，請將值設為0。';
+$_['help_stock_status']      = '缺少該有赞微商城商品時所顯示的數量';
+$_['help_points']            = '購買此有赞微商城商品所需獎勵積分。如果您不想讓客戶使用獎勵積分來購買此產品，請將值設為0。';
 $_['help_category']          = '(輸入時自動篩選結果)';
 $_['help_feature']           = '(輸入時自動篩選結果)';
 $_['help_filter']            = '(輸入時自動篩選結果)';
@@ -118,9 +123,7 @@ $_['help_maxbuy']          	 = '每個訂單限購數量';
 
 // Error
 $_['error_warning']          = '警告: 存在錯誤，請檢查！';
-$_['error_permission']       = '警告: 無權限修改微店商品！';
-$_['error_name']             = '微店商品名稱必須介於3-255字符之間！';
-$_['error_meta_title']       = 'Meta 標題必須介於3-255字符之間！';
-$_['error_model']            = '微店商品型號必須介於1-64字符之間！';
-$_['error_shipping_origin']  = '微店商品發貨地必須介於1-64字符之間！';
-$_['error_keyword']          = '該 SEO keyword 已經存在了！';
+$_['error_permission']       = '警告: 無權限修改有赞微商城商品！';
+$_['error_name']             = '有贊微商城商品名稱必須介於3-255字符之間！';
+$_['error_description']      = '有贊微商城描述必須介於10-25000字符之間！';
+$_['error_outer_id']         = '有贊微商城貨號必須介於1-64字符之間！';

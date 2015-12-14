@@ -43,18 +43,13 @@
                     <label class="col-sm-2 control-label" for="input-name<?php echo $language['language_id']; ?>"><?php echo $entry_name; ?></label>
                     <div class="col-sm-10">
                       <input type="text" name="product_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['name'] : ''; ?>" placeholder="<?php echo $entry_name; ?>" id="input-name<?php echo $language['language_id']; ?>" class="form-control" />
-                     <?php if (isset($error_name[$language['language_id']])) { ?>
-                      <div class="text-danger"><?php echo $error_name[$language['language_id']]; ?></div>
-                      <?php } ?>
+                     
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="input-description<?php echo $language['language_id']; ?>"><?php echo $entry_description; ?></label>
                     <div class="col-sm-10">
                       <textarea name="product_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['description'] : ''; ?></textarea>
-                      <?php if (isset($error_description[$language['language_id']])) { ?>
-                      <div class="text-danger"><?php echo $error_description[$language['language_id']]; ?></div>
-                      <?php } ?>
                     </div>
                   </div>
                   
@@ -63,7 +58,13 @@
               </div>
             </div>
             <div class="tab-pane" id="tab-data">
-              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-image"><?php echo $entry_image; ?></label>
+                <div class="col-sm-10">
+                  <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
+                  <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-tax-class"><?php echo $entry_youzan_category; ?></label>
                 <div class="col-sm-10">
@@ -127,7 +128,7 @@
                 </div>
               </div>
               
-              <div class="form-group">
+              <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-shipping-fee"><?php echo $entry_youzan_post_fee; ?></label>
                 <div class="col-sm-10">
                   <input type="text" name="post_fee" value="<?php echo $post_fee; ?>" placeholder="<?php echo $entry_youzan_post_fee; ?>" id="input-model" class="form-control" />
@@ -156,13 +157,10 @@
                 </div>
               </div>
               
-              <div class="form-group required">
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-outer-id"><?php echo $entry_youzan_outer_id; ?></label>
                 <div class="col-sm-10">
                   <input type="text" name="outer_id" value="<?php echo $outer_id; ?>" placeholder="<?php echo $entry_youzan_outer_id; ?>" id="input-outer-id" class="form-control" />
-                  <?php if ($error_outer_id) { ?>
-                  <div class="text-danger"><?php echo $error_outer_id; ?></div>
-                  <?php } ?>
                 </div>
               </div>
               <div class="form-group">
@@ -224,6 +222,13 @@
               
               
             </div>
+            
+            
+            
+            
+            
+            
+            
             
             
           </div>

@@ -777,5 +777,16 @@ class ModelYouzanProduct extends Model {
 		return $query->row;
 	}
 	
+	public function addProductYouZan($product_id, $youzan_id) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_youzan WHERE product_id = '" . (int)$product_id . "' OR youzan_id = '" . (int)$youzan_id . "'");
+		
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_youzan SET product_id = '" . (int)$product_id . "', youzan_id = '" . (int)$youzan_id . "'");
+			
+	}
+	
+	public function deleteProductToYouZan($product_id) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_youzan WHERE product_id = '" . (int)$product_id . "'");
+	}
+	
 	
 }

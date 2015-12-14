@@ -30,6 +30,13 @@ $_['text_general']                     = 'General';
 $_['text_security']                    = 'Security';
 $_['text_upload']                      = 'Uploads';
 $_['text_error']                       = 'Error Handling';
+$_['text_baidu']                	   = 'Bai Du';
+$_['text_weidian']              	   = 'Wei Dian';
+$_['text_youzan']               	   = 'You Zan';
+$_['text_baidu_signup']                = '登录您在 <a href="http://zhanzhang.baidu.com" target="_blank"><u>百度站长平台</u></a> 的账户，然后创建您的网站资料，然后复制并粘贴API到此处。';
+$_['text_weidian_signup']              = '请到<a href="http://open.weidian.com" target="_blank"><u>微店开放平台(http://open.weidian.com)</u></a>登录微店平台后创建自用型管理应用后获得。';
+$_['text_youzan_signup']               = '登录您在 <a href="http://www.youzan.com" target="_blank"><u>有赞微商城</u></a> 的账户，点击左侧的【有赞开放API】，点击【启用】后获得 AppID 和 AppSecret';
+
 
 // Entry
 $_['entry_name']                       = 'Store Name';
@@ -145,6 +152,12 @@ $_['entry_map_select']           	   = 'Select Map';
 $_['text_baidu']                       = 'BaiDu';
 $_['text_google']                      = 'Google';
 $_['entry_status']                     = 'Status';
+$_['entry_baidu_api']                  = 'Bai Du';
+$_['entry_weidian_appkey']             = 'WeiDian APPKEY';
+$_['entry_weidian_secret']             = 'WeiDian Secret';
+$_['entry_youzan_appid']               = 'YouZan APPID';
+$_['entry_youzan_appsecret']           = 'YouZan APPSECRET';
+
 
 
 // Help
