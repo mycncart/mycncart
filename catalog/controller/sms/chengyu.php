@@ -77,10 +77,12 @@ class ControllerSmsChengyu extends Controller {
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
 		$return_str = curl_exec($curl);
 		curl_close($curl);
+		
 		return $return_str;
 	}
 	
 	public function xml_to_array($xml){
+		$arr = array();
 		$reg = "/<(\w+)[^>]*>([\\x00-\\xFF]*)<\\/\\1>/";
 		if(preg_match_all($reg, $xml, $matches)){
 			$count = count($matches[0]);
