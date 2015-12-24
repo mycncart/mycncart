@@ -1,0 +1,2 @@
+ALTER TABLE `mcc_customer` ADD `weixin_login_openid` VARCHAR(64) NOT NULL , ADD `weixin_login_unionid` VARCHAR(64) NOT NULL ;
+

@@ -44,7 +44,7 @@ foreach ($query->rows as $result) {
 	if (!$result['serialized']) {
 		$config->set($result['key'], $result['value']);
 	} else {
-		$config->set($result['key'], unserialize($result['value']));
+		$config->set($result['key'], json_decode($result['value'], true));
 	}
 }
 
