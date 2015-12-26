@@ -42,21 +42,26 @@ class ControllerSmsChengyu extends Controller {
 				$this->model_account_smsmobile->addSmsMobile(trim($this->request->post['telephone']), $verify_code);
 
 				$post_data = array();
+				$post_data['action'] = 'send';
 				$post_data['userid'] = $this->config->get('chengyu_userid');
 				$post_data['account'] = $this->config->get('chengyu_account');
 				$post_data['password'] = $this->config->get('chengyu_password');
+				$post_data['mobile'] = trim($this->request->post['telephone']);
 				//$post_data['content'] = urlencode(sprintf($this->language->get('text_content'), $verify_code));
 				$post_data['content'] = sprintf($this->language->get('text_content'), $verify_code);
+				$post_data['sendTime'] = '';
+				$post_data['extno'] = '';
 				
-				$post_data['mobile'] = trim($this->request->post['telephone']);
-				$post_data['sendtime'] = '';
-				$url='http://113.11.210.114:5888/sms.aspx?action=send';
+				//$url='http://113.11.210.114:5888/sms.aspx';
+				$url = 'http://120.55.194.25:5888/sms.aspx';
 				$o='';
 				foreach ($post_data as $k=>$v)
 				{
 				   $o.="$k=".urlencode($v).'&';
 				}
 				$post_data=substr($o,0,-1);
+				
+				
 				
 				$result = $this->xml_to_array($this->sms_post($post_data, $url));
 				
