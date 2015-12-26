@@ -1,0 +1,197 @@
+2015-11-18 7:02:52 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:02:52 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:02:52 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:02:52 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:03:32 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:03:32 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:03:32 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:03:32 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:04:16 - PHP Notice:  Undefined index: firstname in C:\wamp\www\mycncart\admin\controller\common\profile.php on line 13
+2015-11-18 7:04:16 - PHP Notice:  Undefined index: lastname in C:\wamp\www\mycncart\admin\controller\common\profile.php on line 14
+2015-11-18 7:04:50 - PHP Notice:  Undefined variable: firstname in C:\wamp\www\mycncart\admin\view\template\common\profile.tpl on line 10
+2015-11-18 7:04:50 - PHP Notice:  Undefined variable: lastname in C:\wamp\www\mycncart\admin\view\template\common\profile.tpl on line 10
+2015-11-18 7:06:42 - PHP Notice:  Undefined variable: text_google in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 143
+2015-11-18 7:06:42 - PHP Notice:  Undefined variable: config_google_analytics in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 1600
+2015-11-18 7:06:42 - PHP Notice:  Undefined variable: config_google_analytics_status in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 1607
+2015-11-18 7:07:45 - PHP Notice:  Undefined variable: text_google in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 143
+2015-11-18 7:07:45 - PHP Notice:  Undefined variable: config_google_analytics in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 1600
+2015-11-18 7:07:45 - PHP Notice:  Undefined variable: config_google_analytics_status in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 1607
+2015-11-18 7:08:30 - PHP Notice:  Undefined variable: text_google in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 143
+2015-11-18 7:08:30 - PHP Notice:  Undefined variable: config_google_analytics in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 1600
+2015-11-18 7:08:30 - PHP Notice:  Undefined variable: config_google_analytics_status in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 1607
+2015-11-18 7:11:49 - PHP Notice:  Undefined variable: config_google_analytics in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 1600
+2015-11-18 7:11:49 - PHP Notice:  Undefined variable: config_google_analytics_status in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 1607
+2015-11-18 7:13:37 - PHP Notice:  Undefined variable: config_google_analytics in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 1600
+2015-11-18 7:13:37 - PHP Notice:  Undefined variable: config_google_analytics_status in C:\wamp\www\mycncart\admin\view\template\setting\setting.tpl on line 1607
+2015-11-18 7:36:26 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:26 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:26 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:26 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:29 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:29 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:29 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:29 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:30 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:30 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:30 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:30 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:31 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:31 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:31 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:31 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:31 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:31 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:31 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:36:31 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:47:39 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:47:39 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:47:39 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:47:39 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:49:21 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:49:21 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:49:21 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:49:21 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:49:49 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:50:58 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:50:58 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:55:47 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:55:48 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 21
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 23
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 24
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 25
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 26
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 27
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 28
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 29
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 30
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 31
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 32
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 33
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 34
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 35
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 36
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 37
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 38
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 39
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 40
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 41
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 42
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 43
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 43
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 44
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 45
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 46
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 47
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 48
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 49
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 50
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 51
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 52
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 53
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 54
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 55
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 56
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 57
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 58
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 59
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 60
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 61
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 62
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 63
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 23
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 24
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 25
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 26
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 27
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 28
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 29
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 30
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 31
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 32
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 33
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 34
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 35
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 36
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 37
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 38
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 39
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 40
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 41
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 42
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 43
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 43
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 44
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 45
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 46
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 47
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 48
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 49
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 50
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 51
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 52
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 53
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 54
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 55
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 56
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 57
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 58
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 59
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 60
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 61
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 62
+2015-11-18 7:56:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\catalog\product.php on line 63
+2015-11-18 8:04:35 - PHP Notice:  Undefined variable: entry_captcha in C:\wamp\www\mycncart\catalog\view\theme\default\template\information\contact.tpl on line 138
+2015-11-18 8:04:35 - PHP Notice:  Undefined variable: error_captcha in C:\wamp\www\mycncart\catalog\view\theme\default\template\information\contact.tpl on line 146
+2015-11-18 8:12:11 - PHP Notice:  Undefined variable: entry_captcha in C:\wamp\www\mycncart\catalog\view\theme\default\template\information\contact.tpl on line 138
+2015-11-18 8:12:11 - PHP Notice:  Undefined variable: error_captcha in C:\wamp\www\mycncart\catalog\view\theme\default\template\information\contact.tpl on line 146
+2015-11-18 8:14:26 - PHP Notice:  Undefined variable: entry_captcha in C:\wamp\www\mycncart\catalog\view\theme\default\template\information\contact.tpl on line 138
+2015-11-18 8:14:26 - PHP Notice:  Undefined variable: error_captcha in C:\wamp\www\mycncart\catalog\view\theme\default\template\information\contact.tpl on line 146
+2015-11-18 8:30:51 - PHP Notice:  Error: Column 'name' in order clause is ambiguous<br />Error No: 1052<br />SELECT *, c.fullname AS name, cgd.name AS customer_group FROM mcc_customer c LEFT JOIN mcc_customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '1' ORDER BY name ASC LIMIT 0,5 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2015-11-18 8:30:51 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\customer\customer.php on line 152
+2015-11-18 8:30:51 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\customer\customer.php on line 1463
+2015-11-18 8:30:53 - PHP Notice:  Error: Column 'name' in order clause is ambiguous<br />Error No: 1052<br />SELECT *, c.fullname AS name, cgd.name AS customer_group FROM mcc_customer c LEFT JOIN mcc_customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '1' ORDER BY name ASC LIMIT 0,5 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2015-11-18 8:30:53 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\customer\customer.php on line 152
+2015-11-18 8:30:53 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\customer\customer.php on line 1463
+2015-11-18 8:30:59 - PHP Notice:  Error: Column 'name' in order clause is ambiguous<br />Error No: 1052<br />SELECT *, c.fullname AS name, cgd.name AS customer_group FROM mcc_customer c LEFT JOIN mcc_customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '1' AND c.fullname LIKE '%te%' ORDER BY name ASC LIMIT 0,5 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2015-11-18 8:30:59 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\customer\customer.php on line 152
+2015-11-18 8:30:59 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\customer\customer.php on line 1463
+2015-11-18 8:31:00 - PHP Notice:  Error: Column 'name' in order clause is ambiguous<br />Error No: 1052<br />SELECT *, c.fullname AS name, cgd.name AS customer_group FROM mcc_customer c LEFT JOIN mcc_customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '1' AND c.fullname LIKE '%testone%' ORDER BY name ASC LIMIT 0,5 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2015-11-18 8:31:00 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\customer\customer.php on line 152
+2015-11-18 8:31:00 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\customer\customer.php on line 1463
+2015-11-18 8:37:39 - PHP Notice:  Undefined variable: totals in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 8:37:39 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 8:37:40 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 164
+2015-11-18 9:33:10 - PHP Notice:  Undefined variable: totals in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 9:33:10 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 9:33:11 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 164
+2015-11-18 9:36:55 - PHP Notice:  Undefined index: shipping_telephone in C:\wamp\www\mycncart\catalog\model\checkout\order.php on line 57
+2015-11-18 9:36:55 - PHP Notice:  Undefined variable: totals in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 9:36:55 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 9:36:56 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 164
+2015-11-18 9:41:30 - PHP Notice:  Undefined index: shipping_telephone in C:\wamp\www\mycncart\catalog\model\checkout\order.php on line 57
+2015-11-18 9:41:30 - PHP Notice:  Undefined variable: totals in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 9:41:30 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 9:41:31 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 164
+2015-11-18 9:44:29 - PHP Notice:  Undefined variable: totals in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 9:44:29 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 9:44:30 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 164
+2015-11-18 9:51:49 - PHP Notice:  Error: Column 'name' in order clause is ambiguous<br />Error No: 1052<br />SELECT *, c.fullname AS name, cgd.name AS customer_group FROM mcc_customer c LEFT JOIN mcc_customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '1' ORDER BY name ASC LIMIT 0,20 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2015-11-18 9:51:49 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\customer\customer.php on line 152
+2015-11-18 9:51:49 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\customer\customer.php on line 463
+2015-11-18 10:06:10 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 164
+2015-11-18 10:10:48 - PHP Notice:  Undefined variable: totals in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 10:10:48 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\mail\order.tpl on line 106
+2015-11-18 10:10:49 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 164
+2015-11-18 10:19:05 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 164
+2015-11-18 10:38:38 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 164
+2015-11-18 10:38:53 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 164
+2015-11-18 10:39:41 - PHP Notice:  unserialize(): Error at offset 0 of 62 bytes in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
+2015-11-18 10:39:41 - PHP Warning:  vsprintf(): Too few arguments in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
+2015-11-18 10:39:41 - PHP Notice:  unserialize(): Error at offset 0 of 46 bytes in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
+2015-11-18 10:39:41 - PHP Warning:  vsprintf(): Too few arguments in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
+2015-11-18 10:39:41 - PHP Notice:  unserialize(): Error at offset 0 of 51 bytes in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
+2015-11-18 10:39:41 - PHP Warning:  vsprintf(): Too few arguments in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
+2015-11-18 10:39:41 - PHP Notice:  unserialize(): Error at offset 0 of 51 bytes in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
+2015-11-18 10:39:41 - PHP Warning:  vsprintf(): Too few arguments in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
+2015-11-18 10:39:41 - PHP Notice:  unserialize(): Error at offset 0 of 37 bytes in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
+2015-11-18 10:39:41 - PHP Warning:  vsprintf(): Too few arguments in C:\wamp\www\mycncart\admin\controller\dashboard\activity.php on line 19
