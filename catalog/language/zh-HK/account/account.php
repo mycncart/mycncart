@@ -19,3 +19,4 @@ $_['text_return']        = '查看我的退換要求';
 $_['text_transaction']   = '賬戶余額';
 $_['text_newsletter']    = '訂閱 / 退訂新聞郵件';
 $_['text_transactions']  = '賬戶余額記錄';
+$_['text_recurring']     = '分期付款';

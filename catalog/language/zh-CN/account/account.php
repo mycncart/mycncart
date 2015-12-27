@@ -19,3 +19,4 @@ $_['text_return']        = '查看我的退换要求';
 $_['text_transaction']   = '账户余额';
 $_['text_newsletter']    = '订阅 / 退订新闻邮件';
 $_['text_transactions']  = '账户余额记录';
+$_['text_recurring']     = '分期付款';
