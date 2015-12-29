@@ -206,6 +206,7 @@ class ControllerCmsPressCategory extends Controller {
 		$data['text_no_results'] = $this->language->get('text_no_results');
 		$data['text_confirm'] = $this->language->get('text_confirm');
 		$data['text_press_category_warning'] = $this->language->get('text_press_category_warning');
+		
 
 		$data['column_name'] = $this->language->get('column_name');
 		$data['column_sort_order'] = $this->language->get('column_sort_order');
@@ -498,9 +499,9 @@ class ControllerCmsPressCategory extends Controller {
 		}
 
 		if (utf8_strlen($this->request->post['keyword']) > 0) {
-			$this->load->model('cms/url_alias');
+			$this->load->model('catalog/url_alias');
 
-			$url_alias_info = $this->model_cms_url_alias->getUrlAlias($this->request->post['keyword']);
+			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['keyword']);
 		
 			if ($url_alias_info && isset($this->request->get['press_category_id']) && $url_alias_info['query'] != 'press_category_id=' . $this->request->get['press_category_id']) {
 				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
