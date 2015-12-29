@@ -33,3 +33,4 @@ $_['error_warning']          = '警告: 存在错误，请检查！';
 $_['error_permission']       = '警告: 无权限修改商品！';
 $_['error_url']              = 'URL 必须介于 5-255字符之间！';
 $_['error_push_warning']     = '推送失败，存在错误！';
+$_['error_push_config_warning']     = '参数错误，请到【系统设置】->【店铺设置】->【接口设置】中设置正确参数！';

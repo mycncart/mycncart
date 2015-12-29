@@ -100,13 +100,10 @@ class ControllerCommonMenu extends Controller {
 		$data['text_weidian'] = $this->language->get('text_weidian');
 		$data['text_weidian_category'] = $this->language->get('text_weidian_category');
 		$data['text_weidian_product'] = $this->language->get('text_weidian_product');
-		$data['text_weidian_config'] = $this->language->get('text_weidian_config');
 		$data['text_baidu_seo'] = $this->language->get('text_baidu_seo');
-		$data['text_baidu'] = $this->language->get('text_baidu');
 		$data['text_pushurl'] = $this->language->get('text_pushurl');
 		$data['text_youzan'] = $this->language->get('text_youzan');
 		$data['text_youzan_product'] = $this->language->get('text_youzan_product');
-		$data['text_youzan_config'] = $this->language->get('text_youzan_config');
 		$data['text_thirdparty'] = $this->language->get('text_thirdparty');
 		$data['text_cms'] = $this->language->get('text_cms');
 		$data['text_press_category'] = $this->language->get('text_press_category');
@@ -194,7 +191,6 @@ class ControllerCommonMenu extends Controller {
 		$data['weidian_category'] = $this->url->link('weidian/category', 'token=' . $this->session->data['token'], 'SSL');
 		$data['weidian_product'] = $this->url->link('weidian/product', 'token=' . $this->session->data['token'], 'SSL');
 		$data['weidian_config'] = $this->url->link('weidian/config', 'token=' . $this->session->data['token'], 'SSL');
-		$data['baidu'] = $this->url->link('baidu/baidu', 'token=' . $this->session->data['token'], 'SSL');
 		$data['pushurl'] = $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'], 'SSL');
 		$data['youzan_product'] = $this->url->link('youzan/product', 'token=' . $this->session->data['token'], 'SSL');
 		$data['youzan_config'] = $this->url->link('youzan/config', 'token=' . $this->session->data['token'], 'SSL');

@@ -84,7 +84,6 @@
   </li>
   <li><a class="parent"><i class="fa fa-search"></i> <span><?php echo $text_baidu_seo; ?></span></a>
     <ul>
-      <li><a href="<?php echo $baidu; ?>"><?php echo $text_baidu; ?></a></li>
       <li><a href="<?php echo $pushurl; ?>"><?php echo $text_pushurl; ?></a></li>
     </ul>
   </li>
@@ -175,13 +174,11 @@
         <ul>
           <li><a href="<?php echo $weidian_category; ?>"><?php echo $text_weidian_category; ?></a></li>
           <li><a href="<?php echo $weidian_product; ?>"><?php echo $text_weidian_product; ?></a></li>
-          <li><a href="<?php echo $weidian_config; ?>"><?php echo $text_weidian_config; ?></a></li>
         </ul>
       </li>
       <li><a class="parent"><?php echo $text_youzan; ?></a>
         <ul>
           <li><a href="<?php echo $youzan_product; ?>"><?php echo $text_youzan_product; ?></a></li>
-          <li><a href="<?php echo $youzan_config; ?>"><?php echo $text_youzan_config; ?></a></li>
         </ul>
       </li>
     </ul>
