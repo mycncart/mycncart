@@ -35,6 +35,14 @@
       <li><a href="<?php echo $sms; ?>"><?php echo $text_sms; ?></a></li>
     </ul>
   </li>
+  <li id="cms"><a class="parent"><i class="fa fa-newspaper-o"></i> <span><?php echo $text_cms; ?></span></a>
+    <ul>
+      <li><a href="<?php echo $press_category; ?>"><?php echo $text_press_category; ?></a></li>
+      <li><a href="<?php echo $press; ?>"><?php echo $text_press; ?></a></li>
+      <li><a href="<?php echo $blog_category; ?>"><?php echo $text_blog_category; ?></a></li>
+      <li><a href="<?php echo $blog; ?>"><?php echo $text_blog; ?></a></li>
+    </ul>
+  </li>
   <li id="design"><a class="parent"><i class="fa fa-television fa-fw"></i> <span><?php echo $text_design; ?></span></a>
     <ul>
       <li><a href="<?php echo $layout; ?>"><?php echo $text_layout; ?></a></li>

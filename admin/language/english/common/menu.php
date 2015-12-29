@@ -100,4 +100,9 @@ $_['text_youzan']	 			       = '有赞微商城管理';
 $_['text_youzan_product'] 			   = '有赞商品';
 $_['text_youzan_config'] 			   = '有赞参数设置';
 $_['text_thirdparty']	 			   = '第三方商铺';
+$_['text_cms']		 			   	   = 'News & Blog';
+$_['text_press_category']		 	   = 'News Category';
+$_['text_press']		 			   = 'News';
+$_['text_blog_category']		 	   = 'Blog Category';
+$_['text_blog']		 			       = 'Blog';
 

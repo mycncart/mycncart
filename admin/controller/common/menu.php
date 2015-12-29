@@ -108,6 +108,11 @@ class ControllerCommonMenu extends Controller {
 		$data['text_youzan_product'] = $this->language->get('text_youzan_product');
 		$data['text_youzan_config'] = $this->language->get('text_youzan_config');
 		$data['text_thirdparty'] = $this->language->get('text_thirdparty');
+		$data['text_cms'] = $this->language->get('text_cms');
+		$data['text_press_category'] = $this->language->get('text_press_category');
+		$data['text_press'] = $this->language->get('text_press');
+		$data['text_blog_category'] = $this->language->get('text_blog_category');
+		$data['text_blog'] = $this->language->get('text_blog');
 
 		$data['analytics'] = $this->url->link('extension/analytics', 'token=' . $this->session->data['token'], 'SSL');
 		$data['home'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL');
@@ -193,6 +198,10 @@ class ControllerCommonMenu extends Controller {
 		$data['pushurl'] = $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'], 'SSL');
 		$data['youzan_product'] = $this->url->link('youzan/product', 'token=' . $this->session->data['token'], 'SSL');
 		$data['youzan_config'] = $this->url->link('youzan/config', 'token=' . $this->session->data['token'], 'SSL');
+		$data['press_category'] = $this->url->link('cms/press_category', 'token=' . $this->session->data['token'], 'SSL');
+		$data['press'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'], 'SSL');
+		$data['blog'] = $this->url->link('cms/blog', 'token=' . $this->session->data['token'], 'SSL');
+		$data['blog_category'] = $this->url->link('cms/blog_category', 'token=' . $this->session->data['token'], 'SSL');
 
 		$data['openbay_show_menu'] = $this->config->get('openbaypro_menu');
 		$data['openbay_link_extension'] = $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL');
