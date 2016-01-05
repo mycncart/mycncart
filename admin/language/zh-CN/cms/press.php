@@ -22,7 +22,7 @@ $_['entry_meta_keyword'] 	 = 'Meta Tag 关键词';
 $_['entry_meta_description'] = 'Meta Tag 描述';
 $_['entry_keyword']          = 'SEO Keyword';
 $_['entry_related']          = '关联商品';
-
+$_['entry_image']            = '图像';
 $_['entry_store']            = '商店';
 
 $_['entry_status']           = '状态';
