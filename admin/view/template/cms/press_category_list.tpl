@@ -30,8 +30,6 @@
       </div>
       <div class="panel-body">
         <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-press_category">
-          <div class="alert alert-danger"><i class="fa fa-info-circle"></i> <?php echo $text_press_category_warning; ?><button type="button" class="close" data-dismiss="alert">&times;</button></div>
-          
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <thead>

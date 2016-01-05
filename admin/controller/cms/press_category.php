@@ -205,8 +205,6 @@ class ControllerCmsPressCategory extends Controller {
 		$data['text_list'] = $this->language->get('text_list');
 		$data['text_no_results'] = $this->language->get('text_no_results');
 		$data['text_confirm'] = $this->language->get('text_confirm');
-		$data['text_press_category_warning'] = $this->language->get('text_press_category_warning');
-		
 
 		$data['column_name'] = $this->language->get('column_name');
 		$data['column_sort_order'] = $this->language->get('column_sort_order');

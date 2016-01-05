@@ -9,7 +9,6 @@ $_['text_list']              = '新闻分类列表';
 $_['text_add']               = '添加新闻分类';
 $_['text_edit']              = '编辑新闻分类';
 $_['text_default']           = '默认';
-$_['text_press_category_warning']           = '尚处于开发中，请等待更新的版本发布!';
 
 // Column
 $_['column_name']            = '新闻分类名称';
@@ -27,9 +26,12 @@ $_['entry_parent']           = '上一级';
 $_['entry_filter']           = '筛选';
 $_['entry_store']            = '商店';
 $_['entry_image']            = '图像';
+$_['entry_top']              = '顶部菜单显示';
+$_['entry_column']           = '列排显示';
 $_['entry_sort_order']       = '排序';
 $_['entry_status']           = '状态';
 $_['entry_layout']           = '布局覆盖';
+$_['entry_post2u_url']           = 'Post2U对应新闻分类网址';
 
 // Help
 $_['help_filter']            = '(输入时自动筛选结果)';

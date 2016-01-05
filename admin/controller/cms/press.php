@@ -365,7 +365,7 @@ class ControllerCmsPress extends Controller {
 		$data['entry_keyword'] = $this->language->get('entry_keyword');
 		$data['entry_store'] = $this->language->get('entry_store');
 		$data['entry_press_category'] = $this->language->get('entry_press_category');
-		$data['entry_filter'] = $this->language->get('entry_filter');
+		$data['entry_image'] = $this->language->get('entry_image');
 		$data['entry_text'] = $this->language->get('entry_text');
 		$data['entry_required'] = $this->language->get('entry_required');
 		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
@@ -486,6 +486,26 @@ class ControllerCmsPress extends Controller {
 		} else {
 			$data['press_store'] = array(0);
 		}
+		
+		if (isset($this->request->post['image'])) {
+			$data['image'] = $this->request->post['image'];
+		} elseif (!empty($press_info)) {
+			$data['image'] = $press_info['image'];
+		} else {
+			$data['image'] = '';
+		}
+
+		$this->load->model('tool/image');
+
+		if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
+			$data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
+		} elseif (!empty($press_info) && is_file(DIR_IMAGE . $press_info['image'])) {
+			$data['thumb'] = $this->model_tool_image->resize($press_info['image'], 100, 100);
+		} else {
+			$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+		}
+
+		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 		
 		if (isset($this->request->post['keyword'])) {
 			$data['keyword'] = $this->request->post['keyword'];

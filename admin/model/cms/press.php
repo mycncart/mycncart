@@ -6,6 +6,10 @@ class ModelCmsPress extends Model {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "press SET status = '" . (int)$data['status'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
 		$press_id = $this->db->getLastId();
+		
+		if (isset($data['image'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "press SET image = '" . $this->db->escape($data['image']) . "' WHERE press_id = '" . (int)$press_id . "'");
+		}
 
 		foreach ($data['press_description'] as $language_id => $value) {
 			
@@ -58,6 +62,10 @@ class ModelCmsPress extends Model {
 	
 
 		$this->db->query("UPDATE " . DB_PREFIX . "press SET status = '" . (int)$data['status'] . "',  sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE press_id = '" . (int)$press_id . "'");
+		
+		if (isset($data['image'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "press SET image = '" . $this->db->escape($data['image']) . "' WHERE press_id = '" . (int)$press_id . "'");
+		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_description WHERE press_id = '" . (int)$press_id . "'");
 

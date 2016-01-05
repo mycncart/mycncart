@@ -83,7 +83,12 @@
             </div>
             <div class="tab-pane" id="tab-data">
               
-              
+              <div class="form-group">
+                <label class="col-sm-2 control-label"><?php echo $entry_image; ?></label>
+                <div class="col-sm-10"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
+                  <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
+                </div>
+              </div>
               
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-keyword"><span data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><?php echo $entry_keyword; ?></span></label>
