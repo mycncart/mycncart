@@ -58,6 +58,15 @@
             </div>
           </div>
           
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-postfix"><?php echo $entry_postfix; ?></label>
+            <div class="col-sm-10">
+              <input type="text" name="chengyu_postfix" value="<?php echo $chengyu_postfix; ?>" placeholder="<?php echo $entry_postfix; ?>" id="input-postfix" class="form-control" />
+              <?php if ($error_postfix) { ?>
+                  <div class="text-danger"><?php echo $error_postfix; ?></div>
+              <?php } ?>
+            </div>
+          </div>
           
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_status; ?></label>

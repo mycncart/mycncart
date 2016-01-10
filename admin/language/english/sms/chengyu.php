@@ -11,6 +11,7 @@ $_['text_edit']        = 'Edit ChengYu Sms';
 $_['entry_userid']      = 'User ID';
 $_['entry_account']     = 'Account';
 $_['entry_password']    = 'Password';
+$_['entry_postfix'] 	= 'Postfix';
 $_['entry_status'] 		= 'Status';
 
 // Error
@@ -18,3 +19,4 @@ $_['error_permission'] 	= 'Warning: You do not have permission to modify chengyu
 $_['error_userid'] 		= 'User ID Required!';
 $_['error_account'] 	= 'Account Required!';
 $_['error_password'] 	= 'Password Required!';
+$_['error_postfix'] 	= 'Postfix Required!';

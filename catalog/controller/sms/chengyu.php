@@ -48,7 +48,7 @@ class ControllerSmsChengyu extends Controller {
 				$post_data['password'] = $this->config->get('chengyu_password');
 				$post_data['mobile'] = trim($this->request->post['telephone']);
 				//$post_data['content'] = urlencode(sprintf($this->language->get('text_content'), $verify_code));
-				$post_data['content'] = sprintf($this->language->get('text_content'), $verify_code);
+				$post_data['content'] = sprintf($this->language->get('text_content'), $verify_code).'【'.$this->config->get('chengyu_postfix').'】';
 				$post_data['sendTime'] = '';
 				$post_data['extno'] = '';
 				
