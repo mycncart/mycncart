@@ -203,47 +203,13 @@
       </div>
     </div>
   </div>
-  <script src="view/javascript/ckeditor/ckeditor.js"></script>
-<script src="view/javascript/ckeditor/adapters/jquery.js"></script>
-<script type="text/javascript">
+  <script type="text/javascript"><!--
 <?php foreach ($languages as $language) { ?>
-CKEDITOR.replace('input-description<?php echo $language['language_id']; ?>', {
-	language: '<?php echo $language_code; ?>',
-	on: {
-		instanceReady: function(evt) {
-			$('#cke_input-description<?php echo $language['language_id']; ?>').after('<input type="hidden" id="filemanager<?php echo $language['language_id']; ?>" value="" />');
-			$('#cke_input-description<?php echo $language['language_id']; ?> .cke_button__image').before('<a href="javascript:;" class="filemanager cke_button" title="<?php echo $text_filemanager; ?>"><span class="cke_button_icon">&nbsp;</span></a>');
-			$(document).on('click', '#cke_input-description<?php echo $language['language_id']; ?> .filemanager', function() {
-				$('#modal-image').remove();
-				$.ajax({
-					url: 'index.php?route=common/filemanager&token=<?php echo $token; ?>&target=filemanager<?php echo $language['language_id']; ?>',
-					dataType: 'html',
-					success: function(html) {
-						$('body').append('<div id="modal-image" class="modal filemanager<?php echo $language['language_id']; ?>">' + html + '</div>');
-						$('#modal-image').modal('show');
-					}
-				});
-			});
-			$('body').on('click', '.filemanager<?php echo $language['language_id']; ?> .thumbnail', function (){
-				$('#modal-image').removeClass('filemanager<?php echo $language['language_id']; ?>');
-				evt.editor.focus();
-				evt.editor.insertHtml('<img src="<?php echo str_replace('admin','image',HTTPS_SERVER); ?>' + $('#filemanager<?php echo $language['language_id']; ?>').val() + '" alt="" />');
-			});
-		}
-	}
+$('#input-description<?php echo $language['language_id']; ?>').summernote({
+	height: 300
 });
 <?php } ?>
-</script>
-<style>
-.filemanager > .cke_button_icon {background-image: url('view/javascript/ckeditor/plugins/filemanager/icon.png'); background-size: auto;}
-.filemanager:hover {background-color: #D5E1F2;}
-</style>
-
-
-
-
-
-
+//--></script> 
   <script type="text/javascript"><!--
 $('input[name=\'path\']').autocomplete({
 	'source': function(request, response) {
@@ -252,7 +218,7 @@ $('input[name=\'path\']').autocomplete({
 			dataType: 'json',
 			success: function(json) {
 				json.unshift({
-					press_category_id: 0,
+					category_id: 0,
 					name: '<?php echo $text_none; ?>'
 				});
 
@@ -271,35 +237,7 @@ $('input[name=\'path\']').autocomplete({
 	}
 });
 //--></script> 
-  <script type="text/javascript"><!--
-$('input[name=\'filter\']').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=cms/filter/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item['name'],
-						value: item['filter_id']
-					}
-				}));
-			}
-		});
-	},
-	'select': function(item) {
-		$('input[name=\'filter\']').val('');
 
-		$('#press_category-filter' + item['value']).remove();
-
-		$('#press_category-filter').append('<div id="press_category-filter' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="press_category_filter[]" value="' + item['value'] + '" /></div>');
-	}
-});
-
-$('#press_category-filter').delegate('.fa-minus-circle', 'click', function() {
-	$(this).parent().remove();
-});
-//--></script> 
   <script type="text/javascript"><!--
 $('#language a:first').tab('show');
 //--></script></div>
