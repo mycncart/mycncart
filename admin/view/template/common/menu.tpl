@@ -41,6 +41,7 @@
       <li><a href="<?php echo $press; ?>"><?php echo $text_press; ?></a></li>
       <li><a href="<?php echo $blog_category; ?>"><?php echo $text_blog_category; ?></a></li>
       <li><a href="<?php echo $blog; ?>"><?php echo $text_blog; ?></a></li>
+      <li><a href="<?php echo $blog_comment; ?>"><?php echo $text_blog_comment; ?></a></li>
     </ul>
   </li>
   <li id="design"><a class="parent"><i class="fa fa-television fa-fw"></i> <span><?php echo $text_design; ?></span></a>

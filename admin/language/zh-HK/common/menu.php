@@ -102,4 +102,5 @@ $_['text_press_category']		 	   = '新聞分類';
 $_['text_press']		 			   = '新聞';
 $_['text_blog_category']		 	   = '博客分類';
 $_['text_blog']		 			       = '博客';
+$_['text_blog_comment']			       = '博客评论';
 $_['text_excelexportimport']	       = 'Excel導入導出';

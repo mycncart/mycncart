@@ -102,5 +102,6 @@ $_['text_press_category']		 	   = 'News Category';
 $_['text_press']		 			   = 'News';
 $_['text_blog_category']		 	   = 'Blog Category';
 $_['text_blog']		 			       = 'Blog';
+$_['text_blog_comment']			       = 'Blog Comments';
 $_['text_excelexportimport']	       = 'Excel Export/Import';
 
