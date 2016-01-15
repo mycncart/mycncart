@@ -160,7 +160,6 @@ class ModelCmsBlogCategory extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_category_description WHERE blog_category_id = '" . (int)$blog_category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_category_to_store WHERE blog_category_id = '" . (int)$blog_category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_category_to_layout WHERE blog_category_id = '" . (int)$blog_category_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_blog_category WHERE blog_category_id = '" . (int)$blog_category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'blog_category_id=" . (int)$blog_category_id . "'");
 
 		$this->cache->delete('blog_category');
