@@ -1,0 +1,261 @@
+2016-01-13 14:56:19 - PHP Notice:  Error: Unknown column 'cd1.name' in 'field list'<br />Error No: 1054<br />SELECT cp.blog_category_id AS blog_category_id, GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') AS name, c1.parent_id, c1.sort_order FROM mcc_blog_category_path cp LEFT JOIN mcc_blog_category c1 ON (cp.blog_category_id = c1.blog_category_id) LEFT JOIN mcc_blog_category c2 ON (cp.path_id = c2.blog_category_id) LEFT JOIN mcc_blog_category_description cd1 ON (cp.path_id = cd1.blog_category_id) LEFT JOIN mcc_blog_category_description cd2 ON (cp.blog_category_id = cd2.blog_category_id) WHERE cd1.language_id = '1' AND cd2.language_id = '1' GROUP BY cp.blog_category_id ORDER BY name ASC LIMIT 0,20 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 14:56:19 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_category.php on line 241
+2016-01-13 14:56:19 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\cms\blog_category.php on line 193
+2016-01-13 14:57:49 - PHP Notice:  Error: Unknown column 'c1.sort_order' in 'field list'<br />Error No: 1054<br />SELECT cp.blog_category_id AS blog_category_id, GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') AS name, c1.parent_id, c1.sort_order FROM mcc_blog_category_path cp LEFT JOIN mcc_blog_category c1 ON (cp.blog_category_id = c1.blog_category_id) LEFT JOIN mcc_blog_category c2 ON (cp.path_id = c2.blog_category_id) LEFT JOIN mcc_blog_category_description cd1 ON (cp.path_id = cd1.blog_category_id) LEFT JOIN mcc_blog_category_description cd2 ON (cp.blog_category_id = cd2.blog_category_id) WHERE cd1.language_id = '1' AND cd2.language_id = '1' GROUP BY cp.blog_category_id ORDER BY name ASC LIMIT 0,20 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 14:57:49 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_category.php on line 241
+2016-01-13 14:57:49 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\cms\blog_category.php on line 193
+2016-01-13 15:07:44 - PHP Notice:  Error: Unknown column 'status' in 'field list'<br />Error No: 1054<br />INSERT INTO mcc_blog_category SET parent_id = '0', sort_order = '0', status = '1', date_modified = '2016-01-13 15:07:44', date_added = '2016-01-13 15:07:44' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 15:43:40 - PHP Notice:  Error: Table 'mycncart_master.mcc_product_to_blog_category' doesn't exist<br />Error No: 1146<br />DELETE FROM mcc_product_to_blog_category WHERE blog_category_id = '4' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 15:43:40 - PHP Notice:  Error: Table 'mycncart_master.mcc_product_to_blog_category' doesn't exist<br />Error No: 1146<br />DELETE FROM mcc_product_to_blog_category WHERE blog_category_id = '3' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 15:43:40 - PHP Notice:  Error: Table 'mycncart_master.mcc_product_to_blog_category' doesn't exist<br />Error No: 1146<br />DELETE FROM mcc_product_to_blog_category WHERE blog_category_id = '4' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 89
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 89
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 89
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_featured in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 131
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: featured in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 134
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_hits in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 146
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: hits in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 148
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_hits in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 148
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_created in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 153
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: created in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 156
+2016-01-13 16:51:21 - PHP Notice:  Undefined variable: entry_created in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 156
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: featured in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 134
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: hits in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 148
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: created in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 156
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: users in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 19:49:29 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 19:49:29 - PHP Notice:  Undefined variable: video_code in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 181
+2016-01-13 20:19:14 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 20:19:14 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 20:19:14 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:19:14 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 20:19:14 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 20:19:14 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:19:14 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 20:19:14 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 20:19:14 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:19:14 - PHP Notice:  Undefined variable: users in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:19:14 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:22:11 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 20:22:11 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 20:22:11 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:22:11 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 20:22:11 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 20:22:11 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:22:11 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 54
+2016-01-13 20:22:11 - PHP Notice:  Undefined variable: entry_brief in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 56
+2016-01-13 20:22:11 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:22:11 - PHP Notice:  Undefined variable: users in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:22:11 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:22:38 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:22:38 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:22:38 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:22:38 - PHP Notice:  Undefined variable: users in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:22:38 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:24:16 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:24:16 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:24:16 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:24:16 - PHP Notice:  Undefined variable: users in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:24:16 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:26:20 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:26:20 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:26:20 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:26:20 - PHP Notice:  Undefined variable: users in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:26:20 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:29:38 - PHP Notice:  Undefined index: user_id in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 6
+2016-01-13 20:29:38 - PHP Notice:  Error: Unknown column 'sort_order' in 'field list'<br />Error No: 1054<br />INSERT INTO mcc_blog SET featured = '0', hits = '0', created = '2016', video_code = '0', user_id = '0', status = '1', sort_order = '1', date_added = NOW() in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 20:29:38 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_store' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_blog_to_store SET blog_id = '0', store_id = '0' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 20:29:38 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_layout' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_blog_to_layout SET blog_id = '0', store_id = '0', layout_id = '0' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 20:31:57 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:31:57 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:31:57 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:31:57 - PHP Notice:  Undefined variable: users in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:31:57 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 167
+2016-01-13 20:33:00 - PHP Notice:  Undefined index: user_id in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 6
+2016-01-13 20:33:00 - PHP Notice:  Error: Unknown column 'sort_order' in 'field list'<br />Error No: 1054<br />INSERT INTO mcc_blog SET featured = '0', hits = '0', created = '2016', video_code = '', user_id = '0', status = '1', sort_order = '1', date_added = NOW() in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 20:36:20 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:36:20 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:36:20 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:36:20 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 169
+2016-01-13 20:37:45 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:37:45 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:37:45 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 20:48:06 - PHP Notice:  Error: Unknown column 'sort_order' in 'field list'<br />Error No: 1054<br />INSERT INTO mcc_blog SET featured = '0', hits = '0', created = '2016', video_code = '', user_id = '1', status = '1', sort_order = '1', date_added = NOW() in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:10:33 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:10:33 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:10:33 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:13:28 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:13:28 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:13:28 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:13:30 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:13:30 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:13:30 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:14:37 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:14:37 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:14:37 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:18:59 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:18:59 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:18:59 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:19:59 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_store' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_blog_to_store SET blog_id = '1', store_id = '0' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:19:59 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_layout' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_blog_to_layout SET blog_id = '1', store_id = '0', layout_id = '0' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:20:02 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_store' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_blog_to_store WHERE blog_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:20:02 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 222
+2016-01-13 21:20:02 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 222
+2016-01-13 21:20:02 - PHP Warning:  mysqli::query(): (21000/1242): Subquery returns more than 1 row in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 19
+2016-01-13 21:20:02 - PHP Notice:  Error: Subquery returns more than 1 row<br />Error No: 1242<br />SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM mcc_blog_category_path cp LEFT JOIN mcc_blog_category_description cd1 ON (cp.path_id = cd1.blog_category_id AND cp.blog_category_id != cp.path_id) WHERE cp.blog_category_id = c.blog_category_id AND cd1.language_id = '1' GROUP BY cp.blog_category_id) AS path, (SELECT DISTINCT keyword FROM mcc_url_alias WHERE query = 'blog_category_id=1') AS keyword FROM mcc_blog_category c LEFT JOIN mcc_blog_category_description cd2 ON (c.blog_category_id = cd2.blog_category_id) WHERE c.blog_category_id = '1' AND cd2.language_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:20:02 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_category.php on line 198
+2016-01-13 21:20:02 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_blog_category' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_blog_to_blog_category WHERE blog_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:20:02 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-13 21:20:02 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-13 21:20:02 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_layout' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_blog_to_layout WHERE blog_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:20:02 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 234
+2016-01-13 21:20:02 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 234
+2016-01-13 21:20:02 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:20:02 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:20:02 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:23:26 - PHP Warning:  mysqli::query(): (21000/1242): Subquery returns more than 1 row in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 19
+2016-01-13 21:23:26 - PHP Notice:  Error: Subquery returns more than 1 row<br />Error No: 1242<br />SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM mcc_blog_category_path cp LEFT JOIN mcc_blog_category_description cd1 ON (cp.path_id = cd1.blog_category_id AND cp.blog_category_id != cp.path_id) WHERE cp.blog_category_id = c.blog_category_id AND cd1.language_id = '1' GROUP BY cp.blog_category_id) AS path, (SELECT DISTINCT keyword FROM mcc_url_alias WHERE query = 'blog_category_id=1') AS keyword FROM mcc_blog_category c LEFT JOIN mcc_blog_category_description cd2 ON (c.blog_category_id = cd2.blog_category_id) WHERE c.blog_category_id = '1' AND cd2.language_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:23:26 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_category.php on line 198
+2016-01-13 21:23:26 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_blog_category' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_blog_to_blog_category WHERE blog_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:23:26 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-13 21:23:26 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-13 21:23:26 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:23:26 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:23:26 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:23:42 - PHP Warning:  mysqli::query(): (21000/1242): Subquery returns more than 1 row in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 19
+2016-01-13 21:23:42 - PHP Notice:  Error: Subquery returns more than 1 row<br />Error No: 1242<br />SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM mcc_blog_category_path cp LEFT JOIN mcc_blog_category_description cd1 ON (cp.path_id = cd1.blog_category_id AND cp.blog_category_id != cp.path_id) WHERE cp.blog_category_id = c.blog_category_id AND cd1.language_id = '1' GROUP BY cp.blog_category_id) AS path, (SELECT DISTINCT keyword FROM mcc_url_alias WHERE query = 'blog_category_id=1') AS keyword FROM mcc_blog_category c LEFT JOIN mcc_blog_category_description cd2 ON (c.blog_category_id = cd2.blog_category_id) WHERE c.blog_category_id = '1' AND cd2.language_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:23:42 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_category.php on line 198
+2016-01-13 21:23:42 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_blog_category' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_blog_to_blog_category WHERE blog_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:23:42 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-13 21:23:42 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-13 21:23:42 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:23:42 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:23:42 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:24:24 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:24:24 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:24:24 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:25:10 - PHP Warning:  mysqli::query(): (21000/1242): Subquery returns more than 1 row in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 19
+2016-01-13 21:25:10 - PHP Notice:  Error: Subquery returns more than 1 row<br />Error No: 1242<br />SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM mcc_blog_category_path cp LEFT JOIN mcc_blog_category_description cd1 ON (cp.path_id = cd1.blog_category_id AND cp.blog_category_id != cp.path_id) WHERE cp.blog_category_id = c.blog_category_id AND cd1.language_id = '1' GROUP BY cp.blog_category_id) AS path, (SELECT DISTINCT keyword FROM mcc_url_alias WHERE query = 'blog_category_id=1') AS keyword FROM mcc_blog_category c LEFT JOIN mcc_blog_category_description cd2 ON (c.blog_category_id = cd2.blog_category_id) WHERE c.blog_category_id = '1' AND cd2.language_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:25:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_category.php on line 198
+2016-01-13 21:25:10 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_blog_category' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_blog_to_blog_category WHERE blog_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-13 21:25:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-13 21:25:10 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-13 21:25:10 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:25:10 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-13 21:25:10 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:10:39 - PHP Warning:  mysqli::query(): (21000/1242): Subquery returns more than 1 row in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 19
+2016-01-14 9:10:39 - PHP Notice:  Error: Subquery returns more than 1 row<br />Error No: 1242<br />SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM mcc_blog_category_path cp LEFT JOIN mcc_blog_category_description cd1 ON (cp.path_id = cd1.blog_category_id AND cp.blog_category_id != cp.path_id) WHERE cp.blog_category_id = c.blog_category_id AND cd1.language_id = '1' GROUP BY cp.blog_category_id) AS path, (SELECT DISTINCT keyword FROM mcc_url_alias WHERE query = 'blog_category_id=1') AS keyword FROM mcc_blog_category c LEFT JOIN mcc_blog_category_description cd2 ON (c.blog_category_id = cd2.blog_category_id) WHERE c.blog_category_id = '1' AND cd2.language_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-14 9:10:39 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_category.php on line 198
+2016-01-14 9:10:39 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_blog_category' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_blog_to_blog_category WHERE blog_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-14 9:10:39 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-14 9:10:39 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-14 9:10:39 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:10:39 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:10:39 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:15:18 - PHP Warning:  mysqli::query(): (21000/1242): Subquery returns more than 1 row in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 19
+2016-01-14 9:15:18 - PHP Notice:  Error: Subquery returns more than 1 row<br />Error No: 1242<br />SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM mcc_blog_category_path cp LEFT JOIN mcc_blog_category_description cd1 ON (cp.path_id = cd1.blog_category_id AND cp.blog_category_id != cp.path_id) WHERE cp.blog_category_id = c.blog_category_id AND cd1.language_id = '1' GROUP BY cp.blog_category_id) AS path, (SELECT DISTINCT keyword FROM mcc_url_alias WHERE query = 'blog_category_id=1') AS keyword FROM mcc_blog_category c LEFT JOIN mcc_blog_category_description cd2 ON (c.blog_category_id = cd2.blog_category_id) WHERE c.blog_category_id = '1' AND cd2.language_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-14 9:15:18 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_category.php on line 198
+2016-01-14 9:15:18 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_blog_category' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_blog_to_blog_category WHERE blog_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-14 9:15:18 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-14 9:15:18 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-14 9:15:18 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:15:18 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:15:18 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:19:10 - PHP Notice:  Error: Table 'mycncart_master.mcc_blog_to_blog_category' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_blog_to_blog_category WHERE blog_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-14 9:19:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-14 9:19:10 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\blog.php on line 210
+2016-01-14 9:19:10 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:19:10 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:19:10 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:20:50 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:20:50 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:20:50 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:28:30 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:28:30 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:28:30 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:28:42 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:28:42 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:28:42 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:34:06 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:34:06 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:34:06 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:34:51 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:34:51 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:34:51 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:36:40 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:36:40 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:36:40 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:37:38 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:37:38 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:37:38 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:37:48 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:37:48 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:37:48 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:42:33 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:42:33 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:42:33 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:46:17 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:46:17 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 9:46:17 - PHP Notice:  Undefined variable: help_tag in C:\wamp\www\mycncart\admin\view\template\cms\blog_form.tpl on line 87
+2016-01-14 10:20:20 - PHP Notice:  Error: Unknown column 'r.product_id' in 'on clause'<br />Error No: 1054<br />SELECT COUNT(*) AS total FROM mcc_blog_comment r LEFT JOIN mcc_product_description pd ON (r.product_id = pd.product_id) WHERE pd.language_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-14 10:20:20 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_comment.php on line 120
+2016-01-14 10:20:20 - PHP Notice:  Error: Unknown column 'r.blog_comment_id' in 'field list'<br />Error No: 1054<br />SELECT r.blog_comment_id, pd.name, r.author, r.rating, r.status, r.date_added FROM mcc_blog_comment r LEFT JOIN mcc_product_description pd ON (r.product_id = pd.product_id) WHERE pd.language_id = '1' ORDER BY r.date_added DESC LIMIT 0,20 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-14 10:20:20 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_comment.php on line 96
+2016-01-14 10:20:20 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\cms\blog_comment.php on line 267
+2016-01-14 11:52:00 - PHP Notice:  Error: Unknown column 'bc.blog_comment_id' in 'field list'<br />Error No: 1054<br />SELECT bc.blog_comment_id, bd.name, bc.author, bc.status, bc.date_added FROM mcc_blog_comment bc LEFT JOIN mcc_blog_description bd ON (bc.blog_id = bd.blog_id) WHERE bd.language_id = '1' ORDER BY bc.date_added DESC LIMIT 0,20 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-14 11:52:00 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_comment.php on line 81
+2016-01-14 11:52:00 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\cms\blog_comment.php on line 267
+2016-01-14 11:58:57 - PHP Notice:  Error: Unknown column 'bd.name' in 'field list'<br />Error No: 1054<br />SELECT bc.blog_comment_id, bd.name, bc.author, bc.status, bc.date_added FROM mcc_blog_comment bc LEFT JOIN mcc_blog_description bd ON (bc.blog_id = bd.blog_id) WHERE bd.language_id = '1' ORDER BY bc.date_added DESC LIMIT 0,20 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-14 11:58:57 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_comment.php on line 81
+2016-01-14 11:58:57 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\cms\blog_comment.php on line 267
+2016-01-14 12:02:13 - PHP Notice:  Error: Unknown column 'bc.author' in 'field list'<br />Error No: 1054<br />SELECT bc.blog_comment_id, bd.title, bc.author, bc.status, bc.date_added FROM mcc_blog_comment bc LEFT JOIN mcc_blog_description bd ON (bc.blog_id = bd.blog_id) WHERE bd.language_id = '1' ORDER BY bc.date_added DESC LIMIT 0,20 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-14 12:02:13 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_comment.php on line 81
+2016-01-14 12:02:13 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\cms\blog_comment.php on line 267
+2016-01-14 14:54:15 - PHP Notice:  Undefined index: text in C:\wamp\www\mycncart\admin\controller\cms\blog_comment.php on line 501
+2016-01-14 14:54:15 - PHP Notice:  Undefined variable: error_author in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 32
+2016-01-14 14:54:15 - PHP Notice:  Undefined variable: help_blog in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 38
+2016-01-14 14:54:15 - PHP Notice:  Undefined variable: error_blog in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 42
+2016-01-14 14:54:15 - PHP Notice:  Undefined variable: entry_rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 57
+2016-01-14 14:54:15 - PHP Notice:  Undefined variable: rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 60
+2016-01-14 14:54:15 - PHP Notice:  Undefined variable: rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 69
+2016-01-14 14:54:15 - PHP Notice:  Undefined variable: rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 78
+2016-01-14 14:54:15 - PHP Notice:  Undefined variable: rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 87
+2016-01-14 14:54:15 - PHP Notice:  Undefined variable: rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 96
+2016-01-14 14:54:15 - PHP Notice:  Undefined variable: error_rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 104
+2016-01-14 14:54:21 - PHP Notice:  Undefined index: text in C:\wamp\www\mycncart\admin\controller\cms\blog_comment.php on line 501
+2016-01-14 14:54:21 - PHP Notice:  Undefined variable: error_author in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 32
+2016-01-14 14:54:21 - PHP Notice:  Undefined variable: help_blog in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 38
+2016-01-14 14:54:21 - PHP Notice:  Undefined variable: error_blog in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 42
+2016-01-14 14:54:21 - PHP Notice:  Undefined variable: entry_rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 57
+2016-01-14 14:54:21 - PHP Notice:  Undefined variable: rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 60
+2016-01-14 14:54:21 - PHP Notice:  Undefined variable: rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 69
+2016-01-14 14:54:21 - PHP Notice:  Undefined variable: rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 78
+2016-01-14 14:54:21 - PHP Notice:  Undefined variable: rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 87
+2016-01-14 14:54:21 - PHP Notice:  Undefined variable: rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 96
+2016-01-14 14:54:21 - PHP Notice:  Undefined variable: error_rating in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 104
+2016-01-14 15:12:15 - PHP Notice:  Undefined variable: help_blog in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 35
+2016-01-14 15:12:38 - PHP Notice:  Undefined variable: help_blog in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 35
+2016-01-14 15:12:47 - PHP Notice:  Undefined variable: help_blog in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 35
+2016-01-14 15:19:16 - PHP Notice:  Error: Unknown column 'r.date_added' in 'where clause'<br />Error No: 1054<br />SELECT COUNT(*) AS total FROM mcc_blog_comment bc LEFT JOIN mcc_blog_description bd ON (bc.blog_id = bd.blog_id) WHERE bd.language_id = '1' AND DATE(r.date_added) = DATE('2016-01-13') in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-14 15:19:16 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\blog_comment.php on line 105

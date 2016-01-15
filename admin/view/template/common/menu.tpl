@@ -37,11 +37,24 @@
   </li>
   <li id="cms"><a class="parent"><i class="fa fa-newspaper-o"></i> <span><?php echo $text_cms; ?></span></a>
     <ul>
-      <li><a href="<?php echo $press_category; ?>"><?php echo $text_press_category; ?></a></li>
-      <li><a href="<?php echo $press; ?>"><?php echo $text_press; ?></a></li>
-      <li><a href="<?php echo $blog_category; ?>"><?php echo $text_blog_category; ?></a></li>
-      <li><a href="<?php echo $blog; ?>"><?php echo $text_blog; ?></a></li>
-      <li><a href="<?php echo $blog_comment; ?>"><?php echo $text_blog_comment; ?></a></li>
+      
+      <li><a class="parent"><?php echo $text_press; ?></a>
+        <ul>
+          <li><a href="<?php echo $press_category; ?>"><?php echo $text_press_category; ?></a></li>
+          <li><a href="<?php echo $press; ?>"><?php echo $text_press; ?></a></li>
+          <li><a href="<?php echo $press_config; ?>"><?php echo $text_press_config; ?></a></li>
+        </ul>
+      </li>
+      
+      <li><a class="parent"><?php echo $text_blog; ?></a>
+        <ul>
+          <li><a href="<?php echo $blog_category; ?>"><?php echo $text_blog_category; ?></a></li>
+          <li><a href="<?php echo $blog; ?>"><?php echo $text_blog; ?></a></li>
+          <li><a href="<?php echo $blog_comment; ?>"><?php echo $text_blog_comment; ?></a></li>
+          <li><a href="<?php echo $blog_config; ?>"><?php echo $text_blog_config; ?></a></li>
+        </ul>
+      </li>
+      
     </ul>
   </li>
   <li id="design"><a class="parent"><i class="fa fa-television fa-fw"></i> <span><?php echo $text_design; ?></span></a>

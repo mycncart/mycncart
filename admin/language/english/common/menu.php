@@ -100,8 +100,10 @@ $_['text_thirdparty']	 			   = '第三方商铺';
 $_['text_cms']		 			   	   = 'News & Blog';
 $_['text_press_category']		 	   = 'News Category';
 $_['text_press']		 			   = 'News';
+$_['text_press_config']	 			   = 'Press Config';
 $_['text_blog_category']		 	   = 'Blog Category';
 $_['text_blog']		 			       = 'Blog';
 $_['text_blog_comment']			       = 'Blog Comments';
+$_['text_blog_config']	 			   = 'Blog Config';
 $_['text_excelexportimport']	       = 'Excel Export/Import';
 
