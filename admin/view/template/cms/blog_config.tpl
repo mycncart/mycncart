@@ -33,6 +33,8 @@
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>
             <li><a href="#tab-data" data-toggle="tab"><?php echo $tab_data; ?></a></li>
+            <li><a href="#tab-category" data-toggle="tab"><?php echo $tab_category; ?></a></li>
+            <li><a href="#tab-blog" data-toggle="tab"><?php echo $tab_blog; ?></a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
@@ -88,6 +90,380 @@
                   <?php if ($error_cms_blog_seo_keyword) { ?>
                   <div class="text-danger"><?php echo $error_cms_blog_seo_keyword; ?></div>
                   <?php } ?>
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-cms-blog-large-image-height"><?php echo $entry_cms_blog_large_image; ?></label>
+                <div class="col-sm-10">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="text" name="cms_blog_large_image_width" value="<?php echo $cms_blog_large_image_width; ?>" placeholder="<?php echo $entry_cms_blog_large_image_width; ?>" id="input-cms-blog-large-image-width" class="form-control" />
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" name="cms_blog_large_image_height" value="<?php echo $cms_blog_large_image_height; ?>" placeholder="<?php echo $entry_cms_blog_large_image_height; ?>" class="form-control" />
+                    </div>
+                  </div>
+                  <?php if ($error_cms_blog_large_image) { ?>
+                  <div class="text-danger"><?php echo $error_cms_blog_large_image; ?></div>
+                  <?php } ?>
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-cms-blog-middle-image-height"><?php echo $entry_cms_blog_middle_image; ?></label>
+                <div class="col-sm-10">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="text" name="cms_blog_middle_image_width" value="<?php echo $cms_blog_middle_image_width; ?>" placeholder="<?php echo $entry_cms_blog_middle_image_width; ?>" id="input-cms-blog-middle-image-width" class="form-control" />
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" name="cms_blog_middle_image_height" value="<?php echo $cms_blog_middle_image_height; ?>" placeholder="<?php echo $entry_cms_blog_middle_image_height; ?>" class="form-control" />
+                    </div>
+                  </div>
+                  <?php if ($error_cms_blog_middle_image) { ?>
+                  <div class="text-danger"><?php echo $error_cms_blog_middle_image; ?></div>
+                  <?php } ?>
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-cms-blog-small-image-height"><?php echo $entry_cms_blog_small_image; ?></label>
+                <div class="col-sm-10">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="text" name="cms_blog_small_image_width" value="<?php echo $cms_blog_small_image_width; ?>" placeholder="<?php echo $entry_cms_blog_small_image_width; ?>" id="input-cms-blog-small-image-width" class="form-control" />
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" name="cms_blog_small_image_height" value="<?php echo $cms_blog_small_image_height; ?>" placeholder="<?php echo $entry_cms_blog_small_image_height; ?>" class="form-control" />
+                    </div>
+                  </div>
+                  <?php if ($error_cms_blog_small_image) { ?>
+                  <div class="text-danger"><?php echo $error_cms_blog_small_image; ?></div>
+                  <?php } ?>
+                </div>
+              </div>
+              
+            </div>
+            
+            <div class="tab-pane" id="tab-category">
+            
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-title"><?php echo $entry_cms_blog_category_page_show_title; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_category_page_show_title" id="input-cms-blog-category-page-show-title" class="form-control">
+                    <?php if ($cms_blog_category_page_show_title) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-description"><?php echo $entry_cms_blog_category_page_show_description; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_category_page_show_description" id="input-cms-blog-category-page-show-description" class="form-control">
+                    <?php if ($cms_blog_category_page_show_description) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-readmore"><?php echo $entry_cms_blog_category_page_show_readmore; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_category_page_show_readmore" id="input-cms-blog-category-page-show-readmore" class="form-control">
+                    <?php if ($cms_blog_category_page_show_readmore) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-image"><?php echo $entry_cms_blog_category_page_show_image; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_category_page_show_image" id="input-cms-blog-category-page-show-image" class="form-control">
+                    <?php if ($cms_blog_category_page_show_image) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-author"><?php echo $entry_cms_blog_category_page_show_author; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_category_page_show_author" id="input-cms-blog-category-page-show-author" class="form-control">
+                    <?php if ($cms_blog_category_page_show_author) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-category"><?php echo $entry_cms_blog_category_page_show_category; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_category_page_show_category" id="input-cms-blog-category-page-show-category" class="form-control">
+                    <?php if ($cms_blog_category_page_show_category) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-created-date"><?php echo $entry_cms_blog_category_page_show_created_date; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_category_page_show_created_date" id="input-cms-blog-category-page-show-created-date" class="form-control">
+                    <?php if ($cms_blog_category_page_show_created_date) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-hits"><?php echo $entry_cms_blog_category_page_show_hits; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_category_page_show_hits" id="input-cms-blog-category-page-show-hits" class="form-control">
+                    <?php if ($cms_blog_category_page_show_hits) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-comment-counter"><?php echo $entry_cms_blog_category_page_show_comment_counter; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_category_page_show_comment_counter" id="input-cms-blog-category-page-show-comment-counter" class="form-control">
+                    <?php if ($cms_blog_category_page_show_comment_counter) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="tab-pane" id="tab-blog">
+            
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-image-type"><?php echo $entry_cms_blog_image_type; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_image_type" id="input-cms-blog-image-type" class="form-control">
+                    <?php if ($cms_blog_image_type) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-title"><?php echo $entry_cms_blog_show_title; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_title" id="input-cms-blog-show-title" class="form-control">
+                    <?php if ($cms_blog_show_title) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-image"><?php echo $entry_cms_blog_show_image; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_image" id="input-cms-blog-show-image" class="form-control">
+                    <?php if ($cms_blog_show_image) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-author"><?php echo $entry_cms_blog_show_author; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_author" id="input-cms-blog-show-author" class="form-control">
+                    <?php if ($cms_blog_show_author) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-category"><?php echo $entry_cms_blog_show_category; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_category" id="input-cms-blog-show-category" class="form-control">
+                    <?php if ($cms_blog_show_category) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-created-date"><?php echo $entry_cms_blog_show_created_date; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_created_date" id="input-cms-blog-show-created-date" class="form-control">
+                    <?php if ($cms_blog_show_created_date) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-hits"><?php echo $entry_cms_blog_show_hits; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_hits" id="input-cms-blog-show-hits" class="form-control">
+                    <?php if ($cms_blog_show_hits) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-comment-counter"><?php echo $entry_cms_blog_show_comment_counter; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_comment_counter" id="input-cms-blog-show-comment-counter" class="form-control">
+                    <?php if ($cms_blog_show_comment_counter) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-comment-form"><?php echo $entry_cms_blog_show_comment_form; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_comment_form" id="input-cms-blog-show-comment-form" class="form-control">
+                    <?php if ($cms_blog_show_comment_form) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-auto-publish-comment"><?php echo $entry_cms_blog_show_auto_publish_comment; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_auto_publish_comment" id="input-cms-blog-show-auto-publish-comment" class="form-control">
+                    <?php if ($cms_blog_show_auto_publish_comment) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-recaptcha"><?php echo $entry_cms_blog_show_recaptcha; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_recaptcha" id="input-cms-blog-show-recaptcha" class="form-control">
+                    <?php if ($cms_blog_show_recaptcha) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-need-login-to-comment"><?php echo $entry_cms_blog_show_need_login_to_comment; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_need_login_to_comment" id="input-cms-blog-show-need-login-to-comment" class="form-control">
+                    <?php if ($cms_blog_show_need_login_to_comment) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
                 </div>
               </div>
 
