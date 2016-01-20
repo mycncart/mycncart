@@ -5,6 +5,9 @@ $_['heading_title']          									= '博客设置';
 // Text
 $_['text_success']           									= '成功: 已修改博客设置!';
 $_['text_edit']              									= '编辑博客设置';
+$_['text_large']              									= '博客大图片尺寸';
+$_['text_middle']              									= '博客中图片尺寸';
+$_['text_small']              									= '博客小图片尺寸';
 
 // Entry
 $_['entry_title']            									= '博客标题';
@@ -24,7 +27,7 @@ $_['entry_cms_blog_small_image_height']  						= '高';
 
 $_['entry_cms_blog_category_page_blog_image_type']  			= '分类页面博客图片';
 $_['entry_cms_blog_category_page_show_title']  					= '显示博客标题';
-$_['entry_cms_blog_category_page_show_description']  			= '显示摘要';
+$_['entry_cms_blog_category_page_show_brief']  					= '显示摘要';
 $_['entry_cms_blog_category_page_show_readmore']  				= '显示【阅读详情】';
 $_['entry_cms_blog_category_page_show_image']  					= '显示图片';
 $_['entry_cms_blog_category_page_show_author']  				= '显示作者';

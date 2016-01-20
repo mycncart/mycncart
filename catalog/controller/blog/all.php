@@ -1,7 +1,7 @@
 <?php
-class ControllerBlogBlog extends Controller {
+class ControllerBlogAll extends Controller {
 	public function index() {
-		$this->load->language('blog/blog');
+		$this->load->language('blog/all');
 
 		$this->load->model('blog/blog');
 		
@@ -42,6 +42,12 @@ class ControllerBlogBlog extends Controller {
 
 		$data['text_empty'] = $this->language->get('text_empty');
 		$data['text_blog'] = $this->language->get('text_blog');
+		$data['text_written_by'] = $this->language->get('text_written_by');
+		$data['text_published_in'] = $this->language->get('text_published_in');
+		$data['text_created_date'] = $this->language->get('text_created_date');
+		$data['text_hits'] = $this->language->get('text_hits');
+		$data['text_comment_count'] = $this->language->get('text_comment_count');
+		
 
 		$data['button_continue'] = $this->language->get('button_continue');
 
@@ -70,6 +76,10 @@ class ControllerBlogBlog extends Controller {
 			} else {
 				$image = '';
 			}
+			
+			$users = $this->model_blog_blog->getUsers();
+			
+			$comment_count = $this->model_blog_blog->getBlogTotalComments($result['blog_id']);
 
 					
 			$data['blogs'][] = array(
@@ -79,9 +89,12 @@ class ControllerBlogBlog extends Controller {
 				'brief' 	   		=> html_entity_decode($result['brief'], ENT_QUOTES, 'UTF-8'),
 				'tags' 	   	   		=> explode(',', $result['tag']),
 				'blog_category_id'  => $result['blog_category_id'],
-				'created'  	   		=> $result['created'],
+				'category_title'    => $result['category_title'],
+				'category_link'     => $this->url->link('blog/category', 'blog_category_id='.$result['blog_category_id'], 'SSL'),
+				'created'  	   		=> date($this->language->get('date_format_short'), strtotime($result['created'])),
 				'status'  	   		=> $result['status'],
-				'user_id'  	   		=> $result['user_id'],
+				'author'  	   		=> isset($users[$result['user_id']])?$users[$result['user_id']]:$this->language->get('text_none_author'),
+				'comment_count'		=> $comment_count,
 				'hits'  	   		=> $result['hits'],
 				'image'  	   		=> $result['image'],
 				'video_code'   		=> $result['video_code'],
@@ -112,6 +125,7 @@ class ControllerBlogBlog extends Controller {
 		$data['cms_blog_category_page_show_created_date'] = $this->config->get('cms_blog_category_page_show_created_date');
 		$data['cms_blog_category_page_show_hits'] = $this->config->get('cms_blog_category_page_show_hits');
 		$data['cms_blog_category_page_show_comment_counter'] = $this->config->get('cms_blog_category_page_show_comment_counter');
+		
 		$data['cms_blog_image_type'] = $this->config->get('cms_blog_image_type');
 		$data['cms_blog_show_title'] = $this->config->get('cms_blog_show_title');
 		$data['cms_blog_show_image'] = $this->config->get('cms_blog_show_image');

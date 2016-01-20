@@ -164,10 +164,10 @@
               </div>
               
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-description"><?php echo $entry_cms_blog_category_page_show_description; ?></label>
+                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-description"><?php echo $entry_cms_blog_category_page_show_brief; ?></label>
                 <div class="col-sm-10">
-                  <select name="cms_blog_category_page_show_description" id="input-cms-blog-category-page-show-description" class="form-control">
-                    <?php if ($cms_blog_category_page_show_description) { ?>
+                  <select name="cms_blog_category_page_show_brief" id="input-cms-blog-category-page-show-description" class="form-control">
+                    <?php if ($cms_blog_category_page_show_brief) { ?>
                     <option value="1" selected="selected"><?php echo $text_yes; ?></option>
                     <option value="0"><?php echo $text_no; ?></option>
                     <?php } else { ?>
@@ -291,12 +291,20 @@
                 <label class="col-sm-2 control-label" for="input-cms-blog-image-type"><?php echo $entry_cms_blog_image_type; ?></label>
                 <div class="col-sm-10">
                   <select name="cms_blog_image_type" id="input-cms-blog-image-type" class="form-control">
-                    <?php if ($cms_blog_image_type) { ?>
-                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
-                    <option value="0"><?php echo $text_no; ?></option>
-                    <?php } else { ?>
-                    <option value="1"><?php echo $text_yes; ?></option>
-                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php if ($cms_blog_image_type == 'l') { ?>
+                    <option value="l" selected="selected"><?php echo $text_large; ?></option>
+                    <?php }else{ ?>
+                    <option value="l"><?php echo $text_large; ?></option>
+                    <?php } ?>
+                    <?php if ($cms_blog_image_type == 'm') { ?>
+                    <option value="m" selected="selected"><?php echo $text_middle; ?></option>
+                    <?php }else{ ?>
+                    <option value="m"><?php echo $text_middle; ?></option>
+                    <?php } ?>
+                    <?php if ($cms_blog_image_type == 's') { ?>
+                    <option value="s" selected="selected"><?php echo $text_small; ?></option>
+                    <?php }else{ ?>
+                    <option value="s"><?php echo $text_small; ?></option>
                     <?php } ?>
                   </select>
                 </div>

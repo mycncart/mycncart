@@ -5,6 +5,9 @@ $_['heading_title']          		= 'Blog Configuration';
 // Text
 $_['text_success']          		= 'Success: You have modified blog configuration!';
 $_['text_edit']              		= 'Edit Blog Configuration';
+$_['text_large']              		= 'Large Size Image';
+$_['text_middle']              		= 'Middle Size Image';
+$_['text_small']              		= 'Small Size Image';
 
 // Entry
 $_['entry_title']            		= 'Blog Title';
@@ -24,7 +27,7 @@ $_['entry_cms_blog_small_image_height']  						= 'Height';
 
 $_['entry_cms_blog_category_page_blog_image_type']  			= 'Category Page Blog Image Type';
 $_['entry_cms_blog_category_page_show_title']  					= 'Show Title';
-$_['entry_cms_blog_category_page_show_description']  			= 'Show Description';
+$_['entry_cms_blog_category_page_show_brief']  				    = 'Show Brief';
 $_['entry_cms_blog_category_page_show_readmore']  				= 'Show Readmore';
 $_['entry_cms_blog_category_page_show_image']  					= 'Show Image';
 $_['entry_cms_blog_category_page_show_author']  				= 'Show Author';
@@ -58,6 +61,6 @@ $_['error_warning']          		= 'Warning: Please check the form carefully for e
 $_['error_permission']       		= 'Warning: You do not have permission to modify blog configuration!';
 $_['error_title']            		= 'Blog Title must be between 3 and 64 characters!';
 $_['error_meta_title']       		= 'Meta Title must be greater than 3 and less than 255 characters!';
-$_['error_cms_blog_large_image']        = '博客大图片尺寸必须为数字！';
-$_['error_cms_blog_middle_image']       = '博客中图片尺寸必须为数字！';
-$_['error_cms_blog_small_image']        = '博客小图片尺寸必须为数字！';
+$_['error_cms_blog_large_image']    = 'Blog - Large Image Demension (Width x Height)!';
+$_['error_cms_blog_middle_image']   = 'Blog - Middle Image Demension (Width x Height)!';
+$_['error_cms_blog_small_image']    = 'Blog - Small Image Demension (Width x Height)!';

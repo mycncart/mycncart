@@ -23,6 +23,9 @@ class ControllerCmsBlogConfig extends Controller {
 		$data['text_select'] = $this->language->get('text_select');
 		$data['text_yes'] = $this->language->get('text_yes');
 		$data['text_no'] = $this->language->get('text_no');
+		$data['text_large'] = $this->language->get('text_large');
+		$data['text_middle'] = $this->language->get('text_middle');
+		$data['text_small'] = $this->language->get('text_small');
 		
 		
 		$data['entry_title'] = $this->language->get('entry_title');
@@ -42,7 +45,7 @@ class ControllerCmsBlogConfig extends Controller {
 		
 		$data['entry_cms_blog_category_page_blog_image_type'] = $this->language->get('entry_cms_blog_category_page_blog_image_type');
 		$data['entry_cms_blog_category_page_show_title'] = $this->language->get('entry_cms_blog_category_page_show_title');
-		$data['entry_cms_blog_category_page_show_description'] = $this->language->get('entry_cms_blog_category_page_show_description');
+		$data['entry_cms_blog_category_page_show_brief'] = $this->language->get('entry_cms_blog_category_page_show_brief');
 		$data['entry_cms_blog_category_page_show_readmore'] = $this->language->get('entry_cms_blog_category_page_show_readmore');
 		$data['entry_cms_blog_category_page_show_image'] = $this->language->get('entry_cms_blog_category_page_show_image');
 		$data['entry_cms_blog_category_page_show_author'] = $this->language->get('entry_cms_blog_category_page_show_author');
@@ -191,10 +194,10 @@ class ControllerCmsBlogConfig extends Controller {
 			$data['cms_blog_category_page_show_title'] = $this->config->get('cms_blog_category_page_show_title');
 		}
 		
-		if (isset($this->request->post['cms_blog_category_page_show_description'])) {
-			$data['cms_blog_category_page_show_description'] = $this->request->post['cms_blog_category_page_show_description'];
+		if (isset($this->request->post['cms_blog_category_page_show_brief'])) {
+			$data['cms_blog_category_page_show_brief'] = $this->request->post['cms_blog_category_page_show_brief'];
 		} else {
-			$data['cms_blog_category_page_show_description'] = $this->config->get('cms_blog_category_page_show_description');
+			$data['cms_blog_category_page_show_brief'] = $this->config->get('cms_blog_category_page_show_brief');
 		}
 		
 		if (isset($this->request->post['cms_blog_category_page_show_readmore'])) {
