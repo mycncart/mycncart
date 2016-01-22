@@ -21,6 +21,12 @@ class ModelCmsBlog extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_to_store SET blog_id = '" . (int)$blog_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
+		
+		if (isset($data['blog_blog_category'])) {
+			foreach ($data['blog_blog_category'] as $blog_category_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_to_blog_category SET blog_id = '" . (int)$blog_id . "', blog_category_id = '" . (int)$blog_category_id . "'");
+			}
+		}
 
 		
 		if (isset($data['product_related'])) {
@@ -29,6 +35,17 @@ class ModelCmsBlog extends Model {
 			
 			foreach ($data['product_related'] as $related_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_product SET blog_id = '" . (int)$blog_id . "', related_id = '" . (int)$related_id . "'");
+				
+			}
+			
+		}
+		
+		if (isset($data['blog_related'])) {
+			
+			$this->db->query("DELETE FROM " . DB_PREFIX . "blog_related WHERE blog_id = " . (int)$blog_id);
+			
+			foreach ($data['blog_related'] as $related_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_related SET blog_id = '" . (int)$blog_id . "', related_id = '" . (int)$related_id . "'");
 				
 			}
 			
@@ -73,6 +90,14 @@ class ModelCmsBlog extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_to_store SET blog_id = '" . (int)$blog_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
+		
+		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_to_blog_category WHERE blog_id = '" . (int)$blog_id . "'");
+
+		if (isset($data['blog_blog_category'])) {
+			foreach ($data['blog_blog_category'] as $blog_category_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_to_blog_category SET blog_id = '" . (int)$blog_id . "', blog_category_id = '" . (int)$blog_category_id . "'");
+			}
+		}
 
 		if (isset($data['product_related'])) {
 			
@@ -80,6 +105,17 @@ class ModelCmsBlog extends Model {
 			
 			foreach ($data['product_related'] as $related_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_product SET blog_id = '" . (int)$blog_id . "', related_id = '" . (int)$related_id . "'");
+				
+			}
+			
+		}
+		
+		if (isset($data['blog_related'])) {
+			
+			$this->db->query("DELETE FROM " . DB_PREFIX . "blog_related WHERE blog_id = " . (int)$blog_id);
+			
+			foreach ($data['blog_related'] as $related_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_related SET blog_id = '" . (int)$blog_id . "', related_id = '" . (int)$related_id . "'");
 				
 			}
 			
@@ -110,6 +146,9 @@ class ModelCmsBlog extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_description WHERE blog_id = '" . (int)$blog_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_to_blog_category WHERE blog_id = '" . (int)$blog_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_related WHERE blog_id = '" . (int)$blog_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_product WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_to_layout WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_to_store WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'blog_id=" . (int)$blog_id . "'");
@@ -270,5 +309,17 @@ class ModelCmsBlog extends Model {
 		}
 		
 		return $product_related_data;
+	}
+	
+	public function getBlogRelated($blog_id) {
+		$blog_related_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "blog_related WHERE blog_id = '" . (int)$blog_id . "'");
+
+		foreach ($query->rows as $result) {
+			$blog_related_data[] = $result['related_id'];
+		}
+		
+		return $blog_related_data;
 	}
 }

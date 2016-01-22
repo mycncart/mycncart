@@ -224,21 +224,6 @@
               </div>
               
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-category"><?php echo $entry_cms_blog_category_page_show_category; ?></label>
-                <div class="col-sm-10">
-                  <select name="cms_blog_category_page_show_category" id="input-cms-blog-category-page-show-category" class="form-control">
-                    <?php if ($cms_blog_category_page_show_category) { ?>
-                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
-                    <option value="0"><?php echo $text_no; ?></option>
-                    <?php } else { ?>
-                    <option value="1"><?php echo $text_yes; ?></option>
-                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-cms-blog-category-page-show-created-date"><?php echo $entry_cms_blog_category_page_show_created_date; ?></label>
                 <div class="col-sm-10">
                   <select name="cms_blog_category_page_show_created_date" id="input-cms-blog-category-page-show-created-date" class="form-control">
@@ -356,10 +341,25 @@
               </div>
               
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-cms-blog-show-category"><?php echo $entry_cms_blog_show_category; ?></label>
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-product-related"><?php echo $entry_cms_blog_show_product_related; ?></label>
                 <div class="col-sm-10">
-                  <select name="cms_blog_show_category" id="input-cms-blog-show-category" class="form-control">
-                    <?php if ($cms_blog_show_category) { ?>
+                  <select name="cms_blog_show_product_related" id="input-cms-blog-show-product-related" class="form-control">
+                    <?php if ($cms_blog_show_product_related) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-show-blog-related"><?php echo $entry_cms_blog_show_blog_related; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_show_blog_related" id="input-cms-blog-show-blog-related" class="form-control">
+                    <?php if ($cms_blog_show_blog_related) { ?>
                     <option value="1" selected="selected"><?php echo $text_yes; ?></option>
                     <option value="0"><?php echo $text_no; ?></option>
                     <?php } else { ?>

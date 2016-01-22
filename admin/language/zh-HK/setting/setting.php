@@ -20,6 +20,7 @@ $_['text_register']                    = '註冊';
 $_['text_return']                      = '退貨';
 $_['text_review']                      = '評論';
 $_['text_contact']                     = '聯系';
+$_['text_comment']                     = '博客評論';
 $_['text_shipping']                    = '配送地址';
 $_['text_payment']                     = '賬單地址';
 $_['text_mail']                        = 'Mail';

@@ -34,7 +34,8 @@ $_['entry_video_code']       = '视频代码';
 $_['entry_status']           = '状态';
 $_['entry_sort_order']       = '排序';
 $_['entry_blog_category']    = '所属博客分类';
-
+$_['entry_product_related']  = '相关商品';
+$_['entry_blog_related']     = '相关博客文章';
 $_['entry_layout']           = '布局覆盖';
 
 // Help

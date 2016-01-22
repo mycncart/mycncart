@@ -33,6 +33,8 @@ $_['entry_image']            = 'Image';
 $_['entry_status']           = 'Status';
 $_['entry_sort_order']       = 'Sort Order';
 $_['entry_blog_category']    = 'Blog Categories';
+$_['entry_product_related']  = 'Product Related';
+$_['entry_blog_related']     = 'Blog Related';
 $_['entry_layout']           = 'Layout Override';
 
 // Help

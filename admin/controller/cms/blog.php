@@ -378,7 +378,8 @@ class ControllerCmsBlog extends Controller {
 		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$data['entry_status'] = $this->language->get('entry_status');
 		$data['entry_layout'] = $this->language->get('entry_layout');
-		$data['entry_related'] = $this->language->get('entry_related');
+		$data['entry_product_related'] = $this->language->get('entry_product_related');
+		$data['entry_blog_related'] = $this->language->get('entry_blog_related');
 		
 
 		$data['help_keyword'] = $this->language->get('help_keyword');
@@ -561,28 +562,16 @@ class ControllerCmsBlog extends Controller {
 		
 		
 		$this->load->model('cms/blog_category');
-
-		if (isset($this->request->post['blog_category_id'])) {
-			$data['blog_category_id'] = $this->request->post['blog_category_id'];
-		} elseif (!empty($blog_info)) {
-			$data['blog_category_id'] = $blog_info['blog_category_id'];
+				
+		$data['blog_categories'] = $this->model_cms_blog_category->getBlogCategories(0);
+		
+		if (isset($this->request->post['blog_blog_category'])) {
+			$data['blog_blog_category'] = $this->request->post['blog_blog_category'];
+		} elseif (isset($this->request->get['blog_id'])) {
+			$data['blog_blog_category'] = $this->model_cms_blog->getBlogBlogCategories($this->request->get['blog_id']);
 		} else {
-			$data['blog_category_id'] = 0;
-		}
-
-		if (isset($this->request->post['blog_category'])) {
-			$data['blog_category'] = $this->request->post['blog_category'];
-		} elseif (!empty($blog_info)) {
-			$blog_category_info = $this->model_cms_blog_category->getBlogCategory($blog_info['blog_category_id']);
-
-			if ($blog_category_info) {
-				$data['blog_category'] = $blog_category_info['name'];
-			} else {
-				$data['blog_category'] = '';
-			}
-		} else {
-			$data['blog_category'] = '';
-		}
+			$data['blog_blog_category'] = array();
+		}	
 		
 		if (isset($this->request->post['video_code'])) {
 			$data['video_code'] = $this->request->post['video_code'];
@@ -628,6 +617,28 @@ class ControllerCmsBlog extends Controller {
 				$data['product_relateds'][] = array(
 					'product_id' => $related_info['product_id'],
 					'name'       => $related_info['name']
+				);
+			}
+		}
+		
+		if (isset($this->request->post['blog_related'])) {
+			$blogs = $this->request->post['blog_related'];
+		} elseif (isset($this->request->get['blog_id'])) {
+			$blogs = $this->model_cms_blog->getBlogRelated($this->request->get['blog_id']);
+		} else {
+			$blogs = array();
+		}
+
+		$data['blog_relateds'] = array();
+		
+
+		foreach ($blogs as $blog_id) {
+			$related_info = $this->model_cms_blog->getBlog($blog_id);
+
+			if ($related_info) {
+				$data['blog_relateds'][] = array(
+					'blog_id' => $related_info['blog_id'],
+					'title'       => $related_info['title']
 				);
 			}
 		}
@@ -706,7 +717,7 @@ class ControllerCmsBlog extends Controller {
 	public function autocomplete() {
 		$json = array();
 
-		if (isset($this->request->get['filter_title']) || isset($this->request->get['filter_model'])) {
+		if (isset($this->request->get['filter_title'])) {
 			$this->load->model('cms/blog');
 
 			if (isset($this->request->get['filter_title'])) {

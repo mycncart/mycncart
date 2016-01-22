@@ -1,27 +1,18 @@
-<div class="category box box-highlights">
-    <div class="box-heading"><span><?php echo $heading_title; ?></span></div>
-    <div class="box-content tree-menu" id="pav-categorymenu">
-            <?php echo $tree;?>
-    </div>
+<div class="list-group">
+  <?php foreach ($blog_categories as $blog_category) { ?>
+  <?php if ($blog_category['blog_category_id'] == $blog_category_id) { ?>
+  <a href="<?php echo $blog_category['href']; ?>" class="list-group-item active"><?php echo $blog_category['name']; ?></a>
+  <?php if ($blog_category['children']) { ?>
+  <?php foreach ($blog_category['children'] as $child) { ?>
+  <?php if ($child['blog_category_id'] == $child_id) { ?>
+  <a href="<?php echo $child['href']; ?>" class="list-group-item active">&nbsp;&nbsp;&nbsp;- <?php echo $child['name']; ?></a>
+  <?php } else { ?>
+  <a href="<?php echo $child['href']; ?>" class="list-group-item">&nbsp;&nbsp;&nbsp;- <?php echo $child['name']; ?></a>
+  <?php } ?>
+  <?php } ?>
+  <?php } ?>
+  <?php } else { ?>
+  <a href="<?php echo $blog_category['href']; ?>" class="list-group-item"><?php echo $blog_category['name']; ?></a>
+  <?php } ?>
+  <?php } ?>
 </div>
-<script>
-    $(document).ready(function(){
-// applying the settings
-        $("#pav-categorymenu li .head").empty().html('<a class="badge">+</a>');
-        $("#pav-categorymenu li.active span.head").addClass("accordion-heading");
-        $('#pav-categorymenu ul').Accordion({
-            active: 'span.accordion-heading',
-            header: 'span.head',
-            alwaysOpen: false,
-            animated: true,
-            showSpeed: 400,
-            hideSpeed: 800,
-            event: 'click'
-        });
-        $( ".pav-category .head" ).click(function(){
-            $( ".pav-category .head .badge" ).html("-");
-            $( ".pav-category .head.selected .badge" ).html("+");
-
-        });
-    });
-</script>

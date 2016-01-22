@@ -190,22 +190,51 @@
               </div>
             </div>
             <div class="tab-pane" id="tab-links">
+              <div class="tab-pane" id="tab-links">
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-blog-category"><?php echo $entry_blog_category; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="blog_category" value="<?php echo $blog_category ?>" placeholder="<?php echo $entry_blog_category; ?>" id="input-blog-category" class="form-control" />
-                  <input type="hidden" name="blog_category_id" value="<?php echo $blog_category_id; ?>" />
+                  <label class="col-sm-2 control-label" for="input-blog-category"><?php echo $entry_blog_category; ?></label>
+                  <div class="col-sm-10">
+                    <div class="well well-sm" style="height: 150px; overflow: auto;">
+                      <?php foreach ($blog_categories as $blog_category) { ?>
+                      <div class="checkbox">
+                        <label>
+                          <?php if (in_array($blog_category['blog_category_id'], $blog_blog_category)) { ?>
+                          <input type="checkbox" name="blog_blog_category[]" value="<?php echo $blog_category['blog_category_id']; ?>" checked="checked" />
+                          <?php echo $blog_category['name']; ?>
+                          <?php } else { ?>
+                          <input type="checkbox" name="blog_blog_category[]" value="<?php echo $blog_category['blog_category_id']; ?>" />
+                          <?php echo $blog_category['name']; ?>
+                          <?php } ?>
+                        </label>
+                      </div>
+                      <?php } ?>
+                    </div>
+                   
+                  </div>
                 </div>
-              </div>
                 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-related"><?php echo $entry_related; ?></label>
+                  <label class="col-sm-2 control-label" for="input-product-related"><?php echo $entry_product_related; ?></label>
                   <div class="col-sm-10">
-                    <input type="text" name="related" value="" placeholder="<?php echo $entry_related; ?>" id="input-related" class="form-control" />
+                    <input type="text" name="prelated" value="" placeholder="<?php echo $entry_product_related; ?>" id="input-product-related" class="form-control" />
                     <div id="product-related" class="well well-sm" style="height: 150px; overflow: auto;">
                       <?php foreach ($product_relateds as $product_related) { ?>
                       <div id="product-related<?php echo $product_related['product_id']; ?>"><i class="fa fa-minus-circle"></i> <?php echo $product_related['name']; ?>
                         <input type="hidden" name="product_related[]" value="<?php echo $product_related['product_id']; ?>" />
+                      </div>
+                      <?php } ?>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-blog-related"><?php echo $entry_blog_related; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="brelated" value="" placeholder="<?php echo $entry_blog_related; ?>" id="input-blog-related" class="form-control" />
+                    <div id="blog-related" class="well well-sm" style="height: 150px; overflow: auto;">
+                      <?php foreach ($blog_relateds as $blog_related) { ?>
+                      <div id="blog-related<?php echo $blog_related['blog_id']; ?>"><i class="fa fa-minus-circle"></i> <?php echo $blog_related['title']; ?>
+                        <input type="hidden" name="blog_related[]" value="<?php echo $blog_related['blog_id']; ?>" />
                       </div>
                       <?php } ?>
                     </div>
@@ -244,8 +273,8 @@
                 </div>
               </div>
               
-              
-              
+            </div>
+            
             </div>
             
             <div class="tab-pane" id="tab-design">
@@ -291,6 +320,7 @@
               </div>
             </div>
           </div>
+        
         </form>
       </div>
     </div>
@@ -302,7 +332,7 @@ $('#input-description<?php echo $language['language_id']; ?>').summernote({heigh
 //--></script> 
 
   <script type="text/javascript"><!--
-// Manufacturer
+// Category
 $('input[name=\'blog_category\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
@@ -332,8 +362,8 @@ $('input[name=\'blog_category\']').autocomplete({
 
   <script type="text/javascript"><!--
   
-  // Related
-$('input[name=\'related\']').autocomplete({
+  // Product Related
+$('input[name=\'prelated\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
 			url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
@@ -349,7 +379,7 @@ $('input[name=\'related\']').autocomplete({
 		});
 	},
 	'select': function(item) {
-		$('input[name=\'related\']').val('');
+		$('input[name=\'prelated\']').val('');
 
 		$('#product-related' + item['value']).remove();
 
@@ -358,6 +388,39 @@ $('input[name=\'related\']').autocomplete({
 });
 
 $('#product-related').delegate('.fa-minus-circle', 'click', function() {
+	$(this).parent().remove();
+});
+//--></script>
+
+
+  <script type="text/javascript"><!--
+  
+  // Blog Related
+$('input[name=\'brelated\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=cms/blog/autocomplete&token=<?php echo $token; ?>&filter_title=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['title'],
+						value: item['blog_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'brelated\']').val('');
+
+		$('#blog-related' + item['value']).remove();
+
+		$('#blog-related').append('<div id="blog-related' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="blog_related[]" value="' + item['value'] + '" /></div>');
+	}
+});
+
+$('#blog-related').delegate('.fa-minus-circle', 'click', function() {
 	$(this).parent().remove();
 });
 //--></script>

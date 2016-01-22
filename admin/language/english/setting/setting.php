@@ -20,6 +20,7 @@ $_['text_return']                      = 'Returns';
 $_['text_review']                      = 'Reviews';
 $_['text_return']                      = 'Returns';
 $_['text_contact']                     = 'Contact';
+$_['text_comment']                     = 'Blog Comments';
 $_['text_shipping']                    = 'Shipping Address';
 $_['text_payment']                     = 'Payment Address';
 $_['text_mail']                        = 'Mail';

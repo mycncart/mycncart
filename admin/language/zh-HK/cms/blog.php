@@ -37,6 +37,8 @@ $_['entry_video_code']       = '視頻代碼';
 $_['entry_status']           = '狀態';
 $_['entry_layout']           = '布局覆蓋';
 $_['entry_blog_category']    = '所属博客分类';
+$_['entry_product_related']  = '相關商品';
+$_['entry_blog_related']     = '相關博客文章';
 
 // Help
 $_['help_keyword']           = '不要用空格，使用-鏈接關鍵字，確保該關鍵詞為全站唯壹。';

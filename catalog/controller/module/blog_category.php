@@ -1,63 +1,64 @@
 <?php
-class ControllerModulePavblogcategory extends Controller {
+class ControllerModuleBlogCategory extends Controller {
+	public function index() {
+		$this->load->language('module/blog_category');
 
-	private $mdata = array();
+		$data['heading_title'] = $this->language->get('heading_title');
 
-	public function index($setting) {
-		static $module = 0;
+		if (isset($this->request->get['path'])) {
+			$parts = explode('_', (string)$this->request->get['path']);
+		} else {
+			$parts = array();
+		}
 
-		$this->mdata['objlang'] = $this->language;
-		$this->mdata['heading_title'] = $this->language->get('blog_category_heading_title');
+		if (isset($parts[0])) {
+			$data['blog_category_id'] = $parts[0];
+		} else {
+			$data['blog_category_id'] = 0;
+		}
 
-		$this->load->model('pavblog/category');
-		$this->load->model('tool/image');
-		$this->language->load('module/pavblog');
-		
-		$this->mdata['button_cart'] = $this->language->get('button_cart');
-		
-		
-		if( !defined("_PAVBLOG_MEDIA_") ){
-			if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pavblog.css')) {
-				$this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pavblog.css');
-			} else {
-				$this->document->addStyle('catalog/view/theme/default/stylesheet/pavblog.css');
+		if (isset($parts[1])) {
+			$data['child_id'] = $parts[1];
+		} else {
+			$data['child_id'] = 0;
+		}
+
+		$this->load->model('blog/category');
+
+		$this->load->model('blog/blog');
+
+		$data['blog_categories'] = array();
+
+		$blog_categories = $this->model_blog_category->getBlogCategories(0);
+
+		foreach ($blog_categories as $blog_category) {
+			$children_data = array();
+
+			if ($blog_category['blog_category_id'] == $data['blog_category_id']) {
+				$children = $this->model_blog_category->getBlogCategories($blog_category['blog_category_id']);
+
+				foreach($children as $child) {
+
+					$children_data[] = array(
+						'blog_category_id' => $child['blog_category_id'], 
+						'name' => $child['name'], 
+						'href' => $this->url->link('blog/category', 'path=' . $blog_category['blog_category_id'] . '_' . $child['blog_category_id'])
+					);
+				}
 			}
-			define("_PAVBLOG_MEDIA_",true);
-		}
-		$this->document->addScript('catalog/view/javascript/jquery/pavblog_script.js');	
-		$default = array(
-			'latest' => 1,
-			'limit' => 9
-		);
 
-		$category_id = 0;
-
-		if($this->request->get['route'] == 'pavblog/category' && isset($this->request->get['id'])) {
-			$category_id = $this->request->get['id'];
+			$data['blog_categories'][] = array(
+				'blog_category_id' => $blog_category['blog_category_id'],
+				'name'        => $blog_category['name'],
+				'children'    => $children_data,
+				'href'        => $this->url->link('blog/category', 'path=' . $blog_category['blog_category_id'])
+			);
 		}
 
-		$typeTree = isset($setting['type'])?$setting['type']:'default';
-
-		if($typeTree == "vertical") {
-			$template = "/pavblogcategory/vertical.tpl";
-			$tree = $this->model_pavblog_category->getTreeVertical(null, $category_id);
-		} elseif($typeTree == "accordion") {
-			$template = "/pavblogcategory/accordion.tpl";
-			$tree = $this->model_pavblog_category->getTreeAccordion(null, $category_id);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/blog_category.tpl')) {
+			return $this->load->view($this->config->get('config_template') . '/template/module/blog_category.tpl', $data);
 		} else {
-			$template = "/pavblogcategory.tpl";
-			$tree = $this->model_pavblog_category->getTree(null, $category_id);
-		}
-		
-		$this->mdata['tree'] = $tree;
-		
-
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/pavblogcategory.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/module'.$template, $this->mdata);
-		} else {
-			return $this->load->view('default/template/module/pavblogcategory.tpl'.$template, $this->mdata);
+			return $this->load->view('default/template/module/blog_category.tpl', $data);
 		}
 	}
-	
 }
-?>

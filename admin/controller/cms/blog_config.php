@@ -58,7 +58,8 @@ class ControllerCmsBlogConfig extends Controller {
 		$data['entry_cms_blog_show_title'] = $this->language->get('entry_cms_blog_show_title');
 		$data['entry_cms_blog_show_image'] = $this->language->get('entry_cms_blog_show_image');
 		$data['entry_cms_blog_show_author'] = $this->language->get('entry_cms_blog_show_author');
-		$data['entry_cms_blog_show_category'] = $this->language->get('entry_cms_blog_show_category');
+		$data['entry_cms_blog_show_product_related'] = $this->language->get('entry_cms_blog_show_product_related');
+		$data['entry_cms_blog_show_blog_related'] = $this->language->get('entry_cms_blog_show_blog_related');
 		$data['entry_cms_blog_show_created_date'] = $this->language->get('entry_cms_blog_show_created_date');
 		$data['entry_cms_blog_show_hits'] = $this->language->get('entry_cms_blog_show_hits');
 		$data['entry_cms_blog_show_comment_counter'] = $this->language->get('entry_cms_blog_show_comment_counter');
@@ -266,10 +267,16 @@ class ControllerCmsBlogConfig extends Controller {
 			$data['cms_blog_show_author'] = $this->config->get('cms_blog_show_author');
 		}
 		
-		if (isset($this->request->post['cms_blog_show_category'])) {
-			$data['cms_blog_show_category'] = $this->request->post['cms_blog_show_category'];
+		if (isset($this->request->post['cms_blog_show_product_related'])) {
+			$data['cms_blog_show_product_related'] = $this->request->post['cms_blog_show_product_related'];
 		} else {
-			$data['cms_blog_show_category'] = $this->config->get('cms_blog_show_category');
+			$data['cms_blog_show_product_related'] = $this->config->get('cms_blog_show_product_related');
+		}
+		
+		if (isset($this->request->post['cms_blog_show_blog_related'])) {
+			$data['cms_blog_show_blog_related'] = $this->request->post['cms_blog_show_blog_related'];
+		} else {
+			$data['cms_blog_show_blog_related'] = $this->config->get('cms_blog_show_blog_related');
 		}
 		
 		if (isset($this->request->post['cms_blog_show_created_date'])) {

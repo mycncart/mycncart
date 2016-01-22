@@ -14,17 +14,11 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <?php if ($description) { ?>
-      <div class="row">
-        <div class="col-sm-10"><?php echo $description; ?></div>
-      </div>
-      <hr>
-      <?php } ?>
-      
+
       <?php if ($blogs) { ?>
       
         <?php foreach($blogs as $blog) { ?>
-        <div class="row">
+        
           
           <?php if($cms_blog_category_page_show_image) { ?>
             <?php if ($blog['thumb']) { ?>
@@ -47,15 +41,6 @@
 			<span><i class="fa fa-calendar"></i> <b><?php echo $text_created_date; ?></b> <?php echo $blog['created']; ?></span> 
 			<?php } ?>
 			
-			<?php if( $cms_blog_category_page_show_category ) { ?>
-			<span><i class="fa fa-thumb-tack"></i> 
-				<b><?php echo $text_published_in; ?></b>
-				<a class="color" href="<?php echo $blog['category_link'];?>" title="<?php echo $blog['category_title'];?>"><?php echo $blog['category_title']; ?></a> 
-			</span>
-			<?php } ?>	
-			
-
-			
 			
 			<?php if( $cms_blog_category_page_show_hits ) { ?>
 			<span><i class="fa fa-insert-template"></i> <b><?php echo $text_hits; ?></b> <?php echo $blog['hits']; ?> </span>
@@ -68,7 +53,7 @@
 			<?php } ?>	
 			
 		
-	</div>
+		  </div>
           
           <?php if($cms_blog_category_page_show_brief) { ?>
             <?php if ($blog['brief']) { ?>
@@ -77,7 +62,7 @@
           <?php } ?>
           
           
-        </div>
+        
         <hr>
         <?php } ?>
       

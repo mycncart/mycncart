@@ -28,13 +28,6 @@ class ControllerBlogCategory extends Controller {
 		if (isset($this->request->get['path'])) {
 			$url = '';
 
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
 
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
@@ -161,18 +154,17 @@ class ControllerBlogCategory extends Controller {
 				}
 
 				$users = $this->model_blog_blog->getUsers();
-			
-				$comment_count = $this->model_blog_blog->getBlogTotalComments($result['blog_id']);
-
+				
+				//$comment_count = $this->model_blog_blog->getBlogTotalComments($result['blog_id']);
+				
+				$comment_count = 0;
+				
 				$data['blogs'][] = array(
 					'blog_id'  			=> $result['blog_id'],
 					'thumb'       		=> $image,
 					'title'        		=> html_entity_decode($result['title'], ENT_QUOTES, 'UTF-8'),
 					'brief' 	   		=> html_entity_decode($result['brief'], ENT_QUOTES, 'UTF-8'),
-					'tags' 	   	   		=> explode(',', $result['tag']),
-					'blog_category_id'  => $result['blog_category_id'],
-					'category_title'    => $result['category_title'],
-					'category_link'     => $this->url->link('blog/category', 'blog_category_id='.$result['blog_category_id'], 'SSL'),
+					'tags' 	   	   		=> explode(',', $result['tags']),
 					'created'  	   		=> date($this->language->get('date_format_short'), strtotime($result['created'])),
 					'status'  	   		=> $result['status'],
 					'author'  	   		=> isset($users[$result['user_id']])?$users[$result['user_id']]:$this->language->get('text_none_author'),
@@ -181,7 +173,6 @@ class ControllerBlogCategory extends Controller {
 					'image'  	   		=> $result['image'],
 					'video_code'   		=> $result['video_code'],
 					'featured'     		=> $result['featured'],
-					'keyword'  	   		=> $result['keyword'],
 					'sort_order'   		=> $result['sort_order'],
 					'date_added'   		=> $result['date_added'],
 					'date_modified' 	=> $result['date_modified'],
@@ -243,11 +234,6 @@ class ControllerBlogCategory extends Controller {
 			if (isset($this->request->get['path'])) {
 				$url .= '&path=' . $this->request->get['path'];
 			}
-
-			if (isset($this->request->get['filter'])) {
-				$url .= '&filter=' . $this->request->get['filter'];
-			}
-
 
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];

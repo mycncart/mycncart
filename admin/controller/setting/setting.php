@@ -1025,6 +1025,11 @@ class ControllerSettingSetting extends Controller {
 			'text'  => $this->language->get('text_contact'),
 			'value' => 'contact'
 		);
+		
+		$data['captcha_pages'][] = array(
+			'text'  => $this->language->get('text_comment'),
+			'value' => 'comment'
+		);
 
 
 		if (isset($this->request->post['config_logo'])) {
