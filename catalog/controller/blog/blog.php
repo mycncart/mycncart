@@ -62,6 +62,17 @@ class ControllerBlogBlog extends Controller {
 			$data['text_created_date'] = $this->language->get('text_created_date');
 			$data['text_hits'] = $this->language->get('text_hits');
 			$data['text_comment_count'] = $this->language->get('text_comment_count');
+			$data['text_write'] = $this->language->get('text_write');
+			$data['text_login'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'));
+			$data['text_note'] = $this->language->get('text_note');
+			$data['text_loading'] = $this->language->get('text_loading');
+			
+			$data['entry_name'] = $this->language->get('entry_name');
+			$data['entry_comment'] = $this->language->get('entry_comment');
+			
+			$data['button_continue'] = $this->language->get('button_continue');
+			
+			$data['blog_id'] = $this->request->get['blog_id'];
 			
 			//$comment_count = $this->model_blog_blog->getBlogTotalComments($result['blog_id']);
 			$data['comment_count'] = 0;
@@ -316,16 +327,12 @@ class ControllerBlogBlog extends Controller {
 		$json = array();
 
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
-			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 25)) {
+			if ((utf8_strlen($this->request->post['name']) < 1) || (utf8_strlen($this->request->post['name']) > 25)) {
 				$json['error'] = $this->language->get('error_name');
 			}
 
-			if ((utf8_strlen($this->request->post['text']) < 25) || (utf8_strlen($this->request->post['text']) > 1000)) {
+			if ((utf8_strlen($this->request->post['text']) < 1) || (utf8_strlen($this->request->post['text']) > 1000)) {
 				$json['error'] = $this->language->get('error_text');
-			}
-
-			if (empty($this->request->post['rating']) || $this->request->post['rating'] < 0 || $this->request->post['rating'] > 5) {
-				$json['error'] = $this->language->get('error_rating');
 			}
 
 			// Captcha
@@ -338,9 +345,9 @@ class ControllerBlogBlog extends Controller {
 			}
 
 			if (!isset($json['error'])) {
-				$this->load->model('catalog/comment');
+				$this->load->model('blog/comment');
 
-				$this->model_catalog_comment->addReview($this->request->get['blog_id'], $this->request->post);
+				$this->model_blog_comment->addComment($this->request->get['blog_id'], $this->request->post);
 
 				$json['success'] = $this->language->get('text_success');
 			}
@@ -350,63 +357,4 @@ class ControllerBlogBlog extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	public function getRecurringDescription() {
-		$this->language->load('blog/blog');
-		$this->load->model('catalog/blog');
-
-		if (isset($this->request->post['blog_id'])) {
-			$blog_id = $this->request->post['blog_id'];
-		} else {
-			$blog_id = 0;
-		}
-
-		if (isset($this->request->post['recurring_id'])) {
-			$recurring_id = $this->request->post['recurring_id'];
-		} else {
-			$recurring_id = 0;
-		}
-
-		if (isset($this->request->post['quantity'])) {
-			$quantity = $this->request->post['quantity'];
-		} else {
-			$quantity = 1;
-		}
-
-		$blog_info = $this->model_catalog_blog->getProduct($blog_id);
-		$recurring_info = $this->model_catalog_blog->getProfile($blog_id, $recurring_id);
-
-		$json = array();
-
-		if ($blog_info && $recurring_info) {
-			if (!$json) {
-				$frequencies = array(
-					'day'        => $this->language->get('text_day'),
-					'week'       => $this->language->get('text_week'),
-					'semi_month' => $this->language->get('text_semi_month'),
-					'month'      => $this->language->get('text_month'),
-					'year'       => $this->language->get('text_year'),
-				);
-
-				if ($recurring_info['trial_status'] == 1) {
-					$price = $this->currency->format($this->tax->calculate($recurring_info['trial_price'] * $quantity, $blog_info['tax_class_id'], $this->config->get('config_tax')));
-					$trial_text = sprintf($this->language->get('text_trial_description'), $price, $recurring_info['trial_cycle'], $frequencies[$recurring_info['trial_frequency']], $recurring_info['trial_duration']) . ' ';
-				} else {
-					$trial_text = '';
-				}
-
-				$price = $this->currency->format($this->tax->calculate($recurring_info['price'] * $quantity, $blog_info['tax_class_id'], $this->config->get('config_tax')));
-
-				if ($recurring_info['duration']) {
-					$text = $trial_text . sprintf($this->language->get('text_payment_description'), $price, $recurring_info['cycle'], $frequencies[$recurring_info['frequency']], $recurring_info['duration']);
-				} else {
-					$text = $trial_text . sprintf($this->language->get('text_payment_cancel'), $price, $recurring_info['cycle'], $frequencies[$recurring_info['frequency']], $recurring_info['duration']);
-				}
-
-				$json['success'] = $text;
-			}
-		}
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
 }

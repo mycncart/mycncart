@@ -995,3 +995,45 @@
 2016-01-22 18:14:20 - PHP Notice:  Undefined variable: button_continue in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 74
 2016-01-22 18:14:20 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 98
 2016-01-22 18:14:20 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 102
+2016-01-27 8:29:13 - PHP Notice:  Undefined variable: text_write in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 56
+2016-01-27 8:29:13 - PHP Notice:  Undefined variable: entry_name in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 60
+2016-01-27 8:29:13 - PHP Notice:  Undefined variable: entry_comment in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 66
+2016-01-27 8:29:13 - PHP Notice:  Undefined variable: text_note in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 68
+2016-01-27 8:29:13 - PHP Notice:  Undefined variable: text_loading in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 74
+2016-01-27 8:29:13 - PHP Notice:  Undefined variable: button_continue in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 74
+2016-01-27 8:29:13 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 98
+2016-01-27 8:29:13 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 102
+2016-01-27 8:32:22 - PHP Notice:  Undefined variable: entry_name in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 60
+2016-01-27 8:32:22 - PHP Notice:  Undefined variable: entry_comment in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 66
+2016-01-27 8:32:22 - PHP Notice:  Undefined variable: text_loading in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 74
+2016-01-27 8:32:22 - PHP Notice:  Undefined variable: button_continue in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 74
+2016-01-27 8:32:22 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 98
+2016-01-27 8:32:22 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 102
+2016-01-27 8:34:29 - PHP Notice:  Undefined variable: text_loading in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 74
+2016-01-27 8:34:29 - PHP Notice:  Undefined variable: button_continue in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 74
+2016-01-27 8:34:29 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 98
+2016-01-27 8:34:29 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 102
+2016-01-27 8:35:12 - PHP Notice:  Undefined variable: text_loading in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 74
+2016-01-27 8:35:12 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 98
+2016-01-27 8:35:12 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 102
+2016-01-27 8:39:17 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 98
+2016-01-27 8:39:17 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 102
+2016-01-27 8:40:12 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 99
+2016-01-27 8:40:12 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 103
+2016-01-27 8:43:43 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 99
+2016-01-27 8:43:43 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 103
+2016-01-27 8:59:16 - PHP Notice:  Error: Could not load model C:/wamp/www/mycncart/catalog/model/catalog/comment.php! in C:\wamp\www\mycncart\system\engine\loader.php on line 63
+2016-01-27 8:59:20 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 99
+2016-01-27 8:59:20 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 103
+2016-01-27 8:59:37 - PHP Notice:  Error: Could not load model C:/wamp/www/mycncart/catalog/model/catalog/comment.php! in C:\wamp\www\mycncart\system\engine\loader.php on line 63
+2016-01-27 8:59:50 - PHP Notice:  Error: Could not load model C:/wamp/www/mycncart/catalog/model/catalog/comment.php! in C:\wamp\www\mycncart\system\engine\loader.php on line 63
+2016-01-27 9:00:33 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 99
+2016-01-27 9:00:33 - PHP Notice:  Undefined variable: blog_id in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 103
+2016-01-27 9:28:36 - PHP Notice:  Error: Unknown column 'p.date_available' in 'where clause'<br />Error No: 1054<br />SELECT COUNT(*) AS total FROM mcc_blog_comment r LEFT JOIN mcc_blog p ON (r.blog_id = p.blog_id) LEFT JOIN mcc_blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.blog_id = '2' AND p.date_available <= NOW() AND p.status = '1' AND r.status = '1' AND pd.language_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-27 9:28:36 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\comment.php on line 71
+2016-01-27 9:28:36 - PHP Notice:  Error: Unknown column 'r.comment' in 'field list'<br />Error No: 1054<br />SELECT r.comment, r.author, r.text, p.blog_id, pd.name, p.price, p.image, r.date_added FROM mcc_blog_comment r LEFT JOIN mcc_blog p ON (r.blog_id = p.blog_id) LEFT JOIN mcc_blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.blog_id = '2' AND p.date_available <= NOW() AND p.status = '1' AND r.status = '1' AND pd.language_id = '1' ORDER BY r.date_added DESC LIMIT 0,5 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-27 9:28:36 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\comment.php on line 65
+2016-01-27 9:28:36 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\blog.php on line 299
+2016-01-27 9:29:06 - PHP Notice:  Error: Unknown column 'r.comment' in 'field list'<br />Error No: 1054<br />SELECT r.comment, r.author, r.text, p.blog_id, pd.name, p.price, p.image, r.date_added FROM mcc_blog_comment r LEFT JOIN mcc_blog p ON (r.blog_id = p.blog_id) LEFT JOIN mcc_blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.blog_id = '2' AND p.status = '1' AND r.status = '1' AND pd.language_id = '1' ORDER BY r.date_added DESC LIMIT 0,5 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-27 9:29:06 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\comment.php on line 65
+2016-01-27 9:29:06 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\blog.php on line 299

@@ -10,3 +10,11 @@ $_['text_created_date']        	= 'Created Date: ';
 $_['text_hits']     			= 'Hits: ';
 $_['text_comment_count'] 		= 'Comments: ';
 $_['text_none_author'] 			= 'None';
+$_['text_write']                = 'Write a review';
+$_['text_login']                = 'Please <a href="%s">login</a> or <a href="%s">register</a> to review';
+$_['text_no_reviews']           = 'There are no reviews for this product.';
+$_['text_note']                 = '<span class="text-danger">Note:</span> HTML is not translated!';
+
+
+$_['entry_name']                = 'Your Name';
+$_['entry_comment']             = 'Your Comment';

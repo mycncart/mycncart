@@ -1,69 +1,73 @@
 <?php 
-/******************************************************
- * @package Pav blog module for Opencart 1.5.x
- * @version 1.0
- * @author http://www.pavothemes.com
- * @copyright	Copyright (C) Feb 2013 PavoThemes.com <@emai:pavothemes@gmail.com>.All rights reserved.
- * @license		GNU General Public License version 2
-*******************************************************/
+class ModelBlogComment extends Model {		
+	
+	public function addComment($blog_id, $data) {
+		$this->event->trigger('pre.comment.add', $data);
 
-/**
- * class ModelPavblogComment 
- */
-class ModelPavblogComment extends Model {		
-	
-	
-	public function getLatest( $limit ){
-		
-		$sql = 'SELECT c.* FROM '.DB_PREFIX.'pavblog_comment c WHERE `status`=1  ORDER BY created DESC';
-		
+		$this->db->query("INSERT INTO " . DB_PREFIX . "blog_comment SET author = '" . $this->db->escape($data['name']) . "', customer_id = '" . (int)$this->customer->getId() . "', blog_id = '" . (int)$blog_id . "', text = '" . $this->db->escape($data['text']) . "', date_added = NOW()");
 
-		
-		$sql .= " LIMIT " . $limit;
-	
-	
-		$query = $this->db->query( $sql ); 
-		$data = $query->rows;
-		
-		return $data;
-	}
-	
-	public function getList( $data ){
-	
-		$sql = 'SELECT c.* FROM '.DB_PREFIX.'pavblog_comment c WHERE `status`=1 AND blog_id='.$data['blog_id'].' ORDER BY created DESC';
-		
-		if (isset($data['start']) || isset($data['limit'])) {
-			if ($data['start'] < 0) {
-				$data['start'] = 0;
-			}				
+		$comment_id = $this->db->getLastId();
 
-			if ($data['limit'] < 1) {
-				$data['limit'] = 20;
-			}	
-		
-			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		if ($this->config->get('config_comment_mail')) {
+			$this->load->language('mail/comment');
+			$this->load->model('blog/blog');
+			$blog_info = $this->model_blog_blog->getBlog($blog_id);
+
+			$subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+
+			$message  = $this->language->get('text_waiting') . "\n";
+			$message .= sprintf($this->language->get('text_blog'), html_entity_decode($blog_info['name'], ENT_QUOTES, 'UTF-8')) . "\n";
+			$message .= sprintf($this->language->get('text_commenter'), html_entity_decode($data['name'], ENT_QUOTES, 'UTF-8')) . "\n";
+			$message .= $this->language->get('text_comment') . "\n";
+			$message .= html_entity_decode($data['text'], ENT_QUOTES, 'UTF-8') . "\n\n";
+
+			$mail = new Mail();
+			$mail->protocol = $this->config->get('config_mail_protocol');
+			$mail->parameter = $this->config->get('config_mail_parameter');
+			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+			$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+			$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+			$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+			$mail->setTo($this->config->get('config_email'));
+			$mail->setFrom($this->config->get('config_email'));
+			$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject($subject);
+			$mail->setText($message);
+			$mail->send();
+
+			// Send to additional alert emails
+			$emails = explode(',', $this->config->get('config_mail_alert'));
+
+			foreach ($emails as $email) {
+				if ($email && preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $email)) {
+					$mail->setTo($email);
+					$mail->send();
+				}
+			}
 		}
-	
-		$query = $this->db->query( $sql ); 
-		$data = $query->rows;
-		
-		return $data;
 
-	}
-	public function countComment( $blog_id ){
-		$sql = 'SELECT count(c.comment_id)as total FROM '.DB_PREFIX.'pavblog_comment c WHERE `status`=1 AND blog_id='.$blog_id;
-			
-		$query = $this->db->query( $sql ); 
-		$data = $query->row;
-		
-		return $data['total'];
+		$this->event->trigger('post.comment.add', $comment_id);
 	}
 	
-	public function saveComment( $data , $status=0){
-		$sql = ' INSERT INTO '.DB_PREFIX.'pavblog_comment (status,user,email,comment,blog_id,created) VALUES('.(int)$status.',"'
-				.$this->db->escape($data['user']).'","'.$this->db->escape($data['email']).'","'.$this->db->escape($data['comment']).'",'.(int)($data['blog_id']).', now()) ';
+	public function getCommentsByBlogId($blog_id, $start = 0, $limit = 20) {
+		if ($start < 0) {
+			$start = 0;
+		}
 
-		$this->db->query( $sql );
+		if ($limit < 1) {
+			$limit = 20;
+		}
+
+		$query = $this->db->query("SELECT r.comment, r.author, r.text, p.blog_id, pd.name, p.price, p.image, r.date_added FROM " . DB_PREFIX . "blog_comment r LEFT JOIN " . DB_PREFIX . "blog p ON (r.blog_id = p.blog_id) LEFT JOIN " . DB_PREFIX . "blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.blog_id = '" . (int)$blog_id . "' AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY r.date_added DESC LIMIT " . (int)$start . "," . (int)$limit);
+
+		return $query->rows;
+	}
+
+	public function getTotalCommentsByBlogId($blog_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog_comment r LEFT JOIN " . DB_PREFIX . "blog p ON (r.blog_id = p.blog_id) LEFT JOIN " . DB_PREFIX . "blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.blog_id = '" . (int)$blog_id . "' AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+		return $query->row['total'];
 	}
 }
-?>

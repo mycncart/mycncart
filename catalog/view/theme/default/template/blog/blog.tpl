@@ -48,6 +48,7 @@
 		  </div>
           
       <?php echo $description; ?>
+      <hr>
       
       <?php if ($comment_status) { ?>
         
