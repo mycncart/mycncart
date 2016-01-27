@@ -1,49 +1,44 @@
 <?php
-class Controllermodulepavblogcomment extends Controller {
-	
-	private $mdata = array();
-
+class ControllerModuleBlogComment extends Controller {
 	public function index($setting) {
-		static $module = 0;
-		
-		$this->load->model('pavblog/comment');
-		$this->load->model('catalog/product'); 
-		$this->load->model('tool/image');
-		$this->load->language('module/pavblog');
+		$this->load->language('module/blog_comment');
 
-		$this->mdata['objlang'] = $this->language;
-		$this->mdata['objurl'] = $this->url;
-		
-		$this->mdata['button_cart'] = $this->language->get('button_cart');
-		
-		if( !defined("_PAVBLOG_MEDIA_") ){
-			if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pavblog.css')) {
-				$this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/pavblog.css');
-			} else {
-				$this->document->addStyle('catalog/view/theme/default/stylesheet/pavblog.css');
+		$data['heading_title'] = $this->language->get('heading_title');
+
+		$this->load->model('blog/comment');
+
+
+		$data['comments'] = array();
+
+		$filter_data = array(
+			'sort'  => 'p.date_added',
+			'order' => 'DESC',
+			'start' => 0,
+			'limit' => $setting['limit']
+		);
+
+		$results = $this->model_blog_blog->getBlogs($filter_data);
+
+		if ($results) {
+			foreach ($results as $result) {
+				
+				$image = $this->model_tool_image->resize('placeholder.png', $setting['width'], $setting['height']);
+				
+
+				$data['comments'][] = array(
+					'comment_id'  => $result['comment_id'],
+					'thumb'       => $image,
+					'author'      => $result['author'],
+					'text' => utf8_substr(strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
+					'href'        => $this->url->link('blog/blog', 'blog_id=' . $result['blog_id'])
+				);
 			}
-			define("_PAVBLOG_MEDIA_",true);
-		}
-		 
-		$this->mdata['heading_title'] = $this->language->get('blogcomment_heading_title');
-		
-		$comments = $this->model_pavblog_comment->getLatest( (int)$setting['limit'] );
-		foreach( $comments as $k => $comment ){
-			$comments[$k]['link'] = $this->url->link( 'pavblog/blog',"blog_id=".$comment['blog_id']."#comment".$comment['comment_id'] );
-		}
-		$this->mdata['comments'] = $comments;
-	
-	
-		$this->mdata['module'] = $module++;
 
-
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/pavblogcomment.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/module/pavblogcomment.tpl', $this->mdata);
-		} else {
-			return $this->load->view('default/template/module/pavblogcomment.tpl', $this->mdata);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/blog_comment.tpl')) {
+				return $this->load->view($this->config->get('config_template') . '/template/module/blog_comment.tpl', $data);
+			} else {
+				return $this->load->view('default/template/module/blog_comment.tpl', $data);
+			}
 		}
-
 	}
-	
 }
-?>

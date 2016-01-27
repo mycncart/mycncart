@@ -1037,3 +1037,27 @@
 2016-01-27 9:29:06 - PHP Notice:  Error: Unknown column 'r.comment' in 'field list'<br />Error No: 1054<br />SELECT r.comment, r.author, r.text, p.blog_id, pd.name, p.price, p.image, r.date_added FROM mcc_blog_comment r LEFT JOIN mcc_blog p ON (r.blog_id = p.blog_id) LEFT JOIN mcc_blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.blog_id = '2' AND p.status = '1' AND r.status = '1' AND pd.language_id = '1' ORDER BY r.date_added DESC LIMIT 0,5 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
 2016-01-27 9:29:06 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\comment.php on line 65
 2016-01-27 9:29:06 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\blog.php on line 299
+2016-01-27 19:02:38 - PHP Notice:  Error: Unknown column 'r.comment' in 'field list'<br />Error No: 1054<br />SELECT r.comment, r.author, r.text, p.blog_id, pd.name, p.price, p.image, r.date_added FROM mcc_blog_comment r LEFT JOIN mcc_blog p ON (r.blog_id = p.blog_id) LEFT JOIN mcc_blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.blog_id = '2' AND p.status = '1' AND r.status = '1' AND pd.language_id = '1' ORDER BY r.date_added DESC LIMIT 0,5 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-27 19:02:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\comment.php on line 65
+2016-01-27 19:02:38 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\blog.php on line 299
+2016-01-27 19:03:45 - PHP Notice:  Error: Unknown column 'pd.name' in 'field list'<br />Error No: 1054<br />SELECT r.text, r.author, r.text, p.blog_id, pd.name, p.price, p.image, r.date_added FROM mcc_blog_comment r LEFT JOIN mcc_blog p ON (r.blog_id = p.blog_id) LEFT JOIN mcc_blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.blog_id = '2' AND p.status = '1' AND r.status = '1' AND pd.language_id = '1' ORDER BY r.date_added DESC LIMIT 0,5 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-27 19:03:45 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\comment.php on line 65
+2016-01-27 19:03:45 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\blog.php on line 299
+2016-01-27 19:04:05 - PHP Notice:  Error: Unknown column 'p.price' in 'field list'<br />Error No: 1054<br />SELECT r.text, r.author, r.text, p.blog_id, pd.title, p.price, p.image, r.date_added FROM mcc_blog_comment r LEFT JOIN mcc_blog p ON (r.blog_id = p.blog_id) LEFT JOIN mcc_blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.blog_id = '2' AND p.status = '1' AND r.status = '1' AND pd.language_id = '1' ORDER BY r.date_added DESC LIMIT 0,5 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-27 19:04:05 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\comment.php on line 65
+2016-01-27 19:04:05 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\blog.php on line 299
+2016-01-27 19:37:55 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_latest.php on line 34
+2016-01-27 19:37:55 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_latest.php on line 34
+2016-01-27 19:37:55 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_latest.php on line 34
+2016-01-27 19:37:55 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_latest.php on line 34
+2016-01-27 19:37:55 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_latest.php on line 34
+2016-01-27 19:37:55 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
+2016-01-27 19:37:55 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
+2016-01-27 19:37:55 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
+2016-01-27 19:37:55 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
+2016-01-27 19:37:55 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
+2016-01-27 19:38:35 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
+2016-01-27 19:38:35 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
+2016-01-27 19:38:35 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
+2016-01-27 19:38:35 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
+2016-01-27 19:38:35 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
