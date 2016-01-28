@@ -446,6 +446,22 @@
               </div>
               
               <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-comment-email"><?php echo $entry_cms_blog_comment_email; ?></label>
+                <div class="col-sm-10">
+                  <select name="cms_blog_comment_email" id="input-cms-blog-comment-email" class="form-control">
+                    <?php if ($cms_blog_comment_email) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                    <option value="0"><?php echo $text_no; ?></option>
+                    <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-cms-blog-show-recaptcha"><?php echo $entry_cms_blog_show_recaptcha; ?></label>
                 <div class="col-sm-10">
                   <select name="cms_blog_show_recaptcha" id="input-cms-blog-show-recaptcha" class="form-control">
@@ -472,6 +488,20 @@
                     <option value="0" selected="selected"><?php echo $text_no; ?></option>
                     <?php } ?>
                   </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-brief-length"><span data-toggle="tooltip" title="<?php echo $help_cms_blog_brief_length; ?>"><?php echo $entry_cms_blog_brief_length; ?></span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="cms_blog_brief_length" value="<?php echo $cms_blog_brief_length; ?>" placeholder="<?php echo $entry_cms_blog_brief_length; ?>" id="input-cms-blog-brief-length" class="form-control" />
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-comment-length"><span data-toggle="tooltip" title="<?php echo $help_cms_blog_comment_length; ?>"><?php echo $entry_cms_blog_comment_length; ?></span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="cms_blog_comment_length" value="<?php echo $cms_blog_comment_length; ?>" placeholder="<?php echo $entry_cms_blog_comment_length; ?>" id="input-cms-blog-comment-length" class="form-control" />
                 </div>
               </div>
 

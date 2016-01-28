@@ -4,11 +4,11 @@ class ModelBlogComment extends Model {
 	public function addComment($blog_id, $data) {
 		$this->event->trigger('pre.comment.add', $data);
 
-		$this->db->query("INSERT INTO " . DB_PREFIX . "blog_comment SET author = '" . $this->db->escape($data['name']) . "', customer_id = '" . (int)$this->customer->getId() . "', blog_id = '" . (int)$blog_id . "', text = '" . $this->db->escape($data['text']) . "', status = '1', date_added = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "blog_comment SET author = '" . $this->db->escape($data['name']) . "', customer_id = '" . (int)$this->customer->getId() . "', blog_id = '" . (int)$blog_id . "', text = '" . $this->db->escape($data['text']) . "', status = '" . (int)$this->config->get('cms_blog_show_auto_publish_comment') . "', date_added = NOW()");
 
 		$comment_id = $this->db->getLastId();
 
-		if ($this->config->get('config_comment_mail')) {
+		if ($this->config->get('cms_blog_comment_email')) {
 			$this->load->language('mail/comment');
 			$this->load->model('blog/blog');
 			$blog_info = $this->model_blog_blog->getBlog($blog_id);
@@ -70,4 +70,33 @@ class ModelBlogComment extends Model {
 
 		return $query->row['total'];
 	}
+	
+	public function getComments($data = array()) {
+		
+		$sql = "SELECT r.blog_comment_id, r.author, r.text, p.blog_id, pd.title, r.date_added FROM " . DB_PREFIX . "blog_comment r LEFT JOIN " . DB_PREFIX . "blog p ON (r.blog_id = p.blog_id) LEFT JOIN " . DB_PREFIX . "blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+
+			$sql .= " ORDER BY r.date_added";
+		
+
+			$sql .= " DESC";
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+
+		$query = $this->db->query($sql);
+		
+		return $query->rows;
+	}
+	
 }

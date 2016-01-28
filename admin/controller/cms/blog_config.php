@@ -67,8 +67,14 @@ class ControllerCmsBlogConfig extends Controller {
 		$data['entry_cms_blog_show_auto_publish_comment'] = $this->language->get('entry_cms_blog_show_auto_publish_comment');
 		$data['entry_cms_blog_show_recaptcha'] = $this->language->get('entry_cms_blog_show_recaptcha');
 		$data['entry_cms_blog_show_need_login_to_comment'] = $this->language->get('entry_cms_blog_show_need_login_to_comment');
+		
+		$data['entry_cms_blog_comment_email'] = $this->language->get('entry_cms_blog_comment_email');
+		$data['entry_cms_blog_brief_length'] = $this->language->get('entry_cms_blog_brief_length');
+		$data['entry_cms_blog_comment_length'] = $this->language->get('entry_cms_blog_comment_length');
 
 		$data['help_cms_blog_seo_keyword'] = $this->language->get('help_cms_blog_seo_keyword');
+		$data['help_cms_blog_brief_length'] = $this->language->get('help_cms_blog_brief_length');
+		$data['help_cms_blog_comment_length'] = $this->language->get('help_cms_blog_comment_length');
 
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
@@ -309,6 +315,12 @@ class ControllerCmsBlogConfig extends Controller {
 			$data['cms_blog_show_auto_publish_comment'] = $this->config->get('cms_blog_show_auto_publish_comment');
 		}
 		
+		if (isset($this->request->post['cms_blog_comment_email'])) {
+			$data['cms_blog_comment_email'] = $this->request->post['cms_blog_comment_email'];
+		} else {
+			$data['cms_blog_comment_email'] = $this->config->get('cms_blog_comment_email');
+		}
+		
 		if (isset($this->request->post['cms_blog_show_recaptcha'])) {
 			$data['cms_blog_show_recaptcha'] = $this->request->post['cms_blog_show_recaptcha'];
 		} else {
@@ -319,6 +331,18 @@ class ControllerCmsBlogConfig extends Controller {
 			$data['cms_blog_show_need_login_to_comment'] = $this->request->post['cms_blog_show_need_login_to_comment'];
 		} else {
 			$data['cms_blog_show_need_login_to_comment'] = $this->config->get('cms_blog_show_need_login_to_comment');
+		}
+		
+		if (isset($this->request->post['cms_blog_brief_length'])) {
+			$data['cms_blog_brief_length'] = $this->request->post['cms_blog_brief_length'];
+		} else {
+			$data['cms_blog_brief_length'] = $this->config->get('cms_blog_brief_length');
+		}
+		
+		if (isset($this->request->post['cms_blog_comment_length'])) {
+			$data['cms_blog_comment_length'] = $this->request->post['cms_blog_comment_length'];
+		} else {
+			$data['cms_blog_comment_length'] = $this->config->get('cms_blog_comment_length');
 		}
 		
 		$data['header'] = $this->load->controller('common/header');

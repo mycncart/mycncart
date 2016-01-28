@@ -49,9 +49,14 @@ $_['entry_cms_blog_show_comment_form']  						= 'Show Comment Form';
 $_['entry_cms_blog_show_auto_publish_comment']  				= 'Auto Publish Comment';
 $_['entry_cms_blog_show_recaptcha']  							= 'Enable ReCaptCha';
 $_['entry_cms_blog_show_need_login_to_comment']  				= 'Need Login to Comment';
+$_['entry_cms_blog_comment_email']  							= 'Send Comment Email To Admin';
+$_['entry_cms_blog_brief_length']  								= 'Blog Brief Characters Number';
+$_['entry_cms_blog_comment_length']  							= 'Blog Comment Characters Number';
 
 // Help
 $_['help_cms_blog_seo_keyword']     = 'Do not use spaces, instead replace spaces with - and make sure the keyword is globally unique.';
+$_['help_cms_blog_brief_length']    	     	= 'Characters Number in Latest Blog Module etc.';
+$_['help_cms_blog_comment_length']         		= 'Characters Number in Latest Blog Comment Module etc.';
 
 //Tab
 $_['tab_category']  				= 'Blog Category Page';

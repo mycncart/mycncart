@@ -49,9 +49,14 @@ $_['entry_cms_blog_show_comment_form']  						= '允许评论';
 $_['entry_cms_blog_show_auto_publish_comment']  				= '评论无需审核自动发布';
 $_['entry_cms_blog_show_recaptcha']  							= '验证码';
 $_['entry_cms_blog_show_need_login_to_comment']  				= '登录才能评论';
+$_['entry_cms_blog_comment_email']  							= '有新评论时发送邮件';
+$_['entry_cms_blog_brief_length']  								= '博客简述显示字符数';
+$_['entry_cms_blog_comment_length']  							= '博客评论显示字符数';
 
 // Help
-$_['help_cms_blog_seo_keyword']         = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
+$_['help_cms_blog_seo_keyword']         		= '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
+$_['help_cms_blog_brief_length']    	     	= '指最新博客模组部分显示的简述字符数。';
+$_['help_cms_blog_comment_length']         		= '指最新博客评论模组部分显示的评论字符数。';
 
 //Tab
 $_['tab_category']  					= '博客分类页面参数';

@@ -1061,3 +1061,43 @@
 2016-01-27 19:38:35 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
 2016-01-27 19:38:35 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
 2016-01-27 19:38:35 - PHP Notice:  Undefined index: description in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_latest.tpl on line 9
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: comment_id in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 29
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: author in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 31
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: text in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 32
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: comment_id in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 29
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: author in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 31
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: text in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 32
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: comment_id in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 29
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: author in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 31
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: text in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 32
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: comment_id in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 29
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: author in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 31
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: text in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 32
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: comment_id in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 29
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: author in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 31
+2016-01-28 9:23:28 - PHP Notice:  Undefined index: text in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 32
+2016-01-28 9:23:28 - PHP Notice:  Undefined variable: products in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 3
+2016-01-28 9:23:28 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 3
+2016-01-28 9:39:09 - PHP Notice:  Undefined index: comment_id in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 29
+2016-01-28 9:39:09 - PHP Notice:  Undefined index: comment_id in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 29
+2016-01-28 9:39:09 - PHP Notice:  Undefined index: comment_id in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 29
+2016-01-28 9:39:09 - PHP Notice:  Undefined index: comment_id in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 29
+2016-01-28 9:39:09 - PHP Notice:  Undefined index: comment_id in C:\wamp\www\mycncart\catalog\controller\module\blog_comment.php on line 29
+2016-01-28 9:39:09 - PHP Notice:  Undefined variable: products in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 3
+2016-01-28 9:39:09 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 3
+2016-01-28 9:39:56 - PHP Notice:  Error: Unknown column 'r.comment_id' in 'field list'<br />Error No: 1054<br />SELECT r.comment_id, r.author, r.text, p.blog_id, pd.title, r.date_added FROM mcc_blog_comment r LEFT JOIN mcc_blog p ON (r.blog_id = p.blog_id) LEFT JOIN mcc_blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.status = '1' AND r.status = '1' AND pd.language_id = '1' ORDER BY r.date_added DESC LIMIT 0,5 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-01-28 9:39:56 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\comment.php on line 99
+2016-01-28 9:40:57 - PHP Notice:  Undefined variable: products in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 3
+2016-01-28 9:40:57 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 3
+2016-01-28 9:46:19 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 6
+2016-01-28 9:46:19 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 6
+2016-01-28 9:46:19 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 6
+2016-01-28 9:46:19 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 6
+2016-01-28 9:46:19 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 6
+2016-01-28 9:46:19 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 6
+2016-01-28 9:46:19 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 6
+2016-01-28 9:46:19 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 6
+2016-01-28 9:46:19 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 6
+2016-01-28 9:46:19 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 6
+2016-01-28 10:26:42 - PHP Notice:  Undefined variable: entry_cms_blog_comment_email in C:\wamp\www\mycncart\admin\view\template\cms\blog_config.tpl on line 449
+2016-01-28 10:28:32 - PHP Notice:  Undefined variable: entry_cms_blog_comment_email in C:\wamp\www\mycncart\admin\view\template\cms\blog_config.tpl on line 449

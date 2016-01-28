@@ -11,13 +11,13 @@ class ControllerModuleBlogComment extends Controller {
 		$data['comments'] = array();
 
 		$filter_data = array(
-			'sort'  => 'p.date_added',
+			'sort'  => 'r.date_added',
 			'order' => 'DESC',
 			'start' => 0,
 			'limit' => $setting['limit']
 		);
 
-		$results = $this->model_blog_blog->getBlogs($filter_data);
+		$results = $this->model_blog_comment->getComments($filter_data);
 
 		if ($results) {
 			foreach ($results as $result) {
@@ -26,10 +26,11 @@ class ControllerModuleBlogComment extends Controller {
 				
 
 				$data['comments'][] = array(
-					'comment_id'  => $result['comment_id'],
+					'comment_id'  => $result['blog_comment_id'],
 					'thumb'       => $image,
 					'author'      => $result['author'],
-					'text' => utf8_substr(strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
+					'name'        => $result['title'],
+					'text' => utf8_substr(strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('cms_blog_comment_length')) . '..',
 					'href'        => $this->url->link('blog/blog', 'blog_id=' . $result['blog_id'])
 				);
 			}
