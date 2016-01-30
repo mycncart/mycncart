@@ -30,7 +30,7 @@ $_['entry_top']              = '頂部菜單顯示';
 $_['entry_column']           = '列排顯示';
 $_['entry_sort_order']       = '排序';
 $_['entry_status']           = '狀態';
-$_['entry_layout']           = '布局覆蓋';
+$_['entry_layout']           = '布局排版覆蓋';
 
 // Help
 $_['help_filter']            = '(輸入時自動篩選結果)';

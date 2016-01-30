@@ -28,7 +28,7 @@ class ControllerBlogAll extends Controller {
 		
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_blog'),
-			'href' => $this->url->link('blog/blog', '')
+			'href' => $this->url->link('blog/all')
 		);
 		
 		$blog_description = $this->config->get('blog_description');
@@ -47,7 +47,7 @@ class ControllerBlogAll extends Controller {
 		$data['text_created_date'] = $this->language->get('text_created_date');
 		$data['text_hits'] = $this->language->get('text_hits');
 		$data['text_comment_count'] = $this->language->get('text_comment_count');
-		
+		$data['text_blog_category'] = $this->language->get('text_blog_category');
 
 		$data['button_continue'] = $this->language->get('button_continue');
 
@@ -135,6 +135,37 @@ class ControllerBlogAll extends Controller {
 		$data['cms_blog_show_auto_publish_comment'] = $this->config->get('cms_blog_show_auto_publish_comment');
 		$data['cms_blog_show_recaptcha'] = $this->config->get('cms_blog_show_recaptcha');
 		$data['cms_blog_show_need_login_to_comment'] = $this->config->get('cms_blog_show_need_login_to_comment');
+		
+		// Blog Category Menu
+		$this->load->model('blog/category');
+
+		$data['categories'] = array();
+
+		$categories = $this->model_blog_category->getBlogCategories(0);
+
+		foreach ($categories as $category) {
+
+			// Level 2
+			$children_data = array();
+	
+			$children = $this->model_blog_category->getBlogCategories($category['blog_category_id']);
+	
+			foreach ($children as $child) {
+	
+				$children_data[] = array(
+					'name'  => $child['name'],
+					'href'  => $this->url->link('blog/category', 'path=' . $category['blog_category_id'] . '_' . $child['blog_category_id'])
+				);
+			}
+	
+			// Level 1
+			$data['categories'][] = array(
+				'name'     => $category['name'],
+				'children' => $children_data,
+				'href'     => $this->url->link('blog/category', 'path=' . $category['blog_category_id'])
+			);
+			
+		}
 
 		$pagination = new Pagination();
 		$pagination->total = $blog_total;
@@ -146,7 +177,7 @@ class ControllerBlogAll extends Controller {
 
 		$data['results'] = sprintf($this->language->get('text_pagination'), ($blog_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($blog_total - $limit)) ? $blog_total : ((($page - 1) * $limit) + $limit), $blog_total, ceil($blog_total / $limit));
 
-		$data['continue'] = $this->url->link('common/home');
+		$data['continue'] = $this->url->link('blog/all');
 		
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');

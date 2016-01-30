@@ -1,4 +1,34 @@
 <?php echo $header; ?>
+<?php if ($categories) { ?>
+<div class="container visible-xs">
+  <nav id="menu" class="navbar">
+    <div class="navbar-header"><span id="category" class="visible-xs"><?php echo $text_blog_category ?></span>
+      <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex2-collapse"><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="collapse navbar-collapse navbar-ex2-collapse">
+      <ul class="nav navbar-nav">
+        <?php foreach ($categories as $category) { ?>
+        <?php if ($category['children']) { ?>
+        <li class="dropdown"><a href="<?php echo $category['href']; ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo $category['name']; ?></a>
+          <div class="dropdown-menu">
+            <div class="dropdown-inner">
+              <?php foreach ($category['children'] as $children) { ?>
+              <ul class="list-unstyled">
+                <li><a href="<?php echo $children['href']; ?>"><?php echo $children['name']; ?></a></li>
+              </ul>
+              <?php } ?>
+            </div>
+          </div>
+        </li>
+        <?php } else { ?>
+        <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
+        <?php } ?>
+        <?php } ?>
+      </ul>
+    </div>
+  </nav>
+</div>
+<?php } ?>
 <div class="container">
   <ul class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>

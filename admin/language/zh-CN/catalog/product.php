@@ -79,7 +79,7 @@ $_['entry_download']         = '下载文件';
 $_['entry_related']          = '相关商品';
 $_['entry_tag']          	 = '商品标签';
 $_['entry_reward']           = '奖励积分';
-$_['entry_layout']           = '布局覆盖';
+$_['entry_layout']           = '布局排版覆盖';
 $_['entry_recurring']        = '分期付款';
 
 // Help

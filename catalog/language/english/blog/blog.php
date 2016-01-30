@@ -14,6 +14,9 @@ $_['text_write']                = 'Write a review';
 $_['text_login']                = 'Please <a href="%s">login</a> or <a href="%s">register</a> to review';
 $_['text_no_reviews']           = 'There are no reviews for this product.';
 $_['text_note']                 = '<span class="text-danger">Note:</span> HTML is not translated!';
+$_['text_blog_category'] 		= 'Blog Categories';
+$_['text_empty'] 				= 'No Contents';
+
 
 
 $_['entry_name']                = 'Your Name';

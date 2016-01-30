@@ -97,7 +97,7 @@ $_['entry_download']         = '下載文件';
 $_['entry_related']          = '相關有赞微商城商品';
 $_['entry_tag']          	 = '有赞微商城商品標簽';
 $_['entry_reward']           = '獎勵積分';
-$_['entry_layout']           = '布局覆蓋';
+$_['entry_layout']           = '布局排版覆蓋';
 $_['entry_recurring']        = '分期付款';
 $_['entry_maxbuy']           = '限購數量';
 

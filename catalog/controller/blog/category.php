@@ -24,6 +24,11 @@ class ControllerBlogCategory extends Controller {
 			'text' => $this->language->get('text_home'),
 			'href' => $this->url->link('common/home')
 		);
+		
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('text_blog'),
+			'href' => $this->url->link('blog/all')
+		);
 
 		if (isset($this->request->get['path'])) {
 			$url = '';
@@ -75,6 +80,7 @@ class ControllerBlogCategory extends Controller {
 			$data['text_created_date'] = $this->language->get('text_created_date');
 			$data['text_hits'] = $this->language->get('text_hits');
 			$data['text_comment_count'] = $this->language->get('text_comment_count');
+			$data['text_blog_category'] = $this->language->get('text_blog_category');
 
 			$data['button_continue'] = $this->language->get('button_continue');
 
@@ -187,7 +193,36 @@ class ControllerBlogCategory extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-
+			// Blog Category Menu
+			$this->load->model('blog/category');
+	
+			$data['categories'] = array();
+	
+			$categories = $this->model_blog_category->getBlogCategories(0);
+	
+			foreach ($categories as $category) {
+	
+				// Level 2
+				$children_data = array();
+		
+				$children = $this->model_blog_category->getBlogCategories($category['blog_category_id']);
+		
+				foreach ($children as $child) {
+		
+					$children_data[] = array(
+						'name'  => $child['name'],
+						'href'  => $this->url->link('blog/category', 'path=' . $category['blog_category_id'] . '_' . $child['blog_category_id'])
+					);
+				}
+		
+				// Level 1
+				$data['categories'][] = array(
+					'name'     => $category['name'],
+					'children' => $children_data,
+					'href'     => $this->url->link('blog/category', 'path=' . $category['blog_category_id'])
+				);
+				
+			}
 
 			$pagination = new Pagination();
 			$pagination->total = $blog_total;
@@ -214,7 +249,9 @@ class ControllerBlogCategory extends Controller {
 
 			$data['limit'] = $limit;
 
-			$data['continue'] = $this->url->link('common/home');
+			$data['continue'] = $this->url->link('blog/all');
+			
+			
 
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');

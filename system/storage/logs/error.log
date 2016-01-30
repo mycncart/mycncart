@@ -1101,3 +1101,78 @@
 2016-01-28 9:46:19 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 6
 2016-01-28 10:26:42 - PHP Notice:  Undefined variable: entry_cms_blog_comment_email in C:\wamp\www\mycncart\admin\view\template\cms\blog_config.tpl on line 449
 2016-01-28 10:28:32 - PHP Notice:  Undefined variable: entry_cms_blog_comment_email in C:\wamp\www\mycncart\admin\view\template\cms\blog_config.tpl on line 449
+2016-01-29 13:47:14 - PHP Notice:  Undefined index: top in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 147
+2016-01-29 13:47:14 - PHP Notice:  Undefined index: top in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 147
+2016-01-29 13:47:14 - PHP Notice:  Undefined index: top in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 147
+2016-01-29 13:55:53 - PHP Notice:  Undefined variable: text_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 5
+2016-01-29 13:55:53 - PHP Notice:  Undefined index: column in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:55:53 - PHP Warning:  Division by zero in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:55:53 - PHP Warning:  array_chunk(): Size parameter expected to be greater than 0 in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:55:53 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:55:53 - PHP Notice:  Undefined variable: text_all in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 23
+2016-01-29 13:55:53 - PHP Notice:  Undefined index: column in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:55:53 - PHP Warning:  Division by zero in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:55:53 - PHP Warning:  array_chunk(): Size parameter expected to be greater than 0 in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:55:53 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:55:53 - PHP Notice:  Undefined variable: text_all in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 23
+2016-01-29 13:56:16 - PHP Notice:  Undefined variable: text_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 5
+2016-01-29 13:56:16 - PHP Notice:  Undefined index: column in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:56:16 - PHP Warning:  Division by zero in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:56:16 - PHP Warning:  array_chunk(): Size parameter expected to be greater than 0 in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:56:16 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:56:16 - PHP Notice:  Undefined variable: text_all in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 23
+2016-01-29 13:56:16 - PHP Notice:  Undefined index: column in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:56:16 - PHP Warning:  Division by zero in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:56:16 - PHP Warning:  array_chunk(): Size parameter expected to be greater than 0 in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:56:16 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:56:16 - PHP Notice:  Undefined variable: text_all in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 23
+2016-01-29 13:57:14 - PHP Notice:  Undefined index: column in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:14 - PHP Warning:  Division by zero in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:14 - PHP Warning:  array_chunk(): Size parameter expected to be greater than 0 in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:14 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:14 - PHP Notice:  Undefined variable: text_all in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 23
+2016-01-29 13:57:14 - PHP Notice:  Undefined index: column in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:14 - PHP Warning:  Division by zero in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:14 - PHP Warning:  array_chunk(): Size parameter expected to be greater than 0 in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:14 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:14 - PHP Notice:  Undefined variable: text_all in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 23
+2016-01-29 13:57:38 - PHP Notice:  Undefined index: column in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:38 - PHP Warning:  Division by zero in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:38 - PHP Warning:  array_chunk(): Size parameter expected to be greater than 0 in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:38 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:38 - PHP Notice:  Undefined variable: text_all in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 23
+2016-01-29 13:57:38 - PHP Notice:  Undefined index: column in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:38 - PHP Warning:  Division by zero in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:38 - PHP Warning:  array_chunk(): Size parameter expected to be greater than 0 in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:38 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 13:57:38 - PHP Notice:  Undefined variable: text_all in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 23
+2016-01-29 14:05:46 - PHP Notice:  Undefined index: column in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 14:05:46 - PHP Warning:  Division by zero in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 14:05:46 - PHP Warning:  array_chunk(): Size parameter expected to be greater than 0 in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 14:05:46 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 14:05:46 - PHP Notice:  Undefined variable: text_all in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 23
+2016-01-29 14:05:46 - PHP Notice:  Undefined index: column in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 14:05:46 - PHP Warning:  Division by zero in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 14:05:46 - PHP Warning:  array_chunk(): Size parameter expected to be greater than 0 in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 14:05:46 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 15
+2016-01-29 14:05:46 - PHP Notice:  Undefined variable: text_all in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 23
+2016-01-29 14:07:49 - PHP Warning:  Illegal string offset 'href' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 18
+2016-01-29 14:07:49 - PHP Warning:  Illegal string offset 'name' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 18
+2016-01-29 14:07:49 - PHP Warning:  Illegal string offset 'href' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 18
+2016-01-29 14:07:49 - PHP Warning:  Illegal string offset 'name' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 18
+2016-01-29 14:07:49 - PHP Warning:  Illegal string offset 'href' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 18
+2016-01-29 14:07:49 - PHP Warning:  Illegal string offset 'name' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 18
+2016-01-29 14:07:49 - PHP Warning:  Illegal string offset 'href' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 18
+2016-01-29 14:07:49 - PHP Warning:  Illegal string offset 'name' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 18
+2016-01-29 14:09:31 - PHP Warning:  Illegal string offset 'href' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 19
+2016-01-29 14:09:31 - PHP Warning:  Illegal string offset 'name' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 19
+2016-01-29 14:09:31 - PHP Warning:  Illegal string offset 'href' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 19
+2016-01-29 14:09:31 - PHP Warning:  Illegal string offset 'name' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 19
+2016-01-29 14:09:31 - PHP Warning:  Illegal string offset 'href' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 19
+2016-01-29 14:09:31 - PHP Warning:  Illegal string offset 'name' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 19
+2016-01-29 14:09:31 - PHP Warning:  Illegal string offset 'href' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 19
+2016-01-29 14:09:31 - PHP Warning:  Illegal string offset 'name' in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 19
+2016-01-29 14:10:57 - PHP Notice:  Undefined variable: child in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 17
+2016-01-29 14:10:57 - PHP Notice:  Undefined variable: child in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 17
+2016-01-29 14:10:57 - PHP Notice:  Undefined variable: child in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 17
+2016-01-29 14:10:57 - PHP Notice:  Undefined variable: child in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 17

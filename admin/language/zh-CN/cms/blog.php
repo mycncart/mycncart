@@ -36,7 +36,7 @@ $_['entry_sort_order']       = '排序';
 $_['entry_blog_category']    = '所属博客分类';
 $_['entry_product_related']  = '相关商品';
 $_['entry_blog_related']     = '相关博客文章';
-$_['entry_layout']           = '布局覆盖';
+$_['entry_layout']           = '布局排版覆盖';
 
 // Help
 $_['help_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';

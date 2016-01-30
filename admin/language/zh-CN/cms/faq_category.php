@@ -25,7 +25,7 @@ $_['entry_parent']           = '父级分类';
 $_['entry_store']            = '商店';
 $_['entry_sort_order']       = '排序';
 $_['entry_status']           = '状态';
-$_['entry_layout']           = '布局覆盖';
+$_['entry_layout']           = '布局排版覆盖';
 
 // Help
 $_['help_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';

@@ -66,6 +66,7 @@ class ControllerBlogBlog extends Controller {
 			$data['text_login'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'));
 			$data['text_note'] = $this->language->get('text_note');
 			$data['text_loading'] = $this->language->get('text_loading');
+			$data['text_blog_category'] = $this->language->get('text_blog_category');
 			
 			$data['entry_name'] = $this->language->get('entry_name');
 			$data['entry_comment'] = $this->language->get('entry_comment');
@@ -105,7 +106,7 @@ class ControllerBlogBlog extends Controller {
 			$data['sort_order']   		= $blog_info['sort_order'];
 			$data['date_added']   		= $blog_info['date_added'];
 			$data['date_modified'] 		= $blog_info['date_modified'];
-			$data['description'] 		= $blog_info['description'];
+			$data['description'] 		= html_entity_decode($blog_info['description'], ENT_QUOTES, 'UTF-8');
 			
 			
 			$data['cms_blog_image_type'] = $this->config->get('cms_blog_image_type');
@@ -205,7 +206,7 @@ class ControllerBlogBlog extends Controller {
 			$data['tags'] = array();
 
 			if ($blog_info['tags']) {
-				$tags = explode(',', $blog_info['tag']);
+				$tags = explode(',', $blog_info['tags']);
 
 				foreach ($tags as $tag) {
 					$data['tags'][] = array(
@@ -217,6 +218,37 @@ class ControllerBlogBlog extends Controller {
 
 
 			$this->model_blog_blog->updateViewed($this->request->get['blog_id']);
+			
+			// Blog Category Menu
+			$this->load->model('blog/category');
+	
+			$data['categories'] = array();
+	
+			$categories = $this->model_blog_category->getBlogCategories(0);
+	
+			foreach ($categories as $category) {
+	
+				// Level 2
+				$children_data = array();
+		
+				$children = $this->model_blog_category->getBlogCategories($category['blog_category_id']);
+		
+				foreach ($children as $child) {
+		
+					$children_data[] = array(
+						'name'  => $child['name'],
+						'href'  => $this->url->link('blog/category', 'path=' . $category['blog_category_id'] . '_' . $child['blog_category_id'])
+					);
+				}
+		
+				// Level 1
+				$data['categories'][] = array(
+					'name'     => $category['name'],
+					'children' => $children_data,
+					'href'     => $this->url->link('blog/category', 'path=' . $category['blog_category_id'])
+				);
+				
+			}
 
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');
@@ -258,7 +290,7 @@ class ControllerBlogBlog extends Controller {
 
 			$data['button_continue'] = $this->language->get('button_continue');
 
-			$data['continue'] = $this->url->link('common/home');
+			$data['continue'] = $this->url->link('blog/all');
 
 			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 

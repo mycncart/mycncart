@@ -28,7 +28,7 @@ $_['entry_store']            = '商店';
 $_['entry_image']            = '圖像';
 $_['entry_sort_order']       = '排序';
 $_['entry_status']           = '狀態';
-$_['entry_layout']           = '布局覆蓋';
+$_['entry_layout']           = '布局排版覆蓋';
 $_['entry_press_category']   = '所属新闻分类';
 
 // Help

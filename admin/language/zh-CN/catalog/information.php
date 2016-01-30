@@ -26,7 +26,7 @@ $_['entry_keyword']          = 'SEO Keyword';
 $_['entry_bottom']           = '底部显示';
 $_['entry_status']           = '状态';
 $_['entry_sort_order']       = '排序';
-$_['entry_layout']           = '布局覆盖';
+$_['entry_layout']           = '布局排版覆盖';
 
 // Help
 $_['help_keyword']           = 'D请确保关键词在全站的唯一性。请不要使用空格，请使用-来替换空格。';
