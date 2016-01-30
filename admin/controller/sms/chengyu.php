@@ -27,6 +27,7 @@ class ControllerSmsChengYu extends Controller {
 		$data['entry_userid'] = $this->language->get('entry_userid');
 		$data['entry_account'] = $this->language->get('entry_account');
 		$data['entry_password'] = $this->language->get('entry_password');
+		$data['entry_postfix'] = $this->language->get('entry_postfix');
 		$data['entry_status'] = $this->language->get('entry_status');
 
 		$data['button_save'] = $this->language->get('button_save');
@@ -54,6 +55,12 @@ class ControllerSmsChengYu extends Controller {
 			$data['error_password'] = $this->error['password'];
 		} else {
 			$data['error_password'] = '';
+		}
+		
+		if (isset($this->error['postfix'])) {
+			$data['error_postfix'] = $this->error['postfix'];
+		} else {
+			$data['error_postfix'] = '';
 		}
 
 		$data['breadcrumbs'] = array();
@@ -94,6 +101,12 @@ class ControllerSmsChengYu extends Controller {
 		} else {
 			$data['chengyu_password'] = $this->config->get('chengyu_password');
 		}
+		
+		if (isset($this->request->post['chengyu_postfix'])) {
+			$data['chengyu_postfix'] = $this->request->post['chengyu_postfix'];
+		} else {
+			$data['chengyu_postfix'] = $this->config->get('chengyu_postfix');
+		}
 
 		if (isset($this->request->post['chengyu_status'])) {
 			$data['chengyu_status'] = $this->request->post['chengyu_status'];
@@ -123,6 +136,10 @@ class ControllerSmsChengYu extends Controller {
 		
 		if (!$this->request->post['chengyu_password']) {
 			$this->error['password'] = $this->language->get('error_password');
+		}
+		
+		if (!$this->request->post['chengyu_postfix']) {
+			$this->error['postfix'] = $this->language->get('error_postfix');
 		}
 
 		return !$this->error;

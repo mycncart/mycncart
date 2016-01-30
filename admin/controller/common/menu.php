@@ -100,14 +100,20 @@ class ControllerCommonMenu extends Controller {
 		$data['text_weidian'] = $this->language->get('text_weidian');
 		$data['text_weidian_category'] = $this->language->get('text_weidian_category');
 		$data['text_weidian_product'] = $this->language->get('text_weidian_product');
-		$data['text_weidian_config'] = $this->language->get('text_weidian_config');
 		$data['text_baidu_seo'] = $this->language->get('text_baidu_seo');
-		$data['text_baidu'] = $this->language->get('text_baidu');
 		$data['text_pushurl'] = $this->language->get('text_pushurl');
 		$data['text_youzan'] = $this->language->get('text_youzan');
 		$data['text_youzan_product'] = $this->language->get('text_youzan_product');
-		$data['text_youzan_config'] = $this->language->get('text_youzan_config');
 		$data['text_thirdparty'] = $this->language->get('text_thirdparty');
+		$data['text_cms'] = $this->language->get('text_cms');
+		$data['text_press_category'] = $this->language->get('text_press_category');
+		$data['text_press'] = $this->language->get('text_press');
+		$data['text_press_config'] = $this->language->get('text_press_config');
+		$data['text_blog_category'] = $this->language->get('text_blog_category');
+		$data['text_blog'] = $this->language->get('text_blog');
+		$data['text_blog_comment'] = $this->language->get('text_blog_comment');
+		$data['text_blog_config'] = $this->language->get('text_blog_config');
+		$data['text_excelexportimport'] = $this->language->get('text_excelexportimport');
 
 		$data['analytics'] = $this->url->link('extension/analytics', 'token=' . $this->session->data['token'], 'SSL');
 		$data['home'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL');
@@ -189,10 +195,17 @@ class ControllerCommonMenu extends Controller {
 		$data['weidian_category'] = $this->url->link('weidian/category', 'token=' . $this->session->data['token'], 'SSL');
 		$data['weidian_product'] = $this->url->link('weidian/product', 'token=' . $this->session->data['token'], 'SSL');
 		$data['weidian_config'] = $this->url->link('weidian/config', 'token=' . $this->session->data['token'], 'SSL');
-		$data['baidu'] = $this->url->link('baidu/baidu', 'token=' . $this->session->data['token'], 'SSL');
 		$data['pushurl'] = $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'], 'SSL');
 		$data['youzan_product'] = $this->url->link('youzan/product', 'token=' . $this->session->data['token'], 'SSL');
 		$data['youzan_config'] = $this->url->link('youzan/config', 'token=' . $this->session->data['token'], 'SSL');
+		$data['press_category'] = $this->url->link('cms/press_category', 'token=' . $this->session->data['token'], 'SSL');
+		$data['press'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'], 'SSL');
+		$data['press_config'] = $this->url->link('cms/press_config', 'token=' . $this->session->data['token'], 'SSL');
+		$data['blog'] = $this->url->link('cms/blog', 'token=' . $this->session->data['token'], 'SSL');
+		$data['blog_category'] = $this->url->link('cms/blog_category', 'token=' . $this->session->data['token'], 'SSL');
+		$data['blog_comment'] = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'], 'SSL');
+		$data['blog_config'] = $this->url->link('cms/blog_config', 'token=' . $this->session->data['token'], 'SSL');
+		$data['excelexportimport'] = $this->url->link('tool/excelexportimport', 'token=' . $this->session->data['token'], 'SSL');
 
 		$data['openbay_show_menu'] = $this->config->get('openbaypro_menu');
 		$data['openbay_link_extension'] = $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL');

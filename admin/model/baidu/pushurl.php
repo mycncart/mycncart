@@ -164,7 +164,7 @@ class ModelBaiDuPushUrl extends Model {
 		if($query->rows) {
 			return HTTP_CATALOG.$query->row['keyword'];
 		}else{
-			return HTTP_CATALOG."index.php?route=product/category&category_id=".$product_id;
+			return HTTP_CATALOG."index.php?route=product/category&category_id=".$category_id;
 		}
 		
 	}

@@ -150,32 +150,41 @@ class ControllerBaiDuPushUrl extends Controller {
 			
 			$api = html_entity_decode($this->config->get('config_baidu_api'), ENT_QUOTES, 'UTF-8');
 			
-			$ch = curl_init();
-			$options =  array(
-				CURLOPT_URL => $api,
-				CURLOPT_POST => true,
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_POSTFIELDS => implode("\n", $urls),
-				CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
-			);
-			curl_setopt_array($ch, $options);
-			$result = curl_exec($ch);
 			
-			$result = json_decode($result, true);
+			if($api) {
 			
-			if(isset($result['success'])) {
+				$ch = curl_init();
+				$options =  array(
+					CURLOPT_URL => $api,
+					CURLOPT_POST => true,
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_POSTFIELDS => implode("\n", $urls),
+					CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+				);
+				curl_setopt_array($ch, $options);
+				$result = curl_exec($ch);
 				
-				$this->session->data['success'] = sprintf($this->language->get('text_push_success'), $result['success'], $result['remain']);
+				$result = json_decode($result, true);
 				
-				foreach ($this->request->post['selected'] as $pushurl_id) {
-					$this->model_baidu_pushurl->updatePushUrl($pushurl_id);
+				if(isset($result['success'])) {
+					
+					$this->session->data['success'] = sprintf($this->language->get('text_push_success'), $result['success'], $result['remain']);
+					
+					foreach ($this->request->post['selected'] as $pushurl_id) {
+						$this->model_baidu_pushurl->updatePushUrl($pushurl_id);
+					}
+					
+				}else{
+					
+					if(isset($result['error'])) {
+						$this->session->data['warning'] = $this->language->get('error_push_warning') . $result['message'];
+					}
 				}
-				
+			
 			}else{
 				
-				if(isset($result['error'])) {
-					$this->session->data['warning'] = $this->language->get('error_push_warning') . $result['message'];
-				}
+				$this->session->data['warning'] = $this->language->get('error_push_config_warning');
+				
 			}
 
 
@@ -318,6 +327,7 @@ class ControllerBaiDuPushUrl extends Controller {
 			}
 			 
 		}
+		
 		
 		$this->session->data['success'] = $this->language->get('text_success');
 		 
@@ -624,7 +634,7 @@ class ControllerBaiDuPushUrl extends Controller {
 		if (isset($this->error['url'])) {
 			$data['error_url'] = $this->error['url'];
 		} else {
-			$data['error_url'] = array();
+			$data['error_url'] = '';
 		}
 
 		$url = '';
