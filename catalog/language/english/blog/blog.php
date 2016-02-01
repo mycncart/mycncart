@@ -17,6 +17,7 @@ $_['text_note']                 = '<span class="text-danger">Note:</span> HTML i
 $_['text_blog_category'] 		= 'Blog Categories';
 $_['text_empty'] 				= 'No Contents';
 $_['text_no_comments'] 			= 'No Comments';
+$_['text_tags']                 = 'Tags:';
 
 
 

@@ -17,6 +17,7 @@ $_['text_note']                 = '<span class="text-danger">注意:</span> 不�
 $_['text_blog_category'] 		= '博客分類';
 $_['text_empty'] 				= '无相关内容';
 $_['text_no_comments'] 			= '尚无評論';
+$_['text_tags']                 = '標簽:';
 
 $_['entry_name']                = '姓名';
 $_['entry_comment']             = '評論';

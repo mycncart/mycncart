@@ -6,6 +6,20 @@ class ControllerBlogAll extends Controller {
 		$this->load->model('blog/blog');
 		
 		$this->load->model('tool/image');
+		
+		if (isset($this->request->get['filter_blog'])) {
+			$filter_blog = $this->request->get['filter_blog'];
+		} else {
+			$filter_blog = '';
+		}
+		
+		if (isset($this->request->get['tag'])) {
+			$tag = $this->request->get['tag'];
+		} elseif (isset($this->request->get['filter_blog'])) {
+			$tag = $this->request->get['filter_blog'];
+		} else {
+			$tag = '';
+		}
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -18,6 +32,14 @@ class ControllerBlogAll extends Controller {
 		} else {
 			$limit = $this->config->get('config_product_limit');
 		}
+		
+		if (isset($this->request->get['filter_blog'])) {
+			$this->document->setTitle($this->language->get('heading_title') .  ' - ' . $this->request->get['filter_blog']);
+		} elseif (isset($this->request->get['tag'])) {
+			$this->document->setTitle($this->language->get('heading_title') .  ' - ' . $this->language->get('heading_tag') . $this->request->get['tag']);
+		} else {
+			$this->document->setTitle($this->language->get('heading_title'));
+		}
 
 		$data['breadcrumbs'] = array();
 
@@ -26,10 +48,36 @@ class ControllerBlogAll extends Controller {
 			'href' => $this->url->link('common/home')
 		);
 		
+		
+		
+		$url = '';
+
+		if (isset($this->request->get['filter_blog'])) {
+			$url .= '&filter_blog=' . urlencode(html_entity_decode($this->request->get['filter_blog'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['tag'])) {
+			$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
+		}
+
+		if (isset($this->request->get['limit'])) {
+			$url .= '&limit=' . $this->request->get['limit'];
+		}
+		
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_blog'),
-			'href' => $this->url->link('blog/all')
+			'href' => $this->url->link('blog/all', $url)
 		);
+		
+		if (isset($this->request->get['filter_blog'])) {
+			$data['heading_title'] = $this->language->get('heading_title') .  ' - ' . $this->request->get['filter_blog'];
+		} else {
+			$data['heading_title'] = $this->language->get('heading_title');
+		}
 		
 		$blog_description = $this->config->get('blog_description');
 
@@ -54,6 +102,8 @@ class ControllerBlogAll extends Controller {
 		$data['blogs'] = array();
 
 		$filter_data = array(
+		    'filter_name'         => $filter_blog,
+			'filter_tag'          => $tag,
 			'start'              => ($page - 1) * $limit,
 			'limit'              => $limit
 		);
@@ -166,12 +216,25 @@ class ControllerBlogAll extends Controller {
 			);
 			
 		}
+		
+		
+
+		$url = '';
+
+		if (isset($this->request->get['filter_blog'])) {
+			$url .= '&filter_blog=' . urlencode(html_entity_decode($this->request->get['filter_blog'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['tag'])) {
+			$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
+		}
+
 
 		$pagination = new Pagination();
 		$pagination->total = $blog_total;
 		$pagination->page = $page;
 		$pagination->limit = $limit;
-		$pagination->url = $this->url->link('blog/all', 'page={page}');
+		$pagination->url = $this->url->link('blog/all', $url . 'page={page}');
 
 		$data['pagination'] = $pagination->render();
 

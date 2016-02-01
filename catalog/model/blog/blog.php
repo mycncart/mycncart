@@ -89,9 +89,9 @@ class ModelBlogBlog extends Model {
 					$sql .= " " . implode(" AND ", $implode) . "";
 				}
 
-				if (!empty($data['filter_description'])) {
-					$sql .= " OR pd.description LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
-				}
+				
+				$sql .= " OR pd.description LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+				
 			}
 
 			if (!empty($data['filter_name']) && !empty($data['filter_tag'])) {
@@ -191,9 +191,9 @@ class ModelBlogBlog extends Model {
 					$sql .= " " . implode(" AND ", $implode) . "";
 				}
 
-				if (!empty($data['filter_description'])) {
-					$sql .= " OR pd.description LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
-				}
+				
+				$sql .= " OR pd.description LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+				
 			}
 
 			if (!empty($data['filter_name']) && !empty($data['filter_tag'])) {
