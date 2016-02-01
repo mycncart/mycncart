@@ -36,7 +36,7 @@ class ControllerBlogAll extends Controller {
 		$this->document->setTitle($blog_description[(int)$this->config->get('config_language_id')]['meta_title']);
 		$this->document->setDescription($blog_description[(int)$this->config->get('config_language_id')]['meta_description']);
 		$this->document->setKeywords($blog_description[(int)$this->config->get('config_language_id')]['meta_keyword']);
-		$this->document->addLink($this->url->link('blog/blog', ''), 'canonical');
+		$this->document->addLink($this->url->link('blog/all', ''), 'canonical');
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
@@ -171,7 +171,7 @@ class ControllerBlogAll extends Controller {
 		$pagination->total = $blog_total;
 		$pagination->page = $page;
 		$pagination->limit = $limit;
-		$pagination->url = $this->url->link('blog/blog', 'page={page}');
+		$pagination->url = $this->url->link('blog/all', 'page={page}');
 
 		$data['pagination'] = $pagination->render();
 
