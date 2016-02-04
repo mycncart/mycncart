@@ -13,6 +13,8 @@ class ControllerModuleBlogSearch extends Controller {
 		} else {
 			$data['filter_blog'] = '';
 		}
+		
+		$data['action'] = $this->url->link('blog/all', '', 'SSL');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/blog_search.tpl')) {
 			return $this->load->view($this->config->get('config_template') . '/template/module/blog_search.tpl', $data);
