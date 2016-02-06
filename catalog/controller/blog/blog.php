@@ -67,6 +67,7 @@ class ControllerBlogBlog extends Controller {
 			$data['text_note'] = $this->language->get('text_note');
 			$data['text_loading'] = $this->language->get('text_loading');
 			$data['text_blog_category'] = $this->language->get('text_blog_category');
+			$data['text_tags'] = $this->language->get('text_tags');
 			
 			$data['entry_name'] = $this->language->get('entry_name');
 			$data['entry_comment'] = $this->language->get('entry_comment');
@@ -211,7 +212,7 @@ class ControllerBlogBlog extends Controller {
 				foreach ($tags as $tag) {
 					$data['tags'][] = array(
 						'tag'  => trim($tag),
-						'href' => $this->url->link('blog/search', 'tag=' . trim($tag))
+						'href' => $this->url->link('blog/all', 'tag=' . trim($tag))
 					);
 				}
 			}

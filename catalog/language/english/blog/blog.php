@@ -16,6 +16,8 @@ $_['text_no_reviews']           = 'There are no reviews for this product.';
 $_['text_note']                 = '<span class="text-danger">Note:</span> HTML is not translated!';
 $_['text_blog_category'] 		= 'Blog Categories';
 $_['text_empty'] 				= 'No Contents';
+$_['text_no_comments'] 			= 'No Comments';
+$_['text_tags']                 = 'Tags:';
 
 
 

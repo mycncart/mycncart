@@ -17,6 +17,8 @@ $_['text_success']              = '感谢您的评论。 已成功提交评论�
 $_['text_note']                 = '<span class="text-danger">注意:</span> 不接受 HTML 格式内容！';
 $_['text_blog_category'] 		= '博客分类';
 $_['text_empty'] 				= '无相关内容';
+$_['text_no_comments'] 			= '尚无评论';
+$_['text_tags']                 = '标签:';
 
 $_['entry_name']                = '姓名';
 $_['entry_comment']             = '评论';

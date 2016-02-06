@@ -1176,3 +1176,11 @@
 2016-01-29 14:10:57 - PHP Notice:  Undefined variable: child in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 17
 2016-01-29 14:10:57 - PHP Notice:  Undefined variable: child in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 17
 2016-01-29 14:10:57 - PHP Notice:  Undefined variable: child in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 17
+2016-02-01 12:08:19 - PHP Notice:  Undefined variable: filter_blog in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_search.tpl on line 5
+2016-02-01 12:08:53 - PHP Notice:  Undefined variable: filter_blog in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_search.tpl on line 6
+2016-02-01 14:15:49 - PHP Notice:  Undefined variable: categories in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\all.tpl on line 2
+2016-02-01 14:30:08 - PHP Notice:  Undefined index: tag in C:\wamp\www\mycncart\catalog\controller\blog\blog.php on line 208
+2016-02-01 14:31:02 - PHP Notice:  Undefined variable: text_tags in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 83
+2016-02-01 14:31:49 - PHP Notice:  Undefined variable: text_tags in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 84
+2016-02-01 14:32:05 - PHP Notice:  Undefined variable: text_tags in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 83
+2016-02-01 14:35:20 - PHP Notice:  Undefined variable: text_tags in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 83
