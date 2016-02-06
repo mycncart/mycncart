@@ -1,7 +1,6 @@
 <?php
-
 // Heading
-$_['heading_title']        = 'MyCnCart China';
+$_['heading_title']        = 'MyCnCart';
 
 // Text
 $_['text_order']           = '訂單';
@@ -9,7 +8,7 @@ $_['text_processing_status'] = '處理中';
 $_['text_complete_status'] = '已完成';
 $_['text_customer']        = '會員';
 $_['text_online']          = '在線會員';
-$_['text_approval']        = '掛起等待確認';
+$_['text_approval']        = '待審核';
 $_['text_product']         = '商品';
 $_['text_stock']           = '庫存不足';
 $_['text_review']          = '評論';
