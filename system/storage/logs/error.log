@@ -1184,3 +1184,224 @@
 2016-02-01 14:31:49 - PHP Notice:  Undefined variable: text_tags in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 84
 2016-02-01 14:32:05 - PHP Notice:  Undefined variable: text_tags in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 83
 2016-02-01 14:35:20 - PHP Notice:  Undefined variable: text_tags in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 83
+2016-02-09 17:46:10 - PHP Notice:  Undefined variable: product_id in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 19
+2016-02-09 17:46:10 - PHP Notice:  Undefined variable: product_id in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 19
+2016-02-09 17:46:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 17:46:10 - PHP Notice:  Undefined variable: product_id in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 19
+2016-02-09 17:46:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 17:46:10 - PHP Notice:  Undefined variable: product_id in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 19
+2016-02-09 17:46:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 17:46:10 - PHP Notice:  Undefined variable: product_id in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 19
+2016-02-09 17:46:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 17:46:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 17:46:10 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 17:46:10 - PHP Notice:  Undefined variable: product_id in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 19
+2016-02-09 17:46:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 17:46:10 - PHP Notice:  Undefined variable: product_id in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 19
+2016-02-09 17:46:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 17:46:10 - PHP Notice:  Undefined variable: product_id in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 19
+2016-02-09 17:46:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 17:46:10 - PHP Notice:  Undefined variable: product_id in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 19
+2016-02-09 17:46:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 17:46:10 - PHP Notice:  Undefined variable: product_id in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 19
+2016-02-09 17:46:10 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 17:46:36 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 17:46:36 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 17:46:36 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 17:46:36 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 17:51:26 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 17:51:26 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 17:51:26 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 17:51:26 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 17:52:03 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 17:52:03 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 17:52:03 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 17:52:03 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 17:52:03 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 17:52:03 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 17:52:03 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 17:52:03 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 17:56:33 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 17:56:33 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 17:56:33 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 17:56:33 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 206
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 206
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 201
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 206
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 213
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 215
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 43
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 44
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 37
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 38
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 43
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 44
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 51
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 52
+2016-02-09 17:56:47 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 54
+2016-02-09 17:58:05 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 17
+2016-02-09 17:58:05 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 17:58:19 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 17
+2016-02-09 17:59:20 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 18:00:14 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 17
+2016-02-09 18:00:14 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:00:14 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\category.php on line 203
+2016-02-09 18:00:14 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:00:14 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 18:03:03 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:03:03 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 18:03:03 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 18:03:03 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 18:03:20 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 18:03:20 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 18:03:20 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 18:03:20 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 18:03:20 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\blog.php on line 31
+2016-02-09 18:03:20 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:03:20 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 18:03:20 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:03:20 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 18:07:34 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:07:34 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 18:07:34 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:07:34 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 18:07:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:07:38 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 18:07:38 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:07:38 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 18:13:31 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:13:31 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 18:13:31 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:13:31 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 18:13:43 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 18:13:43 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 18:17:44 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 36
+2016-02-09 18:17:44 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 18:17:44 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 36
+2016-02-09 18:17:44 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 18:17:44 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 36
+2016-02-09 18:17:44 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 18:17:55 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 36
+2016-02-09 18:17:55 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 18:17:55 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 36
+2016-02-09 18:17:55 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 206
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 206
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 201
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 206
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 213
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 215
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 43
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 44
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 37
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 38
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 43
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 44
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 51
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 52
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 54
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 206
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 206
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 201
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 206
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 207
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 213
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 215
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 43
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 44
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 37
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 38
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 43
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 44
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 45
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 51
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: name in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 52
+2016-02-09 18:19:43 - PHP Notice:  Undefined index: blog_category_id in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 54
+2016-02-09 19:41:41 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:41:41 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:41:41 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:41:41 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:43:33 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:43:33 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:43:33 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:43:33 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:45:45 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:45:45 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:45:45 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:45:45 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:45:48 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:45:48 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:45:48 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:45:48 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:48:03 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:48:03 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:48:03 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:48:03 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:48:05 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:48:05 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:48:05 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:48:05 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:50:12 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:50:12 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:50:12 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:50:12 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:50:45 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:50:45 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:53:17 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 35
+2016-02-09 19:53:17 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:53:17 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 35
+2016-02-09 19:53:17 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:53:17 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 35
+2016-02-09 19:53:17 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:53:17 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 35
+2016-02-09 19:53:17 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:55:58 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:55:58 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:55:58 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:55:58 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:56:32 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:56:32 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:56:32 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:57:27 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:57:27 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:57:27 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 34
+2016-02-09 19:57:27 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:59:36 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 36
+2016-02-09 19:59:36 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\blog\all.php on line 196
+2016-02-09 19:59:36 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 36
+2016-02-09 19:59:36 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 19:59:48 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 36
+2016-02-09 19:59:48 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
+2016-02-09 20:01:32 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 17

@@ -161,9 +161,9 @@ class ControllerBlogCategory extends Controller {
 
 				$users = $this->model_blog_blog->getUsers();
 				
-				//$comment_count = $this->model_blog_blog->getBlogTotalComments($result['blog_id']);
+				$this->load->model('blog/comment');
 				
-				$comment_count = 0;
+				$comment_count = $this->model_blog_comment->getTotalCommentsByBlogId($result['blog_id']);
 				
 				$data['blogs'][] = array(
 					'blog_id'  			=> $result['blog_id'],

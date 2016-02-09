@@ -76,8 +76,9 @@ class ControllerBlogBlog extends Controller {
 			
 			$data['blog_id'] = $this->request->get['blog_id'];
 			
-			//$comment_count = $this->model_blog_blog->getBlogTotalComments($result['blog_id']);
-			$data['comment_count'] = 0;
+			$this->load->model('blog/comment');
+				
+			$data['comment_count'] = $this->model_blog_comment->getTotalCommentsByBlogId($this->request->get['blog_id']);
 			
 			if ($blog_info['image']) {
 				

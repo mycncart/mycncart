@@ -3,7 +3,6 @@
   <?php foreach ($blogs as $blog) { ?>
   <div class="product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12">
     <div class="product-thumb transition">
-      <div class="image"><a href="<?php echo $blog['href']; ?>"><img src="<?php echo $blog['thumb']; ?>" alt="<?php echo $blog['name']; ?>" title="<?php echo $blog['name']; ?>" class="img-responsive" /></a></div>
       <div class="caption">
         <h4><a href="<?php echo $blog['href']; ?>"><?php echo $blog['name']; ?></a></h4>
         <p><?php echo $blog['brief']; ?></p>
