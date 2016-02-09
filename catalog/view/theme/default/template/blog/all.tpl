@@ -47,7 +47,6 @@
       <?php if ($blogs) { ?>
       
         <?php foreach($blogs as $blog) { ?>
-        
           
           <?php if($cms_blog_category_page_show_image) { ?>
             <?php if ($blog['thumb']) { ?>

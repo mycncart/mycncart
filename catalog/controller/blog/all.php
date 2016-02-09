@@ -79,13 +79,13 @@ class ControllerBlogAll extends Controller {
 			$data['heading_title'] = $this->language->get('heading_title');
 		}
 		
-		$blog_description = $this->config->get('blog_description');
+		$blog_description = $this->config->get('cms_blog_description');
 
 		$this->document->setTitle($blog_description[(int)$this->config->get('config_language_id')]['meta_title']);
 		$this->document->setDescription($blog_description[(int)$this->config->get('config_language_id')]['meta_description']);
 		$this->document->setKeywords($blog_description[(int)$this->config->get('config_language_id')]['meta_keyword']);
 		$this->document->addLink($this->url->link('blog/all', ''), 'canonical');
-
+		
 		$data['heading_title'] = $this->language->get('heading_title');
 
 		$data['text_empty'] = $this->language->get('text_empty');
