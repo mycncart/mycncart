@@ -239,7 +239,7 @@ class ControllerBlogBlog extends Controller {
 		
 					$children_data[] = array(
 						'name'  => $child['name'],
-						'href'  => $this->url->link('blog/category', 'path=' . $category['blog_category_id'] . '_' . $child['blog_category_id'])
+						'href'  => $this->url->link('blog/category', 'way=' . $category['blog_category_id'] . '_' . $child['blog_category_id'])
 					);
 				}
 		
@@ -247,7 +247,7 @@ class ControllerBlogBlog extends Controller {
 				$data['categories'][] = array(
 					'name'     => $category['name'],
 					'children' => $children_data,
-					'href'     => $this->url->link('blog/category', 'path=' . $category['blog_category_id'])
+					'href'     => $this->url->link('blog/category', 'way=' . $category['blog_category_id'])
 				);
 				
 			}
