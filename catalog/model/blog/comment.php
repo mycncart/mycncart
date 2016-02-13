@@ -16,7 +16,7 @@ class ModelBlogComment extends Model {
 			$subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
 
 			$message  = $this->language->get('text_waiting') . "\n";
-			$message .= sprintf($this->language->get('text_blog'), html_entity_decode($blog_info['name'], ENT_QUOTES, 'UTF-8')) . "\n";
+			$message .= sprintf($this->language->get('text_blog'), html_entity_decode($blog_info['title'], ENT_QUOTES, 'UTF-8')) . "\n";
 			$message .= sprintf($this->language->get('text_commenter'), html_entity_decode($data['name'], ENT_QUOTES, 'UTF-8')) . "\n";
 			$message .= $this->language->get('text_comment') . "\n";
 			$message .= html_entity_decode($data['text'], ENT_QUOTES, 'UTF-8') . "\n\n";

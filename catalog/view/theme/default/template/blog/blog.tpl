@@ -122,7 +122,22 @@
                 <button type="button" id="button-comment" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_continue; ?></button>
               </div>
             </div>
-            <?php } else { ?>
+            <?php } elseif($logged) { ?>
+            <div class="form-group required">
+              <div class="col-sm-12">
+                <label class="control-label" for="input-comment"><?php echo $entry_comment; ?></label>
+                <textarea name="text" rows="5" id="input-comment" class="form-control"></textarea>
+                <div class="help-block"><?php echo $text_note; ?></div>
+				<input type="hidden" name="name" value="<?php echo $name; ?>" id="input-name" class="form-control" />
+              </div>
+            </div>
+            <?php echo $captcha; ?>
+            <div class="buttons clearfix">
+              <div class="pull-right">
+                <button type="button" id="button-comment" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_continue; ?></button>
+              </div>
+            </div>
+			<?php } else { ?>
             <?php echo $text_login; ?>
             <?php } ?>
           </form>
@@ -167,7 +182,6 @@ $('#button-comment').on('click', function() {
 			if (json['success']) {
 				$('#comment').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
 
-				$('input[name=\'name\']').val('');
 				$('textarea[name=\'text\']').val('');
 				$('#comment').load('index.php?route=blog/blog/comment&blog_id=<?php echo $blog_id; ?>');
 			}

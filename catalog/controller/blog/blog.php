@@ -74,7 +74,15 @@ class ControllerBlogBlog extends Controller {
 			
 			$data['button_continue'] = $this->language->get('button_continue');
 			
+			$data['logged'] = $this->customer->isLogged();
+			
 			$data['blog_id'] = $this->request->get['blog_id'];
+			
+			if($this->customer->isLogged()) {
+				$data['name'] = $this->customer->getFullName();
+			}else{
+				$data['name'] = '';
+			}
 			
 			$this->load->model('blog/comment');
 				
