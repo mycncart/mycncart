@@ -53,7 +53,10 @@ class ModelCmsBlog extends Model {
 		
 		if (isset($data['keyword'])) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_id=" . (int)$blog_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		}else{
+			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_id=" . (int)$blog_id . "', keyword = 'blog-" . (int)$blog_id . ".html'");
 		}
+		
 
 		if (isset($data['blog_layout'])) {
 			foreach ($data['blog_layout'] as $store_id => $layout_id) {
@@ -125,7 +128,10 @@ class ModelCmsBlog extends Model {
 
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_id=" . (int)$blog_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		}else{
+			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_id=" . (int)$blog_id . "', keyword = 'blog-" . (int)$blog_id . ".html'");
 		}
+
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_to_layout WHERE blog_id = '" . (int)$blog_id . "'");
 
