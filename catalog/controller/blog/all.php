@@ -229,6 +229,14 @@ class ControllerBlogAll extends Controller {
 		if (isset($this->request->get['tag'])) {
 			$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
 		}
+		
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
+		}
+
+		if (isset($this->request->get['limit'])) {
+			$url .= '&limit=' . $this->request->get['limit'];
+		}
 
 
 		$pagination = new Pagination();

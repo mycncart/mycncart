@@ -161,12 +161,6 @@ class ModelBlogBlog extends Model {
 	
 	
 	public function getTotalBlogs($data = array()) {
-		
-		$cache = md5(http_build_query($data));
-		
-		$blog_data = $this->cache->get('blog.total.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $cache);
-		
-		if (!$blog_data) {
 			
 			$sql = "SELECT COUNT(DISTINCT p.blog_id) AS total";
 	
@@ -239,11 +233,7 @@ class ModelBlogBlog extends Model {
 	
 			$query = $this->db->query($sql);
 	
-			$blog_data = $query->row['total']; 
-			
-			$this->cache->set('blog.total.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.'  . $cache, $blog_data);
-			
-		}
+			return $query->row['total'];
 	}
 	
 	public function getBlogProductRelated($blog_id) {
