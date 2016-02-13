@@ -96,7 +96,7 @@
       <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
     </ul>
   </li>
-  <li><a class="parent"><i class="fa fa-search"></i> <span><?php echo $text_baidu_seo; ?></span></a>
+  <li><a class="parent"><i class="fa fa-search fa-fw"></i> <span><?php echo $text_baidu_seo; ?></span></a>
     <ul>
       <li><a href="<?php echo $pushurl; ?>"><?php echo $text_pushurl; ?></a></li>
     </ul>

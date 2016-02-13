@@ -1,15 +1,14 @@
 <?php
-
 // Heading
-$_['heading_title']        = 'MyCnCart China';
+$_['heading_title']        = 'MyCnCart';
 
 // Text
 $_['text_order']           = '订单';
-$_['text_order_status']    = '处理中';
+$_['text_processing_status'] = '处理中';
 $_['text_complete_status'] = '已完成';
 $_['text_customer']        = '会员';
 $_['text_online']          = '在线会员';
-$_['text_approval']        = '挂起等待确认';
+$_['text_approval']        = '待审核';
 $_['text_product']         = '商品';
 $_['text_stock']           = '库存不足';
 $_['text_review']          = '评论';
