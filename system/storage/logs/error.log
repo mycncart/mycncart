@@ -1405,3 +1405,9 @@
 2016-02-09 19:59:48 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 36
 2016-02-09 19:59:48 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\controller\module\blog_category.php on line 34
 2016-02-09 20:01:32 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\blog\category.php on line 17
+2016-02-15 17:50:01 - PHP Notice:  Undefined variable: contact in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 20
+2016-02-15 17:50:01 - PHP Notice:  Undefined variable: contact in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 20
+2016-02-15 17:50:01 - PHP Notice:  Undefined variable: contact in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 20
+2016-02-15 17:50:46 - PHP Notice:  Undefined variable: contact in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 7
+2016-02-15 17:50:46 - PHP Notice:  Undefined variable: contact in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 7
+2016-02-15 17:50:46 - PHP Notice:  Undefined variable: contact in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 7
