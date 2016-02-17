@@ -1,0 +1,287 @@
+<?php
+class ControllerPaymentPayDollar extends Controller {
+	public function index() {
+		$this->language->load('payment/paydollar');
+
+		$data['text_testmode'] = $this->language->get('text_testmode');
+		$data['button_confirm'] = $this->language->get('button_confirm');
+
+		$data['testmode'] = $this->config->get('paydollar_test');
+
+		if (!$this->config->get('paydollar_test')) {
+			$data['action'] = 'https://test.paydollar.com/b2cDemo/eng/payment/payForm.jsp';
+		} else {
+			$data['action'] = 'https://www.paydollar.com/b2c2/eng/payment/payForm.jsp';
+		}
+
+		$this->load->model('checkout/order');
+
+		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+
+		if ($order_info) {
+			$data['merchantId'] = $this->config->get('paydollar_merchantid');
+			$data['mpsMode'] = $this->config->get ('paydollar_mpsmode');
+			$data['currCode'] = $this->getCurrencyIso($order_info['currency_code']);
+			$data['amount'] = $this->currency->format ($order_info['total'], $order_info['currency_code'], '', FALSE);
+			$data['lang'] = $this->session->data['language'];
+			
+			$data['item_name'] = html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8');
+			$data['currency_code'] = $order_info['currency_code'];
+			$data['first_name'] = html_entity_decode($order_info['payment_fullname'], ENT_QUOTES, 'UTF-8');
+			$data['last_name'] = '';
+			$data['address1'] = html_entity_decode($order_info['payment_address'], ENT_QUOTES, 'UTF-8');
+			$data['address2'] = '';
+			$data['city'] = html_entity_decode($order_info['payment_city'], ENT_QUOTES, 'UTF-8');
+			$data['zip'] = html_entity_decode($order_info['payment_postcode'], ENT_QUOTES, 'UTF-8');
+			$data['country'] = $order_info['payment_iso_code_2'];
+			$data['merchantid'] = $order_info['merchantid'];
+			$data['invoice'] = $this->session->data['order_id'] . ' - ' . html_entity_decode($order_info['payment_fullname'], ENT_QUOTES, 'UTF-8');
+			$data['lc'] = $this->session->data['language'];
+			$data['return'] = $this->url->link('checkout/success');
+			$data['notify_url'] = $this->url->link('payment/paydollar/callback', '', 'SSL');
+			$data['cancel_return'] = $this->url->link('checkout/checkout', '', 'SSL');
+
+			if (!$this->config->get('paydollar_transaction')) {
+				$data['paymentaction'] = 'authorization';
+			} else {
+				$data['paymentaction'] = 'sale';
+			}
+
+			$data['custom'] = $this->session->data['order_id'];
+
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/paydollar.tpl')) {
+				return $this->load->view($this->config->get('config_template') . '/template/payment/paydollar.tpl', $data);
+			} else {
+				return $this->load->view('default/template/payment/paydollar.tpl', $data);
+			}
+		}
+	}
+
+	public function callback() {
+		if (isset($this->request->post['custom'])) {
+			$order_id = $this->request->post['custom'];
+		} else {
+			$order_id = 0;
+		}
+
+		$this->load->model('checkout/order');
+
+		$order_info = $this->model_checkout_order->getOrder($order_id);
+
+		if ($order_info) {
+			$request = 'cmd=_notify-validate';
+
+			foreach ($this->request->post as $key => $value) {
+				$request .= '&' . $key . '=' . urlencode(html_entity_decode($value, ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (!$this->config->get('paydollar_test')) {
+				$curl = curl_init('https://www.paypal.com/cgi-bin/webscr');
+			} else {
+				$curl = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');
+			}
+
+			curl_setopt($curl, CURLOPT_POST, true);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($curl, CURLOPT_HEADER, false);
+			curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+			$response = curl_exec($curl);
+
+			if (!$response) {
+				$this->log->write('PAYDOLLAR :: CURL failed ' . curl_error($curl) . '(' . curl_errno($curl) . ')');
+			}
+
+			if ($this->config->get('paydollar_debug')) {
+				$this->log->write('PAYDOLLAR :: IPN REQUEST: ' . $request);
+				$this->log->write('PAYDOLLAR :: IPN RESPONSE: ' . $response);
+			}
+
+			if ((strcmp($response, 'VERIFIED') == 0 || strcmp($response, 'UNVERIFIED') == 0) && isset($this->request->post['payment_status'])) {
+				$order_status_id = $this->config->get('config_order_status_id');
+
+				switch($this->request->post['payment_status']) {
+					case 'Canceled_Reversal':
+						$order_status_id = $this->config->get('paydollar_canceled_reversal_status_id');
+						break;
+					case 'Completed':
+						$receiver_match = (strtolower($this->request->post['receiver_merchantid']) == strtolower($this->config->get('paydollar_merchantid')));
+
+						$total_paid_match = ((float)$this->request->post['mc_gross'] == $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false));
+
+						if ($receiver_match && $total_paid_match) {
+							$order_status_id = $this->config->get('paydollar_completed_status_id');
+						}
+						
+						if (!$receiver_match) {
+							$this->log->write('PAYDOLLAR :: RECEIVER EMAIL MISMATCH! ' . strtolower($this->request->post['receiver_merchantid']));
+						}
+						
+						if (!$total_paid_match) {
+							$this->log->write('PAYDOLLAR :: TOTAL PAID MISMATCH! ' . $this->request->post['mc_gross']);
+						}
+						break;
+					case 'Denied':
+						$order_status_id = $this->config->get('paydollar_denied_status_id');
+						break;
+					case 'Expired':
+						$order_status_id = $this->config->get('paydollar_expired_status_id');
+						break;
+					case 'Failed':
+						$order_status_id = $this->config->get('paydollar_failed_status_id');
+						break;
+					case 'Pending':
+						$order_status_id = $this->config->get('paydollar_pending_status_id');
+						break;
+					case 'Processed':
+						$order_status_id = $this->config->get('paydollar_processed_status_id');
+						break;
+					case 'Refunded':
+						$order_status_id = $this->config->get('paydollar_refunded_status_id');
+						break;
+					case 'Reversed':
+						$order_status_id = $this->config->get('paydollar_reversed_status_id');
+						break;
+					case 'Voided':
+						$order_status_id = $this->config->get('paydollar_voided_status_id');
+						break;
+				}
+
+				$this->model_checkout_order->addOrderHistory($order_id, $order_status_id);
+			} else {
+				$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('config_order_status_id'));
+			}
+
+			curl_close($curl);
+		}
+	}
+	
+	private function getCurrencyIso($currency_code) {
+		switch($currency_code){
+		case 'HKD':
+			$cur = '344';
+			break;
+		case 'USD':
+			$cur = '840';
+			break;
+		case 'SGD':
+			$cur = '702';
+			break;
+		case 'CNY':
+			$cur = '156';
+			break;
+		case 'JPY':
+			$cur = '392';
+			break;		
+		case 'TWD':
+			$cur = '901';
+			break;
+		case 'AUD':
+			$cur = '036';
+			break;
+		case 'EUR':
+			$cur = '978';
+			break;
+		case 'GBP':
+			$cur = '826';
+			break;
+		case 'CAD':
+			$cur = '124';
+			break;
+		case 'MOP':
+			$cur = '446';
+			break;
+		case 'PHP':
+			$cur = '608';
+			break;
+		case 'THB':
+			$cur = '764';
+			break;
+		case 'MYR':
+			$cur = '458';
+			break;
+		case 'IDR':
+			$cur = '360';
+			break;
+		case 'KRW':
+			$cur = '410';
+			break;
+		case 'SAR':
+			$cur = '682';
+			break;
+		case 'NZD':
+			$cur = '554';
+			break;
+		case 'AED':
+			$cur = '784';
+			break;
+		case 'BND':
+			$cur = '096';
+			break;
+		case 'VND':
+			$cur = '704';
+			break;
+		case 'INR':
+			$cur = '356';
+			break;
+		default:
+			$cur = '344';
+		}		
+		return $cur;
+	}
+	
+	
+	private function getCurrency($currCode){
+		$currency = "USD";
+		if ($currCode = '344') {
+			$currency == "HKD";
+		} elseif ($currCode = '840') {
+			$currency == "USD";
+		} elseif ($currCode = '702') {
+			$currency == "SGD";
+		} elseif ($currCode = '156') {
+			$currency == "CNY";
+		} elseif ($currCode = '392') {
+			$currency == "JPY";
+		} elseif ($currCode = '901') {
+			$currency == "TWD";
+		} elseif ($currCode = '036') {
+			$currency == "AUD";
+		} elseif ($currCode = '978') {
+			$currency == "EUR";
+		} elseif ($currCode = '826') {
+			$currency == "GBP";
+		} elseif ($currCode = '124') {
+			$currency == "CAD";
+		} elseif ($currCode = '446') {
+			$currency == "MOP";
+		} elseif ($currCode = '608') {
+			$currency == "PHP";
+		} elseif ($currCode = '764') {
+			$currency == "THB";
+		} elseif ($currCode = '458') {
+			$currency == "MYR";
+		} elseif ($currCode = '360') {
+			$currency == "IDR";
+		} elseif ($currCode = '410') {
+			$currency == "KRW";
+		} elseif ($currCode = '682') {
+			$currency == "SAR";
+		} elseif ($currCode = '554') {
+			$currency == "NZD";
+		} elseif ($currCode = '784') {
+			$currency == "AED";
+		} elseif ($currCode = '096') {
+			$currency == "BND";
+		} elseif ($currCode = '704') {
+			$currency == "VND";
+		} elseif ($currCode = '356') {
+			$currency == "INR";
+		} 
+		
+		return $currency;
+	}
+	
+}
