@@ -19,35 +19,78 @@ class ControllerPaymentPayDollar extends Controller {
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
 		if ($order_info) {
+			$merchantId = $this->config->get('paydollar_merchantid');
 			$data['merchantId'] = $this->config->get('paydollar_merchantid');
-			$data['mpsMode'] = $this->config->get ('paydollar_mpsmode');
-			$data['currCode'] = $this->getCurrencyIso($order_info['currency_code']);
+			$amount = $this->currency->format ($order_info['total'], $order_info['currency_code'], '', FALSE);
 			$data['amount'] = $this->currency->format ($order_info['total'], $order_info['currency_code'], '', FALSE);
-			$data['lang'] = $this->session->data['language'];
+			$orderRef = $this->session->data ['order_id'];
+			$data['orderRef'] = $this->session->data ['order_id'];
+			$currCode = $this->getCurrencyIso($order_info['currency_code']);
+			$data['currCode'] = $this->getCurrencyIso($order_info['currency_code']);
+			$data['successUrl'] = $this->url->link('checkout/success');
+			$data['failUrl'] = $this->url->link('checkout/failure');
+			$data['cancelUrl'] = $this->url->link('checkout/checkout');
+			$payType = $this->config->get('paydollar_paytype');
+			$data['payType'] = $this->config->get('paydollar_paytype');
 			
-			$data['item_name'] = html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8');
-			$data['currency_code'] = $order_info['currency_code'];
-			$data['first_name'] = html_entity_decode($order_info['payment_fullname'], ENT_QUOTES, 'UTF-8');
-			$data['last_name'] = '';
-			$data['address1'] = html_entity_decode($order_info['payment_address'], ENT_QUOTES, 'UTF-8');
-			$data['address2'] = '';
-			$data['city'] = html_entity_decode($order_info['payment_city'], ENT_QUOTES, 'UTF-8');
-			$data['zip'] = html_entity_decode($order_info['payment_postcode'], ENT_QUOTES, 'UTF-8');
-			$data['country'] = $order_info['payment_iso_code_2'];
-			$data['merchantid'] = $order_info['merchantid'];
-			$data['invoice'] = $this->session->data['order_id'] . ' - ' . html_entity_decode($order_info['payment_fullname'], ENT_QUOTES, 'UTF-8');
-			$data['lc'] = $this->session->data['language'];
-			$data['return'] = $this->url->link('checkout/success');
-			$data['notify_url'] = $this->url->link('payment/paydollar/callback', '', 'SSL');
-			$data['cancel_return'] = $this->url->link('checkout/checkout', '', 'SSL');
-
-			if (!$this->config->get('paydollar_transaction')) {
-				$data['paymentaction'] = 'authorization';
-			} else {
-				$data['paymentaction'] = 'sale';
+			$language_code = $this->session->data['language'];
+			
+			switch($language_code){
+				case 'en':
+					$data['lang'] = 'E';
+					break;
+				case 'cn':
+					$data['lang'] = 'X';
+					break;
+				case 'zh':
+					$data['lang'] = 'C';
+					break;
+				case 'ja':
+					$data['lang'] = 'J';
+					break;
+				case 'th':
+					$data['lang'] = 'T';
+					break;		
+				case 'fr':
+					$data['lang'] = 'F';
+					break;
+				case 'de':
+					$data['lang'] = 'G';
+					break;
+				case 'ru':
+					$data['lang'] = 'R';
+					break;
+				case 'es':
+					$data['lang'] = 'S';
+					break;
+				case 'vi':
+					$data['lang'] = 'V';
+					break;
+				default:
+					$data['lang'] = 'E';
 			}
-
-			$data['custom'] = $this->session->data['order_id'];
+			
+			
+			$data['mpsMode'] = $this->config->get ('paydollar_mpsmode');
+			$data['payMethod'] = $this->config->get ('paydollar_paymethod');
+			
+			$secureHashSecret = trim($this->config->get ('paydollar_securehash'));
+			
+			if ($secureHashSecret) {
+				
+				$data ['secureHash'] = $this->generatePaymentSecureHash ( $merchantId, $orderRef, $currCode, $amount, $payType, $secureHashSecret );
+				
+			} else {
+				
+				$data ['secureHash'] = '';
+				
+			}
+			
+			$data['remark'] = $order_info['comment'];
+			$data['redirect'] = '';
+			$data['oriCountry'] = '';
+			$data['destCountry'] = '';
+			
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/paydollar.tpl')) {
 				return $this->load->view($this->config->get('config_template') . '/template/payment/paydollar.tpl', $data);
@@ -282,6 +325,28 @@ class ControllerPaymentPayDollar extends Controller {
 		} 
 		
 		return $currency;
+	}
+	
+	private function generatePaymentSecureHash($merchantId, $merchantReferenceNumber, $currencyCode, $amount, $paymentType, $secureHashSecret) {
+
+		$buffer = $merchantId . '|' . $merchantReferenceNumber . '|' . $currencyCode . '|' . $amount . '|' . $paymentType . '|' . $secureHashSecret;
+		
+		return sha1($buffer);
+
+	}
+
+	private function verifyPaymentDatafeed($src, $prc, $successCode, $merchantReferenceNumber, $paydollarReferenceNumber, $currencyCode, $amount, $payerAuthenticationStatus, $secureHashSecret, $secureHash) {
+
+		$buffer = $src . '|' . $prc . '|' . $successCode . '|' . $merchantReferenceNumber . '|' . $paydollarReferenceNumber . '|' . $currencyCode . '|' . $amount . '|' . $payerAuthenticationStatus . '|' . $secureHashSecret;
+
+		$verifyData = sha1($buffer);
+
+		if ($secureHash == $verifyData) {
+			return true;
+		}
+
+		return false;
+
 	}
 	
 }
