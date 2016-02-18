@@ -51,7 +51,7 @@ class ModelCmsBlog extends Model {
 			
 		}
 		
-		if (isset($data['keyword'])) {
+		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_id=" . (int)$blog_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}else{
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_id=" . (int)$blog_id . "', keyword = 'blog-" . (int)$blog_id . ".html'");
