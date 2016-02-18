@@ -741,7 +741,9 @@ h2.price {
 }
 
 /* fixed product description image width overflow */
-div#tab-description img {max-width: 100%;}
+div#tab-description img {
+	max-width: 100%;
+}
 
 /* Missing focus and border color to overwrite bootstrap */
 .btn-info:hover, .btn-info:active, .btn-info.active, .btn-info.disabled, .btn-info[disabled] {
