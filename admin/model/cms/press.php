@@ -39,8 +39,10 @@ class ModelCmsPress extends Model {
 			
 		}
 		
-		if (isset($data['keyword'])) {
+		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'press_id=" . (int)$press_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		}else{
+			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'press_id=" . (int)$press_id . "', keyword = 'press-" . (int)$press_id . ".html'");
 		}
 
 		if (isset($data['press_layout'])) {
@@ -104,6 +106,8 @@ class ModelCmsPress extends Model {
 
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'press_id=" . (int)$press_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		}else{
+			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'press_id=" . (int)$press_id . "', keyword = 'press-" . (int)$press_id . ".html'");
 		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_to_layout WHERE press_id = '" . (int)$press_id . "'");
