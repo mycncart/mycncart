@@ -237,15 +237,11 @@ class ModelBlogBlog extends Model {
 	}
 	
 	public function getBlogProductRelated($blog_id) {
-		$product_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "blog_related pr LEFT JOIN " . DB_PREFIX . "product p ON (pr.related_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.blog_id = '" . (int)$blog_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "blog_product pr LEFT JOIN " . DB_PREFIX . "product p ON (pr.related_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.blog_id = '" . (int)$blog_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
 
-		foreach ($query->rows as $result) {
-			$product_data[$result['related_id']] = $this->getProduct($result['related_id']);
-		}
 
-		return $product_data;
+		return $query->rows;
 	}
 	
 	public function getBlogRelated($blog_id) {
@@ -254,7 +250,7 @@ class ModelBlogBlog extends Model {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "blog_related pr LEFT JOIN " . DB_PREFIX . "blog p ON (pr.related_id = p.blog_id) LEFT JOIN " . DB_PREFIX . "blog_to_store p2s ON (p.blog_id = p2s.blog_id) WHERE pr.blog_id = '" . (int)$blog_id . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
 
 		foreach ($query->rows as $result) {
-			$blog_data[$result['related_id']] = $this->getProduct($result['related_id']);
+			$blog_data[$result['related_id']] = $this->getBlog($result['related_id']);
 		}
 
 		return $blog_data;
