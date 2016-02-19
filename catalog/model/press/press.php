@@ -1,19 +1,6 @@
 <?php 	
 class ModelPressPress extends Model {
 	
-	public function getUsers(){
-		
-        $query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user`");
-        $users = $query->rows;
-        $output = array();
-		
-        foreach( $users as $user ){
-            $output[$user['user_id']] = $user['username'];
-        }
-		
-        return $output;
-    }
-	
 	public function getPress($press_id) {
 		
 		$cache = md5($press_id);
@@ -28,20 +15,10 @@ class ModelPressPress extends Model {
 				$press_data = array(
 					'press_id'       => $query->row['press_id'],
 					'title'             => $query->row['name'],
-					'brief'      => $query->row['brief'],
-					'user_id'      => $query->row['user_id'],
 					'image'      => $query->row['image'],
-					'tags'       => $query->row['tag'],
-					'press_category_id' => $query->row['press_category_id'],
-					'created'              => $query->row['created'],
 					'status'            => $query->row['status'],
-					'hits'              => $query->row['hits'],
-					'video_code'              => $query->row['video_code'],
-					'featured'              => $query->row['featured'],
 					'sort_order'             => $query->row['sort_order'],
 					'date_added'              => $query->row['date_added'],
-					'date_modified'         => $query->row['date_modified'],
-					'brief'         	=> $query->row['brief'],
 					'meta_title'         => $query->row['meta_title'],
 					'meta_keyword'         => $query->row['meta_keyword'],
 					'meta_description'         => $query->row['meta_description'],
@@ -91,39 +68,7 @@ class ModelPressPress extends Model {
 				}
 	
 			}
-	
-			if (!empty($data['filter_name']) || !empty($data['filter_tag'])) {
-				$sql .= " AND (";
-	
-				if (!empty($data['filter_name'])) {
-					$implode = array();
-	
-					$words = explode(' ', trim(preg_replace('/\s+/', ' ', $data['filter_name'])));
-	
-					foreach ($words as $word) {
-						$implode[] = "pd.title LIKE '%" . $this->db->escape($word) . "%'";
-					}
-	
-					if ($implode) {
-						$sql .= " " . implode(" AND ", $implode) . "";
-					}
-	
-					
-					$sql .= " OR pd.description LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
-					
-				}
-	
-				if (!empty($data['filter_name']) && !empty($data['filter_tag'])) {
-					$sql .= " OR ";
-				}
-	
-				if (!empty($data['filter_tag'])) {
-					$sql .= "pd.tag LIKE '%" . $this->db->escape($data['filter_tag']) . "%'";
-				}
-	
-				$sql .= ")";
-			}
-	
+		
 			$sql .= " GROUP BY p.press_id";
 	
 				$sql .= " ORDER BY p.date_added";
@@ -199,69 +144,17 @@ class ModelPressPress extends Model {
 				}
 			}
 	
-			if (!empty($data['filter_name']) || !empty($data['filter_tag'])) {
-				$sql .= " AND (";
-	
-				if (!empty($data['filter_name'])) {
-					$implode = array();
-	
-					$words = explode(' ', trim(preg_replace('/\s+/', ' ', $data['filter_name'])));
-	
-					foreach ($words as $word) {
-						$implode[] = "pd.title LIKE '%" . $this->db->escape($word) . "%'";
-					}
-	
-					if ($implode) {
-						$sql .= " " . implode(" AND ", $implode) . "";
-					}
-	
-					
-					$sql .= " OR pd.description LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
-					
-				}
-	
-				if (!empty($data['filter_name']) && !empty($data['filter_tag'])) {
-					$sql .= " OR ";
-				}
-	
-				if (!empty($data['filter_tag'])) {
-					$sql .= "pd.tag LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_tag'])) . "%'";
-				}
-	
-				$sql .= ")";
-			}
-	
 			$query = $this->db->query($sql);
 	
 			return $query->row['total'];
 	}
 	
 	public function getPressProductRelated($press_id) {
-		$product_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "press_related pr LEFT JOIN " . DB_PREFIX . "product p ON (pr.related_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.press_id = '" . (int)$press_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "press_product pr LEFT JOIN " . DB_PREFIX . "product p ON (pr.related_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.press_id = '" . (int)$press_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
 
-		foreach ($query->rows as $result) {
-			$product_data[$result['related_id']] = $this->getProduct($result['related_id']);
-		}
 
-		return $product_data;
-	}
-	
-	public function getPressRelated($press_id) {
-		$press_data = array();
-
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "press_related pr LEFT JOIN " . DB_PREFIX . "press p ON (pr.related_id = p.press_id) LEFT JOIN " . DB_PREFIX . "press_to_store p2s ON (p.press_id = p2s.press_id) WHERE pr.press_id = '" . (int)$press_id . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
-
-		foreach ($query->rows as $result) {
-			$press_data[$result['related_id']] = $this->getProduct($result['related_id']);
-		}
-
-		return $press_data;
-	}
-	
-	public function updateViewed($press_id) {
-		$this->db->query("UPDATE " . DB_PREFIX . "press SET hits = (hits + 1) WHERE press_id = '" . (int)$press_id . "'");
+		return $query->rows;
 	}
 	
 }

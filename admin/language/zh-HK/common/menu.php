@@ -105,4 +105,7 @@ $_['text_blog_category']		 	   = '博客分類';
 $_['text_blog']		 			       = '博客';
 $_['text_blog_comment']			       = '博客评论';
 $_['text_blog_config']	 			   = '博客設置';
+$_['text_faq_category']			 	   = '常見問題分類';
+$_['text_faq']		 			       = '常見問題與解答';
+$_['text_faq_config']	 			   = '常見問題設置';
 $_['text_excelexportimport']	       = 'Excel導入導出';

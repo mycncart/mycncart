@@ -55,6 +55,14 @@
         </ul>
       </li>
       
+      <li><a class="parent"><?php echo $text_faq; ?></a>
+        <ul>
+          <li><a href="<?php echo $faq_category; ?>"><?php echo $text_faq_category; ?></a></li>
+          <li><a href="<?php echo $faq; ?>"><?php echo $text_faq; ?></a></li>
+          <li><a href="<?php echo $faq_config; ?>"><?php echo $text_faq_config; ?></a></li>
+        </ul>
+      </li>
+      
     </ul>
   </li>
   <li id="design"><a class="parent"><i class="fa fa-television fa-fw"></i> <span><?php echo $text_design; ?></span></a>

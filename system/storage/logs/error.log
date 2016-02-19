@@ -1428,3 +1428,204 @@
 2016-02-16 15:59:13 - PHP Notice:  Undefined variable: help_mpsmode in C:\wamp\www\mycncart\admin\view\template\payment\paydollar.tpl on line 96
 2016-02-16 15:59:13 - PHP Notice:  Undefined variable: help_paymethod in C:\wamp\www\mycncart\admin\view\template\payment\paydollar.tpl on line 111
 2016-02-18 10:59:29 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 164
+2016-02-19 9:47:53 - PHP Notice:  Undefined variable: filter_press in C:\wamp\www\mycncart\catalog\controller\press\all.php on line 78
+2016-02-19 9:47:53 - PHP Notice:  Undefined variable: tag in C:\wamp\www\mycncart\catalog\controller\press\all.php on line 79
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: brief in C:\wamp\www\mycncart\catalog\model\press\press.php on line 31
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: user_id in C:\wamp\www\mycncart\catalog\model\press\press.php on line 32
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: tag in C:\wamp\www\mycncart\catalog\model\press\press.php on line 34
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: press_category_id in C:\wamp\www\mycncart\catalog\model\press\press.php on line 35
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: created in C:\wamp\www\mycncart\catalog\model\press\press.php on line 36
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: hits in C:\wamp\www\mycncart\catalog\model\press\press.php on line 38
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: video_code in C:\wamp\www\mycncart\catalog\model\press\press.php on line 39
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: featured in C:\wamp\www\mycncart\catalog\model\press\press.php on line 40
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: brief in C:\wamp\www\mycncart\catalog\model\press\press.php on line 44
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: brief in C:\wamp\www\mycncart\catalog\model\press\press.php on line 31
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: user_id in C:\wamp\www\mycncart\catalog\model\press\press.php on line 32
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: tag in C:\wamp\www\mycncart\catalog\model\press\press.php on line 34
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: press_category_id in C:\wamp\www\mycncart\catalog\model\press\press.php on line 35
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: created in C:\wamp\www\mycncart\catalog\model\press\press.php on line 36
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: hits in C:\wamp\www\mycncart\catalog\model\press\press.php on line 38
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: video_code in C:\wamp\www\mycncart\catalog\model\press\press.php on line 39
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: featured in C:\wamp\www\mycncart\catalog\model\press\press.php on line 40
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: brief in C:\wamp\www\mycncart\catalog\model\press\press.php on line 44
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: brief in C:\wamp\www\mycncart\catalog\model\press\press.php on line 31
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: user_id in C:\wamp\www\mycncart\catalog\model\press\press.php on line 32
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: tag in C:\wamp\www\mycncart\catalog\model\press\press.php on line 34
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: press_category_id in C:\wamp\www\mycncart\catalog\model\press\press.php on line 35
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: created in C:\wamp\www\mycncart\catalog\model\press\press.php on line 36
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: hits in C:\wamp\www\mycncart\catalog\model\press\press.php on line 38
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: video_code in C:\wamp\www\mycncart\catalog\model\press\press.php on line 39
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: featured in C:\wamp\www\mycncart\catalog\model\press\press.php on line 40
+2016-02-19 9:47:53 - PHP Notice:  Undefined index: brief in C:\wamp\www\mycncart\catalog\model\press\press.php on line 44
+2016-02-19 9:47:53 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 9:59:17 - PHP Notice:  Undefined variable: filter_press in C:\wamp\www\mycncart\catalog\controller\press\all.php on line 78
+2016-02-19 9:59:17 - PHP Notice:  Undefined variable: tag in C:\wamp\www\mycncart\catalog\controller\press\all.php on line 79
+2016-02-19 9:59:17 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 10:00:26 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 10:00:29 - PHP Notice:  Error: Could not load model C:/wamp/www/mycncart/catalog/model/press/comment.php! in C:\wamp\www\mycncart\system\engine\loader.php on line 63
+2016-02-19 10:01:23 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 10:09:46 - PHP Notice:  Error: Could not load model C:/wamp/www/mycncart/catalog/model/press/comment.php! in C:\wamp\www\mycncart\system\engine\loader.php on line 63
+2016-02-19 10:13:44 - PHP Notice:  Error: Table 'mycncart_master.mcc_press_related' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_press_related pr LEFT JOIN mcc_product p ON (pr.related_id = p.product_id) LEFT JOIN mcc_product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.press_id = '1' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '0' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 10:13:44 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\model\press\press.php on line 157
+2016-02-19 10:13:44 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\catalog\model\press\press.php on line 157
+2016-02-19 10:13:45 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\press.tpl on line 5
+2016-02-19 10:13:45 - PHP Notice:  Undefined variable: created in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\press.tpl on line 52
+2016-02-19 10:26:17 - PHP Notice:  Undefined variable: thiss in C:\wamp\www\mycncart\catalog\controller\press\press.php on line 79
+2016-02-19 10:26:17 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\catalog\controller\press\press.php on line 79
+2016-02-19 10:26:32 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\press.tpl on line 5
+2016-02-19 10:33:44 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 10:33:46 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\press.tpl on line 5
+2016-02-19 10:34:05 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 10:34:12 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\press.tpl on line 5
+2016-02-19 10:34:17 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:03:14 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:03:40 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:04:34 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:04:36 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:04:37 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:04:37 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:04:37 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:05:00 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:05:35 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:05:39 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:05:41 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\press.tpl on line 5
+2016-02-19 11:06:14 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\press.tpl on line 5
+2016-02-19 11:06:51 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:07:31 - PHP Notice:  Undefined index: date_modified in C:\wamp\www\mycncart\catalog\controller\press\category.php on line 120
+2016-02-19 11:07:33 - PHP Notice:  Undefined index: date_modified in C:\wamp\www\mycncart\catalog\controller\press\category.php on line 120
+2016-02-19 11:07:33 - PHP Notice:  Undefined index: date_modified in C:\wamp\www\mycncart\catalog\controller\press\category.php on line 120
+2016-02-19 11:07:33 - PHP Notice:  Undefined index: date_modified in C:\wamp\www\mycncart\catalog\controller\press\category.php on line 120
+2016-02-19 11:07:39 - PHP Notice:  Undefined index: date_modified in C:\wamp\www\mycncart\catalog\controller\press\category.php on line 120
+2016-02-19 11:09:22 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\press.tpl on line 5
+2016-02-19 11:09:25 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:31:06 - PHP Notice:  Undefined index: limit in C:\wamp\www\mycncart\catalog\controller\module\press_latest.php on line 18
+2016-02-19 11:31:06 - PHP Notice:  Undefined index: width in C:\wamp\www\mycncart\catalog\controller\module\press_latest.php on line 28
+2016-02-19 11:31:06 - PHP Notice:  Undefined index: height in C:\wamp\www\mycncart\catalog\controller\module\press_latest.php on line 28
+2016-02-19 11:31:06 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in C:\wamp\www\mycncart\system\library\image.php on line 105
+2016-02-19 11:31:06 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 108
+2016-02-19 11:31:06 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 109
+2016-02-19 11:31:06 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 110
+2016-02-19 11:31:06 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 111
+2016-02-19 11:31:06 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 116
+2016-02-19 11:31:06 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 118
+2016-02-19 11:31:06 - PHP Notice:  Undefined index: brief in C:\wamp\www\mycncart\catalog\controller\module\press_latest.php on line 35
+2016-02-19 11:31:06 - PHP Notice:  Undefined index: width in C:\wamp\www\mycncart\catalog\controller\module\press_latest.php on line 28
+2016-02-19 11:31:06 - PHP Notice:  Undefined index: height in C:\wamp\www\mycncart\catalog\controller\module\press_latest.php on line 28
+2016-02-19 11:31:06 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in C:\wamp\www\mycncart\system\library\image.php on line 105
+2016-02-19 11:31:06 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 108
+2016-02-19 11:31:06 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 109
+2016-02-19 11:31:06 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 110
+2016-02-19 11:31:06 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 111
+2016-02-19 11:31:06 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 116
+2016-02-19 11:31:06 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 118
+2016-02-19 11:31:06 - PHP Notice:  Undefined index: brief in C:\wamp\www\mycncart\catalog\controller\module\press_latest.php on line 35
+2016-02-19 11:31:06 - PHP Notice:  Undefined index: width in C:\wamp\www\mycncart\catalog\controller\module\press_latest.php on line 28
+2016-02-19 11:31:06 - PHP Notice:  Undefined index: height in C:\wamp\www\mycncart\catalog\controller\module\press_latest.php on line 28
+2016-02-19 11:31:06 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in C:\wamp\www\mycncart\system\library\image.php on line 105
+2016-02-19 11:31:06 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 108
+2016-02-19 11:31:06 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 109
+2016-02-19 11:31:06 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 110
+2016-02-19 11:31:06 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 111
+2016-02-19 11:31:06 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 116
+2016-02-19 11:31:06 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in C:\wamp\www\mycncart\system\library\image.php on line 118
+2016-02-19 11:31:06 - PHP Notice:  Undefined index: brief in C:\wamp\www\mycncart\catalog\controller\module\press_latest.php on line 35
+2016-02-19 11:33:03 - PHP Notice:  Undefined index: title in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\press_latest.tpl on line 6
+2016-02-19 11:33:03 - PHP Notice:  Undefined index: title in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\press_latest.tpl on line 6
+2016-02-19 11:33:03 - PHP Notice:  Undefined index: title in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\press_latest.tpl on line 6
+2016-02-19 11:33:03 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:33:15 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:33:24 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\press.tpl on line 5
+2016-02-19 11:33:27 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:38:22 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:40:52 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 11:46:20 - PHP Notice:  Undefined variable: presses in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 2
+2016-02-19 11:46:43 - PHP Notice:  Undefined variable: presses in C:\wamp\www\mycncart\catalog\view\theme\default\template\module\blog_comment.tpl on line 2
+2016-02-19 11:48:10 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-02-19 13:35:10 - PHP Notice:  Undefined variable: faq_category in C:\wamp\www\mycncart\admin\view\template\common\menu.tpl on line 60
+2016-02-19 13:35:10 - PHP Notice:  Undefined variable: faq in C:\wamp\www\mycncart\admin\view\template\common\menu.tpl on line 61
+2016-02-19 13:35:10 - PHP Notice:  Undefined variable: faq_config in C:\wamp\www\mycncart\admin\view\template\common\menu.tpl on line 62
+2016-02-19 13:43:26 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_category' doesn't exist<br />Error No: 1146<br />SELECT COUNT(*) AS total FROM mcc_faq_category in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 13:43:26 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\faq_category.php on line 288
+2016-02-19 13:43:26 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_category_path' doesn't exist<br />Error No: 1146<br />SELECT cp.faq_category_id AS faq_category_id, GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') AS name, c1.parent_id, c1.sort_order FROM mcc_faq_category_path cp LEFT JOIN mcc_faq_category c1 ON (cp.faq_category_id = c1.faq_category_id) LEFT JOIN mcc_faq_category c2 ON (cp.path_id = c2.faq_category_id) LEFT JOIN mcc_faq_category_description cd1 ON (cp.path_id = cd1.faq_category_id) LEFT JOIN mcc_faq_category_description cd2 ON (cp.faq_category_id = cd2.faq_category_id) WHERE cd1.language_id = '1' AND cd2.language_id = '1' GROUP BY cp.faq_category_id ORDER BY name ASC LIMIT 0,20 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 13:43:26 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\faq_category.php on line 239
+2016-02-19 13:43:26 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\cms\faq_category.php on line 193
+2016-02-19 13:54:32 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq' doesn't exist<br />Error No: 1146<br />SELECT COUNT(DISTINCT p.faq_id) AS total FROM mcc_faq p LEFT JOIN mcc_faq_description pd ON (p.faq_id = pd.faq_id) WHERE pd.language_id = '1' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 13:54:32 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 248
+2016-02-19 13:54:32 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_faq p LEFT JOIN mcc_faq_description pd ON (p.faq_id = pd.faq_id) WHERE pd.language_id = '1' GROUP BY p.faq_id ORDER BY pd.title ASC LIMIT 0,20 in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 13:54:32 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 173
+2016-02-19 13:54:32 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\controller\cms\faq.php on line 229
+2016-02-19 13:54:35 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_category_path' doesn't exist<br />Error No: 1146<br />SELECT cp.faq_category_id AS faq_category_id, GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') AS name, c1.parent_id, c1.sort_order FROM mcc_faq_category_path cp LEFT JOIN mcc_faq_category c1 ON (cp.faq_category_id = c1.faq_category_id) LEFT JOIN mcc_faq_category c2 ON (cp.path_id = c2.faq_category_id) LEFT JOIN mcc_faq_category_description cd1 ON (cp.path_id = cd1.faq_category_id) LEFT JOIN mcc_faq_category_description cd2 ON (cp.faq_category_id = cd2.faq_category_id) WHERE cd1.language_id = '1' AND cd2.language_id = '1' GROUP BY cp.faq_category_id ORDER BY sort_order ASC in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 13:54:35 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\faq_category.php on line 239
+2016-02-19 13:54:35 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\view\template\cms\faq_form.tpl on line 109
+2016-02-19 14:09:56 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_store' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_faq_to_store SET faq_id = '25', store_id = '0' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:09:56 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_faq_category' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_faq_to_faq_category SET faq_id = '25', faq_category_id = '13' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:09:56 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_faq_category' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_faq_to_faq_category SET faq_id = '25', faq_category_id = '15' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:09:56 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_layout' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_faq_to_layout SET faq_id = '25', store_id = '0', layout_id = '0' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:10:24 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_store' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_faq_to_store SET faq_id = '26', store_id = '0' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:10:24 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_faq_category' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_faq_to_faq_category SET faq_id = '26', faq_category_id = '13' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:10:24 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_faq_category' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_faq_to_faq_category SET faq_id = '26', faq_category_id = '16' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:10:24 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_layout' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_faq_to_layout SET faq_id = '26', store_id = '0', layout_id = '0' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:10:56 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_store' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_faq_to_store SET faq_id = '27', store_id = '0' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:10:56 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_faq_category' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_faq_to_faq_category SET faq_id = '27', faq_category_id = '14' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:10:56 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_layout' doesn't exist<br />Error No: 1146<br />INSERT INTO mcc_faq_to_layout SET faq_id = '27', store_id = '0', layout_id = '0' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:35:41 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_store' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_faq_to_store WHERE faq_id = '25' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:35:41 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 214
+2016-02-19 14:35:41 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 214
+2016-02-19 14:35:41 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_faq_category' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_faq_to_faq_category WHERE faq_id = '25' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:35:41 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 202
+2016-02-19 14:35:41 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 202
+2016-02-19 14:35:41 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_layout' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_faq_to_layout WHERE faq_id = '25' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:35:41 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 226
+2016-02-19 14:35:41 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 226
+2016-02-19 14:35:51 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_store' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_faq_to_store WHERE faq_id = '25' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:35:51 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 214
+2016-02-19 14:35:51 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 214
+2016-02-19 14:35:51 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_faq_category' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_faq_to_faq_category WHERE faq_id = '25' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:35:51 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 202
+2016-02-19 14:35:51 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 202
+2016-02-19 14:35:51 - PHP Notice:  Error: Table 'mycncart_master.mcc_faq_to_layout' doesn't exist<br />Error No: 1146<br />SELECT * FROM mcc_faq_to_layout WHERE faq_id = '25' in C:\wamp\www\mycncart\system\library\db\mysqli.php on line 41
+2016-02-19 14:35:51 - PHP Notice:  Trying to get property of non-object in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 226
+2016-02-19 14:35:51 - PHP Warning:  Invalid argument supplied for foreach() in C:\wamp\www\mycncart\admin\model\cms\faq.php on line 226
+2016-02-19 15:31:02 - PHP Notice:  Undefined index: anwser in C:\wamp\www\mycncart\catalog\model\faq\faq.php on line 21
+2016-02-19 15:31:02 - PHP Notice:  Undefined index: anwser in C:\wamp\www\mycncart\catalog\model\faq\faq.php on line 21
+2016-02-19 15:31:02 - PHP Notice:  Undefined index: anwser in C:\wamp\www\mycncart\catalog\model\faq\faq.php on line 21
+2016-02-19 15:31:02 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:31:45 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:40:53 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:42:50 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:45:57 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:46:48 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:52:29 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:52:29 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 56
+2016-02-19 15:52:29 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 56
+2016-02-19 15:52:29 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 56
+2016-02-19 15:53:26 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\controller\faq\faq.php on line 89
+2016-02-19 15:53:26 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\controller\faq\faq.php on line 89
+2016-02-19 15:53:26 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\controller\faq\faq.php on line 89
+2016-02-19 15:53:26 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:54:04 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\controller\faq\faq.php on line 89
+2016-02-19 15:54:04 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\controller\faq\faq.php on line 89
+2016-02-19 15:54:04 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\controller\faq\faq.php on line 89
+2016-02-19 15:54:04 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:54:07 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\controller\faq\faq.php on line 89
+2016-02-19 15:54:07 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\controller\faq\faq.php on line 89
+2016-02-19 15:54:07 - PHP Notice:  Undefined index: answer in C:\wamp\www\mycncart\catalog\controller\faq\faq.php on line 89
+2016-02-19 15:54:07 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:54:59 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:55:35 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:55:38 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 15:55:39 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:02:11 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:05:42 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:05:47 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:05:52 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:07:52 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:08:32 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:08:46 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:11:30 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:40:52 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:49:59 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:50:08 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:50:31 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:50:33 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-19 16:52:35 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5

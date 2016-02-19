@@ -49,50 +49,8 @@
       
         <?php foreach($presses as $press) { ?>
         
-          
-          <?php if($cms_press_category_page_show_image) { ?>
-            <?php if ($press['thumb']) { ?>
-            <div><img src="<?php echo $press['thumb']; ?>" alt="<?php echo $press['title']; ?>" title="<?php echo $press['title']; ?>" class="img-thumbnail" /></div>
-            <?php } ?>
-          <?php } ?>
-         
-          
-          <?php if($cms_press_category_page_show_title) { ?>
           <h4><a href="<?php echo $press['link'];?>" title="<?php echo $press['title'];?>"><?php echo $press['title']; ?></a></h4>
-          <?php } ?>
           
-          <div>
-		
-		  	<?php if( $cms_press_category_page_show_author ) { ?>
-			<span><i class="fa fa-pencil"></i> <b><?php echo $text_written_by; ?></b> <?php echo $press['author']; ?></span> 
-			<?php } ?>
-			
-			<?php if( $cms_press_category_page_show_created_date ) { ?>
-			<span><i class="fa fa-calendar"></i> <b><?php echo $text_created_date; ?></b> <?php echo $press['created']; ?></span> 
-			<?php } ?>
-			
-			
-			<?php if( $cms_press_category_page_show_hits ) { ?>
-			<span><i class="fa fa-insert-template"></i> <b><?php echo $text_hits; ?></b> <?php echo $press['hits']; ?> </span>
-			<?php } ?>		
-			
-
-			
-			<?php if( $cms_press_category_page_show_comment_counter ) { ?>
-			<span><i class="fa fa-comment"></i> <b><?php echo $text_comment_count; ?></b> <?php echo $press['comment_count']; ?> </span>
-			<?php } ?>	
-			
-		
-		  </div>
-          
-          <?php if($cms_press_category_page_show_brief) { ?>
-            <?php if ($press['brief']) { ?>
-            <div><?php echo $press['brief']; ?></div>
-            <?php } ?>
-          <?php } ?>
-          
-          
-        
         <hr>
         <?php } ?>
          

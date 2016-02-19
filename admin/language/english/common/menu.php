@@ -105,5 +105,8 @@ $_['text_blog_category']		 	   = 'Blog Category';
 $_['text_blog']		 			       = 'Blog';
 $_['text_blog_comment']			       = 'Blog Comments';
 $_['text_blog_config']	 			   = 'Blog Config';
+$_['text_faq_category']			 	   = 'FAQs Category';
+$_['text_faq']		 			       = 'FAQs';
+$_['text_faq_config']	 			   = 'FAQs Configuration';
 $_['text_excelexportimport']	       = 'Excel Export/Import';
 

@@ -7,20 +7,6 @@ class ControllerPressAll extends Controller {
 		
 		$this->load->model('tool/image');
 		
-		if (isset($this->request->get['filter_press'])) {
-			$filter_press = $this->request->get['filter_press'];
-		} else {
-			$filter_press = '';
-		}
-		
-		if (isset($this->request->get['tag'])) {
-			$tag = $this->request->get['tag'];
-		} elseif (isset($this->request->get['filter_press'])) {
-			$tag = $this->request->get['filter_press'];
-		} else {
-			$tag = '';
-		}
-
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
 		} else {
@@ -52,14 +38,6 @@ class ControllerPressAll extends Controller {
 		
 		$url = '';
 
-		if (isset($this->request->get['filter_press'])) {
-			$url .= '&filter_press=' . urlencode(html_entity_decode($this->request->get['filter_press'], ENT_QUOTES, 'UTF-8'));
-		}
-
-		if (isset($this->request->get['tag'])) {
-			$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
-		}
-
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
 		}
@@ -90,20 +68,13 @@ class ControllerPressAll extends Controller {
 
 		$data['text_empty'] = $this->language->get('text_empty');
 		$data['text_press'] = $this->language->get('text_press');
-		$data['text_written_by'] = $this->language->get('text_written_by');
-		$data['text_published_in'] = $this->language->get('text_published_in');
 		$data['text_created_date'] = $this->language->get('text_created_date');
-		$data['text_hits'] = $this->language->get('text_hits');
-		$data['text_comment_count'] = $this->language->get('text_comment_count');
-		$data['text_press_category'] = $this->language->get('text_press_category');
 
 		$data['button_continue'] = $this->language->get('button_continue');
 
 		$data['presses'] = array();
 
 		$filter_data = array(
-		    'filter_name'         => $filter_press,
-			'filter_tag'          => $tag,
 			'start'              => ($page - 1) * $limit,
 			'limit'              => $limit
 		);
@@ -114,43 +85,12 @@ class ControllerPressAll extends Controller {
 
 		foreach ($results as $result) {
 			
-			if ($result['image']) {
-				
-				if($this->config->get('cms_press_image_type') == 'l') {
-					$image = $this->model_tool_image->resize($result['image'], $this->config->get('cms_press_large_image_width'), $this->config->get('cms_press_large_image_height'));
-				}elseif($this->config->get('cms_press_image_type') == 'm') {
-					$image = $this->model_tool_image->resize($result['image'], $this->config->get('cms_press_middle_image_width'), $this->config->get('cms_press_middle_image_height'));
-				}else{
-					$image = $this->model_tool_image->resize($result['image'], $this->config->get('cms_press_small_image_width'), $this->config->get('cms_press_small_image_height'));
-				}
-			} else {
-				$image = '';
-			}
-			
-			$users = $this->model_press_press->getUsers();
-			
-			$this->load->model('press/comment');
-				
-			$comment_count = $this->model_press_comment->getTotalCommentsByPressId($result['press_id']);
-					
 			$data['presses'][] = array(
 				'press_id'  	   		=> $result['press_id'],
-				'thumb'       		=> $image,
 				'title'        		=> html_entity_decode($result['title'], ENT_QUOTES, 'UTF-8'),
-				'brief' 	   		=> html_entity_decode($result['brief'], ENT_QUOTES, 'UTF-8'),
-				'tags' 	   	   		=> explode(',', $result['tags']),
-				'press_category_id'  => $result['press_category_id'],
-				'created'  	   		=> date($this->language->get('date_format_short'), strtotime($result['created'])),
 				'status'  	   		=> $result['status'],
-				'author'  	   		=> isset($users[$result['user_id']])?$users[$result['user_id']]:$this->language->get('text_none_author'),
-				'comment_count'		=> $comment_count,
-				'hits'  	   		=> $result['hits'],
-				'image'  	   		=> $result['image'],
-				'video_code'   		=> $result['video_code'],
-				'featured'     		=> $result['featured'],
 				'sort_order'   		=> $result['sort_order'],
 				'date_added'   		=> $result['date_added'],
-				'date_modified' 	=> $result['date_modified'],
 				'link'				=> $this->url->link('press/press', 'press_id='.$result['press_id'], 'SSL'),
 			
 				
@@ -158,34 +98,7 @@ class ControllerPressAll extends Controller {
 			
 		}
 		
-		$data['cms_press_large_image_width'] = $this->config->get('cms_press_large_image_width');
-		$data['cms_press_large_image_height'] = $this->config->get('cms_press_large_image_height');
-		$data['cms_press_middle_image_width'] = $this->config->get('cms_press_middle_image_width');
-		$data['cms_press_middle_image_height'] = $this->config->get('cms_press_middle_image_height');
-		$data['cms_press_small_image_width'] = $this->config->get('cms_press_small_image_width');
-		$data['cms_press_small_image_height'] = $this->config->get('cms_press_small_image_height');
-		$data['cms_press_category_page_show_title'] = $this->config->get('cms_press_category_page_show_title');
-		$data['cms_press_category_page_show_brief'] = $this->config->get('cms_press_category_page_show_brief');
-		$data['cms_press_category_page_show_readmore'] = $this->config->get('cms_press_category_page_show_readmore');
-		$data['cms_press_category_page_show_image'] = $this->config->get('cms_press_category_page_show_image');
-		$data['cms_press_category_page_show_author'] = $this->config->get('cms_press_category_page_show_author');
-		$data['cms_press_category_page_show_category'] = $this->config->get('cms_press_category_page_show_category');
-		$data['cms_press_category_page_show_created_date'] = $this->config->get('cms_press_category_page_show_created_date');
-		$data['cms_press_category_page_show_hits'] = $this->config->get('cms_press_category_page_show_hits');
-		$data['cms_press_category_page_show_comment_counter'] = $this->config->get('cms_press_category_page_show_comment_counter');
-		
-		$data['cms_press_image_type'] = $this->config->get('cms_press_image_type');
-		$data['cms_press_show_title'] = $this->config->get('cms_press_show_title');
-		$data['cms_press_show_image'] = $this->config->get('cms_press_show_image');
-		$data['cms_press_show_author'] = $this->config->get('cms_press_show_author');
-		$data['cms_press_show_category'] = $this->config->get('cms_press_show_category');
-		$data['cms_press_show_created_date'] = $this->config->get('cms_press_show_created_date');
-		$data['cms_press_show_hits'] = $this->config->get('cms_press_show_hits');
-		$data['cms_press_show_comment_counter'] = $this->config->get('cms_press_show_comment_counter');
-		$data['cms_press_show_comment_form'] = $this->config->get('cms_press_show_comment_form');
-		$data['cms_press_show_auto_publish_comment'] = $this->config->get('cms_press_show_auto_publish_comment');
-		$data['cms_press_show_recaptcha'] = $this->config->get('cms_press_show_recaptcha');
-		$data['cms_press_show_need_login_to_comment'] = $this->config->get('cms_press_show_need_login_to_comment');
+
 		
 		// Press Category Menu
 		$this->load->model('press/category');
@@ -205,7 +118,7 @@ class ControllerPressAll extends Controller {
 	
 				$children_data[] = array(
 					'name'  => $child['name'],
-					'href'  => $this->url->link('press/category', 'way=' . $category['press_category_id'] . '_' . $child['press_category_id'])
+					'href'  => $this->url->link('press/category', 'road=' . $category['press_category_id'] . '_' . $child['press_category_id'])
 				);
 			}
 	
@@ -213,7 +126,7 @@ class ControllerPressAll extends Controller {
 			$data['categories'][] = array(
 				'name'     => $category['name'],
 				'children' => $children_data,
-				'href'     => $this->url->link('press/category', 'way=' . $category['press_category_id'])
+				'href'     => $this->url->link('press/category', 'road=' . $category['press_category_id'])
 			);
 			
 		}
@@ -222,14 +135,6 @@ class ControllerPressAll extends Controller {
 
 		$url = '';
 
-		if (isset($this->request->get['filter_press'])) {
-			$url .= '&filter_press=' . urlencode(html_entity_decode($this->request->get['filter_press'], ENT_QUOTES, 'UTF-8'));
-		}
-
-		if (isset($this->request->get['tag'])) {
-			$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
-		}
-		
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
 		}

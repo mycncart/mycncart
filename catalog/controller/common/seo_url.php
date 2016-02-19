@@ -53,7 +53,27 @@ class ControllerCommonSeoUrl extends Controller {
 						}
 					}
 					
-					if ($query->row['query'] && $url[0] != 'information_id' && $url[0] != 'manufacturer_id' && $url[0] != 'category_id' && $url[0] != 'product_id' && $url[0] != 'blog_category_id' && $url[0] != 'blog_id') {
+					if ($url[0] == 'press_id') {
+						$this->request->get['press_id'] = $url[1];
+					}
+					
+					if ($url[0] == 'press_category_id') {
+						if (!isset($this->request->get['road'])) {
+							$this->request->get['road'] = $url[1];
+						} else {
+							$this->request->get['road'] .= '_' . $url[1];
+						}
+					}
+					
+					if ($url[0] == 'faq_category_id') {
+						if (!isset($this->request->get['line'])) {
+							$this->request->get['line'] = $url[1];
+						} else {
+							$this->request->get['line'] .= '_' . $url[1];
+						}
+					}
+					
+					if ($query->row['query'] && $url[0] != 'information_id' && $url[0] != 'manufacturer_id' && $url[0] != 'category_id' && $url[0] != 'product_id' && $url[0] != 'blog_category_id' && $url[0] != 'blog_id' && $url[0] != 'press_category_id' && $url[0] != 'press_id' && $url[0] != 'faq_category_id') {
 						$this->request->get['route'] = $query->row['query'];
 					}
 				} else {
@@ -72,6 +92,12 @@ class ControllerCommonSeoUrl extends Controller {
 					$this->request->get['route'] = 'blog/blog';
 				} elseif (isset($this->request->get['way'])) {
 					$this->request->get['route'] = 'blog/category';
+				} elseif (isset($this->request->get['press_id'])) {
+					$this->request->get['route'] = 'press/press';
+				} elseif (isset($this->request->get['road'])) {
+					$this->request->get['route'] = 'press/category';
+				} elseif (isset($this->request->get['line'])) {
+					$this->request->get['route'] = 'faq/category';
 				} elseif (isset($this->request->get['manufacturer_id'])) {
 					$this->request->get['route'] = 'product/manufacturer/info';
 				} elseif (isset($this->request->get['information_id'])) {
@@ -96,7 +122,7 @@ class ControllerCommonSeoUrl extends Controller {
 
 		foreach ($data as $key => $value) {
 			if (isset($data['route'])) {
-				if (($data['route'] == 'product/product' && $key == 'product_id') || ($data['route'] == 'blog/blog' && $key == 'blog_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
+				if (($data['route'] == 'product/product' && $key == 'product_id') || ($data['route'] == 'blog/blog' && $key == 'blog_id')  || ($data['route'] == 'press/press' && $key == 'press_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
 					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $this->db->escape($key . '=' . (int)$value) . "'");
 
 					if ($query->num_rows && $query->row['keyword']) {
@@ -125,6 +151,38 @@ class ControllerCommonSeoUrl extends Controller {
 
 					foreach ($blog_categories as $blog_category) {
 						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = 'blog_category_id=" . (int)$blog_category . "'");
+
+						if ($query->num_rows && $query->row['keyword']) {
+							$url .= '/' . $query->row['keyword'];
+						} else {
+							$url = '';
+
+							break;
+						}
+					}
+
+					unset($data[$key]);
+				} elseif ($key == 'road') {
+					$press_categories = explode('_', $value);
+
+					foreach ($press_categories as $press_category) {
+						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = 'press_category_id=" . (int)$press_category . "'");
+
+						if ($query->num_rows && $query->row['keyword']) {
+							$url .= '/' . $query->row['keyword'];
+						} else {
+							$url = '';
+
+							break;
+						}
+					}
+
+					unset($data[$key]);
+				} elseif ($key == 'line') {
+					$faq_categories = explode('_', $value);
+
+					foreach ($faq_categories as $faq_category) {
+						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = 'faq_category_id=" . (int)$faq_category . "'");
 
 						if ($query->num_rows && $query->row['keyword']) {
 							$url .= '/' . $query->row['keyword'];

@@ -30,7 +30,7 @@ class ControllerPressCategory extends Controller {
 			'href' => $this->url->link('press/all')
 		);
 
-		if (isset($this->request->get['way'])) {
+		if (isset($this->request->get['road'])) {
 			$url = '';
 
 
@@ -38,25 +38,25 @@ class ControllerPressCategory extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			$way = '';
+			$road = '';
 
-			$parts = explode('_', (string)$this->request->get['way']);
+			$parts = explode('_', (string)$this->request->get['road']);
 
 			$press_category_id = (int)array_pop($parts);
 
-			foreach ($parts as $way_id) {
-				if (!$way) {
-					$way = (int)$way_id;
+			foreach ($parts as $road_id) {
+				if (!$road) {
+					$road = (int)$road_id;
 				} else {
-					$way .= '_' . (int)$way_id;
+					$road .= '_' . (int)$road_id;
 				}
 
-				$press_category_info = $this->model_press_category->getPressCategory($way_id);
+				$press_category_info = $this->model_press_category->getPressCategory($road_id);
 
 				if ($press_category_info) {
 					$data['breadcrumbs'][] = array(
 						'text' => $press_category_info['name'],
-						'href' => $this->url->link('press/category', 'way=' . $way . $url)
+						'href' => $this->url->link('press/category', 'road=' . $road . $url)
 					);
 				}
 			}
@@ -75,11 +75,6 @@ class ControllerPressCategory extends Controller {
 
 			$data['text_empty'] = $this->language->get('text_empty');
 			$data['text_press'] = $this->language->get('text_press');
-			$data['text_written_by'] = $this->language->get('text_written_by');
-			$data['text_published_in'] = $this->language->get('text_published_in');
-			$data['text_created_date'] = $this->language->get('text_created_date');
-			$data['text_hits'] = $this->language->get('text_hits');
-			$data['text_comment_count'] = $this->language->get('text_comment_count');
 			$data['text_press_category'] = $this->language->get('text_press_category');
 
 			$data['button_continue'] = $this->language->get('button_continue');
@@ -87,42 +82,12 @@ class ControllerPressCategory extends Controller {
 			// Set the last press category breadcrumb
 			$data['breadcrumbs'][] = array(
 				'text' => $press_category_info['name'],
-				'href' => $this->url->link('press/category', 'way=' . $this->request->get['way'])
+				'href' => $this->url->link('press/category', 'road=' . $this->request->get['road'])
 			);
 
 
 			$data['description'] = html_entity_decode($press_category_info['description'], ENT_QUOTES, 'UTF-8');
 			
-			$data['cms_press_large_image_width'] = $this->config->get('cms_press_large_image_width');
-			$data['cms_press_large_image_height'] = $this->config->get('cms_press_large_image_height');
-			$data['cms_press_middle_image_width'] = $this->config->get('cms_press_middle_image_width');
-			$data['cms_press_middle_image_height'] = $this->config->get('cms_press_middle_image_height');
-			$data['cms_press_small_image_width'] = $this->config->get('cms_press_small_image_width');
-			$data['cms_press_small_image_height'] = $this->config->get('cms_press_small_image_height');
-			$data['cms_press_category_page_show_title'] = $this->config->get('cms_press_category_page_show_title');
-			$data['cms_press_category_page_show_brief'] = $this->config->get('cms_press_category_page_show_brief');
-			$data['cms_press_category_page_show_readmore'] = $this->config->get('cms_press_category_page_show_readmore');
-			$data['cms_press_category_page_show_image'] = $this->config->get('cms_press_category_page_show_image');
-			$data['cms_press_category_page_show_author'] = $this->config->get('cms_press_category_page_show_author');
-			$data['cms_press_category_page_show_category'] = $this->config->get('cms_press_category_page_show_category');
-			$data['cms_press_category_page_show_created_date'] = $this->config->get('cms_press_category_page_show_created_date');
-			$data['cms_press_category_page_show_hits'] = $this->config->get('cms_press_category_page_show_hits');
-			$data['cms_press_category_page_show_comment_counter'] = $this->config->get('cms_press_category_page_show_comment_counter');
-			
-			$data['cms_press_image_type'] = $this->config->get('cms_press_image_type');
-			$data['cms_press_show_title'] = $this->config->get('cms_press_show_title');
-			$data['cms_press_show_image'] = $this->config->get('cms_press_show_image');
-			$data['cms_press_show_author'] = $this->config->get('cms_press_show_author');
-			$data['cms_press_show_category'] = $this->config->get('cms_press_show_category');
-			$data['cms_press_show_created_date'] = $this->config->get('cms_press_show_created_date');
-			$data['cms_press_show_hits'] = $this->config->get('cms_press_show_hits');
-			$data['cms_press_show_comment_counter'] = $this->config->get('cms_press_show_comment_counter');
-			$data['cms_press_show_comment_form'] = $this->config->get('cms_press_show_comment_form');
-			$data['cms_press_show_auto_publish_comment'] = $this->config->get('cms_press_show_auto_publish_comment');
-			$data['cms_press_show_recaptcha'] = $this->config->get('cms_press_show_recaptcha');
-			$data['cms_press_show_need_login_to_comment'] = $this->config->get('cms_press_show_need_login_to_comment');
-			
-
 			$url = '';
 
 
@@ -145,43 +110,13 @@ class ControllerPressCategory extends Controller {
 
 			foreach ($results as $result) {
 				
-				if ($result['image']) {
-				
-					if($this->config->get('cms_press_image_type') == 'l') {
-						$image = $this->model_tool_image->resize($result['image'], $this->config->get('cms_press_large_image_width'), $this->config->get('cms_press_large_image_height'));
-					}elseif($this->config->get('cms_press_image_type') == 'm') {
-						$image = $this->model_tool_image->resize($result['image'], $this->config->get('cms_press_middle_image_width'), $this->config->get('cms_press_middle_image_height'));
-					}else{
-						$image = $this->model_tool_image->resize($result['image'], $this->config->get('cms_press_small_image_width'), $this->config->get('cms_press_small_image_height'));
-					}
-					
-				} else {
-					$image = '';
-				}
-
-				$users = $this->model_press_press->getUsers();
-				
-				$this->load->model('press/comment');
-				
-				$comment_count = $this->model_press_comment->getTotalCommentsByPressId($result['press_id']);
-				
 				$data['presses'][] = array(
 					'press_id'  			=> $result['press_id'],
-					'thumb'       		=> $image,
 					'title'        		=> html_entity_decode($result['title'], ENT_QUOTES, 'UTF-8'),
-					'brief' 	   		=> html_entity_decode($result['brief'], ENT_QUOTES, 'UTF-8'),
-					'tags' 	   	   		=> explode(',', $result['tags']),
-					'created'  	   		=> date($this->language->get('date_format_short'), strtotime($result['created'])),
+					'created'  	   		=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 					'status'  	   		=> $result['status'],
-					'author'  	   		=> isset($users[$result['user_id']])?$users[$result['user_id']]:$this->language->get('text_none_author'),
-					'comment_count'		=> $comment_count,
-					'hits'  	   		=> $result['hits'],
-					'image'  	   		=> $result['image'],
-					'video_code'   		=> $result['video_code'],
-					'featured'     		=> $result['featured'],
 					'sort_order'   		=> $result['sort_order'],
 					'date_added'   		=> $result['date_added'],
-					'date_modified' 	=> $result['date_modified'],
 					'link'				=> $this->url->link('press/press', 'press_id='.$result['press_id'], 'SSL'),
 					
 				);
@@ -211,7 +146,7 @@ class ControllerPressCategory extends Controller {
 		
 					$children_data[] = array(
 						'name'  => $child['name'],
-						'href'  => $this->url->link('press/category', 'way=' . $category['press_category_id'] . '_' . $child['press_category_id'])
+						'href'  => $this->url->link('press/category', 'road=' . $category['press_category_id'] . '_' . $child['press_category_id'])
 					);
 				}
 		
@@ -219,7 +154,7 @@ class ControllerPressCategory extends Controller {
 				$data['categories'][] = array(
 					'name'     => $category['name'],
 					'children' => $children_data,
-					'href'     => $this->url->link('press/category', 'way=' . $category['press_category_id'])
+					'href'     => $this->url->link('press/category', 'road=' . $category['press_category_id'])
 				);
 				
 			}
@@ -228,7 +163,7 @@ class ControllerPressCategory extends Controller {
 			$pagination->total = $press_total;
 			$pagination->page = $page;
 			$pagination->limit = $limit;
-			$pagination->url = $this->url->link('press/category', 'way=' . $this->request->get['way'] . $url . '&page={page}');
+			$pagination->url = $this->url->link('press/category', 'road=' . $this->request->get['road'] . $url . '&page={page}');
 
 			$data['pagination'] = $pagination->render();
 
@@ -236,15 +171,15 @@ class ControllerPressCategory extends Controller {
 
 			// http://googlewebmastercentral.pressespot.com/2011/09/pagination-with-relnext-and-relprev.html
 			if ($page == 1) {
-			    $this->document->addLink($this->url->link('press/category', 'way=' . $press_category_info['press_category_id'], 'SSL'), 'canonical');
+			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'], 'SSL'), 'canonical');
 			} elseif ($page == 2) {
-			    $this->document->addLink($this->url->link('press/category', 'way=' . $press_category_info['press_category_id'], 'SSL'), 'prev');
+			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'], 'SSL'), 'prev');
 			} else {
-			    $this->document->addLink($this->url->link('press/category', 'way=' . $press_category_info['press_category_id'] . '&page='. ($page - 1), 'SSL'), 'prev');
+			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'] . '&page='. ($page - 1), 'SSL'), 'prev');
 			}
 
 			if ($limit && ceil($press_total / $limit) > $page) {
-			    $this->document->addLink($this->url->link('press/category', 'way=' . $press_category_info['press_category_id'] . '&page='. ($page + 1), 'SSL'), 'next');
+			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'] . '&page='. ($page + 1), 'SSL'), 'next');
 			}
 
 			$data['limit'] = $limit;
@@ -268,8 +203,8 @@ class ControllerPressCategory extends Controller {
 		} else {
 			$url = '';
 
-			if (isset($this->request->get['way'])) {
-				$url .= '&way=' . $this->request->get['way'];
+			if (isset($this->request->get['road'])) {
+				$url .= '&road=' . $this->request->get['road'];
 			}
 
 			if (isset($this->request->get['page'])) {

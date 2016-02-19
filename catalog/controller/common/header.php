@@ -70,6 +70,8 @@ class ControllerCommonHeader extends Controller {
 		$data['text_category'] = $this->language->get('text_category');
 		$data['text_all'] = $this->language->get('text_all');
 		$data['text_blog'] = $this->language->get('text_blog');
+		$data['text_press'] = $this->language->get('text_press');
+		$data['text_faq'] = $this->language->get('text_faq');
 
 		$data['home'] = $this->url->link('common/home');
 		$data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
@@ -86,6 +88,8 @@ class ControllerCommonHeader extends Controller {
 		$data['contact'] = $this->url->link('information/contact');
 		$data['telephone'] = $this->config->get('config_telephone');
 		$data['blog'] = $this->url->link('blog/all');
+		$data['press'] = $this->url->link('press/all');
+		$data['faq'] = $this->url->link('faq/faq');
 
 		$status = true;
 

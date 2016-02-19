@@ -16,3 +16,5 @@ $_['text_checkout']      = '去結賬';
 $_['text_search']        = '搜索';
 $_['text_all']           = '顯示全部';
 $_['text_blog']          = '博客';
+$_['text_press']         = '新聞';
+$_['text_faq']           = 'FAQs';
