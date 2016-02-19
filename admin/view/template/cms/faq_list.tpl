@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="pull-right"><a href="<?php echo $add; ?>" data-toggle="tooltip" title="<?php echo $button_add; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
         
-        <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-question').submit() : false;"><i class="fa fa-trash-o"></i></button>
+        <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-faq').submit() : false;"><i class="fa fa-trash-o"></i></button>
       </div>
       <h1><?php echo $heading_title; ?></h1>
       <ul class="breadcrumb">
@@ -59,14 +59,16 @@
              
             </div>
             
-            <div class="col-sm-4">
-              <br />
-              <button type="button" id="button-filter" class="btn btn-primary pull-left"><i class="fa fa-search"></i> <?php echo $button_filter; ?></button>
+            <div class="col-sm-2">
+              <div class="form-group">
+              <label class="control-label" for="input-status">&nbsp;</label>
+              <button type="button" id="button-filter" class="btn btn-primary pull-left form-control"><i class="fa fa-search"></i> <?php echo $button_filter; ?></button>
+              </div>
             </div>
             
           </div>
         </div>
-        <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-question">
+        <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-faq">
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <thead>
@@ -87,18 +89,18 @@
                 </tr>
               </thead>
               <tbody>
-                <?php if ($questions) { ?>
-                <?php foreach ($questions as $question) { ?>
+                <?php if ($faqs) { ?>
+                <?php foreach ($faqs as $faq) { ?>
                 <tr>
-                  <td class="text-center"><?php if (in_array($question['question_id'], $selected)) { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $question['question_id']; ?>" checked="checked" />
+                  <td class="text-center"><?php if (in_array($faq['faq_id'], $selected)) { ?>
+                    <input type="checkbox" name="selected[]" value="<?php echo $faq['faq_id']; ?>" checked="checked" />
                     <?php } else { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $question['question_id']; ?>" />
+                    <input type="checkbox" name="selected[]" value="<?php echo $faq['faq_id']; ?>" />
                     <?php } ?></td>
-                  <td class="text-left"><?php echo $question['title']; ?></td>
+                  <td class="text-left"><?php echo $faq['title']; ?></td>
                   
-                  <td class="text-left"><?php echo $question['status']; ?></td>
-                  <td class="text-right"><a href="<?php echo $question['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
+                  <td class="text-left"><?php echo $faq['status']; ?></td>
+                  <td class="text-right"><a href="<?php echo $faq['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
                 <?php } ?>
                 <?php } else { ?>
@@ -119,7 +121,7 @@
   </div>
   <script type="text/javascript"><!--
 $('#button-filter').on('click', function() {
-	var url = 'index.php?route=coc/question&token=<?php echo $token; ?>';
+	var url = 'index.php?route=cms/faq&token=<?php echo $token; ?>';
 
 	var filter_title = $('input[title=\'filter_title\']').val();
 
@@ -140,13 +142,13 @@ $('#button-filter').on('click', function() {
 $('input[title=\'filter_title\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
-			url: 'index.php?route=coc/question/autocomplete&token=<?php echo $token; ?>&filter_title=' +  encodeURIComponent(request),
+			url: 'index.php?route=cms/faq/autocomplete&token=<?php echo $token; ?>&filter_title=' +  encodeURIComponent(request),
 			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {
 					return {
 						label: item['title'],
-						value: item['question_id']
+						value: item['faq_id']
 					}
 				}));
 			}

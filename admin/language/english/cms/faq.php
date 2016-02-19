@@ -1,43 +1,40 @@
 <?php
 // Heading
-$_['heading_title']          = '问题';
+$_['heading_title']          = 'FAQs';
 
 // Text
-$_['text_success']           = '成功: 已修改问题!';
-$_['text_list']              = '问题列表';
-$_['text_add']               = '新增问题';
-$_['text_edit']              = '编辑问题';
-$_['text_default']           = '默认';
+$_['text_success']           = 'Success: You have modified FAQs!';
+$_['text_list']              = 'FAQs List';
+$_['text_add']               = 'Add FAQs';
+$_['text_edit']              = 'Edit FAQs';
+$_['text_default']           = 'Default';
 
 // Column
-$_['column_title']           = '问题标题';
-$_['column_status']          = '状态';
-$_['column_action']          = '操作';
+$_['column_title']           = 'FAQs Title';
+$_['column_status']          = 'Status';
+$_['column_action']          = 'Action';
 
 // Entry
-$_['entry_title']            = '问题标题';
-$_['entry_answer']      	 = '解答';
-$_['entry_meta_title'] 	     = 'Meta Tag 标题';
-$_['entry_meta_keyword'] 	 = 'Meta Tag 关键词';
-$_['entry_meta_description'] = 'Meta Tag 描述';
+$_['entry_title']            = 'FAQs Title';
+$_['entry_answer']           = 'Answer';
+$_['entry_meta_title'] 	     = 'Meta Tag Title';
+$_['entry_meta_keyword'] 	 = 'Meta Tag Keywords';
+$_['entry_meta_description'] = 'Meta Tag Answer';
 $_['entry_keyword']          = 'SEO Keyword';
-$_['entry_related']          = '关联商品';
-
-$_['entry_store']            = '商店';
-
-$_['entry_status']           = '状态';
-$_['entry_sort_order']       = '排序';
-$_['entry_doc_category']     = '所属分类';
-
-$_['entry_layout']           = '布局覆盖';
+$_['entry_store']            = 'Stores';
+$_['entry_status']           = 'Status';
+$_['entry_sort_order']       = 'Sort Order';
+$_['entry_faq_category']    = 'FAQs Categories';
+$_['entry_related']  	    = 'Product Related';
+$_['entry_layout']           = 'Layout Override';
 
 // Help
-$_['help_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
-$_['help_category']          = '(Autocomplete)';
+$_['help_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the keyword is globally unique.';
+$_['help_tag']          	 = 'comma separated';
 
 // Error
-$_['error_warning']          = '警告: 存在错误，请检查！';
-$_['error_permission']       = '警告: 无权限修改分类！';
-$_['error_name']             = '分类名称必须介于2-32字符之间！';
-$_['error_meta_title']       = 'Meta 标题必须介于3-255字符之间！';
-$_['error_keyword']          = '该 SEO keyword 已经存在了！';
+$_['error_warning']          = 'Warning: Please check the form carefully for errors!';
+$_['error_permission']       = 'Warning: You do not have permission to modify FAQs!';
+$_['error_title']            = 'FAQs Title must be greater than 3 and less than 255 characters!';
+$_['error_meta_title']       = 'Meta Title must be greater than 3 and less than 255 characters!';
+$_['error_keyword']          = 'SEO keyword already in use!';

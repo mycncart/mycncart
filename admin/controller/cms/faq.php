@@ -1,26 +1,26 @@
 <?php
-class ControllerCocQuestion extends Controller {
+class ControllerCmsFaq extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('coc/question');
+		$this->load->language('cms/faq');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('coc/question');
+		$this->load->model('cms/faq');
 
 		$this->getList();
 	}
 
 	public function add() {
-		$this->load->language('coc/question');
+		$this->load->language('cms/faq');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('coc/question');
+		$this->load->model('cms/faq');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$this->model_coc_question->addQuestion($this->request->post);
+			$this->model_cms_faq->addFaq($this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -47,23 +47,23 @@ class ControllerCocQuestion extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('coc/question', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 		}
 
 		$this->getForm();
 	}
 
 	public function edit() {
-		$this->load->language('coc/question');
+		$this->load->language('cms/faq');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('coc/question');
+		$this->load->model('cms/faq');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			
 			
-			$this->model_coc_question->editQuestion($this->request->get['question_id'], $this->request->post);
+			$this->model_cms_faq->editFaq($this->request->get['faq_id'], $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -89,23 +89,23 @@ class ControllerCocQuestion extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('coc/question', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 		}
 
 		$this->getForm();
 	}
 
 	public function delete() {
-		$this->load->language('coc/question');
+		$this->load->language('cms/faq');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('coc/question');
+		$this->load->model('cms/faq');
 
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
 			
-			foreach ($this->request->post['selected'] as $question_id) {
-				$this->model_coc_question->deleteQuestion($question_id);
+			foreach ($this->request->post['selected'] as $faq_id) {
+				$this->model_cms_faq->deleteFaq($faq_id);
 			}
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -132,7 +132,7 @@ class ControllerCocQuestion extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('coc/question', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 		}
 
 		$this->getList();
@@ -202,14 +202,14 @@ class ControllerCocQuestion extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('coc/question', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, 'SSL')
 		);
 
-		$data['add'] = $this->url->link('coc/question/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['copy'] = $this->url->link('coc/question/copy', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['delete'] = $this->url->link('coc/question/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['add'] = $this->url->link('cms/faq/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['copy'] = $this->url->link('cms/faq/copy', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['delete'] = $this->url->link('cms/faq/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
-		$data['questions'] = array();
+		$data['faqs'] = array();
 
 		$filter_data = array(
 			'filter_title'	  => $filter_title,
@@ -222,17 +222,17 @@ class ControllerCocQuestion extends Controller {
 
 		$this->load->model('tool/image');
 
-		$question_total = $this->model_coc_question->getTotalQuestions($filter_data);
+		$faq_total = $this->model_cms_faq->getTotalFaqs($filter_data);
 
-		$results = $this->model_coc_question->getQuestions($filter_data);
+		$results = $this->model_cms_faq->getFaqs($filter_data);
 
 		foreach ($results as $result) {
 
-			$data['questions'][] = array(
-				'question_id' => $result['question_id'],
+			$data['faqs'][] = array(
+				'faq_id' => $result['faq_id'],
 				'title'       => $result['title'],
 				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-				'edit'       => $this->url->link('coc/question/edit', 'token=' . $this->session->data['token'] . '&question_id=' . $result['question_id'] . $url, 'SSL')
+				'edit'       => $this->url->link('cms/faq/edit', 'token=' . $this->session->data['token'] . '&faq_id=' . $result['faq_id'] . $url, 'SSL')
 			);
 		}
 
@@ -298,9 +298,9 @@ class ControllerCocQuestion extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_title'] = $this->url->link('coc/question', 'token=' . $this->session->data['token'] . '&sort=pd.title' . $url, 'SSL');
-		$data['sort_status'] = $this->url->link('coc/question', 'token=' . $this->session->data['token'] . '&sort=p.status' . $url, 'SSL');
-		$data['sort_order'] = $this->url->link('coc/question', 'token=' . $this->session->data['token'] . '&sort=p.sort_order' . $url, 'SSL');
+		$data['sort_title'] = $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . '&sort=pd.title' . $url, 'SSL');
+		$data['sort_status'] = $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . '&sort=p.status' . $url, 'SSL');
+		$data['sort_order'] = $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . '&sort=p.sort_order' . $url, 'SSL');
 
 		$url = '';
 
@@ -321,14 +321,14 @@ class ControllerCocQuestion extends Controller {
 		}
 
 		$pagination = new Pagination();
-		$pagination->total = $question_total;
+		$pagination->total = $faq_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('coc/question', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 
 		$data['pagination'] = $pagination->render();
 
-		$data['results'] = sprintf($this->language->get('text_pagination'), ($question_total) ? (($page - 1) * $this->config->get('config_limit_admin')) + 1 : 0, ((($page - 1) * $this->config->get('config_limit_admin')) > ($question_total - $this->config->get('config_limit_admin'))) ? $question_total : ((($page - 1) * $this->config->get('config_limit_admin')) + $this->config->get('config_limit_admin')), $question_total, ceil($question_total / $this->config->get('config_limit_admin')));
+		$data['results'] = sprintf($this->language->get('text_pagination'), ($faq_total) ? (($page - 1) * $this->config->get('config_limit_admin')) + 1 : 0, ((($page - 1) * $this->config->get('config_limit_admin')) > ($faq_total - $this->config->get('config_limit_admin'))) ? $faq_total : ((($page - 1) * $this->config->get('config_limit_admin')) + $this->config->get('config_limit_admin')), $faq_total, ceil($faq_total / $this->config->get('config_limit_admin')));
 
 		$data['filter_title'] = $filter_title;
 		$data['filter_status'] = $filter_status;
@@ -340,13 +340,13 @@ class ControllerCocQuestion extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('coc/question_list.tpl', $data));
+		$this->response->setOutput($this->load->view('cms/faq_list.tpl', $data));
 	}
 
 	protected function getForm() {
 		$data['heading_title'] = $this->language->get('heading_title');
 		
-		$data['text_form'] = !isset($this->request->get['question_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
+		$data['text_form'] = !isset($this->request->get['faq_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 		$data['text_enabled'] = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
 		$data['text_none'] = $this->language->get('text_none');
@@ -360,7 +360,7 @@ class ControllerCocQuestion extends Controller {
 		$data['entry_title'] = $this->language->get('entry_title');
 		$data['entry_answer'] = $this->language->get('entry_answer');
 		$data['entry_store'] = $this->language->get('entry_store');
-		$data['entry_doc_category'] = $this->language->get('entry_doc_category');
+		$data['entry_faq_category'] = $this->language->get('entry_faq_category');
 		$data['entry_filter'] = $this->language->get('entry_filter');
 		$data['entry_text'] = $this->language->get('entry_text');
 		$data['entry_required'] = $this->language->get('entry_required');
@@ -424,19 +424,19 @@ class ControllerCocQuestion extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('coc/question', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, 'SSL')
 		);
 
-		if (!isset($this->request->get['question_id'])) {
-			$data['action'] = $this->url->link('coc/question/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		if (!isset($this->request->get['faq_id'])) {
+			$data['action'] = $this->url->link('cms/faq/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		} else {
-			$data['action'] = $this->url->link('coc/question/edit', 'token=' . $this->session->data['token'] . '&question_id=' . $this->request->get['question_id'] . $url, 'SSL');
+			$data['action'] = $this->url->link('cms/faq/edit', 'token=' . $this->session->data['token'] . '&faq_id=' . $this->request->get['faq_id'] . $url, 'SSL');
 		}
 
-		$data['cancel'] = $this->url->link('coc/question', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['cancel'] = $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
-		if (isset($this->request->get['question_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
-			$question_info = $this->model_coc_question->getQuestion($this->request->get['question_id']);
+		if (isset($this->request->get['faq_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+			$faq_info = $this->model_cms_faq->getFaq($this->request->get['faq_id']);
 		}
 
 		$data['token'] = $this->session->data['token'];
@@ -445,12 +445,12 @@ class ControllerCocQuestion extends Controller {
 
 		$data['languages'] = $this->model_localisation_language->getLanguages();
 
-		if (isset($this->request->post['question_description'])) {
-			$data['question_description'] = $this->request->post['question_description'];
-		} elseif (isset($this->request->get['question_id'])) {
-			$data['question_description'] = $this->model_coc_question->getQuestionDescription($this->request->get['question_id']);
+		if (isset($this->request->post['faq_description'])) {
+			$data['faq_description'] = $this->request->post['faq_description'];
+		} elseif (isset($this->request->get['faq_id'])) {
+			$data['faq_description'] = $this->model_cms_faq->getFaqDescription($this->request->get['faq_id']);
 		} else {
-			$data['question_description'] = array();
+			$data['faq_description'] = array();
 		}
 
 
@@ -458,27 +458,27 @@ class ControllerCocQuestion extends Controller {
 
 		$data['stores'] = $this->model_setting_store->getStores();
 
-		if (isset($this->request->post['question_store'])) {
-			$data['question_store'] = $this->request->post['question_store'];
-		} elseif (isset($this->request->get['question_id'])) {
-			$data['question_store'] = $this->model_coc_question->getQuestionStores($this->request->get['question_id']);
+		if (isset($this->request->post['faq_store'])) {
+			$data['faq_store'] = $this->request->post['faq_store'];
+		} elseif (isset($this->request->get['faq_id'])) {
+			$data['faq_store'] = $this->model_cms_faq->getFaqStores($this->request->get['faq_id']);
 		} else {
-			$data['question_store'] = array(0);
+			$data['faq_store'] = array(0);
 		}
 
 
 		if (isset($this->request->post['sort_order'])) {
 			$data['sort_order'] = $this->request->post['sort_order'];
-		} elseif (!empty($question_info)) {
-			$data['sort_order'] = $question_info['sort_order'];
+		} elseif (!empty($faq_info)) {
+			$data['sort_order'] = $faq_info['sort_order'];
 		} else {
 			$data['sort_order'] = 1;
 		}
 
 		if (isset($this->request->post['status'])) {
 			$data['status'] = $this->request->post['status'];
-		} elseif (!empty($question_info)) {
-			$data['status'] = $question_info['status'];
+		} elseif (!empty($faq_info)) {
+			$data['status'] = $faq_info['status'];
 		} else {
 			$data['status'] = true;
 		}
@@ -487,8 +487,8 @@ class ControllerCocQuestion extends Controller {
 		
 		if (isset($this->request->post['product_related'])) {
 			$products = $this->request->post['product_related'];
-		} elseif (isset($this->request->get['question_id'])) {
-			$products = $this->model_coc_question->getProductRelated($this->request->get['question_id']);
+		} elseif (isset($this->request->get['faq_id'])) {
+			$products = $this->model_cms_faq->getProductRelated($this->request->get['faq_id']);
 		} else {
 			$products = array();
 		}
@@ -508,25 +508,25 @@ class ControllerCocQuestion extends Controller {
 		}
 
 
-		$this->load->model('coc/doc_category');
+		$this->load->model('cms/faq_category');
 				
-		$data['doc_categories'] = $this->model_coc_doc_category->getDocCategories(0);
+		$data['doc_categories'] = $this->model_cms_faq_category->getFaqCategories(0);
 		
-		if (isset($this->request->post['question_doc_category'])) {
-			$data['question_doc_category'] = $this->request->post['question_doc_category'];
-		} elseif (isset($this->request->get['question_id'])) {
-			$data['question_doc_category'] = $this->model_coc_question->getQuestionDocCategories($this->request->get['question_id']);
+		if (isset($this->request->post['faq_faq_category'])) {
+			$data['faq_faq_category'] = $this->request->post['faq_faq_category'];
+		} elseif (isset($this->request->get['faq_id'])) {
+			$data['faq_faq_category'] = $this->model_cms_faq->getFaqFaqCategories($this->request->get['faq_id']);
 		} else {
-			$data['question_doc_category'] = array();
+			$data['faq_faq_category'] = array();
 		}		
 
 
-		if (isset($this->request->post['question_layout'])) {
-			$data['question_layout'] = $this->request->post['question_layout'];
-		} elseif (isset($this->request->get['question_id'])) {
-			$data['question_layout'] = $this->model_coc_question->getQuestionLayouts($this->request->get['question_id']);
+		if (isset($this->request->post['faq_layout'])) {
+			$data['faq_layout'] = $this->request->post['faq_layout'];
+		} elseif (isset($this->request->get['faq_id'])) {
+			$data['faq_layout'] = $this->model_cms_faq->getFaqLayouts($this->request->get['faq_id']);
 		} else {
-			$data['question_layout'] = array();
+			$data['faq_layout'] = array();
 		}
 
 		$this->load->model('design/layout');
@@ -537,15 +537,15 @@ class ControllerCocQuestion extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('coc/question_form.tpl', $data));
+		$this->response->setOutput($this->load->view('cms/faq_form.tpl', $data));
 	}
 
 	protected function validateForm() {
-		if (!$this->user->hasPermission('modify', 'coc/question')) {
+		if (!$this->user->hasPermission('modify', 'cms/faq')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		foreach ($this->request->post['question_description'] as $language_id => $value) {
+		foreach ($this->request->post['faq_description'] as $language_id => $value) {
 			if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 255)) {
 				$this->error['title'][$language_id] = $this->language->get('error_title');
 			}
@@ -562,7 +562,7 @@ class ControllerCocQuestion extends Controller {
 	}
 
 	protected function validateDelete() {
-		if (!$this->user->hasPermission('modify', 'coc/question')) {
+		if (!$this->user->hasPermission('modify', 'cms/faq')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
@@ -574,7 +574,7 @@ class ControllerCocQuestion extends Controller {
 		$json = array();
 
 		if (isset($this->request->get['filter_title']) || isset($this->request->get['filter_model'])) {
-			$this->load->model('coc/question');
+			$this->load->model('cms/faq');
 
 			if (isset($this->request->get['filter_title'])) {
 				$filter_title = $this->request->get['filter_title'];
@@ -594,13 +594,13 @@ class ControllerCocQuestion extends Controller {
 				'limit'        => $limit
 			);
 
-			$results = $this->model_coc_question->getQuestions($filter_data);
+			$results = $this->model_cms_faq->getFaqs($filter_data);
 
 			foreach ($results as $result) {
 				$option_data = array();
 
 				$json[] = array(
-					'question_id' => $result['question_id'],
+					'faq_id' => $result['faq_id'],
 					'title'       => strip_tags(html_entity_decode($result['title'], ENT_QUOTES, 'UTF-8')),
 				);
 			}

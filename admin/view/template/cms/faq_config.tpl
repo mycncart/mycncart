@@ -33,7 +33,6 @@
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>
             <li><a href="#tab-data" data-toggle="tab"><?php echo $tab_data; ?></a></li>
-            <li><a href="#tab-design" data-toggle="tab"><?php echo $tab_license; ?></a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
@@ -48,7 +47,7 @@
                   <div class="form-group required">
                     <label class="col-sm-2 control-label" for="input-title<?php echo $language['language_id']; ?>"><?php echo $entry_title; ?></label>
                     <div class="col-sm-10">
-                      <input type="text" name="coc_doc_description[<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($coc_doc_description[$language['language_id']]) ? $coc_doc_description[$language['language_id']]['title'] : ''; ?>" placeholder="<?php echo $entry_title; ?>" id="input-title<?php echo $language['language_id']; ?>" class="form-control" />
+                      <input type="text" name="cms_faq_description[<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($cms_faq_description[$language['language_id']]) ? $cms_faq_description[$language['language_id']]['title'] : ''; ?>" placeholder="<?php echo $entry_title; ?>" id="input-title<?php echo $language['language_id']; ?>" class="form-control" />
                       <?php if (isset($error_title[$language['language_id']])) { ?>
                       <div class="text-danger"><?php echo $error_title[$language['language_id']]; ?></div>
                       <?php } ?>
@@ -57,7 +56,7 @@
                   <div class="form-group required">
                     <label class="col-sm-2 control-label" for="input-meta-title<?php echo $language['language_id']; ?>"><?php echo $entry_meta_title; ?></label>
                     <div class="col-sm-10">
-                      <input type="text" name="coc_doc_description[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset($coc_doc_description[$language['language_id']]) ? $coc_doc_description[$language['language_id']]['meta_title'] : ''; ?>" placeholder="<?php echo $entry_meta_title; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
+                      <input type="text" name="cms_faq_description[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset($cms_faq_description[$language['language_id']]) ? $cms_faq_description[$language['language_id']]['meta_title'] : ''; ?>" placeholder="<?php echo $entry_meta_title; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
                       <?php if (isset($error_meta_title[$language['language_id']])) { ?>
                       <div class="text-danger"><?php echo $error_meta_title[$language['language_id']]; ?></div>
                       <?php } ?>
@@ -66,13 +65,13 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="input-meta-description<?php echo $language['language_id']; ?>"><?php echo $entry_meta_description; ?></label>
                     <div class="col-sm-10">
-                      <textarea name="coc_doc_description[<?php echo $language['language_id']; ?>][meta_description]" rows="5" placeholder="<?php echo $entry_meta_description; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($coc_doc_description[$language['language_id']]) ? $coc_doc_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
+                      <textarea name="cms_faq_description[<?php echo $language['language_id']; ?>][meta_description]" rows="5" placeholder="<?php echo $entry_meta_description; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($cms_faq_description[$language['language_id']]) ? $cms_faq_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="input-meta-keyword<?php echo $language['language_id']; ?>"><?php echo $entry_meta_keyword; ?></label>
                     <div class="col-sm-10">
-                      <textarea name="coc_doc_description[<?php echo $language['language_id']; ?>][meta_keyword]" rows="5" placeholder="<?php echo $entry_meta_keyword; ?>" id="input-meta-keyword<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($coc_doc_description[$language['language_id']]) ? $coc_doc_description[$language['language_id']]['meta_keyword'] : ''; ?></textarea>
+                      <textarea name="cms_faq_description[<?php echo $language['language_id']; ?>][meta_keyword]" rows="5" placeholder="<?php echo $entry_meta_keyword; ?>" id="input-meta-keyword<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($cms_faq_description[$language['language_id']]) ? $cms_faq_description[$language['language_id']]['meta_keyword'] : ''; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -81,67 +80,19 @@
             </div>
             
             <div class="tab-pane" id="tab-data">
-            
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-coc-doc-template"><?php echo $entry_coc_doc_template; ?></label>
-                <div class="col-sm-10">
-                  <select name="coc_doc_template" id="input-coc-doc-template" class="form-control">
-                    
-                    <option value=""><?php echo $text_select; ?></option>
-                    
-                    <?php if($coc_doc_template == 'default') { ?>
-                    <option value="default" selected="selected">Default</option>
-                    <?php }else{ ?>
-                    <option value="default">Default</option>
-                    <?php } ?>
-                    
-                    <?php if($coc_doc_template == 'coc018_1') { ?>
-                    <option value="coc018_1" selected="selected">COC018-1</option>
-                    <?php }else{ ?>
-                    <option value="coc018_1">COC018-1</option>
-                    <?php } ?>
-                    
-                    <?php if($coc_doc_template == 'coc018_2') { ?>
-                    <option value="coc018_2" selected="selected">COC018-2</option>
-                    <?php }else{ ?>
-                    <option value="coc018_2">COC018-2</option>
-                    <?php } ?>
-                    
-                    <?php if($coc_doc_template == 'coc018_3') { ?>
-                    <option value="coc018_3" selected="selected">COC018-3</option>
-                    <?php }else{ ?>
-                    <option value="coc018_3">COC018-3</option>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
               
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-coc-doc-seo-keyword"><span data-toggle="tooltip" title="<?php echo $help_coc_doc_seo_keyword; ?>"><?php echo $entry_coc_doc_seo_keyword; ?></span></label>
+                <label class="col-sm-2 control-label" for="input-cms-faq-seo-keyword"><span data-toggle="tooltip" title="<?php echo $help_cms_faq_seo_keyword; ?>"><?php echo $entry_cms_faq_seo_keyword; ?></span></label>
                 <div class="col-sm-10">
-                  <input type="text" name="coc_doc_seo_keyword" value="<?php echo $coc_doc_seo_keyword; ?>" placeholder="<?php echo $entry_coc_doc_seo_keyword; ?>" id="input-coc-doc-seo-keyword" class="form-control" />
-                  <?php if ($error_coc_doc_seo_keyword) { ?>
-                  <div class="text-danger"><?php echo $error_coc_doc_seo_keyword; ?></div>
-                  <?php } ?>
-                </div>
-              </div>
-
-              
-            </div>
-            
-            <div class="tab-pane" id="tab-design">
-              
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-coc-doc-license-id"><span data-toggle="tooltip" title="<?php echo $help_coc_doc_license_id; ?>"><?php echo $entry_coc_doc_license_id; ?></span></label>
-                <div class="col-sm-10">
-                  <input type="text" name="coc_doc_license_id" value="<?php echo $coc_doc_license_id; ?>" placeholder="<?php echo $entry_coc_doc_license_id; ?>" id="input-coc-doc-license-id" class="form-control" />
-                  <?php if ($error_coc_doc_license_id) { ?>
-                  <div class="text-danger"><?php echo $error_coc_doc_license_id; ?></div>
+                  <input type="text" name="cms_faq_seo_keyword" value="<?php echo $cms_faq_seo_keyword; ?>" placeholder="<?php echo $entry_cms_faq_seo_keyword; ?>" id="input-cms-faq-seo-keyword" class="form-control" />
+                  <?php if ($error_cms_faq_seo_keyword) { ?>
+                  <div class="text-danger"><?php echo $error_cms_faq_seo_keyword; ?></div>
                   <?php } ?>
                 </div>
               </div>
               
             </div>
+            
           </div>
         </form>
       </div>

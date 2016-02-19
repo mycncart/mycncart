@@ -1,131 +1,131 @@
 <?php
-class ModelCocQuestion extends Model {
-	public function addQuestion($data) {
-		$this->event->trigger('pre.admin.question.add', $data);
+class ModelCmsFaq extends Model {
+	public function addFaq($data) {
+		$this->event->trigger('pre.admin.faq.add', $data);
 
-		$this->db->query("INSERT INTO " . DB_PREFIX . "question SET status = '" . (int)$data['status'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "faq SET status = '" . (int)$data['status'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
-		$question_id = $this->db->getLastId();
+		$faq_id = $this->db->getLastId();
 
-		foreach ($data['question_description'] as $language_id => $value) {
+		foreach ($data['faq_description'] as $language_id => $value) {
 			
-			$this->db->query("INSERT INTO " . DB_PREFIX . "question_description SET question_id = '" . (int)$question_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', answer = '" . $this->db->escape($value['answer']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "faq_description SET faq_id = '" . (int)$faq_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', answer = '" . $this->db->escape($value['answer']) . "'");
 		}
 
-		if (isset($data['question_store'])) {
-			foreach ($data['question_store'] as $store_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "question_to_store SET question_id = '" . (int)$question_id . "', store_id = '" . (int)$store_id . "'");
+		if (isset($data['faq_store'])) {
+			foreach ($data['faq_store'] as $store_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "faq_to_store SET faq_id = '" . (int)$faq_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
 
-		if (isset($data['question_doc_category'])) {
-			foreach ($data['question_doc_category'] as $doc_category_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "question_to_doc_category SET question_id = '" . (int)$question_id . "', doc_category_id = '" . (int)$doc_category_id . "'");
+		if (isset($data['faq_faq_category'])) {
+			foreach ($data['faq_faq_category'] as $faq_category_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "faq_to_faq_category SET faq_id = '" . (int)$faq_id . "', faq_category_id = '" . (int)$faq_category_id . "'");
 			}
 		}
 		
 		if (isset($data['product_related'])) {
 			
-			$this->db->query("DELETE FROM " . DB_PREFIX . "question_product WHERE question_id = " . (int)$question_id);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "faq_product WHERE faq_id = " . (int)$faq_id);
 			
 			foreach ($data['product_related'] as $related_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "question_product SET question_id = '" . (int)$question_id . "', related_id = '" . (int)$related_id . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "faq_product SET faq_id = '" . (int)$faq_id . "', related_id = '" . (int)$related_id . "'");
 				
 			}
 			
 		}
 
-		if (isset($data['question_layout'])) {
-			foreach ($data['question_layout'] as $store_id => $layout_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "question_to_layout SET question_id = '" . (int)$question_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
+		if (isset($data['faq_layout'])) {
+			foreach ($data['faq_layout'] as $store_id => $layout_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "faq_to_layout SET faq_id = '" . (int)$faq_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
 			}
 		}
 
-		$this->cache->delete('question');
+		$this->cache->delete('faq');
 
-		$this->event->trigger('post.admin.question.add', $question_id);
+		$this->event->trigger('post.admin.faq.add', $faq_id);
 
-		return $question_id;
+		return $faq_id;
 	}
 
-	public function editQuestion($question_id, $data) {
-		$this->event->trigger('pre.admin.question.edit', $data);
+	public function editFaq($faq_id, $data) {
+		$this->event->trigger('pre.admin.faq.edit', $data);
 		
 	
 
-		$this->db->query("UPDATE " . DB_PREFIX . "question SET status = '" . (int)$data['status'] . "',  sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE question_id = '" . (int)$question_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "faq SET status = '" . (int)$data['status'] . "',  sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE faq_id = '" . (int)$faq_id . "'");
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "question_description WHERE question_id = '" . (int)$question_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_description WHERE faq_id = '" . (int)$faq_id . "'");
 
-		foreach ($data['question_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "question_description SET question_id = '" . (int)$question_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', answer = '" . $this->db->escape($value['answer']) . "'");
+		foreach ($data['faq_description'] as $language_id => $value) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "faq_description SET faq_id = '" . (int)$faq_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', answer = '" . $this->db->escape($value['answer']) . "'");
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "question_to_store WHERE question_id = '" . (int)$question_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_to_store WHERE faq_id = '" . (int)$faq_id . "'");
 
-		if (isset($data['question_store'])) {
-			foreach ($data['question_store'] as $store_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "question_to_store SET question_id = '" . (int)$question_id . "', store_id = '" . (int)$store_id . "'");
+		if (isset($data['faq_store'])) {
+			foreach ($data['faq_store'] as $store_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "faq_to_store SET faq_id = '" . (int)$faq_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "question_to_doc_category WHERE question_id = '" . (int)$question_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_to_faq_category WHERE faq_id = '" . (int)$faq_id . "'");
 
-		if (isset($data['question_doc_category'])) {
-			foreach ($data['question_doc_category'] as $doc_category_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "question_to_doc_category SET question_id = '" . (int)$question_id . "', doc_category_id = '" . (int)$doc_category_id . "'");
+		if (isset($data['faq_faq_category'])) {
+			foreach ($data['faq_faq_category'] as $faq_category_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "faq_to_faq_category SET faq_id = '" . (int)$faq_id . "', faq_category_id = '" . (int)$faq_category_id . "'");
 			}
 		}
 		
 		if (isset($data['product_related'])) {
 			
-			$this->db->query("DELETE FROM " . DB_PREFIX . "question_product WHERE question_id = " . (int)$question_id);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "faq_product WHERE faq_id = " . (int)$faq_id);
 			
 			foreach ($data['product_related'] as $related_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "question_product SET question_id = '" . (int)$question_id . "', related_id = '" . (int)$related_id . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "faq_product SET faq_id = '" . (int)$faq_id . "', related_id = '" . (int)$related_id . "'");
 				
 			}
 			
 		}
 		
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "question_to_layout WHERE question_id = '" . (int)$question_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_to_layout WHERE faq_id = '" . (int)$faq_id . "'");
 
-		if (isset($data['question_layout'])) {
-			foreach ($data['question_layout'] as $store_id => $layout_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "question_to_layout SET question_id = '" . (int)$question_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
+		if (isset($data['faq_layout'])) {
+			foreach ($data['faq_layout'] as $store_id => $layout_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "faq_to_layout SET faq_id = '" . (int)$faq_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
 			}
 		}
 
 
-		$this->cache->delete('question');
+		$this->cache->delete('faq');
 
-		$this->event->trigger('post.admin.question.edit', $question_id);
+		$this->event->trigger('post.admin.faq.edit', $faq_id);
 	}
 
-	public function deleteQuestion($question_id) {
-		$this->event->trigger('pre.admin.question.delete', $question_id);
+	public function deleteFaq($faq_id) {
+		$this->event->trigger('pre.admin.faq.delete', $faq_id);
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "question WHERE question_id = '" . (int)$question_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "question_description WHERE question_id = '" . (int)$question_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "question_to_doc_category WHERE question_id = '" . (int)$question_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "question_to_layout WHERE question_id = '" . (int)$question_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "question_to_store WHERE question_id = '" . (int)$question_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'question_id=" . (int)$question_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "faq WHERE faq_id = '" . (int)$faq_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_description WHERE faq_id = '" . (int)$faq_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_to_faq_category WHERE faq_id = '" . (int)$faq_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_to_layout WHERE faq_id = '" . (int)$faq_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_to_store WHERE faq_id = '" . (int)$faq_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'faq_id=" . (int)$faq_id . "'");
 
-		$this->cache->delete('question');
+		$this->cache->delete('faq');
 
-		$this->event->trigger('post.admin.question.delete', $question_id);
+		$this->event->trigger('post.admin.faq.delete', $faq_id);
 	}
 
-	public function getQuestion($question_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'question_id=" . (int)$question_id . "') AS keyword FROM " . DB_PREFIX . "question p LEFT JOIN " . DB_PREFIX . "question_description pd ON (p.question_id = pd.question_id) WHERE p.question_id = '" . (int)$question_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+	public function getFaq($faq_id) {
+		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'faq_id=" . (int)$faq_id . "') AS keyword FROM " . DB_PREFIX . "faq p LEFT JOIN " . DB_PREFIX . "faq_description pd ON (p.faq_id = pd.faq_id) WHERE p.faq_id = '" . (int)$faq_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
 
-	public function getQuestions($data = array()) {
-		$sql = "SELECT * FROM " . DB_PREFIX . "question p LEFT JOIN " . DB_PREFIX . "question_description pd ON (p.question_id = pd.question_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+	public function getFaqs($data = array()) {
+		$sql = "SELECT * FROM " . DB_PREFIX . "faq p LEFT JOIN " . DB_PREFIX . "faq_description pd ON (p.faq_id = pd.faq_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (!empty($data['filter_title'])) {
 			$sql .= " AND pd.title LIKE '%" . $this->db->escape($data['filter_title']) . "%'";
@@ -136,7 +136,7 @@ class ModelCocQuestion extends Model {
 			$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
 		}
 		
-		$sql .= " GROUP BY p.question_id";
+		$sql .= " GROUP BY p.faq_id";
 
 		$sort_data = array(
 			'pd.title',
@@ -173,65 +173,65 @@ class ModelCocQuestion extends Model {
 		return $query->rows;
 	}
 
-	public function getQuestionsByDocCategoryId($doc_category_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "question p LEFT JOIN " . DB_PREFIX . "question_description pd ON (p.question_id = pd.question_id) LEFT JOIN " . DB_PREFIX . "question_to_doc_category p2c ON (p.question_id = p2c.question_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p2c.doc_category_id = '" . (int)$doc_category_id . "' ORDER BY pd.title ASC");
+	public function getFaqsByFaqCategoryId($faq_category_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "faq p LEFT JOIN " . DB_PREFIX . "faq_description pd ON (p.faq_id = pd.faq_id) LEFT JOIN " . DB_PREFIX . "faq_to_faq_category p2c ON (p.faq_id = p2c.faq_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p2c.faq_category_id = '" . (int)$faq_category_id . "' ORDER BY pd.title ASC");
 
 		return $query->rows;
 	}
 
-	public function getQuestionDescription($question_id) {
-		$question_description_data = array();
+	public function getFaqDescription($faq_id) {
+		$faq_description_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "question_description WHERE question_id = '" . (int)$question_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "faq_description WHERE faq_id = '" . (int)$faq_id . "'");
 
 		foreach ($query->rows as $result) {
-			$question_description_data[$result['language_id']] = array(
+			$faq_description_data[$result['language_id']] = array(
 				'title'             => $result['title'],
 				'answer'      		=> $result['answer'],
 			);
 		}
 
-		return $question_description_data;
+		return $faq_description_data;
 	}
 
-	public function getQuestionDocCategories($question_id) {
-		$question_doc_category_data = array();
+	public function getFaqFaqCategories($faq_id) {
+		$faq_faq_category_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "question_to_doc_category WHERE question_id = '" . (int)$question_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "faq_to_faq_category WHERE faq_id = '" . (int)$faq_id . "'");
 
 		foreach ($query->rows as $result) {
-			$question_doc_category_data[] = $result['doc_category_id'];
+			$faq_faq_category_data[] = $result['faq_category_id'];
 		}
 
-		return $question_doc_category_data;
+		return $faq_faq_category_data;
 	}
 
-	public function getQuestionStores($question_id) {
-		$question_store_data = array();
+	public function getFaqStores($faq_id) {
+		$faq_store_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "question_to_store WHERE question_id = '" . (int)$question_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "faq_to_store WHERE faq_id = '" . (int)$faq_id . "'");
 
 		foreach ($query->rows as $result) {
-			$question_store_data[] = $result['store_id'];
+			$faq_store_data[] = $result['store_id'];
 		}
 
-		return $question_store_data;
+		return $faq_store_data;
 	}
 
-	public function getQuestionLayouts($question_id) {
-		$question_layout_data = array();
+	public function getFaqLayouts($faq_id) {
+		$faq_layout_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "question_to_layout WHERE question_id = '" . (int)$question_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "faq_to_layout WHERE faq_id = '" . (int)$faq_id . "'");
 
 		foreach ($query->rows as $result) {
-			$question_layout_data[$result['store_id']] = $result['layout_id'];
+			$faq_layout_data[$result['store_id']] = $result['layout_id'];
 		}
 
-		return $question_layout_data;
+		return $faq_layout_data;
 	}
 
-	public function getTotalQuestions($data = array()) {
-		$sql = "SELECT COUNT(DISTINCT p.question_id) AS total FROM " . DB_PREFIX . "question p LEFT JOIN " . DB_PREFIX . "question_description pd ON (p.question_id = pd.question_id)";
+	public function getTotalFaqs($data = array()) {
+		$sql = "SELECT COUNT(DISTINCT p.faq_id) AS total FROM " . DB_PREFIX . "faq p LEFT JOIN " . DB_PREFIX . "faq_description pd ON (p.faq_id = pd.faq_id)";
 
 		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
@@ -248,16 +248,16 @@ class ModelCocQuestion extends Model {
 		return $query->row['total'];
 	}
 
-	public function getTotalQuestionsByLayoutId($layout_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "question_to_layout WHERE layout_id = '" . (int)$layout_id . "'");
+	public function getTotalFaqsByLayoutId($layout_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "faq_to_layout WHERE layout_id = '" . (int)$layout_id . "'");
 
 		return $query->row['total'];
 	}
 	
-	public function getProductRelated($question_id) {
+	public function getProductRelated($faq_id) {
 		$product_related_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "question_product WHERE question_id = '" . (int)$question_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "faq_product WHERE faq_id = '" . (int)$faq_id . "'");
 
 		foreach ($query->rows as $result) {
 			$product_related_data[] = $result['related_id'];

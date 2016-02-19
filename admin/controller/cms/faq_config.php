@@ -1,20 +1,20 @@
 <?php
-class ControllerCocDocConfig extends Controller {
+class ControllerCmsFaqConfig extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('coc/doc_config');
+		$this->load->language('cms/faq_config');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('coc_doc', $this->request->post);
+			$this->model_setting_setting->editSetting('cms_faq', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->response->redirect($this->url->link('coc/doc_config', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->response->redirect($this->url->link('cms/faq_config', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 
 		$data['heading_title'] = $this->language->get('heading_title');
@@ -27,66 +27,28 @@ class ControllerCocDocConfig extends Controller {
 		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
 		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
-		$data['entry_coc_doc_seo_keyword'] = $this->language->get('entry_coc_doc_seo_keyword');
-		$data['entry_coc_doc_license_id'] = $this->language->get('entry_coc_doc_license_id');
-		$data['entry_coc_doc_template'] = $this->language->get('entry_coc_doc_template');
+		$data['entry_cms_faq_seo_keyword'] = $this->language->get('entry_cms_faq_seo_keyword');
 
-		$data['help_coc_doc_seo_keyword'] = $this->language->get('help_coc_doc_seo_keyword');
-		$data['help_coc_doc_license_id'] = $this->language->get('help_coc_doc_license_id');
+		$data['help_cms_faq_seo_keyword'] = $this->language->get('help_cms_faq_seo_keyword');
 
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
 
 		$data['tab_general'] = $this->language->get('tab_general');
 		$data['tab_data'] = $this->language->get('tab_data');
-		$data['tab_license'] = $this->language->get('tab_license');
 		
-		$data['need_license'] = '';
-		
-		if(stristr(HTTP_SERVER, 'localhost')) {
-			
-			
-		}else{
-			
-			if($this->config->get('coc_doc_license_id')) {
-				
-				
-				
-			}else{
-				
-				$data['need_license'] = 'This extension is used for 10 days for free, please enter license code in license tab page and save.';
-			
-			}
-			
-		}
-
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
 		} else {
 			$data['error_warning'] = '';
 		}
 		
-		if(stristr(HTTP_SERVER, 'localhost')) {
-			
-		}else{
-			
-			
-		}
-
-		if (isset($this->error['coc_doc_seo_keyword'])) {
-			$data['error_coc_doc_seo_keyword'] = $this->error['coc_doc_seo_keyword'];
+		if (isset($this->error['cms_faq_seo_keyword'])) {
+			$data['error_cms_faq_seo_keyword'] = $this->error['cms_faq_seo_keyword'];
 		} else {
-			$data['error_coc_doc_seo_keyword'] = '';
+			$data['error_cms_faq_seo_keyword'] = '';
 		}
 		
-		if (isset($this->error['coc_doc_license_id'])) {
-			$data['error_coc_doc_license_id'] = $this->error['coc_doc_license_id'];
-		} else {
-			$data['error_coc_doc_license_id'] = '';
-		}
-
-
-
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
@@ -112,42 +74,28 @@ class ControllerCocDocConfig extends Controller {
 			$data['success'] = '';
 		}
 
-		$data['action'] = $this->url->link('coc/doc_config', 'token=' . $this->session->data['token'], 'SSL');
+		$data['action'] = $this->url->link('cms/faq_config', 'token=' . $this->session->data['token'], 'SSL');
 
 		$data['cancel'] = $this->url->link('common/dashborad', 'token=' . $this->session->data['token'], 'SSL');
 
 		$data['token'] = $this->session->data['token'];
 		
-		if (isset($this->request->post['coc_doc_seo_keyword'])) {
-			$data['coc_doc_seo_keyword'] = $this->request->post['coc_doc_seo_keyword'];
+		if (isset($this->request->post['cms_faq_seo_keyword'])) {
+			$data['cms_faq_seo_keyword'] = $this->request->post['cms_faq_seo_keyword'];
 		} else {
-			$data['coc_doc_seo_keyword'] = $this->config->get('coc_doc_seo_keyword');
+			$data['cms_faq_seo_keyword'] = $this->config->get('cms_faq_seo_keyword');
 		}
 		
-		if (isset($this->request->post['coc_doc_license_id'])) {
-			$data['coc_doc_license_id'] = $this->request->post['coc_doc_license_id'];
-		} else {
-			$data['coc_doc_license_id'] = $this->config->get('coc_doc_license_id');
-		}
-		
-		if (isset($this->request->post['coc_doc_template'])) {
-			$data['coc_doc_template'] = $this->request->post['coc_doc_template'];
-		} elseif ($this->config->get('coc_doc_template')) {
-			$data['coc_doc_template'] = $this->config->get('coc_doc_template');
-		} else {
-			$data['coc_doc_template'] = 'default';
-		}
-
 		$this->load->model('localisation/language');
 
 		$data['languages'] = $this->model_localisation_language->getLanguages();
 
-		if (isset($this->request->post['coc_doc_description'])) {
-			$data['coc_doc_description'] = $this->request->post['coc_doc_description'];
-		} elseif ($this->config->get('coc_doc_description')) {
-			$data['coc_doc_description'] = $this->config->get('coc_doc_description');
+		if (isset($this->request->post['cms_faq_description'])) {
+			$data['cms_faq_description'] = $this->request->post['cms_faq_description'];
+		} elseif ($this->config->get('cms_faq_description')) {
+			$data['cms_faq_description'] = $this->config->get('cms_faq_description');
 		} else {
-			$data['coc_doc_description'] = array();
+			$data['cms_faq_description'] = array();
 		}
 		
 
@@ -156,16 +104,16 @@ class ControllerCocDocConfig extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('coc/doc_config.tpl', $data));
+		$this->response->setOutput($this->load->view('cms/faq_config.tpl', $data));
 	}
 
 	protected function validate() {
-		if (!$this->user->hasPermission('modify', 'coc/doc_config')) {
+		if (!$this->user->hasPermission('modify', 'cms/faq_config')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 		
-		foreach ($this->request->post['coc_doc_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 64)) {
+		foreach ($this->request->post['cms_faq_description'] as $language_id => $value) {
+			if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 100)) {
 				$this->error['title'][$language_id] = $this->language->get('error_title');
 			}
 
@@ -174,13 +122,13 @@ class ControllerCocDocConfig extends Controller {
 			}
 		}
 
-		if (utf8_strlen($this->request->post['coc_doc_seo_keyword']) > 0) {
+		if (utf8_strlen($this->request->post['cms_faq_seo_keyword']) > 0) {
 			$this->load->model('catalog/url_alias');
 
-			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['coc_doc_seo_keyword']);
+			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['cms_faq_seo_keyword']);
 
 			if ($url_alias_info) {
-				$this->error['coc_doc_seo_keyword'] = sprintf($this->language->get('error_coc_doc_seo_keyword'));
+				$this->error['cms_faq_seo_keyword'] = sprintf($this->language->get('error_cms_faq_seo_keyword'));
 			}
 
 		}

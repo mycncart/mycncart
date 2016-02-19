@@ -27,7 +27,7 @@ $_['entry_store']            = '商店';
 
 $_['entry_status']           = '状态';
 $_['entry_sort_order']       = '排序';
-$_['entry_doc_category']     = '所属分类';
+$_['entry_faq_category']     = '所属分类';
 
 $_['entry_layout']           = '布局覆盖';
 

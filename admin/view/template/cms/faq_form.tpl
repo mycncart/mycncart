@@ -3,7 +3,7 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right">
-        <button type="submit" form="form-question" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <button type="submit" form="form-faq" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary"><i class="fa fa-save"></i></button>
         <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
       <h1><?php echo $heading_title; ?></h1>
       <ul class="breadcrumb">
@@ -24,7 +24,7 @@
         <h3 class="panel-title"><i class="fa fa-pencil"></i> <?php echo $text_form; ?></h3>
       </div>
       <div class="panel-body">
-        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-question" class="form-horizontal">
+        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-faq" class="form-horizontal">
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>
             <li><a href="#tab-data" data-toggle="tab"><?php echo $tab_data; ?></a></li>
@@ -44,7 +44,7 @@
                   <div class="form-group required">
                     <label class="col-sm-2 control-label" for="input-title<?php echo $language['language_id']; ?>"><?php echo $entry_title; ?></label>
                     <div class="col-sm-10">
-                      <input type="text" name="question_description[<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($question_description[$language['language_id']]) ? $question_description[$language['language_id']]['title'] : ''; ?>" placeholder="<?php echo $entry_title; ?>" id="input-title<?php echo $language['language_id']; ?>" class="form-control" />
+                      <input type="text" name="faq_description[<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($faq_description[$language['language_id']]) ? $faq_description[$language['language_id']]['title'] : ''; ?>" placeholder="<?php echo $entry_title; ?>" id="input-title<?php echo $language['language_id']; ?>" class="form-control" />
                       <?php if (isset($error_title[$language['language_id']])) { ?>
                       <div class="text-danger"><?php echo $error_title[$language['language_id']]; ?></div>
                       <?php } ?>
@@ -53,7 +53,7 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="input-description<?php echo $language['language_id']; ?>"><?php echo $entry_answer; ?></label>
                     <div class="col-sm-10">
-                      <textarea name="question_description[<?php echo $language['language_id']; ?>][answer]" placeholder="<?php echo $entry_answer; ?>" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($question_description[$language['language_id']]) ? $question_description[$language['language_id']]['answer'] : ''; ?></textarea>
+                      <textarea name="faq_description[<?php echo $language['language_id']; ?>][answer]" placeholder="<?php echo $entry_answer; ?>" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($faq_description[$language['language_id']]) ? $faq_description[$language['language_id']]['answer'] : ''; ?></textarea>
                     </div>
                   </div>
                   
@@ -103,18 +103,18 @@
               
               
               <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-doc-category"><?php echo $entry_doc_category; ?></label>
+                  <label class="col-sm-2 control-label" for="input-doc-category"><?php echo $entry_faq_category; ?></label>
                   <div class="col-sm-10">
                     <div class="well well-sm" style="height: 150px; overflow: auto;">
-                      <?php foreach ($doc_categories as $doc_category) { ?>
+                      <?php foreach ($doc_categories as $faq_category) { ?>
                       <div class="checkbox">
                         <label>
-                          <?php if (in_array($doc_category['doc_category_id'], $question_doc_category)) { ?>
-                          <input type="checkbox" name="question_doc_category[]" value="<?php echo $doc_category['doc_category_id']; ?>" checked="checked" />
-                          <?php echo $doc_category['name']; ?>
+                          <?php if (in_array($faq_category['faq_category_id'], $faq_faq_category)) { ?>
+                          <input type="checkbox" name="faq_faq_category[]" value="<?php echo $faq_category['faq_category_id']; ?>" checked="checked" />
+                          <?php echo $faq_category['name']; ?>
                           <?php } else { ?>
-                          <input type="checkbox" name="question_doc_category[]" value="<?php echo $doc_category['doc_category_id']; ?>" />
-                          <?php echo $doc_category['name']; ?>
+                          <input type="checkbox" name="faq_faq_category[]" value="<?php echo $faq_category['faq_category_id']; ?>" />
+                          <?php echo $faq_category['name']; ?>
                           <?php } ?>
                         </label>
                       </div>
@@ -130,11 +130,11 @@
                   <div class="well well-sm" style="height: 150px; overflow: auto;">
                     <div class="checkbox">
                       <label>
-                        <?php if (in_array(0, $question_store)) { ?>
-                        <input type="checkbox" name="question_store[]" value="0" checked="checked" />
+                        <?php if (in_array(0, $faq_store)) { ?>
+                        <input type="checkbox" name="faq_store[]" value="0" checked="checked" />
                         <?php echo $text_default; ?>
                         <?php } else { ?>
-                        <input type="checkbox" name="question_store[]" value="0" />
+                        <input type="checkbox" name="faq_store[]" value="0" />
                         <?php echo $text_default; ?>
                         <?php } ?>
                       </label>
@@ -142,11 +142,11 @@
                     <?php foreach ($stores as $store) { ?>
                     <div class="checkbox">
                       <label>
-                        <?php if (in_array($store['store_id'], $question_store)) { ?>
-                        <input type="checkbox" name="question_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
+                        <?php if (in_array($store['store_id'], $faq_store)) { ?>
+                        <input type="checkbox" name="faq_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
                         <?php echo $store['name']; ?>
                         <?php } else { ?>
-                        <input type="checkbox" name="question_store[]" value="<?php echo $store['store_id']; ?>" />
+                        <input type="checkbox" name="faq_store[]" value="<?php echo $store['store_id']; ?>" />
                         <?php echo $store['name']; ?>
                         <?php } ?>
                       </label>
@@ -179,10 +179,10 @@
                   <tbody>
                     <tr>
                       <td class="text-left"><?php echo $text_default; ?></td>
-                      <td class="text-left"><select name="question_layout[0]" class="form-control">
+                      <td class="text-left"><select name="faq_layout[0]" class="form-control">
                           <option value=""></option>
                           <?php foreach ($layouts as $layout) { ?>
-                          <?php if (isset($question_layout[0]) && $question_layout[0] == $layout['layout_id']) { ?>
+                          <?php if (isset($faq_layout[0]) && $faq_layout[0] == $layout['layout_id']) { ?>
                           <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>
                           <?php } else { ?>
                           <option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>
@@ -193,10 +193,10 @@
                     <?php foreach ($stores as $store) { ?>
                     <tr>
                       <td class="text-left"><?php echo $store['title']; ?></td>
-                      <td class="text-left"><select name="question_layout[<?php echo $store['store_id']; ?>]" class="form-control">
+                      <td class="text-left"><select name="faq_layout[<?php echo $store['store_id']; ?>]" class="form-control">
                           <option value=""></option>
                           <?php foreach ($layouts as $layout) { ?>
-                          <?php if (isset($question_layout[$store['store_id']]) && $question_layout[$store['store_id']] == $layout['layout_id']) { ?>
+                          <?php if (isset($faq_layout[$store['store_id']]) && $faq_layout[$store['store_id']] == $layout['layout_id']) { ?>
                           <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>
                           <?php } else { ?>
                           <option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>

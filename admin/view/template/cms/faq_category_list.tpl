@@ -3,7 +3,7 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right"><a href="<?php echo $add; ?>" data-toggle="tooltip" title="<?php echo $button_add; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a> 
-        <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-doc_category').submit() : false;"><i class="fa fa-trash-o"></i></button>
+        <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-faq_category').submit() : false;"><i class="fa fa-trash-o"></i></button>
       </div>
       <h1><?php echo $heading_title; ?></h1>
       <ul class="breadcrumb">
@@ -29,7 +29,7 @@
         <h3 class="panel-title"><i class="fa fa-list"></i> <?php echo $text_list; ?></h3>
       </div>
       <div class="panel-body">
-        <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-doc_category">
+        <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-faq_category">
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <thead>
@@ -50,16 +50,16 @@
               </thead>
               <tbody>
                 <?php if ($categories) { ?>
-                <?php foreach ($categories as $doc_category) { ?>
+                <?php foreach ($categories as $faq_category) { ?>
                 <tr>
-                  <td class="text-center"><?php if (in_array($doc_category['doc_category_id'], $selected)) { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $doc_category['doc_category_id']; ?>" checked="checked" />
+                  <td class="text-center"><?php if (in_array($faq_category['faq_category_id'], $selected)) { ?>
+                    <input type="checkbox" name="selected[]" value="<?php echo $faq_category['faq_category_id']; ?>" checked="checked" />
                     <?php } else { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $doc_category['doc_category_id']; ?>" />
+                    <input type="checkbox" name="selected[]" value="<?php echo $faq_category['faq_category_id']; ?>" />
                     <?php } ?></td>
-                  <td class="text-left"><?php echo $doc_category['name']; ?></td>
-                  <td class="text-right"><?php echo $doc_category['sort_order']; ?></td>
-                  <td class="text-right"><a href="<?php echo $doc_category['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
+                  <td class="text-left"><?php echo $faq_category['name']; ?></td>
+                  <td class="text-right"><?php echo $faq_category['sort_order']; ?></td>
+                  <td class="text-right"><a href="<?php echo $faq_category['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
                 <?php } ?>
                 <?php } else { ?>
