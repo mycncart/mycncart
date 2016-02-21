@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_analytics']                   = 'Analytics';
+$_['text_analytics']                   = 'Google Analytics';
 $_['text_affiliate']                   = 'Affiliates';
 $_['text_api']                         = 'API';
 $_['text_attribute']                   = 'Attributes';
