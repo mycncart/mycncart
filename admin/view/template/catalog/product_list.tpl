@@ -69,6 +69,10 @@
                   <?php } ?>
                 </select>
               </div>
+              <div class="form-group">
+                <label class="control-label" for="input-id"><?php echo $entry_product_id; ?></label>
+                <input type="text" name="filter_product_id" value="<?php echo $filter_product_id; ?>" placeholder="<?php echo $entry_product_id; ?>" id="input-id" class="form-control" />
+              </div>
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> <?php echo $button_filter; ?></button>
             </div>
           </div>
@@ -80,6 +84,11 @@
                 <tr>
                   <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
                   <td class="text-center"><?php echo $column_image; ?></td>
+                  <td class="text-left"><?php if ($sort == 'p.product_id') { ?>
+                    <a href="<?php echo $sort_product_id; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_id; ?></a>
+                    <?php } else { ?>
+                    <a href="<?php echo $sort_product_id; ?>"><?php echo $column_id; ?></a>
+                    <?php } ?></td>
                   <td class="text-left"><?php if ($sort == 'pd.name') { ?>
                     <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
                     <?php } else { ?>
@@ -122,6 +131,7 @@
                     <?php } else { ?>
                     <span class="img-thumbnail list"><i class="fa fa-camera fa-2x"></i></span>
                     <?php } ?></td>
+                  <td class="text-left"><?php echo $product['product_id']; ?></td>
                   <td class="text-left"><?php echo $product['name']; ?></td>
                   <td class="text-left"><?php echo $product['model']; ?></td>
                   <td class="text-right"><?php if ($product['special']) { ?>
@@ -143,7 +153,7 @@
                 <?php } ?>
                 <?php } else { ?>
                 <tr>
-                  <td class="text-center" colspan="8"><?php echo $text_no_results; ?></td>
+                  <td class="text-center" colspan="9"><?php echo $text_no_results; ?></td>
                 </tr>
                 <?php } ?>
               </tbody>
@@ -198,6 +208,12 @@ $('#button-filter').on('click', function() {
 
 	if (filter_quantity) {
 		url += '&filter_quantity=' + encodeURIComponent(filter_quantity);
+	}
+	
+	var filter_product_id = $('input[name=\'filter_product_id\']').val();
+
+	if (filter_product_id) {
+		url += '&filter_product_id=' + encodeURIComponent(filter_product_id);
 	}
 
 	var filter_status = $('select[name=\'filter_status\']').val();

@@ -1629,3 +1629,4 @@
 2016-02-19 16:50:31 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
 2016-02-19 16:50:33 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
 2016-02-19 16:52:35 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-02-23 9:39:32 - PHP Notice:  Undefined variable: filter_product_id in C:\wamp\www\mycncart\admin\view\template\catalog\product_list.tpl on line 74

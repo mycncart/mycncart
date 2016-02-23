@@ -368,6 +368,10 @@ class ModelCatalogProduct extends Model {
 		if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
 			$sql .= " AND p.quantity = '" . (int)$data['filter_quantity'] . "'";
 		}
+		
+		if (isset($data['filter_product_id']) && !is_null($data['filter_product_id'])) {
+			$sql .= " AND p.product_id = '" . (int)$data['filter_product_id'] . "'";
+		}
 
 		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
 			$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
@@ -380,6 +384,7 @@ class ModelCatalogProduct extends Model {
 			'p.model',
 			'p.price',
 			'p.quantity',
+			'p.product_id',
 			'p.status',
 			'p.sort_order'
 		);
@@ -633,6 +638,10 @@ class ModelCatalogProduct extends Model {
 
 		if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
 			$sql .= " AND p.quantity = '" . (int)$data['filter_quantity'] . "'";
+		}
+		
+		if (isset($data['filter_product_id']) && !is_null($data['filter_product_id'])) {
+			$sql .= " AND p.product_id = '" . (int)$data['filter_product_id'] . "'";
 		}
 
 		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
