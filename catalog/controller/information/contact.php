@@ -55,6 +55,7 @@ class ControllerInformationContact extends Controller {
 		$data['entry_enquiry'] = $this->language->get('entry_enquiry');
 
 		$data['button_map'] = $this->language->get('button_map');
+		$data['button_baidu_map'] = $this->language->get('button_baidu_map');
 
 		if (isset($this->error['name'])) {
 			$data['error_name'] = $this->error['name'];
@@ -94,6 +95,14 @@ class ControllerInformationContact extends Controller {
 		$data['fax'] = $this->config->get('config_fax');
 		$data['open'] = nl2br($this->config->get('config_open'));
 		$data['comment'] = $this->config->get('config_comment');
+		
+		$data['map_select'] = $this->config->get('config_map_select');
+		
+		if($this->config->get('config_map_select') == 'google') {
+			
+		}else{
+			$data['baidu_map'] = $this->url->link('information/baidu_map');
+		}
 
 		$data['locations'] = array();
 
