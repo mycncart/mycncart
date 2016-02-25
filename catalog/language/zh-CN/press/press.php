@@ -19,6 +19,7 @@ $_['text_press_category'] 		= '新闻分类';
 $_['text_empty'] 				= '无相关内容';
 $_['text_no_comments'] 			= '尚无评论';
 $_['text_tags']                 = '标签:';
+$_['text_related']              = '相关商品';
 
 $_['entry_name']                = '姓名';
 $_['entry_comment']             = '评论';

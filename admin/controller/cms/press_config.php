@@ -29,6 +29,7 @@ class ControllerCmsPressConfig extends Controller {
 		$data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
 		$data['entry_cms_press_seo_keyword'] = $this->language->get('entry_cms_press_seo_keyword');
 		$data['entry_cms_press_brief_length'] = $this->language->get('entry_cms_press_brief_length');
+		$data['entry_cms_press_items_per_page'] = $this->language->get('entry_cms_press_items_per_page');
 
 		$data['help_cms_press_seo_keyword'] = $this->language->get('help_cms_press_seo_keyword');
 		$data['help_cms_press_brief_length'] = $this->language->get('help_cms_press_brief_length');
@@ -101,6 +102,12 @@ class ControllerCmsPressConfig extends Controller {
 			$data['cms_press_brief_length'] = $this->request->post['cms_press_brief_length'];
 		} else {
 			$data['cms_press_brief_length'] = $this->config->get('cms_press_brief_length');
+		}
+		
+		if (isset($this->request->post['cms_press_items_per_page'])) {
+			$data['cms_press_items_per_page'] = $this->request->post['cms_press_items_per_page'];
+		} else {
+			$data['cms_press_items_per_page'] = $this->config->get('cms_press_items_per_page');
 		}
 		
 		$data['header'] = $this->load->controller('common/header');

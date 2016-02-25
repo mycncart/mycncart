@@ -60,7 +60,11 @@ class ControllerPressPress extends Controller {
 			$data['text_press'] = $this->language->get('text_press');
 			$data['text_created_date'] = $this->language->get('text_created_date');
 			$data['text_loading'] = $this->language->get('text_loading');
+			$data['text_related'] = $this->language->get('text_related');
 			
+			$data['button_cart'] = $this->language->get('button_cart');
+			$data['button_wishlist'] = $this->language->get('button_wishlist');
+			$data['button_compare'] = $this->language->get('button_compare');
 			$data['button_continue'] = $this->language->get('button_continue');
 			
 

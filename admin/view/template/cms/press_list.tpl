@@ -59,9 +59,11 @@
              
             </div>
             
-            <div class="col-sm-4">
-              <br />
-              <button type="button" id="button-filter" class="btn btn-primary pull-left"><i class="fa fa-search"></i> <?php echo $button_filter; ?></button>
+            <div class="col-sm-2">
+              <div class="form-group">
+              <label class="control-label" for="input-status">&nbsp;</label>
+              <button type="button" id="button-filter" class="btn btn-primary pull-left form-control"><i class="fa fa-search"></i> <?php echo $button_filter; ?></button>
+              </div>
             </div>
             
           </div>

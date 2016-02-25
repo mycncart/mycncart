@@ -18,6 +18,7 @@ $_['text_press_category'] 		= 'Press Categories';
 $_['text_empty'] 				= 'No Contents';
 $_['text_no_comments'] 			= 'No Comments';
 $_['text_tags']                 = 'Tags:';
+$_['text_related']              = 'Related Products';
 
 
 

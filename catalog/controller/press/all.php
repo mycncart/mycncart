@@ -16,7 +16,7 @@ class ControllerPressAll extends Controller {
 		if (isset($this->request->get['limit'])) {
 			$limit = (int)$this->request->get['limit'];
 		} else {
-			$limit = $this->config->get('config_product_limit');
+			$limit = $this->config->get('cms_press_items_per_page');
 		}
 		
 		if (isset($this->request->get['filter_press'])) {
@@ -135,10 +135,6 @@ class ControllerPressAll extends Controller {
 
 		$url = '';
 
-		if (isset($this->request->get['page'])) {
-			$url .= '&page=' . $this->request->get['page'];
-		}
-
 		if (isset($this->request->get['limit'])) {
 			$url .= '&limit=' . $this->request->get['limit'];
 		}
@@ -148,7 +144,7 @@ class ControllerPressAll extends Controller {
 		$pagination->total = $press_total;
 		$pagination->page = $page;
 		$pagination->limit = $limit;
-		$pagination->url = $this->url->link('press/all', $url . 'page={page}');
+		$pagination->url = $this->url->link('press/all', $url . '&page={page}');
 
 		$data['pagination'] = $pagination->render();
 
