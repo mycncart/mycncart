@@ -24,6 +24,7 @@ $_['entry_cms_blog_middle_image_height']  						= '高';
 $_['entry_cms_blog_small_image']  								= '博客小图片尺寸(宽 x 高)';
 $_['entry_cms_blog_small_image_width']  						= '宽';
 $_['entry_cms_blog_small_image_height']  						= '高';
+$_['entry_cms_blog_items_per_page']  							= '每页显示博客条数';
 
 $_['entry_cms_blog_category_page_blog_image_type']  			= '分类页面博客图片';
 $_['entry_cms_blog_category_page_show_title']  					= '显示博客标题';

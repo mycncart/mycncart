@@ -69,10 +69,14 @@ class ControllerBlogBlog extends Controller {
 			$data['text_loading'] = $this->language->get('text_loading');
 			$data['text_blog_category'] = $this->language->get('text_blog_category');
 			$data['text_tags'] = $this->language->get('text_tags');
+			$data['text_related'] = $this->language->get('text_related');
 			
 			$data['entry_name'] = $this->language->get('entry_name');
 			$data['entry_comment'] = $this->language->get('entry_comment');
 			
+			$data['button_cart'] = $this->language->get('button_cart');
+			$data['button_wishlist'] = $this->language->get('button_wishlist');
+			$data['button_compare'] = $this->language->get('button_compare');
 			$data['button_continue'] = $this->language->get('button_continue');
 			
 			$data['logged'] = $this->customer->isLogged();

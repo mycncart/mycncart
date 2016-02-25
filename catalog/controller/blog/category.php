@@ -15,7 +15,7 @@ class ControllerBlogCategory extends Controller {
 			$page = 1;
 		}
 
-		$limit = $this->config->get('config_product_limit');
+		$limit = $this->config->get('cms_blog_items_per_page');
 		
 
 		$data['breadcrumbs'] = array();

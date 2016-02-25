@@ -42,6 +42,7 @@ class ControllerCmsBlogConfig extends Controller {
 		$data['entry_cms_blog_small_image'] = $this->language->get('entry_cms_blog_small_image');
 		$data['entry_cms_blog_small_image_width'] = $this->language->get('entry_cms_blog_small_image_width');
 		$data['entry_cms_blog_small_image_height'] = $this->language->get('entry_cms_blog_small_image_height');
+		$data['entry_cms_blog_items_per_page'] = $this->language->get('entry_cms_blog_items_per_page');
 		
 		$data['entry_cms_blog_category_page_blog_image_type'] = $this->language->get('entry_cms_blog_category_page_blog_image_type');
 		$data['entry_cms_blog_category_page_show_title'] = $this->language->get('entry_cms_blog_category_page_show_title');
@@ -193,6 +194,12 @@ class ControllerCmsBlogConfig extends Controller {
 			$data['cms_blog_small_image_height'] = $this->request->post['cms_blog_small_image_height'];
 		} else {
 			$data['cms_blog_small_image_height'] = $this->config->get('cms_blog_small_image_height');
+		}
+		
+		if (isset($this->request->post['cms_blog_items_per_page'])) {
+			$data['cms_blog_items_per_page'] = $this->request->post['cms_blog_items_per_page'];
+		} else {
+			$data['cms_blog_items_per_page'] = $this->config->get('cms_blog_items_per_page');
 		}
 		
 		if (isset($this->request->post['cms_blog_category_page_show_title'])) {

@@ -30,7 +30,7 @@ class ControllerBlogAll extends Controller {
 		if (isset($this->request->get['limit'])) {
 			$limit = (int)$this->request->get['limit'];
 		} else {
-			$limit = $this->config->get('config_product_limit');
+			$limit = $this->config->get('cms_blog_items_per_page');
 		}
 		
 		if (isset($this->request->get['filter_blog'])) {
@@ -230,10 +230,6 @@ class ControllerBlogAll extends Controller {
 			$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
 		}
 		
-		if (isset($this->request->get['page'])) {
-			$url .= '&page=' . $this->request->get['page'];
-		}
-
 		if (isset($this->request->get['limit'])) {
 			$url .= '&limit=' . $this->request->get['limit'];
 		}
@@ -243,7 +239,7 @@ class ControllerBlogAll extends Controller {
 		$pagination->total = $blog_total;
 		$pagination->page = $page;
 		$pagination->limit = $limit;
-		$pagination->url = $this->url->link('blog/all', $url . 'page={page}');
+		$pagination->url = $this->url->link('blog/all', $url . '&page={page}');
 
 		$data['pagination'] = $pagination->render();
 

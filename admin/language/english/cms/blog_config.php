@@ -24,6 +24,7 @@ $_['entry_cms_blog_middle_image_height']  						= 'Height';
 $_['entry_cms_blog_small_image']  								= 'Blog - Small Image Demension (Width x Height)';
 $_['entry_cms_blog_small_image_width']  						= 'Width';
 $_['entry_cms_blog_small_image_height']  						= 'Height';
+$_['entry_cms_blog_items_per_page']  							= 'Blog Items Per Page';
 
 $_['entry_cms_blog_category_page_blog_image_type']  			= 'Category Page Blog Image Type';
 $_['entry_cms_blog_category_page_show_title']  					= 'Show Title';
