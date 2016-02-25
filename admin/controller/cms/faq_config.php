@@ -28,6 +28,7 @@ class ControllerCmsFaqConfig extends Controller {
 		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
 		$data['entry_cms_faq_seo_keyword'] = $this->language->get('entry_cms_faq_seo_keyword');
+		$data['entry_cms_faq_items_per_page'] = $this->language->get('entry_cms_faq_items_per_page');
 
 		$data['help_cms_faq_seo_keyword'] = $this->language->get('help_cms_faq_seo_keyword');
 
@@ -84,6 +85,12 @@ class ControllerCmsFaqConfig extends Controller {
 			$data['cms_faq_seo_keyword'] = $this->request->post['cms_faq_seo_keyword'];
 		} else {
 			$data['cms_faq_seo_keyword'] = $this->config->get('cms_faq_seo_keyword');
+		}
+		
+		if (isset($this->request->post['cms_faq_items_per_page'])) {
+			$data['cms_faq_items_per_page'] = $this->request->post['cms_faq_items_per_page'];
+		} else {
+			$data['cms_faq_items_per_page'] = $this->config->get('cms_faq_items_per_page');
 		}
 		
 		$this->load->model('localisation/language');

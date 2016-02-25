@@ -14,7 +14,7 @@ class ControllerFaqFaq extends Controller {
 		if (isset($this->request->get['limit'])) {
 			$limit = (int)$this->request->get['limit'];
 		} else {
-			$limit = $this->config->get('config_product_limit');
+			$limit = $this->config->get('cms_faq_items_per_page');
 		}
 		
 		if (isset($this->request->get['filter_faq'])) {
@@ -132,10 +132,6 @@ class ControllerFaqFaq extends Controller {
 
 		$url = '';
 
-		if (isset($this->request->get['page'])) {
-			$url .= '&page=' . $this->request->get['page'];
-		}
-
 		if (isset($this->request->get['limit'])) {
 			$url .= '&limit=' . $this->request->get['limit'];
 		}
@@ -145,7 +141,7 @@ class ControllerFaqFaq extends Controller {
 		$pagination->total = $faq_total;
 		$pagination->page = $page;
 		$pagination->limit = $limit;
-		$pagination->url = $this->url->link('faq/faq', $url . 'page={page}');
+		$pagination->url = $this->url->link('faq/faq', $url . '&page={page}');
 
 		$data['pagination'] = $pagination->render();
 

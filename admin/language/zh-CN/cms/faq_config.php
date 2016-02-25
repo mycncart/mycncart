@@ -12,6 +12,7 @@ $_['entry_meta_title'] 	     			= 'Meta Tag 标题';
 $_['entry_meta_keyword'] 	 			= 'Meta Tag 关键词';
 $_['entry_meta_description'] 			= 'Meta Tag 描述';
 $_['entry_cms_faq_seo_keyword']  		= 'SEO Keyword';
+$_['entry_cms_faq_items_per_page']  	= '每页显示FAQs条数';
 
 
 // Help

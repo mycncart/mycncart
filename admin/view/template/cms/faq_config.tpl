@@ -91,6 +91,13 @@
                 </div>
               </div>
               
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-faq-items-per-page"><?php echo $entry_cms_faq_items_per_page; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="cms_faq_items_per_page" value="<?php echo $cms_faq_items_per_page; ?>" placeholder="<?php echo $entry_cms_faq_items_per_page; ?>" id="input-cms-faq-items-per-page" class="form-control" />
+                </div>
+              </div>
+              
             </div>
             
           </div>
