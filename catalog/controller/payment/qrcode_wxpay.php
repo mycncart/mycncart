@@ -22,7 +22,7 @@ class ControllerPaymentQrcodeWxPay extends Controller {
 		$this->load->library('wxpaynativepay');
 		//echo "six";
 
-		$this->language->load('payment/qrcode_wxpay');
+		$$this->load->language('payment/qrcode_wxpay');
 
 		$data['button_confirm'] = $this->language->get('button_confirm');
 		

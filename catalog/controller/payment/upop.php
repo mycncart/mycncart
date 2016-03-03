@@ -2,7 +2,7 @@
 class ControllerPaymentupop extends Controller {
 	public function index() {
 		$this->load->library('upopservice');
-		$this->language->load('payment/upop');
+		$$this->load->language('payment/upop');
 		$data['text_testmode'] = $this->language->get('text_testmode');
     	$data['button_confirm'] = $this->language->get('button_confirm');
 

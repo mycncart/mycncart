@@ -22,7 +22,7 @@ class ControllerPaymentAlipayWap extends Controller {
 		
 		$this->load->helper('alipay_wap_rsa');
 		
-		$this->language->load('payment/alipay_wap');
+		$$this->load->language('payment/alipay_wap');
 
 		$data['button_confirm'] = $this->language->get('button_confirm');
 		

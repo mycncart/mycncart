@@ -13,7 +13,7 @@ class ControllerYouzanProduct extends Controller {
 	}
 	
 	public function push() {
-		$this->language->load('youzan/product');
+		$$this->load->language('youzan/product');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -79,7 +79,7 @@ class ControllerYouzanProduct extends Controller {
 	
 	//update youzan product
 	public function update() {
-		$this->language->load('youzan/product');
+		$$this->load->language('youzan/product');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -199,7 +199,7 @@ class ControllerYouzanProduct extends Controller {
 	//delete youzan product
 	public function unpush() {
 		
-		$this->language->load('youzan/product');
+		$$this->load->language('youzan/product');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 

@@ -1,7 +1,7 @@
 <?php
 class ControllerPaymentPayDollar extends Controller {
 	public function index() {
-		$this->language->load('payment/paydollar');
+		$$this->load->language('payment/paydollar');
 
 		$data['text_testmode'] = $this->language->get('text_testmode');
 		$data['button_confirm'] = $this->language->get('button_confirm');

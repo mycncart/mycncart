@@ -6,7 +6,7 @@ class ControllerPaymentAlipayDirect extends Controller {
 		$this->load->helper('alipay_dt_core');
 		$this->load->helper('alipay_dt_md');
 		
-		$this->language->load('payment/alipay_direct');
+		$$this->load->language('payment/alipay_direct');
 
 		$data['button_confirm'] = $this->language->get('button_confirm');
 		

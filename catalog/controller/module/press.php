@@ -1,7 +1,7 @@
 <?php  
 class ControllerModuleNews extends Controller {
 	public function index() {
-		$this->language->load('module/news');
+		$$this->load->language('module/news');
 		$this->load->model('extension/news');
 		
 		$filter_data = array(

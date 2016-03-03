@@ -1292,7 +1292,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 		$this->load->model('sale/recurring');
 		$this->load->model('payment/pp_express');
-		$this->language->load('sale/recurring');
+		$$this->load->language('sale/recurring');
 
 		$recurring = $this->model_sale_recurring->getRecurring($this->request->get['order_recurring_id']);
 

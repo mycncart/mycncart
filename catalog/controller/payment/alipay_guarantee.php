@@ -6,7 +6,7 @@ class ControllerPaymentAlipayGuarantee extends Controller {
 		$this->load->helper('alipay_ga_core');
 		$this->load->helper('alipay_ga_md');
 		
-		$this->language->load('payment/alipay_guarantee');
+		$$this->load->language('payment/alipay_guarantee');
 
 		$data['button_confirm'] = $this->language->get('button_confirm');
 		

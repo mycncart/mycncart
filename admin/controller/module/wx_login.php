@@ -3,7 +3,7 @@ class ControllerModuleWXLogin extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->language->load('module/wx_login');
+		$$this->load->language('module/wx_login');
 
 		$this->load->model('setting/setting');
 

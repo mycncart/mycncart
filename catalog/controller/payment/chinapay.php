@@ -1,7 +1,7 @@
 <?php
 class ControllerPaymentChinaPay extends Controller {
 	public function index() {
-		$this->language->load('payment/chinapay');
+		$$this->load->language('payment/chinapay');
 
 		$data['text_testmode'] = $this->language->get('text_testmode');		
 
