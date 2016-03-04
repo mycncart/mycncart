@@ -156,10 +156,10 @@ class ControllerFaqFaq extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/faq/faq.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/faq/faq.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/faq/faq')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/faq/faq', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/faq/faq.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/faq/faq', $data));
 		}
 		
 	}

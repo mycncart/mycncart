@@ -238,12 +238,12 @@ class ControllerPaymentUpop extends Controller {
 			$data['upop_sort_order'] = $this->config->get('upop_sort_order');
 		}
 
-		$this->template = 'payment/upop.tpl';
+		$this->template = 'payment/upop';
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');		
-		$this->response->setOutput($this->load->view('payment/upop.tpl', $data));
+		$this->response->setOutput($this->load->view('payment/upop', $data));
 	}
 
 	protected function validate() {

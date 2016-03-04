@@ -61,10 +61,10 @@ class ControllerCommonColumnRight extends Controller {
 			}
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/column_right.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/common/column_right.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/column_right')) {
+			return $this->load->view($this->config->get('config_template') . '/template/common/column_right', $data);
 		} else {
-			return $this->load->view('default/template/common/column_right.tpl', $data);
+			return $this->load->view('default/template/common/column_right', $data);
 		}
 	}
 }

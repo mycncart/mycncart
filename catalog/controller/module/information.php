@@ -22,10 +22,10 @@ class ControllerModuleInformation extends Controller {
 		$data['contact'] = $this->url->link('information/contact');
 		$data['sitemap'] = $this->url->link('information/sitemap');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/information.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/module/information.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/information')) {
+			return $this->load->view($this->config->get('config_template') . '/template/module/information', $data);
 		} else {
-			return $this->load->view('default/template/module/information.tpl', $data);
+			return $this->load->view('default/template/module/information', $data);
 		}
 	}
 }

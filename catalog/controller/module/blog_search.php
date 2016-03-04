@@ -17,10 +17,10 @@ class ControllerModuleBlogSearch extends Controller {
 		
 		$data['action'] = $this->url->link('blog/all', '', true);
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/blog_search.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/module/blog_search.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/blog_search')) {
+			return $this->load->view($this->config->get('config_template') . '/template/module/blog_search', $data);
 		} else {
-			return $this->load->view('default/template/module/blog_search.tpl', $data);
+			return $this->load->view('default/template/module/blog_search', $data);
 		}
 	}
 }

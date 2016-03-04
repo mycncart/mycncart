@@ -63,10 +63,10 @@ class ControllerCheckoutPaymentAddress extends Controller {
 			$data['payment_address_custom_field'] = array();
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/payment_address.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/payment_address.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/payment_address')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/payment_address', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/checkout/payment_address.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/checkout/payment_address', $data));
 		}
 	}
 

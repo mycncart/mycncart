@@ -154,10 +154,10 @@ class ControllerCheckoutGuest extends Controller {
 			$data['captcha'] = '';
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/guest.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/guest.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/guest')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/guest', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/checkout/guest.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/checkout/guest', $data));
 		}
 	}
 

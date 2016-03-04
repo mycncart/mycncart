@@ -277,7 +277,7 @@ class ControllerCmsPressCategory extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('cms/press_category_list.tpl', $data));
+		$this->response->setOutput($this->load->view('cms/press_category_list', $data));
 	}
 
 	protected function getForm() {
@@ -478,7 +478,7 @@ class ControllerCmsPressCategory extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('cms/press_category_form.tpl', $data));
+		$this->response->setOutput($this->load->view('cms/press_category_form', $data));
 	}
 
 	protected function validateForm() {

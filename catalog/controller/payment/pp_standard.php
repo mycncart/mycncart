@@ -96,10 +96,10 @@ class ControllerPaymentPPStandard extends Controller {
 
 			$data['custom'] = $this->session->data['order_id'];
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_standard.tpl')) {
-				return $this->load->view($this->config->get('config_template') . '/template/payment/pp_standard.tpl', $data);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_standard')) {
+				return $this->load->view($this->config->get('config_template') . '/template/payment/pp_standard', $data);
 			} else {
-				return $this->load->view('default/template/payment/pp_standard.tpl', $data);
+				return $this->load->view('default/template/payment/pp_standard', $data);
 			}
 		}
 	}

@@ -90,10 +90,10 @@ class ControllerPaymentAlipayWap extends Controller {
 		
 		$alipaywapsubmit = new AlipayWapSubmit($alipay_config);
 		$data['html_text'] = $alipaywapsubmit->buildRequestForm($parameter, "get", $this->language->get('button_confirm'));
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/alipay_wap.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/alipay_wap.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/alipay_wap')) {
+			return $this->load->view($this->config->get('config_template') . '/template/payment/alipay_wap', $data);
 		} else {
-			return $this->load->view('default/template/payment/alipay_wap.tpl', $data);
+			return $this->load->view('default/template/payment/alipay_wap', $data);
 		}
 		
 	}

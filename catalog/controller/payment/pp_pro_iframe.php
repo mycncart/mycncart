@@ -27,10 +27,10 @@ class ControllerPaymentPPProIframe extends Controller {
 
 		$data['checkout_method'] = $this->config->get('pp_pro_iframe_checkout_method');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_pro_iframe.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/pp_pro_iframe.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_pro_iframe')) {
+			return $this->load->view($this->config->get('config_template') . '/template/payment/pp_pro_iframe', $data);
 		} else {
-			return $this->load->view('default/template/payment/pp_pro_iframe.tpl', $data);
+			return $this->load->view('default/template/payment/pp_pro_iframe', $data);
 		}
 	}
 
@@ -65,10 +65,10 @@ class ControllerPaymentPPProIframe extends Controller {
 			$data['stylesheet'] = '/catalog/view/theme/default/stylesheet/stylesheet.css';
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_pro_iframe_body.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/payment/pp_pro_iframe_body.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_pro_iframe_body')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/payment/pp_pro_iframe_body', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/payment/pp_pro_iframe_body.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/payment/pp_pro_iframe_body', $data));
 		}
 	}
 

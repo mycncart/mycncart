@@ -61,10 +61,10 @@ class ControllerCommonContentTop extends Controller {
 			}
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/content_top.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/common/content_top.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/content_top')) {
+			return $this->load->view($this->config->get('config_template') . '/template/common/content_top', $data);
 		} else {
-			return $this->load->view('default/template/common/content_top.tpl', $data);
+			return $this->load->view('default/template/common/content_top', $data);
 		}
 	}
 }

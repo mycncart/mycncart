@@ -38,10 +38,10 @@ class ControllerModuleStore extends Controller {
 				);
 			}
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/store.tpl')) {
-				return $this->load->view($this->config->get('config_template') . '/template/module/store.tpl', $data);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/store')) {
+				return $this->load->view($this->config->get('config_template') . '/template/module/store', $data);
 			} else {
-				return $this->load->view('default/template/module/store.tpl', $data);
+				return $this->load->view('default/template/module/store', $data);
 			}
 		}
 	}

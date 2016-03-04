@@ -18,10 +18,10 @@ class ControllerTotalCoupon extends Controller {
 				$data['coupon'] = '';
 			}
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/total/coupon.tpl')) {
-				return $this->load->view($this->config->get('config_template') . '/template/total/coupon.tpl', $data);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/total/coupon')) {
+				return $this->load->view($this->config->get('config_template') . '/template/total/coupon', $data);
 			} else {
-				return $this->load->view('default/template/total/coupon.tpl', $data);
+				return $this->load->view('default/template/total/coupon', $data);
 			}
 		}
 	}

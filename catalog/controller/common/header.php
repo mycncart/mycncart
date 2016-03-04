@@ -165,10 +165,10 @@ class ControllerCommonHeader extends Controller {
 			$data['class'] = 'common-home';
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/common/header.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header')) {
+			return $this->load->view($this->config->get('config_template') . '/template/common/header', $data);
 		} else {
-			return $this->load->view('default/template/common/header.tpl', $data);
+			return $this->load->view('default/template/common/header', $data);
 		}
 	}
 }

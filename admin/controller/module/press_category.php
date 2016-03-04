@@ -65,7 +65,7 @@ class ControllerModulePressCategory extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('module/press_category.tpl', $data));
+		$this->response->setOutput($this->load->view('module/press_category', $data));
 	}
 
 	protected function validate() {

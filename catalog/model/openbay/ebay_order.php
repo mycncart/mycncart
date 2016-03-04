@@ -426,10 +426,10 @@ class ModelOpenbayEbayOrder extends Model{
 					);
 				}
 
-				if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/mail/order.tpl')) {
-					$html = $this->load->view($this->config->get('config_template') . '/template/mail/order.tpl', $data);
+				if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/mail/order')) {
+					$html = $this->load->view($this->config->get('config_template') . '/template/mail/order', $data);
 				} else {
-					$html = $this->load->view('default/template/mail/order.tpl', $data);
+					$html = $this->load->view('default/template/mail/order', $data);
 				}
 
 				// Text Mail

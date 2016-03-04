@@ -637,7 +637,7 @@ class ControllerYouzanProduct extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('youzan/product_list.tpl', $data));
+		$this->response->setOutput($this->load->view('youzan/product_list', $data));
 	}
 	
 	
@@ -978,7 +978,7 @@ class ControllerYouzanProduct extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('youzan/product_form.tpl', $data));
+		$this->response->setOutput($this->load->view('youzan/product_form', $data));
 	}
 	
 	
@@ -1227,7 +1227,7 @@ class ControllerYouzanProduct extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('youzan/product_form.tpl', $data));
+		$this->response->setOutput($this->load->view('youzan/product_form', $data));
 	}
 
 	protected function validateForm() {

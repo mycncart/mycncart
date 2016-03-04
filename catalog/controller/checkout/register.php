@@ -96,10 +96,10 @@ class ControllerCheckoutRegister extends Controller {
 
 		$data['shipping_required'] = $this->cart->hasShipping();
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/register.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/register.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/register')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/register', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/checkout/register.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/checkout/register', $data));
 		}
 	}
 

@@ -99,10 +99,10 @@ class ControllerAccountRecurring extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/recurring_list.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/recurring_list.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/recurring_list')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/recurring_list', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/account/recurring_list.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/account/recurring_list', $data));
 		}
 	}
 
@@ -226,10 +226,10 @@ class ControllerAccountRecurring extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/recurring_info.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/recurring_info.tpl', $data));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/recurring_info')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/recurring_info', $data));
 			} else {
-				$this->response->setOutput($this->load->view('default/template/account/recurring_info.tpl', $data));
+				$this->response->setOutput($this->load->view('default/template/account/recurring_info', $data));
 			}
 		} else {
 			$this->response->redirect($this->url->link('account/recurring', '', true));

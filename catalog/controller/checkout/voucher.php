@@ -24,10 +24,10 @@ class ControllerCheckoutVoucher extends Controller {
 				$data['redirect'] = $this->url->link('checkout/cart');
 			}
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/voucher.tpl')) {
-				return $this->load->view($this->config->get('config_template') . '/template/checkout/voucher.tpl', $data);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/voucher')) {
+				return $this->load->view($this->config->get('config_template') . '/template/checkout/voucher', $data);
 			} else {
-				return $this->load->view('default/template/checkout/voucher.tpl', $data);
+				return $this->load->view('default/template/checkout/voucher', $data);
 			}
 		}
 	}

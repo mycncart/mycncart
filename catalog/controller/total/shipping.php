@@ -48,10 +48,10 @@ class ControllerTotalShipping extends Controller {
 				$data['shipping_method'] = '';
 			}
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/total/shipping.tpl')) {
-				return $this->load->view($this->config->get('config_template') . '/template/total/shipping.tpl', $data);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/total/shipping')) {
+				return $this->load->view($this->config->get('config_template') . '/template/total/shipping', $data);
 			} else {
-				return $this->load->view('default/template/total/shipping.tpl', $data);
+				return $this->load->view('default/template/total/shipping', $data);
 			}
 		}
 	}

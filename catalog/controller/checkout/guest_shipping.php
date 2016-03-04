@@ -87,10 +87,10 @@ class ControllerCheckoutGuestShipping extends Controller {
 			$data['address_custom_field'] = array();
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/guest_shipping.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/guest_shipping.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/guest_shipping')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/guest_shipping', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/checkout/guest_shipping.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/checkout/guest_shipping', $data));
 		}
 	}
 

@@ -340,7 +340,7 @@ class ControllerCmsBlog extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('cms/blog_list.tpl', $data));
+		$this->response->setOutput($this->load->view('cms/blog_list', $data));
 	}
 
 	protected function getForm() {
@@ -660,7 +660,7 @@ class ControllerCmsBlog extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('cms/blog_form.tpl', $data));
+		$this->response->setOutput($this->load->view('cms/blog_form', $data));
 	}
 
 	protected function validateForm() {

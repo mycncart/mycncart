@@ -106,10 +106,10 @@ class ModelCheckoutVoucher extends Model {
 				$data['store_url'] = $order_info['store_url'];
 				$data['message'] = nl2br($voucher['message']);
 
-				if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/mail/voucher.tpl')) {
-					$html = $this->load->view($this->config->get('config_template') . '/template/mail/voucher.tpl', $data);
+				if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/mail/voucher')) {
+					$html = $this->load->view($this->config->get('config_template') . '/template/mail/voucher', $data);
 				} else {
-					$html = $this->load->view('default/template/mail/voucher.tpl', $data);
+					$html = $this->load->view('default/template/mail/voucher', $data);
 				}
 
 				$mail = new Mail();

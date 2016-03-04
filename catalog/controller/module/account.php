@@ -40,10 +40,10 @@ class ControllerModuleAccount extends Controller {
 		$data['newsletter'] = $this->url->link('account/newsletter', '', true);
 		$data['recurring'] = $this->url->link('account/recurring', '', true);
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/account.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/module/account.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/account')) {
+			return $this->load->view($this->config->get('config_template') . '/template/module/account', $data);
 		} else {
-			return $this->load->view('default/template/module/account.tpl', $data);
+			return $this->load->view('default/template/module/account', $data);
 		}
 	}
 }

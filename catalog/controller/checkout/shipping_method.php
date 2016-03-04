@@ -69,10 +69,10 @@ class ControllerCheckoutShippingMethod extends Controller {
 			$data['comment'] = '';
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/shipping_method.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/shipping_method.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/shipping_method')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/shipping_method', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/checkout/shipping_method.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/checkout/shipping_method', $data));
 		}
 	}
 

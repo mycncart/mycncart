@@ -168,10 +168,10 @@ class ControllerAccountVoucher extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/voucher.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/voucher.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/voucher')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/voucher', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/account/voucher.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/account/voucher', $data));
 		}
 	}
 
@@ -207,10 +207,10 @@ class ControllerAccountVoucher extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/success.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/success', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/common/success.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/common/success', $data));
 		}
 	}
 

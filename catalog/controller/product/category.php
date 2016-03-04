@@ -374,10 +374,10 @@ class ControllerProductCategory extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/category.tpl', $data));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/category', $data));
 			} else {
-				$this->response->setOutput($this->load->view('default/template/product/category.tpl', $data));
+				$this->response->setOutput($this->load->view('default/template/product/category', $data));
 			}
 		} else {
 			$url = '';
@@ -430,10 +430,10 @@ class ControllerProductCategory extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found.tpl', $data));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found', $data));
 			} else {
-				$this->response->setOutput($this->load->view('default/template/error/not_found.tpl', $data));
+				$this->response->setOutput($this->load->view('default/template/error/not_found', $data));
 			}
 		}
 	}

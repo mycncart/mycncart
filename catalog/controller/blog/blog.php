@@ -275,10 +275,10 @@ class ControllerBlogBlog extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/blog/blog.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/blog/blog.tpl', $data));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/blog/blog')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/blog/blog', $data));
 			} else {
-				$this->response->setOutput($this->load->view('default/template/blog/blog.tpl', $data));
+				$this->response->setOutput($this->load->view('default/template/blog/blog', $data));
 			}
 		} else {
 			$url = '';
@@ -319,10 +319,10 @@ class ControllerBlogBlog extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found.tpl', $data));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found', $data));
 			} else {
-				$this->response->setOutput($this->load->view('default/template/error/not_found.tpl', $data));
+				$this->response->setOutput($this->load->view('default/template/error/not_found', $data));
 			}
 		}
 	}
@@ -364,10 +364,10 @@ class ControllerBlogBlog extends Controller {
 
 		$data['results'] = sprintf($this->language->get('text_pagination'), ($comment_total) ? (($page - 1) * 5) + 1 : 0, ((($page - 1) * 5) > ($comment_total - 5)) ? $comment_total : ((($page - 1) * 5) + 5), $comment_total, ceil($comment_total / 5));
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/blog/comment.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/blog/comment.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/blog/comment')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/blog/comment', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/blog/comment.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/blog/comment', $data));
 		}
 	}
 

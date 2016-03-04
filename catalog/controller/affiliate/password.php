@@ -95,10 +95,10 @@ class ControllerAffiliatePassword extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/password.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/affiliate/password.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/password')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/affiliate/password', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/affiliate/password.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/affiliate/password', $data));
 		}
 	}
 

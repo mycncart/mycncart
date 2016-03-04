@@ -197,7 +197,7 @@ class ControllerPaymentAlipayDirect extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('payment/alipay_direct.tpl', $data));
+		$this->response->setOutput($this->load->view('payment/alipay_direct', $data));
 		
 	}
 

@@ -71,10 +71,10 @@ class ControllerModuleLatest extends Controller {
 				);
 			}
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/latest.tpl')) {
-				return $this->load->view($this->config->get('config_template') . '/template/module/latest.tpl', $data);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/latest')) {
+				return $this->load->view($this->config->get('config_template') . '/template/module/latest', $data);
 			} else {
-				return $this->load->view('default/template/module/latest.tpl', $data);
+				return $this->load->view('default/template/module/latest', $data);
 			}
 		}
 	}

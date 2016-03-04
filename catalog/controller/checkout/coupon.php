@@ -24,10 +24,10 @@ class ControllerCheckoutCoupon extends Controller {
 				$data['redirect'] = $this->url->link('checkout/cart');
 			}
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/coupon.tpl')) {
-				return $this->load->view($this->config->get('config_template') . '/template/checkout/coupon.tpl', $data);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/coupon')) {
+				return $this->load->view($this->config->get('config_template') . '/template/checkout/coupon', $data);
 			} else {
-				return $this->load->view('default/template/checkout/coupon.tpl', $data);
+				return $this->load->view('default/template/checkout/coupon', $data);
 			}
 		}
 	}

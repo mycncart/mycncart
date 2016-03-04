@@ -11,7 +11,7 @@ class ControllerCommonFooter extends Controller {
 			$data['text_version'] = '';
 		}
 		
-		return $this->load->view('common/footer.tpl', $data);
+		return $this->load->view('common/footer', $data);
 	}
 	
 	

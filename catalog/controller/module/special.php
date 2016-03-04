@@ -71,10 +71,10 @@ class ControllerModuleSpecial extends Controller {
 				);
 			}
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/special.tpl')) {
-				return $this->load->view($this->config->get('config_template') . '/template/module/special.tpl', $data);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/special')) {
+				return $this->load->view($this->config->get('config_template') . '/template/module/special', $data);
 			} else {
-				return $this->load->view('default/template/module/special.tpl', $data);
+				return $this->load->view('default/template/module/special', $data);
 			}
 		}
 	}

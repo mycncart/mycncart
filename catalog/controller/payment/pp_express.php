@@ -11,10 +11,10 @@ class ControllerPaymentPPExpress extends Controller {
 		 */
 		unset($this->session->data['paypal']);
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_express.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/pp_express.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_express')) {
+			return $this->load->view($this->config->get('config_template') . '/template/payment/pp_express', $data);
 		} else {
-			return $this->load->view('default/template/payment/pp_express.tpl', $data);
+			return $this->load->view('default/template/payment/pp_express', $data);
 		}
 	}
 
@@ -737,10 +737,10 @@ class ControllerPaymentPPExpress extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_express_confirm.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/payment/pp_express_confirm.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_express_confirm')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/payment/pp_express_confirm', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/payment/pp_express_confirm.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/payment/pp_express_confirm', $data));
 		}
 	}
 
@@ -1567,10 +1567,10 @@ class ControllerPaymentPPExpress extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found.tpl'));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found'));
 			} else {
-				$this->response->setOutput($this->load->view('default/template/error/not_found.tpl'));
+				$this->response->setOutput($this->load->view('default/template/error/not_found'));
 			}
 		}
 	}
@@ -1993,10 +1993,10 @@ class ControllerPaymentPPExpress extends Controller {
 			'link' => $this->url->link('account/recurring', '', true)
 		);
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/buttons.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/common/buttons.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/buttons')) {
+			return $this->load->view($this->config->get('config_template') . '/template/common/buttons', $data);
 		} else {
-			return $this->load->view('default/template/common/buttons.tpl', $data);
+			return $this->load->view('default/template/common/buttons', $data);
 		}
 	}
 }

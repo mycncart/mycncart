@@ -98,10 +98,10 @@ class ControllerAccountOrder extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/order_list.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/order_list.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/order_list')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/order_list', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/account/order_list.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/account/order_list', $data));
 		}
 	}
 
@@ -373,10 +373,10 @@ class ControllerAccountOrder extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/order_info.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/order_info.tpl', $data));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/order_info')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/order_info', $data));
 			} else {
-				$this->response->setOutput($this->load->view('default/template/account/order_info.tpl', $data));
+				$this->response->setOutput($this->load->view('default/template/account/order_info', $data));
 			}
 		} else {
 			$this->document->setTitle($this->language->get('text_order'));
@@ -418,10 +418,10 @@ class ControllerAccountOrder extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found.tpl', $data));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found', $data));
 			} else {
-				$this->response->setOutput($this->load->view('default/template/error/not_found.tpl', $data));
+				$this->response->setOutput($this->load->view('default/template/error/not_found', $data));
 			}
 		}
 	}

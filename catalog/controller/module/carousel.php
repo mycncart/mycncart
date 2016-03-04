@@ -25,10 +25,10 @@ class ControllerModuleCarousel extends Controller {
 
 		$data['module'] = $module++;
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/carousel.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/module/carousel.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/carousel')) {
+			return $this->load->view($this->config->get('config_template') . '/template/module/carousel', $data);
 		} else {
-			return $this->load->view('default/template/module/carousel.tpl', $data);
+			return $this->load->view('default/template/module/carousel', $data);
 		}
 	}
 }

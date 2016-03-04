@@ -105,10 +105,10 @@ class ControllerAffiliateForgotten extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/forgotten.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/affiliate/forgotten.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/forgotten')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/affiliate/forgotten', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/affiliate/forgotten.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/affiliate/forgotten', $data));
 		}
 	}
 

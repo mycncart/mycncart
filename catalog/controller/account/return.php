@@ -93,10 +93,10 @@ class ControllerAccountReturn extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_list.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/return_list.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_list')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/return_list', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/account/return_list.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/account/return_list', $data));
 		}
 	}
 
@@ -213,10 +213,10 @@ class ControllerAccountReturn extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_info.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/return_info.tpl', $data));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_info')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/return_info', $data));
 			} else {
-				$this->response->setOutput($this->load->view('default/template/account/return_info.tpl', $data));
+				$this->response->setOutput($this->load->view('default/template/account/return_info', $data));
 			}
 		} else {
 			$this->document->setTitle($this->language->get('text_return'));
@@ -264,10 +264,10 @@ class ControllerAccountReturn extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found.tpl', $data));
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found')) {
+				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found', $data));
 			} else {
-				$this->response->setOutput($this->load->view('default/template/error/not_found.tpl', $data));
+				$this->response->setOutput($this->load->view('default/template/error/not_found', $data));
 			}
 		}
 	}
@@ -533,10 +533,10 @@ class ControllerAccountReturn extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_form.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/return_form.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_form')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/return_form', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/account/return_form.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/account/return_form', $data));
 		}
 	}
 
@@ -623,10 +623,10 @@ class ControllerAccountReturn extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success.tpl')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/success.tpl', $data));
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/success', $data));
 		} else {
-			$this->response->setOutput($this->load->view('default/template/common/success.tpl', $data));
+			$this->response->setOutput($this->load->view('default/template/common/success', $data));
 		}
 	}
 }

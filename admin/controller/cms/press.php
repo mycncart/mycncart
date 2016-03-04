@@ -340,7 +340,7 @@ class ControllerCmsPress extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('cms/press_list.tpl', $data));
+		$this->response->setOutput($this->load->view('cms/press_list', $data));
 	}
 
 	protected function getForm() {
@@ -586,7 +586,7 @@ class ControllerCmsPress extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('cms/press_form.tpl', $data));
+		$this->response->setOutput($this->load->view('cms/press_form', $data));
 	}
 
 	protected function validateForm() {

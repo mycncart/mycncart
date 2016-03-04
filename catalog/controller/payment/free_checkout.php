@@ -7,10 +7,10 @@ class ControllerPaymentFreeCheckout extends Controller {
 
 		$data['continue'] = $this->url->link('checkout/success');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/free_checkout.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/free_checkout.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/free_checkout')) {
+			return $this->load->view($this->config->get('config_template') . '/template/payment/free_checkout', $data);
 		} else {
-			return $this->load->view('default/template/payment/free_checkout.tpl', $data);
+			return $this->load->view('default/template/payment/free_checkout', $data);
 		}
 	}
 

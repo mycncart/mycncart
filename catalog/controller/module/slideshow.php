@@ -25,10 +25,10 @@ class ControllerModuleSlideshow extends Controller {
 
 		$data['module'] = $module++;
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/slideshow.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/module/slideshow.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/slideshow')) {
+			return $this->load->view($this->config->get('config_template') . '/template/module/slideshow', $data);
 		} else {
-			return $this->load->view('default/template/module/slideshow.tpl', $data);
+			return $this->load->view('default/template/module/slideshow', $data);
 		}
 	}
 }

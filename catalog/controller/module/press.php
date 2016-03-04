@@ -25,10 +25,10 @@ class ControllerModuleNews extends Controller {
 			);
 		}
 	 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/news.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/module/news.tpl', $data);
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/news')) {
+			return $this->load->view($this->config->get('config_template') . '/template/module/news', $data);
 		} else {
-			return $this->load->view('default/template/module/news.tpl', $data);
+			return $this->load->view('default/template/module/news', $data);
 		}
 	}
 }

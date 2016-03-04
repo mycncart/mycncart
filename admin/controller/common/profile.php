@@ -25,6 +25,6 @@ class ControllerCommonProfile extends Controller {
 			$data['image'] = '';
 		}
 
-		return $this->load->view('common/profile.tpl', $data);
+		return $this->load->view('common/profile', $data);
 	}
 }
