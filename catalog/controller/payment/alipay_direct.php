@@ -71,7 +71,7 @@ class ControllerPaymentAlipayDirect extends Controller {
 		
         $body =  $this->language->get('text_owner') . ' ' . $fullname;
 
-        $show_url = $this->url->link('common/home', '', 'SSL');
+        $show_url = $this->url->link('common/home', '', true);
 
         $anti_phishing_key = "";
 

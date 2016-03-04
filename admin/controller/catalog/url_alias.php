@@ -46,7 +46,7 @@ class ControllerCatalogUrlAlias extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -86,7 +86,7 @@ class ControllerCatalogUrlAlias extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -128,7 +128,7 @@ class ControllerCatalogUrlAlias extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getList();
@@ -192,16 +192,16 @@ class ControllerCatalogUrlAlias extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, true)
 		);
 
-		$data['add'] = $this->url->link('catalog/url_alias/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['delete'] = $this->url->link('catalog/url_alias/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['add'] = $this->url->link('catalog/url_alias/add', 'token=' . $this->session->data['token'] . $url, true);
+		$data['delete'] = $this->url->link('catalog/url_alias/delete', 'token=' . $this->session->data['token'] . $url, true);
 
 		$data['url_aliases'] = array();
 
@@ -223,7 +223,7 @@ class ControllerCatalogUrlAlias extends Controller {
 				'url_alias_id' => $result['url_alias_id'],
 				'keyword'      => $result['keyword'],
 				'query'        => $result['query'],
-				'edit'               => $this->url->link('catalog/url_alias/edit', 'token=' . $this->session->data['token'] . '&url_alias_id=' . $result['url_alias_id'] . $url, 'SSL')
+				'edit'               => $this->url->link('catalog/url_alias/edit', 'token=' . $this->session->data['token'] . '&url_alias_id=' . $result['url_alias_id'] . $url, true)
 			);
 		}
 
@@ -288,8 +288,8 @@ class ControllerCatalogUrlAlias extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_keyword'] = $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . '&sort=keyword' . $url, 'SSL');
-		$data['sort_query'] = $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . '&sort=query' . $url, 'SSL');
+		$data['sort_keyword'] = $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . '&sort=keyword' . $url, true);
+		$data['sort_query'] = $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . '&sort=query' . $url, true);
 
 		$url = '';
 		
@@ -314,7 +314,7 @@ class ControllerCatalogUrlAlias extends Controller {
 		$pagination->total = $url_alias_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
@@ -388,21 +388,21 @@ class ControllerCatalogUrlAlias extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, true)
 		);
 
 		if (!isset($this->request->get['url_alias_id'])) {
-			$data['action'] = $this->url->link('catalog/url_alias/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
+			$data['action'] = $this->url->link('catalog/url_alias/add', 'token=' . $this->session->data['token'] . $url, true);
 		} else {
-			$data['action'] = $this->url->link('catalog/url_alias/edit', 'token=' . $this->session->data['token'] . '&url_alias_id=' . $this->request->get['url_alias_id'] . $url, 'SSL');
+			$data['action'] = $this->url->link('catalog/url_alias/edit', 'token=' . $this->session->data['token'] . '&url_alias_id=' . $this->request->get['url_alias_id'] . $url, true);
 		}
 
-		$data['cancel'] = $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['cancel'] = $this->url->link('catalog/url_alias', 'token=' . $this->session->data['token'] . $url, true);
 
 		if (isset($this->request->get['url_alias_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$url_alias_info = $this->model_catalog_url_alias->getUrlAliasByID($this->request->get['url_alias_id']);

@@ -151,7 +151,7 @@ class ControllerBlogAll extends Controller {
 				'sort_order'   		=> $result['sort_order'],
 				'date_added'   		=> $result['date_added'],
 				'date_modified' 	=> $result['date_modified'],
-				'link'				=> $this->url->link('blog/blog', 'blog_id='.$result['blog_id'], 'SSL'),
+				'link'				=> $this->url->link('blog/blog', 'blog_id='.$result['blog_id'], true),
 			
 				
 			);

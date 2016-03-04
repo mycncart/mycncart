@@ -15,7 +15,7 @@ class ControllerToolExcelExportImport extends Controller {
 				if ($this->model_tool_excelexportimport->upload($file)===TRUE) {
 					
 					$this->session->data['success'] = $this->language->get('text_success');
-					$this->response->redirect($this->url->link('tool/excelexportimport', 'token=' . $this->session->data['token'], 'SSL'));
+					$this->response->redirect($this->url->link('tool/excelexportimport', 'token=' . $this->session->data['token'], true));
 				} else {
 					$this->error['warning'] = $this->language->get('error_upload');
 				}
@@ -98,18 +98,18 @@ class ControllerToolExcelExportImport extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], true),
 			'separator' => FALSE
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('tool/excelexportimport', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'      => $this->url->link('tool/excelexportimport', 'token=' . $this->session->data['token'], true),
 			'separator' => ' :: '
 		);
 		
-		$data['action'] = $this->url->link('tool/excelexportimport', 'token=' . $this->session->data['token'], 'SSL');
-		$data['export'] = $this->url->link('tool/excelexportimport/download', 'token=' . $this->session->data['token'], 'SSL');
+		$data['action'] = $this->url->link('tool/excelexportimport', 'token=' . $this->session->data['token'], true);
+		$data['export'] = $this->url->link('tool/excelexportimport/download', 'token=' . $this->session->data['token'], true);
 		$data['post_max_size'] = $this->return_bytes( ini_get('post_max_size') );
 		$data['upload_max_filesize'] = $this->return_bytes( ini_get('upload_max_filesize') );
 
@@ -172,7 +172,7 @@ class ControllerToolExcelExportImport extends Controller {
 				default:
 					break;
 			}
-			$this->response->redirect($this->url->link('tool/excelexportimport', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->response->redirect($this->url->link('tool/excelexportimport', 'token=' . $this->session->data['token'], true));
 
 		} else {
 

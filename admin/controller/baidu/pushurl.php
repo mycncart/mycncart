@@ -46,7 +46,7 @@ class ControllerBaiDuPushUrl extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -86,7 +86,7 @@ class ControllerBaiDuPushUrl extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -128,7 +128,7 @@ class ControllerBaiDuPushUrl extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getList();
@@ -210,7 +210,7 @@ class ControllerBaiDuPushUrl extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getList();
@@ -259,7 +259,7 @@ class ControllerBaiDuPushUrl extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true));
 		 
 	}
 	
@@ -307,7 +307,7 @@ class ControllerBaiDuPushUrl extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true));
 	}
 	
 	public function updateinformationurl() {
@@ -353,7 +353,7 @@ class ControllerBaiDuPushUrl extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true));
 		
 	}
 	
@@ -398,7 +398,7 @@ class ControllerBaiDuPushUrl extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true));
 		
 	}
 
@@ -459,21 +459,21 @@ class ControllerBaiDuPushUrl extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true)
 		);
 
-		$data['add'] = $this->url->link('baidu/pushurl/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['delete'] = $this->url->link('baidu/pushurl/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['category'] = $this->url->link('baidu/pushurl/updatecategoryurl', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['product'] = $this->url->link('baidu/pushurl/updateproducturl', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['information'] = $this->url->link('baidu/pushurl/updateinformationurl', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['manufacturer'] = $this->url->link('baidu/pushurl/updatemanufacturerurl', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['push'] = $this->url->link('baidu/pushurl/push', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['add'] = $this->url->link('baidu/pushurl/add', 'token=' . $this->session->data['token'] . $url, true);
+		$data['delete'] = $this->url->link('baidu/pushurl/delete', 'token=' . $this->session->data['token'] . $url, true);
+		$data['category'] = $this->url->link('baidu/pushurl/updatecategoryurl', 'token=' . $this->session->data['token'] . $url, true);
+		$data['product'] = $this->url->link('baidu/pushurl/updateproducturl', 'token=' . $this->session->data['token'] . $url, true);
+		$data['information'] = $this->url->link('baidu/pushurl/updateinformationurl', 'token=' . $this->session->data['token'] . $url, true);
+		$data['manufacturer'] = $this->url->link('baidu/pushurl/updatemanufacturerurl', 'token=' . $this->session->data['token'] . $url, true);
+		$data['push'] = $this->url->link('baidu/pushurl/push', 'token=' . $this->session->data['token'] . $url, true);
 
 		$data['pushurls'] = array();
 
@@ -496,7 +496,7 @@ class ControllerBaiDuPushUrl extends Controller {
 				'url'       => $result['url'],
 				'push_date'   => $result['push_date'],
 				'pushed'     => ($result['pushed']) ? $this->language->get('text_yes') : $this->language->get('text_no'),
-				'edit'       => $this->url->link('baidu/pushurl/edit', 'token=' . $this->session->data['token'] . '&pushurl_id=' . $result['pushurl_id'] . $url, 'SSL')
+				'edit'       => $this->url->link('baidu/pushurl/edit', 'token=' . $this->session->data['token'] . '&pushurl_id=' . $result['pushurl_id'] . $url, true)
 			);
 		}
 
@@ -572,7 +572,7 @@ class ControllerBaiDuPushUrl extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_url'] = $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . '&sort=url' . $url, 'SSL');
+		$data['sort_url'] = $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . '&sort=url' . $url, true);
 
 		$url = '';
 		
@@ -596,7 +596,7 @@ class ControllerBaiDuPushUrl extends Controller {
 		$pagination->total = $pushurl_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
@@ -663,21 +663,21 @@ class ControllerBaiDuPushUrl extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true)
 		);
 
 		if (!isset($this->request->get['pushurl_id'])) {
-			$data['action'] = $this->url->link('baidu/pushurl/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
+			$data['action'] = $this->url->link('baidu/pushurl/add', 'token=' . $this->session->data['token'] . $url, true);
 		} else {
-			$data['action'] = $this->url->link('baidu/pushurl/edit', 'token=' . $this->session->data['token'] . '&pushurl_id=' . $this->request->get['pushurl_id'] . $url, 'SSL');
+			$data['action'] = $this->url->link('baidu/pushurl/edit', 'token=' . $this->session->data['token'] . '&pushurl_id=' . $this->request->get['pushurl_id'] . $url, true);
 		}
 
-		$data['cancel'] = $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['cancel'] = $this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true);
 
 		if (isset($this->request->get['pushurl_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$pushurl_info = $this->model_baidu_pushurl->getPushUrl($this->request->get['pushurl_id']);

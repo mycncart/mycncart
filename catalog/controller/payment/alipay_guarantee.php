@@ -76,7 +76,7 @@ class ControllerPaymentAlipayGuarantee extends Controller {
 
         $body =  $this->language->get('text_owner') . ' ' . $fullname;
 
-        $show_url = $this->url->link('common/home', '', 'SSL');
+        $show_url = $this->url->link('common/home', '', true);
 
 
         $receive_name = $order_info['payment_fullname'];

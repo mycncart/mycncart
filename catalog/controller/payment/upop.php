@@ -119,7 +119,7 @@ class ControllerPaymentupop extends Controller {
 		
 		
 		$data['html'] =  $html; 
-		$data['cancel_return'] = $this->url->link('checkout/checkout', '', 'SSL');
+		$data['cancel_return'] = $this->url->link('checkout/checkout', '', true);
 	
 
 

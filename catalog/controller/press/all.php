@@ -91,7 +91,7 @@ class ControllerPressAll extends Controller {
 				'status'  	   		=> $result['status'],
 				'sort_order'   		=> $result['sort_order'],
 				'date_added'   		=> $result['date_added'],
-				'link'				=> $this->url->link('press/press', 'press_id='.$result['press_id'], 'SSL'),
+				'link'				=> $this->url->link('press/press', 'press_id='.$result['press_id'], true),
 			
 				
 			);

@@ -115,7 +115,7 @@ class ControllerFaqCategory extends Controller {
 					'status'  	   		=> $result['status'],
 					'sort_order'   		=> $result['sort_order'],
 					'date_added'   		=> $result['date_added'],
-					'link'				=> $this->url->link('faq/faq', 'faq_id='.$result['faq_id'], 'SSL'),
+					'link'				=> $this->url->link('faq/faq', 'faq_id='.$result['faq_id'], true),
 					
 				);
 			}
@@ -169,15 +169,15 @@ class ControllerFaqCategory extends Controller {
 
 			// http://googlewebmastercentral.faqspot.com/2011/09/pagination-with-relnext-and-relprev.html
 			if ($page == 1) {
-			    $this->document->addLink($this->url->link('faq/category', 'line=' . $faq_category_info['faq_category_id'], 'SSL'), 'canonical');
+			    $this->document->addLink($this->url->link('faq/category', 'line=' . $faq_category_info['faq_category_id'], true), 'canonical');
 			} elseif ($page == 2) {
-			    $this->document->addLink($this->url->link('faq/category', 'line=' . $faq_category_info['faq_category_id'], 'SSL'), 'prev');
+			    $this->document->addLink($this->url->link('faq/category', 'line=' . $faq_category_info['faq_category_id'], true), 'prev');
 			} else {
-			    $this->document->addLink($this->url->link('faq/category', 'line=' . $faq_category_info['faq_category_id'] . '&page='. ($page - 1), 'SSL'), 'prev');
+			    $this->document->addLink($this->url->link('faq/category', 'line=' . $faq_category_info['faq_category_id'] . '&page='. ($page - 1), true), 'prev');
 			}
 
 			if ($limit && ceil($faq_total / $limit) > $page) {
-			    $this->document->addLink($this->url->link('faq/category', 'line=' . $faq_category_info['faq_category_id'] . '&page='. ($page + 1), 'SSL'), 'next');
+			    $this->document->addLink($this->url->link('faq/category', 'line=' . $faq_category_info['faq_category_id'] . '&page='. ($page + 1), true), 'next');
 			}
 
 			$data['limit'] = $limit;

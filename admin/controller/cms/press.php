@@ -47,7 +47,7 @@ class ControllerCmsPress extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -89,7 +89,7 @@ class ControllerCmsPress extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -132,7 +132,7 @@ class ControllerCmsPress extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getList();
@@ -197,17 +197,17 @@ class ControllerCmsPress extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true)
 		);
 
-		$data['add'] = $this->url->link('cms/press/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['copy'] = $this->url->link('cms/press/copy', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['delete'] = $this->url->link('cms/press/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['add'] = $this->url->link('cms/press/add', 'token=' . $this->session->data['token'] . $url, true);
+		$data['copy'] = $this->url->link('cms/press/copy', 'token=' . $this->session->data['token'] . $url, true);
+		$data['delete'] = $this->url->link('cms/press/delete', 'token=' . $this->session->data['token'] . $url, true);
 
 		$data['presses'] = array();
 
@@ -232,7 +232,7 @@ class ControllerCmsPress extends Controller {
 				'press_id' => $result['press_id'],
 				'title'       => $result['title'],
 				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-				'edit'       => $this->url->link('cms/press/edit', 'token=' . $this->session->data['token'] . '&press_id=' . $result['press_id'] . $url, 'SSL')
+				'edit'       => $this->url->link('cms/press/edit', 'token=' . $this->session->data['token'] . '&press_id=' . $result['press_id'] . $url, true)
 			);
 		}
 
@@ -298,9 +298,9 @@ class ControllerCmsPress extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_title'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . '&sort=pd.title' . $url, 'SSL');
-		$data['sort_status'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . '&sort=p.status' . $url, 'SSL');
-		$data['sort_order'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . '&sort=p.sort_order' . $url, 'SSL');
+		$data['sort_title'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . '&sort=pd.title' . $url, true);
+		$data['sort_status'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . '&sort=p.status' . $url, true);
+		$data['sort_order'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . '&sort=p.sort_order' . $url, true);
 
 		$url = '';
 
@@ -324,7 +324,7 @@ class ControllerCmsPress extends Controller {
 		$pagination->total = $press_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
@@ -440,21 +440,21 @@ class ControllerCmsPress extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true)
 		);
 
 		if (!isset($this->request->get['press_id'])) {
-			$data['action'] = $this->url->link('cms/press/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
+			$data['action'] = $this->url->link('cms/press/add', 'token=' . $this->session->data['token'] . $url, true);
 		} else {
-			$data['action'] = $this->url->link('cms/press/edit', 'token=' . $this->session->data['token'] . '&press_id=' . $this->request->get['press_id'] . $url, 'SSL');
+			$data['action'] = $this->url->link('cms/press/edit', 'token=' . $this->session->data['token'] . '&press_id=' . $this->request->get['press_id'] . $url, true);
 		}
 
-		$data['cancel'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['cancel'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true);
 
 		if (isset($this->request->get['press_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$press_info = $this->model_cms_press->getPress($this->request->get['press_id']);

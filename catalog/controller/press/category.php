@@ -117,7 +117,7 @@ class ControllerPressCategory extends Controller {
 					'status'  	   		=> $result['status'],
 					'sort_order'   		=> $result['sort_order'],
 					'date_added'   		=> $result['date_added'],
-					'link'				=> $this->url->link('press/press', 'press_id='.$result['press_id'], 'SSL'),
+					'link'				=> $this->url->link('press/press', 'press_id='.$result['press_id'], true),
 					
 				);
 			}
@@ -171,15 +171,15 @@ class ControllerPressCategory extends Controller {
 
 			// http://googlewebmastercentral.pressespot.com/2011/09/pagination-with-relnext-and-relprev.html
 			if ($page == 1) {
-			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'], 'SSL'), 'canonical');
+			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'], true), 'canonical');
 			} elseif ($page == 2) {
-			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'], 'SSL'), 'prev');
+			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'], true), 'prev');
 			} else {
-			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'] . '&page='. ($page - 1), 'SSL'), 'prev');
+			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'] . '&page='. ($page - 1), true), 'prev');
 			}
 
 			if ($limit && ceil($press_total / $limit) > $page) {
-			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'] . '&page='. ($page + 1), 'SSL'), 'next');
+			    $this->document->addLink($this->url->link('press/category', 'road=' . $press_category_info['press_category_id'] . '&page='. ($page + 1), true), 'next');
 			}
 
 			$data['limit'] = $limit;

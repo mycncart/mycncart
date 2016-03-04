@@ -34,7 +34,7 @@ class ControllerCheckoutWxPayOpenId extends Controller {
 		//echo "微信支付测试中......";
 		//exit;
 		
-		$url = $this->url->link('checkout/checkout', '', 'SSL');
+		$url = $this->url->link('checkout/checkout', '', true);
 		
 		header("Location: $url");
 		//exit();

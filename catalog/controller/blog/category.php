@@ -182,7 +182,7 @@ class ControllerBlogCategory extends Controller {
 					'sort_order'   		=> $result['sort_order'],
 					'date_added'   		=> $result['date_added'],
 					'date_modified' 	=> $result['date_modified'],
-					'link'				=> $this->url->link('blog/blog', 'blog_id='.$result['blog_id'], 'SSL'),
+					'link'				=> $this->url->link('blog/blog', 'blog_id='.$result['blog_id'], true),
 					
 				);
 			}
@@ -236,15 +236,15 @@ class ControllerBlogCategory extends Controller {
 
 			// http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
 			if ($page == 1) {
-			    $this->document->addLink($this->url->link('blog/category', 'way=' . $blog_category_info['blog_category_id'], 'SSL'), 'canonical');
+			    $this->document->addLink($this->url->link('blog/category', 'way=' . $blog_category_info['blog_category_id'], true), 'canonical');
 			} elseif ($page == 2) {
-			    $this->document->addLink($this->url->link('blog/category', 'way=' . $blog_category_info['blog_category_id'], 'SSL'), 'prev');
+			    $this->document->addLink($this->url->link('blog/category', 'way=' . $blog_category_info['blog_category_id'], true), 'prev');
 			} else {
-			    $this->document->addLink($this->url->link('blog/category', 'way=' . $blog_category_info['blog_category_id'] . '&page='. ($page - 1), 'SSL'), 'prev');
+			    $this->document->addLink($this->url->link('blog/category', 'way=' . $blog_category_info['blog_category_id'] . '&page='. ($page - 1), true), 'prev');
 			}
 
 			if ($limit && ceil($blog_total / $limit) > $page) {
-			    $this->document->addLink($this->url->link('blog/category', 'way=' . $blog_category_info['blog_category_id'] . '&page='. ($page + 1), 'SSL'), 'next');
+			    $this->document->addLink($this->url->link('blog/category', 'way=' . $blog_category_info['blog_category_id'] . '&page='. ($page + 1), true), 'next');
 			}
 
 			$data['limit'] = $limit;

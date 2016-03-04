@@ -38,7 +38,7 @@ class ControllerCmsFaqCategory extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -70,7 +70,7 @@ class ControllerCmsFaqCategory extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -104,7 +104,7 @@ class ControllerCmsFaqCategory extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getList();
@@ -122,7 +122,7 @@ class ControllerCmsFaqCategory extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->response->redirect($this->url->link('cms/faq_category', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->response->redirect($this->url->link('cms/faq_category', 'token=' . $this->session->data['token'], true));
 		}
 
 		$this->getList();
@@ -165,17 +165,17 @@ class ControllerCmsFaqCategory extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, true)
 		);
 		
-		$data['add'] = $this->url->link('cms/faq_category/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['delete'] = $this->url->link('cms/faq_category/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['repair'] = $this->url->link('cms/faq_category/repair', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['add'] = $this->url->link('cms/faq_category/add', 'token=' . $this->session->data['token'] . $url, true);
+		$data['delete'] = $this->url->link('cms/faq_category/delete', 'token=' . $this->session->data['token'] . $url, true);
+		$data['repair'] = $this->url->link('cms/faq_category/repair', 'token=' . $this->session->data['token'] . $url, true);
 
 		$data['categories'] = array();
 
@@ -195,8 +195,8 @@ class ControllerCmsFaqCategory extends Controller {
 				'faq_category_id' => $result['faq_category_id'],
 				'name'        => $result['name'],
 				'sort_order'  => $result['sort_order'],
-				'edit'        => $this->url->link('cms/faq_category/edit', 'token=' . $this->session->data['token'] . '&faq_category_id=' . $result['faq_category_id'] . $url, 'SSL'),
-				'delete'      => $this->url->link('cms/faq_category/delete', 'token=' . $this->session->data['token'] . '&faq_category_id=' . $result['faq_category_id'] . $url, 'SSL')
+				'edit'        => $this->url->link('cms/faq_category/edit', 'token=' . $this->session->data['token'] . '&faq_category_id=' . $result['faq_category_id'] . $url, true),
+				'delete'      => $this->url->link('cms/faq_category/delete', 'token=' . $this->session->data['token'] . '&faq_category_id=' . $result['faq_category_id'] . $url, true)
 			);
 		}
 
@@ -247,8 +247,8 @@ class ControllerCmsFaqCategory extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_name'] = $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
-		$data['sort_sort_order'] = $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . '&sort=sort_order' . $url, 'SSL');
+		$data['sort_name'] = $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . '&sort=name' . $url, true);
+		$data['sort_sort_order'] = $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . '&sort=sort_order' . $url, true);
 
 		$url = '';
 
@@ -264,7 +264,7 @@ class ControllerCmsFaqCategory extends Controller {
 		$pagination->total = $faq_category_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
@@ -352,21 +352,21 @@ class ControllerCmsFaqCategory extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, true)
 		);
 		
 		if (!isset($this->request->get['faq_category_id'])) {
-			$data['action'] = $this->url->link('cms/faq_category/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
+			$data['action'] = $this->url->link('cms/faq_category/add', 'token=' . $this->session->data['token'] . $url, true);
 		} else {
-			$data['action'] = $this->url->link('cms/faq_category/edit', 'token=' . $this->session->data['token'] . '&faq_category_id=' . $this->request->get['faq_category_id'] . $url, 'SSL');
+			$data['action'] = $this->url->link('cms/faq_category/edit', 'token=' . $this->session->data['token'] . '&faq_category_id=' . $this->request->get['faq_category_id'] . $url, true);
 		}
 
-		$data['cancel'] = $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['cancel'] = $this->url->link('cms/faq_category', 'token=' . $this->session->data['token'] . $url, true);
 
 		if (isset($this->request->get['faq_category_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$faq_category_info = $this->model_cms_faq_category->getFaqCategory($this->request->get['faq_category_id']);

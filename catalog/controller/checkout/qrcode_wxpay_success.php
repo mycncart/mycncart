@@ -54,7 +54,7 @@ class ControllerCheckoutQrcodeWxPaySuccess extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_checkout'),
-			'href' => $this->url->link('checkout/checkout', '', 'SSL')
+			'href' => $this->url->link('checkout/checkout', '', true)
 		);
 
 		$data['breadcrumbs'][] = array(
@@ -67,7 +67,7 @@ class ControllerCheckoutQrcodeWxPaySuccess extends Controller {
 
 		$data['code_url'] = $this->session->data['code_url'];
 
-		$data['address'] = $this->url->link('account/address', '', 'SSL');
+		$data['address'] = $this->url->link('account/address', '', true);
 
 
 		$data['button_continue'] = $this->language->get('button_continue');

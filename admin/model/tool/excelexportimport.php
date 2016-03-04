@@ -3846,7 +3846,7 @@ class ModelToolExcelExportImport extends Model {
 		} else {
 			$session->data['export_error'] = array( 'errstr'=>$errstr, 'errno'=>$errno, 'errfile'=>$errfile, 'errline'=>$errline );
 			$token = $request->get['token'];
-			$link = $url->link( 'tool/excelexportimport', 'token='.$token, 'SSL' );
+			$link = $url->link( 'tool/excelexportimport', 'token='.$token, true );
 			header('Status: ' . 302);
 			header('Location: ' . str_replace(array('&amp;', "\n", "\r"), array('&', '', ''), $link));
 			exit();

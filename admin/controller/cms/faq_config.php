@@ -14,7 +14,7 @@ class ControllerCmsFaqConfig extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->response->redirect($this->url->link('cms/faq_config', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->response->redirect($this->url->link('cms/faq_config', 'token=' . $this->session->data['token'], true));
 		}
 
 		$data['heading_title'] = $this->language->get('heading_title');
@@ -54,17 +54,17 @@ class ControllerCmsFaqConfig extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_stores'),
-			'href' => $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('setting/store', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('setting/setting', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('setting/setting', 'token=' . $this->session->data['token'], true)
 		);
 
 		if (isset($this->session->data['success'])) {
@@ -75,9 +75,9 @@ class ControllerCmsFaqConfig extends Controller {
 			$data['success'] = '';
 		}
 
-		$data['action'] = $this->url->link('cms/faq_config', 'token=' . $this->session->data['token'], 'SSL');
+		$data['action'] = $this->url->link('cms/faq_config', 'token=' . $this->session->data['token'], true);
 
-		$data['cancel'] = $this->url->link('common/dashborad', 'token=' . $this->session->data['token'], 'SSL');
+		$data['cancel'] = $this->url->link('common/dashborad', 'token=' . $this->session->data['token'], true);
 
 		$data['token'] = $this->session->data['token'];
 		

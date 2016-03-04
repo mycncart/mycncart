@@ -54,7 +54,7 @@ class ControllerCmsBlogComment extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -102,7 +102,7 @@ class ControllerCmsBlogComment extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -152,7 +152,7 @@ class ControllerCmsBlogComment extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->response->redirect($this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getList();
@@ -236,16 +236,16 @@ class ControllerCmsBlogComment extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, true)
 		);
 		
-		$data['add'] = $this->url->link('cms/blog_comment/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$data['delete'] = $this->url->link('cms/blog_comment/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['add'] = $this->url->link('cms/blog_comment/add', 'token=' . $this->session->data['token'] . $url, true);
+		$data['delete'] = $this->url->link('cms/blog_comment/delete', 'token=' . $this->session->data['token'] . $url, true);
 
 		$data['blog_comments'] = array();
 
@@ -271,7 +271,7 @@ class ControllerCmsBlogComment extends Controller {
 				'author'     => $result['author'],
 				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'edit'       => $this->url->link('cms/blog_comment/edit', 'token=' . $this->session->data['token'] . '&blog_comment_id=' . $result['blog_comment_id'] . $url, 'SSL')
+				'edit'       => $this->url->link('cms/blog_comment/edit', 'token=' . $this->session->data['token'] . '&blog_comment_id=' . $result['blog_comment_id'] . $url, true)
 			);
 		}
 
@@ -332,10 +332,10 @@ class ControllerCmsBlogComment extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_blog'] = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . '&sort=bd.title' . $url, 'SSL');
-		$data['sort_author'] = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . '&sort=bc.author' . $url, 'SSL');
-		$data['sort_status'] = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . '&sort=bc.status' . $url, 'SSL');
-		$data['sort_date_added'] = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . '&sort=bc.date_added' . $url, 'SSL');
+		$data['sort_blog'] = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . '&sort=bd.title' . $url, true);
+		$data['sort_author'] = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . '&sort=bc.author' . $url, true);
+		$data['sort_status'] = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . '&sort=bc.status' . $url, true);
+		$data['sort_date_added'] = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . '&sort=bc.date_added' . $url, true);
 
 		$url = '';
 
@@ -367,7 +367,7 @@ class ControllerCmsBlogComment extends Controller {
 		$pagination->total = $blog_comment_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
@@ -453,21 +453,21 @@ class ControllerCmsBlogComment extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, 'SSL')
+			'href' => $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, true)
 		);
 		
 		if (!isset($this->request->get['blog_comment_id'])) {
-			$data['action'] = $this->url->link('cms/blog_comment/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
+			$data['action'] = $this->url->link('cms/blog_comment/add', 'token=' . $this->session->data['token'] . $url, true);
 		} else {
-			$data['action'] = $this->url->link('cms/blog_comment/edit', 'token=' . $this->session->data['token'] . '&blog_comment_id=' . $this->request->get['blog_comment_id'] . $url, 'SSL');
+			$data['action'] = $this->url->link('cms/blog_comment/edit', 'token=' . $this->session->data['token'] . '&blog_comment_id=' . $this->request->get['blog_comment_id'] . $url, true);
 		}
 
-		$data['cancel'] = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['cancel'] = $this->url->link('cms/blog_comment', 'token=' . $this->session->data['token'] . $url, true);
 
 		if (isset($this->request->get['blog_comment_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$blog_comment_info = $this->model_cms_blog_comment->getBlogComment($this->request->get['blog_comment_id']);

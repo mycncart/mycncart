@@ -64,7 +64,7 @@ class ControllerBlogBlog extends Controller {
 			$data['text_hits'] = $this->language->get('text_hits');
 			$data['text_comment_count'] = $this->language->get('text_comment_count');
 			$data['text_write'] = $this->language->get('text_write');
-			$data['text_login'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'));
+			$data['text_login'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', true), $this->url->link('account/register', '', true));
 			$data['text_note'] = $this->language->get('text_note');
 			$data['text_loading'] = $this->language->get('text_loading');
 			$data['text_blog_category'] = $this->language->get('text_blog_category');

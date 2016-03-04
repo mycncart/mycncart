@@ -90,7 +90,7 @@ class ControllerFaqFaq extends Controller {
 				'status'  	   		=> $result['status'],
 				'sort_order'   		=> $result['sort_order'],
 				'date_added'   		=> $result['date_added'],
-				'link'				=> $this->url->link('faq/faq', 'faq_id='.$result['faq_id'], 'SSL'),
+				'link'				=> $this->url->link('faq/faq', 'faq_id='.$result['faq_id'], true),
 			
 				
 			);

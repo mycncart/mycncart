@@ -27,7 +27,7 @@ class ControllerPaymentChinaPay extends Controller {
 
 		 
 		 
-		$data['cancel_return'] = $this->url->link('checkout/checkout', '', 'SSL');
+		$data['cancel_return'] = $this->url->link('checkout/checkout', '', true);
 		
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/chinapay.tpl')) {
 				return $this->load->view($this->config->get('config_template') . '/template/payment/chinapay.tpl', $data);
