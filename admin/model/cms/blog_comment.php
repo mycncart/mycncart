@@ -1,23 +1,19 @@
 <?php
 class ModelCmsBlogComment extends Model {
 	public function editBlogComment($blog_comment_id, $data) {
-		$this->event->trigger('pre.admin.blog_comment.edit', $data);
 
 		$this->db->query("UPDATE " . DB_PREFIX . "blog_comment SET text = '" . $this->db->escape(strip_tags($data['text'])) . "', status = '" . (int)$data['status'] . "', date_modified = NOW() WHERE blog_comment_id = '" . (int)$blog_comment_id . "'");
 
 		$this->cache->delete('blog');
 
-		$this->event->trigger('post.admin.blog_comment.edit', $blog_comment_id);
 	}
 
 	public function deleteBlogComment($blog_comment_id) {
-		$this->event->trigger('pre.admin.blog_comment.delete', $blog_comment_id);
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_comment WHERE blog_comment_id = '" . (int)$blog_comment_id . "'");
 
 		$this->cache->delete('blog');
 
-		$this->event->trigger('post.admin.blog_comment.delete', $blog_comment_id);
 	}
 
 	public function getBlogComment($blog_comment_id) {

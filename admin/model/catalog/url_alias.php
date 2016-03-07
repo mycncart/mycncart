@@ -9,30 +9,24 @@ class ModelCatalogUrlAlias extends Model {
 	//以下为新增seo keyword所需方法
 	
 	public function addUrlAlias($data) {
-		$this->event->trigger('pre.admin.url_alias.add', $data);
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = '" . $this->db->escape($data['query']) . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 
 		$url_alias_id = $this->db->getLastId();
-		$this->event->trigger('post.admin.url_alias.add', $url_alias_id);
 
 		return $url_alias_id;
 	}
 
 	public function editUrlAlias($url_alias_id, $data) {
-		$this->event->trigger('pre.admin.url_alias.edit', $data);
 
 		$this->db->query("UPDATE " . DB_PREFIX . "url_alias SET query = '" . $this->db->escape($data['query']) . "', keyword = '" . $this->db->escape($data['keyword']) . "' WHERE url_alias_id = '" . (int)$url_alias_id . "'");
 
-		$this->event->trigger('post.admin.url_alias.edit', $url_alias_id);
 	}
 
 	public function deleteUrlAlias($url_alias_id) {
-		$this->event->trigger('pre.admin.url_alias.delete', $url_alias_id);
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE url_alias_id = '" . (int)$url_alias_id . "'");
 
-		$this->event->trigger('post.admin.url_alias.delete', $url_alias_id);
 	}
 
 	public function getUrlAliasByID($url_alias_id) {

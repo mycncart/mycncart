@@ -1,7 +1,6 @@
 <?php
 class ModelCmsPress extends Model {
 	public function addPress($data) {
-		$this->event->trigger('pre.admin.press.add', $data);
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "press SET status = '" . (int)$data['status'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
@@ -53,13 +52,11 @@ class ModelCmsPress extends Model {
 
 		$this->cache->delete('press');
 
-		$this->event->trigger('post.admin.press.add', $press_id);
 
 		return $press_id;
 	}
 
 	public function editPress($press_id, $data) {
-		$this->event->trigger('pre.admin.press.edit', $data);
 		
 	
 
@@ -121,11 +118,9 @@ class ModelCmsPress extends Model {
 
 		$this->cache->delete('press');
 
-		$this->event->trigger('post.admin.press.edit', $press_id);
 	}
 
 	public function deletePress($press_id) {
-		$this->event->trigger('pre.admin.press.delete', $press_id);
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press WHERE press_id = '" . (int)$press_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_description WHERE press_id = '" . (int)$press_id . "'");
@@ -136,7 +131,6 @@ class ModelCmsPress extends Model {
 
 		$this->cache->delete('press');
 
-		$this->event->trigger('post.admin.press.delete', $press_id);
 	}
 
 	public function getPress($press_id) {

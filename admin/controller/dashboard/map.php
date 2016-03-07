@@ -23,7 +23,7 @@ class ControllerDashboardMap extends Controller {
 		foreach ($results as $result) {
 			$json[strtolower($result['iso_code_2'])] = array(
 				'total'  => $result['total'],
-				'amount' => $this->currency->format($result['amount'], $this->config->get('currency_code'))
+				'amount' => $this->currency->format($result['amount'], $this->config->get('config_currency'))
 			);
 		}
 	

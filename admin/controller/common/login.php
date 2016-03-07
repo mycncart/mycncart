@@ -13,8 +13,8 @@ class ControllerCommonLogin extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->session->data['token'] = token(32);
-
-			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], HTTP_SERVER) === 0 || strpos($this->request->post['redirect'], HTTPS_SERVER) === 0 )) {
+			
+			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], HTTP_SERVER) === 0 || strpos($this->request->post['redirect'], HTTPS_SERVER) === 0)) {
 				$this->response->redirect($this->request->post['redirect'] . '&token=' . $this->session->data['token']);
 			} else {
 				$this->response->redirect($this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true));
@@ -98,38 +98,5 @@ class ControllerCommonLogin extends Controller {
 		}
 
 		return !$this->error;
-	}
-
-	public function check() {
-		$route = isset($this->request->get['route']) ? $this->request->get['route'] : '';
-
-		$ignore = array(
-			'common/login',
-			'common/forgotten',
-			'common/reset'
-		);
-
-		if (!$this->user->isLogged() && !in_array($route, $ignore)) {
-			return new Action('common/login');
-		}
-
-		if (isset($this->request->get['route'])) {
-			$ignore = array(
-				'common/login',
-				'common/logout',
-				'common/forgotten',
-				'common/reset',
-				'error/not_found',
-				'error/permission'
-			);
-
-			if (!in_array($route, $ignore) && (!isset($this->request->get['token']) || !isset($this->session->data['token']) || ($this->request->get['token'] != $this->session->data['token']))) {
-				return new Action('common/login');
-			}
-		} else {
-			if (!isset($this->request->get['token']) || !isset($this->session->data['token']) || ($this->request->get['token'] != $this->session->data['token'])) {
-				return new Action('common/login');
-			}
-		}
 	}
 }

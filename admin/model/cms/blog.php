@@ -1,7 +1,6 @@
 <?php
 class ModelCmsBlog extends Model {
 	public function addBlog($data) {
-		$this->event->trigger('pre.admin.blog.add', $data);
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "blog SET featured = '" . (int)$data['featured'] . "', hits = '" . (int)$data['hits'] . "', created = '" . $this->db->escape($data['created']) . "', video_code = '" . $this->db->escape($data['video_code']) . "', user_id = '" . (int)$data['user_id'] . "', status = '" . (int)$data['status'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
@@ -66,13 +65,11 @@ class ModelCmsBlog extends Model {
 
 		$this->cache->delete('blog');
 
-		$this->event->trigger('post.admin.blog.add', $blog_id);
 
 		return $blog_id;
 	}
 
 	public function editBlog($blog_id, $data) {
-		$this->event->trigger('pre.admin.blog.edit', $data);
 		
 		$this->db->query("UPDATE " . DB_PREFIX . "blog SET featured = '" . (int)$data['featured'] . "', hits = '" . (int)$data['hits'] . "', created = '" . $this->db->escape($data['created']) . "', user_id = '" . (int)$data['user_id'] . "', video_code = '" . $this->db->escape($data['video_code']) . "', status = '" . (int)$data['status'] . "',  sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE blog_id = '" . (int)$blog_id . "'");
 		
@@ -144,11 +141,9 @@ class ModelCmsBlog extends Model {
 
 		$this->cache->delete('blog');
 
-		$this->event->trigger('post.admin.blog.edit', $blog_id);
 	}
 
 	public function deleteBlog($blog_id) {
-		$this->event->trigger('pre.admin.blog.delete', $blog_id);
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_description WHERE blog_id = '" . (int)$blog_id . "'");
@@ -161,7 +156,6 @@ class ModelCmsBlog extends Model {
 
 		$this->cache->delete('blog');
 
-		$this->event->trigger('post.admin.blog.delete', $blog_id);
 	}
 
 	public function getBlog($blog_id) {

@@ -48,10 +48,6 @@ class ControllerExtensionShipping extends Controller {
 		if ($this->validate()) {
 			$this->model_extension_extension->uninstall('shipping', $this->request->get['extension']);
 
-			$this->load->model('setting/setting');
-
-			$this->model_setting_setting->deleteSetting($this->request->get['extension']);
-
 			// Call uninstall method if it exsits
 			$this->load->controller('shipping/' . $this->request->get['extension'] . '/uninstall');
 
@@ -75,9 +71,9 @@ class ControllerExtensionShipping extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], true)
 		);
-				
+
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_list'] = $this->language->get('text_list');
 		$data['text_no_results'] = $this->language->get('text_no_results');
 		$data['text_confirm'] = $this->language->get('text_confirm');
@@ -134,7 +130,7 @@ class ControllerExtensionShipping extends Controller {
 					'install'    => $this->url->link('extension/shipping/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, true),
 					'uninstall'  => $this->url->link('extension/shipping/uninstall', 'token=' . $this->session->data['token'] . '&extension=' . $extension, true),
 					'installed'  => in_array($extension, $extensions),
-					'edit'       => $this->url->link('shipping/' . $extension . '', 'token=' . $this->session->data['token'], true)
+					'edit'       => $this->url->link('shipping/' . $extension, 'token=' . $this->session->data['token'], true)
 				);
 			}
 		}

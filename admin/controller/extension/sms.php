@@ -48,10 +48,6 @@ class ControllerExtensionSms extends Controller {
 		if ($this->validate()) {
 			$this->model_extension_extension->uninstall('sms', $this->request->get['extension']);
 
-			$this->load->model('setting/setting');
-
-			$this->model_setting_setting->deleteSetting($this->request->get['extension']);
-
 			// Call uninstall method if it exsits
 			$this->load->controller('sms/' . $this->request->get['extension'] . '/uninstall');
 

@@ -1,7 +1,6 @@
 <?php
 class ModelCmsFaq extends Model {
 	public function addFaq($data) {
-		$this->event->trigger('pre.admin.faq.add', $data);
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "faq SET status = '" . (int)$data['status'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
@@ -43,15 +42,10 @@ class ModelCmsFaq extends Model {
 
 		$this->cache->delete('faq');
 
-		$this->event->trigger('post.admin.faq.add', $faq_id);
-
 		return $faq_id;
 	}
 
 	public function editFaq($faq_id, $data) {
-		$this->event->trigger('pre.admin.faq.edit', $data);
-		
-	
 
 		$this->db->query("UPDATE " . DB_PREFIX . "faq SET status = '" . (int)$data['status'] . "',  sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE faq_id = '" . (int)$faq_id . "'");
 
@@ -100,11 +94,9 @@ class ModelCmsFaq extends Model {
 
 		$this->cache->delete('faq');
 
-		$this->event->trigger('post.admin.faq.edit', $faq_id);
 	}
 
 	public function deleteFaq($faq_id) {
-		$this->event->trigger('pre.admin.faq.delete', $faq_id);
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "faq WHERE faq_id = '" . (int)$faq_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_description WHERE faq_id = '" . (int)$faq_id . "'");
@@ -115,7 +107,6 @@ class ModelCmsFaq extends Model {
 
 		$this->cache->delete('faq');
 
-		$this->event->trigger('post.admin.faq.delete', $faq_id);
 	}
 
 	public function getFaq($faq_id) {

@@ -3,7 +3,7 @@ class ControllerModulePPLogin extends Controller {
 	private $error = array();
 
 	public function index() {
-		$$this->load->language('module/pp_login');
+		$this->load->language('module/pp_login');
 
 		$this->load->model('setting/setting');
 
@@ -317,7 +317,7 @@ class ControllerModulePPLogin extends Controller {
 	public function install() {
 		$this->load->model('extension/event');
 
-		$this->model_extension_event->addEvent('pp_login', 'post.customer.logout', 'module/pp_login/logout');
+		$this->model_extension_event->addEvent('pp_login', 'catalog/controller/account/logout/after', 'module/pp_login/logout');
 	}
 
 	public function uninstall() {

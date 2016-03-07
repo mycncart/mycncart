@@ -94,6 +94,10 @@ class ControllerMarketingContact extends Controller {
 				} else {
 					$store_name = $this->config->get('config_name');
 				}
+				
+				$this->load->model('setting/setting');
+				$setting = $this->model_setting_setting->getSetting('config', $this->request->post['store_id']);
+				$store_email = isset($setting['config_email']) ? $setting['config_email'] : $this->config->get('config_email');
 
 				$this->load->model('customer/customer');
 
@@ -232,7 +236,7 @@ class ControllerMarketingContact extends Controller {
 					$message .= '</html>' . "\n";
 
 					foreach ($emails as $email) {
-						if (preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $email)) {
+						if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 							$mail = new Mail();
 							$mail->protocol = $this->config->get('config_mail_protocol');
 							$mail->parameter = $this->config->get('config_mail_parameter');
@@ -242,7 +246,7 @@ class ControllerMarketingContact extends Controller {
 							$mail->smtp_port = $this->config->get('config_mail_smtp_port');
 							$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
 
-							$mail->setTo($email);
+							$mail->setFrom($store_email);
 							$mail->setFrom($this->config->get('config_email'));
 							$mail->setSender(html_entity_decode($store_name, ENT_QUOTES, 'UTF-8'));
 							$mail->setSubject(html_entity_decode($this->request->post['subject'], ENT_QUOTES, 'UTF-8'));

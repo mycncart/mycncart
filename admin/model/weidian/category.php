@@ -1,7 +1,6 @@
 <?php
 class ModelWeidianCategory extends Model {
 	public function addCategory($data) {
-		$this->event->trigger('pre.admin.category.add', $data);
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "category SET parent_id = '" . (int)$data['parent_id'] . "', `top` = '" . (isset($data['top']) ? (int)$data['top'] : 0) . "', `column` = '" . (int)$data['column'] . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', post2u_url = '" . $this->db->escape($data['post2u_url']) . "', date_modified = '".date('Y-m-d H:i:s')."', date_added = '".date('Y-m-d H:i:s')."'");
 
@@ -53,13 +52,10 @@ class ModelWeidianCategory extends Model {
 
 		$this->cache->delete('category');
 
-		$this->event->trigger('post.admin.category.add', $category_id);
-
 		return $category_id;
 	}
 
 	public function editCategory($category_id, $data) {
-		$this->event->trigger('pre.admin.category.edit', $data);
 
 		$this->db->query("UPDATE " . DB_PREFIX . "category SET parent_id = '" . (int)$data['parent_id'] . "', `top` = '" . (isset($data['top']) ? (int)$data['top'] : 0) . "', `column` = '" . (int)$data['column'] . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', post2u_url = '" . $this->db->escape($data['post2u_url']) . "', date_modified = '".date('Y-m-d H:i:s')."' WHERE category_id = '" . (int)$category_id . "'");
 
@@ -156,11 +152,9 @@ class ModelWeidianCategory extends Model {
 
 		$this->cache->delete('category');
 
-		$this->event->trigger('post.admin.category.edit', $category_id);
 	}
 
 	public function deleteCategory($category_id) {
-		$this->event->trigger('pre.admin.category.delete', $category_id);
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$category_id . "'");
 
@@ -180,7 +174,6 @@ class ModelWeidianCategory extends Model {
 
 		$this->cache->delete('category');
 
-		$this->event->trigger('post.admin.category.delete', $category_id);
 	}
 
 	public function repairCategories($parent_id = 0) {

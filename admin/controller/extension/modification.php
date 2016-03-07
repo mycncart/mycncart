@@ -66,7 +66,6 @@ class ControllerExtensionModification extends Controller {
 
 			$this->model_setting_setting->editSettingValue('config', 'config_maintenance', true);
 
-
 			//Log
 			$log = array();
 
@@ -135,6 +134,9 @@ class ControllerExtensionModification extends Controller {
 			$modification = array();
 
 			foreach ($xml as $xml) {
+				if(empty($xml)){
+					continue;
+				}
 				$dom = new DOMDocument('1.0', 'UTF-8');
 				$dom->preserveWhiteSpace = false;
 				$dom->loadXml($xml);
@@ -360,11 +362,6 @@ class ControllerExtensionModification extends Controller {
 											// Log
 											$log[] = 'NOT FOUND!';
 
-											// Skip current operation
-											if ($error == 'skip') {
-												break;
-											}
-
 											// Abort applying this modification completely.
 											if ($error == 'abort') {
 												$modification = $recovery;
@@ -373,6 +370,13 @@ class ControllerExtensionModification extends Controller {
 												$log[] = 'ABORTING!';
 
 												break 5;
+											}
+
+											// Skip current operation or break
+											if ($error == 'skip') {
+												continue;
+											} else {
+											 	break;
 											}
 										}
 									}

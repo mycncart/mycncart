@@ -1,19 +1,13 @@
 <?php
 class ModelMarketingAffiliate extends Model {
 	public function addAffiliate($data) {
-		$this->event->trigger('pre.admin.affiliate.add', $data);
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "affiliate SET fullname = '" . $this->db->escape($data['fullname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', salt = '" . $this->db->escape($salt = token(9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', company = '" . $this->db->escape($data['company']) . "', website = '" . $this->db->escape($data['website']) . "', address = '" . $this->db->escape($data['address']) . "', city = '" . $this->db->escape($data['city']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int)$data['country_id'] . "', zone_id = '" . (int)$data['zone_id'] . "', code = '" . $this->db->escape($data['code']) . "', commission = '" . (float)$data['commission'] . "', tax = '" . $this->db->escape($data['tax']) . "', payment = '" . $this->db->escape($data['payment']) . "', cheque = '" . $this->db->escape($data['cheque']) . "', paypal = '" . $this->db->escape($data['paypal']) . "', bank_name = '" . $this->db->escape($data['bank_name']) . "', bank_account_name = '" . $this->db->escape($data['bank_account_name']) . "', bank_account_number = '" . $this->db->escape($data['bank_account_number']) . "', alipay_account_name = '" . $this->db->escape($data['alipay_account_name']) . "', alipay = '" . $this->db->escape($data['alipay']) . "',  status = '" . (int)$data['status'] . "', date_added = NOW()");
 
-		$affiliate_id = $this->db->getLastId();
-
-		$this->event->trigger('post.admin.affiliate.add', $affiliate_id);
-
-		return $affiliate_id;
+		return $this->db->getLastId();
 	}
 
 	public function editAffiliate($affiliate_id, $data) {
-		$this->event->trigger('pre.admin.affiliate.edit', $data);
 
 		$this->db->query("UPDATE " . DB_PREFIX . "affiliate SET fullname = '" . $this->db->escape($data['fullname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', company = '" . $this->db->escape($data['company']) . "', website = '" . $this->db->escape($data['website']) . "', address = '" . $this->db->escape($data['address']) . "', city = '" . $this->db->escape($data['city']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int)$data['country_id'] . "', zone_id = '" . (int)$data['zone_id'] . "', code = '" . $this->db->escape($data['code']) . "', commission = '" . (float)$data['commission'] . "', tax = '" . $this->db->escape($data['tax']) . "', payment = '" . $this->db->escape($data['payment']) . "', cheque = '" . $this->db->escape($data['cheque']) . "', paypal = '" . $this->db->escape($data['paypal']) . "', bank_name = '" . $this->db->escape($data['bank_name']) . "', bank_account_name = '" . $this->db->escape($data['bank_account_name']) . "', bank_account_number = '" . $this->db->escape($data['bank_account_number']) . "', alipay_account_name = '" . $this->db->escape($data['alipay_account_name']) . "', alipay = '" . $this->db->escape($data['alipay']) . "',  status = '" . (int)$data['status'] . "' WHERE affiliate_id = '" . (int)$affiliate_id . "'");
 
@@ -21,17 +15,14 @@ class ModelMarketingAffiliate extends Model {
 			$this->db->query("UPDATE " . DB_PREFIX . "affiliate SET salt = '" . $this->db->escape($salt = token(9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "' WHERE affiliate_id = '" . (int)$affiliate_id . "'");
 		}
 
-		$this->event->trigger('post.admin.affiliate.edit', $affiliate_id);
 	}
 
 	public function deleteAffiliate($affiliate_id) {
-		$this->event->trigger('pre.admin.affiliate.delete', $affiliate_id);
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate WHERE affiliate_id = '" . (int)$affiliate_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_activity WHERE affiliate_id = '" . (int)$affiliate_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_transaction WHERE affiliate_id = '" . (int)$affiliate_id . "'");
 
-		$this->event->trigger('post.admin.affiliate.delete', $affiliate_id);
 	}
 
 	public function getAffiliate($affiliate_id) {
@@ -121,7 +112,6 @@ class ModelMarketingAffiliate extends Model {
 		$affiliate_info = $this->getAffiliate($affiliate_id);
 
 		if ($affiliate_info) {
-			$this->event->trigger('pre.admin.affiliate.approve', $affiliate_id);
 
 			$this->db->query("UPDATE " . DB_PREFIX . "affiliate SET approved = '1' WHERE affiliate_id = '" . (int)$affiliate_id . "'");
 
@@ -150,7 +140,6 @@ class ModelMarketingAffiliate extends Model {
 			$mail->setText($message);
 			$mail->send();
 
-			$this->event->trigger('post.admin.affiliate.approve', $affiliate_id);
 		}
 	}
 
@@ -216,7 +205,6 @@ class ModelMarketingAffiliate extends Model {
 		$affiliate_info = $this->getAffiliate($affiliate_id);
 
 		if ($affiliate_info) {
-			$this->event->trigger('pre.admin.affiliate.transaction.add', $affiliate_id);
 
 			$this->db->query("INSERT INTO " . DB_PREFIX . "affiliate_transaction SET affiliate_id = '" . (int)$affiliate_id . "', order_id = '" . (float)$order_id . "', description = '" . $this->db->escape($description) . "', amount = '" . (float)$amount . "', date_added = NOW()");
 
@@ -243,18 +231,14 @@ class ModelMarketingAffiliate extends Model {
 			$mail->setText($message);
 			$mail->send();
 
-			$this->event->trigger('post.admin.affiliate.transaction.add', $affiliate_transaction_id);
-
 			return $affiliate_transaction_id;
 		}
 	}
 
 	public function deleteTransaction($order_id) {
-		$this->event->trigger('pre.admin.affiliate.transaction.delete', $order_id);
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_transaction WHERE order_id = '" . (int)$order_id . "'");
 
-		$this->event->trigger('post.admin.affiliate.transaction.delete', $order_id);
 	}
 
 	public function getTransactions($affiliate_id, $start = 0, $limit = 10) {

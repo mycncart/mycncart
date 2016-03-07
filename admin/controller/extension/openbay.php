@@ -52,6 +52,7 @@ class ControllerExtensionOpenbay extends Controller {
 			$this->load->model('setting/setting');
 
 			$this->model_extension_extension->uninstall('openbay', $this->request->get['extension']);
+			
 			$this->model_setting_setting->deleteSetting($this->request->get['extension']);
 
 			$class = 'ControllerOpenbay' . str_replace('_', '', $this->request->get['extension']);
@@ -70,8 +71,9 @@ class ControllerExtensionOpenbay extends Controller {
 		$this->load->model('extension/extension');
 		$this->load->model('setting/setting');
 		$this->load->model('openbay/version');
+		$this->load->language('extension/openbay');
 
-		$data = $this->load->language('extension/openbay');
+		$data = $this->language->all();
 
 		$this->document->setTitle($this->language->get('heading_title'));
 		$this->document->addScript('view/javascript/openbay/js/faq.js');
@@ -116,7 +118,7 @@ class ControllerExtensionOpenbay extends Controller {
 
 		$data['extensions'] = array();
 
-		$markets = array('ebay', 'etsy', 'amazon', 'amazonus');
+		$markets = array('ebay', 'etsy', 'amazon', 'amazonus', 'fba');
 
 		foreach ($markets as $market) {
 			$extension = basename($market, '.php');
@@ -155,8 +157,9 @@ class ControllerExtensionOpenbay extends Controller {
 
 	public function manage() {
 		$this->load->model('setting/setting');
+		$this->load->language('extension/openbay');
 
-		$data = $this->load->language('extension/openbay');
+		$data = $this->language->all();
 
 		$this->document->setTitle($this->language->get('text_manage'));
 		$this->document->addScript('view/javascript/openbay/js/faq.js');
@@ -300,9 +303,6 @@ class ControllerExtensionOpenbay extends Controller {
 	public function updateV2() {
 		$this->load->model('openbay/openbay');
 		$this->load->language('extension/openbay');
-
-		// set base var
-		$web_root = preg_replace('/system\/$/', '', DIR_SYSTEM);
 
 		if (!isset($this->request->get['stage'])) {
 			$stage = 'check_server';
@@ -472,9 +472,9 @@ class ControllerExtensionOpenbay extends Controller {
 	}
 
 	public function getOrderInfo() {
-		$data = array();
+		$this->load->language('extension/openbay');
 
-		$data = array_merge($data, $this->load->language('extension/openbay'));
+		$data = $this->language->all();
 
 		if ($this->config->get('ebay_status') == 1) {
 			if ($this->openbay->ebay->getOrder($this->request->get['order_id']) !== false) {
@@ -573,10 +573,12 @@ class ControllerExtensionOpenbay extends Controller {
 	}
 
 	public function orderList() {
-		$$this->load->language('sale/order');
 		$this->load->model('openbay/order');
+		$this->load->language('sale/order');
+		$this->load->language('openbay/openbay_order');
 
-		$data = $this->load->language('openbay/openbay_order');
+		$data = $this->language->all();
+
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		if (isset($this->request->get['filter_order_id'])) {
@@ -873,7 +875,10 @@ class ControllerExtensionOpenbay extends Controller {
 	}
 
 	public function orderListUpdate() {
-		$data = $this->load->language('openbay/openbay_order');
+		$this->load->language('openbay/openbay_order');
+
+		$data = $this->language->all();
+
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		if (!isset($this->request->post['selected']) || empty($this->request->post['selected'])) {
@@ -881,7 +886,7 @@ class ControllerExtensionOpenbay extends Controller {
 			$this->response->redirect($this->url->link('extension/openbay/orderList', 'token=' . $this->session->data['token'], true));
 		} else {
 			$this->load->model('openbay/order');
-			$$this->load->language('sale/order');
+			$this->load->language('sale/order');
 
 			$data['column_order_id'] = $this->language->get('column_order_id');
 			$data['column_customer'] = $this->language->get('column_customer');
@@ -1004,7 +1009,9 @@ class ControllerExtensionOpenbay extends Controller {
 		$this->load->model('openbay/openbay');
 		$this->load->model('localisation/order_status');
 
-		$data = $this->load->language('openbay/openbay_order');
+		$this->load->language('openbay/openbay_order');
+
+		$data = $this->language->all();
 
 		$order_statuses = $this->model_localisation_order_status->getOrderStatuses();
 		$status_mapped = array();
@@ -1145,10 +1152,10 @@ class ControllerExtensionOpenbay extends Controller {
 		$this->document->addScript('view/javascript/openbay/js/openbay.js');
 		$this->document->addScript('view/javascript/openbay/js/faq.js');
 
-		$data = array();
+		$this->load->language('catalog/product');
+		$this->load->language('openbay/openbay_itemlist');
 
-		$data = array_merge($data, $this->load->language('catalog/product'));
-		$data = array_merge($data, $this->load->language('openbay/openbay_itemlist'));
+		$data = $this->language->all();
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -1424,6 +1431,7 @@ class ControllerExtensionOpenbay extends Controller {
 			$this->response->redirect($this->url->link('extension/openbay/items', 'token=' . $this->session->data['token'], true));
 			return;
 		}
+
 
 		if ($this->config->get('openbay_amazon_status') != '1' && $filter['filter_market_name'] == 'amazon') {
 			$this->response->redirect($this->url->link('extension/openbay/items', 'token=' . $this->session->data['token'], true));
@@ -1805,12 +1813,12 @@ class ControllerExtensionOpenbay extends Controller {
 		$this->response->redirect($this->url->link('extension/openbay/items', 'token=' . $this->session->data['token'], true));
 	}
 
-	public function eventDeleteProduct($product_id) {
+	public function eventDeleteProduct($route, $response, $product_id) {
 		foreach ($this->openbay->installed_markets as $market) {
 			if ($market == 'amazon') {
 				$status = $this->config->get('openbay_amazon_status');
 			} elseif ($market == 'amazonus') {
-				$status = $this->config->get('openbay_amazon_status');
+				$status = $this->config->get('openbay_amazonus_status');
 			} else {
 				$status = $this->config->get($market . '_status');
 			}
@@ -1821,18 +1829,18 @@ class ControllerExtensionOpenbay extends Controller {
 		}
 	}
 
-	public function eventEditProduct() {
+	public function eventEditProduct($route, $response, $product_id, $data) {
 		foreach ($this->openbay->installed_markets as $market) {
 			if ($market == 'amazon') {
 				$status = $this->config->get('openbay_amazon_status');
 			} elseif ($market == 'amazonus') {
-				$status = $this->config->get('openbay_amazon_status');
+				$status = $this->config->get('openbay_amazonus_status');
 			} else {
 				$status = $this->config->get($market . '_status');
 			}
 
 			if ($status == 1) {
-				$this->openbay->{$market}->productUpdateListen($this->request->get['product_id'], $this->request->post);
+				$this->openbay->{$market}->productUpdateListen((int)$product_id, $data);
 			}
 		}
 	}

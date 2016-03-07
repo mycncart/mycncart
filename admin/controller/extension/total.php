@@ -47,10 +47,6 @@ class ControllerExtensionTotal extends Controller {
 		if ($this->validate()) {
 			$this->model_extension_extension->uninstall('total', $this->request->get['extension']);
 
-			$this->load->model('setting/setting');
-
-			$this->model_setting_setting->deleteSetting($this->request->get['extension']);
-
 			$this->load->controller('total/' . $this->request->get['extension'] . '/uninstall');
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -73,9 +69,9 @@ class ControllerExtensionTotal extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('extension/total', 'token=' . $this->session->data['token'], true)
 		);
-			
+
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_list'] = $this->language->get('text_list');
 		$data['text_no_results'] = $this->language->get('text_no_results');
 		$data['text_confirm'] = $this->language->get('text_confirm');
@@ -132,7 +128,7 @@ class ControllerExtensionTotal extends Controller {
 					'install'   => $this->url->link('extension/total/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, true),
 					'uninstall' => $this->url->link('extension/total/uninstall', 'token=' . $this->session->data['token'] . '&extension=' . $extension, true),
 					'installed' => in_array($extension, $extensions),
-					'edit'      => $this->url->link('total/' . $extension . '', 'token=' . $this->session->data['token'], true)
+					'edit'      => $this->url->link('total/' . $extension, 'token=' . $this->session->data['token'], true)
 				);
 			}
 		}

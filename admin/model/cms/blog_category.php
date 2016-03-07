@@ -1,7 +1,6 @@
 <?php
 class ModelCmsBlogCategory extends Model {
 	public function addBlogCategory($data) {
-		$this->event->trigger('pre.admin.blog_category.add', $data);
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "blog_category SET parent_id = '" . (int)$data['parent_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', date_modified = '".date('Y-m-d H:i:s')."', date_added = '".date('Y-m-d H:i:s')."'");
 
@@ -47,13 +46,11 @@ class ModelCmsBlogCategory extends Model {
 
 		$this->cache->delete('blog_category');
 
-		$this->event->trigger('post.admin.blog_category.add', $blog_category_id);
 
 		return $blog_category_id;
 	}
 
 	public function editBlogCategory($blog_category_id, $data) {
-		$this->event->trigger('pre.admin.blog_category.edit', $data);
 
 		$this->db->query("UPDATE " . DB_PREFIX . "blog_category SET parent_id = '" . (int)$data['parent_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', date_modified = '".date('Y-m-d H:i:s')."' WHERE blog_category_id = '" . (int)$blog_category_id . "'");
 
@@ -142,11 +139,9 @@ class ModelCmsBlogCategory extends Model {
 
 		$this->cache->delete('blog_category');
 
-		$this->event->trigger('post.admin.blog_category.edit', $blog_category_id);
 	}
 
 	public function deleteBlogCategory($blog_category_id) {
-		$this->event->trigger('pre.admin.blog_category.delete', $blog_category_id);
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_category_path WHERE blog_category_id = '" . (int)$blog_category_id . "'");
 
@@ -164,7 +159,6 @@ class ModelCmsBlogCategory extends Model {
 
 		$this->cache->delete('blog_category');
 
-		$this->event->trigger('post.admin.blog_category.delete', $blog_category_id);
 	}
 
 	public function repairBlogCategories($parent_id = 0) {
