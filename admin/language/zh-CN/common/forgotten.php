@@ -16,5 +16,5 @@ $_['entry_confirm']   = '确认密码';
 
 // Error
 $_['error_email']     = '警告: 未发现该电邮地址，请重试！';
-$_['error_password']  = '密码必须介于3-20字符之间！';
+$_['error_password']  = '密码必须介于4-20字符之间！';
 $_['error_confirm']   = '密码与确认密码不相符！';

@@ -70,3 +70,4 @@ $_['error_postcode']        = '邮政编码必须为2-10字符！';
 $_['error_country']         = '清选择国家！';
 $_['error_zone']            = '清选择州/省/地区！';
 $_['error_custom_field']    = '%s 必填！';
+$_['error_custom_field_validate']  = '%s 无效!';

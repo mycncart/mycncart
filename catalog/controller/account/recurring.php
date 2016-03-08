@@ -7,7 +7,7 @@ class ControllerAccountRecurring extends Controller {
 			$this->response->redirect($this->url->link('account/login', '', true));
 		}
 
-		$$this->load->language('account/recurring');
+		$this->load->language('account/recurring');
 
 		$this->load->model('account/recurring');
 

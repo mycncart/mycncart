@@ -29,7 +29,7 @@ class ControllerPaymentWxPay extends Controller {
 		*/
 		
 		//echo "2";
-		$$this->load->language('payment/wxpay');
+		$this->load->language('payment/wxpay');
 
 		$data['button_confirm'] = $this->language->get('button_confirm');
 		

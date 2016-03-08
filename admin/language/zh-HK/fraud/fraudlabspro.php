@@ -32,7 +32,7 @@ $_['text_transaction_id']                     = 'Transaction ID';
 $_['text_credits']                     		    = 'Balance';
 $_['text_error']                              = 'Error:';
 $_['text_flp_upgrade']                        = '<a href="http://www.fraudlabspro.com/plan" target="_blank">[Upgrade]</a>';
-$_['text_flp_merchant_area']                  = 'Please login to <a href="http://www.fraudlabspro.com/login" target="_blank">FraudLabs Pro Merchant Area</a> for more information about this order.';
+$_['text_flp_merchant_area']                  = 'Please login to <a href="http://www.fraudlabspro.com/merchant/login" target="_blank">FraudLabs Pro Merchant Area</a> for more information about this order.';
 
 
 // Entry
@@ -72,7 +72,7 @@ $_['help_credit_card_blacklist']              = 'Whether the credit card is in o
 $_['help_score']                              = 'Risk score, 0 (low risk) - 100 (high risk).';
 $_['help_status']                             = 'FraudLabs Pro status.';
 $_['help_message']                            = 'FraudLabs Pro error message description.';
-$_['help_transaction_id']                     = 'Click the link to view the fraud analysis details.';
+$_['help_transaction_id']                     = 'Unique identifier for a transaction screened by FraudLabs Pro system.';
 $_['help_credits']                            = 'Balance of the credits available after this transaction.';
 
 // Error

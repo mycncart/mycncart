@@ -4,9 +4,7 @@
 $_['heading_title']    = '备份 / 恢复';
 
 // Text
-$_['text_backup']      = '下载备份';
 $_['text_success']     = '成功：已成功导入数据库！';
-$_['text_list']        = '上传文件列表';
 
 // Entry
 $_['entry_restore']    = '恢复备份';

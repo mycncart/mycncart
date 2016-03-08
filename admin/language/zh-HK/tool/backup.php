@@ -4,9 +4,7 @@
 $_['heading_title']    = '備份 / 恢複';
 
 // Text
-$_['text_backup']      = '下載備份';
 $_['text_success']     = '成功：已成功導入數據庫！';
-$_['text_list']        = '上傳文件列表';
 
 // Entry
 $_['entry_restore']    = '恢複備份';

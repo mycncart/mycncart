@@ -647,7 +647,7 @@ class ControllerProductProduct extends Controller {
 	}
 
 	public function getRecurringDescription() {
-		$$this->load->language('product/product');
+		$this->load->language('product/product');
 		$this->load->model('catalog/product');
 
 		if (isset($this->request->post['product_id'])) {

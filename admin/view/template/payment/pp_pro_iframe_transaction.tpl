@@ -116,7 +116,7 @@
           <?php } ?>
           <?php if (isset($transaction['FIRSTNAME'])) { ?>
           <tr>
-            <td><?php echo $text_payer_fullname; ?></td>
+            <td><?php echo $text_payer_firstname; ?></td>
             <td><?php echo $transaction['FIRSTNAME']; ?></td>
           </tr>
           <?php } ?>

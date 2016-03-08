@@ -19,5 +19,5 @@ $_['text_front']           = '商店前台';
 $_['text_help']            = '帮助';
 $_['text_homepage']        = '首页';
 $_['text_support']         = '支持论坛';
-$_['text_documentation']   = '文档';
+$_['text_documentation']   = '手册教程';
 $_['text_logout']          = '安全退出';

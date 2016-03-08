@@ -16,5 +16,5 @@ $_['entry_confirm']   = '確認密碼';
 
 // Error
 $_['error_email']     = '警告: 未發現該電郵地址，請重試！';
-$_['error_password']  = '密碼必須介於3-20字符之間！';
+$_['error_password']  = '密碼必須介於4-20字符之間！';
 $_['error_confirm']   = '密碼與確認密碼不相符！';

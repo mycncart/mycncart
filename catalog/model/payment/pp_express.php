@@ -284,7 +284,7 @@ class ModelPaymentPPExpress extends Model {
 		$recurring_products = $this->cart->getRecurringProducts();
 
 		if ($recurring_products) {
-			$$this->load->language('payment/pp_express');
+			$this->load->language('payment/pp_express');
 
 			foreach ($recurring_products as $item) {
 				$data['L_BILLINGTYPE' . $z] = 'RecurringPayments';

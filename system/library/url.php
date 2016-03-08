@@ -1,27 +1,23 @@
 <?php
 class Url {
-	private $domain;
 	private $ssl;
 	private $rewrite = array();
 
-	public function __construct($domain, $ssl = '') {
-		$this->domain = $domain;
+	public function __construct($ssl = false) {
 		$this->ssl = $ssl;
 	}
-
+	
 	public function addRewrite($rewrite) {
 		$this->rewrite[] = $rewrite;
 	}
 
 	public function link($route, $args = '', $secure = false) {
-		if (!$secure) {
-			$url = $this->domain;
+		if ($this->ssl && $secure) {
+			$url = 'https://' . $_SERVER['HTTP_HOST'] . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/.\\') . '/index.php?route=' . $route;
 		} else {
-			$url = $this->ssl;
+			$url = 'http://' . $_SERVER['HTTP_HOST'] . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/.\\') . '/index.php?route=' . $route;
 		}
-
-		$url .= 'index.php?route=' . $route;
-
+		
 		if ($args) {
 			if (is_array($args)) {
 				$url .= '&amp;' . http_build_query($args);

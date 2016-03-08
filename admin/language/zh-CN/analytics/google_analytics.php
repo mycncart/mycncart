@@ -6,6 +6,7 @@ $_['text_analytics']   = '分析';
 $_['text_success']	   = '成功: 已修改谷歌分析!';
 $_['text_edit']        = '编辑谷歌分析';
 $_['text_signup']      = '登录您在 <a href="http://www.google.com/analytics/" target="_blank"><u>谷歌分析网站</u></a> 的账户，然后创建您的网站资料，然后复制并粘贴分析代码到此处。';
+$_['text_default']     = '默认';
 
 // Entry
 $_['entry_code']       = '谷歌分析代码';

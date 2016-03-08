@@ -10,6 +10,7 @@ $_['text_address_edit']   = '<a href="customer_id=%d">%s</a> 更新地址信息�
 $_['text_address_delete'] = '<a href="customer_id=%d">%s</a> 删除一个地址。';
 $_['text_edit']           = '<a href="customer_id=%d">%s</a> 更新账户信息。';
 $_['text_forgotten']      = '<a href="customer_id=%d">%s</a> 请求新密码。';
+$_['text_reset']          = '<a href="customer_id=%d">%s</a> 重置账户密码。';
 $_['text_login']          = '<a href="customer_id=%d">%s</a> 登录。';
 $_['text_password']       = '<a href="customer_id=%d">%s</a> 更新账户密码。';
 $_['text_register']       = '<a href="customer_id=%d">%s</a> 注册新账号。';

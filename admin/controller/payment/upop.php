@@ -6,7 +6,7 @@ class ControllerPaymentUpop extends Controller {
 		
 		if($this->config->get('upop_pay_name') == ''){
 			
-			$$this->load->language('payment/upop');
+			$this->load->language('payment/upop');
 		
 			$this->config->set('upop_pay_name',$this->language->get('default_pay_name'));
 			
@@ -23,7 +23,7 @@ class ControllerPaymentUpop extends Controller {
 		}
 		
 		
-		$$this->load->language('payment/upop');
+		$this->load->language('payment/upop');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 		

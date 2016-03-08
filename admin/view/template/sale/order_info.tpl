@@ -57,10 +57,6 @@
                 <?php } ?></td>
             </tr>
             <tr>
-              <td><button data-toggle="tooltip" title="<?php echo $text_shipping_telephone; ?>" class="btn btn-info btn-xs"><i class="fa fa-mobile fa-fw"></i></button></td>
-              <td><?php echo $shipping_telephone; ?></td>
-            </tr>
-            <tr>
               <td><button data-toggle="tooltip" title="<?php echo $text_customer_group; ?>" class="btn btn-info btn-xs"><i class="fa fa-group fa-fw"></i></button></td>
               <td><?php echo $customer_group; ?></td>
             </tr>
@@ -354,6 +350,35 @@
     </div>
   </div>
   <script type="text/javascript"><!--
+$(document).delegate('#button-ip-add', 'click', function() {
+	$.ajax({
+		url: 'index.php?route=user/api/addip&token=<?php echo $token; ?>&api_id=<?php echo $api_id; ?>',
+		type: 'post',
+		data: 'ip=<?php echo $api_ip; ?>',
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-ip-add').button('loading');
+		},
+		complete: function() {
+			$('#button-ip-add').button('reset');
+		},
+		success: function(json) {
+			$('.alert').remove();
+
+			if (json['error']) {
+				$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+			}
+
+			if (json['success']) {
+				$('#content > .container-fluid').prepend('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
 $(document).delegate('#button-invoice', 'click', function() {
 	$.ajax({
 		url: 'index.php?route=sale/order/createinvoiceno&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
@@ -534,35 +559,6 @@ $.ajax({
 	}
 });
 
-$(document).delegate('#button-ip-add', 'click', function() {
-	$.ajax({
-		url: 'index.php?route=user/api/addip&token=<?php echo $token; ?>&api_id=<?php echo $api_id; ?>',
-		type: 'post',
-		data: 'ip=<?php echo $api_ip; ?>',
-		dataType: 'json',
-		beforeSend: function() {
-			$('#button-ip-add').button('loading');
-		},
-		complete: function() {
-			$('#button-ip-add').button('reset');
-		},
-		success: function(json) {
-			$('.alert').remove();
-
-			if (json['error']) {
-				$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-			}
-
-			if (json['success']) {
-				$('#content > .container-fluid').prepend('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-});
-
 $('#history').delegate('.pagination a', 'click', function(e) {
 	e.preventDefault();
 
@@ -646,6 +642,6 @@ $(document).ready(function() {
 $('select[name="order_status_id"]').change(function(){
 	changeStatus();
 });
-//--></script>
+//--></script> 
 </div>
-<?php echo $footer; ?>
+<?php echo $footer; ?> 

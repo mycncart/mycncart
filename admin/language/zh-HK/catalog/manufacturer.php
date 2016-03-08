@@ -20,7 +20,7 @@ $_['column_action']      = '操作';
 // Entry
 $_['entry_name']         = '制造商/品牌名稱';
 $_['entry_store']        = '商店';
-$_['entry_keyword']      = 'SEO Keyword';
+$_['entry_keyword']      = 'SEO URL';
 $_['entry_image']        = '圖像';
 $_['entry_sort_order']   = '排序';
 $_['entry_type']         = '類型';
@@ -31,5 +31,5 @@ $_['help_keyword']       = '不要用空格，使用-鏈接關鍵字，確保該
 // Error
 $_['error_permission']   = '警告: 無權限修改制造商/品牌！';
 $_['error_name']         = '制造商/品牌名稱必須介於2-64字符！';
-$_['error_keyword']      = '該 SEO keyword 已經存在了！';
+$_['error_keyword']      = '該 SEO URL 已經存在了！';
 $_['error_product']      = '警告: 不能刪除此制造商/品牌，該制造商/品牌已經關聯到 %s 個商品！';
