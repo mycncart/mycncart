@@ -25,7 +25,7 @@ class ControllerAffiliatePassword extends Controller {
 
 			$activity_data = array(
 				'affiliate_id' => $this->affiliate->getId(),
-				'name'         => $this->affiliate->getFullName()
+				'name'         => $this->affiliate->getFirstName() . ' ' . $this->affiliate->getLastName()
 			);
 
 			$this->model_affiliate_activity->addActivity('password', $activity_data);
@@ -95,11 +95,7 @@ class ControllerAffiliatePassword extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/password')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/affiliate/password', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/affiliate/password', $data));
-		}
+		$this->response->setOutput($this->load->view('affiliate/password', $data));
 	}
 
 	protected function validate() {

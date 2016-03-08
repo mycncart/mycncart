@@ -77,12 +77,12 @@ class ControllerAccountReturn extends Controller {
 		$pagination = new Pagination();
 		$pagination->total = $return_total;
 		$pagination->page = $page;
-		$pagination->limit = $this->config->get('config_product_limit');
+		$pagination->limit = $this->config->get($this->config->get('config_theme') . '_product_limit');
 		$pagination->url = $this->url->link('account/return', 'page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
-		$data['results'] = sprintf($this->language->get('text_pagination'), ($return_total) ? (($page - 1) * $this->config->get('config_product_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_product_limit')) > ($return_total - $this->config->get('config_product_limit'))) ? $return_total : ((($page - 1) * $this->config->get('config_product_limit')) + $this->config->get('config_product_limit')), $return_total, ceil($return_total / $this->config->get('config_product_limit')));
+		$data['results'] = sprintf($this->language->get('text_pagination'), ($return_total) ? (($page - 1) * $this->config->get($this->config->get('config_theme') . '_product_limit')) + 1 : 0, ((($page - 1) * $this->config->get($this->config->get('config_theme') . '_product_limit')) > ($return_total - $this->config->get($this->config->get('config_theme') . '_product_limit'))) ? $return_total : ((($page - 1) * $this->config->get($this->config->get('config_theme') . '_product_limit')) + $this->config->get($this->config->get('config_theme') . '_product_limit')), $return_total, ceil($return_total / $this->config->get($this->config->get('config_theme') . '_product_limit')));
 
 		$data['continue'] = $this->url->link('account/account', '', true);
 
@@ -93,11 +93,7 @@ class ControllerAccountReturn extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_list')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/return_list', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/account/return_list', $data));
-		}
+		$this->response->setOutput($this->load->view('account/return_list', $data));
 	}
 
 	public function info() {
@@ -162,8 +158,10 @@ class ControllerAccountReturn extends Controller {
 			$data['text_status'] = $this->language->get('text_status');
 			$data['text_date_added'] = $this->language->get('text_date_added');
 			$data['text_product'] = $this->language->get('text_product');
+			$data['text_reason'] = $this->language->get('text_reason');
 			$data['text_comment'] = $this->language->get('text_comment');
 			$data['text_history'] = $this->language->get('text_history');
+			$data['text_no_results'] = $this->language->get('text_no_results');
 
 			$data['column_product'] = $this->language->get('column_product');
 			$data['column_model'] = $this->language->get('column_model');
@@ -213,11 +211,7 @@ class ControllerAccountReturn extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_info')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/return_info', $data));
-			} else {
-				$this->response->setOutput($this->load->view('default/template/account/return_info', $data));
-			}
+			$this->response->setOutput($this->load->view('account/return_info', $data));
 		} else {
 			$this->document->setTitle($this->language->get('text_return'));
 
@@ -264,11 +258,7 @@ class ControllerAccountReturn extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found', $data));
-			} else {
-				$this->response->setOutput($this->load->view('default/template/error/not_found', $data));
-			}
+			$this->response->setOutput($this->load->view('error/not_found', $data));
 		}
 	}
 
@@ -278,8 +268,6 @@ class ControllerAccountReturn extends Controller {
 		$this->load->model('account/return');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			unset($this->session->data['captcha']);
-
 			$return_id = $this->model_account_return->addReturn($this->request->post);
 
 			// Add to activity log
@@ -288,7 +276,7 @@ class ControllerAccountReturn extends Controller {
 			if ($this->customer->isLogged()) {
 				$activity_data = array(
 					'customer_id' => $this->customer->getId(),
-					'name'        => $this->customer->getFullName(),
+					'name'        => $this->customer->getFirstName() . ' ' . $this->customer->getLastName(),
 					'return_id'   => $return_id
 				);
 
@@ -346,7 +334,6 @@ class ControllerAccountReturn extends Controller {
 		$data['entry_reason'] = $this->language->get('entry_reason');
 		$data['entry_opened'] = $this->language->get('entry_opened');
 		$data['entry_fault_detail'] = $this->language->get('entry_fault_detail');
-		$data['entry_captcha'] = $this->language->get('entry_captcha');
 
 		$data['button_submit'] = $this->language->get('button_submit');
 		$data['button_back'] = $this->language->get('button_back');
@@ -434,7 +421,7 @@ class ControllerAccountReturn extends Controller {
 		} elseif (!empty($order_info)) {
 			$data['fullname'] = $order_info['fullname'];
 		} else {
-			$data['fullname'] = $this->customer->getFullName();
+			$data['fullname'] = $this->customer->getFirstName();
 		}
 
 		if (isset($this->request->post['email'])) {
@@ -496,7 +483,7 @@ class ControllerAccountReturn extends Controller {
 		} else {
 			$data['comment'] = '';
 		}
-		
+
 		// Captcha
 		if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('return', (array)$this->config->get('config_captcha_page'))) {
 			$data['captcha'] = $this->load->controller('captcha/' . $this->config->get('config_captcha'), $this->error);
@@ -533,13 +520,8 @@ class ControllerAccountReturn extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_form')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/return_form', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/account/return_form', $data));
-		}
+		$this->response->setOutput($this->load->view('account/return_form', $data));
 	}
-
 
 	protected function validate() {
 		if (!$this->request->post['order_id']) {
@@ -550,7 +532,7 @@ class ControllerAccountReturn extends Controller {
 			$this->error['fullname'] = $this->language->get('error_fullname');
 		}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
@@ -590,7 +572,7 @@ class ControllerAccountReturn extends Controller {
 
 		return !$this->error;
 	}
-	
+
 	public function success() {
 		$this->load->language('account/return');
 
@@ -623,10 +605,6 @@ class ControllerAccountReturn extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/success', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/common/success', $data));
-		}
+		$this->response->setOutput($this->load->view('common/success', $data));
 	}
 }

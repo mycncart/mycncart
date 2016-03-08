@@ -215,7 +215,7 @@ class ControllerAffiliateRegister extends Controller {
 		}
 
 		if (isset($this->request->post['country_id'])) {
-			$data['country_id'] = (int)$this->request->post['country_id'];
+			$data['country_id'] = $this->request->post['country_id'];
 		} else {
 			$data['country_id'] = $this->config->get('config_country_id');
 		}
@@ -330,11 +330,7 @@ class ControllerAffiliateRegister extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/register')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/affiliate/register', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/affiliate/register', $data));
-		}
+		$this->response->setOutput($this->load->view('affiliate/register', $data));
 	}
 
 	protected function validate() {
@@ -342,7 +338,7 @@ class ControllerAffiliateRegister extends Controller {
 			$this->error['fullname'] = $this->language->get('error_fullname');
 		}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
