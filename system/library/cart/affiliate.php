@@ -2,8 +2,7 @@
 namespace Cart;
 class Affiliate {
 	private $affiliate_id;
-	private $firstname;
-	private $lastname;
+	private $fullname;
 	private $email;
 	private $telephone;
 	private $fax;
@@ -20,8 +19,7 @@ class Affiliate {
 
 			if ($affiliate_query->num_rows) {
 				$this->affiliate_id = $affiliate_query->row['affiliate_id'];
-				$this->firstname = $affiliate_query->row['firstname'];
-				$this->lastname = $affiliate_query->row['lastname'];
+				$this->fullname = $affiliate_query->row['fullname'];
 				$this->email = $affiliate_query->row['email'];
 				$this->telephone = $affiliate_query->row['telephone'];
 				$this->fax = $affiliate_query->row['fax'];
@@ -41,8 +39,7 @@ class Affiliate {
 			$this->session->data['affiliate_id'] = $affiliate_query->row['affiliate_id'];
 
 			$this->affiliate_id = $affiliate_query->row['affiliate_id'];
-			$this->firstname = $affiliate_query->row['firstname'];
-			$this->lastname = $affiliate_query->row['lastname'];
+			$this->fullname = $affiliate_query->row['fullname'];
 			$this->email = $affiliate_query->row['email'];
 			$this->telephone = $affiliate_query->row['telephone'];
 			$this->fax = $affiliate_query->row['fax'];
@@ -58,8 +55,7 @@ class Affiliate {
 		unset($this->session->data['affiliate_id']);
 
 		$this->affiliate_id = '';
-		$this->firstname = '';
-		$this->lastname = '';
+		$this->fullname = '';
 		$this->email = '';
 		$this->telephone = '';
 		$this->fax = '';
@@ -73,12 +69,8 @@ class Affiliate {
 		return $this->affiliate_id;
 	}
 
-	public function getFirstName() {
-		return $this->firstname;
-	}
-
-	public function getLastName() {
-		return $this->lastname;
+	public function getFullName() {
+		return $this->fullname;
 	}
 
 	public function getEmail() {

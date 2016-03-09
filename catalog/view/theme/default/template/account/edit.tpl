@@ -245,17 +245,21 @@
 $('.form-group[data-sort]').detach().each(function() {
 	if ($(this).attr('data-sort') >= 0 && $(this).attr('data-sort') <= $('.form-group').length) {
 		$('.form-group').eq($(this).attr('data-sort')).before(this);
-	} 
-	
+	}
+
 	if ($(this).attr('data-sort') > $('.form-group').length) {
 		$('.form-group:last').after(this);
 	}
-		
+
+	if ($(this).attr('data-sort') == $('.form-group').length) {
+		$('.form-group:last').after(this);
+	}
+
 	if ($(this).attr('data-sort') < -$('.form-group').length) {
 		$('.form-group:first').before(this);
 	}
 });
-//--></script> 
+//--></script>
 <script type="text/javascript"><!--
 $('button[id^=\'button-custom-field\']').on('click', function() {
 	var node = this;

@@ -74,10 +74,6 @@ class ControllerCommonFooter extends Controller {
 			$this->model_tool_online->addOnline($ip, $this->customer->getId(), $url, $referer);
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/footer')) {
-			return $this->load->view($this->config->get('config_template') . '/template/common/footer', $data);
-		} else {
-			return $this->load->view('default/template/common/footer', $data);
-		}
+		return $this->load->view('common/footer', $data);
 	}
 }

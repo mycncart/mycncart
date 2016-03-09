@@ -61,7 +61,7 @@ class ModelPaymentPPPayflowIframe extends Model {
 			'VENDOR' => $this->config->get('pp_payflow_iframe_vendor'),
 			'PWD' => $this->config->get('pp_payflow_iframe_password'),
 			'PARTNER' => $this->config->get('pp_payflow_iframe_partner'),
-			'BUTTONSOURCE' => 'MyCnCart_Cart_PFP',
+			'BUTTONSOURCE' => 'OpenCart_Cart_PFP',
 		);
 
 		$call_parameters = array_merge($data, $default_parameters);

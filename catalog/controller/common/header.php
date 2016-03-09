@@ -10,7 +10,7 @@ class ControllerCommonHeader extends Controller {
 
 		foreach ($analytics as $analytic) {
 			if ($this->config->get($analytic['code'] . '_status')) {
-				$data['analytics'][] = $this->load->controller('analytics/' . $analytic['code']);
+				$data['analytics'][] = $this->load->controller('analytics/' . $analytic['code'], $this->config->get($analytic['code'] . '_status'));
 			}
 		}
 
@@ -91,20 +91,6 @@ class ControllerCommonHeader extends Controller {
 		$data['press'] = $this->url->link('press/all');
 		$data['faq'] = $this->url->link('faq/faq');
 
-		$status = true;
-
-		if (isset($this->request->server['HTTP_USER_AGENT'])) {
-			$robots = explode("\n", str_replace(array("\r\n", "\r"), "\n", trim($this->config->get('config_robots'))));
-
-			foreach ($robots as $robot) {
-				if ($robot && strpos($this->request->server['HTTP_USER_AGENT'], trim($robot)) !== false) {
-					$status = false;
-
-					break;
-				}
-			}
-		}
-
 		// Menu
 		$this->load->model('catalog/category');
 
@@ -156,6 +142,8 @@ class ControllerCommonHeader extends Controller {
 				$class = '-' . $this->request->get['path'];
 			} elseif (isset($this->request->get['manufacturer_id'])) {
 				$class = '-' . $this->request->get['manufacturer_id'];
+			} elseif (isset($this->request->get['information_id'])) {
+				$class = '-' . $this->request->get['information_id'];
 			} else {
 				$class = '';
 			}
@@ -165,10 +153,6 @@ class ControllerCommonHeader extends Controller {
 			$data['class'] = 'common-home';
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header')) {
-			return $this->load->view($this->config->get('config_template') . '/template/common/header', $data);
-		} else {
-			return $this->load->view('default/template/common/header', $data);
-		}
+		return $this->load->view('common/header', $data);
 	}
 }

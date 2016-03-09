@@ -74,7 +74,7 @@
                 <div class="form-group required">
                   <div class="col-sm-12">
                     <label class="control-label" for="input-name"><?php echo $entry_name; ?></label>
-                    <input type="text" name="name" value="" id="input-name" class="form-control" />
+                    <input type="text" name="name" value="<?php echo $customer_name; ?>" id="input-name" class="form-control" />
                   </div>
                 </div>
                 <div class="form-group required">
@@ -208,6 +208,9 @@
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" name="option[<?php echo $option['product_option_id']; ?>][]" value="<?php echo $option_value['product_option_value_id']; ?>" />
+                    <?php if ($option_value['image']) { ?>
+                    <img src="<?php echo $option_value['image']; ?>" alt="<?php echo $option_value['name'] . ($option_value['price'] ? ' ' . $option_value['price_prefix'] . $option_value['price'] : ''); ?>" class="img-thumbnail" /> 
+                    <?php } ?>
                     <?php echo $option_value['name']; ?>
                     <?php if ($option_value['price']) { ?>
                     (<?php echo $option_value['price_prefix']; ?><?php echo $option_value['price']; ?>)

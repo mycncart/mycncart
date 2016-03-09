@@ -48,11 +48,7 @@ class ControllerTotalShipping extends Controller {
 				$data['shipping_method'] = '';
 			}
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/total/shipping')) {
-				return $this->load->view($this->config->get('config_template') . '/template/total/shipping', $data);
-			} else {
-				return $this->load->view('default/template/total/shipping', $data);
-			}
+			return $this->load->view('total/shipping', $data);
 		}
 	}
 
@@ -113,9 +109,11 @@ class ControllerTotalShipping extends Controller {
 			}
 
 			$this->session->data['shipping_address'] = array(
-				'fullname'      => '',
+				'firstname'      => '',
+				'lastname'       => '',
 				'company'        => '',
-				'address'        => '',
+				'address_1'      => '',
+				'address_2'      => '',
 				'postcode'       => $this->request->post['postcode'],
 				'city'           => '',
 				'zone_id'        => $this->request->post['zone_id'],

@@ -41,8 +41,8 @@ class ControllerModuleCategory extends Controller {
 					$filter_data = array('filter_category_id' => $child['category_id'], 'filter_sub_category' => true);
 
 					$children_data[] = array(
-						'category_id' => $child['category_id'], 
-						'name' => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''), 
+						'category_id' => $child['category_id'],
+						'name' => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
 						'href' => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
 					);
 				}
@@ -61,10 +61,6 @@ class ControllerModuleCategory extends Controller {
 			);
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/category')) {
-			return $this->load->view($this->config->get('config_template') . '/template/module/category', $data);
-		} else {
-			return $this->load->view('default/template/module/category', $data);
-		}
+		return $this->load->view('module/category', $data);
 	}
 }

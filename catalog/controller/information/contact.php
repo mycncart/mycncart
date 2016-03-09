@@ -82,7 +82,7 @@ class ControllerInformationContact extends Controller {
 		$this->load->model('tool/image');
 
 		if ($this->config->get('config_image')) {
-			$data['image'] = $this->model_tool_image->resize($this->config->get('config_image'), $this->config->get('config_image_location_width'), $this->config->get('config_image_location_height'));
+			$data['image'] = $this->model_tool_image->resize($this->config->get('config_image'), $this->config->get($this->config->get('config_theme') . '_image_location_width'), $this->config->get($this->config->get('config_theme') . '_image_location_height'));
 		} else {
 			$data['image'] = false;
 		}
@@ -113,7 +113,7 @@ class ControllerInformationContact extends Controller {
 
 			if ($location_info) {
 				if ($location_info['image']) {
-					$image = $this->model_tool_image->resize($location_info['image'], $this->config->get('config_image_location_width'), $this->config->get('config_image_location_height'));
+					$image = $this->model_tool_image->resize($location_info['image'], $this->config->get($this->config->get('config_theme') . '_image_location_width'), $this->config->get($this->config->get('config_theme') . '_image_location_height'));
 				} else {
 					$image = false;
 				}
@@ -164,11 +164,7 @@ class ControllerInformationContact extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/information/contact')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/information/contact', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/information/contact', $data));
-		}
+		$this->response->setOutput($this->load->view('information/contact', $data));
 	}
 
 	protected function validate() {
@@ -176,7 +172,7 @@ class ControllerInformationContact extends Controller {
 			$this->error['name'] = $this->language->get('error_name');
 		}
 
-		if (!preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+		if (!filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
@@ -228,10 +224,6 @@ class ControllerInformationContact extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/success', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/common/success', $data));
-		}
+		$this->response->setOutput($this->load->view('common/success', $data));
 	}
 }

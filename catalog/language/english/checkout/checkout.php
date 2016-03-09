@@ -4,11 +4,11 @@ $_['heading_title']                  = 'Checkout';
 
 // Text
 $_['text_cart']                      = 'Shopping Cart';
-$_['text_checkout_payment_address']  = 'Step 1: Billing Details';
-$_['text_checkout_shipping_address'] = 'Step 2: Delivery Details';
-$_['text_checkout_shipping_method']  = 'Step 3: Delivery Method';
-$_['text_checkout_payment_method']   = 'Step 4: Payment Method';
-$_['text_checkout_confirm']          = 'Step 5: Confirm Order';
+$_['text_checkout_payment_address']  = 'Step %s: Billing Details';
+$_['text_checkout_shipping_address'] = 'Step %s: Delivery Details';
+$_['text_checkout_shipping_method']  = 'Step %s: Delivery Method';
+$_['text_checkout_payment_method']   = 'Step %s: Payment Method';
+$_['text_checkout_confirm']          = 'Step %s: Confirm Order';
 $_['text_modify']                    = 'Modify &raquo;';
 $_['text_agree']                     = 'I have read and agree to the <a href="%s" class="agree"><b>%s</b></a>';
 $_['text_address_new']               = 'I want to use a new address';
@@ -54,7 +54,7 @@ $_['error_fullname']                 = 'Full Name must be between 1 and 32 chara
 $_['error_email']                    = 'E-Mail address does not appear to be valid!';
 $_['error_shipping_telephone']       = 'Shipping Telephone must be between 3 and 32 characters!';
 $_['error_telephone']                = 'Telephone must be between 3 and 32 characters!';
-$_['error_password']                 = 'Password must be between 3 and 20 characters!';
+$_['error_password']                 = 'Password must be between 4 and 20 characters!';
 $_['error_confirm']                  = 'Password confirmation does not match password!';
 $_['error_address']                = 'Address 1 must be between 3 and 128 characters!';
 $_['error_city']                     = 'City must be between 2 and 128 characters!';
@@ -68,3 +68,4 @@ $_['error_no_shipping']              = 'Warning: No Shipping options are availab
 $_['error_payment']                  = 'Warning: Payment method required!';
 $_['error_no_payment']               = 'Warning: No Payment options are available. Please <a href="%s">contact us</a> for assistance!';
 $_['error_custom_field']             = '%s required!';
+$_['error_custom_field_validate']    = '%s invalid!';

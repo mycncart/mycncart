@@ -96,11 +96,7 @@ class ControllerCheckoutRegister extends Controller {
 
 		$data['shipping_required'] = $this->cart->hasShipping();
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/register')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/register', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/checkout/register', $data));
-		}
+		$this->response->setOutput($this->load->view('checkout/register', $data));
 	}
 
 	public function save() {
@@ -144,7 +140,7 @@ class ControllerCheckoutRegister extends Controller {
 				$json['error']['fullname'] = $this->language->get('error_fullname');
 			}
 
-			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+			if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 				$json['error']['email'] = $this->language->get('error_email');
 			}
 
@@ -213,16 +209,18 @@ class ControllerCheckoutRegister extends Controller {
 			foreach ($custom_fields as $custom_field) {
 				if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
 					$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
+				} elseif (($custom_field['type'] == 'text' && !empty($custom_field['validation'])) && !filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
+					$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field_validate'), $custom_field['name']);
 				}
 			}
-		}
-		
-		// Captcha
-		if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
-			$captcha = $this->load->controller('captcha/' . $this->config->get('config_captcha') . '/validate');
 
-			if ($captcha) {
-				$json['error']['captcha'] = $captcha;
+			// Captcha
+			if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
+				$captcha = $this->load->controller('captcha/' . $this->config->get('config_captcha') . '/validate');
+
+				if ($captcha) {
+					$json['error']['captcha'] = $captcha;
+				}
 			}
 		}
 

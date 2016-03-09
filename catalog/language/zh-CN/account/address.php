@@ -35,3 +35,4 @@ $_['error_country']        = '请选择国家';
 $_['error_zone']           = '请选择州/省/地区！';
 $_['error_custom_field']   = '%s 必须！';
 $_['error_shipping_telephone']       = '收件人电话必须为3到32字节！';
+$_['error_custom_field_validate'] = '%s 无效！';

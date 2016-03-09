@@ -22,6 +22,7 @@ $_['text_error']            = '请求的订单不存在！';
 
 // Column
 $_['column_order_id']       = '订单号 ID';
+$_['column_customer']       = '会员';
 $_['column_product']        = '总件数';
 $_['column_customer']       = '会员';
 $_['column_name']           = '商品名称';
@@ -31,7 +32,7 @@ $_['column_price']          = '价格';
 $_['column_total']          = '小计';
 $_['column_action']         = '操作';
 $_['column_date_added']     = '添加日期';
-$_['column_status']         = '订单状态';
+$_['column_status']         = '状态';
 $_['column_comment']        = '备注';
 
 // Error

@@ -22,6 +22,7 @@ $_['text_error']            = '請求的訂單不存在！';
 
 // Column
 $_['column_order_id']       = '訂單號 ID';
+$_['column_customer']       = '会员';
 $_['column_product']        = '總件數';
 $_['column_customer']       = '會員';
 $_['column_name']           = '商品名稱';
@@ -31,7 +32,7 @@ $_['column_price']          = '價格';
 $_['column_total']          = '小計';
 $_['column_action']         = '操作';
 $_['column_date_added']     = '添加日期';
-$_['column_status']         = '訂單狀態';
+$_['column_status']         = '狀態';
 $_['column_comment']        = '備注';
 
 // Error

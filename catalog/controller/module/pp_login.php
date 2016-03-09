@@ -48,11 +48,7 @@ class ControllerModulePPLogin extends Controller {
 
 			$data['scopes'] = implode(' ', $scopes);
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/pp_login')) {
-				return $this->load->view($this->config->get('config_template') . '/template/module/pp_login', $data);
-			} else {
-				return $this->load->view('default/template/module/pp_login', $data);
-			}
+			return $this->load->view('module/pp_login', $data);
 		}
 	}
 
@@ -169,7 +165,7 @@ class ControllerModulePPLogin extends Controller {
 
 		$activity_data = array(
 			'customer_id' => $this->customer->getId(),
-			'name'        => $this->customer->getFullName()
+			'name'        => $this->customer->getFirstName() . ' ' . $this->customer->getLastName()
 		);
 
 		$this->model_account_activity->addActivity('login', $activity_data);

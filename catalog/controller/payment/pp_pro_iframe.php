@@ -12,9 +12,9 @@ class ControllerPaymentPPProIframe extends Controller {
 			$hosted_button_id = $this->constructButtonData($order_info);
 
 			if ($this->config->get('pp_pro_iframe_test')) {
-				$data['url'] = 'https://securepayments.sandbox.paypal.com/cgi-bin/webscr';
+				$data['url'] = 'https://securepayments.sandbox.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
 			} else {
-				$data['url'] = 'https://securepayments.paypal.com/cgi-bin/webscr';
+				$data['url'] = 'https://securepayments.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
 			}
 
 			if ($hosted_button_id) {
@@ -27,11 +27,7 @@ class ControllerPaymentPPProIframe extends Controller {
 
 		$data['checkout_method'] = $this->config->get('pp_pro_iframe_checkout_method');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_pro_iframe')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/pp_pro_iframe', $data);
-		} else {
-			return $this->load->view('default/template/payment/pp_pro_iframe', $data);
-		}
+		return $this->load->view('payment/pp_pro_iframe', $data);
 	}
 
 	public function create() {
@@ -49,9 +45,9 @@ class ControllerPaymentPPProIframe extends Controller {
 			$data['code'] = $hosted_button_id;
 
 			if ($this->config->get('pp_pro_iframe_test')) {
-				$data['url'] = 'https://securepayments.sandbox.paypal.com/cgi-bin/webscr';
+				$data['url'] = 'https://securepayments.sandbox.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
 			} else {
-				$data['url'] = 'https://securepayments.paypal.com/cgi-bin/webscr';
+				$data['url'] = 'https://securepayments.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
 			}
 
 			$data['error_connection'] = '';
@@ -65,11 +61,7 @@ class ControllerPaymentPPProIframe extends Controller {
 			$data['stylesheet'] = '/catalog/view/theme/default/stylesheet/stylesheet.css';
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_pro_iframe_body')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/payment/pp_pro_iframe_body', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/payment/pp_pro_iframe_body', $data));
-		}
+		$this->response->setOutput($this->load->view('payment/pp_pro_iframe_body', $data));
 	}
 
 	public function notify() {
@@ -169,7 +161,7 @@ class ControllerPaymentPPProIframe extends Controller {
 						$paypal_transaction_data = array(
 							'paypal_iframe_order_id' => $paypal_iframe_order_id,
 							'transaction_id'         => $this->request->post['txn_id'],
-							'parent_transaction_id'  => '',
+							'parent_id'  => '',
 							'note'                   => '',
 							'msgsubid'               => '',
 							'receipt_id'             => $this->request->post['receipt_id'],
@@ -294,7 +286,7 @@ class ControllerPaymentPPProIframe extends Controller {
 		
 		if ($this->config->get('pp_pro_iframe_debug')) {
 			$log = new Log('pp_pro_iframe.log');
-			$log->write(print_r(serialize($response_data), 1));
+			$log->write(print_r(json_encode($response_data), 1));
 		}
 		
 		curl_close($curl);

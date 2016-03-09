@@ -100,12 +100,12 @@ class ModelShippingFedex extends Model {
 
 			$xml .= '				<ns1:Recipient>';
 			$xml .= '					<ns1:Contact>';
-			$xml .= '						<ns1:PersonName>' . $address['fullname'] . '</ns1:PersonName>';
+			$xml .= '						<ns1:PersonName>' . $address['firstname'] . ' ' . $address['lastname'] . '</ns1:PersonName>';
 			$xml .= '						<ns1:CompanyName>' . $address['company'] . '</ns1:CompanyName>';
 			$xml .= '						<ns1:PhoneNumber>' . $this->customer->getTelephone() . '</ns1:PhoneNumber>';
 			$xml .= '					</ns1:Contact>';
 			$xml .= '					<ns1:Address>';
-			$xml .= '						<ns1:StreetLines>' . $address['address'] . '</ns1:StreetLines>';
+			$xml .= '						<ns1:StreetLines>' . $address['address_1'] . '</ns1:StreetLines>';
 			$xml .= '						<ns1:City>' . $address['city'] . '</ns1:City>';
 
 			if (in_array($address['iso_code_2'], array('US', 'CA'))) {
@@ -206,7 +206,7 @@ class ModelShippingFedex extends Model {
 							'title'        => $title,
 							'cost'         => $this->currency->convert($cost, $currency, $this->config->get('config_currency')),
 							'tax_class_id' => $this->config->get('fedex_tax_class_id'),
-							'text'         => $this->currency->format($this->tax->calculate($this->currency->convert($cost, $currency, $this->currency->getCode()), $this->config->get('fedex_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
+							'text'         => $this->currency->format($this->tax->calculate($this->currency->convert($cost, $currency, $this->session->data['currency']), $this->config->get('fedex_tax_class_id'), $this->config->get('config_tax')), $this->session->data['currency'], 1.0000000)
 						);
 					}
 				}

@@ -76,41 +76,25 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 		$data['checkout_method'] = $this->config->get('pp_payflow_iframe_checkout_method');
 		$data['button_confirm'] = $this->language->get('button_confirm');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_payflow_iframe')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/pp_payflow_iframe', $data);
-		} else {
-			return $this->load->view('default/template/payment/pp_payflow_iframe', $data);
-		}
+		return $this->load->view('payment/pp_payflow_iframe', $data);
 	}
 
 	public function paymentReturn() {
 		$data['url'] = $this->url->link('checkout/success');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_payflow_iframe_return')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/payment/pp_payflow_iframe_return', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/payment/pp_payflow_iframe_return', $data));
-		}
+		$this->response->setOutput($this->load->view('payment/pp_payflow_iframe_return', $data));
 	}
 
 	public function paymentCancel() {
 		$data['url'] = $this->url->link('checkout/checkout');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_payflow_iframe_return')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/payment/pp_payflow_iframe_return', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/payment/pp_payflow_iframe_return', $data));
-		}
+		$this->response->setOutput($this->load->view('payment/pp_payflow_iframe_return', $data));
 	}
 
 	public function paymentError() {
 		$data['url'] = $this->url->link('checkout/checkout');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_payflow_iframe_return')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/payment/pp_payflow_iframe_return', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/payment/pp_payflow_iframe_return', $data));
-		}
+		$this->response->setOutput($this->load->view('payment/pp_payflow_iframe_return', $data));
 	}
 
 	public function paymentIpn() {

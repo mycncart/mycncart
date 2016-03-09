@@ -7,11 +7,13 @@ $_['heading_title']   = '忘記密碼?';
 $_['text_account']    = '賬戶';
 $_['text_forgotten']  = '忘記密碼';
 $_['text_your_email'] = 'E-Mail 地址';
-$_['text_email']      = '請輸入您注冊賬戶時填寫的電子郵件地址，點擊繼續。您的新密碼將通過電子郵件發送給您！';
-$_['text_success']    = '成功： 新密碼已發送到您的郵箱，請及時查收！';
+$_['text_email']      = '请输入您注册账户时填写的电子邮件地址，点击继续。您将收到带有密码重置链接的邮件。';
+$_['text_success']    = '带有确认链接的邮件已经发送到您的邮箱。';
 
 // Entry
 $_['entry_email']     = 'E-Mail 地址';
+$_['entry_password']  = '新密码';
+$_['entry_confirm']   = '确认密码';
 
 // Error
 $_['error_email']     = '警告： 該郵箱地址不在我們的記錄中， 請重試！';

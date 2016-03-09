@@ -1,0 +1,2 @@
+2016-03-09 19:22:05 - PHP Notice:  Error: Could not load template C:/wamp/www/mycncart/catalog/view/theme/default/template/default/template/module/faq_category.tpl! in C:\wamp\www\mycncart\system\library\template\basic.php on line 26
+2016-03-09 19:22:11 - PHP Notice:  Error: Could not load template C:/wamp/www/mycncart/catalog/view/theme/default/template/default/template/module/press_category.tpl! in C:\wamp\www\mycncart\system\library\template\basic.php on line 26

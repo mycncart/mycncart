@@ -25,3 +25,4 @@ $_['error_email']        = 'E-Mail 地址無效！';
 $_['error_telephone']    = '電話必須爲 3-32字符！';
 $_['error_custom_field'] = '%s 必須！';
 $_['error_sms_code']     = '錯誤的短信驗證碼!';
+$_['error_custom_field_validate'] = '%s 无效！';

@@ -31,11 +31,7 @@ class ControllerCheckoutLogin extends Controller {
 
 		$data['forgotten'] = $this->url->link('account/forgotten', '', true);
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/login')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/login', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/checkout/login', $data));
-		}
+		$this->response->setOutput($this->load->view('checkout/login', $data));
 	}
 
 	public function save() {
@@ -80,8 +76,6 @@ class ControllerCheckoutLogin extends Controller {
 		}
 
 		if (!$json) {
-			// Trigger customer pre login event
-			$this->event->trigger('pre.customer.login');
 
 			// Unset guest
 			unset($this->session->data['guest']);
@@ -118,9 +112,6 @@ class ControllerCheckoutLogin extends Controller {
 
 			$this->model_account_activity->addActivity('login', $activity_data);
 			
-			// Trigger customer post login event
-			$this->event->trigger('post.customer.login');
-
 			$json['redirect'] = $this->url->link('checkout/checkout', '', true);
 		}
 

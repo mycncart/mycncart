@@ -34,3 +34,4 @@ $_['error_country']        = 'Please select a country!';
 $_['error_zone']           = 'Please select a region / state!';
 $_['error_custom_field']   = '%s required!';
 $_['error_shipping_telephone']       = 'Shipping Telephone must be between 3 and 32 characters!';
+$_['error_custom_field_validate'] = '%s invalid!';

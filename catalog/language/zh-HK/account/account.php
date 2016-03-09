@@ -11,6 +11,7 @@ $_['text_my_newsletter'] = '新聞訂閱';
 $_['text_edit']          = '編輯賬戶資料';
 $_['text_password']      = '修改密碼';
 $_['text_address']       = '修改地址簿';
+$_['text_credit_card']   = '管理信用卡';
 $_['text_wishlist']      = '修改收藏列表';
 $_['text_order']         = '查看曆史訂單';
 $_['text_download']      = '下載類文件';
