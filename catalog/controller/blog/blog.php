@@ -69,7 +69,8 @@ class ControllerBlogBlog extends Controller {
 			$data['text_loading'] = $this->language->get('text_loading');
 			$data['text_blog_category'] = $this->language->get('text_blog_category');
 			$data['text_tags'] = $this->language->get('text_tags');
-			$data['text_related'] = $this->language->get('text_related');
+			$data['text_related_product'] = $this->language->get('text_related_product');
+			$data['text_related_blog'] = $this->language->get('text_related_blog');
 			
 			$data['entry_name'] = $this->language->get('entry_name');
 			$data['entry_comment'] = $this->language->get('entry_comment');
@@ -167,8 +168,21 @@ class ControllerBlogBlog extends Controller {
 			} else {
 				$data['captcha'] = '';
 			}
+			
+			//Related Blogs
+			$data['related_blogs'] = array();
 
-
+			$results = $this->model_blog_blog->getBlogRelated($this->request->get['blog_id']);
+			
+			foreach ($results as $result) {
+				$data['related_blogs'][] = array(
+					'blog_id'  		=> $result['blog_id'],
+					'title'       	=> html_entity_decode($result['title']),
+					'href'        	=> $this->url->link('blog/blog', 'blog_id=' . $result['blog_id'])
+				);
+			}
+			
+			//Related Products
 			$data['products'] = array();
 
 			$results = $this->model_blog_blog->getBlogProductRelated($this->request->get['blog_id']);

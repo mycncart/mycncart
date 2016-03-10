@@ -18,7 +18,8 @@ $_['text_blog_category'] 		= 'Blog Categories';
 $_['text_empty'] 				= 'No Contents';
 $_['text_no_comments'] 			= 'No Comments';
 $_['text_tags']                 = 'Tags:';
-$_['text_related']              = 'Related Products';
+$_['text_related_product']      = 'Related Products';
+$_['text_related_blog']         = 'Related Articles';
 
 
 

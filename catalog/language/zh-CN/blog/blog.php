@@ -19,7 +19,8 @@ $_['text_blog_category'] 		= '博客分类';
 $_['text_empty'] 				= '无相关内容';
 $_['text_no_comments'] 			= '尚无评论';
 $_['text_tags']                 = '标签:';
-$_['text_related']              = '相关商品';
+$_['text_related_product']      = '相关商品';
+$_['text_related_blog']         = '相关文章';
 
 $_['entry_name']                = '姓名';
 $_['entry_comment']             = '评论';

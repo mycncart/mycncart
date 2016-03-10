@@ -79,8 +79,17 @@
           
       <?php echo $description; ?>
       
+      <?php if ($related_blogs) { ?>
+      <h3><?php echo $text_related_blog; ?></h3>
+      <div class="list-group">
+      	<?php foreach ($related_blogs as $related_blog) { ?>
+      	<a href="<?php echo $related_blog['href']; ?>" class="list-group-item"><?php echo $related_blog['title']; ?></a>
+      	<?php } ?>
+      </div>
+      <?php } ?>
+      
       <?php if ($products) { ?>
-      <h3><?php echo $text_related; ?></h3>
+      <h3><?php echo $text_related_product; ?></h3>
       <div class="row">
         <?php $i = 0; ?>
         <?php foreach ($products as $product) { ?>

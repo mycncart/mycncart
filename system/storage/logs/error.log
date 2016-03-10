@@ -20,3 +20,10 @@
 2016-03-10 17:05:26 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_config.tpl on line 41
 2016-03-10 17:05:26 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_config.tpl on line 41
 2016-03-10 17:06:34 - PHP Notice:  Undefined variable: help_blog in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 35
+2016-03-10 18:40:30 - PHP Notice:  Undefined index: product_id in C:\wamp\www\mycncart\catalog\controller\blog\blog.php on line 178
+2016-03-10 18:40:30 - PHP Notice:  Undefined index: product_id in C:\wamp\www\mycncart\catalog\controller\blog\blog.php on line 178
+2016-03-10 18:40:30 - PHP Notice:  Undefined index: product_id in C:\wamp\www\mycncart\catalog\controller\blog\blog.php on line 178
+2016-03-10 18:40:30 - PHP Notice:  Undefined variable: text_related_blog in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 83
+2016-03-10 18:40:30 - PHP Notice:  Undefined variable: text_related_product in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 92
+2016-03-10 18:40:48 - PHP Notice:  Undefined variable: text_related_blog in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 83
+2016-03-10 18:40:48 - PHP Notice:  Undefined variable: text_related_product in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 92
