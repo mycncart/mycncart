@@ -53,10 +53,10 @@ class ControllerOpenbayFba extends Controller {
 							$request['fulfillment_policy'] = $this->config->get('openbay_fba_fulfill_policy');
 
 							$request['destination_address'] = array(
-									'name' => $order['shipping_firstname'] . ' ' . $order['shipping_lastname'],
-									'line_1' => (!empty($order['shipping_company']) ? $order['shipping_company'] : $order['shipping_address_1']),
-									'line_2' => (!empty($order['shipping_company']) ? $order['shipping_address_1'] : $order['shipping_address_2']),
-									'line_3' => (!empty($order['shipping_company']) ? $order['shipping_address_2'] : ''),
+									'name' => $order['shipping_fullname'],
+									'line_1' => (!empty($order['shipping_company']) ? $order['shipping_company'] : $order['shipping_address']),
+									'line_2' => (!empty($order['shipping_company']) ? $order['shipping_address'] : ''),
+									'line_3' => (!empty($order['shipping_company']) ? '' : ''),
 									'state_or_province_code' => $order['shipping_zone'],
 									'city' => $order['shipping_city'],
 									'country_code' => $order['shipping_iso_code_2'],

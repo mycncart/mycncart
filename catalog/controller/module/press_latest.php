@@ -30,11 +30,8 @@ class ControllerModulePressLatest extends Controller {
 				);
 			}
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/press_latest')) {
-				return $this->load->view($this->config->get('config_template') . '/template/module/press_latest', $data);
-			} else {
-				return $this->load->view('default/template/module/press_latest', $data);
-			}
+			return $this->load->view('module/press_latest', $data);
+			
 		}
 	}
 }

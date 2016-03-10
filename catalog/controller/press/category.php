@@ -195,11 +195,8 @@ class ControllerPressCategory extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/press/category')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/press/category', $data));
-			} else {
-				$this->response->setOutput($this->load->view('default/template/press/category', $data));
-			}
+			$this->response->setOutput($this->load->view('press/category', $data));
+			
 		} else {
 			$url = '';
 
@@ -239,11 +236,8 @@ class ControllerPressCategory extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found', $data));
-			} else {
-				$this->response->setOutput($this->load->view('default/template/error/not_found', $data));
-			}
+			$this->response->setOutput($this->load->view('error/not_found', $data));
+			
 		}
 	}
 }

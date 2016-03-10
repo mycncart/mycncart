@@ -81,11 +81,8 @@ class ControllerCheckoutQrcodeWxPaySuccess extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/qrcode_wxpay_success')) {
-			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/qrcode_wxpay_success', $data));
-		} else {
-			$this->response->setOutput($this->load->view('default/template/common/qrcode_wxpay_success', $data));
-		}
+		$this->response->setOutput($this->load->view('common/qrcode_wxpay_success', $data));
+		
 	}
 	
 	

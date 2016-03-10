@@ -5,11 +5,8 @@ class ControllerPaymentPrecharge extends Controller {
 
 		$data['continue'] = $this->url->link('checkout/success');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/precharge')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/precharge', $data);
-		} else {
-			return $this->load->view('default/template/payment/precharge', $data);
-		}
+		return $this->load->view('payment/precharge', $data);
+		
 	}
 
 	public function confirm() {

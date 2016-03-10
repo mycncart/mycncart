@@ -123,11 +123,7 @@ class ControllerPaymentWxPay extends Controller {
 		$data['return_url'] = $this->url->link('checkout/success');
 		$data['checkout_url'] = $this->url->link('checkout/checkout');	
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/wxpay')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/wxpay', $data);
-		} else {
-			return $this->load->view('default/template/payment/wxpay', $data);
-		}
+		return $this->load->view('payment/wxpay', $data);
 		
 	}
 	

@@ -92,11 +92,8 @@ class ControllerPaymentPayDollar extends Controller {
 			$data['destCountry'] = '';
 			
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/paydollar')) {
-				return $this->load->view($this->config->get('config_template') . '/template/payment/paydollar', $data);
-			} else {
-				return $this->load->view('default/template/payment/paydollar', $data);
-			}
+			return $this->load->view('payment/paydollar', $data);
+			
 		}
 	}
 

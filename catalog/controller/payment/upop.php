@@ -124,11 +124,7 @@ class ControllerPaymentupop extends Controller {
 
 
 		
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/upop')) {
-				return $this->load->view($this->config->get('config_template') . '/template/payment/upop', $data);
-			} else {
-				return $this->load->view('default/template/payment/chinapay', $data);
-			}
+		return $this->load->view('payment/chinapay', $data);
 		
 	
 	}

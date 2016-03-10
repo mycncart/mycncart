@@ -103,11 +103,7 @@ class ControllerPaymentAlipayDirect extends Controller {
 		
 		
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/alipay_direct')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/alipay_direct', $data);
-		} else {
-			return $this->load->view('default/template/payment/alipay_direct', $data);
-		}
+		return $this->load->view('payment/alipay_direct', $data);
 		
 	}
 	

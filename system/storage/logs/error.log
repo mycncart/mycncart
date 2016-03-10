@@ -1,2 +1,22 @@
-2016-03-09 19:22:05 - PHP Notice:  Error: Could not load template C:/wamp/www/mycncart/catalog/view/theme/default/template/default/template/module/faq_category.tpl! in C:\wamp\www\mycncart\system\library\template\basic.php on line 26
-2016-03-09 19:22:11 - PHP Notice:  Error: Could not load template C:/wamp/www/mycncart/catalog/view/theme/default/template/default/template/module/press_category.tpl! in C:\wamp\www\mycncart\system\library\template\basic.php on line 26
+2016-03-10 11:22:48 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-03-10 11:22:53 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-03-10 11:22:57 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-03-10 11:22:59 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-03-10 11:23:00 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-03-10 11:23:18 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-03-10 11:23:19 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-03-10 11:23:21 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-03-10 11:23:35 - PHP Notice:  Undefined variable: text_faq_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\faq\faq.tpl on line 5
+2016-03-10 15:57:40 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_form.tpl on line 38
+2016-03-10 15:57:40 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_form.tpl on line 38
+2016-03-10 15:57:40 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_form.tpl on line 38
+2016-03-10 16:07:14 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_form.tpl on line 38
+2016-03-10 16:07:14 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_form.tpl on line 38
+2016-03-10 16:07:14 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_form.tpl on line 38
+2016-03-10 17:05:07 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_config.tpl on line 41
+2016-03-10 17:05:07 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_config.tpl on line 41
+2016-03-10 17:05:07 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_config.tpl on line 41
+2016-03-10 17:05:26 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_config.tpl on line 41
+2016-03-10 17:05:26 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_config.tpl on line 41
+2016-03-10 17:05:26 - PHP Notice:  Undefined index: image in C:\wamp\www\mycncart\admin\view\template\cms\press_config.tpl on line 41
+2016-03-10 17:06:34 - PHP Notice:  Undefined variable: help_blog in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 35

@@ -55,10 +55,7 @@ class ControllerModulePressCategory extends Controller {
 			);
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/press_category')) {
-			return $this->load->view($this->config->get('config_template') . '/template/module/press_category', $data);
-		} else {
-			return $this->load->view('default/template/module/press_category', $data);
-		}
+		return $this->load->view('module/press_category', $data);
+		
 	}
 }

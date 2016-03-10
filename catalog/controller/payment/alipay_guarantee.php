@@ -124,11 +124,7 @@ class ControllerPaymentAlipayGuarantee extends Controller {
 		
 		
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/alipay_guarantee')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/alipay_guarantee', $data);
-		} else {
-			return $this->load->view('default/template/payment/alipay_guarantee', $data);
-		}
+		return $this->load->view('payment/alipay_guarantee', $data);
 		
 	}
 	

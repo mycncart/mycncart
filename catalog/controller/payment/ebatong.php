@@ -180,11 +180,7 @@ class ControllerPaymentEBaTong extends Controller {
 	 	
 		$data['params'] = $params;
 		
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/ebatong')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/ebatong', $data);
-		} else {
-			return $this->load->view('default/template/payment/ebatong', $data);
-		}
+		return $this->load->view('payment/ebatong', $data);
 		
 	}
 	

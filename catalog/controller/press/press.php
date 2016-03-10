@@ -83,25 +83,25 @@ class ControllerPressPress extends Controller {
 				$product_info = $this->model_catalog_product->getProduct($result['related_id']);
 				
 				if ($product_info['image']) {
-					$image = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_related_width'), $this->config->get('config_image_related_height'));
+					$image = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_related_width'), $this->config->get($this->config->get('config_theme') . '_image_related_height'));
 				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_related_width'), $this->config->get('config_image_related_height'));
+					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get($this->config->get('config_theme') . '_image_related_width'), $this->config->get($this->config->get('config_theme') . '_image_related_height'));
 				}
 
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-					$price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+					$price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
 				} else {
 					$price = false;
 				}
 
 				if ((float)$product_info['special']) {
-					$special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+					$special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
 				} else {
 					$special = false;
 				}
 
 				if ($this->config->get('config_tax')) {
-					$tax = $this->currency->format((float)$product_info['special'] ? $product_info['special'] : $product_info['price']);
+					$tax = $this->currency->format((float)$product_info['special'] ? $product_info['special'] : $product_info['price'], $this->session->data['currency']);
 				} else {
 					$tax = false;
 				}
@@ -116,7 +116,7 @@ class ControllerPressPress extends Controller {
 					'product_id'  => $product_info['product_id'],
 					'thumb'       => $image,
 					'name'        => $product_info['name'],
-					'description' => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
+					'description' => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
@@ -164,11 +164,8 @@ class ControllerPressPress extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/press/press')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/press/press', $data));
-			} else {
-				$this->response->setOutput($this->load->view('default/template/press/press', $data));
-			}
+			$this->response->setOutput($this->load->view('press/press', $data));
+			
 		} else {
 			$url = '';
 
@@ -204,11 +201,8 @@ class ControllerPressPress extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found')) {
-				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found', $data));
-			} else {
-				$this->response->setOutput($this->load->view('default/template/error/not_found', $data));
-			}
+			$this->response->setOutput($this->load->view('error/not_found', $data));
+			
 		}
 	}
 

@@ -32,15 +32,9 @@
   </div>
   <div class="tab-pane" id="tab-customer">
 	<div class="form-group">
-	  <label class="col-sm-2 control-label"><?php echo $text_firstname; ?></label>
+	  <label class="col-sm-2 control-label"><?php echo $text_fullname; ?></label>
 	  <div class="col-sm-10">
-	    <?php echo $transaction['firstname']; ?>
-	  </div>
-	</div>
-	<div class="form-group">
-	  <label class="col-sm-2 control-label"><?php echo $text_lastname; ?></label>
-	  <div class="col-sm-10">
-	    <?php echo $transaction['lastname']; ?>
+	    <?php echo $transaction['fullname']; ?>
 	  </div>
 	</div>
 	<div class="form-group">

@@ -96,11 +96,8 @@ class ControllerPaymentQrcodeWxPay extends Controller {
 		
 		
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/qrcode_wxpay')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/qrcode_wxpay', $data);
-		} else {
-			return $this->load->view('default/template/payment/qrcode_wxpay', $data);
-		}
+		return $this->load->view('payment/qrcode_wxpay', $data);
+		
 		
 	}
 	
