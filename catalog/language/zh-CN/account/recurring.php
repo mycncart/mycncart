@@ -3,7 +3,7 @@
 $_['heading_title']           = '分期付款';
 
 // Text
-$_['text_account']            = 'Account';
+$_['text_account']            = '账户';
 $_['text_recurring']          = 'Recurring Payment Information';
 $_['text_recurring_detail']   = 'Recurring Payment Details';
 $_['text_order_recurring_id'] = 'Recurring ID:';
@@ -39,7 +39,7 @@ $_['text_transaction_expired'] = 'Expired';
 
 
 
-$_['text_empty']                 = 'No recurring payments found!';
+$_['text_empty']                 = '尚无分期付款记录';
 $_['text_error']                 = 'The recurring order you requested could not be found!';
 
 

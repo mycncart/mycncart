@@ -80,7 +80,7 @@ class ControllerAccountLogin extends Controller {
 
 			$activity_data = array(
 				'customer_id' => $this->customer->getId(),
-				'name'        => $this->customer->getFirstName() . ' ' . $this->customer->getLastName()
+				'name'        => $this->customer->getFullName()
 			);
 
 			$this->model_account_activity->addActivity('login', $activity_data);

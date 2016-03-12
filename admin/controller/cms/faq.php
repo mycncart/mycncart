@@ -546,7 +546,7 @@ class ControllerCmsFaq extends Controller {
 		}
 
 		foreach ($this->request->post['faq_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 255)) {
+			if ((utf8_strlen($value['title']) < 1) || (utf8_strlen($value['title']) > 255)) {
 				$this->error['title'][$language_id] = $this->language->get('error_title');
 			}
 

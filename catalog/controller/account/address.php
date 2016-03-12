@@ -206,7 +206,7 @@ class ControllerAccountAddress extends Controller {
 			if ($result['address_format']) {
 				$format = $result['address_format'];
 			} else {
-				$format = '{fullname}' . "\n" . '{company}' . "\n" . '{address}' . "\n" .  '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				$format = '{fullname}' . "\n" . '{country}' . '{zone}' . '{city}' . '{company}' . '{address}' . "\n" .   '{postcode}';
 			}
 
 			$find = array(

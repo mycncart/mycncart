@@ -864,8 +864,8 @@ class ControllerPaymentPPExpress extends Controller {
 			if ($this->customer->isLogged() && isset($this->session->data['payment_address_id'])) {
 				$data['customer_id'] = $this->customer->getId();
 				$data['customer_group_id'] = $this->config->get('config_customer_group_id');
-				$data['firstname'] = $this->customer->getFirstName();
-				$data['lastname'] = $this->customer->getLastName();
+				$data['firstname'] = $this->customer->getFullName();
+				$data['lastname'] = $this->customer->getFullName();
 				$data['email'] = $this->customer->getEmail();
 				$data['telephone'] = $this->customer->getTelephone();
 				$data['fax'] = $this->customer->getFax();

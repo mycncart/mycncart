@@ -27,3 +27,10 @@
 2016-03-10 18:40:30 - PHP Notice:  Undefined variable: text_related_product in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 92
 2016-03-10 18:40:48 - PHP Notice:  Undefined variable: text_related_blog in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 83
 2016-03-10 18:40:48 - PHP Notice:  Undefined variable: text_related_product in C:\wamp\www\mycncart\catalog\view\theme\default\template\blog\blog.tpl on line 92
+2016-03-11 16:33:06 - PHP Notice:  Undefined index: store_id in C:\wamp\www\mycncart\admin\controller\analytics\google_analytics.php on line 13
+2016-03-11 18:47:08 - PHP Notice:  Undefined variable: delete in C:\wamp\www\mycncart\admin\view\template\weidian\category_list.tpl on line 30
+2016-03-11 18:47:20 - PHP Notice:  Undefined variable: delete in C:\wamp\www\mycncart\admin\view\template\weidian\category_list.tpl on line 30
+2016-03-11 18:51:42 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 158
+2016-03-11 19:23:09 - PHP Notice:  Undefined variable: help_blog in C:\wamp\www\mycncart\admin\view\template\cms\blog_comment_form.tpl on line 35
+2016-03-12 15:06:30 - PHP Notice:  Undefined variable: language_directory in C:\wamp\www\mycncart\catalog\model\checkout\order.php on line 226
+2016-03-12 15:06:31 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 158

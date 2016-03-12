@@ -263,8 +263,8 @@ class ControllerPaymentAmazonLoginPay extends Controller {
 
 		$order_data['customer_id'] = $this->customer->getId();
 		$order_data['customer_group_id'] = $this->customer->getGroupId();
-		$order_data['firstname'] = $this->customer->getFirstName();
-		$order_data['lastname'] = $this->customer->getLastName();
+		$order_data['firstname'] = $this->customer->getFullName();
+		$order_data['lastname'] = $this->customer->getFullName();
 		$order_data['email'] = $this->customer->getEmail();
 		$order_data['telephone'] = $address['telephone'];
 		$order_data['fax'] = '';
@@ -286,8 +286,8 @@ class ControllerPaymentAmazonLoginPay extends Controller {
 			$order_data['lpa_free_shipping'] = '0';
 		}
 
-		$order_data['payment_firstname'] = $this->customer->getFirstName();
-		$order_data['payment_lastname'] = $this->customer->getLastName();
+		$order_data['payment_firstname'] = $this->customer->getFullName();
+		$order_data['payment_lastname'] = $this->customer->getFullName();
 		$order_data['payment_company'] = $address['company'];
 		$order_data['payment_company_id'] = $address['company_id'];
 		$order_data['payment_tax_id'] = $address['tax_id'];

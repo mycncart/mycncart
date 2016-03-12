@@ -8,7 +8,7 @@ $_['text_success']         = '成功: 已修改 API 接口！';
 $_['text_list']            = 'API 接口列表';
 $_['text_add']             = '添加 API 接口';
 $_['text_edit']            = '编辑 API 接口';
-$_['text_ip']              = 'Below you can create a list of IP\'s allowed to access the API. Your current IP is %s';
+$_['text_ip']              = '下面你可以创建允许不同的IP访问此API接口。您目前的IP地址为 %s';
 
 // Column
 $_['column_name']      	   = 'API 用户名';

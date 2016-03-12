@@ -276,7 +276,7 @@ class ControllerAccountReturn extends Controller {
 			if ($this->customer->isLogged()) {
 				$activity_data = array(
 					'customer_id' => $this->customer->getId(),
-					'name'        => $this->customer->getFirstName() . ' ' . $this->customer->getLastName(),
+					'name'        => $this->customer->getFullName(),
 					'return_id'   => $return_id
 				);
 
@@ -421,7 +421,7 @@ class ControllerAccountReturn extends Controller {
 		} elseif (!empty($order_info)) {
 			$data['fullname'] = $order_info['fullname'];
 		} else {
-			$data['fullname'] = $this->customer->getFirstName();
+			$data['fullname'] = $this->customer->getFullName();
 		}
 
 		if (isset($this->request->post['email'])) {

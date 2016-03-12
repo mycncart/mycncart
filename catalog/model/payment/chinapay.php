@@ -22,7 +22,7 @@ class ModelPaymentchinapay extends Model {
 			'USD'
 		);
 
-		if (!in_array(strtoupper($this->currency->getCode()), $currencies)) {
+		if (!in_array(strtoupper($this->session->data['currency']), $currencies)) {
 			$status = false;
 		}			
 

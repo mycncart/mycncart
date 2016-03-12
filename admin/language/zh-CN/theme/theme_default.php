@@ -33,8 +33,8 @@ $_['help_directory'] 	               = '该字段仅为了使得旧模板主题�
 $_['help_product_limit'] 	           = '每页显示商品数量，如商品列表页、分类商品列表页等。';
 $_['help_product_description_length']  = '在商品列表页，商品简短描述字符限制。';
 // Error
-$_['error_permission']                 = 'Warning: You do not have permission to modify the default store theme!';
-$_['error_limit']       	           = 'Product Limit required!';
+$_['error_permission']                 = '警告: 无权限修改默认店铺主题！';
+$_['error_limit']       	           = '商品数量必填！';
 $_['error_image_thumb']          	   = '请输入商品页主图大小！';
 $_['error_image_popup']         	   = '请输入商品放大图片大小！';
 $_['error_image_product']        	   = '请输入商品页面中的图片大小！';

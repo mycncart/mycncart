@@ -20,7 +20,7 @@ class ModelPaymentEBaTong extends Model {
 			'CNY'
 		);
 
-		if (!in_array(strtoupper($this->currency->getCode()), $currencies)) {
+		if (!in_array(strtoupper($this->session->data['currency']), $currencies)) {
 			$status = false;
 		}
 

@@ -58,13 +58,8 @@ class ControllerCmsFaqConfig extends Controller {
 		);
 
 		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_stores'),
-			'href' => $this->url->link('setting/store', 'token=' . $this->session->data['token'], true)
-		);
-
-		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('setting/setting', 'token=' . $this->session->data['token'], true)
+			'href' => $this->url->link('cms/faq_config', 'token=' . $this->session->data['token'], true)
 		);
 
 		if (isset($this->session->data['success'])) {
@@ -120,11 +115,11 @@ class ControllerCmsFaqConfig extends Controller {
 		}
 		
 		foreach ($this->request->post['cms_faq_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 100)) {
+			if ((utf8_strlen($value['title']) < 1) || (utf8_strlen($value['title']) > 100)) {
 				$this->error['title'][$language_id] = $this->language->get('error_title');
 			}
 
-			if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {
+			if ((utf8_strlen($value['meta_title']) < 1) || (utf8_strlen($value['meta_title']) > 255)) {
 				$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
 			}
 		}
