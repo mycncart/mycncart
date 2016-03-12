@@ -1,12 +1,14 @@
 <?php
-class ControllerStep3 extends Controller {
+class ControllerInstallStep3 extends Controller {
 	private $error = array();
 
 	public function index() {
+		$this->language->load('install/step_3');
+		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->load->model('install');
+			$this->load->model('install/install');
 
-			$this->model_install->database($this->request->post);
+			$this->model_install_install->database($this->request->post);
 
 			$output  = '<?php' . "\n";
 			$output .= '// HTTP' . "\n";
@@ -18,10 +20,10 @@ class ControllerStep3 extends Controller {
 			$output .= '// DIR' . "\n";
 			$output .= 'define(\'DIR_APPLICATION\', \'' . DIR_MYCNCART . 'catalog/\');' . "\n";
 			$output .= 'define(\'DIR_SYSTEM\', \'' . DIR_MYCNCART . 'system/\');' . "\n";
+			$output .= 'define(\'DIR_IMAGE\', \'' . DIR_MYCNCART . 'image/\');' . "\n";			
 			$output .= 'define(\'DIR_LANGUAGE\', \'' . DIR_MYCNCART . 'catalog/language/\');' . "\n";
 			$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_MYCNCART . 'catalog/view/theme/\');' . "\n";
 			$output .= 'define(\'DIR_CONFIG\', \'' . DIR_MYCNCART . 'system/config/\');' . "\n";
-			$output .= 'define(\'DIR_IMAGE\', \'' . DIR_MYCNCART . 'image/\');' . "\n";
 			$output .= 'define(\'DIR_CACHE\', \'' . DIR_MYCNCART . 'system/storage/cache/\');' . "\n";
 			$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_MYCNCART . 'system/storage/download/\');' . "\n";
 			$output .= 'define(\'DIR_LOGS\', \'' . DIR_MYCNCART . 'system/storage/logs/\');' . "\n";
@@ -55,10 +57,10 @@ class ControllerStep3 extends Controller {
 			$output .= '// DIR' . "\n";
 			$output .= 'define(\'DIR_APPLICATION\', \'' . DIR_MYCNCART . 'admin/\');' . "\n";
 			$output .= 'define(\'DIR_SYSTEM\', \'' . DIR_MYCNCART . 'system/\');' . "\n";
+			$output .= 'define(\'DIR_IMAGE\', \'' . DIR_MYCNCART . 'image/\');' . "\n";			
 			$output .= 'define(\'DIR_LANGUAGE\', \'' . DIR_MYCNCART . 'admin/language/\');' . "\n";
 			$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_MYCNCART . 'admin/view/template/\');' . "\n";
 			$output .= 'define(\'DIR_CONFIG\', \'' . DIR_MYCNCART . 'system/config/\');' . "\n";
-			$output .= 'define(\'DIR_IMAGE\', \'' . DIR_MYCNCART . 'image/\');' . "\n";
 			$output .= 'define(\'DIR_CACHE\', \'' . DIR_MYCNCART . 'system/storage/cache/\');' . "\n";
 			$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_MYCNCART . 'system/storage/download/\');' . "\n";
 			$output .= 'define(\'DIR_LOGS\', \'' . DIR_MYCNCART . 'system/storage/logs/\');' . "\n";
@@ -81,18 +83,14 @@ class ControllerStep3 extends Controller {
 
 			fclose($file);
 
-			$this->response->redirect($this->url->link('step_4'));
+			$this->response->redirect($this->url->link('install/step_4'));
 		}
 
-		$this->document->setTitle($this->language->get('heading_step_3'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
-		$data['heading_step_3'] = $this->language->get('heading_step_3');
-		$data['heading_step_3_small'] = $this->language->get('heading_step_3_small');
-
-		$data['text_license'] = $this->language->get('text_license');
-		$data['text_installation'] = $this->language->get('text_installation');
-		$data['text_configuration'] = $this->language->get('text_configuration');
-		$data['text_finished'] = $this->language->get('text_finished');
+		$data['heading_title'] = $this->language->get('heading_title');
+		
+		$data['text_step_3'] = $this->language->get('text_step_3');
 		$data['text_db_connection'] = $this->language->get('text_db_connection');
 		$data['text_db_administration'] = $this->language->get('text_db_administration');
 		$data['text_mysqli'] = $this->language->get('text_mysqli');
@@ -167,7 +165,7 @@ class ControllerStep3 extends Controller {
 			$data['error_email'] = '';
 		}
 
-		$data['action'] = $this->url->link('step_3');
+		$data['action'] = $this->url->link('install/step_3');
 
 		if (isset($this->request->post['db_driver'])) {
 			$data['db_driver'] = $this->request->post['db_driver'];
@@ -208,7 +206,7 @@ class ControllerStep3 extends Controller {
 		if (isset($this->request->post['db_prefix'])) {
 			$data['db_prefix'] = $this->request->post['db_prefix'];
 		} else {
-			$data['db_prefix'] = 'mcc_';
+			$data['db_prefix'] = 'oc_';
 		}
 
 		if (isset($this->request->post['username'])) {
@@ -234,12 +232,13 @@ class ControllerStep3 extends Controller {
 		$data['pdo'] = extension_loaded('pdo');
 		$data['pgsql'] = extension_loaded('pgsql');
 
-		$data['back'] = $this->url->link('step_2');
+		$data['back'] = $this->url->link('install/step_2');
 
-		$data['footer'] = $this->load->controller('footer');
-		$data['header'] = $this->load->controller('header');
+		$data['footer'] = $this->load->controller('common/footer');
+		$data['header'] = $this->load->controller('common/header');
+		$data['column_left'] = $this->load->controller('common/column_left');
 
-		$this->response->setOutput($this->load->view('step_3.tpl', $data));
+		$this->response->setOutput($this->load->view('install/step_3', $data));
 	}
 
 	private function validate() {
@@ -264,7 +263,7 @@ class ControllerStep3 extends Controller {
 		}
 
 		if ($this->request->post['db_driver'] == 'mysqli') {
-			$mysql = @new mysqli($this->request->post['db_hostname'], $this->request->post['db_username'], html_entity_decode($this->request->post['db_password'], ENT_QUOTES, 'UTF-8'), $this->request->post['db_database'], $this->request->post['db_port']);
+			$mysql = @new MySQLi($this->request->post['db_hostname'], $this->request->post['db_username'], html_entity_decode($this->request->post['db_password'], ENT_QUOTES, 'UTF-8'), $this->request->post['db_database'], $this->request->post['db_port']);
 
 			if ($mysql->connect_error) {
 				$this->error['warning'] = $mysql->connect_error;
@@ -277,8 +276,8 @@ class ControllerStep3 extends Controller {
 			} catch(Exception $e) {
 				$this->error['warning'] = $e->getMessage();
 			}
-		}
-
+		}			
+		
 		if (!$this->request->post['username']) {
 			$this->error['username'] = $this->language->get('error_username');
 		}
@@ -287,7 +286,7 @@ class ControllerStep3 extends Controller {
 			$this->error['password'] = $this->language->get('error_password');
 		}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 

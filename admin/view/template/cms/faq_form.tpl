@@ -53,7 +53,7 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="input-description<?php echo $language['language_id']; ?>"><?php echo $entry_answer; ?></label>
                     <div class="col-sm-10">
-                      <textarea name="faq_description[<?php echo $language['language_id']; ?>][answer]" placeholder="<?php echo $entry_answer; ?>" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($faq_description[$language['language_id']]) ? $faq_description[$language['language_id']]['answer'] : ''; ?></textarea>
+                      <textarea name="faq_description[<?php echo $language['language_id']; ?>][answer]" placeholder="<?php echo $entry_answer; ?>" class="form-control summernote" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($faq_description[$language['language_id']]) ? $faq_description[$language['language_id']]['answer'] : ''; ?></textarea>
                     </div>
                   </div>
                   
@@ -214,12 +214,6 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript"><!--
-<?php foreach ($languages as $language) { ?>
-$('#input-description<?php echo $language['language_id']; ?>').summernote({height: 300});
-<?php } ?>
-//--></script> 
-
   <script type="text/javascript"><!--
   
   // Related

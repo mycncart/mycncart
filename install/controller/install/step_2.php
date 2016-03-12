@@ -1,21 +1,19 @@
 <?php
-class ControllerStep2 extends Controller {
+class ControllerInstallStep2 extends Controller {
 	private $error = array();
 
 	public function index() {
+		$this->language->load('install/step_2');
+		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->response->redirect($this->url->link('step_3'));
+			$this->response->redirect($this->url->link('install/step_3'));
 		}
 
-		$this->document->setTitle($this->language->get('heading_step_2'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
-		$data['heading_step_2'] = $this->language->get('heading_step_2');
-		$data['heading_step_2_small'] = $this->language->get('heading_step_2_small');
-
-		$data['text_license'] = $this->language->get('text_license');
-		$data['text_installation'] = $this->language->get('text_installation');
-		$data['text_configuration'] = $this->language->get('text_configuration');
-		$data['text_finished'] = $this->language->get('text_finished');
+		$data['heading_title'] = $this->language->get('heading_title');
+		
+		$data['text_step_2'] = $this->language->get('text_step_2');
 		$data['text_install_php'] = $this->language->get('text_install_php');
 		$data['text_install_extension'] = $this->language->get('text_install_extension');
 		$data['text_install_file'] = $this->language->get('text_install_file');
@@ -37,12 +35,7 @@ class ControllerStep2 extends Controller {
 		$data['text_magic'] = $this->language->get('text_magic');
 		$data['text_file_upload'] = $this->language->get('text_file_upload');
 		$data['text_session'] = $this->language->get('text_session');
-		$data['text_global'] = $this->language->get('text_global');
 		$data['text_db'] = $this->language->get('text_db');
-		$data['text_mysqli'] = $this->language->get('text_mysqli');
-		$data['text_mysql'] = $this->language->get('text_mysql');
-		$data['text_mpdo'] = $this->language->get('text_mpdo');
-		$data['text_pgsql'] = $this->language->get('text_pgsql');
 		$data['text_gd'] = $this->language->get('text_gd');
 		$data['text_curl'] = $this->language->get('text_curl');
 		$data['text_mcrypt'] = $this->language->get('text_mcrypt');
@@ -59,7 +52,7 @@ class ControllerStep2 extends Controller {
 			$data['error_warning'] = '';
 		}
 
-		$data['action'] = $this->url->link('step_2');
+		$data['action'] = $this->url->link('install/step_2');
 
 		$data['php_version'] = phpversion();
 		$data['register_globals'] = ini_get('register_globals');
@@ -67,7 +60,14 @@ class ControllerStep2 extends Controller {
 		$data['file_uploads'] = ini_get('file_uploads');
 		$data['session_auto_start'] = ini_get('session_auto_start');
 
-		if (!array_filter(array('mysql', 'mysqli', 'pgsql', 'pdo'), 'extension_loaded')) {
+		$db = array(
+			'mysql', 
+			'mysqli', 
+			'pgsql', 
+			'pdo'
+		);
+
+		if (!array_filter($db, 'extension_loaded')) {
 			$data['db'] = false;
 		} else {
 			$data['db'] = true;
@@ -78,115 +78,121 @@ class ControllerStep2 extends Controller {
 		$data['mcrypt_encrypt'] = function_exists('mcrypt_encrypt');
 		$data['zlib'] = extension_loaded('zlib');
 		$data['zip'] = extension_loaded('zip');
+		
 		$data['iconv'] = function_exists('iconv');
 		$data['mbstring'] = extension_loaded('mbstring');
 
 		$data['config_catalog'] = DIR_MYCNCART . 'config.php';
 		$data['config_admin'] = DIR_MYCNCART . 'admin/config.php';
-
-				
+		
 		$data['image'] = DIR_MYCNCART . 'image';
 		$data['image_cache'] = DIR_MYCNCART . 'image/cache';
 		$data['image_catalog'] = DIR_MYCNCART . 'image/catalog';
-		$data['cache'] = DIR_SYSTEM . '/storage/cache';
+		$data['cache'] = DIR_SYSTEM . 'storage/cache';
 		$data['logs'] = DIR_SYSTEM . 'storage/logs';
 		$data['download'] = DIR_SYSTEM . 'storage/download';
 		$data['upload'] = DIR_SYSTEM . 'storage/upload';
 		$data['modification'] = DIR_SYSTEM . 'storage/modification';
 
-		$data['back'] = $this->url->link('step_1');
+		$data['back'] = $this->url->link('install/step_1');
 
-		$data['footer'] = $this->load->controller('footer');
-		$data['header'] = $this->load->controller('header');
+		$data['footer'] = $this->load->controller('common/footer');
+		$data['header'] = $this->load->controller('common/header');
+		$data['column_left'] = $this->load->controller('common/column_left');
 
-		$this->response->setOutput($this->load->view('step_2.tpl', $data));
+		$this->response->setOutput($this->load->view('install/step_2', $data));
 	}
 
 	private function validate() {
 		if (phpversion() < '5.3') {
-			$this->error['warning'] = 'Warning: You need to use PHP5.3 or above for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_version');
 		}
 
 		if (!ini_get('file_uploads')) {
-			$this->error['warning'] = 'Warning: file_uploads needs to be enabled!';
+			$this->error['warning'] = $this->language->get('error_file_upload');
 		}
 
 		if (ini_get('session.auto_start')) {
-			$this->error['warning'] = 'Warning: MyCnCart will not work with session.auto_start enabled!';
+			$this->error['warning'] = $this->language->get('error_session');
 		}
 
-		if (!array_filter(array('mysql', 'mysqli', 'pdo', 'pgsql'), 'extension_loaded')) {
-			$this->error['warning'] = 'Warning: A database extension needs to be loaded in the php.ini for MyCnCart to work!';
+		$db = array(
+			'mysql', 
+			'mysqli', 
+			'pdo', 
+			'pgsql'
+		);
+
+		if (!array_filter($db, 'extension_loaded')) {
+			$this->error['warning'] = $this->language->get('error_db');
 		}
 
 		if (!extension_loaded('gd')) {
-			$this->error['warning'] = 'Warning: GD extension needs to be loaded for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_gd');
 		}
 
 		if (!extension_loaded('curl')) {
-			$this->error['warning'] = 'Warning: CURL extension needs to be loaded for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_curl');
 		}
 
 		if (!function_exists('mcrypt_encrypt')) {
-			$this->error['warning'] = 'Warning: mCrypt extension needs to be loaded for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_mcrypt');
 		}
 
 		if (!extension_loaded('zlib')) {
-			$this->error['warning'] = 'Warning: ZLIB extension needs to be loaded for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_zlib');
 		}
 
 		if (!extension_loaded('zip')) {
-			$this->error['warning'] = 'Warning: ZIP extension needs to be loaded for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_zip');
 		}
-
-		if (!function_exists('iconv')) {
-			if (!extension_loaded('mbstring')) {
-				$this->error['warning'] = 'Warning: mbstring extension needs to be loaded for MyCnCart to work!';
-			}
+		
+		if (!function_exists('iconv') && !extension_loaded('mbstring')) {
+			$this->error['warning'] = $this->language->get('error_mbstring');
 		}
-
+		
 		if (!file_exists(DIR_MYCNCART . 'config.php')) {
-			$this->error['warning'] = 'Warning: config.php does not exist. You need to rename config-dist.php to config.php!';
+			$this->error['warning'] = $this->language->get('error_catalog_exist');
 		} elseif (!is_writable(DIR_MYCNCART . 'config.php')) {
-			$this->error['warning'] = 'Warning: config.php needs to be writable for MyCnCart to be installed!';
+			$this->error['warning'] = $this->language->get('error_catalog_writable');
 		}
 
 		if (!file_exists(DIR_MYCNCART . 'admin/config.php')) {
-			$this->error['warning'] = 'Warning: admin/config.php does not exist. You need to rename admin/config-dist.php to admin/config.php!';
+			$this->error['warning'] = $this->language->get('error_admin_exist');
 		} elseif (!is_writable(DIR_MYCNCART . 'admin/config.php')) {
-			$this->error['warning'] = 'Warning: admin/config.php needs to be writable for MyCnCart to be installed!';
+			$this->error['warning'] = $this->language->get('error_admin_writable');
 		}
 
 		if (!is_writable(DIR_MYCNCART . 'image')) {
-			$this->error['warning'] = 'Warning: Image directory needs to be writable for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_image');
 		}
 
 		if (!is_writable(DIR_MYCNCART . 'image/cache')) {
-			$this->error['warning'] = 'Warning: Image cache directory needs to be writable for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_image_cache');
 		}
 
 		if (!is_writable(DIR_MYCNCART . 'image/catalog')) {
-			$this->error['warning'] = 'Warning: Image catalog directory needs to be writable for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_image_catalog');
 		}
 		
 		if (!is_writable(DIR_SYSTEM . 'storage/cache')) {
-			$this->error['warning'] = 'Warning: Cache directory needs to be writable for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_cache');
 		}
 
 		if (!is_writable(DIR_SYSTEM . 'storage/logs')) {
-			$this->error['warning'] = 'Warning: Logs directory needs to be writable for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_log');
 		}
 
 		if (!is_writable(DIR_SYSTEM . 'storage/download')) {
-			$this->error['warning'] = 'Warning: Download directory needs to be writable for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_download');
 		}
 
 		if (!is_writable(DIR_SYSTEM . 'storage/upload')) {
-			$this->error['warning'] = 'Warning: Upload directory needs to be writable for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_upload');
 		}
 
 		if (!is_writable(DIR_SYSTEM . 'storage/modification')) {
-			$this->error['warning'] = 'Warning: Modification directory needs to be writable for MyCnCart to work!';
+			$this->error['warning'] = $this->language->get('error_modification');
 		}
 
 		return !$this->error;

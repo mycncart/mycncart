@@ -33,6 +33,7 @@ class ControllerAffiliateAccount extends Controller {
 		$data['text_payment'] = $this->language->get('text_payment');
 		$data['text_tracking'] = $this->language->get('text_tracking');
 		$data['text_transaction'] = $this->language->get('text_transaction');
+		$data['text_logout'] = $this->language->get('text_logout');
 
 		if (isset($this->session->data['success'])) {
 			$data['success'] = $this->session->data['success'];
@@ -47,6 +48,7 @@ class ControllerAffiliateAccount extends Controller {
 		$data['payment'] = $this->url->link('affiliate/payment', '', true);
 		$data['tracking'] = $this->url->link('affiliate/tracking', '', true);
 		$data['transaction'] = $this->url->link('affiliate/transaction', '', true);
+		$data['logout'] = $this->url->link('affiliate/logout', '', true);
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');

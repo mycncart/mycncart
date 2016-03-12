@@ -51,7 +51,7 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="input-description<?php echo $language['language_id']; ?>"><?php echo $entry_description; ?></label>
                     <div class="col-sm-10">
-                      <textarea name="product_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['description'] : ''; ?></textarea>
+                      <textarea name="product_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" class="form-control summernote" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['description'] : ''; ?></textarea>
                       <?php if (isset($error_description[$language['language_id']])) { ?>
                       <div class="text-danger"><?php echo $error_description[$language['language_id']]; ?></div>
                       <?php } ?>
@@ -231,12 +231,6 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript"><!--
-<?php foreach ($languages as $language) { ?>
-$('#input-description<?php echo $language['language_id']; ?>').summernote({height: 300});
-<?php } ?>
-//--></script>
-
   <script type="text/javascript"><!--
 $('#language a:first').tab('show');
 //--></script></div>
