@@ -1,7 +1,7 @@
 <?php
-$_['text_license']       = 'License';
-$_['text_installation']  = 'Pre-Installation';
-$_['text_configuration'] = 'Configuration';
-$_['text_upgrade']       = 'Upgrade';
-$_['text_finished']      = 'Finished';
-$_['text_language']      = 'Language';
+$_['text_license']       = '版权';
+$_['text_installation']  = '预安装';
+$_['text_configuration'] = '配置';
+$_['text_upgrade']       = '升级';
+$_['text_finished']      = '完成';
+$_['text_language']      = '语言';

@@ -391,7 +391,7 @@ class ControllerExtensionInstaller extends Controller {
 							$sql .= $line;
 
 							if (preg_match('/;\s*$/', $line)) {
-								$sql = str_replace(" `oc_", " `" . DB_PREFIX, $sql);
+								$sql = str_replace(" `mcc_", " `" . DB_PREFIX, $sql);
 
 								$this->db->query($sql);
 

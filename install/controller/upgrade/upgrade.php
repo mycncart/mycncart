@@ -21,7 +21,7 @@ class ControllerUpgradeUpgrade extends Controller {
 		
 		$data['button_continue'] = $this->language->get('button_continue');
 
-		$data['store'] = HTTP_OPENCART;
+		$data['store'] = HTTP_MYCNCART;
 
 		$data['total'] = count(glob(DIR_APPLICATION . 'model/upgrade/*.php'));
 

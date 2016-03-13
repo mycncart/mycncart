@@ -3,7 +3,7 @@ class ControllerStartupUpgrade extends Controller {
 	public function index() {
 		$upgrade = false;
 		
-		if (is_file(DIR_OPENCART . 'config.php') && filesize(DIR_OPENCART . 'config.php') > 0) {
+		if (is_file(DIR_MYCNCART . 'config.php') && filesize(DIR_MYCNCART . 'config.php') > 0) {
 			$upgrade = true;
 		}
 		

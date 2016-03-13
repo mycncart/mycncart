@@ -1,20 +1,20 @@
 <?php
 // Heading
-$_['heading_title']   = 'Upgrade';
-$_['heading_success'] = 'Upgrade - Complete!';
+$_['heading_title']   = '升级';
+$_['heading_success'] = '升级 - 完成！';
 
 // Text
-$_['text_upgrade']    = 'Prepare for your upgrade';
-$_['text_server']     = 'Check your server is set-up correctly';
-$_['text_steps']      = 'Upgrade Progress';
-$_['text_error']      = 'Post any upgrade script errors problems in the forums';
-$_['text_clear']      = 'After upgrade, clear any cookies in your browser to avoid getting token errors.';
-$_['text_admin']      = 'Load the admin page & press Ctrl+F5 twice to force the browser to update the css changes.';
-$_['text_user']       = 'Goto Admin -> Users -> User Groups and Edit the Top Adminstrator group. Check All boxes.';
-$_['text_setting']    = 'Goto Admin and Edit the main System Settings. Update all fields and click save, even if nothing changed.';
-$_['text_store']      = 'Load the store front & press Ctrl+F5 twice to force the browser to update the css changes.';
-$_['text_progress']   = 'Patch %s has been applied (%s of %s)';
-$_['text_success']    = 'Congratulations! You have successfuly upgraded your OpenCart installation!';
+$_['text_upgrade']    = '准备升级';
+$_['text_server']     = '检查服务器是否设置正确';
+$_['text_steps']      = '升级进程';
+$_['text_error']      = '在论坛中提交遇到的相关升级错误';
+$_['text_clear']      = '升级后，清除浏览器Cookies避免token错误。';
+$_['text_admin']      = '按下Ctrl + F5键至少两次，加载后台管理页面以强制浏览器更新css的修改。';
+$_['text_user']       = '访问并编辑后台网站管理员分组，选择所有。';
+$_['text_setting']    = '访问并编辑后台系统设置，更新所有并保存。即时没有做任何修改，也要保存。';
+$_['text_store']      = '访问网站前台，按下 Ctrl + F5 至少两次，强制浏览器加载新的CSS。';
+$_['text_progress']   = '补丁 %s 已安装 (%s of %s)';
+$_['text_success']    = '祝贺！ 已成功升级！';
 
 // Entry
-$_['entry_progress']  = 'Progress';
+$_['entry_progress']  = '进度';

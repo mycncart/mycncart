@@ -18,8 +18,8 @@ class ControllerInstallStep4 extends Controller {
 		$data['text_maxmind'] = $this->language->get('text_maxmind');
 	
 		$data['text_weibo'] = $this->language->get('text_weibo');
-		$data['text_weibo_info'] = $this->language->get('text_weibo_info');
-		$data['text_weibo_link'] = $this->language->get('text_weibo_link');
+		$data['text_weibo_description'] = $this->language->get('text_weibo_description');
+		$data['text_weibo_visit'] = $this->language->get('text_weibo_visit');
 		$data['text_forum'] = $this->language->get('text_forum');
 		$data['text_forum_description'] = $this->language->get('text_forum_description');
 		$data['text_forum_visit'] = $this->language->get('text_forum_visit');

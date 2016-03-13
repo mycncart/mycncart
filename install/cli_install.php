@@ -27,7 +27,7 @@ error_reporting(E_ALL);
 // DIR
 define('DIR_APPLICATION', str_replace('\\', '/', realpath(dirname(__FILE__))) . '/');
 define('DIR_SYSTEM', str_replace('\\', '/', realpath(dirname(__FILE__) . '/../')) . '/system/');
-define('DIR_OPENCART', str_replace('\\', '/', realpath(DIR_APPLICATION . '../')) . '/');
+define('DIR_MYCNCART', str_replace('\\', '/', realpath(DIR_APPLICATION . '../')) . '/');
 define('DIR_DATABASE', DIR_SYSTEM . 'database/');
 define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/template/');
@@ -219,7 +219,7 @@ function setup_db($data) {
 		$db->query("INSERT INTO `" . $data['db_prefix'] . "setting` SET `code` = 'config', `key` = 'config_email', value = '" . $db->escape($data['email']) . "'");
 
 		$db->query("DELETE FROM `" . $data['db_prefix'] . "setting` WHERE `key` = 'config_url'");
-		$db->query("INSERT INTO `" . $data['db_prefix'] . "setting` SET `code` = 'config', `key` = 'config_url', value = '" . $db->escape(HTTP_OPENCART) . "'");
+		$db->query("INSERT INTO `" . $data['db_prefix'] . "setting` SET `code` = 'config', `key` = 'config_url', value = '" . $db->escape(HTTP_MYCNCART) . "'");
 
 		$db->query("DELETE FROM `" . $data['db_prefix'] . "setting` WHERE `key` = 'config_encryption'");
 		$db->query("INSERT INTO `" . $data['db_prefix'] . "setting` SET `code` = 'config', `key` = 'config_encryption', value = '" . $db->escape(token(1024)) . "'");
@@ -246,18 +246,18 @@ function write_config_files($options) {
 	$output .= 'define(\'HTTPS_SERVER\', \'' . $options['http_server'] . '\');' . "\n";
 
 	$output .= '// DIR' . "\n";
-	$output .= 'define(\'DIR_APPLICATION\', \'' . DIR_OPENCART . 'catalog/\');' . "\n";
-	$output .= 'define(\'DIR_SYSTEM\', \'' . DIR_OPENCART . 'system/\');' . "\n";
-	$output .= 'define(\'DIR_DATABASE\', \'' . DIR_OPENCART . 'system/database/\');' . "\n";
-	$output .= 'define(\'DIR_LANGUAGE\', \'' . DIR_OPENCART . 'catalog/language/\');' . "\n";
-	$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_OPENCART . 'catalog/view/theme/\');' . "\n";
-	$output .= 'define(\'DIR_CONFIG\', \'' . DIR_OPENCART . 'system/config/\');' . "\n";
-	$output .= 'define(\'DIR_IMAGE\', \'' . DIR_OPENCART . 'image/\');' . "\n";
-	$output .= 'define(\'DIR_CACHE\', \'' . DIR_OPENCART . 'system/storage/cache/\');' . "\n";
-	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'system/storage/download/\');' . "\n";
-	$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/storage/upload/\');' . "\n";
-	$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_OPENCART . 'system/storage/modification/\');' . "\n";
-	$output .= 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/storage/logs/\');' . "\n\n";
+	$output .= 'define(\'DIR_APPLICATION\', \'' . DIR_MYCNCART . 'catalog/\');' . "\n";
+	$output .= 'define(\'DIR_SYSTEM\', \'' . DIR_MYCNCART . 'system/\');' . "\n";
+	$output .= 'define(\'DIR_DATABASE\', \'' . DIR_MYCNCART . 'system/database/\');' . "\n";
+	$output .= 'define(\'DIR_LANGUAGE\', \'' . DIR_MYCNCART . 'catalog/language/\');' . "\n";
+	$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_MYCNCART . 'catalog/view/theme/\');' . "\n";
+	$output .= 'define(\'DIR_CONFIG\', \'' . DIR_MYCNCART . 'system/config/\');' . "\n";
+	$output .= 'define(\'DIR_IMAGE\', \'' . DIR_MYCNCART . 'image/\');' . "\n";
+	$output .= 'define(\'DIR_CACHE\', \'' . DIR_MYCNCART . 'system/storage/cache/\');' . "\n";
+	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_MYCNCART . 'system/storage/download/\');' . "\n";
+	$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_MYCNCART . 'system/storage/upload/\');' . "\n";
+	$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_MYCNCART . 'system/storage/modification/\');' . "\n";
+	$output .= 'define(\'DIR_LOGS\', \'' . DIR_MYCNCART . 'system/storage/logs/\');' . "\n\n";
 
 	$output .= '// DB' . "\n";
 	$output .= 'define(\'DB_DRIVER\', \'' . addslashes($options['db_driver']) . '\');' . "\n";
@@ -269,7 +269,7 @@ function write_config_files($options) {
 	$output .= 'define(\'DB_PORT\', \'' . addslashes($options['db_port']) . '\');' . "\n";
 	$output .= '?>';
 
-	$file = fopen(DIR_OPENCART . 'config.php', 'w');
+	$file = fopen(DIR_MYCNCART . 'config.php', 'w');
 
 	fwrite($file, $output);
 
@@ -285,19 +285,19 @@ function write_config_files($options) {
 	$output .= 'define(\'HTTPS_CATALOG\', \'' . $options['http_server'] . '\');' . "\n";
 
 	$output .= '// DIR' . "\n";
-	$output .= 'define(\'DIR_APPLICATION\', \'' . DIR_OPENCART . 'admin/\');' . "\n";
-	$output .= 'define(\'DIR_SYSTEM\', \'' . DIR_OPENCART . 'system/\');' . "\n";
-	$output .= 'define(\'DIR_DATABASE\', \'' . DIR_OPENCART . 'system/database/\');' . "\n";
-	$output .= 'define(\'DIR_LANGUAGE\', \'' . DIR_OPENCART . 'admin/language/\');' . "\n";
-	$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_OPENCART . 'admin/view/template/\');' . "\n";
-	$output .= 'define(\'DIR_CONFIG\', \'' . DIR_OPENCART . 'system/config/\');' . "\n";
-	$output .= 'define(\'DIR_IMAGE\', \'' . DIR_OPENCART . 'image/\');' . "\n";
-	$output .= 'define(\'DIR_CACHE\', \'' . DIR_OPENCART . 'system/storage/cache/\');' . "\n";
-	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'system/storage/download/\');' . "\n";
-	$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/storage/upload/\');' . "\n";
-	$output .= 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/storage/logs/\');' . "\n";
-	$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_OPENCART . 'system/storage/modification/\');' . "\n";
-	$output .= 'define(\'DIR_CATALOG\', \'' . DIR_OPENCART . 'catalog/\');' . "\n\n";
+	$output .= 'define(\'DIR_APPLICATION\', \'' . DIR_MYCNCART . 'admin/\');' . "\n";
+	$output .= 'define(\'DIR_SYSTEM\', \'' . DIR_MYCNCART . 'system/\');' . "\n";
+	$output .= 'define(\'DIR_DATABASE\', \'' . DIR_MYCNCART . 'system/database/\');' . "\n";
+	$output .= 'define(\'DIR_LANGUAGE\', \'' . DIR_MYCNCART . 'admin/language/\');' . "\n";
+	$output .= 'define(\'DIR_TEMPLATE\', \'' . DIR_MYCNCART . 'admin/view/template/\');' . "\n";
+	$output .= 'define(\'DIR_CONFIG\', \'' . DIR_MYCNCART . 'system/config/\');' . "\n";
+	$output .= 'define(\'DIR_IMAGE\', \'' . DIR_MYCNCART . 'image/\');' . "\n";
+	$output .= 'define(\'DIR_CACHE\', \'' . DIR_MYCNCART . 'system/storage/cache/\');' . "\n";
+	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_MYCNCART . 'system/storage/download/\');' . "\n";
+	$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_MYCNCART . 'system/storage/upload/\');' . "\n";
+	$output .= 'define(\'DIR_LOGS\', \'' . DIR_MYCNCART . 'system/storage/logs/\');' . "\n";
+	$output .= 'define(\'DIR_MODIFICATION\', \'' . DIR_MYCNCART . 'system/storage/modification/\');' . "\n";
+	$output .= 'define(\'DIR_CATALOG\', \'' . DIR_MYCNCART . 'catalog/\');' . "\n\n";
 
 	$output .= '// DB' . "\n";
 	$output .= 'define(\'DB_DRIVER\', \'' . addslashes($options['db_driver']) . '\');' . "\n";
@@ -309,7 +309,7 @@ function write_config_files($options) {
 	$output .= 'define(\'DB_PORT\', \'' . addslashes($options['db_port']) . '\');' . "\n";
 	$output .= '?>';
 
-	$file = fopen(DIR_OPENCART . 'admin/config.php', 'w');
+	$file = fopen(DIR_MYCNCART . 'admin/config.php', 'w');
 
 	fwrite($file, $output);
 
@@ -319,12 +319,12 @@ function write_config_files($options) {
 
 function dir_permissions() {
 	$dirs = array(
-		DIR_OPENCART . 'image/',
-		DIR_OPENCART . 'system/storage/download/',
-		DIR_OPENCART . 'system/storage/upload/',
-		DIR_OPENCART . 'system/storage/cache/',
-		DIR_OPENCART . 'system/storage/logs/',
-		DIR_OPENCART . 'system/storage/modification/',
+		DIR_MYCNCART . 'image/',
+		DIR_MYCNCART . 'system/storage/download/',
+		DIR_MYCNCART . 'system/storage/upload/',
+		DIR_MYCNCART . 'system/storage/cache/',
+		DIR_MYCNCART . 'system/storage/logs/',
+		DIR_MYCNCART . 'system/storage/modification/',
 	);
 	exec('chmod o+w -R ' . implode(' ', $dirs));
 }
@@ -340,7 +340,7 @@ switch ($subcommand) {
 case "install":
 	try {
 		$options = get_options($argv);
-		define('HTTP_OPENCART', $options['http_server']);
+		define('HTTP_MYCNCART', $options['http_server']);
 		$valid = valid($options);
 		if (!$valid[0]) {
 			echo "失败! 以下输入项填写无效： ";
