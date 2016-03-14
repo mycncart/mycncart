@@ -12,6 +12,13 @@ $config->load('default');
 $config->load($application_config);
 $registry->set('config', $config);
 
+//Payment Method Callback
+if(isset($pay_method_callback)) {
+	if(!empty($pay_method_callback)) {
+		$config->set('action_default', $pay_method_callback);
+	}
+}
+
 // Request
 $registry->set('request', new Request());
 

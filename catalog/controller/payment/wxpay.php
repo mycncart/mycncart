@@ -3,16 +3,21 @@ class ControllerPaymentWxPay extends Controller {
 	public function index() {
 		
 		//echo "one";
-		$this->load->library('wxpayexception');
+		//$this->load->library('wxpayexception');
+		require_once(DIR_SYSTEM.'library/wxpayexception.php');
 		//echo "two";
-		$this->load->library('wxpayconfig');
+		//$this->load->library('wxpayconfig');
+		require_once(DIR_SYSTEM.'library/wxpayconfig.php');
 		//echo "three";
-		$this->load->library('wxpaydata');
+		//$this->load->library('wxpaydata');
+		require_once(DIR_SYSTEM.'library/wxpaydata.php');
 		//echo "four";
-		$this->load->library('wxpayapi');
+		//$this->load->library('wxpayapi');
+		require_once(DIR_SYSTEM.'library/wxpayapi.php');
 		//echo "five";
 		
-		$this->load->library('wxpayjsapipay');
+		//$this->load->library('wxpayjsapipay');
+		require_once(DIR_SYSTEM.'library/wxpayjsapipay.php');
 		//echo "six";
 
 
@@ -136,37 +141,43 @@ class ControllerPaymentWxPay extends Controller {
 			$this->log->write('WxPay :: One: ');
 		}
 		
-		$this->load->library('wxpayexception');
+		//$this->load->library('wxpayexception');
+		require_once(DIR_SYSTEM.'library/wxpayexception.php');
 		
 		if($log) {
 			$this->log->write('WxPay :: Two: ');
 		}
 		
-		$this->load->library('wxpayconfig');
+		//$this->load->library('wxpayconfig');
+		require_once(DIR_SYSTEM.'library/wxpayconfig.php');
 		
 		if($log) {
 			$this->log->write('WxPay :: Three: ');
 		}
 		
-		$this->load->library('wxpaydata');
+		//$this->load->library('wxpaydata');
+		require_once(DIR_SYSTEM.'library/wxpaydata.php');
 		
 		if($log) {
 			$this->log->write('WxPay :: Four: ');
 		}
 		
-		$this->load->library('wxpaynotify');
+		//$this->load->library('wxpaynotify');
+		require_once(DIR_SYSTEM.'library/wxpaynotify.php');
 		
 		if($log) {
 			$this->log->write('WxPay :: Five: ');
 		}
 		
-		$this->load->library('wxpayapi');
+		//$this->load->library('wxpayapi');
+		require_once(DIR_SYSTEM.'library/wxpayapi.php');
 		
 		if($log) {
 			$this->log->write('WxPay :: Six: ');
 		}
 		
-		$this->load->library('wxpaynotifycallback');
+		//$this->load->library('wxpaynotifycallback');
+		require_once(DIR_SYSTEM.'library/wxpaynotifycallback.php');
 		
 		if($log) {
 			$this->log->write('WxPay :: Seven: ');

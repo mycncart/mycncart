@@ -3,7 +3,8 @@ class ControllerPaymentQrcodeWxPay extends Controller {
 	public function index() {
 		
 		//echo "one";
-		$this->load->library('wxpayexception');
+		//$this->load->library('wxpayexception');
+		require_once(DIR_SYSTEM.'library/wxpayexception.php');
 		
 		
 		
@@ -14,12 +15,15 @@ class ControllerPaymentQrcodeWxPay extends Controller {
 		
 		
 				//echo "three";
-		$this->load->library('wxpaydata');
+		//$this->load->library('wxpaydata');
+		require_once(DIR_SYSTEM.'library/wxpaydata.php');
 		//echo "four";
-		$this->load->library('wxpayapi');
+		//$this->load->library('wxpayapi');
+		require_once(DIR_SYSTEM.'library/wxpayapi.php');
 		//echo "five";
 		
-		$this->load->library('wxpaynativepay');
+		//$this->load->library('wxpaynativepay');
+		require_once(DIR_SYSTEM.'library/wxpaynativepay.php');
 		//echo "six";
 
 		$this->load->language('payment/qrcode_wxpay');
@@ -106,7 +110,8 @@ class ControllerPaymentQrcodeWxPay extends Controller {
 		
 		$log = $this->config->get('qrcode_wxpay_log');
 		
-		$this->load->library('wxpayexception');
+		//$this->load->library('wxpayexception');
+		require_once(DIR_SYSTEM.'library/wxpayexception.php');
 
 		define('APPID', $this->config->get('wxpay_appid'));
 		define('MCHID', $this->config->get('wxpay_mchid'));
@@ -115,13 +120,17 @@ class ControllerPaymentQrcodeWxPay extends Controller {
 		
 		
 				//echo "three";
-		$this->load->library('wxpaydata');
+		//$this->load->library('wxpaydata');
+		require_once(DIR_SYSTEM.'library/wxpaydata.php');
 		//echo "four";
-		$this->load->library('wxpayapi');
+		//$this->load->library('wxpayapi');
+		require_once(DIR_SYSTEM.'library/wxpayapi.php');
 		
-		$this->load->library('wxpaynotify');
+		//$this->load->library('wxpaynotify');
+		require_once(DIR_SYSTEM.'library/wxpaynotify.php');
 		
-		$this->load->library('qrcode_wxpay_notify');
+		//$this->load->library('qrcode_wxpay_notify');
+		require_once(DIR_SYSTEM.'library/qrcode_wxpay_notify.php');
 		
 		if($log) {
 			$this->log->write('QrcodeWxPay :: One ');
