@@ -3532,11 +3532,12 @@ CREATE TABLE `mcc_product_to_youzan` (
 
 
 DROP TABLE IF EXISTS `mcc_pushurl`;
-CREATE TABLE `mcc_pushurl` (
-  `pushurl_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `mcc_pushurl` (
+  `pushurl_id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
   `pushed` tinyint(1) NOT NULL,
-  `push_date` datetime NOT NULL
+  `push_date` datetime NOT NULL,
+  PRIMARY KEY (`pushurl_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
