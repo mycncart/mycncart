@@ -610,6 +610,14 @@
                   <input type="text" name="fullname" value="<?php echo $shipping_fullname; ?>" id="input-shipping-fullname" class="form-control" />
                 </div>
               </div>
+              <!-- fix bug for error when admin edit orders.-->
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-shipping-shipping_telephone"><?php echo $entry_shipping_telephone; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="shipping_telephone" value="<?php echo $shipping_telephone; ?>" id="input-shipping-shipping_telephone" class="form-control" />
+                </div>
+              </div>
+              
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-shipping-company"><?php echo $entry_company; ?></label>
                 <div class="col-sm-10">
