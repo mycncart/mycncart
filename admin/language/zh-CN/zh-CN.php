@@ -101,6 +101,7 @@ $_['button_coupon']                 = '使用优惠券';
 $_['button_voucher']                = '使用礼品券';
 $_['button_reward']                 = '使用奖励积分';
 $_['button_currency']               = '刷新货币值';
+$_['button_apply']                  = '使用';
 $_['button_jump']                   = '跳转';
 $_['button_express']                = '编辑快递信息';
 $_['button_push']                	= '推送';

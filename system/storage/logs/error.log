@@ -71,3 +71,6 @@
 2016-03-15 9:47:37 - PHP Notice:  Undefined variable: delete in C:\wamp\www\mycncart\admin\view\template\weidian\category_list.tpl on line 30
 2016-03-15 10:14:50 - PHP Notice:  Undefined variable: delete in C:\wamp\www\mycncart\admin\view\template\weidian\category_list.tpl on line 30
 2016-03-15 10:15:42 - PHP Notice:  Undefined variable: delete in C:\wamp\www\mycncart\admin\view\template\weidian\category_list.tpl on line 30
+2016-03-16 17:58:47 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 158
+2016-03-16 18:00:56 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 158
+2016-03-16 18:04:12 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 158
