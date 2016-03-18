@@ -69,6 +69,7 @@ class ControllerPressAll extends Controller {
 		$data['text_empty'] = $this->language->get('text_empty');
 		$data['text_press'] = $this->language->get('text_press');
 		$data['text_created_date'] = $this->language->get('text_created_date');
+		$data['text_press_category'] = $this->language->get('text_press_category');
 
 		$data['button_continue'] = $this->language->get('button_continue');
 

@@ -67,6 +67,7 @@ class ControllerFaqFaq extends Controller {
 		$data['text_empty'] = $this->language->get('text_empty');
 		$data['text_faq'] = $this->language->get('text_faq');
 		$data['text_created_date'] = $this->language->get('text_created_date');
+		$data['text_faq_category'] = $this->language->get('text_faq_category');
 
 		$data['button_continue'] = $this->language->get('button_continue');
 
