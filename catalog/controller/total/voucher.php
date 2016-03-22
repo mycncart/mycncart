@@ -71,7 +71,7 @@ class ControllerTotalVoucher extends Controller {
 				foreach ($voucher_query->rows as $voucher) {
 					// HTML Mail
 					$data = array();
-
+					
 					$data['title'] = sprintf($language->get('text_subject'), $voucher['from_name']);
 
 					$data['text_greeting'] = sprintf($language->get('text_greeting'), $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value']));
@@ -105,6 +105,7 @@ class ControllerTotalVoucher extends Controller {
 					$mail->setSubject(html_entity_decode(sprintf($language->get('text_subject'), $voucher['from_name']), ENT_QUOTES, 'UTF-8'));
 					$mail->setHtml($this->load->view('mail/voucher', $data));
 					$mail->send();
+					
 				}
 			}
 		}

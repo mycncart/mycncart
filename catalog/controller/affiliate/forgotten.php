@@ -17,7 +17,8 @@ class ControllerAffiliateForgotten extends Controller {
 			$this->load->language('mail/forgotten');
 
 			$password = token(10);
-
+			
+			
 			$this->model_affiliate_affiliate->editPassword($this->request->post['email'], $password);
 
 			$subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
@@ -41,6 +42,7 @@ class ControllerAffiliateForgotten extends Controller {
 			$mail->setSubject($subject);
 			$mail->setText($message);
 			$mail->send();
+			
 
 			$this->session->data['success'] = $this->language->get('text_success');
 

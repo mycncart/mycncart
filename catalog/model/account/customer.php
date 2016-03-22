@@ -35,7 +35,8 @@ class ModelAccountCustomer extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "sms_mobile WHERE sms_mobile = '" . $this->db->escape($data['telephone']) . "'");
 
 		$this->load->language('mail/customer');
-
+		
+		
 		$subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
 
 		$message = sprintf($this->language->get('text_welcome'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')) . "\n\n";
@@ -66,6 +67,7 @@ class ModelAccountCustomer extends Model {
 		$mail->setSubject($subject);
 		$mail->setText($message);
 		$mail->send();
+		
 
 		// Send to main admin email if new account email is enabled
 		if ($this->config->get('config_account_mail')) {

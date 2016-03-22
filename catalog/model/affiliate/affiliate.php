@@ -9,7 +9,7 @@ class ModelAffiliateAffiliate extends Model {
 		$this->load->language('mail/affiliate');
 
 		$subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
-
+		
 		$message  = sprintf($this->language->get('text_welcome'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')) . "\n\n";
 		$message .= $this->language->get('text_approval') . "\n";
 
@@ -39,6 +39,7 @@ class ModelAffiliateAffiliate extends Model {
 		$mail->setSubject($subject);
 		$mail->setText($message);
 		$mail->send();
+		
 
 		// Send to main admin email if new affiliate email is enabled
 		if ($this->config->get('config_affiliate_mail')) {
@@ -133,7 +134,7 @@ class ModelAffiliateAffiliate extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "affiliate_transaction SET affiliate_id = '" . (int)$affiliate_id . "', order_id = '" . (float)$order_id . "', description = '" . $this->db->escape($this->language->get('text_order_id') . ' #' . $order_id) . "', amount = '" . (float)$amount . "', date_added = NOW()");
 
 			$affiliate_transaction_id = $this->db->getLastId();
-
+			
 			$message  = sprintf($this->language->get('text_transaction_received'), $this->currency->format($amount, $this->config->get('config_currency'))) . "\n\n";
 			$message .= sprintf($this->language->get('text_transaction_total'), $this->currency->format($this->getTransactionTotal($affiliate_id), $this->config->get('config_currency')));
 
@@ -152,6 +153,7 @@ class ModelAffiliateAffiliate extends Model {
 			$mail->setSubject(sprintf($this->language->get('text_transaction_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')));
 			$mail->setText($message);
 			$mail->send();
+			
 
 
 			return $affiliate_transaction_id;
