@@ -11,6 +11,9 @@
   <?php if ($error_warning) { ?>
   <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?></div>
   <?php } ?>
+  <?php if ($error_weixin_login_warning) { ?>
+  <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_weixin_login_warning; ?></div>
+  <?php } ?>
   <div class="row"><?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
     <?php $class = 'col-sm-6'; ?>
@@ -42,6 +45,20 @@
                 <input type="password" name="password" value="<?php echo $password; ?>" placeholder="<?php echo $entry_password; ?>" id="input-password" class="form-control" />
                 <a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a></div>
               <input type="submit" value="<?php echo $button_login; ?>" class="btn btn-primary" />
+              
+              <br><br>
+              <?php if($is_mobile) { ?>
+                <?php  if($is_weixin) { ?>
+                <p style="font-size:14px;">合作帐号登陆</p>
+                <a href="<?php echo $weixin_login; ?>"><img src="image/catalog/weixin_32x32.jpg"></a>
+                <?php } ?>
+                
+                <?php }else{ ?>
+                <p style="font-size:14px;">合作帐号登陆</p>
+                <a href="<?php echo $wxpclogin_url; ?>"><img src="image/catalog/weixin_32x32.jpg"></a>
+                
+                <?php } ?>
+                
               <?php if ($redirect) { ?>
               <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
               <?php } ?>

@@ -61,6 +61,24 @@ class Customer {
 			$this->address_id = $customer_query->row['address_id'];
 
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+			
+			//if pc weixin login
+			if(isset($this->session->data['weixin_pclogin_openid']) &&  isset($this->session->data['weixin_pclogin_unionid'])) {
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '" . $this->db->escape($this->session->data['weixin_pclogin_openid']) . "', weixin_login_unionid = '" . $this->db->escape($this->session->data['weixin_pclogin_unionid']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+				
+				//clear other customer's same weixin info
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '', weixin_login_unionid = '' WHERE weixin_login_openid LIKE  '" . $this->db->escape($this->session->data['weixin_pclogin_openid']) . "' AND weixin_login_unionid LIKE '" . $this->db->escape($this->session->data['weixin_pclogin_unionid']) . "' AND customer_id != '" . (int)$this->customer_id . "'");
+						
+			}
+			
+			//if mobile weixin login
+			if(isset($this->session->data['weixin_login_openid']) &&  isset($this->session->data['weixin_login_unionid'])) {
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '" . $this->db->escape($this->session->data['weixin_login_openid']) . "', weixin_login_unionid = '" . $this->db->escape($this->session->data['weixin_login_unionid']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+				
+				//clear other customer's same weixin info
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '', weixin_login_unionid = '' WHERE weixin_login_openid LIKE  '" . $this->db->escape($this->session->data['weixin_login_openid']) . "' AND weixin_login_unionid LIKE '" . $this->db->escape($this->session->data['weixin_login_unionid']) . "' AND customer_id != '" . (int)$this->customer_id . "'");
+						
+			}
 
 			return true;
 		} else {

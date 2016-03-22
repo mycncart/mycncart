@@ -134,6 +134,35 @@ class ControllerAccountLogin extends Controller {
 		} else {
 			$data['error_warning'] = '';
 		}
+		
+		if (isset($this->session->data['weixin_login_warning'])) {
+			$data['error_weixin_login_warning'] = $this->session->data['weixin_login_warning'];
+			unset($this->session->data['weixin_login_warning']);
+		} else {
+			$data['error_weixin_login_warning'] = '';
+		}
+		
+		//weixin login button
+		$this->load->helper('mobile');
+		if(is_weixin()) {
+			$data['is_weixin'] = 1;
+			
+		}else{
+			$data['is_weixin'] = 0;
+		}
+		
+		if(is_mobile()) {
+			$data['is_mobile'] = 1;
+			
+		}else{
+			$data['is_mobile'] = 0;
+		}
+		
+		$data['weixin_login'] = $this->url->link('account/weixin_login', '', true);
+		
+		$data['wxpclogin_url'] = 'https://open.weixin.qq.com/connect/qrconnect?appid=' . trim($this->config->get('wx_login_appid')) . '&redirect_uri='.urlencode(HTTPS_SERVER.'index.php?route=account/weixin_login/weixin_pclogin_code').'&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect';
+		
+		
 
 		$data['action'] = $this->url->link('account/login', '', true);
 		$data['register'] = $this->url->link('account/register', '', true);

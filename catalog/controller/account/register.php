@@ -6,6 +6,19 @@ class ControllerAccountRegister extends Controller {
 		if ($this->customer->isLogged()) {
 			$this->response->redirect($this->url->link('account/account', '', true));
 		}
+		
+		//weixin
+		if(isset($this->session->data['weixin_login_openid']) &&  isset($this->session->data['weixin_login_unionid'])) {
+			$weixin_login_unionid = $this->session->data['weixin_login_unionid'];
+			$weixin_login_openid = $this->session->data['weixin_login_openid'];
+		}elseif(isset($this->session->data['weixin_pclogin_openid']) &&  isset($this->session->data['weixin_pclogin_unionid'])){
+			$weixin_login_unionid = $this->session->data['weixin_pclogin_unionid'];
+			$weixin_login_openid = $this->session->data['weixin_pclogin_openid'];
+		}else{
+			$weixin_login_unionid = '';
+			$weixin_login_openid = '';
+		}
+
 
 		$this->load->language('account/register');
 
@@ -18,7 +31,7 @@ class ControllerAccountRegister extends Controller {
 		$this->load->model('account/customer');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$customer_id = $this->model_account_customer->addCustomer($this->request->post);
+			$customer_id = $this->model_account_customer->addCustomer($this->request->post, $weixin_login_openid, $weixin_login_unionid);
 			
 			// Clear any previous login attempts for unregistered accounts.
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
