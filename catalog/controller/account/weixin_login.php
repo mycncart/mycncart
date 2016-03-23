@@ -71,11 +71,9 @@ class ControllerAccountWeiXinLogin extends Controller {
 		$appid = $this->config->get('wx_login_appid');
 		$appsecret = $this->config->get('wx_login_appsecret');
 		
-		$openid_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appid.'&secret='.$appsecret.'&code=' . $code . '&grant_type=authorization_code';
+		$this->load->helper('mobile');
 		
-		$result = file_get_contents($openid_url);
-		
-		$info = json_decode($result, true);
+		$info = getWeiXinUserInfo($appid, $appsecret);
 		
 		if(isset($info['openid']) && isset($info['unionid'])) {
 			
