@@ -154,7 +154,6 @@ class ModelCmsPressCategory extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_category_description WHERE press_category_id = '" . (int)$press_category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_category_to_store WHERE press_category_id = '" . (int)$press_category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_category_to_layout WHERE press_category_id = '" . (int)$press_category_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_press_category WHERE press_category_id = '" . (int)$press_category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'press_category_id=" . (int)$press_category_id . "'");
 
 		$this->cache->delete('press_category');
