@@ -11,12 +11,9 @@ class ControllerStartupWeiXin extends Controller {
 				
 				  if(isset($this->session->data['weixin_login_openid']) &&  isset($this->session->data['weixin_login_unionid'])) {
 					 
-					   //自动登录开始
 					   
-					   
-					   //是否存在微信用户点击了退出或登录状态，
 					   if(isset($this->session->data['weixin_logout_status'])) {
-						   //如果用户实现了微信登录(无论是PC端还是微信端)
+						  
 						   if($this->session->data['weixin_logout_status'] == 0) {
 					   
 								if ($this->customer->login_weixin($this->session->data['weixin_login_unionid'])) {
@@ -41,7 +38,7 @@ class ControllerStartupWeiXin extends Controller {
 							
 						   }
 						
-					   }else{ //如果不存在微信用户点击了退出或登录状态，则直接微信登录或创建新账户
+					   }else{
 							
 							
 					   
