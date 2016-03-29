@@ -11,9 +11,11 @@ $_['text_weibo_open_signup']    = 'In developing process. Please do not enable i
 //Entry
 $_['entry_appkey']      	    = 'AppKey';
 $_['entry_appsecret']      		= 'AppSecret';
+$_['entry_callback_url']  		= 'Callback Url';
 $_['entry_status']         		= 'Status';
 
 //Error
 $_['error_permission']     		= 'Warning: You do not have permission to modify Log In with WeiBo module!';
 $_['error_appkey']      	    = 'AppKey required!';
 $_['error_appsecret']      		= 'AppSecret required!';
+$_['error_callback_url']        = 'WeiBo callback url required!';

@@ -75,3 +75,6 @@
 2016-03-16 18:00:56 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 158
 2016-03-16 18:04:12 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\wamp\www\mycncart\system\library\mail.php on line 158
 2016-03-18 11:44:57 - PHP Notice:  Undefined variable: text_press_category in C:\wamp\www\mycncart\catalog\view\theme\default\template\press\all.tpl on line 5
+2016-03-29 12:11:03 - PHP Notice:  Undefined variable: entry_callback_url in C:\wamp\www\mycncart\admin\view\template\module\weibo_login.tpl on line 52
+2016-03-29 12:11:03 - PHP Notice:  Undefined variable: entry_callback_url in C:\wamp\www\mycncart\admin\view\template\module\weibo_login.tpl on line 54
+2016-03-29 12:11:03 - PHP Notice:  Undefined variable: error_callback_url in C:\wamp\www\mycncart\admin\view\template\module\weibo_login.tpl on line 55
