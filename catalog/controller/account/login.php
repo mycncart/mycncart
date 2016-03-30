@@ -142,6 +142,13 @@ class ControllerAccountLogin extends Controller {
 			$data['error_weixin_login_warning'] = '';
 		}
 		
+		if (isset($this->session->data['weibo_login_warning'])) {
+			$data['error_weibo_login_warning'] = $this->session->data['weibo_login_warning'];
+			unset($this->session->data['weibo_login_warning']);
+		} else {
+			$data['error_weibo_login_warning'] = '';
+		}
+		
 		//weixin login button
 		$this->load->helper('mobile');
 		if(is_weixin()) {

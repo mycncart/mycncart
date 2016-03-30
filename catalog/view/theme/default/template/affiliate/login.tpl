@@ -11,6 +11,12 @@
   <?php if ($error_warning) { ?>
   <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?></div>
   <?php } ?>
+  <?php if ($error_weixin_login_warning) { ?>
+  <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_weixin_login_warning; ?></div>
+  <?php } ?>
+  <?php if ($error_weibo_login_warning) { ?>
+  <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_weibo_login_warning; ?></div>
+<?php } ?>
   <div class="row"><?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
     <?php $class = 'col-sm-6'; ?>

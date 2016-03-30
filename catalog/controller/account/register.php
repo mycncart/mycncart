@@ -18,6 +18,15 @@ class ControllerAccountRegister extends Controller {
 			$weixin_login_unionid = '';
 			$weixin_login_openid = '';
 		}
+		
+		//weibo
+		if(isset($this->session->data['weibo_login_access_token']) &&  isset($this->session->data['weibo_login_uid'])) {
+			$weibo_login_uid = $this->session->data['weibo_login_uid'];
+			$weibo_login_access_token = $this->session->data['weibo_login_access_token'];
+		}else{
+			$weibo_login_uid = '';
+			$weibo_login_access_token = '';
+		}
 
 
 		$this->load->language('account/register');
@@ -32,6 +41,10 @@ class ControllerAccountRegister extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$customer_id = $this->model_account_customer->addCustomer($this->request->post, $weixin_login_openid, $weixin_login_unionid);
+			
+			if($weibo_login_access_token && $weibo_login_uid) {
+				$this->model_account_customer->updateCustomerWeiBoInfo($customer_id, $weibo_login_access_token, $weibo_login_uid);
+			}
 			
 			// Clear any previous login attempts for unregistered accounts.
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);

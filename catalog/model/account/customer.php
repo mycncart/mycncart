@@ -203,4 +203,10 @@ class ModelAccountCustomer extends Model {
 
 		return $query->row['total'];
 	}
+	
+	public function updateCustomerWeiBoInfo($customer_id, $weibo_login_access_token, $weibo_login_uid) {
+
+		$this->db->query("UPDATE " . DB_PREFIX . "customer SET weibo_login_access_token = '" . $this->db->escape(trim($weibo_login_access_token)) . "', weibo_login_uid = '" . $this->db->escape(trim($weibo_login_uid)) . "' WHERE customer_id = '" . (int)$customer_id . "'");
+
+	}
 }

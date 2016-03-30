@@ -17,167 +17,96 @@ class ControllerModuleWeiBoLogin extends Controller {
 			$o = new SaeTOAuthV2($appkey , $appsecret);
 
 			$data['code_url'] = $o->getAuthorizeURL($callback_url);
-
-			return $this->load->view('module/weibo_login', $data);
-		}
-	}
-
-	public function login() {
-		$this->load->model('module/weibo_login');
-		$this->load->model('account/customer');
-		$this->load->model('account/customer_group');
-
-		if ($this->customer->isLogged()) {
-			echo '<script type="text/javascript">window.opener.location = "' . $this->url->link('account/account', '', true) . '"; window.close();</script>';
-		}
-
-		if (!isset($this->request->get['code'])) {
-			if (isset($this->request->get['error']) && isset($this->request->get['error_description'])) {
-				$this->model_module_weibo_login->log('No code returned. Error: ' . $this->request->get['error'] . ', Error Description: ' . $this->request->get['error_description']);
+			
+			if ($this->customer->isLogged()) {
+				$data['logged'] = 1;
+			} else {
+				$data['logged'] = 0;
+			}
+			
+			if(isset($this->session->data['weibo_login_access_token']) && isset($this->session->data['weibo_login_uid'])) {
+				$data['weibo_login_authorized'] = 1;
+			} else {
+				$data['weibo_login_authorized'] = 0;
+				unset($this->session->data['weibo_login_access_token']);
+				unset($this->session->data['weibo_login_uid']);
+			}
+			
+			
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/weibo_login.tpl')) {
+				return $this->load->view($this->config->get('config_template') . '/template/module/weibo_login.tpl', $data);
+			} else {
+				return $this->load->view('default/template/module/weibo_login.tpl', $data);
 			}
 
-			echo '<script type="text/javascript">window.opener.location = "' . $this->url->link('account/login', '', true) . '"; window.close();</script>';
-		} else {
-			$tokens = $this->model_module_weibo_login->getTokens($this->request->get['code']);
 		}
+	}
+	
+	public function callback() {
 
-		if (isset($tokens->access_token) && !isset($tokens->error)) {
-			$user = $this->model_module_weibo_login->getUserInfo($tokens->access_token);
+		$appkey = $this->config->get('weibo_login_appkey');
+		$appsecret = $this->config->get('weibo_login_appsecret');
+		$callback_url = $this->url->link('module/weibo_login/callback', '', true);
+		
+		$this->load->language('module/weibo_login');
+		
+		$data['text_weibo_login'] = $this->language->get('text_weibo_login');
+
+		include_once(DIR_SYSTEM.'library/weibo/saetv2.ex.class.php');
+
+		$o = new SaeTOAuthV2($appkey, $appsecret);
+		
+		if (isset($_REQUEST['code'])) {
+			$keys = array();
+			$keys['code'] = $_REQUEST['code'];
+			$keys['redirect_uri'] = $callback_url;
+			try {
+				$token = $o->getAccessToken( 'code', $keys ) ;
+			} catch (OAuthException $e) {
+			}
 		}
-
-		if (isset($user)) {
-			$customer_info = $this->model_account_customer->getCustomerByEmail($user->email);
-
-			if ($customer_info) {
-				if ($this->validate($user->email)) {
-					$this->completeLogin($customer_info['customer_id'], $customer_info['email'], $tokens->access_token);
-				} else {
-					$this->model_module_weibo_login->log('Could not login to - ID: ' . $customer_info['customer_id'] . ', Email: ' . $customer_info['email']);
-					echo '<script type="text/javascript">window.opener.location = "' . $this->url->link('account/login', '', true) . '"; window.close();</script>';
-				}
-			} else {
-				$country = $this->db->query("SELECT `country_id` FROM `" . DB_PREFIX . "country` WHERE iso_code_2 = '" . $this->db->escape($user->address->country) . "'");
-
-				if ($country->num_rows) {
-					$country_id = $country->row['country_id'];
-
-					$zone = $this->db->query("SELECT `zone_id` FROM `" . DB_PREFIX . "zone` WHERE country_id = '" . (int)$country_id . "' AND name = '" . $this->db->escape($user->address->region) . "'");
-
-					if ($zone->num_rows) {
-						$zone_id = $zone->row['zone_id'];
-					} else {
-						$zone_id = 0;
+		
+		if ($token) {
+			
+			//setcookie( 'weibojs_'.$o->client_id, http_build_query($token) );
+			
+			$c = new SaeTClientV2($appkey, $appsecret, $token['access_token']);
+			$ms  = $c->home_timeline();
+			$uid_get = $c->get_uid();
+			$uid = $uid_get['uid'];
+			$user_message = $c->show_user_by_id($uid);
+			
+			$this->session->data['weibo_login_access_token'] = $token['access_token'];
+			
+			$this->session->data['weibo_login_uid'] = $uid;
+			
+			if ($this->customer->login_weibo($this->session->data['weibo_login_access_token'],  $this->session->data['weibo_login_uid'])) {
+				
+					unset($this->session->data['guest']);
+		
+					// Default Shipping Address
+					$this->load->model('account/address');
+		
+					if ($this->config->get('config_tax_customer') == 'payment') {
+						$this->session->data['payment_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
 					}
-				} else {
-					$country_id = 0;
-					$zone_id = 0;
+		
+					if ($this->config->get('config_tax_customer') == 'shipping') {
+						$this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
+					}
+		
+					$this->response->redirect($this->url->link('account/account', '', 'SSL'));
+				}else{
+					
+					$this->session->data['weibo_login_warning'] = sprintf($this->language->get('text_weibo_login_warning'), $this->config->get('config_name'));
+					
+					$this->response->redirect($this->url->link('account/login', '', 'SSL'));
 				}
-
-				if ($this->config->get('weibo_login_customer_group_id')) {
-					$customer_group_id = $this->config->get('weibo_login_customer_group_id');
-				} else {
-					$customer_group_id = $this->config->get('config_customer_group_id');
-				}
-
-				$data = array(
-					'customer_group_id' => (int)$customer_group_id,
-					'firstname'         => $user->given_name,
-					'lastname'          => $user->family_name,
-					'email'             => $user->email,
-					'telephone'         => $user->phone_number,
-					'fax'               => '',
-					'password'          => uniqid(rand(), true),
-					'company'           => '',
-					'address_1'         => $user->address->street_address,
-					'address_2'         => '',
-					'city'              => $user->address->locality,
-					'postcode'          => $user->address->postal_code,
-					'country_id'        => (int)$country_id,
-					'zone_id'           => (int)$zone_id,
-				);
-
-				$customer_id = $this->model_account_customer->addCustomer($data);
-
-				$this->model_module_weibo_login->log('Customer ID date_added: ' . $customer_id);
-
-				if ($this->validate($user->email)) {
-					$this->completeLogin($customer_id, $user->email, $tokens->access_token);
-				} else {
-					$this->model_module_weibo_login->log('Could not login to - ID: ' . $customer_id . ', Email: ' . $user->email);
-					echo '<script type="text/javascript">window.opener.location = "' . $this->url->link('account/login', '', true) . '"; window.close();</script>';
-				}
-			}
+			
+		}else{
+			echo $this->language->get('text_weibo_fail');	
 		}
+	
 	}
 
-	public function logout() {
-		if (isset($this->session->data['weibo_login'])) {
-			unset($this->session->data['weibo_login']);
-		}
-	}
-
-	protected function completeLogin($customer_id, $email, $access_token) {
-		unset($this->session->data['guest']);
-
-		// Default Shipping Address
-		$this->load->model('account/address');
-
-		if ($this->config->get('config_tax_customer') == 'payment') {
-			$this->session->data['payment_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
-		}
-
-		if ($this->config->get('config_tax_customer') == 'shipping') {
-			$this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
-		}
-
-		// Add to activity log
-		$this->load->model('account/activity');
-
-		$activity_data = array(
-			'customer_id' => $this->customer->getId(),
-			'name'        => $this->customer->getFullName()
-		);
-
-		$this->model_account_activity->addActivity('login', $activity_data);
-
-		if ($this->config->get('weibo_login_seamless')) {
-			$this->session->data['weibo_login']['seamless']['customer_id'] = $this->customer->getId();
-			$this->session->data['weibo_login']['seamless']['access_token'] = $access_token;
-		} else {
-			if (isset($this->session->data['weibo_login']['seamless'])) {
-				unset($this->session->data['weibo_login']['seamless']);
-			}
-		}
-
-		$this->model_module_weibo_login->log('Customer logged in - ID: ' . $customer_id . ', Email: ' . $email);
-		echo '<script type="text/javascript">window.opener.location = "' . $this->url->link('account/account', '', true) . '"; window.close();</script>';
-	}
-
-	protected function validate($email) {
-		// Check how many login attempts have been made.
-		$login_info = $this->model_account_customer->getLoginAttempts($email);
-
-		if ($login_info && ($login_info['total'] >= $this->config->get('config_login_attempts')) && strtotime('-1 hour') < strtotime($login_info['date_modified'])) {
-			$this->error['warning'] = $this->language->get('error_attempts');
-		}
-
-		// Check if customer has been approved.
-		$customer_info = $this->model_account_customer->getCustomerByEmail($email);
-
-		if ($customer_info && !$customer_info['approved']) {
-			$this->error['warning'] = $this->language->get('error_approved');
-		}
-
-		if (!$this->error) {
-			if (!$this->customer->login($email, '', true)) {
-				$this->error['warning'] = $this->language->get('error_login');
-
-				$this->model_account_customer->addLoginAttempt($email);
-			} else {
-				$this->model_account_customer->deleteLoginAttempts($email);
-			}
-		}
-
-		return !$this->error;
-	}
 }
