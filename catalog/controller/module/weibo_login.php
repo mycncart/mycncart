@@ -32,6 +32,14 @@ class ControllerModuleWeiBoLogin extends Controller {
 				unset($this->session->data['weibo_login_uid']);
 			}
 			
+			$this->load->helper('mobile');
+			if(is_weixin()) {
+				$data['is_weixin'] = 1;
+				
+			}else{
+				$data['is_weixin'] = 0;
+			}
+			
 			
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/weibo_login.tpl')) {
 				return $this->load->view($this->config->get('config_template') . '/template/module/weibo_login.tpl', $data);
