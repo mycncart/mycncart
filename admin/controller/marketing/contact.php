@@ -246,7 +246,7 @@ class ControllerMarketingContact extends Controller {
 							$mail->smtp_port = $this->config->get('config_mail_smtp_port');
 							$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
 
-							$mail->setFrom($store_email);
+							$mail->setFrom($email);
 							$mail->setFrom($this->config->get('config_email'));
 							$mail->setSender(html_entity_decode($store_name, ENT_QUOTES, 'UTF-8'));
 							$mail->setSubject(html_entity_decode($this->request->post['subject'], ENT_QUOTES, 'UTF-8'));
