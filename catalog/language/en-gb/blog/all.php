@@ -12,3 +12,4 @@ $_['text_comment_count'] 		= 'Comments: ';
 $_['text_none_author'] 			= 'None';
 $_['text_blog_category'] 		= 'Blog Categories';
 $_['text_empty'] 				= 'No Contents';
+$_['text_readmore'] 			= 'Read More';

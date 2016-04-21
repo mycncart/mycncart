@@ -96,6 +96,7 @@ class ControllerBlogAll extends Controller {
 		$data['text_hits'] = $this->language->get('text_hits');
 		$data['text_comment_count'] = $this->language->get('text_comment_count');
 		$data['text_blog_category'] = $this->language->get('text_blog_category');
+		$data['text_readmore'] = $this->language->get('text_readmore');
 
 		$data['button_continue'] = $this->language->get('button_continue');
 
