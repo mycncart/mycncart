@@ -45,6 +45,16 @@ class ControllerCmsBlogConfig extends Controller {
 		$data['entry_cms_blog_items_per_page'] = $this->language->get('entry_cms_blog_items_per_page');
 		
 		$data['entry_cms_blog_category_page_blog_image_type'] = $this->language->get('entry_cms_blog_category_page_blog_image_type');
+		$data['entry_cms_blog_children_columns'] = $this->language->get('entry_cms_blog_children_columns');
+		$data['entry_cms_blog_category_image_demension'] = $this->language->get('entry_cms_blog_category_image_demension');
+		$data['entry_cms_blog_general_cwidth'] = $this->language->get('entry_cms_blog_general_cwidth');
+		$data['entry_cms_blog_general_cheight'] = $this->language->get('entry_cms_blog_general_cheight');
+		$data['entry_cms_blog_category_limit_leading_blog'] = $this->language->get('entry_cms_blog_category_limit_leading_blog');
+		$data['entry_cms_blog_category_limit_secondary_blog'] = $this->language->get('entry_cms_blog_category_limit_secondary_blog');
+		$data['entry_cms_blog_category_leading_image_type'] = $this->language->get('entry_cms_blog_category_leading_image_type');
+		$data['entry_cms_blog_category_secondary_image_type'] = $this->language->get('entry_cms_blog_category_secondary_image_type');
+		$data['entry_cms_blog_category_columns_leading_blog'] = $this->language->get('entry_cms_blog_category_columns_leading_blog');
+		$data['entry_cms_blog_category_columns_secondary_blogs'] = $this->language->get('entry_cms_blog_category_columns_secondary_blogs');
 		$data['entry_cms_blog_category_page_show_title'] = $this->language->get('entry_cms_blog_category_page_show_title');
 		$data['entry_cms_blog_category_page_show_brief'] = $this->language->get('entry_cms_blog_category_page_show_brief');
 		$data['entry_cms_blog_category_page_show_readmore'] = $this->language->get('entry_cms_blog_category_page_show_readmore');
@@ -59,6 +69,7 @@ class ControllerCmsBlogConfig extends Controller {
 		$data['entry_cms_blog_show_title'] = $this->language->get('entry_cms_blog_show_title');
 		$data['entry_cms_blog_show_image'] = $this->language->get('entry_cms_blog_show_image');
 		$data['entry_cms_blog_show_author'] = $this->language->get('entry_cms_blog_show_author');
+		$data['entry_cms_blog_show_category'] = $this->language->get('entry_cms_blog_show_category');
 		$data['entry_cms_blog_show_product_related'] = $this->language->get('entry_cms_blog_show_product_related');
 		$data['entry_cms_blog_show_blog_related'] = $this->language->get('entry_cms_blog_show_blog_related');
 		$data['entry_cms_blog_show_created_date'] = $this->language->get('entry_cms_blog_show_created_date');
@@ -202,6 +213,60 @@ class ControllerCmsBlogConfig extends Controller {
 			$data['cms_blog_items_per_page'] = $this->config->get('cms_blog_items_per_page');
 		}
 		
+		if (isset($this->request->post['cms_blog_children_columns'])) {
+			$data['cms_blog_children_columns'] = $this->request->post['cms_blog_children_columns'];
+		} else {
+			$data['cms_blog_children_columns'] = $this->config->get('cms_blog_children_columns');
+		}
+		
+		if (isset($this->request->post['cms_blog_general_cwidth'])) {
+			$data['cms_blog_general_cwidth'] = $this->request->post['cms_blog_general_cwidth'];
+		} else {
+			$data['cms_blog_general_cwidth'] = $this->config->get('cms_blog_general_cwidth');
+		}
+		
+		if (isset($this->request->post['cms_blog_general_cheight'])) {
+			$data['cms_blog_general_cheight'] = $this->request->post['cms_blog_general_cheight'];
+		} else {
+			$data['cms_blog_general_cheight'] = $this->config->get('cms_blog_general_cheight');
+		}
+		
+		if (isset($this->request->post['cms_blog_category_limit_leading_blog'])) {
+			$data['cms_blog_category_limit_leading_blog'] = $this->request->post['cms_blog_category_limit_leading_blog'];
+		} else {
+			$data['cms_blog_category_limit_leading_blog'] = $this->config->get('cms_blog_category_limit_leading_blog');
+		}
+		
+		if (isset($this->request->post['cms_blog_category_limit_secondary_blog'])) {
+			$data['cms_blog_category_limit_secondary_blog'] = $this->request->post['cms_blog_category_limit_secondary_blog'];
+		} else {
+			$data['cms_blog_category_limit_secondary_blog'] = $this->config->get('cms_blog_category_limit_secondary_blog');
+		}
+		
+		if (isset($this->request->post['cms_blog_category_leading_image_type'])) {
+			$data['cms_blog_category_leading_image_type'] = $this->request->post['cms_blog_category_leading_image_type'];
+		} else {
+			$data['cms_blog_category_leading_image_type'] = $this->config->get('cms_blog_category_leading_image_type');
+		}
+		
+		if (isset($this->request->post['cms_blog_category_secondary_image_type'])) {
+			$data['cms_blog_category_secondary_image_type'] = $this->request->post['cms_blog_category_secondary_image_type'];
+		} else {
+			$data['cms_blog_category_secondary_image_type'] = $this->config->get('cms_blog_category_secondary_image_type');
+		}
+		
+		if (isset($this->request->post['cms_blog_category_columns_leading_blog'])) {
+			$data['cms_blog_category_columns_leading_blog'] = $this->request->post['cms_blog_category_columns_leading_blog'];
+		} else {
+			$data['cms_blog_category_columns_leading_blog'] = $this->config->get('cms_blog_category_columns_leading_blog');
+		}
+		
+		if (isset($this->request->post['cms_blog_category_columns_secondary_blogs'])) {
+			$data['cms_blog_category_columns_secondary_blogs'] = $this->request->post['cms_blog_category_columns_secondary_blogs'];
+		} else {
+			$data['cms_blog_category_columns_secondary_blogs'] = $this->config->get('cms_blog_category_columns_secondary_blogs');
+		}
+		
 		if (isset($this->request->post['cms_blog_category_page_show_title'])) {
 			$data['cms_blog_category_page_show_title'] = $this->request->post['cms_blog_category_page_show_title'];
 		} else {
@@ -278,6 +343,12 @@ class ControllerCmsBlogConfig extends Controller {
 			$data['cms_blog_show_author'] = $this->request->post['cms_blog_show_author'];
 		} else {
 			$data['cms_blog_show_author'] = $this->config->get('cms_blog_show_author');
+		}
+		
+		if (isset($this->request->post['cms_blog_show_category'])) {
+			$data['cms_blog_show_category'] = $this->request->post['cms_blog_show_category'];
+		} else {
+			$data['cms_blog_show_category'] = $this->config->get('cms_blog_show_category');
 		}
 		
 		if (isset($this->request->post['cms_blog_show_product_related'])) {

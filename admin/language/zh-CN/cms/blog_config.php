@@ -5,9 +5,9 @@ $_['heading_title']          									= '博客设置';
 // Text
 $_['text_success']           									= '成功: 已修改博客设置!';
 $_['text_edit']              									= '编辑博客设置';
-$_['text_large']              									= '博客大图片尺寸';
-$_['text_middle']              									= '博客中图片尺寸';
-$_['text_small']              									= '博客小图片尺寸';
+$_['text_large']              									= '大图片尺寸';
+$_['text_middle']              									= '中图片尺寸';
+$_['text_small']              									= '小图片尺寸';
 
 // Entry
 $_['entry_title']            									= '博客标题';
@@ -27,6 +27,16 @@ $_['entry_cms_blog_small_image_height']  						= '高';
 $_['entry_cms_blog_items_per_page']  							= '每页显示博客条数';
 
 $_['entry_cms_blog_category_page_blog_image_type']  			= '分类页面博客图片';
+$_['entry_cms_blog_children_columns']  							= '子页面列数';
+$_['entry_cms_blog_category_image_demension']  					= '分类图片尺寸(宽 x 高)';
+$_['entry_cms_blog_general_cwidth']  							= '宽';
+$_['entry_cms_blog_general_cheight']  							= '高';
+$_['entry_cms_blog_category_limit_leading_blog']  					= '以及页面博客数';
+$_['entry_cms_blog_category_limit_secondary_blog']  					= '二级页面博客数';
+$_['entry_cms_blog_category_leading_image_type']  					= '图片类型';
+$_['entry_cms_blog_category_secondary_image_type']  					= '二级图片类型';
+$_['entry_cms_blog_category_columns_leading_blog']  					= '列博客数';
+$_['entry_cms_blog_category_columns_secondary_blogs']  				= '列二级博客数';
 $_['entry_cms_blog_category_page_show_title']  					= '显示博客标题';
 $_['entry_cms_blog_category_page_show_brief']  					= '显示摘要';
 $_['entry_cms_blog_category_page_show_readmore']  				= '显示【阅读详情】';
@@ -41,6 +51,7 @@ $_['entry_cms_blog_image_type']  								= '博客图片';
 $_['entry_cms_blog_show_title']  								= '显示博客标题';
 $_['entry_cms_blog_show_image']  								= '显示图片';
 $_['entry_cms_blog_show_author']  								= '显示作者';
+$_['entry_cms_blog_show_category']  							= '显示分类';
 $_['entry_cms_blog_show_product_related']  						= '显示相关商品';
 $_['entry_cms_blog_show_blog_related']  						= '显示相关博客文章';
 $_['entry_cms_blog_show_created_date']  						= '显示创建日期';
