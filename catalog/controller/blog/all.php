@@ -116,15 +116,24 @@ class ControllerBlogAll extends Controller {
 			
 			if ($result['image']) {
 				
-				if($this->config->get('cms_blog_image_type') == 'l') {
+				if($this->config->get('cms_blog_category_leading_image_type') == 'l') {
 					$image = $this->model_tool_image->resize($result['image'], $this->config->get('cms_blog_large_image_width'), $this->config->get('cms_blog_large_image_height'));
-				}elseif($this->config->get('cms_blog_image_type') == 'm') {
+				}elseif($this->config->get('cms_blog_category_leading_image_type') == 'm') {
 					$image = $this->model_tool_image->resize($result['image'], $this->config->get('cms_blog_middle_image_width'), $this->config->get('cms_blog_middle_image_height'));
 				}else{
 					$image = $this->model_tool_image->resize($result['image'], $this->config->get('cms_blog_small_image_width'), $this->config->get('cms_blog_small_image_height'));
 				}
 			} else {
 				$image = '';
+			}
+			
+			
+			$blog_categories = $this->model_blog_blog->getBlogCategoriesByBlogId($result['blog_id']);
+			
+			if ($blog_categories) {
+				$categories = $blog_categories;
+			} else {
+				$categories = array();
 			}
 			
 			$users = $this->model_blog_blog->getUsers();
@@ -139,7 +148,7 @@ class ControllerBlogAll extends Controller {
 				'title'        		=> html_entity_decode($result['title'], ENT_QUOTES, 'UTF-8'),
 				'brief' 	   		=> html_entity_decode($result['brief'], ENT_QUOTES, 'UTF-8'),
 				'tags' 	   	   		=> explode(',', $result['tags']),
-				'blog_category_id'  => $result['blog_category_id'],
+				'blog_category_id'  => $categories,
 				'created'  	   		=> date($this->language->get('date_format_short'), strtotime($result['created'])),
 				'status'  	   		=> $result['status'],
 				'author'  	   		=> isset($users[$result['user_id']])?$users[$result['user_id']]:$this->language->get('text_none_author'),

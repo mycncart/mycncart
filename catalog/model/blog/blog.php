@@ -260,4 +260,12 @@ class ModelBlogBlog extends Model {
 		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hits = (hits + 1) WHERE blog_id = '" . (int)$blog_id . "'");
 	}
 	
+	public function getBlogCategoriesByBlogId($blog_id) {
+
+		$query = $this->db->query("SELECT bcd.name, bcd.blog_category_id, bcd.language_id FROM " . DB_PREFIX . "blog_to_blog_category btbc LEFT JOIN " . DB_PREFIX . "blog_category_description bcd ON (btbc.blog_category_id = bcd.blog_category_id) WHERE btbc.blog_id = '" . (int)$blog_id . "' AND bcd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+
+		return $query->rows;
+	}
+	
 }
