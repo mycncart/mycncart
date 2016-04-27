@@ -46,19 +46,6 @@
                 <a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a></div>
               <input type="submit" value="<?php echo $button_login; ?>" class="btn btn-primary" />
               
-              <br><br>
-              <?php if($is_mobile) { ?>
-                <?php  if($is_weixin) { ?>
-                <p style="font-size:14px;">合作帐号登陆</p>
-                <a href="<?php echo $weixin_login; ?>"><img src="image/catalog/weixin_32x32.jpg"></a>
-                <?php } ?>
-                
-                <?php }else{ ?>
-                <p style="font-size:14px;">合作帐号登陆</p>
-                <a href="<?php echo $wxpclogin_url; ?>"><img src="image/catalog/weixin_32x32.jpg"></a>
-                
-                <?php } ?>
-                
               <?php if ($redirect) { ?>
               <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
               <?php } ?>

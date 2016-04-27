@@ -149,6 +149,7 @@ class ControllerAccountLogin extends Controller {
 			$data['error_weibo_login_warning'] = '';
 		}
 		
+		/*
 		//weixin login button
 		$this->load->helper('mobile');
 		if(is_weixin()) {
@@ -169,6 +170,7 @@ class ControllerAccountLogin extends Controller {
 		
 		$data['wxpclogin_url'] = 'https://open.weixin.qq.com/connect/qrconnect?appid=' . trim($this->config->get('wx_login_appid')) . '&redirect_uri='.urlencode(HTTPS_SERVER.'index.php?route=account/weixin_login/weixin_pclogin_code').'&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect';
 		
+		*/
 		
 
 		$data['action'] = $this->url->link('account/login', '', true);
