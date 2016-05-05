@@ -28,7 +28,6 @@ class ControllerModuleWeiXinLogin extends Controller {
 			$data['wxpclogin_url'] = 'https://open.weixin.qq.com/connect/qrconnect?appid=' . trim($this->config->get('wx_login_appid')) . '&redirect_uri='.urlencode(HTTPS_SERVER.'index.php?route=module/weixin_login/weixin_pclogin_code').'&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect';
 			
 			
-			
 			return $this->load->view('module/weixin_login', $data);
 			
 

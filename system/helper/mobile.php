@@ -28,7 +28,7 @@ function is_iphone_ipad() {
 	return false;
 }
 
-function getWeiXinUserInfo($appid, $appsecret){	
+function getWeiXinUserInfo($appid, $appsecret, $code){	
 	$openid_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appid.'&secret='.$appsecret.'&code=' . $code . '&grant_type=authorization_code';
 	
 	$result_one = file_get_contents($openid_url);

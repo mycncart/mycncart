@@ -41,11 +41,7 @@ class ControllerModuleWeiBoLogin extends Controller {
 			}
 			
 			
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/weibo_login.tpl')) {
-				return $this->load->view($this->config->get('config_template') . '/template/module/weibo_login.tpl', $data);
-			} else {
-				return $this->load->view('default/template/module/weibo_login.tpl', $data);
-			}
+			return $this->load->view('module/weibo_login', $data);
 
 		}
 	}
