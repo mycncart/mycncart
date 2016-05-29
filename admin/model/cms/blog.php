@@ -2,7 +2,7 @@
 class ModelCmsBlog extends Model {
 	public function addBlog($data) {
 
-		$this->db->query("INSERT INTO " . DB_PREFIX . "blog SET featured = '" . (int)$data['featured'] . "', hits = '" . (int)$data['hits'] . "', created = '" . $this->db->escape($data['created']) . "', video_code = '" . $this->db->escape($data['video_code']) . "', user_id = '" . (int)$data['user_id'] . "', status = '" . (int)$data['status'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "blog SET featured = '" . (int)$data['featured'] . "', hits = '" . (int)$data['hits'] . "', created = '" . $this->db->escape($data['created']) . "', video_code = '" . $this->db->escape($data['video_code']) . "', user_id = '" . (int)$data['user_id'] . "', article_list_gallery_display = '" . $this->db->escape($data['article_list_gallery_display']) . "', status = '" . (int)$data['status'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
 		$blog_id = $this->db->getLastId();
 		
@@ -50,6 +50,12 @@ class ModelCmsBlog extends Model {
 			
 		}
 		
+		if (isset($data['article_gallery'])) {
+			foreach ($data['article_gallery'] as $article_gallery) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_gallery SET blog_id = '" . (int)$blog_id . "', path = '" . $this->db->escape($article_gallery['path']) . "',  width = '" . (int)$article_gallery['width'] . "',  height = '" . (int)$article_gallery['height'] . "', type = '" . $this->db->escape($article_gallery['type']) . "', sort_order = '" . (int)$article_gallery['sort_order'] . "'");
+			}
+		}
+		
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_id=" . (int)$blog_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}else{
@@ -71,7 +77,7 @@ class ModelCmsBlog extends Model {
 
 	public function editBlog($blog_id, $data) {
 		
-		$this->db->query("UPDATE " . DB_PREFIX . "blog SET featured = '" . (int)$data['featured'] . "', hits = '" . (int)$data['hits'] . "', created = '" . $this->db->escape($data['created']) . "', user_id = '" . (int)$data['user_id'] . "', video_code = '" . $this->db->escape($data['video_code']) . "', status = '" . (int)$data['status'] . "',  sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE blog_id = '" . (int)$blog_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "blog SET featured = '" . (int)$data['featured'] . "', hits = '" . (int)$data['hits'] . "', created = '" . $this->db->escape($data['created']) . "', user_id = '" . (int)$data['user_id'] . "', article_list_gallery_display = '" . $this->db->escape($data['article_list_gallery_display']) . "',  video_code = '" . $this->db->escape($data['video_code']) . "', status = '" . (int)$data['status'] . "',  sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE blog_id = '" . (int)$blog_id . "'");
 		
 		if (isset($data['image'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "blog SET image = '" . $this->db->escape($data['image']) . "' WHERE blog_id = '" . (int)$blog_id . "'");
@@ -121,6 +127,15 @@ class ModelCmsBlog extends Model {
 			
 		}
 		
+		if (isset($data['article_gallery'])) {
+			
+			$this->db->query("DELETE FROM " . DB_PREFIX . "blog_gallery WHERE blog_id = " . (int)$blog_id);
+			
+			foreach ($data['article_gallery'] as $article_gallery) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_gallery SET blog_id = '" . (int)$blog_id . "', path = '" . $this->db->escape($article_gallery['path']) . "',  width = '" . (int)$article_gallery['width'] . "',  height = '" . (int)$article_gallery['height'] . "', type = '" . $this->db->escape($article_gallery['type']) . "', sort_order = '" . (int)$article_gallery['sort_order'] . "'");
+			}
+		}
+		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'blog_id=" . (int)$blog_id . "'");
 
 		if ($data['keyword']) {
@@ -150,6 +165,7 @@ class ModelCmsBlog extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_to_blog_category WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_related WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_product WHERE blog_id = '" . (int)$blog_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_gallery WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_to_layout WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_to_store WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'blog_id=" . (int)$blog_id . "'");
@@ -321,5 +337,11 @@ class ModelCmsBlog extends Model {
 		}
 		
 		return $blog_related_data;
+	}
+	
+	public function getBlogGalleries($blog_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "blog_gallery WHERE blog_id = '" . (int)$blog_id . "' ORDER BY sort_order ASC");
+
+		return $query->rows;
 	}
 }

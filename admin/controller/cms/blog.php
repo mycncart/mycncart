@@ -655,8 +655,8 @@ class ControllerCmsBlog extends Controller {
 		
 		if (isset($this->request->post['article_list_gallery_display'])) {
 			$data['article_list_gallery_display'] = $this->request->post['article_list_gallery_display'];
-		} elseif (!empty($article_info)) {
-			$data['article_list_gallery_display'] = $article_info['article_list_gallery_display'];
+		} elseif (!empty($blog_info)) {
+			$data['article_list_gallery_display'] = $blog_info['article_list_gallery_display'];
 		} else {
 			$data['article_list_gallery_display'] = true;
 		}
@@ -664,8 +664,8 @@ class ControllerCmsBlog extends Controller {
 		// Images
 		if (isset($this->request->post['article_gallery'])) {
 			$article_galleries = $this->request->post['article_gallery'];
-		} elseif (isset($this->request->get['article_id'])) {
-			$article_galleries = $this->model_blog_article->getArticleGalleries($this->request->get['article_id']);
+		} elseif (isset($this->request->get['blog_id'])) {
+			$article_galleries = $this->model_cms_blog->getBlogGalleries($this->request->get['blog_id']);
 		} else {
 			$article_galleries = array();
 		}

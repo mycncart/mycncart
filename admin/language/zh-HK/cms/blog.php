@@ -9,6 +9,8 @@ $_['text_list']              = '博客列表';
 $_['text_add']               = '添加博客';
 $_['text_edit']              = '編輯博客';
 $_['text_default']           = '默認';
+$_['text_slider'] 			 = '幻燈片';
+$_['text_classic'] 			 = '經典';
 
 // Column
 $_['column_name']            = '博客名稱';
@@ -39,6 +41,16 @@ $_['entry_layout']           = '布局排版覆蓋';
 $_['entry_blog_category']    = '所属博客分类';
 $_['entry_product_related']  = '相關商品';
 $_['entry_blog_related']     = '相關博客文章';
+$_['entry_youtube'] 		 = 'Youtube';
+$_['entry_soundcloud'] 		 = 'Sound Cloud';
+$_['entry_type'] 			 = '類型';
+$_['entry_link'] 			 = '鏈接';
+$_['entry_width'] 			 = '寬度';
+$_['entry_height'] 	 		 = '高度';
+$_['entry_article_list_gallery_display'] 	 		 = '博客文章列表中展示圖片類型';
+
+//tab
+$_['tab_gallery'] 		 	 = '展示圖片';
 
 // Help
 $_['help_keyword']           = '不要用空格，使用-鏈接關鍵字，確保該關鍵詞為全站唯壹。';
