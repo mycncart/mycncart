@@ -53,7 +53,12 @@ $_['entry_cms_blog_show_image']  								= 'Show Image';
 $_['entry_cms_blog_show_author']  								= 'Show Author';
 $_['entry_cms_blog_show_category']  							= 'Show Category';
 $_['entry_cms_blog_show_product_related']  						= 'Show Product Related';
+$_['entry_cms_blog_product_scroll_related']  					= 'Product Related Scroll';
+$_['entry_cms_blog_product_related_per_row']  					= 'Product Related Per Row';
 $_['entry_cms_blog_show_blog_related']  						= 'Show Blog Related';
+$_['entry_cms_blog_article_scroll_related']  					= 'Article Related Scroll';
+$_['entry_cms_blog_article_related_per_row']  					= 'Article Related Per Row
+';
 $_['entry_cms_blog_show_created_date']  						= 'Show Created Date';
 $_['entry_cms_blog_show_hits']  								= 'Show Hits';
 $_['entry_cms_blog_show_comment_counter']  						= 'Show Comment Counter';

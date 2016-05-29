@@ -474,6 +474,33 @@
               </div>
               
               <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-product-scroll-related"><?php echo $entry_cms_blog_product_scroll_related; ?></label>
+                <div class="col-sm-10">
+                    <select name="cms_blog_product_scroll_related" id="input-cms-blog-product-scroll-related" class="form-control">
+                        <?php if ($cms_blog_product_scroll_related) { ?>
+                        <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                        <option value="0"><?php echo $text_disabled; ?></option>
+                        <?php } else { ?>
+                        <option value="1"><?php echo $text_enabled; ?></option>
+                        <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-cms-blog-product-per-row"><?php echo $entry_cms_blog_product_related_per_row; ?></label>
+                <div class="col-sm-10">
+                    <select name="cms_blog_product_related_per_row" id="input-cms-blog-product-per-row" class="form-control">
+                        <option value="3" <?php echo ($cms_blog_product_related_per_row == 3 ? 'selected="selected"' : '') ?>>3</option>
+                        <option value="4" <?php echo ($cms_blog_product_related_per_row == 4 ? 'selected="selected"' : '') ?>>4</option>
+                        <option value="5" <?php echo ($cms_blog_product_related_per_row == 5 ? 'selected="selected"' : '') ?>>5</option>
+                        <option value="6" <?php echo ($cms_blog_product_related_per_row == 6 ? 'selected="selected"' : '') ?>>6</option>
+                    </select>
+                </div>
+            </div>
+              
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-cms-blog-show-blog-related"><?php echo $entry_cms_blog_show_blog_related; ?></label>
                 <div class="col-sm-10">
                   <select name="cms_blog_show_blog_related" id="input-cms-blog-show-blog-related" class="form-control">
@@ -486,6 +513,33 @@
                     <?php } ?>
                   </select>
                 </div>
+              </div>
+              
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-cms-blog-article-scroll-related"><?php echo $entry_cms_blog_article_scroll_related; ?></label>
+                  <div class="col-sm-10">
+                      <select name="cms_blog_article_scroll_related" id="input-cms-blog-article-scroll-related" class="form-control">
+                          <?php if ($cms_blog_article_scroll_related) { ?>
+                          <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                          <option value="0"><?php echo $text_disabled; ?></option>
+                          <?php } else { ?>
+                          <option value="1"><?php echo $text_enabled; ?></option>
+                          <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                          <?php } ?>
+                      </select>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-cms-blog-article-per-row"><?php echo $entry_cms_blog_article_related_per_row; ?></label>
+                  <div class="col-sm-10">
+                      <select name="cms_blog_article_related_per_row" id="input-cms-blog-article-per-row" class="form-control">
+                          <option value="3" <?php echo ($cms_blog_article_related_per_row == 3 ? 'selected="selected"' : '') ?>>3</option>
+                          <option value="4" <?php echo ($cms_blog_article_related_per_row == 4 ? 'selected="selected"' : '') ?>>4</option>
+                          <option value="5" <?php echo ($cms_blog_article_related_per_row == 5 ? 'selected="selected"' : '') ?>>5</option>
+                          <option value="6" <?php echo ($cms_blog_article_related_per_row == 6 ? 'selected="selected"' : '') ?>>6</option>
+                      </select>
+                  </div>
               </div>
               
               <div class="form-group">
