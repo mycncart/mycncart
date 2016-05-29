@@ -29,6 +29,7 @@
             <li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>
             <li><a href="#tab-data" data-toggle="tab"><?php echo $tab_data; ?></a></li>
             <li><a href="#tab-links" data-toggle="tab"><?php echo $tab_links; ?></a></li>
+            <li><a href="#tab-gallery" data-toggle="tab"><?php echo $tab_gallery; ?></a></li>
             <li><a href="#tab-design" data-toggle="tab"><?php echo $tab_design; ?></a></li>
           </ul>
           <div class="tab-content">
@@ -319,6 +320,80 @@
                 </table>
               </div>
             </div>
+            
+            <div class="tab-pane" id="tab-gallery">
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-article-list-gallery-display"><?php echo $entry_article_list_gallery_display; ?></label>
+                  <div class="col-sm-10">
+                      <select name="article_list_gallery_display" id="input-article-list-gallery-display" class="form-control">
+                          <option value="CLASSIC" <?php echo ($article_list_gallery_display == 'CLASSIC' ? 'selected="selected"' : '') ?>><?php echo $text_classic; ?></option>
+                          <option value="SLIDER" <?php echo ($article_list_gallery_display == 'SLIDER' ? 'selected="selected"' : '') ?>><?php echo $text_slider; ?></option>
+                      </select>
+                  </div>
+              </div>
+              <div class="table-responsive">
+                  <table id="images" class="table table-striped table-bordered table-hover">
+                      <thead>
+                          <tr>
+                              <td class="text-left"><?php echo $entry_image; ?> / <?php echo $entry_link ?></td>
+                              <td class="text-center" style="width: 100px"><?php echo $entry_width; ?></td>
+                              <td class="text-center" style="width: 100px"><?php echo $entry_height; ?></td>
+                              <td class="text-center" ><?php echo $entry_sort_order; ?></td>
+                              <td class="text-center"><?php echo $entry_type; ?></td>
+                              <td></td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <?php $gallery_row = 0; ?>
+                          <?php foreach ($article_galleries as $article_gallery) { ?>
+                              <tr id="gallery-row<?php echo $gallery_row; ?>">
+                                  <?php if($article_gallery['type'] == 'IMG'): ?>
+                                  <td class="text-left"><a href="" id="thumb-image<?php echo $gallery_row; ?>" data-toggle="image" class="img-thumbnail"><img src="<?php echo $article_gallery['thumb']; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="article_gallery[<?php echo $gallery_row; ?>][path]" value="<?php echo $article_gallery['path']; ?>" id="input-image<?php echo $gallery_row; ?>" /></td>
+                                  <td class="text-center"><input type="text" name="article_gallery[<?php echo $gallery_row; ?>][width]" value="<?php echo $article_gallery['width']; ?>" placeholder="<?php echo $entry_width; ?>" class="form-control" /></td>
+                                  <td class="text-center"><input type="text" name="article_gallery[<?php echo $gallery_row; ?>][height]" value="<?php echo $article_gallery['height']; ?>" placeholder="<?php echo $entry_height; ?>" class="form-control" /></td>
+                                  <td class="text-right"><input type="text" name="article_gallery[<?php echo $gallery_row; ?>][sort_order]" value="<?php echo $article_gallery['sort_order']; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>
+                                  <td class="text-center"><input type="hidden" name="article_gallery[<?php echo $gallery_row; ?>][type]" value="<?php echo $article_gallery['type']; ?>" /><?php echo $entry_image ?></td>
+                                  <td class="text-center"><button type="button" onclick="$('#gallery-row<?php echo $gallery_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                                  <?php elseif($article_gallery['type'] == 'YOUTUBE'): ?>
+                                  <td class="text-left"><input type="text" name="article_gallery[<?php echo $gallery_row; ?>][path]" value="<?php echo $article_gallery['path']; ?>" placeholder="<?php echo $entry_link; ?>" class="form-control" /></td>
+                                  <td class="text-center"><input type="text" name="article_gallery[<?php echo $gallery_row; ?>][width]" value="<?php echo $article_gallery['width']; ?>" placeholder="<?php echo $entry_width; ?>" class="form-control" /></td>
+                                  <td class="text-center"><input type="text" name="article_gallery[<?php echo $gallery_row; ?>][height]" value="<?php echo $article_gallery['height']; ?>" placeholder="<?php echo $entry_height; ?>" class="form-control" /></td>
+                                  <td class="text-right"><input type="text" name="article_gallery[<?php echo $gallery_row; ?>][sort_order]" value="<?php echo $article_gallery['sort_order']; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>
+                                  <td class="text-center"><input type="hidden" name="article_gallery[<?php echo $gallery_row; ?>][type]" value="<?php echo $article_gallery['type']; ?>" /><?php echo $entry_youtube?></td>
+                                  <td class="text-center"><button type="button" onclick="$('#gallery-row<?php echo $gallery_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                                  <?php elseif($article_gallery['type'] == 'SOUNDCLOUD'): ?>
+                                  <td class="text-left"><input type="text" name="article_gallery[<?php echo $gallery_row; ?>][path]" value="<?php echo $article_gallery['path']; ?>" placeholder="<?php echo $entry_link; ?>" class="form-control" /></td>
+                                  <td class="text-center"><input type="text" name="article_gallery[<?php echo $gallery_row; ?>][width]" value="<?php echo $article_gallery['width']; ?>" placeholder="<?php echo $entry_width; ?>" class="form-control" /></td>
+                                  <td class="text-center"><input type="text" name="article_gallery[<?php echo $gallery_row; ?>][height]" value="<?php echo $article_gallery['height']; ?>" placeholder="<?php echo $entry_height; ?>" class="form-control" /></td>                                             
+                                  <td class="text-right"><input type="text" name="article_gallery[<?php echo $gallery_row; ?>][sort_order]" value="<?php echo $article_gallery['sort_order']; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>
+                                  <td class="text-center"><input type="hidden" name="article_gallery[<?php echo $gallery_row; ?>][type]" value="<?php echo $article_gallery['type']; ?>" /><?php echo $entry_soundcloud ?></td>
+                                  <td class="text-center"><button type="button" onclick="$('#gallery-row<?php echo $gallery_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                                  <?php endif;  ?>
+                              </tr>
+                              <?php $gallery_row++; ?>
+                          <?php } ?>
+                      </tbody>
+                      <tfoot>
+                          <tr>
+                              <td colspan="5"></td>
+                              <td class="text-left" style="width: 230px">
+                                      <div class="col-sm-10" style="padding: 0">
+                                          <select id="gallery-type" class="form-control">
+                                              <option value="Image"><?php echo $entry_image ?></option>
+                                              <option value="Youtube"><?php echo $entry_youtube ?></option>
+                                              <option value="SoundCloud"><?php echo $entry_soundcloud ?></option>
+                                          </select>
+                                      </div>
+                                      <div class="col-sm-2" style="padding: 0 1px">
+                                          <button type="button" onclick="window['add' + $('#gallery-type').val()]();" data-toggle="tooltip" title="<?php echo $button_image_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
+                                      </div>
+                              </td>
+                          </tr>
+                      </tfoot>
+                  </table>
+              </div>
+          </div>
+            
           </div>
         
         </form>
@@ -433,6 +508,54 @@ $('.datetime').datetimepicker({
 	pickTime: true
 });
 //--></script>
+
+<script type="text/javascript"><!--
+    var gallery_row = <?php echo $gallery_row; ?>;
+
+    function addImage() {
+        html  = '<tr id="gallery-row' + gallery_row + '">';
+        html += '  <td class="text-left"><a href="" id="thumb-image' + gallery_row + '"data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /><input type="hidden" name="article_gallery[' + gallery_row + '][path]" value="" id="input-image' + gallery_row + '" /></td>';
+        html += '  <td class="text-center"><input type="text" name="article_gallery[' + gallery_row + '][width]" value="" placeholder="<?php echo $entry_width; ?>" class="form-control" /></td>';
+        html += '  <td class="text-center"><input type="text" name="article_gallery[' + gallery_row + '][height]" value="" placeholder="<?php echo $entry_height; ?>" class="form-control" /></td>';
+        html += '  <td class="text-right"><input type="text" name="article_gallery[' + gallery_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>';
+        html += '  <td class="text-center"><input type="hidden" name="article_gallery[' + gallery_row + '][type]" value="IMG" /><?php echo $entry_image ?></td>';
+        html += '  <td class="text-center"><button type="button" onclick="$(\'#gallery-row' + gallery_row  + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+        html += '</tr>';
+
+        $('#images tbody').append(html);
+
+        gallery_row++;
+    }
+    function addYoutube() {
+        html  = '<tr id="gallery-row' + gallery_row + '">';
+        html += '  <td class="text-left"><input type="text" name="article_gallery[' + gallery_row + '][path]" value="" id="input-image' + gallery_row + '" class="form-control" /></td>';
+        html += '  <td class="text-center"><input type="text" name="article_gallery[' + gallery_row + '][width]" value="" placeholder="<?php echo $entry_width; ?>" class="form-control" /></td>';
+        html += '  <td class="text-center"><input type="text" name="article_gallery[' + gallery_row + '][height]" value="" placeholder="<?php echo $entry_height; ?>" class="form-control col-xs-2" /></td>';
+        html += '  <td class="text-right"><input type="text" name="article_gallery[' + gallery_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>';
+        html += '  <td class="text-center"><input type="hidden" name="article_gallery[' + gallery_row + '][type]" value="YOUTUBE" /><?php echo $entry_youtube ?></td>';
+        html += '  <td class="text-center"><button type="button" onclick="$(\'#gallery-row' + gallery_row  + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+        html += '</tr>';
+
+        $('#images tbody').append(html);
+
+        gallery_row++;
+    }
+    function addSoundCloud() {
+        html  = '<tr id="gallery-row' + gallery_row + '">';
+        html += '  <td class="text-left"><input type="text" name="article_gallery[' + gallery_row + '][path]" value="" id="input-image' + gallery_row + '" class="form-control" /></td>';
+        html += '  <td class="text-center"><input type="text" name="article_gallery[' + gallery_row + '][width]" value="" placeholder="<?php echo $entry_width; ?>" class="form-control" /></td>';
+        html += '  <td class="text-center"><input type="text" name="article_gallery[' + gallery_row + '][height]" value="" placeholder="<?php echo $entry_height; ?>" class="form-control" /></td>';
+        html += '  <td class="text-right"><input type="text" name="article_gallery[' + gallery_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>';
+        html += '  <td class="text-center"><input type="hidden" name="article_gallery[' + gallery_row + '][type]" value="SOUNDCLOUD" /><?php echo $entry_soundcloud ?></td>';
+        html += '  <td class="text-center"><button type="button" onclick="$(\'#gallery-row' + gallery_row  + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+        html += '</tr>';
+
+        $('#images tbody').append(html);
+
+        gallery_row++;
+    }
+//--></script> 
+    
 
   <script type="text/javascript"><!--
 $('#language a:first').tab('show');

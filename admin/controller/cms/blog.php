@@ -356,6 +356,8 @@ class ControllerCmsBlog extends Controller {
 		$data['text_minus'] = $this->language->get('text_minus');
 		$data['text_default'] = $this->language->get('text_default');
 		$data['text_select'] = $this->language->get('text_select');
+		$data['text_slider'] = $this->language->get('text_slider');
+		$data['text_classic'] = $this->language->get('text_classic');
 
 		$data['entry_title'] = $this->language->get('entry_title');
 		$data['entry_brief'] = $this->language->get('entry_brief');
@@ -375,11 +377,18 @@ class ControllerCmsBlog extends Controller {
 		$data['entry_image'] = $this->language->get('entry_image');
 		$data['entry_text'] = $this->language->get('entry_text');
 		$data['entry_required'] = $this->language->get('entry_required');
+		$data['entry_youtube'] = $this->language->get('entry_youtube');
+		$data['entry_soundcloud'] = $this->language->get('entry_soundcloud');
+		$data['entry_type'] = $this->language->get('entry_type');
+		$data['entry_link'] = $this->language->get('entry_link');
+		$data['entry_width'] = $this->language->get('entry_width');
+		$data['entry_height'] = $this->language->get('entry_height');
 		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$data['entry_status'] = $this->language->get('entry_status');
 		$data['entry_layout'] = $this->language->get('entry_layout');
 		$data['entry_product_related'] = $this->language->get('entry_product_related');
 		$data['entry_blog_related'] = $this->language->get('entry_blog_related');
+		$data['entry_article_list_gallery_display'] = $this->language->get('entry_article_list_gallery_display');
 		
 
 		$data['help_keyword'] = $this->language->get('help_keyword');
@@ -392,6 +401,7 @@ class ControllerCmsBlog extends Controller {
 		$data['tab_data'] = $this->language->get('tab_data');
 		$data['tab_links'] = $this->language->get('tab_links');
 		$data['tab_design'] = $this->language->get('tab_design');
+		$data['tab_gallery'] = $this->language->get('tab_gallery');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -641,6 +651,44 @@ class ControllerCmsBlog extends Controller {
 					'title'       => $related_info['title']
 				);
 			}
+		}
+		
+		if (isset($this->request->post['article_list_gallery_display'])) {
+			$data['article_list_gallery_display'] = $this->request->post['article_list_gallery_display'];
+		} elseif (!empty($article_info)) {
+			$data['article_list_gallery_display'] = $article_info['article_list_gallery_display'];
+		} else {
+			$data['article_list_gallery_display'] = true;
+		}
+		
+		// Images
+		if (isset($this->request->post['article_gallery'])) {
+			$article_galleries = $this->request->post['article_gallery'];
+		} elseif (isset($this->request->get['article_id'])) {
+			$article_galleries = $this->model_blog_article->getArticleGalleries($this->request->get['article_id']);
+		} else {
+			$article_galleries = array();
+		}
+
+		$data['article_galleries'] = array();
+
+		foreach ($article_galleries as $article_gallery) {
+			if ($article_gallery['path']) {
+				$path = $article_gallery['path'];
+				$thumb = $article_gallery['path'];
+			} else {
+				$path = '';
+				$thumb = 'no_image.png';
+			}
+
+			$data['article_galleries'][] = array(
+				'path'      => $path,
+				'thumb'      => $article_gallery['type'] == 'IMG' ? $this->model_tool_image->resize($thumb, 100, 100) : null,
+                'type'       => $article_gallery['type'],
+                'width'       => $article_gallery['width'],
+                'height'       => $article_gallery['height'],
+  				'sort_order' => $article_gallery['sort_order']
+			);
 		}
 
 
