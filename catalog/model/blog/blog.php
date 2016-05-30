@@ -319,4 +319,21 @@ class ModelBlogBlog extends Model {
         
     }
 	
+	public function getPopularBlogs($limit) {
+		$sql = "SELECT *, ba.blog_id FROM " . DB_PREFIX . "blog ba
+                LEFT JOIN " . DB_PREFIX . "blog_description bad ON (ba.blog_id = bad.blog_id)
+                LEFT JOIN " . DB_PREFIX . "blog_to_blog_category bctc ON bctc.blog_id = ba.blog_id
+                LEFT JOIN " . DB_PREFIX . "blog_to_store ba2s ON (ba.blog_id = ba2s.blog_id)
+                WHERE bad.language_id = '" . (int)$this->config->get('config_language_id') . "'
+                    AND ba.status = 1 AND ba2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND ba.date_added < NOW()
+                GROUP BY ba.blog_id
+                ORDER BY (SELECT count(*) FROM " . DB_PREFIX . "blog_comment bc WHERE bc.blog_id = ba.blog_id) DESC, ba.date_added  DESC
+                LIMIT " . (int)$limit . "
+                ";
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+	
 }
