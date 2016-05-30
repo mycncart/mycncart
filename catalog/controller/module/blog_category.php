@@ -34,17 +34,15 @@ class ControllerModuleBlogCategory extends Controller {
 		foreach ($blog_categories as $blog_category) {
 			$children_data = array();
 
-			if ($blog_category['blog_category_id'] == $data['blog_category_id']) {
-				$children = $this->model_blog_category->getBlogCategories($blog_category['blog_category_id']);
+			$children = $this->model_blog_category->getBlogCategories($blog_category['blog_category_id']);
 
-				foreach($children as $child) {
+			foreach($children as $child) {
 
-					$children_data[] = array(
-						'blog_category_id' => $child['blog_category_id'], 
-						'name' => $child['name'], 
-						'href' => $this->url->link('blog/category', 'way=' . $blog_category['blog_category_id'] . '_' . $child['blog_category_id'])
-					);
-				}
+				$children_data[] = array(
+					'blog_category_id' => $child['blog_category_id'], 
+					'name' => $child['name'], 
+					'href' => $this->url->link('blog/category', 'way=' . $blog_category['blog_category_id'] . '_' . $child['blog_category_id'])
+				);
 			}
 
 			$data['blog_categories'][] = array(

@@ -30,6 +30,7 @@ class ModelBlogBlog extends Model {
 					'title'             => $query->row['name'],
 					'brief'      => $query->row['brief'],
 					'user_id'      => $query->row['user_id'],
+					'article_list_gallery_display'      => $query->row['article_list_gallery_display'],
 					'image'      => $query->row['image'],
 					'tags'       => $query->row['tag'],
 					'blog_category_id' => $query->row['blog_category_id'],
@@ -267,5 +268,55 @@ class ModelBlogBlog extends Model {
 
 		return $query->rows;
 	}
+	
+	public function getBlogGalleries($blog_id) {
+        $galleries = array();
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "blog_article_gallery WHERE blog_id = '" . (int)$blog_id . "' ORDER BY sort_order ASC");
+
+        if(!empty($query->rows)){
+            foreach($query->rows as $row){
+                if($row['type'] == 'IMG'){
+                    $row['output'] = $this->prepareImage($row['path'], $row['width'], $row['height']);
+                }
+                $galleries[] = $row;
+            }
+        }
+		return $galleries;
+	}
+	
+	private function prepareImage($path, $width, $height)
+    {
+        if(!$width) $width = 1000;
+        if(!$height) $height = 400;
+        $path = $this->model_tool_image->resize($path, $width, $height);
+        return  '<img src="'. $path . '" alt="media" />';
+
+    }
+    
+    private function prepareYoutube($path, $width, $height)
+    {
+        if(!$width) $width = '100%';
+        if(!$height) $height = 400;
+        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $path, $matches);
+        $id = isset($matches[1]) ? $matches[1] : 0;
+        $path = "https://www.youtube.com/embed/". $id ."?rel=0&showinfo=0&color=white&iv_load_policy=3";
+    
+        return '<iframe id="ytplayer" type="text/html" width="'.$width.'" height="'.$height.'"
+                                src="'. $path.'"
+                                frameborder="0" allowfullscreen></iframe> ';
+    }
+    
+    private function prepareSoundCloud($path, $width, $height)
+    {
+        if(!$width) $width = '100%';
+        if(!$height) $height = 170;
+        
+        if(!@file_get_contents('http://soundcloud.com/oembed?format=js&url='.$path.'&iframe=true')) return false;
+        $getValues=file_get_contents('http://soundcloud.com/oembed?format=js&url='.$path.'&iframe=true');
+        $decodeiFrame=substr($getValues, 1, -2);
+        $jsonObj = json_decode($decodeiFrame);
+        return str_replace(array( 'height="400"', 'width="100%"'),array('height="'.$height.'"', 'width="'.$width.'"'), $jsonObj->html);
+        
+    }
 	
 }

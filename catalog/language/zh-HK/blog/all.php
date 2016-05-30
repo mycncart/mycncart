@@ -13,3 +13,6 @@ $_['text_none_author'] 			= '未知';
 $_['text_blog_category'] 		= '博客分類';
 $_['text_empty'] 				= '无相关内容';
 $_['text_readmore'] 			= '閱讀更多內容';
+
+//Button
+$_['button_readmore'] 			= '閱讀更多內容';
