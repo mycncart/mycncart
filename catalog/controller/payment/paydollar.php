@@ -8,7 +8,7 @@ class ControllerPaymentPayDollar extends Controller {
 
 		$data['testmode'] = $this->config->get('paydollar_test');
 
-		if (!$this->config->get('paydollar_test')) {
+		if ($this->config->get('paydollar_test')) {
 			$data['action'] = 'https://test.paydollar.com/b2cDemo/eng/payment/payForm.jsp';
 		} else {
 			$data['action'] = 'https://www.paydollar.com/b2c2/eng/payment/payForm.jsp';
@@ -92,7 +92,11 @@ class ControllerPaymentPayDollar extends Controller {
 			$data['destCountry'] = '';
 			
 
-			return $this->load->view('payment/paydollar', $data);
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/paydollar.tpl')) {
+				return $this->load->view($this->config->get('config_template') . '/template/payment/paydollar.tpl', $data);
+			} else {
+				return $this->load->view('default/template/payment/paydollar.tpl', $data);
+			}
 			
 		}
 	}
@@ -115,7 +119,7 @@ class ControllerPaymentPayDollar extends Controller {
 				$request .= '&' . $key . '=' . urlencode(html_entity_decode($value, ENT_QUOTES, 'UTF-8'));
 			}
 
-			if (!$this->config->get('paydollar_test')) {
+			if ($this->config->get('paydollar_test')) {
 				$curl = curl_init('https://www.paypal.com/cgi-bin/webscr');
 			} else {
 				$curl = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');

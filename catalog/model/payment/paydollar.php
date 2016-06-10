@@ -39,10 +39,11 @@ class ModelPaymentPayDollar extends Model {
 			'VND',
 			'INR',
 		);
-
-		if (!in_array(strtoupper($this->session->data['currency']), $currencies)) {
+		
+		if (!in_array(strtoupper($this->currency->getCode()), $currencies)) {
 			$status = false;
 		}
+		
 
 		$method_data = array();
 
@@ -54,6 +55,7 @@ class ModelPaymentPayDollar extends Model {
 				'sort_order' => $this->config->get('paydollar_sort_order')
 			);
 		}
+		
 
 		return $method_data;
 	}
