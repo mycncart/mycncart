@@ -34,17 +34,15 @@ class ControllerModulePressCategory extends Controller {
 		foreach ($press_categories as $press_category) {
 			$children_data = array();
 
-			if ($press_category['press_category_id'] == $data['press_category_id']) {
-				$children = $this->model_press_category->getPressCategories($press_category['press_category_id']);
-
-				foreach($children as $child) {
-
-					$children_data[] = array(
-						'press_category_id' => $child['press_category_id'], 
-						'name' => $child['name'], 
-						'href' => $this->url->link('press/category', 'road=' . $press_category['press_category_id'] . '_' . $child['press_category_id'])
-					);
-				}
+			$children = $this->model_press_category->getPressCategories($press_category['press_category_id']);
+  
+			foreach($children as $child) {
+  
+				$children_data[] = array(
+					'press_category_id' => $child['press_category_id'], 
+					'name' => $child['name'], 
+					'href' => $this->url->link('press/category', 'road=' . $press_category['press_category_id'] . '_' . $child['press_category_id'])
+				);
 			}
 
 			$data['press_categories'][] = array(
