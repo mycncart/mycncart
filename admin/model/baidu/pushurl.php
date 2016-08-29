@@ -25,6 +25,22 @@ class ModelBaiDuPushUrl extends Model {
 		return $query->rows;
 	}
 	
+	public function getAllBlogs() {
+		$sql = "SELECT b.blog_id FROM " . DB_PREFIX . "blog b LEFT JOIN " . DB_PREFIX . "blog_description bd ON (b.blog_id = bd.blog_id) WHERE bd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND b.status = 1";
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+	
+	public function getAllPresses() {
+		$sql = "SELECT p.press_id FROM " . DB_PREFIX . "press p LEFT JOIN " . DB_PREFIX . "press_description pd ON (p.press_id = pd.press_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = 1";
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+	
 	
 	public function addPushUrl($product_url) {
 
@@ -76,6 +92,18 @@ class ModelBaiDuPushUrl extends Model {
 	
 	public function getPushUrlByManufacturerUrl($manufacturer_url) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "pushurl  WHERE url LIKE '" . $this->db->escape($manufacturer_url) . "'");
+
+		return $query->row;
+	}
+	
+	public function getPushUrlByBlogUrl($blog_url) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "pushurl  WHERE url LIKE '" . $this->db->escape($blog_url) . "'");
+
+		return $query->row;
+	}
+	
+	public function getPushUrlByPressUrl($press_url) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "pushurl  WHERE url LIKE '" . $this->db->escape($press_url) . "'");
 
 		return $query->row;
 	}
@@ -187,6 +215,28 @@ class ModelBaiDuPushUrl extends Model {
 			return HTTP_CATALOG.$query->row['keyword'];
 		}else{
 			return HTTP_CATALOG."index.php?route=product/manufacturer&manufacturer_id=".$manufacturer_id;
+		}
+		
+	}
+	
+	public function getBlogSEOUrl($blog_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE query = 'blog_id=" . (int)$blog_id . "'");	
+		
+		if($query->rows) {
+			return HTTP_CATALOG.$query->row['keyword'];
+		}else{
+			return HTTP_CATALOG."index.php?route=blog/blog&blog_id=".$blog_id;
+		}
+		
+	}
+	
+	public function getPressSEOUrl($press_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE query = 'press_id=" . (int)$press_id . "'");	
+		
+		if($query->rows) {
+			return HTTP_CATALOG.$query->row['keyword'];
+		}else{
+			return HTTP_CATALOG."index.php?route=press/press&press_id=".$press_id;
 		}
 		
 	}

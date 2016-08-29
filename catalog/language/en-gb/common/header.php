@@ -3,7 +3,7 @@
 $_['text_home']          = 'Home';
 $_['text_wishlist']      = 'Wish List (%s)';
 $_['text_shopping_cart'] = 'Shopping Cart';
-$_['text_category']      = 'Navigations';
+$_['text_category']      = 'Categories';
 $_['text_account']       = 'My Account';
 $_['text_register']      = 'Register';
 $_['text_login']         = 'Login';
@@ -17,4 +17,3 @@ $_['text_all']           = 'Show All';
 $_['text_blog']          = 'Blog';
 $_['text_press']         = 'News';
 $_['text_faq']           = 'FAQs';
-$_['text_msg']           = 'Default Welcome Msg!';

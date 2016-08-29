@@ -44,3 +44,4 @@ $_['error_permission']       = '警告: 无权限修改分类！';
 $_['error_name']             = '分类名称必须介于2-255字符之间！';
 $_['error_meta_title']       = 'Meta 标题必须介于3-255字符之间！';
 $_['error_keyword']          = '该 SEO URL 已经存在了！';
+$_['error_parent']           = '您选择的父分类是当前分类的子分类！';

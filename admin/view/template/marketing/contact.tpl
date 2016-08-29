@@ -85,18 +85,16 @@
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-message"><?php echo $entry_message; ?></label>
             <div class="col-sm-10">
-              <textarea name="message" placeholder="<?php echo $entry_message; ?>" id="input-message" class="form-control"></textarea>
+              <textarea name="message" placeholder="<?php echo $entry_message; ?>" id="input-message" class="form-control summernote"></textarea>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-  <script type="text/javascript"><!--
-$('#input-message').summernote({
-	height: 300
-});
-//--></script>
+  <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+  <link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>  
   <script type="text/javascript"><!--
 $('select[name=\'to\']').on('change', function() {
 	$('.to').hide();
@@ -146,7 +144,7 @@ $('input[name=\'affiliates\']').autocomplete({
 				response($.map(json, function(item) {
 					return {
 						label: item['name'],
-						value: item['customer_id']
+						value: item['affiliate_id']
 					}
 				}));
 			}
@@ -195,9 +193,6 @@ $('#input-product').parent().find('.well').delegate('.fa-minus-circle', 'click',
 });
 
 function send(url) {
-	// Summer not fix
-	$('textarea[name=\'message\']').val($('#input-message').code());
-
 	$.ajax({
 		url: url,
 		type: 'post',
@@ -217,6 +212,10 @@ function send(url) {
 					$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error']['warning'] + '</div>');
 				}
 
+				if (json['error']['email']) {
+					$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error']['email'] + '</div>');
+				}
+
 				if (json['error']['subject']) {
 					$('input[name=\'subject\']').after('<div class="text-danger">' + json['error']['subject'] + '</div>');
 				}
@@ -226,17 +225,16 @@ function send(url) {
 				}
 			}
 
-			if (json['next']) {
-				if (json['success']) {
-					$('#content > .container-fluid').prepend('<div class="alert alert-success"><i class="fa fa-check-circle"></i>  ' + json['success'] + '</div>');
-
-					send(json['next']);
-				}
-			} else {
-				if (json['success']) {
-					$('#content > .container-fluid').prepend('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
-				}
+			if (json['success']) {
+				$('#content > .container-fluid').prepend('<div class="alert alert-success"><i class="fa fa-check-circle"></i>  ' + json['success'] + '</div>');
 			}
+				
+			if (json['next']) {
+				send(json['next']);
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});
 }

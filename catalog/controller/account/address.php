@@ -37,18 +37,20 @@ class ControllerAccountAddress extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_account_address->addAddress($this->request->post);
-
+			
 			$this->session->data['success'] = $this->language->get('text_add');
 
 			// Add to activity log
-			$this->load->model('account/activity');
+			if ($this->config->get('config_customer_activity')) {
+				$this->load->model('account/activity');
 
-			$activity_data = array(
-				'customer_id' => $this->customer->getId(),
-				'name'        => $this->customer->getFullName()
-			);
+				$activity_data = array(
+					'customer_id' => $this->customer->getId(),
+					'name'        => $this->customer->getFullName()
+				);
 
-			$this->model_account_activity->addActivity('address_add', $activity_data);
+				$this->model_account_activity->addActivity('address_add', $activity_data);
+			}
 
 			$this->response->redirect($this->url->link('account/address', '', true));
 		}
@@ -72,7 +74,7 @@ class ControllerAccountAddress extends Controller {
 		$this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');
 
 		$this->load->model('account/address');
-
+		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_account_address->editAddress($this->request->get['address_id'], $this->request->post);
 
@@ -95,14 +97,16 @@ class ControllerAccountAddress extends Controller {
 			$this->session->data['success'] = $this->language->get('text_edit');
 
 			// Add to activity log
-			$this->load->model('account/activity');
+			if ($this->config->get('config_customer_activity')) {
+				$this->load->model('account/activity');
 
-			$activity_data = array(
-				'customer_id' => $this->customer->getId(),
-				'name'        => $this->customer->getFullName()
-			);
+				$activity_data = array(
+					'customer_id' => $this->customer->getId(),
+					'name'        => $this->customer->getFullName()
+				);
 
-			$this->model_account_activity->addActivity('address_edit', $activity_data);
+				$this->model_account_activity->addActivity('address_edit', $activity_data);
+			}
 
 			$this->response->redirect($this->url->link('account/address', '', true));
 		}
@@ -143,14 +147,16 @@ class ControllerAccountAddress extends Controller {
 			$this->session->data['success'] = $this->language->get('text_delete');
 
 			// Add to activity log
-			$this->load->model('account/activity');
+			if ($this->config->get('config_customer_activity')) {
+				$this->load->model('account/activity');
 
-			$activity_data = array(
-				'customer_id' => $this->customer->getId(),
-				'name'        => $this->customer->getFullName()
-			);
-
-			$this->model_account_activity->addActivity('address_delete', $activity_data);
+				$activity_data = array(
+					'customer_id' => $this->customer->getId(),
+					'name'        => $this->customer->getFullName()
+				);
+				
+				$this->model_account_activity->addActivity('address_delete', $activity_data);
+			}
 
 			$this->response->redirect($this->url->link('account/address', '', true));
 		}
@@ -206,29 +212,29 @@ class ControllerAccountAddress extends Controller {
 			if ($result['address_format']) {
 				$format = $result['address_format'];
 			} else {
-				$format = '{fullname}' . "\n" . '{country}' . '{zone}' . '{city}' . '{company}' . '{address}' . "\n" .   '{postcode}';
+				$format = '{fullname}' . "\n" . '{company}' . "\n" . '{country}' . '{zone}' . '{city}' . '{address}' . "\n" .   '{postcode}' . "\n" .   '{shipping_telephone}';
 			}
 
 			$find = array(
 				'{fullname}',
 				'{company}',
-				'{address}',
-				'{city}',
-				'{postcode}',
+				'{country}',
 				'{zone}',
-				'{zone_code}',
-				'{country}'
+				'{city}',
+				'{address}',
+				'{postcode}',
+				'{shipping_telephone}',
 			);
 
 			$replace = array(
 				'fullname' => $result['fullname'],
 				'company'   => $result['company'],
-				'address' => $result['address'],
-				'city'      => $result['city'],
-				'postcode'  => $result['postcode'],
+				'country'   => $result['country'],
 				'zone'      => $result['zone'],
-				'zone_code' => $result['zone_code'],
-				'country'   => $result['country']
+				'city'      => $result['city'],
+				'address' => $result['address'],
+				'postcode' => $result['postcode'],
+				'shipping_telephone' => $result['shipping_telephone'],
 			);
 
 			$data['addresses'][] = array(
@@ -461,11 +467,12 @@ class ControllerAccountAddress extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
+
 		$this->response->setOutput($this->load->view('account/address_form', $data));
 	}
 
 	protected function validateForm() {
-		if ((utf8_strlen(trim($this->request->post['fullname'])) < 2) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
+		if ((utf8_strlen(trim($this->request->post['fullname'])) < 1) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
 			$this->error['fullname'] = $this->language->get('error_fullname');
 		}
 		
@@ -473,7 +480,7 @@ class ControllerAccountAddress extends Controller {
 			$this->error['shipping_telephone'] = $this->language->get('error_shipping_telephone');
 		}
 
-		if ((utf8_strlen(trim($this->request->post['address'])) < 3) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
+		if ((utf8_strlen(trim($this->request->post['address'])) < 1) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
 			$this->error['address'] = $this->language->get('error_address');
 		}
 
@@ -505,8 +512,8 @@ class ControllerAccountAddress extends Controller {
 		foreach ($custom_fields as $custom_field) {
 			if (($custom_field['location'] == 'address') && $custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['custom_field_id']])) {
 				$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
-			} elseif (($custom_field['type'] == 'text' && !empty($custom_field['validation']) && $custom_field['location'] == 'address') && !filter_var($this->request->post['custom_field'][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
-                $this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field_validate'), $custom_field['name']);
+			} elseif (($custom_field['location'] == 'address') && ($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
+                $this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
             }
 		}
 

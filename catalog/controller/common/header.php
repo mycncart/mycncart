@@ -10,10 +10,10 @@ class ControllerCommonHeader extends Controller {
 
 		foreach ($analytics as $analytic) {
 			if ($this->config->get($analytic['code'] . '_status')) {
-				$data['analytics'][] = $this->load->controller('analytics/' . $analytic['code'], $this->config->get($analytic['code'] . '_status'));
+				$data['analytics'][] = $this->load->controller('extension/analytics/' . $analytic['code'], $this->config->get($analytic['code'] . '_status'));
 			}
 		}
-
+		
 		if ($this->request->server['HTTPS']) {
 			$server = $this->config->get('config_ssl');
 		} else {
@@ -90,6 +90,24 @@ class ControllerCommonHeader extends Controller {
 		$data['blog'] = $this->url->link('blog/all');
 		$data['press'] = $this->url->link('press/all');
 		$data['faq'] = $this->url->link('faq/faq');
+		
+		//Mobile & Weixin
+		$this->load->helper('mobile');
+		
+		if (is_mobile()) {
+			
+			$data['is_mobile'] = 1;
+			
+			if (is_weixin()) {
+				$data['is_weixin'] = 1;
+			} else {
+				$data['is_weixin'] = 0;
+			}
+		
+		} else {
+			$data['is_mobile'] = 0;
+			$data['is_weixin'] = 0;
+		}
 
 		// Menu
 		$this->load->model('catalog/category');

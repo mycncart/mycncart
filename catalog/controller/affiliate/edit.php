@@ -21,14 +21,16 @@ class ControllerAffiliateEdit extends Controller {
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			// Add to activity log
-			$this->load->model('affiliate/activity');
+			if ($this->config->get('config_customer_activity')) {
+				$this->load->model('affiliate/activity');
 
-			$activity_data = array(
-				'affiliate_id' => $this->affiliate->getId(),
-				'name'         => $this->affiliate->getFullName()
-			);
+				$activity_data = array(
+					'affiliate_id' => $this->affiliate->getId(),
+					'name'         => $this->affiliate->getFullName()
+				);
 
-			$this->model_affiliate_activity->addActivity('edit', $activity_data);
+				$this->model_affiliate_activity->addActivity('edit', $activity_data);
+			}
 
 			$this->response->redirect($this->url->link('affiliate/account', '', true));
 		}
@@ -236,7 +238,7 @@ class ControllerAffiliateEdit extends Controller {
 	}
 
 	protected function validate() {
-		if ((utf8_strlen(trim($this->request->post['fullname'])) < 2) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
+		if ((utf8_strlen(trim($this->request->post['fullname'])) < 1) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
 			$this->error['fullname'] = $this->language->get('error_fullname');
 		}
 
@@ -248,10 +250,10 @@ class ControllerAffiliateEdit extends Controller {
 			$this->error['warning'] = $this->language->get('error_exists');
 		}
 
-		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+		if ((utf8_strlen($this->request->post['telephone']) < 1) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
-		if ((utf8_strlen(trim($this->request->post['address'])) < 3) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
+		if ((utf8_strlen(trim($this->request->post['address'])) < 1) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
 			$this->error['address'] = $this->language->get('error_address');
 		}
 

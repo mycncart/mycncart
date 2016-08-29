@@ -39,7 +39,7 @@ class ControllerApiShipping extends Controller {
 					$json['error']['shipping_telephone'] = $this->language->get('error_shipping_telephone');
 				}
 
-				if ((utf8_strlen(trim($this->request->post['address'])) < 3) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
+				if ((utf8_strlen(trim($this->request->post['address'])) < 1) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
 					$json['error']['address'] = $this->language->get('error_address');
 				}
 
@@ -70,6 +70,8 @@ class ControllerApiShipping extends Controller {
 
 				foreach ($custom_fields as $custom_field) {
 					if (($custom_field['location'] == 'address') && $custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['custom_field_id']])) {
+						$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
+					} elseif (($custom_field['location'] == 'address') && ($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
 						$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
 					}
 				}
@@ -128,7 +130,7 @@ class ControllerApiShipping extends Controller {
 				}
 			}
 		}
-		
+
 		if (isset($this->request->server['HTTP_ORIGIN'])) {
 			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
 			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
@@ -166,9 +168,9 @@ class ControllerApiShipping extends Controller {
 
 				foreach ($results as $result) {
 					if ($this->config->get($result['code'] . '_status')) {
-						$this->load->model('shipping/' . $result['code']);
+						$this->load->model('extension/shipping/' . $result['code']);
 
-						$quote = $this->{'model_shipping_' . $result['code']}->getQuote($this->session->data['shipping_address']);
+						$quote = $this->{'model_extension_shipping_' . $result['code']}->getQuote($this->session->data['shipping_address']);
 
 						if ($quote) {
 							$json['shipping_methods'][$result['code']] = array(
@@ -198,7 +200,7 @@ class ControllerApiShipping extends Controller {
 		} else {
 			$json['shipping_methods'] = array();
 		}
-		
+
 		if (isset($this->request->server['HTTP_ORIGIN'])) {
 			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
 			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
@@ -251,7 +253,7 @@ class ControllerApiShipping extends Controller {
 				unset($this->session->data['shipping_methods']);
 			}
 		}
-		
+
 		if (isset($this->request->server['HTTP_ORIGIN'])) {
 			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
 			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');

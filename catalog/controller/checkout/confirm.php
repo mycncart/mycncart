@@ -60,13 +60,12 @@ class ControllerCheckoutConfirm extends Controller {
 			$taxes = $this->cart->getTaxes();
 			$total = 0;
 
-			// Because __call can not keep var references so we put them into an array. 
+			// Because __call can not keep var references so we put them into an array.
 			$total_data = array(
 				'totals' => &$totals,
 				'taxes'  => &$taxes,
 				'total'  => &$total
 			);
-			
 
 			$this->load->model('extension/extension');
 
@@ -82,10 +81,10 @@ class ControllerCheckoutConfirm extends Controller {
 
 			foreach ($results as $result) {
 				if ($this->config->get($result['code'] . '_status')) {
-					$this->load->model('total/' . $result['code']);
+					$this->load->model('extension/total/' . $result['code']);
 
 					// We have to put the totals in an array so that they pass by reference.
-					$this->{'model_total_' . $result['code']}->getTotal($total_data);
+					$this->{'model_extension_total_' . $result['code']}->getTotal($total_data);
 				}
 			}
 
@@ -108,7 +107,11 @@ class ControllerCheckoutConfirm extends Controller {
 			if ($order_data['store_id']) {
 				$order_data['store_url'] = $this->config->get('config_url');
 			} else {
-				$order_data['store_url'] = HTTP_SERVER;
+				if ($this->request->server['HTTPS']) {
+					$order_data['store_url'] = HTTPS_SERVER;
+				} else {
+					$order_data['store_url'] = HTTP_SERVER;
+				}
 			}
 
 			if ($this->customer->isLogged()) {
@@ -122,7 +125,7 @@ class ControllerCheckoutConfirm extends Controller {
 				$order_data['email'] = $customer_info['email'];
 				$order_data['telephone'] = $customer_info['telephone'];
 				$order_data['fax'] = $customer_info['fax'];
-				$order_data['custom_field'] = json_decode($customer_info['custom_field']);
+				$order_data['custom_field'] = json_decode($customer_info['custom_field'], true);
 			} elseif (isset($this->session->data['guest'])) {
 				$order_data['customer_id'] = 0;
 				$order_data['customer_group_id'] = $this->session->data['guest']['customer_group_id'];
@@ -159,11 +162,11 @@ class ControllerCheckoutConfirm extends Controller {
 
 			if ($this->cart->hasShipping()) {
 				$order_data['shipping_fullname'] = $this->session->data['shipping_address']['fullname'];
+				$order_data['shipping_telephone'] = $this->session->data['shipping_address']['shipping_telephone'];
 				$order_data['shipping_company'] = $this->session->data['shipping_address']['company'];
 				$order_data['shipping_address'] = $this->session->data['shipping_address']['address'];
 				$order_data['shipping_city'] = $this->session->data['shipping_address']['city'];
 				$order_data['shipping_postcode'] = $this->session->data['shipping_address']['postcode'];
-				$order_data['shipping_telephone'] = $this->session->data['shipping_address']['shipping_telephone'];
 				$order_data['shipping_zone'] = $this->session->data['shipping_address']['zone'];
 				$order_data['shipping_zone_id'] = $this->session->data['shipping_address']['zone_id'];
 				$order_data['shipping_country'] = $this->session->data['shipping_address']['country'];
@@ -411,7 +414,7 @@ class ControllerCheckoutConfirm extends Controller {
 				);
 			}
 
-			$data['payment'] = $this->load->controller('payment/' . $this->session->data['payment_method']['code']);
+			$data['payment'] = $this->load->controller('extension/payment/' . $this->session->data['payment_method']['code']);
 		} else {
 			$data['redirect'] = $redirect;
 		}

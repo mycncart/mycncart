@@ -21,14 +21,16 @@ class ControllerAffiliatePayment extends Controller {
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			// Add to activity log
-			$this->load->model('affiliate/activity');
+			if ($this->config->get('config_customer_activity')) {
+				$this->load->model('affiliate/activity');
 
-			$activity_data = array(
-				'affiliate_id' => $this->affiliate->getId(),
-				'name'         => $this->affiliate->getFullName()
-			);
+				$activity_data = array(
+					'affiliate_id' => $this->affiliate->getId(),
+					'name'         => $this->affiliate->getFullName()
+				);
 
-			$this->model_affiliate_activity->addActivity('payment', $activity_data);
+				$this->model_affiliate_activity->addActivity('payment', $activity_data);
+			}
 
 			$this->response->redirect($this->url->link('affiliate/account', '', true));
 		}
@@ -116,7 +118,6 @@ class ControllerAffiliatePayment extends Controller {
 		} else {
 			$data['bank_name'] = '';
 		}
-
 
 		if (isset($this->request->post['bank_account_name'])) {
 			$data['bank_account_name'] = $this->request->post['bank_account_name'];

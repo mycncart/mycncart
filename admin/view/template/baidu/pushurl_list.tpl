@@ -3,11 +3,20 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right">
-     	<button type="button" data-toggle="tooltip" title="<?php echo $button_push; ?>" class="btn btn-default" onclick="$('#form-pushurl').attr('action', '<?php echo $push; ?>').submit()"><i class="fa fa-paper-plane-o"></i></button>
-        <button type="button" data-toggle="tooltip" title="<?php echo $button_category; ?>" class="btn btn-default" onclick="$('#form-pushurl').attr('action', '<?php echo $category; ?>').submit()"><i class="fa fa-tree"></i></button>
-        <button type="button" data-toggle="tooltip" title="<?php echo $button_product; ?>" class="btn btn-default" onclick="$('#form-pushurl').attr('action', '<?php echo $product; ?>').submit()"><i class="fa fa-barcode"></i></button>
-        <button type="button" data-toggle="tooltip" title="<?php echo $button_information; ?>" class="btn btn-default" onclick="$('#form-pushurl').attr('action', '<?php echo $information; ?>').submit()"><i class="fa fa-info"></i></button>
-        <button type="button" data-toggle="tooltip" title="<?php echo $button_manufacturer; ?>" class="btn btn-default" onclick="$('#form-pushurl').attr('action', '<?php echo $manufacturer; ?>').submit()"><i class="fa fa-krw"></i></button>
+     	<button type="button" data-toggle="tooltip" title="<?php echo $button_push; ?>" class="btn btn-default" onclick="$('#form-pushurl').attr('action', '<?php echo $push; ?>').submit()"><?php echo $button_push; ?></button>
+        
+        <a href="<?php echo $category; ?>" data-toggle="tooltip" title="<?php echo $button_category; ?>" class="btn btn-primary"><?php echo $button_category; ?></a>
+        
+        <a href="<?php echo $product; ?>" data-toggle="tooltip" title="<?php echo $button_product; ?>" class="btn btn-primary"><?php echo $button_product; ?></a>
+        
+        <a href="<?php echo $information; ?>" data-toggle="tooltip" title="<?php echo $button_information; ?>" class="btn btn-primary"><?php echo $button_information; ?></a>
+        
+        <a href="<?php echo $manufacturer; ?>" data-toggle="tooltip" title="<?php echo $button_manufacturer; ?>" class="btn btn-primary"><?php echo $button_manufacturer; ?></a>
+        
+        <a href="<?php echo $blog; ?>" data-toggle="tooltip" title="<?php echo $button_blog; ?>" class="btn btn-primary"><?php echo $button_blog; ?></a>
+        
+        <a href="<?php echo $press; ?>" data-toggle="tooltip" title="<?php echo $button_press; ?>" class="btn btn-primary"><?php echo $button_press; ?></a>
+        
       	<a href="<?php echo $add; ?>" data-toggle="tooltip" title="<?php echo $button_add; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
         <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-pushurl').submit() : false;"><i class="fa fa-trash-o"></i></button>
       </div>

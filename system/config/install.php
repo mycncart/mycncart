@@ -1,11 +1,11 @@
 <?php
 // Site
-$_['site_base']         = substr(HTTP_SERVER, 7);
-$_['site_ssl']          = false;
+$_['site_base']         = HTTP_SERVER;
+$_['site_ssl']          = HTTP_SERVER;
 
 // Language
-$_['language_default']  = 'en-gb';
-$_['language_autoload'] = array('en-gb');
+$_['language_default']  = 'zh-cn';
+$_['language_autoload'] = array('zh-cn');
 
 // Actions
 $_['action_default']    = 'install/step_1';

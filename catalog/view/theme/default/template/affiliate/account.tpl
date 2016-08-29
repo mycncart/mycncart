@@ -31,6 +31,7 @@
       <ul class="list-unstyled">
         <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
       </ul>
+      <h2><?php echo $text_logout; ?></h2>
       <ul class="list-unstyled">
         <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
       </ul>

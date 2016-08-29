@@ -70,7 +70,6 @@
         <input type="text" name="address" value="" placeholder="<?php echo $entry_address; ?>" id="input-payment-address" class="form-control" />
       </div>
     </div>
-    
     <div class="form-group required">
       <label class="col-sm-2 control-label" for="input-payment-postcode"><?php echo $entry_postcode; ?></label>
       <div class="col-sm-10">
@@ -78,7 +77,6 @@
       </div>
     </div>
     <input type="hidden" name="shipping_telephone" value="<?php echo $shipping_telephone; ?>" />
-    
     <?php foreach ($custom_fields as $custom_field) { ?>
     <?php if ($custom_field['location'] == 'address') { ?>
     <?php if ($custom_field['type'] == 'select') { ?>
@@ -236,7 +234,7 @@ $('#collapse-payment-address button[id^=\'button-payment-custom-field\']').on('c
 	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');
 
 	$('#form-upload input[name=\'file\']').trigger('click');
-	
+
 	if (typeof timer != 'undefined') {
     	clearInterval(timer);
 	}
@@ -244,7 +242,7 @@ $('#collapse-payment-address button[id^=\'button-payment-custom-field\']').on('c
 	timer = setInterval(function() {
 		if ($('#form-upload input[name=\'file\']').val() != '') {
 			clearInterval(timer);
-			
+
 			$.ajax({
 				url: 'index.php?route=tool/upload',
 				type: 'post',
@@ -261,15 +259,15 @@ $('#collapse-payment-address button[id^=\'button-payment-custom-field\']').on('c
 				},
 				success: function(json) {
 					$(node).parent().find('.text-danger').remove();
-					
+
 					if (json['error']) {
 						$(node).parent().find('input[name^=\'custom_field\']').after('<div class="text-danger">' + json['error'] + '</div>');
 					}
-	
+
 					if (json['success']) {
 						alert(json['success']);
-	
-						$(node).parent().find('input[name^=\'custom_field\']').attr('value', json['code']);
+
+						$(node).parent().find('input[name^=\'custom_field\']').val(json['code']);
 					}
 				},
 				error: function(xhr, ajaxOptions, thrownError) {
@@ -306,8 +304,6 @@ $('#collapse-payment-address select[name=\'country_id\']').on('change', function
 			$('.fa-spin').remove();
 		},
 		success: function(json) {
-			
-
 			if (json['postcode_required'] == '1') {
 				$('#collapse-payment-address input[name=\'postcode\']').parent().parent().addClass('required');
 			} else {

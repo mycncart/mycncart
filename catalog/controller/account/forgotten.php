@@ -19,15 +19,13 @@ class ControllerAccountForgotten extends Controller {
 			$code = token(40);
 
 			$this->model_account_customer->editCode($this->request->post['email'], $code);
-			
-			
+
 			$subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
 
 			$message  = sprintf($this->language->get('text_greeting'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')) . "\n\n";
 			$message .= $this->language->get('text_change') . "\n\n";
 			$message .= $this->url->link('account/reset', 'code=' . $code, true) . "\n\n";
 			$message .= sprintf($this->language->get('text_ip'), $this->request->server['REMOTE_ADDR']) . "\n\n";
-
 
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
@@ -44,22 +42,23 @@ class ControllerAccountForgotten extends Controller {
 			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
 			$mail->send();
-			
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			// Add to activity log
-			$customer_info = $this->model_account_customer->getCustomerByEmail($this->request->post['email']);
+			if ($this->config->get('config_customer_activity')) {
+				$customer_info = $this->model_account_customer->getCustomerByEmail($this->request->post['email']);
 
-			if ($customer_info) {
-				$this->load->model('account/activity');
+				if ($customer_info) {
+					$this->load->model('account/activity');
 
-				$activity_data = array(
-					'customer_id' => $customer_info['customer_id'],
-					'name'        => $customer_info['fullname']
-				);
+					$activity_data = array(
+						'customer_id' => $customer_info['customer_id'],
+						'name'        => $customer_info['fullname']
+					);
 
-				$this->model_account_activity->addActivity('forgotten', $activity_data);
+					$this->model_account_activity->addActivity('forgotten', $activity_data);
+				}
 			}
 
 			$this->response->redirect($this->url->link('account/login', '', true));
@@ -101,7 +100,7 @@ class ControllerAccountForgotten extends Controller {
 		$data['action'] = $this->url->link('account/forgotten', '', true);
 
 		$data['back'] = $this->url->link('account/login', '', true);
-		
+
 		if (isset($this->request->post['email'])) {
 			$data['email'] = $this->request->post['email'];
 		} else {

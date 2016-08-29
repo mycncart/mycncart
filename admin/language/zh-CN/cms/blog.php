@@ -46,10 +46,6 @@ $_['entry_type'] 			 = '类型';
 $_['entry_link'] 			 = '链接';
 $_['entry_width'] 			 = '宽度';
 $_['entry_height'] 	 		 = '高度';
-$_['entry_article_list_gallery_display'] 	 		 = '博客文章列表中展示图片类型';
-
-//tab
-$_['tab_gallery'] 		 	 = '展示图片';
 
 // Help
 $_['help_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';

@@ -444,7 +444,7 @@ class ControllerCatalogInformation extends Controller {
 				$this->error['title'][$language_id] = $this->language->get('error_title');
 			}
 
-			if (utf8_strlen($value['description']) < 3) {
+			if (utf8_strlen($value['description']) < 1) {
 				$this->error['description'][$language_id] = $this->language->get('error_description');
 			}
 

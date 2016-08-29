@@ -4,6 +4,7 @@
 $_['heading_title']        = '安装扩展功能';
 
 // Text
+$_['text_upload']          = '上传功能插件/模板主题';
 $_['text_success']         = '成功: 已安装扩展功能！';
 $_['text_unzip']           = '解压缩文件！';
 $_['text_ftp']             = '复制文件！';

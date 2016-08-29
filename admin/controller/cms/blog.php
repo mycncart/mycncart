@@ -388,7 +388,6 @@ class ControllerCmsBlog extends Controller {
 		$data['entry_layout'] = $this->language->get('entry_layout');
 		$data['entry_product_related'] = $this->language->get('entry_product_related');
 		$data['entry_blog_related'] = $this->language->get('entry_blog_related');
-		$data['entry_article_list_gallery_display'] = $this->language->get('entry_article_list_gallery_display');
 		
 
 		$data['help_keyword'] = $this->language->get('help_keyword');
@@ -401,7 +400,6 @@ class ControllerCmsBlog extends Controller {
 		$data['tab_data'] = $this->language->get('tab_data');
 		$data['tab_links'] = $this->language->get('tab_links');
 		$data['tab_design'] = $this->language->get('tab_design');
-		$data['tab_gallery'] = $this->language->get('tab_gallery');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -653,45 +651,6 @@ class ControllerCmsBlog extends Controller {
 			}
 		}
 		
-		if (isset($this->request->post['article_list_gallery_display'])) {
-			$data['article_list_gallery_display'] = $this->request->post['article_list_gallery_display'];
-		} elseif (!empty($blog_info)) {
-			$data['article_list_gallery_display'] = $blog_info['article_list_gallery_display'];
-		} else {
-			$data['article_list_gallery_display'] = true;
-		}
-		
-		// Images
-		if (isset($this->request->post['article_gallery'])) {
-			$article_galleries = $this->request->post['article_gallery'];
-		} elseif (isset($this->request->get['blog_id'])) {
-			$article_galleries = $this->model_cms_blog->getBlogGalleries($this->request->get['blog_id']);
-		} else {
-			$article_galleries = array();
-		}
-
-		$data['article_galleries'] = array();
-
-		foreach ($article_galleries as $article_gallery) {
-			if ($article_gallery['path']) {
-				$path = $article_gallery['path'];
-				$thumb = $article_gallery['path'];
-			} else {
-				$path = '';
-				$thumb = 'no_image.png';
-			}
-
-			$data['article_galleries'][] = array(
-				'path'      => $path,
-				'thumb'      => $article_gallery['type'] == 'IMG' ? $this->model_tool_image->resize($thumb, 100, 100) : null,
-                'type'       => $article_gallery['type'],
-                'width'       => $article_gallery['width'],
-                'height'       => $article_gallery['height'],
-  				'sort_order' => $article_gallery['sort_order']
-			);
-		}
-
-
 		if (isset($this->request->post['blog_layout'])) {
 			$data['blog_layout'] = $this->request->post['blog_layout'];
 		} elseif (isset($this->request->get['blog_id'])) {
@@ -777,7 +736,7 @@ class ControllerCmsBlog extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$limit = $this->request->get['limit'];
 			} else {
-				$limit = 5;
+				$limit = $this->config->get('config_limit_autocomplete');
 			}
 
 			$filter_data = array(

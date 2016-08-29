@@ -30,14 +30,12 @@
         <input type="text" name="fullname" value="" placeholder="<?php echo $entry_fullname; ?>" id="input-shipping-fullname" class="form-control" />
       </div>
     </div>
-    
     <div class="form-group required">
       <label class="col-sm-2 control-label" for="input-shipping-shipping-telephone"><?php echo $entry_shipping_telephone; ?></label>
       <div class="col-sm-10">
         <input type="text" name="shipping_telephone" value="" placeholder="<?php echo $entry_shipping_telephone; ?>" id="input-shipping-shipping-telephone" class="form-control" />
       </div>
     </div>
-    
     <div class="form-group">
       <label class="col-sm-2 control-label" for="input-shipping-company"><?php echo $entry_company; ?></label>
       <div class="col-sm-10">
@@ -78,7 +76,6 @@
         <input type="text" name="address" value="" placeholder="<?php echo $entry_address; ?>" id="input-shipping-address" class="form-control" />
       </div>
     </div>
-    
     <div class="form-group required">
       <label class="col-sm-2 control-label" for="input-shipping-postcode"><?php echo $entry_postcode; ?></label>
       <div class="col-sm-10">
@@ -242,7 +239,7 @@ $('#collapse-shipping-address button[id^=\'button-shipping-custom-field\']').on(
 	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');
 
 	$('#form-upload input[name=\'file\']').trigger('click');
-	
+
 	if (typeof timer != 'undefined') {
     	clearInterval(timer);
 	}
@@ -250,7 +247,7 @@ $('#collapse-shipping-address button[id^=\'button-shipping-custom-field\']').on(
 	timer = setInterval(function() {
 		if ($('#form-upload input[name=\'file\']').val() != '') {
 			clearInterval(timer);
-		
+
 			$.ajax({
 				url: 'index.php?route=tool/upload',
 				type: 'post',
@@ -267,15 +264,15 @@ $('#collapse-shipping-address button[id^=\'button-shipping-custom-field\']').on(
 				},
 				success: function(json) {
 					$(node).parent().find('.text-danger').remove();
-					
+
 					if (json['error']) {
 						$(node).parent().find('input[name^=\'custom_field\']').after('<div class="text-danger">' + json['error'] + '</div>');
 					}
-	
+
 					if (json['success']) {
 						alert(json['success']);
-	
-						$(node).parent().find('input[name^=\'custom_field\']').attr('value', json['code']);
+
+						$(node).parent().find('input[name^=\'custom_field\']').val(json['code']);
 					}
 				},
 				error: function(xhr, ajaxOptions, thrownError) {
@@ -312,8 +309,6 @@ $('#collapse-shipping-address select[name=\'country_id\']').on('change', functio
 			$('.fa-spin').remove();
 		},
 		success: function(json) {
-			
-
 			if (json['postcode_required'] == '1') {
 				$('#collapse-shipping-address input[name=\'postcode\']').parent().parent().addClass('required');
 			} else {

@@ -12,7 +12,6 @@ $_['text_choose']         = '选择';
 $_['text_select']         = '下拉列表';
 $_['text_radio']          = '单选按钮组';
 $_['text_checkbox']       = '复选框';
-$_['text_image']          = '图像';
 $_['text_input']          = '文字录入';
 $_['text_text']           = '单行文本';
 $_['text_textarea']       = '多行文本区';

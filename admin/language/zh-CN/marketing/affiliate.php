@@ -87,3 +87,4 @@ $_['error_country']             = '请选择国家！';
 $_['error_zone']                = '请选择州/省/地区！';
 $_['error_code']                = '跟踪码必填！';
 $_['error_warning']             = '警告: 存在错误，请检查！';
+$_['error_code_exists']         = '跟踪码被其他的推广会员使用中!';

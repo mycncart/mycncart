@@ -50,6 +50,7 @@ $_['entry_points']          = 'Points';
 $_['entry_name']            = 'Customer Name';
 $_['entry_ip']              = 'IP';
 $_['entry_date_added']      = 'Date Added';
+$_['entry_shipping_telephone']       = 'Shipping Telephone';
 
 // Help
 $_['help_safe']             = 'Set to true to avoid this customer from being caught by the anti-fraud system';
@@ -64,10 +65,9 @@ $_['error_email']           = 'E-Mail Address does not appear to be valid!';
 $_['error_telephone']       = 'Telephone must be between 3 and 32 characters!';
 $_['error_password']        = 'Password must be between 4 and 20 characters!';
 $_['error_confirm']         = 'Password and password confirmation do not match!';
-$_['error_address']         = 'Address must be between 3 and 128 characters!';
+$_['error_address']       = 'Address must be between 3 and 128 characters!';
 $_['error_city']            = 'City must be between 2 and 128 characters!';
 $_['error_postcode']        = 'Postcode must be between 2 and 10 characters for this country!';
 $_['error_country']         = 'Please select a country!';
-$_['error_zone']            = 'Please select a region / state!';
-$_['error_custom_field']    = '%s required!';
-$_['error_custom_field_validate']  = '%s invalid!';
+$_['error_zone']            = '%s required!';
+$_['error_shipping_telephone']       = 'Shipping Telephone Required！';

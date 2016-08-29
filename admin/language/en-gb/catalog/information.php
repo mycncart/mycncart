@@ -28,7 +28,7 @@ $_['entry_sort_order']       = 'Sort Order';
 $_['entry_layout']           = 'Layout Override';
 
 // Help
-$_['help_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the keyword is globally unique.';
+$_['help_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the SEO URL is globally unique.';
 $_['help_bottom']            = 'Display in the bottom footer.';
 
 // Error
@@ -42,4 +42,4 @@ $_['error_account']          = 'Warning: This information page cannot be deleted
 $_['error_checkout']         = 'Warning: This information page cannot be deleted as it is currently assigned as the store checkout terms!';
 $_['error_affiliate']        = 'Warning: This information page cannot be deleted as it is currently assigned as the store affiliate terms!';
 $_['error_return']           = 'Warning: This information page cannot be deleted as it is currently assigned as the store return terms!';
-$_['error_store']            = 'Warning: This information page cannot be deleted as its currently used by %s stores!';
+$_['error_store']            = 'Warning: This information page cannot be deleted as it is currently used by %s stores!';

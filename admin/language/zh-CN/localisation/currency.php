@@ -8,6 +8,7 @@ $_['text_success']         = '成功: 已修改货币!';
 $_['text_list']            = '货币列表';
 $_['text_add']             = '添加货币';
 $_['text_edit']            = '编辑货币';
+$_['text_iso']             = '可以在后面的链接中找到所有的 ISO 货币代码及设定列表 <a href="http://www.xe.com/iso4217.php" target="_blank">这里</a>。';
 
 // Column
 $_['column_title']         = '货币标题';
@@ -26,7 +27,7 @@ $_['entry_decimal_place']  = '小数位';
 $_['entry_status']         = '状态';
 
 // Help
-$_['help_code']            = '如果为默认货币，不要改变，且必须为有效的 <a href="http://www.xe.com/iso4217.php" target="_blank">ISO code</a>.';
+$_['help_code']            = '如果为默认货币，不要改变。';
 $_['help_value']           = '如果是默认货币，将其设置为 1.00000 。';
 
 // Error

@@ -524,7 +524,7 @@ class ControllerCmsFaqCategory extends Controller {
 				'sort'        => 'name',
 				'order'       => 'ASC',
 				'start'       => 0,
-				'limit'       => 5
+				'limit'       => $this->config->get('config_limit_autocomplete')
 			);
 
 			$results = $this->model_cms_faq_category->getFaqCategories($filter_data);

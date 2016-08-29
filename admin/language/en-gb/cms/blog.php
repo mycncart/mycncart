@@ -44,10 +44,6 @@ $_['entry_type'] 			 = 'Type';
 $_['entry_link'] 			 = 'Link';
 $_['entry_width'] 			 = 'Width';
 $_['entry_height'] 	 		 = 'Height';
-$_['entry_article_list_gallery_display'] 	 		 = 'Display gallery on article list';
-
-//tab
-$_['tab_gallery'] 		 	 = 'Gallery';
 
 // Help
 $_['help_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the keyword is globally unique.';

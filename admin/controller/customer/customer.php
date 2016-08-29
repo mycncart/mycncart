@@ -477,7 +477,7 @@ class ControllerCustomerCustomer extends Controller {
 
 			$data['customers'][] = array(
 				'customer_id'    => $result['customer_id'],
-				'name'           => $result['fullname'],
+				'name'           => $result['name'],
 				'email'          => $result['email'],
 				'customer_group' => $result['customer_group'],
 				'status'         => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
@@ -704,6 +704,7 @@ class ControllerCustomerCustomer extends Controller {
 		$data['entry_description'] = $this->language->get('entry_description');
 		$data['entry_amount'] = $this->language->get('entry_amount');
 		$data['entry_points'] = $this->language->get('entry_points');
+		$data['entry_shipping_telephone'] = $this->language->get('entry_shipping_telephone');
 
 		$data['help_safe'] = $this->language->get('help_safe');
 		$data['help_points'] = $this->language->get('help_points');
@@ -779,7 +780,7 @@ class ControllerCustomerCustomer extends Controller {
 		} else {
 			$data['error_address'] = array();
 		}
-
+		
 		$url = '';
 
 		if (isset($this->request->get['filter_name'])) {
@@ -805,7 +806,7 @@ class ControllerCustomerCustomer extends Controller {
 		if (isset($this->request->get['filter_ip'])) {
 			$url .= '&filter_ip=' . $this->request->get['filter_ip'];
 		}
-
+		
 		if (isset($this->request->get['filter_date_added'])) {
 			$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
 		}
@@ -865,7 +866,7 @@ class ControllerCustomerCustomer extends Controller {
 		} else {
 			$data['fullname'] = '';
 		}
-
+		
 		if (isset($this->request->post['email'])) {
 			$data['email'] = $this->request->post['email'];
 		} elseif (!empty($customer_info)) {
@@ -1001,7 +1002,7 @@ class ControllerCustomerCustomer extends Controller {
 		if ((utf8_strlen($this->request->post['fullname']) < 1) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
 			$this->error['fullname'] = $this->language->get('error_fullname');
 		}
-
+		
 		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
@@ -1018,7 +1019,7 @@ class ControllerCustomerCustomer extends Controller {
 			}
 		}
 
-		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+		if ((utf8_strlen($this->request->post['telephone']) < 1) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
@@ -1030,9 +1031,9 @@ class ControllerCustomerCustomer extends Controller {
 		foreach ($custom_fields as $custom_field) {
 			if (($custom_field['location'] == 'account') && $custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['custom_field_id']])) {
 				$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
-			} elseif (($custom_field['type'] == 'text' && !empty($custom_field['validation']) && $custom_field['location'] == 'account') && !filter_var($this->request->post['custom_field'][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
-		    	$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field_validate'), $custom_field['name']);
-		    }
+			} elseif (($custom_field['location'] == 'account') && ($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
+				$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
+			}
 		}
 
 		if ($this->request->post['password'] || (!isset($this->request->get['customer_id']))) {
@@ -1050,8 +1051,12 @@ class ControllerCustomerCustomer extends Controller {
 				if ((utf8_strlen($value['fullname']) < 1) || (utf8_strlen($value['fullname']) > 32)) {
 					$this->error['address'][$key]['fullname'] = $this->language->get('error_fullname');
 				}
+				
+				if ((utf8_strlen($value['shipping_telephone']) < 1) || (utf8_strlen($value['shipping_telephone']) > 32)) {
+					$this->error['address'][$key]['shipping_telephone'] = $this->language->get('error_shipping_telephone');
+				}
 
-				if ((utf8_strlen($value['address']) < 3) || (utf8_strlen($value['address']) > 128)) {
+				if ((utf8_strlen($value['address']) < 1) || (utf8_strlen($value['address']) > 128)) {
 					$this->error['address'][$key]['address'] = $this->language->get('error_address');
 				}
 
@@ -1078,9 +1083,9 @@ class ControllerCustomerCustomer extends Controller {
 				foreach ($custom_fields as $custom_field) {
 					if (($custom_field['location'] == 'address') && $custom_field['required'] && empty($value['custom_field'][$custom_field['custom_field_id']])) {
 						$this->error['address'][$key]['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
-					} elseif (($custom_field['type'] == 'text' && !empty($custom_field['validation']) && $custom_field['location'] == 'address') && !filter_var($this->request->post['custom_field'][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
-		    		$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field_validate'), $custom_field['name']);
-		    		}
+					} elseif (($custom_field['location'] == 'address') && ($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($value['custom_field'][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
+						$this->error['address'][$key]['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
+                    }
 				}
 			}
 		}
@@ -1117,7 +1122,6 @@ class ControllerCustomerCustomer extends Controller {
 	}
 
 	public function login() {
-
 		if (isset($this->request->get['customer_id'])) {
 			$customer_id = $this->request->get['customer_id'];
 		} else {
@@ -1438,7 +1442,7 @@ class ControllerCustomerCustomer extends Controller {
 				'filter_name'  => $filter_name,
 				'filter_email' => $filter_email,
 				'start'        => 0,
-				'limit'        => 5
+				'limit'       => $this->config->get('config_limit_autocomplete')
 			);
 
 			$results = $this->model_customer_customer->getCustomers($filter_data);

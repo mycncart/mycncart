@@ -18,6 +18,7 @@ $_['error_filename']   = '警告: 文件名称必须介于3 - 255字符之间！
 $_['error_folder']     = '警告: 文件夹名称必须介于3到255字符之间！';
 $_['error_exists']     = '警告: 已经存在同名文件夹或文件！';
 $_['error_directory']  = '警告: 目录不存在！';
+$_['error_filesize']   = '警告: 不正确的文件大小！';
 $_['error_filetype']   = '警告: 不正确的文件类型！';
 $_['error_upload']     = '警告: 未知原因，无法上传文件！';
 $_['error_delete']     = '警告: 不能删除此目录！';

@@ -544,7 +544,7 @@ class ControllerCmsBlogCategory extends Controller {
 				'sort'        => 'name',
 				'order'       => 'ASC',
 				'start'       => 0,
-				'limit'       => 200
+				'limit'       => $this->config->get('config_limit_autocomplete')
 			);
 
 			$results = $this->model_cms_blog_category->getBlogCategories($filter_data);

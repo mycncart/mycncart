@@ -338,15 +338,7 @@ class ControllerUserUserPermission extends Controller {
 			'common/footer',
 			'common/header',
 			'error/not_found',
-			'error/permission',
-			'dashboard/order',
-			'dashboard/sale',
-			'dashboard/customer',
-			'dashboard/online',
-			'dashboard/map',
-			'dashboard/activity',
-			'dashboard/chart',
-			'dashboard/recent'
+			'error/permission'
 		);
 
 		$data['permissions'] = array();
@@ -414,7 +406,7 @@ class ControllerUserUserPermission extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 64)) {
+		if ((utf8_strlen($this->request->post['name']) < 1) || (utf8_strlen($this->request->post['name']) > 64)) {
 			$this->error['name'] = $this->language->get('error_name');
 		}
 

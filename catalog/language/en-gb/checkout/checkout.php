@@ -4,18 +4,42 @@ $_['heading_title']                  = 'Checkout';
 
 // Text
 $_['text_cart']                      = 'Shopping Cart';
+$_['text_checkout_option']           = 'Step %s: Checkout Options';
+$_['text_checkout_account']          = 'Step %s: Account &amp; Billing Details';
 $_['text_checkout_payment_address']  = 'Step %s: Billing Details';
 $_['text_checkout_shipping_address'] = 'Step %s: Delivery Details';
 $_['text_checkout_shipping_method']  = 'Step %s: Delivery Method';
 $_['text_checkout_payment_method']   = 'Step %s: Payment Method';
 $_['text_checkout_confirm']          = 'Step %s: Confirm Order';
 $_['text_modify']                    = 'Modify &raquo;';
+$_['text_new_customer']              = 'New Customer';
+$_['text_returning_customer']        = 'Returning Customer';
+$_['text_checkout']                  = 'Checkout Options:';
+$_['text_i_am_returning_customer']   = 'I am a returning customer';
+$_['text_register']                  = 'Register Account';
+$_['text_guest']                     = 'Guest Checkout';
+$_['text_register_account']          = 'By creating an account you will be able to shop faster, be up to date on an order\'s status, and keep track of the orders you have previously made.';
+$_['text_forgotten']                 = 'Forgotten Password';
+$_['text_your_details']              = 'Your Personal Details';
+$_['text_your_address']              = 'Your Address';
+$_['text_your_password']             = 'Your Password';
 $_['text_agree']                     = 'I have read and agree to the <a href="%s" class="agree"><b>%s</b></a>';
 $_['text_address_new']               = 'I want to use a new address';
 $_['text_address_existing']          = 'I want to use an existing address';
 $_['text_shipping_method']           = 'Please select the preferred shipping method to use on this order.';
 $_['text_payment_method']            = 'Please select the preferred payment method to use on this order.';
 $_['text_comments']                  = 'Add Comments About Your Order';
+$_['text_recurring_item']            = 'Recurring Item';
+$_['text_payment_recurring']         = 'Payment Profile';
+$_['text_trial_description']         = '%s every %d %s(s) for %d payment(s) then';
+$_['text_payment_description']       = '%s every %d %s(s) for %d payment(s)';
+$_['text_payment_cancel']            = '%s every %d %s(s) until canceled';
+$_['text_day']                       = 'day';
+$_['text_week']                      = 'week';
+$_['text_semi_month']                = 'half-month';
+$_['text_month']                     = 'month';
+$_['text_year']                      = 'year';
+$_['text_get_sms_code']    			 = 'Click to get SMS Verificate Code';
 
 // Column
 $_['column_name']                    = 'Product Name';
@@ -35,14 +59,14 @@ $_['entry_fax']                      = 'Fax';
 $_['entry_address']                  = 'Choose Address';
 $_['entry_company']                  = 'Company';
 $_['entry_customer_group']           = 'Customer Group';
-$_['entry_address']                = 'Address 1';
+$_['entry_address']                  = 'Address';
 $_['entry_postcode']                 = 'Post Code';
 $_['entry_city']                     = 'City';
 $_['entry_country']                  = 'Country';
 $_['entry_zone']                     = 'Region / State';
 $_['entry_newsletter']               = 'I wish to subscribe to the %s newsletter.';
 $_['entry_shipping'] 	             = 'My delivery and billing addresses are the same.';
-$_['entry_shipping_telephone'] 	     = 'Shipping Telephone';
+$_['entry_sms_code']       			 = 'SMS Verification Code';
 
 // Error
 $_['error_warning']                  = 'There was a problem while trying to process your order! If the problem persists please try selecting a different payment method or you can contact the store owner by <a href="%s">clicking here</a>.';
@@ -52,11 +76,10 @@ $_['error_approved']                 = 'Warning: Your account requires approval 
 $_['error_exists']                   = 'Warning: E-Mail Address is already registered!';
 $_['error_fullname']                 = 'Full Name must be between 1 and 32 characters!';
 $_['error_email']                    = 'E-Mail address does not appear to be valid!';
-$_['error_shipping_telephone']       = 'Shipping Telephone must be between 3 and 32 characters!';
 $_['error_telephone']                = 'Telephone must be between 3 and 32 characters!';
 $_['error_password']                 = 'Password must be between 4 and 20 characters!';
 $_['error_confirm']                  = 'Password confirmation does not match password!';
-$_['error_address']                = 'Address 1 must be between 3 and 128 characters!';
+$_['error_address']                  = 'Address must be between 3 and 128 characters!';
 $_['error_city']                     = 'City must be between 2 and 128 characters!';
 $_['error_postcode']                 = 'Postcode must be between 2 and 10 characters!';
 $_['error_country']                  = 'Please select a country!';
@@ -68,4 +91,4 @@ $_['error_no_shipping']              = 'Warning: No Shipping options are availab
 $_['error_payment']                  = 'Warning: Payment method required!';
 $_['error_no_payment']               = 'Warning: No Payment options are available. Please <a href="%s">contact us</a> for assistance!';
 $_['error_custom_field']             = '%s required!';
-$_['error_custom_field_validate']    = '%s invalid!';
+$_['error_sms_code']       			 = 'Wrong SMS Verification Code!';

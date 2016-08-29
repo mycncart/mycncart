@@ -74,7 +74,6 @@
                           <?php } ?>
                         </div>
                       </div>
-                     
                       <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-email"><?php echo $entry_email; ?></label>
                         <div class="col-sm-10">
@@ -340,7 +339,15 @@
                           <?php } ?>
                         </div>
                       </div>
-                      
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-shipping-telephone<?php echo $address_row; ?>"><?php echo $entry_shipping_telephone; ?></label>
+                        <div class="col-sm-10">
+                          <input type="text" name="address[<?php echo $address_row; ?>][shipping_telephone]" value="<?php echo $address['shipping_telephone']; ?>" placeholder="<?php echo $entry_shipping_telephone; ?>" id="input-shipping-telephone<?php echo $address_row; ?>" class="form-control" />
+                          <?php if (isset($error_address[$address_row]['shipping_telephone'])) { ?>
+                          <div class="text-danger"><?php echo $error_address[$address_row]['shipping_telephone']; ?></div>
+                          <?php } ?>
+                        </div>
+                      </div>
                       <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-company<?php echo $address_row; ?>"><?php echo $entry_company; ?></label>
                         <div class="col-sm-10">
@@ -348,15 +355,14 @@
                         </div>
                       </div>
                       <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-address-1<?php echo $address_row; ?>"><?php echo $entry_address; ?></label>
+                        <label class="col-sm-2 control-label" for="input-address<?php echo $address_row; ?>"><?php echo $entry_address; ?></label>
                         <div class="col-sm-10">
-                          <input type="text" name="address[<?php echo $address_row; ?>][address]" value="<?php echo $address['address']; ?>" placeholder="<?php echo $entry_address; ?>" id="input-address-1<?php echo $address_row; ?>" class="form-control" />
+                          <input type="text" name="address[<?php echo $address_row; ?>][address]" value="<?php echo $address['address']; ?>" placeholder="<?php echo $entry_address; ?>" id="input-address<?php echo $address_row; ?>" class="form-control" />
                           <?php if (isset($error_address[$address_row]['address'])) { ?>
                           <div class="text-danger"><?php echo $error_address[$address_row]['address']; ?></div>
                           <?php } ?>
                         </div>
                       </div>
-                      
                       <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-city<?php echo $address_row; ?>"><?php echo $entry_city; ?></label>
                         <div class="col-sm-10">
@@ -674,6 +680,11 @@ function addAddress() {
 	html += '    <label class="col-sm-2 control-label" for="input-fullname' + address_row + '"><?php echo $entry_fullname; ?></label>';
 	html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][fullname]" value="" placeholder="<?php echo $entry_fullname; ?>" id="input-fullname' + address_row + '" class="form-control" /></div>';
 	html += '  </div>';
+	
+	html += '  <div class="form-group required">';
+	html += '    <label class="col-sm-2 control-label" for="input-shipping-telephone' + address_row + '"><?php echo $entry_shipping_telephone; ?></label>';
+	html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][shipping_telephone]" value="" placeholder="<?php echo $entry_shipping_telephone; ?>" id="input-shipping-telephone' + address_row + '" class="form-control" /></div>';
+	html += '  </div>';
 
 	html += '  <div class="form-group">';
 	html += '    <label class="col-sm-2 control-label" for="input-company' + address_row + '"><?php echo $entry_company; ?></label>';
@@ -681,10 +692,9 @@ function addAddress() {
 	html += '  </div>';
 
 	html += '  <div class="form-group required">';
-	html += '    <label class="col-sm-2 control-label" for="input-address-1' + address_row + '"><?php echo $entry_address; ?></label>';
-	html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][address]" value="" placeholder="<?php echo $entry_address; ?>" id="input-address-1' + address_row + '" class="form-control" /></div>';
+	html += '    <label class="col-sm-2 control-label" for="input-address' + address_row + '"><?php echo $entry_address; ?></label>';
+	html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][address]" value="" placeholder="<?php echo $entry_address; ?>" id="input-address' + address_row + '" class="form-control" /></div>';
 	html += '  </div>';
-
 
 	html += '  <div class="form-group required">';
 	html += '    <label class="col-sm-2 control-label" for="input-city' + address_row + '"><?php echo $entry_city; ?></label>';
@@ -1086,7 +1096,7 @@ $('#content').delegate('button[id^=\'button-custom-field\'], button[id^=\'button
 					}
 
 					if (json['code']) {
-						$(node).parent().find('input[type=\'hidden\']').attr('value', json['code']);
+						$(node).parent().find('input[type=\'hidden\']').val(json['code']);
 					}
 				},
 				error: function(xhr, ajaxOptions, thrownError) {
@@ -1113,17 +1123,17 @@ $('.time').datetimepicker({
 // Sort the custom fields
 <?php $address_row = 1; ?>
 <?php foreach ($addresses as $address) { ?>
-$('#tab-address<?php echo $address_row ?> .form-group[data-sort]').detach().each(function() {
-	if ($(this).attr('data-sort') >= 0 && $(this).attr('data-sort') <= $('#tab-address<?php echo $address_row ?> .form-group').length) {
-		$('#tab-address<?php echo $address_row ?> .form-group').eq($(this).attr('data-sort')).before(this);
+$('#tab-address<?php echo $address_row; ?> .form-group[data-sort]').detach().each(function() {
+	if ($(this).attr('data-sort') >= 0 && $(this).attr('data-sort') <= $('#tab-address<?php echo $address_row; ?> .form-group').length) {
+		$('#tab-address<?php echo $address_row; ?> .form-group').eq($(this).attr('data-sort')).before(this);
 	}
 
-	if ($(this).attr('data-sort') > $('#tab-address<?php echo $address_row ?> .form-group').length) {
-		$('#tab-address<?php echo $address_row ?> .form-group:last').after(this);
+	if ($(this).attr('data-sort') > $('#tab-address<?php echo $address_row; ?> .form-group').length) {
+		$('#tab-address<?php echo $address_row; ?> .form-group:last').after(this);
 	}
 
-	if ($(this).attr('data-sort') < -$('#tab-address<?php echo $address_row ?> .form-group').length) {
-		$('#tab-address<?php echo $address_row ?> .form-group:first').before(this);
+	if ($(this).attr('data-sort') < -$('#tab-address<?php echo $address_row; ?> .form-group').length) {
+		$('#tab-address<?php echo $address_row; ?> .form-group:first').before(this);
 	}
 });
 <?php $address_row++; ?>

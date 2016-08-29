@@ -8,6 +8,7 @@ class ControllerCheckoutRegister extends Controller {
 		$data['text_your_address'] = $this->language->get('text_your_address');
 		$data['text_your_password'] = $this->language->get('text_your_password');
 		$data['text_select'] = $this->language->get('text_select');
+		$data['text_get_sms_code'] = $this->language->get('text_get_sms_code');
 		$data['text_none'] = $this->language->get('text_none');
 		$data['text_loading'] = $this->language->get('text_loading');
 
@@ -22,6 +23,7 @@ class ControllerCheckoutRegister extends Controller {
 		$data['entry_city'] = $this->language->get('entry_city');
 		$data['entry_country'] = $this->language->get('entry_country');
 		$data['entry_zone'] = $this->language->get('entry_zone');
+		$data['entry_sms_code'] = $this->language->get('entry_sms_code');
 		$data['entry_newsletter'] = sprintf($this->language->get('entry_newsletter'), $this->config->get('config_name'));
 		$data['entry_password'] = $this->language->get('entry_password');
 		$data['entry_confirm'] = $this->language->get('entry_confirm');
@@ -63,6 +65,20 @@ class ControllerCheckoutRegister extends Controller {
 		} else {
 			$data['zone_id'] = '';
 		}
+		
+		//SMS
+		
+		if ($this->config->get($this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
+			$data['sms_gateway'] = $this->config->get('config_sms');
+		} else {
+			$data['sms_gateway'] = '';
+		}
+		
+		if (isset($this->request->post['sms_code'])) {
+			$data['sms_code'] = $this->request->post['sms_code'];
+		} else {
+			$data['sms_code'] = '';
+		}
 
 		$this->load->model('localisation/country');
 
@@ -72,10 +88,10 @@ class ControllerCheckoutRegister extends Controller {
 		$this->load->model('account/custom_field');
 
 		$data['custom_fields'] = $this->model_account_custom_field->getCustomFields();
-		
+
 		// Captcha
 		if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
-			$data['captcha'] = $this->load->controller('captcha/' . $this->config->get('config_captcha'));
+			$data['captcha'] = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha'));
 		} else {
 			$data['captcha'] = '';
 		}
@@ -136,7 +152,7 @@ class ControllerCheckoutRegister extends Controller {
 		if (!$json) {
 			$this->load->model('account/customer');
 
-			if ((utf8_strlen(trim($this->request->post['fullname'])) < 2) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
+			if ((utf8_strlen(trim($this->request->post['fullname'])) < 1) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
 				$json['error']['fullname'] = $this->language->get('error_fullname');
 			}
 
@@ -150,9 +166,17 @@ class ControllerCheckoutRegister extends Controller {
 
 			if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 				$json['error']['telephone'] = $this->language->get('error_telephone');
+			} else {
+				// if sms code is not correct
+				if (isset($this->request->post['sms_code'])) {
+					$this->load->model('account/smsmobile');
+					if($this->model_account_smsmobile->verifySmsCode($this->request->post['telephone'], $this->request->post['sms_code']) == 0) {
+						$json['error']['sms_code'] = $this->language->get('error_sms_code');
+					}
+				}
 			}
 
-			if ((utf8_strlen(trim($this->request->post['address'])) < 3) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
+			if ((utf8_strlen(trim($this->request->post['address'])) < 1) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
 				$json['error']['address'] = $this->language->get('error_address');
 			}
 
@@ -209,14 +233,14 @@ class ControllerCheckoutRegister extends Controller {
 			foreach ($custom_fields as $custom_field) {
 				if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
 					$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
-				} elseif (($custom_field['type'] == 'text' && !empty($custom_field['validation'])) && !filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
-					$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field_validate'), $custom_field['name']);
+				} elseif (($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
+					$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
 				}
 			}
 
 			// Captcha
 			if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
-				$captcha = $this->load->controller('captcha/' . $this->config->get('config_captcha') . '/validate');
+				$captcha = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha') . '/validate');
 
 				if ($captcha) {
 					$json['error']['captcha'] = $captcha;
@@ -226,7 +250,7 @@ class ControllerCheckoutRegister extends Controller {
 
 		if (!$json) {
 			$customer_id = $this->model_account_customer->addCustomer($this->request->post);
-			
+
 			// Clear any previous login attempts for unregistered accounts.
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
 
@@ -258,14 +282,16 @@ class ControllerCheckoutRegister extends Controller {
 			unset($this->session->data['payment_methods']);
 
 			// Add to activity log
-			$this->load->model('account/activity');
+			if ($this->config->get('config_customer_activity')) {
+				$this->load->model('account/activity');
 
-			$activity_data = array(
-				'customer_id' => $customer_id,
-				'name'        => $this->request->post['fullname']
-			);
+				$activity_data = array(
+					'customer_id' => $customer_id,
+					'name'        => $this->request->post['fullname']
+				);
 
-			$this->model_account_activity->addActivity('register', $activity_data);
+				$this->model_account_activity->addActivity('register', $activity_data);
+			}
 		}
 
 		$this->response->addHeader('Content-Type: application/json');

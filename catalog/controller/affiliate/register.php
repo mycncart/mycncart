@@ -17,20 +17,22 @@ class ControllerAffiliateRegister extends Controller {
 			$affiliate_id = $this->model_affiliate_affiliate->addAffiliate($this->request->post);
 
 			// Clear any previous login attempts in not registered.
-			$this->load->model('account/customer');
+    		$this->load->model('account/customer');
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
-			
+
 			$this->affiliate->login($this->request->post['email'], $this->request->post['password']);
 
 			// Add to activity log
-			$this->load->model('affiliate/activity');
+			if ($this->config->get('config_customer_activity')) {
+				$this->load->model('affiliate/activity');
 
-			$activity_data = array(
-				'affiliate_id' => $affiliate_id,
-				'name'         => $this->request->post['fullname']
-			);
+				$activity_data = array(
+					'affiliate_id' => $affiliate_id,
+					'name'         => $this->request->post['fullname']
+				);
 
-			$this->model_affiliate_activity->addActivity('register', $activity_data);
+				$this->model_affiliate_activity->addActivity('register', $activity_data);
+			}
 
 			$this->response->redirect($this->url->link('affiliate/success'));
 		}
@@ -295,10 +297,10 @@ class ControllerAffiliateRegister extends Controller {
 		} else {
 			$data['confirm'] = '';
 		}
-		
+
 		// Captcha
 		if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
-			$data['captcha'] = $this->load->controller('captcha/' . $this->config->get('config_captcha'), $this->error);
+			$data['captcha'] = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha'), $this->error);
 		} else {
 			$data['captcha'] = '';
 		}
@@ -334,7 +336,7 @@ class ControllerAffiliateRegister extends Controller {
 	}
 
 	protected function validate() {
-		if ((utf8_strlen(trim($this->request->post['fullname'])) < 2) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
+		if ((utf8_strlen(trim($this->request->post['fullname'])) < 1) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
 			$this->error['fullname'] = $this->language->get('error_fullname');
 		}
 
@@ -346,11 +348,11 @@ class ControllerAffiliateRegister extends Controller {
 			$this->error['warning'] = $this->language->get('error_exists');
 		}
 
-		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+		if ((utf8_strlen($this->request->post['telephone']) < 1) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
-		if ((utf8_strlen(trim($this->request->post['address'])) < 3) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
+		if ((utf8_strlen(trim($this->request->post['address'])) < 1) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
 			$this->error['address'] = $this->language->get('error_address');
 		}
 
@@ -381,10 +383,10 @@ class ControllerAffiliateRegister extends Controller {
 		if ($this->request->post['confirm'] != $this->request->post['password']) {
 			$this->error['confirm'] = $this->language->get('error_confirm');
 		}
-		
+
 		// Captcha
 		if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
-			$captcha = $this->load->controller('captcha/' . $this->config->get('config_captcha') . '/validate');
+			$captcha = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha') . '/validate');
 
 			if ($captcha) {
 				$this->error['captcha'] = $captcha;

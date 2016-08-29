@@ -122,7 +122,21 @@ class ControllerCatalogCategory extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->response->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'], true));
+			$url = '';
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			$this->response->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, true));
 		}
 
 		$this->getList();
@@ -341,6 +355,12 @@ class ControllerCatalogCategory extends Controller {
 			$data['error_keyword'] = '';
 		}
 
+		if (isset($this->error['parent'])) {
+			$data['error_parent'] = $this->error['parent'];
+		} else {
+			$data['error_parent'] = '';
+		}
+		
 		$url = '';
 
 		if (isset($this->request->get['sort'])) {
@@ -538,6 +558,18 @@ class ControllerCatalogCategory extends Controller {
 			}
 		}
 
+		if (isset($this->request->get['category_id']) && $this->request->post['parent_id']) {
+			$results = $this->model_catalog_category->getCategoryPath($this->request->post['parent_id']);
+			
+			foreach ($results as $result) {
+				if ($result['path_id'] == $this->request->get['category_id']) {
+					$this->error['parent'] = $this->language->get('error_parent');
+					
+					break;
+				}
+			}
+		}
+
 		if (utf8_strlen($this->request->post['keyword']) > 0) {
 			$this->load->model('catalog/url_alias');
 
@@ -550,12 +582,12 @@ class ControllerCatalogCategory extends Controller {
 			if ($url_alias_info && !isset($this->request->get['category_id'])) {
 				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
 			}
-
-			if ($this->error && !isset($this->error['warning'])) {
-				$this->error['warning'] = $this->language->get('error_warning');
-			}
 		}
-
+		
+		if ($this->error && !isset($this->error['warning'])) {
+			$this->error['warning'] = $this->language->get('error_warning');
+		}
+		
 		return !$this->error;
 	}
 
@@ -586,7 +618,7 @@ class ControllerCatalogCategory extends Controller {
 				'sort'        => 'name',
 				'order'       => 'ASC',
 				'start'       => 0,
-				'limit'       => 5
+				'limit'       => $this->config->get('config_limit_autocomplete')
 			);
 
 			$results = $this->model_catalog_category->getCategories($filter_data);

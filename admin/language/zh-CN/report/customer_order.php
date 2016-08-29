@@ -20,4 +20,5 @@ $_['column_action']         = '操作';
 // Entry
 $_['entry_date_start']      = '开始日期';
 $_['entry_date_end']        = '结束日期';
+$_['entry_customer']		= '会员';
 $_['entry_status']          = '订单状态';

@@ -50,6 +50,12 @@ class ControllerAccountLogin extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+			
+			//Unset Third party login session
+			unset($this->session->data['qq_login_warning']);
+			unset($this->session->data['weibo_login_warning']);
+			unset($this->session->data['weixin_login_warning']);
+			
 			// Unset guest
 			unset($this->session->data['guest']);
 
@@ -76,17 +82,19 @@ class ControllerAccountLogin extends Controller {
 			}
 
 			// Add to activity log
-			$this->load->model('account/activity');
+			if ($this->config->get('config_customer_activity')) {
+				$this->load->model('account/activity');
 
-			$activity_data = array(
-				'customer_id' => $this->customer->getId(),
-				'name'        => $this->customer->getFullName()
-			);
+				$activity_data = array(
+					'customer_id' => $this->customer->getId(),
+					'name'        => $this->customer->getFullName()
+				);
 
-			$this->model_account_activity->addActivity('login', $activity_data);
+				$this->model_account_activity->addActivity('login', $activity_data);
+			}
 
 			// Added strpos check to pass McAfee PCI compliance test (http://forum.opencart.com/viewtopic.php?f=10&t=12043&p=151494#p151295)
-			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) !== false || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) !== false)) {
+			if (isset($this->request->post['redirect']) && $this->request->post['redirect'] != $this->url->link('account/logout', '', true) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) !== false || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) !== false)) {
 				$this->response->redirect(str_replace('&amp;', '&', $this->request->post['redirect']));
 			} else {
 				$this->response->redirect($this->url->link('account/account', '', true));
@@ -137,41 +145,21 @@ class ControllerAccountLogin extends Controller {
 		
 		if (isset($this->session->data['weixin_login_warning'])) {
 			$data['error_weixin_login_warning'] = $this->session->data['weixin_login_warning'];
-			unset($this->session->data['weixin_login_warning']);
 		} else {
 			$data['error_weixin_login_warning'] = '';
 		}
 		
 		if (isset($this->session->data['weibo_login_warning'])) {
 			$data['error_weibo_login_warning'] = $this->session->data['weibo_login_warning'];
-			unset($this->session->data['weibo_login_warning']);
 		} else {
 			$data['error_weibo_login_warning'] = '';
 		}
 		
-		/*
-		//weixin login button
-		$this->load->helper('mobile');
-		if(is_weixin()) {
-			$data['is_weixin'] = 1;
-			
-		}else{
-			$data['is_weixin'] = 0;
+		if (isset($this->session->data['qq_login_warning'])) {
+			$data['error_qq_login_warning'] = $this->session->data['qq_login_warning'];
+		} else {
+			$data['error_qq_login_warning'] = '';
 		}
-		
-		if(is_mobile()) {
-			$data['is_mobile'] = 1;
-			
-		}else{
-			$data['is_mobile'] = 0;
-		}
-		
-		$data['weixin_login'] = $this->url->link('account/weixin_login', '', true);
-		
-		$data['wxpclogin_url'] = 'https://open.weixin.qq.com/connect/qrconnect?appid=' . trim($this->config->get('wx_login_appid')) . '&redirect_uri='.urlencode(HTTPS_SERVER.'index.php?route=account/weixin_login/weixin_pclogin_code').'&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect';
-		
-		*/
-		
 
 		$data['action'] = $this->url->link('account/login', '', true);
 		$data['register'] = $this->url->link('account/register', '', true);

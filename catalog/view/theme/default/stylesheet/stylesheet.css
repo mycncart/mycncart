@@ -742,14 +742,13 @@ h2.price {
 	min-width: 50px;
 }
 
-/* fixed product description image width overflow */
-div#tab-description img {
-	max-width: 100%;
-}
-
 /* Missing focus and border color to overwrite bootstrap */
 .btn-info:hover, .btn-info:active, .btn-info.active, .btn-info.disabled, .btn-info[disabled] {
     background-image: none;
     background-color: #df5c39;
 }
 
+/* fixed product description image width overflow */
+div#tab-description img {
+	max-width: 100%;
+}

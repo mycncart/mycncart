@@ -115,7 +115,6 @@
               <?php } ?>
             </div>
           </div>
-          
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
             <div class="col-sm-10">
@@ -125,7 +124,6 @@
               <?php } ?>
             </div>
           </div>
-          
         </fieldset>
         <div class="buttons clearfix">
           <div class="pull-left"><a href="<?php echo $back; ?>" class="btn btn-default"><?php echo $button_back; ?></a></div>
@@ -149,8 +147,6 @@ $('select[name=\'country_id\']').on('change', function() {
 			$('.fa-spin').remove();
 		},
 		success: function(json) {
-      
-
 			if (json['postcode_required'] == '1') {
 				$('input[name=\'postcode\']').parent().parent().addClass('required');
 			} else {
@@ -169,7 +165,7 @@ $('select[name=\'country_id\']').on('change', function() {
 
 					html += '>' + json['zone'][i]['name'] + '</option>';
 				}
-      		} else {
+			} else {
 				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
 			}
 

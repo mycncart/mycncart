@@ -3,6 +3,7 @@
 $_['heading_title']            	 = '订单';
 
 // Text
+$_['text_success']               = '成功: 已修改订单!';
 $_['text_list']                  = '订单列表';
 $_['text_add']                   = '新增订单';
 $_['text_edit']                  = '编辑订单';

@@ -26,7 +26,7 @@ $_['column_action']         = '操作';
 
 // Entry
 $_['entry_customer_group']  = '会员等级';
-$_['entry_fullname']       = '姓名';
+$_['entry_fullname']        = '姓名';
 $_['entry_email']           = 'E-Mail';
 $_['entry_telephone']       = '电话';
 $_['entry_fax']             = '传真';
@@ -37,7 +37,7 @@ $_['entry_safe']            = '安全';
 $_['entry_password']        = '密码';
 $_['entry_confirm']         = '确认密码';
 $_['entry_company']         = '公司';
-$_['entry_address']       = '地址';
+$_['entry_address']         = '地址';
 $_['entry_city']            = '城市';
 $_['entry_postcode']        = '邮政编码';
 $_['entry_country']         = '国家';
@@ -50,6 +50,7 @@ $_['entry_points']          = '奖励积分';
 $_['entry_name']            = '会员姓名';
 $_['entry_ip']              = 'IP';
 $_['entry_date_added']      = '添加日期';
+$_['entry_shipping_telephone']       = '收件人电话';
 
 // Help
 $_['help_safe']             = 'Set to true to avoid this customer from being caught by the anti-fraud system';
@@ -67,7 +68,6 @@ $_['error_confirm']         = '确认密码与密码不一致！';
 $_['error_address']         = '地址必须为3-128字符！';
 $_['error_city']            = '城市必须为2-128字符！';
 $_['error_postcode']        = '邮政编码必须为2-10字符！';
-$_['error_country']         = '清选择国家！';
-$_['error_zone']            = '清选择州/省/地区！';
-$_['error_custom_field']    = '%s 必填！';
-$_['error_custom_field_validate']  = '%s 无效!';
+$_['error_country']         = '请选择国家！';
+$_['error_zone']            = '%s 必选！';
+$_['error_shipping_telephone']       = '收件人电话必填！';

@@ -182,18 +182,17 @@ class ControllerCatalogReview extends Controller {
 		} else {
 			$filter_date_added = null;
 		}
-		
+
 		if (isset($this->request->get['order'])) {
 			$order = $this->request->get['order'];
 		} else {
-			$order = 'ASC';
+			$order = 'DESC';
 		}
 
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
 			$sort = 'r.date_added';
-			$order = 'DESC';
 		}
 
 		if (isset($this->request->get['page'])) {
@@ -231,7 +230,7 @@ class ControllerCatalogReview extends Controller {
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
 		}
-		
+
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
@@ -243,7 +242,7 @@ class ControllerCatalogReview extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, true)
 		);
-		
+
 		$data['add'] = $this->url->link('catalog/review/add', 'token=' . $this->session->data['token'] . $url, true);
 		$data['delete'] = $this->url->link('catalog/review/delete', 'token=' . $this->session->data['token'] . $url, true);
 
@@ -277,7 +276,7 @@ class ControllerCatalogReview extends Controller {
 		}
 
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_list'] = $this->language->get('text_list');
 		$data['text_no_results'] = $this->language->get('text_no_results');
 		$data['text_confirm'] = $this->language->get('text_confirm');
@@ -325,6 +324,22 @@ class ControllerCatalogReview extends Controller {
 		}
 
 		$url = '';
+
+		if (isset($this->request->get['filter_product'])) {
+			$url .= '&filter_product=' . urlencode(html_entity_decode($this->request->get['filter_product'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['filter_author'])) {
+			$url .= '&filter_author=' . urlencode(html_entity_decode($this->request->get['filter_author'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['filter_status'])) {
+			$url .= '&filter_status=' . $this->request->get['filter_status'];
+		}
+
+		if (isset($this->request->get['filter_date_added'])) {
+			$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
+		}
 
 		if ($order == 'ASC') {
 			$url .= '&order=DESC';
@@ -395,7 +410,7 @@ class ControllerCatalogReview extends Controller {
 
 	protected function getForm() {
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_form'] = !isset($this->request->get['review_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 		$data['text_enabled'] = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
@@ -403,6 +418,7 @@ class ControllerCatalogReview extends Controller {
 		$data['entry_product'] = $this->language->get('entry_product');
 		$data['entry_author'] = $this->language->get('entry_author');
 		$data['entry_rating'] = $this->language->get('entry_rating');
+		$data['entry_date_added'] = $this->language->get('entry_date_added');
 		$data['entry_status'] = $this->language->get('entry_status');
 		$data['entry_text'] = $this->language->get('entry_text');
 
@@ -482,7 +498,7 @@ class ControllerCatalogReview extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, true)
 		);
-		
+
 		if (!isset($this->request->get['review_id'])) {
 			$data['action'] = $this->url->link('catalog/review/add', 'token=' . $this->session->data['token'] . $url, true);
 		} else {
@@ -537,6 +553,14 @@ class ControllerCatalogReview extends Controller {
 			$data['rating'] = $review_info['rating'];
 		} else {
 			$data['rating'] = '';
+		}
+
+		if (isset($this->request->post['date_added'])) {
+			$data['date_added'] = $this->request->post['date_added'];
+		} elseif (!empty($review_info)) {
+			$data['date_added'] = ($review_info['date_added'] != '0000-00-00 00:00' ? $review_info['date_added'] : '');
+		} else {
+			$data['date_added'] = '';
 		}
 
 		if (isset($this->request->post['status'])) {

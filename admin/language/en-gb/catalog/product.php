@@ -19,7 +19,6 @@ $_['text_amount']            = 'Fixed Amount';
 $_['column_name']            = 'Product Name';
 $_['column_model']           = 'Model';
 $_['column_image']           = 'Image';
-$_['column_id']              = 'Product ID';
 $_['column_price']           = 'Price';
 $_['column_quantity']        = 'Quantity';
 $_['column_status']          = 'Status';
@@ -33,7 +32,6 @@ $_['entry_meta_keyword'] 	 = 'Meta Tag Keywords';
 $_['entry_meta_description'] = 'Meta Tag Description';
 $_['entry_keyword']          = 'SEO URL';
 $_['entry_model']            = 'Model';
-$_['entry_product_id']  	 = 'Product ID';
 $_['entry_sku']              = 'SKU';
 $_['entry_upc']              = 'UPC';
 $_['entry_ean']              = 'EAN';
@@ -99,7 +97,7 @@ $_['help_category']          = '(Autocomplete)';
 $_['help_filter']            = '(Autocomplete)';
 $_['help_download']          = '(Autocomplete)';
 $_['help_related']           = '(Autocomplete)';
-$_['help_tag']          	 = 'Comma separated';
+$_['help_tag']               = 'Comma separated';
 
 // Error
 $_['error_warning']          = 'Warning: Please check the form carefully for errors!';

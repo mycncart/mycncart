@@ -9,14 +9,14 @@ class ControllerStartupWeiXin extends Controller {
 			
 			if (!$this->customer->isLogged()) {
 				
-				  if(isset($this->session->data['weixin_login_openid']) &&  isset($this->session->data['weixin_login_unionid'])) {
+				  if(isset($this->session->data['weixin_login_openid'])) {
 					 
 					   
 					   if(isset($this->session->data['weixin_logout_status'])) {
 						  
 						   if($this->session->data['weixin_logout_status'] == 0) {
 					   
-								if ($this->customer->login_weixin($this->session->data['weixin_login_unionid'])) {
+								if ($this->customer->login_weixin($this->session->data['weixin_login_openid'])) {
 									
 									unset($this->session->data['guest']);
 			
@@ -38,11 +38,11 @@ class ControllerStartupWeiXin extends Controller {
 							
 						   }
 						
-					   }else{
+					   } else {
 							
 							
 					   
-							if ($this->customer->login_weixin($this->session->data['weixin_login_unionid'])) {
+							if ($this->customer->login_weixin($this->session->data['weixin_login_openid'])) {
 								
 								unset($this->session->data['guest']);
 		
@@ -58,7 +58,7 @@ class ControllerStartupWeiXin extends Controller {
 								}
 					
 								$this->response->redirect($wechat_url);
-							}else{
+							} else {
 								
 							}
 							
@@ -67,37 +67,29 @@ class ControllerStartupWeiXin extends Controller {
 					   }
 						
 						
-						
-						
-					  
-				   }elseif(isset($this->request->get['code'])){
+				   } elseif (isset($this->request->get['code'])) {
 					 
 					  $appid = $this->config->get('wxpay_appid');
 					  $appsecret = $this->config->get('wxpay_appsecret');
-							  
-					  $weixin_result = getWeiXinUserInfo($appid, $appsecret, $this->request->get['code']);
 					  
-						
-					  if($weixin_result['openid'] && $weixin_result['unionid']) {	
+					  $weixin_result = getWeiXinUserInfo($appid, $appsecret, $this->request->get['code']);
+							  
+					  if ($weixin_result['openid']) {	
 						
 						  $this->session->data['weixin_login_openid'] = $weixin_result['openid'];
 						  
-						  $this->session->data['weixin_login_unionid'] = $weixin_result['unionid'];
-						  
 						  $this->session->data['weixin_openid'] = $weixin_result['openid'];
 					  
-					  }else{
+					  } else {
 						  
 						  $this->session->data['weixin_login_openid'] = '';
 					  
-					  	  $this->session->data['weixin_login_unionid'] = '';
-						  
-						   $this->session->data['weixin_openid'] = '';
+						  $this->session->data['weixin_openid'] = '';
 					  }
-	  
+					  
 					  header('Location: '.$wechat_url);
 					  
-				  }else{
+				  } else {
 					  $appid = $this->config->get('wxpay_appid');
 					  header('Location: https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri='.$wechat_url.'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect');
 					  

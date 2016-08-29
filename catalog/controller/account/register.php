@@ -28,7 +28,6 @@ class ControllerAccountRegister extends Controller {
 			$weibo_login_access_token = '';
 		}
 
-
 		$this->load->language('account/register');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -45,23 +44,30 @@ class ControllerAccountRegister extends Controller {
 			if($weibo_login_access_token && $weibo_login_uid) {
 				$this->model_account_customer->updateCustomerWeiBoInfo($customer_id, $weibo_login_access_token, $weibo_login_uid);
 			}
-			
+
 			// Clear any previous login attempts for unregistered accounts.
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
-			
+
 			$this->customer->login($this->request->post['email'], $this->request->post['password']);
+			
+			//Unset Third party login session
+			unset($this->session->data['qq_login_warning']);
+			unset($this->session->data['weibo_login_warning']);
+			unset($this->session->data['weixin_login_warning']);
 
 			unset($this->session->data['guest']);
 
 			// Add to activity log
-			$this->load->model('account/activity');
+			if ($this->config->get('config_customer_activity')) {
+				$this->load->model('account/activity');
 
-			$activity_data = array(
-				'customer_id' => $customer_id,
-				'name'        => $this->request->post['fullname']
-			);
+				$activity_data = array(
+					'customer_id' => $customer_id,
+					'name'        => $this->request->post['fullname']
+				);
 
-			$this->model_account_activity->addActivity('register', $activity_data);
+				$this->model_account_activity->addActivity('register', $activity_data);
+			}
 
 			$this->response->redirect($this->url->link('account/success'));
 		}
@@ -92,11 +98,9 @@ class ControllerAccountRegister extends Controller {
 		$data['text_yes'] = $this->language->get('text_yes');
 		$data['text_no'] = $this->language->get('text_no');
 		$data['text_select'] = $this->language->get('text_select');
-		$data['text_none'] = $this->language->get('text_none');
 		$data['text_get_sms_code'] = $this->language->get('text_get_sms_code');
+		$data['text_none'] = $this->language->get('text_none');
 		$data['text_loading'] = $this->language->get('text_loading');
-		
-		
 
 		$data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$data['entry_fullname'] = $this->language->get('entry_fullname');
@@ -121,7 +125,6 @@ class ControllerAccountRegister extends Controller {
 		} else {
 			$data['error_fullname'] = '';
 		}
-
 
 		if (isset($this->error['email'])) {
 			$data['error_email'] = $this->error['email'];
@@ -187,7 +190,6 @@ class ControllerAccountRegister extends Controller {
 			$data['fullname'] = '';
 		}
 
-
 		if (isset($this->request->post['email'])) {
 			$data['email'] = $this->request->post['email'];
 		} else {
@@ -201,16 +203,11 @@ class ControllerAccountRegister extends Controller {
 		}
 		
 		//SMS
-		if($this->smsgateway()) {
-			
-			$sms_gateway = $this->smsgateway();
-			
-			$data['sms_gateway'] = $sms_gateway[0];
-			
-		}else{
-			
+		
+		if ($this->config->get($this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
+			$data['sms_gateway'] = $this->config->get('config_sms');
+		} else {
 			$data['sms_gateway'] = '';
-			
 		}
 		
 		if (isset($this->request->post['sms_code'])) {
@@ -218,7 +215,6 @@ class ControllerAccountRegister extends Controller {
 		} else {
 			$data['sms_code'] = '';
 		}
-
 
 		// Custom Fields
 		$this->load->model('account/custom_field');
@@ -231,13 +227,13 @@ class ControllerAccountRegister extends Controller {
 			} else {
 				$account_custom_field = array();
 			}
-			
+
 			if (isset($this->request->post['custom_field']['address'])) {
 				$address_custom_field = $this->request->post['custom_field']['address'];
 			} else {
 				$address_custom_field = array();
-			}			
-			
+			}
+
 			$data['register_custom_field'] = $account_custom_field + $address_custom_field;
 		} else {
 			$data['register_custom_field'] = array();
@@ -260,10 +256,10 @@ class ControllerAccountRegister extends Controller {
 		} else {
 			$data['newsletter'] = '';
 		}
-		
+
 		// Captcha
 		if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
-			$data['captcha'] = $this->load->controller('captcha/' . $this->config->get('config_captcha'), $this->error);
+			$data['captcha'] = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha'), $this->error);
 		} else {
 			$data['captcha'] = '';
 		}
@@ -299,10 +295,9 @@ class ControllerAccountRegister extends Controller {
 	}
 
 	private function validate() {
-		if ((utf8_strlen(trim($this->request->post['fullname'])) < 2) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
+		if ((utf8_strlen(trim($this->request->post['fullname'])) < 1) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
 			$this->error['fullname'] = $this->language->get('error_fullname');
 		}
-
 
 		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
@@ -323,8 +318,7 @@ class ControllerAccountRegister extends Controller {
 				}
 			}
 		}
-
-
+		
 		// Customer Group
 		if (isset($this->request->post['customer_group_id']) && is_array($this->config->get('config_customer_group_display')) && in_array($this->request->post['customer_group_id'], $this->config->get('config_customer_group_display'))) {
 			$customer_group_id = $this->request->post['customer_group_id'];
@@ -340,8 +334,8 @@ class ControllerAccountRegister extends Controller {
 		foreach ($custom_fields as $custom_field) {
             if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
 				$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
-			} elseif (($custom_field['type'] == 'text' && !empty($custom_field['validation'])) && !filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
-            	$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field_validate'), $custom_field['name']);
+			} elseif (($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
+            	$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
             }
 		}
 
@@ -352,10 +346,10 @@ class ControllerAccountRegister extends Controller {
 		if ($this->request->post['confirm'] != $this->request->post['password']) {
 			$this->error['confirm'] = $this->language->get('error_confirm');
 		}
-		
+
 		// Captcha
 		if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
-			$captcha = $this->load->controller('captcha/' . $this->config->get('config_captcha') . '/validate');
+			$captcha = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha') . '/validate');
 
 			if ($captcha) {
 				$this->error['captcha'] = $captcha;
@@ -400,27 +394,5 @@ class ControllerAccountRegister extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
-	
-	public function smsgateway() {
-		
-		$sms_gateway = array();
-
-		$this->load->model('extension/extension');
-
-		$results = $this->model_extension_extension->getExtensions('sms');
-
-
-		foreach ($results as $result) {
-			if ($this->config->get($result['code'] . '_status')) {
-
-					$sms_gateway[] = $result['code'];
-
-			}
-		}
-		
-		return $sms_gateway;
-		
-	}
-	
 	
 }

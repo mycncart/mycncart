@@ -29,7 +29,6 @@ class ModelToolBackup extends Model {
 	}
 
 	public function backup($tables) {
-
 		$output = '';
 
 		foreach ($tables as $table) {
@@ -75,7 +74,6 @@ class ModelToolBackup extends Model {
 				$output .= "\n\n";
 			}
 		}
-
 
 		return $output;
 	}

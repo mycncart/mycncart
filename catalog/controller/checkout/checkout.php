@@ -5,22 +5,6 @@ class ControllerCheckoutCheckout extends Controller {
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$this->response->redirect($this->url->link('checkout/cart'));
 		}
-		
-		//判断是否微信访问，是否获得了微信openid
-		$this->load->helper('mobile');
-		
-		unset($this->session->data['redirect']);
-		
-		//如果是微信浏览器，并且不存在微信openid，则转去获取微信openid获取程序
-		if((is_weixin()) && (!isset($this->session->data['weixin_openid']))) {
-			
-			
-			$this->session->data['redirect'] = HTTPS_SERVER . 'index.php?route=checkout/checkout';
-			
-			header('Location: ' . HTTPS_SERVER.'system/weixin/get_weixin_openid.php');
-			//exit();
-				
-		}
 
 		// Validate minimum quantity requirements.
 		$products = $this->cart->getProducts();

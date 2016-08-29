@@ -163,8 +163,8 @@ class ControllerBlogBlog extends Controller {
 			//$data['comments'] = sprintf($this->language->get('text_comments'), (int)$blog_info['comments']);
 
 			// Captcha
-			if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('comment', (array)$this->config->get('config_captcha_page'))) {
-				$data['captcha'] = $this->load->controller('captcha/' . $this->config->get('config_captcha'));
+			if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('review', (array)$this->config->get('config_captcha_page'))) {
+				$data['captcha'] = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha'));
 			} else {
 				$data['captcha'] = '';
 			}
@@ -388,14 +388,14 @@ class ControllerBlogBlog extends Controller {
 			}
 
 			// Captcha
-			if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('comment', (array)$this->config->get('config_captcha_page'))) {
-				$captcha = $this->load->controller('captcha/' . $this->config->get('config_captcha') . '/validate');
+			if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('review', (array)$this->config->get('config_captcha_page'))) {
+				$captcha = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha') . '/validate');
 
 				if ($captcha) {
 					$json['error'] = $captcha;
 				}
 			}
-
+			
 			if (!isset($json['error'])) {
 				$this->load->model('blog/comment');
 

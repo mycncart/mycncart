@@ -267,7 +267,6 @@ class ControllerCatalogOption extends Controller {
 		$data['text_select'] = $this->language->get('text_select');
 		$data['text_radio'] = $this->language->get('text_radio');
 		$data['text_checkbox'] = $this->language->get('text_checkbox');
-		$data['text_image'] = $this->language->get('text_image');
 		$data['text_input'] = $this->language->get('text_input');
 		$data['text_text'] = $this->language->get('text_text');
 		$data['text_textarea'] = $this->language->get('text_textarea');
@@ -471,7 +470,7 @@ class ControllerCatalogOption extends Controller {
 			$filter_data = array(
 				'filter_name' => $this->request->get['filter_name'],
 				'start'       => 0,
-				'limit'       => 5
+				'limit'       => $this->config->get('config_limit_autocomplete')
 			);
 
 			$options = $this->model_catalog_option->getOptions($filter_data);
@@ -507,7 +506,7 @@ class ControllerCatalogOption extends Controller {
 
 				$type = '';
 
-				if ($option['type'] == 'select' || $option['type'] == 'radio' || $option['type'] == 'checkbox' || $option['type'] == 'image') {
+				if ($option['type'] == 'select' || $option['type'] == 'radio' || $option['type'] == 'checkbox') {
 					$type = $this->language->get('text_choose');
 				}
 

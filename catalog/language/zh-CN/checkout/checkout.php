@@ -40,6 +40,7 @@ $_['text_week']                      = '周';
 $_['text_semi_month']                = '半月';
 $_['text_month']                     = '月';
 $_['text_year']                      = '年';
+$_['text_get_sms_code']    			 = '点击获取手机短信验证码';
 
 // Column
 $_['column_name']                    = '商品名称';
@@ -67,6 +68,7 @@ $_['entry_zone']                     = '州/省/地区';
 $_['entry_newsletter']               = '订阅 %s 新闻邮件。';
 $_['entry_shipping'] 	             = '配送地址与账单地址一致。';
 $_['entry_shipping_telephone'] 	     = '收件人电话';
+$_['entry_sms_code']       			 = '短信验证码';
 
 // Error
 $_['error_warning']                  = '存在问题，无法完成订单！如果持续出现此问题，请变换付款方式或者 <a href="%s">点击这里</a>联系网站管理员。';
@@ -93,3 +95,4 @@ $_['error_payment']                  = '警告: 必须选择支付方式！';
 $_['error_no_payment']               = '警告: 无支付选项，请 <a href="%s">联系我们</a> 获取帮助！';
 $_['error_custom_field']             = '%s 必须！';
 $_['error_custom_field_validate']    = '%s 无效！';
+$_['error_sms_code']       			 = '错误的短信验证码!';

@@ -11,6 +11,7 @@ class Customer {
 	private $address_id;
 
 	public function __construct($registry) {
+		$this->config = $registry->get('config');
 		$this->db = $registry->get('db');
 		$this->request = $registry->get('request');
 		$this->session = $registry->get('session');
@@ -28,7 +29,7 @@ class Customer {
 				$this->newsletter = $customer_query->row['newsletter'];
 				$this->address_id = $customer_query->row['address_id'];
 
-				$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET language_id = '" . (int)$this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 
 				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_ip WHERE customer_id = '" . (int)$this->session->data['customer_id'] . "' AND ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "'");
 
@@ -60,23 +61,23 @@ class Customer {
 			$this->newsletter = $customer_query->row['newsletter'];
 			$this->address_id = $customer_query->row['address_id'];
 
-			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+			$this->db->query("UPDATE " . DB_PREFIX . "customer SET language_id = '" . (int)$this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 			
 			//if pc weixin login
-			if(isset($this->session->data['weixin_pclogin_openid']) &&  isset($this->session->data['weixin_pclogin_unionid'])) {
-				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '" . $this->db->escape($this->session->data['weixin_pclogin_openid']) . "', weixin_login_unionid = '" . $this->db->escape($this->session->data['weixin_pclogin_unionid']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+			if(isset($this->session->data['weixin_pclogin_openid'])) {
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '" . $this->db->escape($this->session->data['weixin_pclogin_openid']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 				
 				//clear other customer's same weixin info
-				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '', weixin_login_unionid = '' WHERE weixin_login_openid LIKE  '" . $this->db->escape($this->session->data['weixin_pclogin_openid']) . "' AND weixin_login_unionid LIKE '" . $this->db->escape($this->session->data['weixin_pclogin_unionid']) . "' AND customer_id != '" . (int)$this->customer_id . "'");
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '' WHERE weixin_login_openid LIKE  '" . $this->db->escape($this->session->data['weixin_pclogin_openid']) . "' AND customer_id != '" . (int)$this->customer_id . "'");
 						
 			}
 			
 			//if mobile weixin login
-			if(isset($this->session->data['weixin_login_openid']) &&  isset($this->session->data['weixin_login_unionid'])) {
-				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '" . $this->db->escape($this->session->data['weixin_login_openid']) . "', weixin_login_unionid = '" . $this->db->escape($this->session->data['weixin_login_unionid']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+			if(isset($this->session->data['weixin_login_openid'])) {
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '" . $this->db->escape($this->session->data['weixin_login_openid']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 				
 				//clear other customer's same weixin info
-				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '', weixin_login_unionid = '' WHERE weixin_login_openid LIKE  '" . $this->db->escape($this->session->data['weixin_login_openid']) . "' AND weixin_login_unionid LIKE '" . $this->db->escape($this->session->data['weixin_login_unionid']) . "' AND customer_id != '" . (int)$this->customer_id . "'");
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '' WHERE weixin_login_openid LIKE  '" . $this->db->escape($this->session->data['weixin_login_openid']) . "' AND customer_id != '" . (int)$this->customer_id . "'");
 						
 			}
 			
@@ -95,8 +96,8 @@ class Customer {
 		}
 	}
 	
-	public function login_weixin($weixin_login_unionid){
-		$customer = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE weixin_login_unionid = '" . $this->db->escape($weixin_login_unionid) . "'");
+	public function login_weixin($weixin_login_openid){
+		$customer = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE weixin_login_openid = '" . $this->db->escape($weixin_login_openid) . "'");
 
 		if ($customer->num_rows) {
 			$this->session->data['customer_id'] = $customer->row['customer_id'];
@@ -186,7 +187,6 @@ class Customer {
 			$this->newsletter = $customer->row['newsletter'];
 			$this->customer_group_id = $customer->row['customer_group_id'];
 			$this->address_id = $customer->row['address_id'];
-			$this->heavy_id = $customer->row['heavy_id'];
 
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 			

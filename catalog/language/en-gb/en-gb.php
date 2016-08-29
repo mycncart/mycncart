@@ -18,6 +18,7 @@ $_['text_select']           = ' --- Please Select --- ';
 $_['text_all_zones']        = 'All Zones';
 $_['text_pagination']       = 'Showing %d to %d of %d (%d Pages)';
 $_['text_loading']          = 'Loading...';
+$_['text_no_results']       = 'No results!';
 
 // Buttons
 $_['button_address_add']    = 'Add Address';
@@ -49,14 +50,13 @@ $_['button_shipping']       = 'Apply Shipping';
 $_['button_submit']         = 'Submit';
 $_['button_guest']          = 'Guest Checkout';
 $_['button_view']           = 'View';
-$_['button_voucher']        = 'Apply Voucher';
+$_['button_voucher']        = 'Apply Gift Certificate';
 $_['button_upload']         = 'Upload File';
 $_['button_reward']         = 'Apply Points';
 $_['button_quote']          = 'Get Quotes';
 $_['button_list']           = 'List';
 $_['button_grid']           = 'Grid';
 $_['button_map']            = 'View Google Map';
-$_['button_baidu_map']      = 'View Baidu Map';
 
 // Error
 $_['error_exception']       = 'Error Code(%s): %s in %s on line %s';
@@ -68,3 +68,4 @@ $_['error_upload_6']        = 'Warning: Missing a temporary folder!';
 $_['error_upload_7']        = 'Warning: Failed to write file to disk!';
 $_['error_upload_8']        = 'Warning: File upload stopped by extension!';
 $_['error_upload_999']      = 'Warning: No error code available!';
+$_['error_curl']            = 'CURL: Error Code(%s): %s';

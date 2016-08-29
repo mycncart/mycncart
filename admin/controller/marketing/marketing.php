@@ -257,7 +257,7 @@ class ControllerMarketingMarketing extends Controller {
 		}
 
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_list'] = $this->language->get('text_list');
 		$data['text_no_results'] = $this->language->get('text_no_results');
 		$data['text_confirm'] = $this->language->get('text_confirm');
@@ -376,9 +376,9 @@ class ControllerMarketingMarketing extends Controller {
 
 	protected function getForm() {
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_form'] = !isset($this->request->get['marketing_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
-		
+
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_description'] = $this->language->get('entry_description');
 		$data['entry_code'] = $this->language->get('entry_code');
@@ -504,6 +504,18 @@ class ControllerMarketingMarketing extends Controller {
 
 		if (!$this->request->post['code']) {
 			$this->error['code'] = $this->language->get('error_code');
+		}
+
+		$marketing_info = $this->model_marketing_marketing->getMarketingByCode($this->request->post['code']);
+
+		if (!isset($this->request->get['marketing_id'])) {
+			if ($marketing_info) {
+				$this->error['code'] = $this->language->get('error_exists');
+			}
+		} else {
+			if ($marketing_info && ($this->request->get['marketing_id'] != $marketing_info['marketing_id'])) {
+				$this->error['code'] = $this->language->get('error_exists');
+			}
 		}
 
 		return !$this->error;

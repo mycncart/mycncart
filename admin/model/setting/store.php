@@ -1,7 +1,6 @@
 <?php
 class ModelSettingStore extends Model {
 	public function addStore($data) {
-
 		$this->db->query("INSERT INTO " . DB_PREFIX . "store SET name = '" . $this->db->escape($data['config_name']) . "', `url` = '" . $this->db->escape($data['config_url']) . "', `ssl` = '" . $this->db->escape($data['config_ssl']) . "'");
 
 		$store_id = $this->db->getLastId();
@@ -19,20 +18,16 @@ class ModelSettingStore extends Model {
 	}
 
 	public function editStore($store_id, $data) {
-
 		$this->db->query("UPDATE " . DB_PREFIX . "store SET name = '" . $this->db->escape($data['config_name']) . "', `url` = '" . $this->db->escape($data['config_url']) . "', `ssl` = '" . $this->db->escape($data['config_ssl']) . "' WHERE store_id = '" . (int)$store_id . "'");
 
 		$this->cache->delete('store');
-
 	}
 
 	public function deleteStore($store_id) {
-
 		$this->db->query("DELETE FROM " . DB_PREFIX . "store WHERE store_id = '" . (int)$store_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_route WHERE store_id = '" . (int)$store_id . "'");
 
 		$this->cache->delete('store');
-
 	}
 
 	public function getStore($store_id) {

@@ -75,7 +75,7 @@ class ControllerCmsPressConfig extends Controller {
 
 		$data['action'] = $this->url->link('cms/press_config', 'token=' . $this->session->data['token'], true);
 
-		$data['cancel'] = $this->url->link('common/dashborad', 'token=' . $this->session->data['token'], true);
+		$data['cancel'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true);
 
 		$data['token'] = $this->session->data['token'];
 		

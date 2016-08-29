@@ -401,6 +401,94 @@ class ControllerBaiDuPushUrl extends Controller {
 		$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true));
 		
 	}
+	
+	public function updateblogurl() {
+		
+		$this->load->language('baidu/pushurl');
+		
+		$this->load->model('baidu/pushurl');
+			
+		foreach ($this->model_baidu_pushurl->getAllBlogs() as $result) {
+			
+			$blog_url = $this->model_baidu_pushurl->getBlogSEOUrl($result['blog_id']);
+			
+			if(!$this->model_baidu_pushurl->getPushUrlByBlogUrl($blog_url)) {
+				$this->model_baidu_pushurl->addPushUrl($blog_url);
+			}
+			 
+		}
+		
+		$this->session->data['success'] = $this->language->get('text_success');
+		 
+		$url = '';
+
+		if (isset($this->request->get['filter_url'])) {
+			$url .= '&filter_url=' . urlencode(html_entity_decode($this->request->get['filter_url'], ENT_QUOTES, 'UTF-8'));
+		}
+		
+		if (isset($this->request->get['filter_pushed'])) {
+			$url .= '&filter_pushed=' . $this->request->get['filter_pushed'];
+		}
+
+		if (isset($this->request->get['sort'])) {
+			$url .= '&sort=' . $this->request->get['sort'];
+		}
+
+		if (isset($this->request->get['order'])) {
+			$url .= '&order=' . $this->request->get['order'];
+		}
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
+		}
+
+		$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true));
+		
+	}
+	
+	public function updatepressurl() {
+		
+		$this->load->language('baidu/pushurl');
+		
+		$this->load->model('baidu/pushurl');
+			
+		foreach ($this->model_baidu_pushurl->getAllPresses() as $result) {
+			
+			$press_url = $this->model_baidu_pushurl->getPressSEOUrl($result['press_id']);
+			
+			if(!$this->model_baidu_pushurl->getPushUrlByPressUrl($press_url)) {
+				$this->model_baidu_pushurl->addPushUrl($press_url);
+			}
+			 
+		}
+		
+		$this->session->data['success'] = $this->language->get('text_success');
+		 
+		$url = '';
+
+		if (isset($this->request->get['filter_url'])) {
+			$url .= '&filter_url=' . urlencode(html_entity_decode($this->request->get['filter_url'], ENT_QUOTES, 'UTF-8'));
+		}
+		
+		if (isset($this->request->get['filter_pushed'])) {
+			$url .= '&filter_pushed=' . $this->request->get['filter_pushed'];
+		}
+
+		if (isset($this->request->get['sort'])) {
+			$url .= '&sort=' . $this->request->get['sort'];
+		}
+
+		if (isset($this->request->get['order'])) {
+			$url .= '&order=' . $this->request->get['order'];
+		}
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
+		}
+
+		$this->response->redirect($this->url->link('baidu/pushurl', 'token=' . $this->session->data['token'] . $url, true));
+		
+	}
 
 	protected function getList() {
 		if (isset($this->request->get['filter_url'])) {
@@ -473,6 +561,8 @@ class ControllerBaiDuPushUrl extends Controller {
 		$data['product'] = $this->url->link('baidu/pushurl/updateproducturl', 'token=' . $this->session->data['token'] . $url, true);
 		$data['information'] = $this->url->link('baidu/pushurl/updateinformationurl', 'token=' . $this->session->data['token'] . $url, true);
 		$data['manufacturer'] = $this->url->link('baidu/pushurl/updatemanufacturerurl', 'token=' . $this->session->data['token'] . $url, true);
+		$data['blog'] = $this->url->link('baidu/pushurl/updateblogurl', 'token=' . $this->session->data['token'] . $url, true);
+		$data['press'] = $this->url->link('baidu/pushurl/updatepressurl', 'token=' . $this->session->data['token'] . $url, true);
 		$data['push'] = $this->url->link('baidu/pushurl/push', 'token=' . $this->session->data['token'] . $url, true);
 
 		$data['pushurls'] = array();
@@ -526,6 +616,8 @@ class ControllerBaiDuPushUrl extends Controller {
 		$data['button_product'] = $this->language->get('button_product');
 		$data['button_information'] = $this->language->get('button_information');
 		$data['button_manufacturer'] = $this->language->get('button_manufacturer');
+		$data['button_blog'] = $this->language->get('button_blog');
+		$data['button_press'] = $this->language->get('button_press');
 
 		$data['token'] = $this->session->data['token'];
 
@@ -734,7 +826,7 @@ class ControllerBaiDuPushUrl extends Controller {
 			$filter_data = array(
 				'filter_url'  => $filter_url,
 				'start'        => 0,
-				'limit'        => 10
+				'limit'       => $this->config->get('config_limit_autocomplete')
 			);
 
 			$results = $this->model_baidu_pushurl->getPushUrls($filter_data);

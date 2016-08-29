@@ -1,14 +1,14 @@
 <?php
 class ModelCatalogReview extends Model {
 	public function addReview($product_id, $data) {
-
 		$this->db->query("INSERT INTO " . DB_PREFIX . "review SET author = '" . $this->db->escape($data['name']) . "', customer_id = '" . (int)$this->customer->getId() . "', product_id = '" . (int)$product_id . "', text = '" . $this->db->escape($data['text']) . "', rating = '" . (int)$data['rating'] . "', date_added = NOW()");
 
 		$review_id = $this->db->getLastId();
 
-		if ($this->config->get('config_review_mail')) {
+		if (in_array('review', (array)$this->config->get('config_mail_alert'))) {
 			$this->load->language('mail/review');
 			$this->load->model('catalog/product');
+			
 			$product_info = $this->model_catalog_product->getProduct($product_id);
 
 			$subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
@@ -37,7 +37,7 @@ class ModelCatalogReview extends Model {
 			$mail->send();
 
 			// Send to additional alert emails
-			$emails = explode(',', $this->config->get('config_mail_alert'));
+			$emails = explode(',', $this->config->get('config_alert_email'));
 
 			foreach ($emails as $email) {
 				if ($email && filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -46,7 +46,6 @@ class ModelCatalogReview extends Model {
 				}
 			}
 		}
-
 	}
 
 	public function getReviewsByProductId($product_id, $start = 0, $limit = 20) {

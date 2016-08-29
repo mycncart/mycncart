@@ -34,6 +34,6 @@ $_['help_comment']     = '此内容允许您告知顾客一些特殊声明，比
 
 // Error
 $_['error_permission'] = '警告: 无权限修改线下商店!';
-$_['error_name']       = '商店名称至少1个字符！';
+$_['error_name']       = '商店名称必须为3-32字符！';
 $_['error_address']    = '地址必须为3-128字符！';
 $_['error_telephone']  = '电话必须3-32字符！';

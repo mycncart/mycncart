@@ -10,7 +10,7 @@
       <div class="col-sm-10">
         <input type="text" name="shipping_telephone" value="<?php echo $shipping_telephone; ?>" placeholder="<?php echo $entry_shipping_telephone; ?>" id="input-shipping-shipping-telephone" class="form-control" />
       </div>
-    </div>
+  </div>
   <div class="form-group">
     <label class="col-sm-2 control-label" for="input-shipping-company"><?php echo $entry_company; ?></label>
     <div class="col-sm-10">
@@ -51,7 +51,6 @@
       <input type="text" name="address" value="<?php echo $address; ?>" placeholder="<?php echo $entry_address; ?>" id="input-shipping-address" class="form-control" />
     </div>
   </div>
-  
   <div class="form-group required">
     <label class="col-sm-2 control-label" for="input-shipping-postcode"><?php echo $entry_postcode; ?></label>
     <div class="col-sm-10">

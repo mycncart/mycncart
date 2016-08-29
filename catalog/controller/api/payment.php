@@ -34,7 +34,7 @@ class ControllerApiPayment extends Controller {
 				$json['error']['fullname'] = $this->language->get('error_fullname');
 			}
 
-			if ((utf8_strlen(trim($this->request->post['address'])) < 3) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
+			if ((utf8_strlen(trim($this->request->post['address'])) < 1) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
 				$json['error']['address'] = $this->language->get('error_address');
 			}
 
@@ -66,7 +66,10 @@ class ControllerApiPayment extends Controller {
 			foreach ($custom_fields as $custom_field) {
 				if (($custom_field['location'] == 'address') && $custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['custom_field_id']])) {
 					$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
+				} elseif (($custom_field['location'] == 'address') && ($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
+					$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
 				}
+				
 			}
 
 			if (!$json) {
@@ -116,7 +119,7 @@ class ControllerApiPayment extends Controller {
 				);
 
 				$json['success'] = $this->language->get('text_address');
-
+				
 				unset($this->session->data['payment_method']);
 				unset($this->session->data['payment_methods']);
 			}
@@ -135,7 +138,7 @@ class ControllerApiPayment extends Controller {
 
 	public function methods() {
 		$this->load->language('api/payment');
-
+		
 		// Delete past shipping methods and method just in case there is an error
 		unset($this->session->data['payment_methods']);
 		unset($this->session->data['payment_method']);
@@ -149,7 +152,7 @@ class ControllerApiPayment extends Controller {
 			if (!isset($this->session->data['payment_address'])) {
 				$json['error'] = $this->language->get('error_address');
 			}
-
+			
 			if (!$json) {
 				// Totals
 				$totals = array();
@@ -177,10 +180,10 @@ class ControllerApiPayment extends Controller {
 
 				foreach ($results as $result) {
 					if ($this->config->get($result['code'] . '_status')) {
-						$this->load->model('total/' . $result['code']);
+						$this->load->model('extension/total/' . $result['code']);
 						
 						// We have to put the totals in an array so that they pass by reference.
-						$this->{'model_total_' . $result['code']}->getTotal($total_data);
+						$this->{'model_extension_total_' . $result['code']}->getTotal($total_data);
 					}
 				}
 
@@ -195,13 +198,13 @@ class ControllerApiPayment extends Controller {
 
 				foreach ($results as $result) {
 					if ($this->config->get($result['code'] . '_status')) {
-						$this->load->model('payment/' . $result['code']);
+						$this->load->model('extension/payment/' . $result['code']);
 
-						$method = $this->{'model_payment_' . $result['code']}->getMethod($this->session->data['payment_address'], $total);
+						$method = $this->{'model_extension_payment_' . $result['code']}->getMethod($this->session->data['payment_address'], $total);
 
 						if ($method) {
 							if ($recurring) {
-								if (property_exists($this->{'model_payment_' . $result['code']}, 'recurringPayments') && $this->{'model_payment_' . $result['code']}->recurringPayments()) {
+								if (property_exists($this->{'model_extension_payment_' . $result['code']}, 'recurringPayments') && $this->{'model_extension_payment_' . $result['code']}->recurringPayments()) {
 									$json['payment_methods'][$result['code']] = $method;
 								}
 							} else {

@@ -6,12 +6,10 @@ class ControllerCommonReset extends Controller {
 		if ($this->user->isLogged() && isset($this->request->get['token']) && ($this->request->get['token'] == $this->session->data['token'])) {
 			$this->response->redirect($this->url->link('common/dashboard', '', true));
 		}
-		
-		/*
+
 		if (!$this->config->get('config_password')) {
 			$this->response->redirect($this->url->link('common/login', '', true));
 		}
-		*/
 
 		if (isset($this->request->get['code'])) {
 			$code = $this->request->get['code'];
@@ -98,7 +96,7 @@ class ControllerCommonReset extends Controller {
 			return new Action('common/login');
 		}
 	}
-	
+
 	protected function validate() {
 		if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
 			$this->error['password'] = $this->language->get('error_password');

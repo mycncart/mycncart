@@ -67,6 +67,8 @@ $_['button_special_add']            = 'Add Special';
 $_['button_image_add']              = 'Add Image';
 $_['button_geo_zone_add']           = 'Add Geo Zone';
 $_['button_history_add']            = 'Add History';
+$_['button_translation']            = 'Load Default Translation';
+$_['button_translation_add']        = 'Add Translation';
 $_['button_transaction_add']        = 'Add Transaction';
 $_['button_route_add']              = 'Add Route';
 $_['button_rule_add']               = 'Add Rule';
@@ -136,7 +138,6 @@ $_['tab_activity']                  = 'Recent Activity';
 $_['tab_recurring']                 = 'Recurring';
 $_['tab_action']                    = 'Action';
 $_['tab_google']                    = 'Google';
-$_['tab_thirdparty']                = 'Third Party';
 
 // Error
 $_['error_exception']               = 'Error Code(%s): %s in %s on line %s';

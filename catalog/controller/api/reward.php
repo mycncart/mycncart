@@ -20,7 +20,7 @@ class ControllerApiReward extends Controller {
 					$points_total += $product['points'];
 				}
 			}
-			
+
 			if (empty($this->request->post['reward'])) {
 				$json['error'] = $this->language->get('error_reward');
 			}
@@ -39,7 +39,7 @@ class ControllerApiReward extends Controller {
 				$json['success'] = $this->language->get('text_success');
 			}
 		}
-		
+
 		if (isset($this->request->server['HTTP_ORIGIN'])) {
 			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
 			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
@@ -67,7 +67,7 @@ class ControllerApiReward extends Controller {
 				}
 			}
 		}
-		
+
 		if (isset($this->request->server['HTTP_ORIGIN'])) {
 			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
 			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
@@ -89,7 +89,7 @@ class ControllerApiReward extends Controller {
 		} else {
 			$json['points'] = $this->customer->getRewardPoints();
 		}
-		
+
 		if (isset($this->request->server['HTTP_ORIGIN'])) {
 			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
 			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');

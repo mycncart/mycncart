@@ -30,7 +30,6 @@ class ModelBlogBlog extends Model {
 					'title'             => $query->row['name'],
 					'brief'      => $query->row['brief'],
 					'user_id'      => $query->row['user_id'],
-					'article_list_gallery_display'      => $query->row['article_list_gallery_display'],
 					'image'      => $query->row['image'],
 					'tags'       => $query->row['tag'],
 					'blog_category_id' => $query->row['blog_category_id'],
@@ -127,10 +126,9 @@ class ModelBlogBlog extends Model {
 	
 			$sql .= " GROUP BY p.blog_id";
 	
-				$sql .= " ORDER BY p.date_added";
+			$sql .= " ORDER BY p.date_added";
 			
-	
-				$sql .= " ASC, LCASE(pd.title) ASC";
+			$sql .= " DESC";
 	
 			if (isset($data['start']) || isset($data['limit'])) {
 				if ($data['start'] < 0) {
@@ -267,21 +265,6 @@ class ModelBlogBlog extends Model {
 
 
 		return $query->rows;
-	}
-	
-	public function getBlogGalleries($blog_id) {
-        $galleries = array();
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "blog_article_gallery WHERE blog_id = '" . (int)$blog_id . "' ORDER BY sort_order ASC");
-
-        if(!empty($query->rows)){
-            foreach($query->rows as $row){
-                if($row['type'] == 'IMG'){
-                    $row['output'] = $this->prepareImage($row['path'], $row['width'], $row['height']);
-                }
-                $galleries[] = $row;
-            }
-        }
-		return $galleries;
 	}
 	
 	private function prepareImage($path, $width, $height)

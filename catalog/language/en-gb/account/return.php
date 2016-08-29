@@ -39,7 +39,7 @@ $_['column_action']      = 'Action';
 // Entry
 $_['entry_order_id']     = 'Order ID';
 $_['entry_date_ordered'] = 'Order Date';
-$_['entry_fullname']     = 'Full Name';
+$_['entry_fullname']    = 'Full Name';
 $_['entry_email']        = 'E-Mail';
 $_['entry_telephone']    = 'Telephone';
 $_['entry_product']      = 'Product Name';
@@ -48,12 +48,11 @@ $_['entry_quantity']     = 'Quantity';
 $_['entry_reason']       = 'Reason for Return';
 $_['entry_opened']       = 'Product is opened';
 $_['entry_fault_detail'] = 'Faulty or other details';
-$_['entry_captcha']      = 'Enter the code in the box below';
 
 // Error
 $_['text_error']         = 'The returns you requested could not be found!';
 $_['error_order_id']     = 'Order ID required!';
-$_['error_fullname']     = 'Full Name must be between 2 and 32 characters!';
+$_['error_fullname']    = 'Full Name must be between 1 and 32 characters!';
 $_['error_email']        = 'E-Mail Address does not appear to be valid!';
 $_['error_telephone']    = 'Telephone must be between 3 and 32 characters!';
 $_['error_product']      = 'Product Name must be greater than 3 and less than 255 characters!';

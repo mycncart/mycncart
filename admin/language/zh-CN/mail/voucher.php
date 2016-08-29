@@ -1,7 +1,7 @@
 <?php
 
 // Text
-$_['text_subject']  = '您已从 %s 发送了一张礼品券';
+$_['text_subject']  = '您已从 %s 收到了一张礼品券';
 $_['text_greeting'] = '恭喜，您收到了一张价值 %s 的礼品券';
 $_['text_from']     = '%s 将本礼品券送给您';
 $_['text_message']  = '附加信息';

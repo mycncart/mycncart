@@ -7,7 +7,7 @@ class ModelCustomerCustomer extends Model {
 
 		if (isset($data['address'])) {
 			foreach ($data['address'] as $address) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', fullname = '" . $this->db->escape($address['fullname']) . "',  company = '" . $this->db->escape($address['company']) . "', address = '" . $this->db->escape($address['address']) . "',  city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "', custom_field = '" . $this->db->escape(isset($address['custom_field']) ? json_encode($address['custom_field']) : '') . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', fullname = '" . $this->db->escape($address['fullname']) . "', shipping_telephone = '" . $this->db->escape($address['shipping_telephone']) . "', company = '" . $this->db->escape($address['company']) . "', address = '" . $this->db->escape($address['address']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "', custom_field = '" . $this->db->escape(isset($address['custom_field']) ? json_encode($address['custom_field']) : '') . "'");
 
 				if (isset($address['default'])) {
 					$address_id = $this->db->getLastId();
@@ -39,7 +39,7 @@ class ModelCustomerCustomer extends Model {
 					$address['custom_field'] = array();
 				}
 
-				$this->db->query("INSERT INTO " . DB_PREFIX . "address SET address_id = '" . (int)$address['address_id'] . "', customer_id = '" . (int)$customer_id . "', fullname = '" . $this->db->escape($address['fullname']) . "', company = '" . $this->db->escape($address['company']) . "', address = '" . $this->db->escape($address['address']) . "',  city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "', custom_field = '" . $this->db->escape(isset($address['custom_field']) ? json_encode($address['custom_field']) : '') . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "address SET address_id = '" . (int)$address['address_id'] . "', customer_id = '" . (int)$customer_id . "', fullname = '" . $this->db->escape($address['fullname']) . "', shipping_telephone = '" . $this->db->escape($address['shipping_telephone']) . "', company = '" . $this->db->escape($address['company']) . "', address = '" . $this->db->escape($address['address']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "', custom_field = '" . $this->db->escape(isset($address['custom_field']) ? json_encode($address['custom_field']) : '') . "'");
 
 				if (isset($address['default'])) {
 					$address_id = $this->db->getLastId();
@@ -56,6 +56,7 @@ class ModelCustomerCustomer extends Model {
 
 	public function deleteCustomer($customer_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_activity WHERE customer_id = '" . (int)$customer_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_reward WHERE customer_id = '" . (int)$customer_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_transaction WHERE customer_id = '" . (int)$customer_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_ip WHERE customer_id = '" . (int)$customer_id . "'");
@@ -75,7 +76,7 @@ class ModelCustomerCustomer extends Model {
 	}
 
 	public function getCustomers($data = array()) {
-		$sql = "SELECT *, c.fullname, cgd.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT *, c.fullname AS name, cgd.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		$implode = array();
 
@@ -128,7 +129,7 @@ class ModelCustomerCustomer extends Model {
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY name";
+			$sql .= " ORDER BY c.fullname";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {
@@ -160,8 +161,6 @@ class ModelCustomerCustomer extends Model {
 		if ($customer_info) {
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET approved = '1' WHERE customer_id = '" . (int)$customer_id . "'");
 
-			$this->load->language('mail/customer');
-
 			$this->load->model('setting/store');
 
 			$store_info = $this->model_setting_store->getStore($customer_info['store_id']);
@@ -174,11 +173,25 @@ class ModelCustomerCustomer extends Model {
 				$store_url = HTTP_CATALOG . 'index.php?route=account/login';
 			}
 
-			$message  = sprintf($this->language->get('text_approve_welcome'), html_entity_decode($store_name, ENT_QUOTES, 'UTF-8')) . "\n\n";
-			$message .= $this->language->get('text_approve_login') . "\n";
+			$this->load->model('localisation/language');
+			
+			$language_info = $this->model_localisation_language->getLanguage($customer_info['language_id']);
+
+			if ($language_info) {
+				$language_code = $language_info['code'];
+			} else {
+				$language_code = $this->config->get('config_language');
+			}
+
+			$language = new Language($language_code);
+			$language->load($language_code);
+			$language->load('mail/customer');
+				
+			$message  = sprintf($language->get('text_approve_welcome'), html_entity_decode($store_name, ENT_QUOTES, 'UTF-8')) . "\n\n";
+			$message .= $language->get('text_approve_login') . "\n";
 			$message .= $store_url . "\n\n";
-			$message .= $this->language->get('text_approve_services') . "\n\n";
-			$message .= $this->language->get('text_approve_thanks') . "\n";
+			$message .= $language->get('text_approve_services') . "\n\n";
+			$message .= $language->get('text_approve_thanks') . "\n";
 			$message .= html_entity_decode($store_name, ENT_QUOTES, 'UTF-8');
 
 			$mail = new Mail();
@@ -193,7 +206,7 @@ class ModelCustomerCustomer extends Model {
 			$mail->setTo($customer_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender(html_entity_decode($store_name, ENT_QUOTES, 'UTF-8'));
-			$mail->setSubject(sprintf($this->language->get('text_approve_subject'), html_entity_decode($store_name, ENT_QUOTES, 'UTF-8')));
+			$mail->setSubject(sprintf($language->get('text_approve_subject'), html_entity_decode($store_name, ENT_QUOTES, 'UTF-8')));
 			$mail->setText($message);
 			$mail->send();
 		}
@@ -231,6 +244,7 @@ class ModelCustomerCustomer extends Model {
 				'address_id'     => $address_query->row['address_id'],
 				'customer_id'    => $address_query->row['customer_id'],
 				'fullname'      => $address_query->row['fullname'],
+				'shipping_telephone'      => $address_query->row['shipping_telephone'],
 				'company'        => $address_query->row['company'],
 				'address'      => $address_query->row['address'],
 				'postcode'       => $address_query->row['postcode'],

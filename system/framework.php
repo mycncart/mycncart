@@ -2,10 +2,6 @@
 // Registry
 $registry = new Registry();
 
-// Loader
-$loader = new Loader($registry);
-$registry->set('load', $loader);
-
 // Config
 $config = new Config();
 $config->load('default');
@@ -13,11 +9,24 @@ $config->load($application_config);
 $registry->set('config', $config);
 
 //Payment Method Callback
-if(isset($pay_method_callback)) {
-	if(!empty($pay_method_callback)) {
-		$config->set('action_default', $pay_method_callback);
+if(PAY_METHOD_CALLBACK != '') {
+	$config->set('action_default', PAY_METHOD_CALLBACK);
+}
+
+// Event
+$event = new Event($registry);
+$registry->set('event', $event);
+
+// Event Register
+if ($config->has('action_event')) {
+	foreach ($config->get('action_event') as $key => $value) {
+		$event->register($key, new Action($value));
 	}
 }
+
+// Loader
+$loader = new Loader($registry);
+$registry->set('load', $loader);
 
 // Request
 $registry->set('request', new Request());
@@ -33,17 +42,21 @@ if ($config->get('db_autostart')) {
 }
 
 // Session
+$session = new Session();
+
 if ($config->get('session_autostart')) {
-	$session = new Session();
 	$session->start();
-	$registry->set('session', $session);
 }
+
+$registry->set('session', $session);
 
 // Cache 
 $registry->set('cache', new Cache($config->get('cache_type'), $config->get('cache_expire')));
 
 // Url
-$registry->set('url', new Url($config->get('site_ssl')));
+if ($config->get('url_autostart')) {
+	$registry->set('url', new Url($config->get('site_base'), $config->get('site_ssl')));
+}
 
 // Language
 $language = new Language($config->get('language_default'));
@@ -52,17 +65,6 @@ $registry->set('language', $language);
 
 // Document
 $registry->set('document', new Document());
-
-// Event
-$event = new Event($registry);
-$registry->set('event', $event);
-
-// Event Register
-if ($config->has('action_event')) {
-	foreach ($config->get('action_event') as $key => $value) {
-		$event->register($key, new Action($value));
-	}
-}
 
 // Config Autoload
 if ($config->has('config_autoload')) {

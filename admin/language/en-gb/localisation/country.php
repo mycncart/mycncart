@@ -23,7 +23,7 @@ $_['entry_postcode_required'] = 'Postcode Required';
 $_['entry_status']            = 'Status';
 
 // Help
-$_['help_address_format']     = 'First Name = {fullname}<br />Company = {company}<br />Address = {address}<br />City = {city}<br />Postcode = {postcode}<br />Zone = {zone}<br />Zone Code = {zone_code}<br />Country = {country}';
+$_['help_address_format']     = 'Full Name = {fullname}<br />Company = {company}<br />Address = {address}<br />City = {city}<br />Postcode = {postcode}<br />Zone = {zone}<br />Zone Code = {zone_code}<br />Country = {country}';
 
 // Error
 $_['error_permission']        = 'Warning: You do not have permission to modify countries!';

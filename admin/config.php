@@ -1,31 +1,31 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://localhost/mycncart/admin/');
-define('HTTP_CATALOG', 'http://localhost/mycncart/');
+define('HTTP_SERVER', 'http://localhost/mycncart/1500/admin/');
+define('HTTP_CATALOG', 'http://localhost/mycncart/1500/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost/mycncart/admin/');
-define('HTTPS_CATALOG', 'http://localhost/mycncart/');
+define('HTTPS_SERVER', 'http://localhost/mycncart/1500/admin/');
+define('HTTPS_CATALOG', 'http://localhost/mycncart/1500/');
 
 // DIR
-define('DIR_APPLICATION', 'C:/wamp/www/mycncart/admin/');
-define('DIR_SYSTEM', 'C:/wamp/www/mycncart/system/');
-define('DIR_IMAGE', 'C:/wamp/www/mycncart/image/');
-define('DIR_LANGUAGE', 'C:/wamp/www/mycncart/admin/language/');
-define('DIR_TEMPLATE', 'C:/wamp/www/mycncart/admin/view/template/');
-define('DIR_CONFIG', 'C:/wamp/www/mycncart/system/config/');
-define('DIR_CACHE', 'C:/wamp/www/mycncart/system/storage/cache/');
-define('DIR_DOWNLOAD', 'C:/wamp/www/mycncart/system/storage/download/');
-define('DIR_LOGS', 'C:/wamp/www/mycncart/system/storage/logs/');
-define('DIR_MODIFICATION', 'C:/wamp/www/mycncart/system/storage/modification/');
-define('DIR_UPLOAD', 'C:/wamp/www/mycncart/system/storage/upload/');
-define('DIR_CATALOG', 'C:/wamp/www/mycncart/catalog/');
+define('DIR_APPLICATION', 'F:/wamp64/www/mycncart/1500/admin/');
+define('DIR_SYSTEM', 'F:/wamp64/www/mycncart/1500/system/');
+define('DIR_IMAGE', 'F:/wamp64/www/mycncart/1500/image/');
+define('DIR_LANGUAGE', 'F:/wamp64/www/mycncart/1500/admin/language/');
+define('DIR_TEMPLATE', 'F:/wamp64/www/mycncart/1500/admin/view/template/');
+define('DIR_CONFIG', 'F:/wamp64/www/mycncart/1500/system/config/');
+define('DIR_CACHE', 'F:/wamp64/www/mycncart/1500/system/storage/cache/');
+define('DIR_DOWNLOAD', 'F:/wamp64/www/mycncart/1500/system/storage/download/');
+define('DIR_LOGS', 'F:/wamp64/www/mycncart/1500/system/storage/logs/');
+define('DIR_MODIFICATION', 'F:/wamp64/www/mycncart/1500/system/storage/modification/');
+define('DIR_UPLOAD', 'F:/wamp64/www/mycncart/1500/system/storage/upload/');
+define('DIR_CATALOG', 'F:/wamp64/www/mycncart/1500/catalog/');
 
 // DB
 define('DB_DRIVER', 'mysqli');
 define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'mycncart_master');
+define('DB_DATABASE', '1500');
 define('DB_PORT', '3306');
 define('DB_PREFIX', 'mcc_');

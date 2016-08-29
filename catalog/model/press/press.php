@@ -71,10 +71,10 @@ class ModelPressPress extends Model {
 		
 			$sql .= " GROUP BY p.press_id";
 	
-				$sql .= " ORDER BY p.date_added";
+			$sql .= " ORDER BY p.date_added";
 			
 	
-				$sql .= " ASC, LCASE(pd.title) ASC";
+			$sql .= " DESC";
 	
 			if (isset($data['start']) || isset($data['limit'])) {
 				if ($data['start'] < 0) {

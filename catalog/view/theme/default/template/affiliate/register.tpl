@@ -117,7 +117,6 @@
               <?php } ?>
             </div>
           </div>
-          
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
             <div class="col-sm-10">
@@ -127,7 +126,6 @@
               <?php } ?>
             </div>
           </div>
-          
         </fieldset>
         <fieldset>
           <legend><?php echo $text_payment; ?></legend>
@@ -179,7 +177,6 @@
             </div>
           </div>
           <div class="payment" id="payment-alipay">
-            
             <div class="form-group">
               <label class="col-sm-2 control-label" for="input-alipay-account-name"><?php echo $entry_alipay_account_name; ?></label>
               <div class="col-sm-10">
@@ -193,7 +190,6 @@
               </div>
             </div>
           </div>
-          
           <div class="form-group payment" id="payment-cheque">
             <label class="col-sm-2 control-label" for="input-cheque"><?php echo $entry_cheque; ?></label>
             <div class="col-sm-10">
@@ -284,8 +280,6 @@ $('select[name=\'country_id\']').on('change', function() {
 			$('.fa-spin').remove();
 		},
 		success: function(json) {
-     
-
 			if (json['postcode_required'] == '1') {
 				$('input[name=\'postcode\']').parent().parent().addClass('required');
 			} else {
