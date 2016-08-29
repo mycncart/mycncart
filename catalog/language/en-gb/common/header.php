@@ -17,3 +17,4 @@ $_['text_all']           = 'Show All';
 $_['text_blog']          = 'Blog';
 $_['text_press']         = 'News';
 $_['text_faq']           = 'FAQs';
+$_['text_msg']           = 'Default Welcome Msg!';

@@ -1,12 +1,10 @@
 <?php
 class ModelAccountAddress extends Model {
 	public function addAddress($data) {
-
 		$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$this->customer->getId() . "', fullname = '" . $this->db->escape($data['fullname']) . "', company = '" . $this->db->escape($data['company']) . "', address = '" . $this->db->escape($data['address']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', city = '" . $this->db->escape($data['city']) . "', zone_id = '" . (int)$data['zone_id'] . "', country_id = '" . (int)$data['country_id'] . "', shipping_telephone = '" . $this->db->escape($data['shipping_telephone']) . "', custom_field = '" . $this->db->escape(isset($data['custom_field']) ? json_encode($data['custom_field']) : '') . "'");
 
 		$address_id = $this->db->getLastId();
 		
-		//edit mcc
 		$total_address = $this->getTotalAddresses();
 		
 		if($total_address == 1) {
@@ -20,14 +18,11 @@ class ModelAccountAddress extends Model {
 			}
 		
 		}
-		//end mcc
-
 
 		return $address_id;
 	}
 
 	public function editAddress($address_id, $data) {
-
 		$this->db->query("UPDATE " . DB_PREFIX . "address SET fullname = '" . $this->db->escape($data['fullname']) . "', company = '" . $this->db->escape($data['company']) . "', address = '" . $this->db->escape($data['address']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', city = '" . $this->db->escape($data['city']) . "', zone_id = '" . (int)$data['zone_id'] . "', country_id = '" . (int)$data['country_id'] . "', shipping_telephone = '" . $this->db->escape($data['shipping_telephone']) . "', custom_field = '" . $this->db->escape(isset($data['custom_field']) ? json_encode($data['custom_field']) : '') . "' WHERE address_id  = '" . (int)$address_id . "' AND customer_id = '" . (int)$this->customer->getId() . "'");
 
 		if (!empty($data['default'])) {
@@ -37,9 +32,7 @@ class ModelAccountAddress extends Model {
 	}
 
 	public function deleteAddress($address_id) {
-
 		$this->db->query("DELETE FROM " . DB_PREFIX . "address WHERE address_id = '" . (int)$address_id . "' AND customer_id = '" . (int)$this->customer->getId() . "'");
-
 	}
 
 	public function getAddress($address_id) {

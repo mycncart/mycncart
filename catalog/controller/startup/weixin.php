@@ -72,8 +72,8 @@ class ControllerStartupWeiXin extends Controller {
 					  
 				   }elseif(isset($this->request->get['code'])){
 					 
-					  $appid = $this->config->get('wx_login_appid');
-					  $appsecret = $this->config->get('wx_login_appsecret');
+					  $appid = $this->config->get('wxpay_appid');
+					  $appsecret = $this->config->get('wxpay_appsecret');
 							  
 					  $weixin_result = getWeiXinUserInfo($appid, $appsecret, $this->request->get['code']);
 					  
@@ -83,19 +83,23 @@ class ControllerStartupWeiXin extends Controller {
 						  $this->session->data['weixin_login_openid'] = $weixin_result['openid'];
 						  
 						  $this->session->data['weixin_login_unionid'] = $weixin_result['unionid'];
+						  
+						  $this->session->data['weixin_openid'] = $weixin_result['openid'];
 					  
 					  }else{
 						  
 						  $this->session->data['weixin_login_openid'] = '';
 					  
 					  	  $this->session->data['weixin_login_unionid'] = '';
+						  
+						   $this->session->data['weixin_openid'] = '';
 					  }
 	  
 					  header('Location: '.$wechat_url);
 					  
 				  }else{
-					  $appid = $this->config->get('wx_login_appid');
-					  header('Location: https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri='.$wechat_url.'&response_type=code&scope=snsapi_base&state=123#wechat_redirect');
+					  $appid = $this->config->get('wxpay_appid');
+					  header('Location: https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri='.$wechat_url.'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect');
 					  
 				  }
 			  
