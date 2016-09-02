@@ -10,7 +10,7 @@ $_['text_add']          = '添加博客評論';
 $_['text_edit']         = '編輯';
 
 // Column
-$_['column_blog']       = '博客';
+$_['column_blog']    	= '博客';
 $_['column_author']     = '作者';
 $_['column_status']     = '狀態';
 $_['column_date_added'] = '添加日期';

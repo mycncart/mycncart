@@ -108,6 +108,15 @@ class ControllerCommonHeader extends Controller {
 			$data['is_mobile'] = 0;
 			$data['is_weixin'] = 0;
 		}
+		
+		//qq nickname for check and approve
+		if (isset($this->session->data['qq_nickname'])) {
+			$data['qq_nickname'] = $this->session->data['qq_nickname'];
+		} else {
+			$data['qq_nickname'] = '';
+		}
+		
+		$data['qq_login_url'] = $this->url->link('extension/module/qq_login/login', '', true);
 
 		// Menu
 		$this->load->model('catalog/category');

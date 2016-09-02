@@ -10,7 +10,7 @@ $_['text_appsecret'] 					= 'AppSecret';
 
 
 $_['text_payment']       				= '支付方式';
-$_['text_wxpay']						= '<img src="view/image/payment/wxpay_coc.png" alt="微信公众号支付接口" title="微信公众号支付" style="border: 1px solid #EEEEEE;" />';
+$_['text_wxpay']						= '<img src="view/image/payment/wxpay.png" alt="微信公众号支付接口" title="微信公众号支付" style="border: 1px solid #EEEEEE;" />';
 $_['text_success']       				= '成功: 已修改微信公众号支付！';
 $_['text_edit']          				= '编辑微信公众号支付';
 

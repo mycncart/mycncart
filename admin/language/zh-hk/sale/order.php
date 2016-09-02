@@ -3,6 +3,7 @@
 $_['heading_title']            	 = '訂單';
 
 // Text
+$_['text_success']               = '成功: 已修改訂單!';
 $_['text_list']                  = '訂單列表';
 $_['text_add']                   = '新增訂單';
 $_['text_edit']                  = '編輯訂單';
@@ -128,6 +129,5 @@ $_['error_action']               = '警告: 無法完成此操作！';
 $_['error_filetype']			 = '無效文件類型!';
 
 // Help
-$_['help_override']              = 'If the customers order is being blocked from changing the order status due to a anti-fraud extension enable override.';
-
+$_['help_override']              = '在由於反欺詐而造成訂單被鎖的情況下，仍然可以覆蓋操作。';
 

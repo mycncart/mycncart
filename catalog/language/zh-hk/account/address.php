@@ -24,15 +24,15 @@ $_['entry_default']        = '默認地址';
 $_['entry_shipping_telephone'] 	     = '收件人電話';
 
 // Error
-$_['error_delete']         = '警告: 必須擁有至少一個地址！';
+$_['error_delete']         = '警告: 必須擁有至少壹個地址！';
 $_['error_default']        = '警告: 不能刪除默認地址！';
-$_['error_fullname']       = '姓名必須爲 1-32字符！';
+$_['error_fullname']       = '姓名必須為 2-32字符！';
 $_['error_vat']            = 'VAT 號碼無效！';
-$_['error_address']        = '地址必須爲 3-128字符！';
-$_['error_postcode']       = '郵政編碼必須爲 2-10字符！';
-$_['error_city']           = '所在城市必須爲 2-128字符！';
+$_['error_address']        = '地址必須為 3-128字符！';
+$_['error_postcode']       = '郵政編碼必須為 2-10字符！';
+$_['error_city']           = '所在城市必須為 2-128字符！';
 $_['error_country']        = '請選擇國家';
 $_['error_zone']           = '請選擇州/省/地區！';
 $_['error_custom_field']   = '%s 必須！';
-$_['error_shipping_telephone']       = '收件人電話必須為3 - 32字符！';
-$_['error_custom_field_validate'] = '%s 无效！';
+$_['error_shipping_telephone']       = '收件人電話必須為3到32字節！';
+$_['error_custom_field_validate'] = '%s 無效！';

@@ -28,7 +28,6 @@ class ControllerExtensionModuleWeiBoLogin extends Controller {
 
 		$data['entry_appkey'] = $this->language->get('entry_appkey');
 		$data['entry_appsecret'] = $this->language->get('entry_appsecret');
-		$data['entry_callback_url'] = $this->language->get('entry_callback_url');
 		$data['entry_status'] = $this->language->get('entry_status');
 
 		$data['button_save'] = $this->language->get('button_save');
@@ -52,12 +51,6 @@ class ControllerExtensionModuleWeiBoLogin extends Controller {
 			$data['error_appsecret'] = '';
 		}
 		
-		if (isset($this->error['callback_url'])) {
-			$data['error_callback_url'] = $this->error['callback_url'];
-		} else {
-			$data['error_callback_url'] = '';
-		}
-
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
@@ -90,13 +83,6 @@ class ControllerExtensionModuleWeiBoLogin extends Controller {
 		} else {
 			$data['weibo_login_appsecret'] = $this->config->get('weibo_login_appsecret');
 		}
-		if (isset($this->request->post['weibo_login_callback_url'])) {
-			$data['weibo_login_callback_url'] = $this->request->post['weibo_login_callback_url'];
-		} elseif($this->config->get('weibo_login_callback_url')) {
-			$data['weibo_login_callback_url'] = $this->config->get('weibo_login_callback_url');
-		} else {
-			$data['weibo_login_callback_url'] =$this->url->link('module/weibo_login/callback', '', true);
-		}
 
 		if (isset($this->request->post['weibo_login_status'])) {
 			$data['weibo_login_status'] = $this->request->post['weibo_login_status'];
@@ -124,10 +110,6 @@ class ControllerExtensionModuleWeiBoLogin extends Controller {
 			$this->error['appsecret'] = $this->language->get('error_appsecret');
 		}
 		
-		if (!$this->request->post['weibo_login_callback_url']) {
-			$this->error['callback_url'] = $this->language->get('error_callback_url');
-		}
-
 		return !$this->error;
 	}
 

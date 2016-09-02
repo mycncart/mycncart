@@ -15,9 +15,9 @@ $_['text_option']              = '可選選項';
 $_['text_minimum']             = '該商品最低購買數量 %s';
 $_['text_reviews']             = '%s 評論';
 $_['text_write']               = '寫評論';
-$_['text_login']               = '請<a href="%s">登錄</a>或<a href="%s">注冊</a>後再評論';
+$_['text_login']               = '請<a href="%s">登錄</a>或<a href="%s">註冊</a>後再評論';
 $_['text_no_reviews']          = '目前尚無評論。';
-$_['text_note']                = '<span class="text-danger">注意:</span> 不接受 HTML 格式內容！';
+$_['text_note']                = '<span class="text-danger">註意:</span> 不接受 HTML 格式內容！';
 $_['text_success']             = '感謝您的意見。 已向管理員提交審批請求。';
 $_['text_related']             = '相關商品';
 $_['text_tags']                = '標簽:';
@@ -47,6 +47,6 @@ $_['tab_attribute']            = '屬性';
 $_['tab_review']               = '評論 (%s)';
 
 // Error
-$_['error_name']               = '警告: 評論者姓名必須爲 3 - 25字符！';
-$_['error_text']               = '警告: 評論內容必須爲 25 - 1000字符！';
+$_['error_name']               = '警告: 評論者姓名必須為 3 - 25字符！';
+$_['error_text']               = '警告: 評論內容必須為 25 - 1000字符！';
 $_['error_rating']             = '警告: 請選擇評級！';

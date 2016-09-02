@@ -72,7 +72,7 @@
       <ul class="dropdown-menu dropdown-menu-right">
         <li class="dropdown-header"><?php echo $text_help; ?></li>
         <li><a href="http://www.mycncart.com" target="_blank"><?php echo $text_homepage; ?></a></li>
-        <li><a href="http://docs.mycncart.com" target="_blank"><?php echo $text_documentation; ?></a></li>
+        <li><a href="http://www.mycncart.com/index.php?route=blog/all" target="_blank"><?php echo $text_documentation; ?></a></li>
         <li><a href="http://www.mycncart.cn" target="_blank"><?php echo $text_support; ?></a></li>
       </ul>
     </li>

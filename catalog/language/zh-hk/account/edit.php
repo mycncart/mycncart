@@ -19,10 +19,10 @@ $_['entry_fax']          = '傳真';
 $_['entry_sms_code']     = '短信驗證碼';
 
 // Error
-$_['error_exists']       = '警告: E-Mail 地址已被注冊！';
-$_['error_fullname']     = '姓名必須爲 2-32字符！';
+$_['error_exists']       = '警告: E-Mail 地址已被註冊！';
+$_['error_fullname']     = '姓名必須為 2-32字符！';
 $_['error_email']        = 'E-Mail 地址無效！';
-$_['error_telephone']    = '電話必須爲 3-32字符！';
+$_['error_telephone']    = '電話必須為 3-32字符！';
 $_['error_custom_field'] = '%s 必須！';
 $_['error_sms_code']     = '錯誤的短信驗證碼!';
-$_['error_custom_field_validate'] = '%s 无效！';
+$_['error_custom_field_validate'] = '%s 無效！';

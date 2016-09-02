@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']                        = '分期付款订单';
+$_['heading_title']                        = '分期付款訂單';
 
 // Text
 $_['text_success']                         = 'Success: You have modified recurring profiles!';

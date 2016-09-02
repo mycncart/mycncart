@@ -34,7 +34,7 @@ function is_iphone_ipad() {
 	return false;
 }
 
-function getWeiXinUserInfo($appid, $appsecret, $code){	
+function getOpenid($appid, $appsecret, $code){	
 	$openid_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appid.'&secret='.$appsecret.'&code=' . $code . '&grant_type=authorization_code';
 	
 	$result_one = file_get_contents($openid_url);
@@ -42,4 +42,20 @@ function getWeiXinUserInfo($appid, $appsecret, $code){
 	$result = json_decode($result_one, true);
 
 	return $result;
+}
+
+
+function getWeiXinUserInfo($APPID, $APPSECRET, $openid){
+	$TOKEN_URL="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$APPID."&secret=".$APPSECRET;
+
+	$json=file_get_contents($TOKEN_URL);
+	$result=json_decode($json);
+
+	$ACC_TOKEN=$result->access_token;
+	$USER_URL = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=' . $ACC_TOKEN . '&openid=' . $openid . '&lang=zh_CN';
+
+	$wxuser_json = file_get_contents($USER_URL);
+	$result = json_decode($wxuser_json,true);
+
+   return $result;
 }

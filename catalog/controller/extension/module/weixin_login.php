@@ -4,60 +4,57 @@ class ControllerExtensionModuleWeiXinLogin extends Controller {
 
 	public function index() {
 		$this->load->model('account/customer');
-
 		
-		if ($this->customer->isLogged()) {
-			$this->response->redirect($this->url->link('account/account', '', 'SSL'));
-		}
-
-		$this->load->language('account/weixin_login');
+		$this->load->language('extension/module/weixin_login');
 
 		$this->document->setTitle($this->language->get('heading_title'));
-
-		//微信登录
-		if ($this->customer->login_weixin($this->session->data['weixin_login_unionid'])) {
-			
-			unset($this->session->data['guest']);
-
-			// Default Shipping Address
-			$this->load->model('account/address');
-
-			if ($this->config->get('config_tax_customer') == 'payment') {
-				$this->session->data['payment_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
-			}
-
-			if ($this->config->get('config_tax_customer') == 'shipping') {
-				$this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
-			}
-			
-			if(isset($this->session->data['weixin_checkout_redirect'])) {
-				$weixin_login_redirect = $this->session->data['weixin_checkout_redirect'];
-				unset($this->session->data['weixin_checkout_redirect']);
-				$this->log->write('weixin-->login1');
-			}else{
-				$weixin_login_redirect = $this->url->link('account/login', '', 'SSL');
-				$this->log->write('weixin-->login2');
-			}
-			
-			//$this->response->redirect($this->url->link('account/login', '', 'SSL'));
-			$this->response->redirect($weixin_login_redirect);
-
-			//$this->response->redirect($this->url->link('account/account', '', 'SSL'));
+		
+		$data['text_weixin_login'] = $this->language->get('text_weixin_login');
+		
+		if ($this->customer->isLogged()) {
+			$data['logged'] = 1;
+		} else {
+			$data['logged'] = 0;
+		}
+		
+		if(isset($this->session->data['weixin_login_unionid'])) {
+			$data['weixin_login_authorized'] = 1;
+		} else {
+			$data['weixin_login_authorized'] = 0;
+		}
+		
+		$this->load->helper('mobile');
+		if(is_weixin()) {
+			$data['is_weixin'] = 1;
 			
 		}else{
-			
-			$this->session->data['weixin_login_warning'] = '您已登陆，只差一步即可完成微信与舒优派帐号绑定。';
-			
-			$this->response->redirect($this->url->link('account/login', '', 'SSL'));
+			$data['is_weixin'] = 0;
 		}
+		
+		if(is_mobile()) {
+			$data['is_mobile'] = 1;
+			
+		}else{
+			$data['is_mobile'] = 0;
+		}
+		
+		$appid = $this->config->get('weixin_login_appid');
+		
+		$appkey = $this->config->get('weixin_login_appkey');
+		
+		$data['weixin_login'] = $this->url->link('extension/module/weixin_login/login', '', 'SSL');
+		
+		$weixin_pclogin_redirect_uri = HTTPS_SERVER.'index.php?route=extension/module/weixin_login/weixin_pclogin_code';
+		
+		$data['wxpclogin_url'] = 'https://open.weixin.qq.com/connect/qrconnect?appid='.$appid.'&redirect_uri='.urlencode($weixin_pclogin_redirect_uri).'&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect';
+		
+		return $this->load->view('extension/module/weixin_login', $data);
 
 		
 	}
 	
 	
 	public function weixin_pclogin_code() {
-		
-		print_r($this->request->get);
 		
 		$code = $this->request->get['code'];
 		
@@ -67,17 +64,14 @@ class ControllerExtensionModuleWeiXinLogin extends Controller {
 	
 	protected function weixin_pclogin($code) {
 		
-		$appid = $this->config->get('wx_login_appid');
-		$appsecret = $this->config->get('wx_login_appsecret');
+		$this->load->language('extension/module/weixin_login');
+		
+		$appid = $this->config->get('weixin_login_appid');
+		$appsecret = $this->config->get('weixin_login_appsecret');
 		
 		$openid_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appid.'&secret='.$appsecret.'&code=' . $code . '&grant_type=authorization_code';
 		
 		$result = file_get_contents($openid_url);
-		
-		//echo "<pre>";
-		//print_r(json_decode($result, true));
-		//echo "</pre>";
-		//exit;
 		
 		$info = json_decode($result, true);
 		
@@ -106,7 +100,7 @@ class ControllerExtensionModuleWeiXinLogin extends Controller {
 					$this->response->redirect($this->url->link('account/account', '', 'SSL'));
 				}else{
 					
-					$this->session->data['weixin_login_warning'] = '您已登陆，只差一步即可完成微信与舒优派帐号绑定。';
+					$this->session->data['weixin_login_warning'] =  sprintf($this->language->get('text_weixin_login_warning'), $this->config->get('config_name'));
 					
 					$this->response->redirect($this->url->link('account/login', '', 'SSL'));
 				}
@@ -122,53 +116,45 @@ class ControllerExtensionModuleWeiXinLogin extends Controller {
 	}
 	
 	public function login() {
-		$this->load->model('account/customer');
-
 		
 		if ($this->customer->isLogged()) {
 			$this->response->redirect($this->url->link('account/account', '', true));
 		}
-
-		$this->load->language('extension/module/weixin_login');
-
-		//weixin_login
-		if ($this->customer->login_weixin($this->session->data['weixin_login_unionid'])) {
+		
+		if (isset($this->session->data['weixin_login_unionid'])) {
 			
-			unset($this->session->data['guest']);
-
-			// Default Shipping Address
-			$this->load->model('account/address');
-
-			if ($this->config->get('config_tax_customer') == 'payment') {
-				$this->session->data['payment_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
-			}
-
-			if ($this->config->get('config_tax_customer') == 'shipping') {
-				$this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
-			}
+			$this->load->language('extension/module/weixin_login');
 			
-			if(isset($this->session->data['weixin_checkout_redirect'])) {
+			if ($this->customer->login_weixin($this->session->data['weixin_login_unionid'])) {
 				
-				$weixin_login_redirect = $this->session->data['weixin_checkout_redirect'];
-				unset($this->session->data['weixin_checkout_redirect']);
+				unset($this->session->data['guest']);
+	
+				// Default Shipping Address
+				$this->load->model('account/address');
+	
+				if ($this->config->get('config_tax_customer') == 'payment') {
+					$this->session->data['payment_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
+				}
+	
+				if ($this->config->get('config_tax_customer') == 'shipping') {
+					$this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
+				}
+				
+				$this->response->redirect($this->url->link('account/account', '', true));
 				
 			}else{
 				
-				$weixin_login_redirect = $this->url->link('account/login', '', true);
+				$this->session->data['weixin_login_warning'] = sprintf($this->language->get('text_weixin_login_warning'), $this->config->get('config_name'));
+				
+				$this->response->redirect($this->url->link('account/login', '', true));
 				
 			}
-			
-			$this->response->redirect($weixin_login_redirect);
-			
-		}else{
-			
-			$this->session->data['weixin_login_warning'] = sprintf($this->language->get('text_weixin_login_warning'), $this->config->get('config_name'));
-			
-			$this->response->redirect($this->url->link('account/login', '', true));
-			
+		
+		} else {
+			$this->response->redirect($this->url->link('account/account', '', true));
 		}
 
 		
 	}
-
+	
 }

@@ -12,8 +12,8 @@ $_['text_newsletter']      = '所有資訊訂閱者';
 $_['text_customer_all']    = '所有會員';
 $_['text_customer_group']  = '會員等級';
 $_['text_customer']        = '會員';
-$_['text_affiliate_all']   = '所有推广會員';
-$_['text_affiliate']       = '推广會員';
+$_['text_affiliate_all']   = '所有推廣會員';
+$_['text_affiliate']       = '推廣會員';
 $_['text_product']         = '商品';
 
 // Entry
@@ -21,7 +21,7 @@ $_['entry_store']          = '來自於';
 $_['entry_to']             = '發送至';
 $_['entry_customer_group'] = '會員等級';
 $_['entry_customer']       = '會員';
-$_['entry_affiliate']      = '推广會員';
+$_['entry_affiliate']      = '推廣會員';
 $_['entry_product']        = '商品';
 $_['entry_subject']        = '郵件標題';
 $_['entry_message']        = '郵件內容';

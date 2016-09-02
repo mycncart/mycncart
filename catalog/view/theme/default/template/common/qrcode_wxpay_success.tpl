@@ -19,11 +19,30 @@
         <p>
           <img alt="微信扫码支付" src="http://paysdk.weixin.qq.com/example/qrcode.php?data=<?php echo urlencode($code_url); ?>" style="width:150px;height:150px;">
         </p>
-        <h2>请打开您的手机微信，点击扫一扫，扫描上面的二维码图片进行支付。</h2>
       </div>
       <?php echo $content_bottom; ?>
     </div>
     <?php echo $column_right; ?>
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function () {
+	setInterval("ajaxstatus()", 3000);    
+});
+
+function ajaxstatus() {
+		$.ajax({
+		url: '<?php echo $ajax_check_order_status; ?>&order_id=<?php echo $order_id; ?>',
+		dataType: 'json',
+		success: function(json) {
+			if (json['success']) {
+				window.location.href = "index.php?route=checkout/success";
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+} 
+</script>
 <?php echo $footer; ?>

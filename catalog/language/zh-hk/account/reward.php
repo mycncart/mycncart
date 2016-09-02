@@ -11,5 +11,5 @@ $_['column_points']      = '積分';
 // Text
 $_['text_account']       = '賬戶';
 $_['text_reward']        = '獎勵積分';
-$_['text_total']         = '獎勵積分總數爲:';
+$_['text_total']         = '獎勵積分總數為:';
 $_['text_empty']         = '還沒有獲取過獎勵積分!';

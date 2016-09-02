@@ -1,16 +1,16 @@
 <?php
 
 // Heading
-$_['heading_title']             = '推广會員';
+$_['heading_title']             = '推廣會員';
 
 // Text
-$_['text_success']              = '成功: 已修改推广會員！';
+$_['text_success']              = '成功: 已修改推廣會員！';
 $_['text_approved']             = '已審核通過 %s 會員！';
-$_['text_list']                 = '推广會員列表';
+$_['text_list']                 = '推廣會員列表';
 $_['text_add']                  = '添加推廣會員';
-$_['text_edit']                 = '編輯推广會員';
-$_['text_affiliate_detail']     = '推广会员信息';
-$_['text_affiliate_address']    = '推广会员地址';
+$_['text_edit']                 = '編輯推廣會員';
+$_['text_affiliate_detail']     = '推廣會員信息';
+$_['text_affiliate_address']    = '推廣會員地址';
 $_['text_balance']              = '收支';
 $_['text_cheque']               = '支票';
 $_['text_paypal']               = 'PayPal(貝寶)';
@@ -57,17 +57,17 @@ $_['entry_alipay_account_name'] = '支付寶賬戶姓名';
 $_['entry_alipay'] 			    = '支付寶賬戶';
 $_['entry_amount']              = '金額';
 $_['entry_description']         = '描述';
-$_['entry_name']                = '推广會員姓名';
+$_['entry_name']                = '推廣會員姓名';
 $_['entry_approved']            = '已審核';
 $_['entry_date_added']          = '添加日期';
 
 // Help
-$_['help_code']                 = 'T跟蹤碼被用來跟蹤被推薦人。';
+$_['help_code']                 = '跟蹤碼被用來跟蹤被推薦人。';
 $_['help_commission']           = '該會員從每個訂單中獲取到的傭金百分比。';
 
 // Error
-$_['error_warning']             = '警告: 请详细检查表单中的错误！';
-$_['error_permission']          = '警告: 無權限修改推广會員！';
+$_['error_warning']             = '警告: 請詳細檢查表單中的錯誤！';
+$_['error_permission']          = '警告: 無權限修改推廣會員！';
 $_['error_exists']              = '警告: 電郵地址已被註冊使用！';
 $_['error_fullname']            = '姓名必須為1-32字符！';
 $_['error_email']               = '無效電郵！';
@@ -80,10 +80,11 @@ $_['error_alipay'] 				= '支付寶賬戶!';
 $_['error_telephone']           = '電話必須為3-32字符！';
 $_['error_password']            = '密碼必須為4-20字符！';
 $_['error_confirm']             = '密碼和確認密碼不壹致！';
-$_['error_address']             = '地址 必須為3-128字符！';
+$_['error_address']             = '地址必須為3-128字符！';
 $_['error_city']                = '城市必須為2-128字符！';
 $_['error_postcode']            = '該國家郵政編碼必須為2-10字符！';
 $_['error_country']             = '請選擇國家！';
 $_['error_zone']                = '請選擇州/省/地區！';
 $_['error_code']                = '跟蹤碼必填！';
 $_['error_warning']             = '警告: 存在錯誤，請檢查！';
+$_['error_code_exists']         = '跟蹤碼被其他的推廣會員使用中!';

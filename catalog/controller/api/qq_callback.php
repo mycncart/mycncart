@@ -3,7 +3,7 @@
 define('VERSION', '1.5.0.0');
 
 // Configuration
-require_once('../../../../config.php');
+require_once('../../../config.php');
 
 date_default_timezone_set('PRC');
 

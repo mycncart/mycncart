@@ -1,13 +1,13 @@
 <?php
 
 // Heading
-$_['heading_title']             = '推广計劃';
+$_['heading_title']             = '推廣計劃';
 
 // Text
 $_['text_account']              = '推廣賬戶';
-$_['text_register']             = '推广會員注冊';
-$_['text_account_already']      = '歡迎來到我們網站，如果您是新會員，請填寫下面的表單進行注冊。如果您已經是本站的會員，請您直接<a href="%s">登錄</a>。';
-$_['text_signup']               = '創建一個新賬戶， 請完整填寫下表：';
+$_['text_register']             = '推廣會員註冊';
+$_['text_account_already']      = '歡迎來到我們網站，如果您是新推廣會員，請填寫下面的表單進行註冊。如果您已經是本站的推廣會員，請您直接<a href="%s">推廣會員登錄</a>。';
+$_['text_signup']               = '創建壹個新賬戶， 請完整填寫下表：';
 $_['text_your_details']         = '您的個人資料';
 $_['text_your_address']         = '您的詳細地址';
 $_['text_payment']              = '支付信息';
@@ -43,15 +43,15 @@ $_['entry_password']            = '密碼';
 $_['entry_confirm']             = '確認密碼';
 
 // Error
-$_['error_exists']              = '警告: E-Mail 地址已被注冊！';
-$_['error_fullname']            = '姓名必須爲 2 - 32字符！';
+$_['error_exists']              = '警告: E-Mail 地址已被註冊！';
+$_['error_fullname']            = '姓名必須為 2 - 32字符！';
 $_['error_email']               = 'E-Mail 地址無效！';
-$_['error_telephone']           = '電話必須爲 3 - 32字符！';
-$_['error_password']            = '密碼必須爲 4 - 20字符！';
-$_['error_confirm']             = '確認密碼與密碼不一致！';
-$_['error_address']             = '地址必須爲 3 - 128字符！';
-$_['error_city']                = '所在城市必須爲 2 - 128字符！';
+$_['error_telephone']           = '電話必須為 3 - 32字符！';
+$_['error_password']            = '密碼必須為 4 - 20字符！';
+$_['error_confirm']             = '確認密碼與密碼不壹致！';
+$_['error_address']             = '地址必須為 3 - 128字符！';
+$_['error_city']                = '所在城市必須為 2 - 128字符！';
 $_['error_country']             = '請選擇國家';
 $_['error_zone']                = '請選擇州/省/地區！';
-$_['error_postcode']            = '郵政編碼必須爲 2 - 10字符！';
+$_['error_postcode']            = '郵政編碼必須為 2 - 10字符！';
 $_['error_agree']               = '警告:必須同意 %s!';

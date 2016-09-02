@@ -15,3 +15,4 @@ $_['column_action']         = '操作';
 // Entry
 $_['entry_date_start']      = '開始日期';
 $_['entry_date_end']        = '結束日期';
+$_['entry_customer']		= '會員';

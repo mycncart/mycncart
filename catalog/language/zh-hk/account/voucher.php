@@ -25,9 +25,9 @@ $_['help_message']     = '可選';
 $_['help_amount']      = '金額必須在 %s 到 %s之間';
 
 // Error
-$_['error_to_name']    = '收券人姓名必須爲 1 - 64字符！';
-$_['error_from_name']  = '您的姓名必須爲 1 - 64字符！';
+$_['error_to_name']    = '收券人姓名必須為 1 - 64字符！';
+$_['error_from_name']  = '您的姓名必須為 1 - 64字符！';
 $_['error_email']      = 'E-Mail 地址無效！';
 $_['error_theme']      = '禮品券主題必選！';
-$_['error_amount']     = '金額必須爲 %s 至 %s 之間！';
+$_['error_amount']     = '金額必須為 %s 至 %s 之間！';
 $_['error_agree']      = '警告: 此禮品券不可以退還！';

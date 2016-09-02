@@ -10,7 +10,7 @@ require_once(CLASS_PATH."ErrorCase.class.php");
 /*
  * @brief url封装类，将常用的url请求操作封装在一起
  * */
-class URL{
+class QQURL{
     private $error;
 
     public function __construct(){

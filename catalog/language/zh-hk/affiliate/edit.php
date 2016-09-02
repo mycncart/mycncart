@@ -1,7 +1,7 @@
 <?php
 
 // Heading
-$_['heading_title']     = '會員賬戶';
+$_['heading_title']     = '推廣會員賬戶';
 
 // Text
 $_['text_account']      = '推廣賬戶';
@@ -25,11 +25,11 @@ $_['entry_zone']        = '州/省/地區';
 
 // Error
 $_['error_exists']      = '警告: E-Mail 地址無需！';
-$_['error_fullname']    = '名稱必須爲 2 - 32字符！';
+$_['error_fullname']    = '姓名必須為 2 - 32字符！';
 $_['error_email']       = 'E-Mail 地址無效！';
-$_['error_telephone']   = '電話必須爲 3 - 32字符！';
-$_['error_address']     = '地址必須爲 3 - 128字符！';
-$_['error_city']        = '所在城市必須爲 2 - 128字符！';
+$_['error_telephone']   = '電話必須為 3 - 32字符！';
+$_['error_address']   = '地址必須為 3 - 128字符！';
+$_['error_city']        = '所在城市必須為 2 - 128字符！';
 $_['error_country']     = '請選擇國家';
 $_['error_zone']        = '請選擇州/省/地區！';
-$_['error_postcode']    = '郵政編碼必須爲 2 - 10字符！';
+$_['error_postcode']    = '郵政編碼必須為 2 - 10字符！';

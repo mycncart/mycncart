@@ -55,6 +55,7 @@ class ControllerAccountLogin extends Controller {
 			unset($this->session->data['qq_login_warning']);
 			unset($this->session->data['weibo_login_warning']);
 			unset($this->session->data['weixin_login_warning']);
+			unset($this->session->data['qq_nickname']);
 			
 			// Unset guest
 			unset($this->session->data['guest']);

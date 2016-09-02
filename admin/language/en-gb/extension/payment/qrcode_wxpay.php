@@ -8,7 +8,7 @@ $_['text_appid'] 						= 'APPID';
 $_['text_key'] 							= 'KEY';
 $_['text_appsecret'] 					= 'AppSecret';
 $_['text_payment']       				= 'Payment';
-$_['text_wxpay']						= '<img src="view/image/payment/wxpay_coc.png" alt="WeiXin Qrcode Payment" title="WeiXin Qrcode Payment" style="border: 1px solid #EEEEEE;" />';
+$_['text_wxpay']						= '<img src="view/image/payment/qrcode_wxpay.png" alt="WeiXin Qrcode Payment" title="WeiXin Qrcode Payment" style="border: 1px solid #EEEEEE;" />';
 $_['text_success']       				= 'Success: You have modified WeiXin Qrcode payment!';
 $_['text_edit']          				= 'Edit WeiXin Qrcode Payment';
 

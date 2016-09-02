@@ -23,7 +23,7 @@ class Oauth{
 
     function __construct(){
         $this->recorder = new Recorder();
-        $this->urlUtils = new URL();
+        $this->urlUtils = new QQURL();
         $this->error = new ErrorCase();
     }
 

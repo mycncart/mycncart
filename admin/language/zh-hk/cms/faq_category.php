@@ -1,38 +1,38 @@
 <?php
 // Heading
-$_['heading_title']          = '问题分类';
+$_['heading_title']          = '問題分類';
 
 // Text
-$_['text_success']           = '成功: 已修改问题分类！';
-$_['text_list']              = '问题分类列表';
-$_['text_add']               = '添加问题分类';
-$_['text_edit']              = '编辑问题分类';
-$_['text_default']           = '默认';
+$_['text_success']           = '成功: 已修改問題分類！';
+$_['text_list']              = '問題分類列表';
+$_['text_add']               = '添加問題分類';
+$_['text_edit']              = '編輯問題分類';
+$_['text_default']           = '默認';
 
 // Column
-$_['column_name']            = '分类名称';
+$_['column_name']            = '分類名稱';
 $_['column_sort_order']      = '排序';
 $_['column_action']          = '操作';
 
 // Entry
-$_['entry_name']             = '分类名称';
+$_['entry_name']             = '分類名稱';
 $_['entry_description']      = '描述';
-$_['entry_meta_title'] 	     = 'Meta Tag 标题';
-$_['entry_meta_keyword'] 	 = 'Meta Tag 关键词';
+$_['entry_meta_title'] 	     = 'Meta Tag 標題';
+$_['entry_meta_keyword'] 	 = 'Meta Tag 關鍵詞';
 $_['entry_meta_description'] = 'Meta Tag 描述';
 $_['entry_keyword']          = 'SEO URL';
-$_['entry_parent']           = '父问题分类';
+$_['entry_parent']           = '父問題分類';
 $_['entry_store']            = '商店';
 $_['entry_sort_order']       = '排序';
-$_['entry_status']           = '状态';
-$_['entry_layout']           = '布局覆盖';
+$_['entry_status']           = '狀態';
+$_['entry_layout']           = '布局覆蓋';
 
 // Help
-$_['help_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
+$_['help_keyword']           = '不要用空格，使用-鏈接關鍵字，確保該關鍵詞為全站唯壹。';
 
 // Error
-$_['error_warning']          = '警告: 存在错误，请检查！';
-$_['error_permission']       = '警告: 无权限修改分类！';
-$_['error_name']             = '分类名称必须介于2-32字符之间！';
-$_['error_meta_title']       = 'Meta 标题必须介于3-255字符之间！';
-$_['error_keyword']          = '该 SEO URL 已经存在了！';
+$_['error_warning']          = '警告: 存在錯誤，請檢查！';
+$_['error_permission']       = '警告: 無權限修改分類！';
+$_['error_name']             = '分類名稱必須介於2-32字符之間！';
+$_['error_meta_title']       = 'Meta 標題必須介於3-255字符之間！';
+$_['error_keyword']          = '該 SEO URL 已經存在了！';

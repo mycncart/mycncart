@@ -201,4 +201,10 @@ class ModelAccountCustomer extends Model {
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET weibo_login_access_token = '" . $this->db->escape(trim($weibo_login_access_token)) . "', weibo_login_uid = '" . $this->db->escape(trim($weibo_login_uid)) . "' WHERE customer_id = '" . (int)$customer_id . "'");
 
 	}
+	
+	public function updateCustomerQQInfo($customer_id, $qq_openid) {
+
+		$this->db->query("UPDATE " . DB_PREFIX . "customer SET qq_openid = '" . $this->db->escape(trim($qq_openid)) . "' WHERE customer_id = '" . (int)$customer_id . "'");
+
+	}
 }

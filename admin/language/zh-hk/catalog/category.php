@@ -44,3 +44,4 @@ $_['error_permission']       = '警告: 無權限修改分類！';
 $_['error_name']             = '分類名稱必須介於2-255字符之間！';
 $_['error_meta_title']       = 'Meta 標題必須介於3-255字符之間！';
 $_['error_keyword']          = '該 SEO URL 已經存在了！';
+$_['error_parent']           = '您選擇的父分類是當前分類的子分類！';

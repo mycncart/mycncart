@@ -16,6 +16,7 @@
       <button type="button" class="close" data-dismiss="alert">&times;</button>
     </div>
     <?php } ?>
+    <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> MyCnCart 官方QQ群： 473071696</div>
     <?php foreach ($rows as $row) { ?>
     <div class="row">
       <?php foreach ($row as $dashboard_1) { ?>

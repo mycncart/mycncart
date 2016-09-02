@@ -11,5 +11,5 @@ $_['column_amount']      = '金額 (%s)';
 // Text
 $_['text_account']       = '賬戶';
 $_['text_transaction']   = '賬戶余額記錄';
-$_['text_total']         = '賬戶余額爲:';
+$_['text_total']         = '賬戶余額為:';
 $_['text_empty']         = '您還沒有任何賬戶余額記錄！';

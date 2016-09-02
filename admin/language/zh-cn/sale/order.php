@@ -129,6 +129,6 @@ $_['error_action']               = '警告: 無法完成此操作！';
 $_['error_filetype']			 = '无效文件类型!';
 
 // Help
-$_['help_override']              = 'If the customers order is being blocked from changing the order status due to a anti-fraud extension enable override.';
+$_['help_override']              = '在由于反欺诈而造成订单被锁的情况下，仍然可以覆盖操作。';
 
 

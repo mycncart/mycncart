@@ -13,5 +13,5 @@ $_['entry_password'] = '密碼';
 $_['entry_confirm']  = '確認密碼';
 
 // Error
-$_['error_password'] = '密碼必須爲 4-20字符！';
-$_['error_confirm']  = '確認密碼與密碼不一致！';
+$_['error_password'] = '密碼必須為 4-20字符！';
+$_['error_confirm']  = '確認密碼與密碼不壹致！';

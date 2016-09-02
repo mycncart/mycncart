@@ -48,16 +48,6 @@
             </div>
           </div>
           
-          <div class="form-group required">
-            <label class="col-sm-2 control-label" for="entry-callback-url"><?php echo $entry_callback_url; ?></label>
-            <div class="col-sm-10">
-              <input type="text" name="weibo_login_callback_url" value="<?php echo $weibo_login_callback_url; ?>" placeholder="<?php echo $entry_callback_url; ?>" id="entry-callback-url" class="form-control"/>
-              <?php if ($error_callback_url) { ?>
-              <div class="text-danger"><?php echo $error_callback_url; ?></div>
-              <?php } ?>
-            </div>
-          </div>
-          
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_status; ?></label>
             <div class="col-sm-10">

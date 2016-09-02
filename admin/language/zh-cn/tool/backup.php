@@ -7,8 +7,8 @@ $_['heading_title']    = '备份 / 恢复';
 $_['text_success']     = '成功：已成功导入数据库！';
 
 // Entry
-$_['entry_restore']    = '恢复备份';
-$_['entry_backup']     = '备份';
+$_['entry_import']     = '导入恢复备份';
+$_['entry_export']     = '导出备份';
 
 // Error
 $_['error_permission'] = '警告：您没有权限修改备份！';

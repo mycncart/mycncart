@@ -8,7 +8,7 @@ class ControllerAccountRegister extends Controller {
 		}
 		
 		//weixin
-		if(isset($this->session->data['weixin_login_openid']) &&  isset($this->session->data['weixin_login_unionid'])) {
+		if(isset($this->session->data['weixin_login_openid']) &&  isset($this->session->data['weixin_login_unionid'])){
 			$weixin_login_unionid = $this->session->data['weixin_login_unionid'];
 			$weixin_login_openid = $this->session->data['weixin_login_openid'];
 		}elseif(isset($this->session->data['weixin_pclogin_openid']) &&  isset($this->session->data['weixin_pclogin_unionid'])){
@@ -27,6 +27,13 @@ class ControllerAccountRegister extends Controller {
 			$weibo_login_uid = '';
 			$weibo_login_access_token = '';
 		}
+		
+		//qq
+		if(isset($this->session->data['qq_openid'])) {
+			$qq_openid = $this->session->data['qq_openid'];
+		}else{
+			$qq_openid = '';
+		}
 
 		$this->load->language('account/register');
 
@@ -44,6 +51,10 @@ class ControllerAccountRegister extends Controller {
 			if($weibo_login_access_token && $weibo_login_uid) {
 				$this->model_account_customer->updateCustomerWeiBoInfo($customer_id, $weibo_login_access_token, $weibo_login_uid);
 			}
+			
+			if($qq_openid) {
+				$this->model_account_customer->updateCustomerQQInfo($customer_id, $qq_openid);
+			}
 
 			// Clear any previous login attempts for unregistered accounts.
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
@@ -54,6 +65,7 @@ class ControllerAccountRegister extends Controller {
 			unset($this->session->data['qq_login_warning']);
 			unset($this->session->data['weibo_login_warning']);
 			unset($this->session->data['weixin_login_warning']);
+			unset($this->session->data['qq_nickname']);
 
 			unset($this->session->data['guest']);
 

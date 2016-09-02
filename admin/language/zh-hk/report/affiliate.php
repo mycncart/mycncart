@@ -1,13 +1,13 @@
 <?php
 
 // Heading
-$_['heading_title']     = '推广會員傭金統計報告';
+$_['heading_title']     = '推廣會員傭金統計報告';
 
 // Text
-$_['text_list']         = '推广會員傭金列表';
+$_['text_list']         = '推廣會員傭金列表';
 
 // Column
-$_['column_affiliate']  = '推广會員姓名';
+$_['column_affiliate']  = '推廣會員姓名';
 $_['column_email']      = 'E-Mail';
 $_['column_status']     = '狀態';
 $_['column_commission'] = '傭金';
