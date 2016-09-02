@@ -280,6 +280,8 @@ class ModelLocalisationLanguage extends Model {
 		$this->cache->delete('weight_class');
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "recurring_description WHERE language_id = '" . (int)$language_id . "'");
+		
+		$this->db->query("DELETE FROM " . DB_PREFIX . "banner_image WHERE language_id = '" . (int)$language_id . "'");
 	}
 
 	public function getLanguage($language_id) {
