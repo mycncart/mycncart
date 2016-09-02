@@ -135,14 +135,8 @@ CREATE TABLE `mcc_api` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`api_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `mcc_api`
---
-
-INSERT INTO `mcc_api` (`api_id`, `name`, `key`, `status`, `date_added`, `date_modified`) VALUES
-(1, 'Default', '6zV5ZdcQAGd0famOgjFDaDxo4BxWa9RIwOsbEhqyrAcFmZdLIGkUa2qqdCtMSVnxB6dUFZdwx4JKm7DWC4udIOEgmQU9N6IA9L9XGhBvfoFvatN9RiHlHhxP9zq0F14uENmifYFDSHcgQRizhKT48xdrrGZCSOTXCSK9HEkWjSk5pTqrAbSISwYfRv6gghdnBwpIdZE2KEE7FPZu0EQGQFUIdMnIwLe24M26wbcBZQwQIb0470pDKjQxHvXEOesO', 1, '2016-09-02 20:59:14', '2016-09-02 20:59:14');
 
 -- --------------------------------------------------------
 
@@ -4781,7 +4775,7 @@ INSERT INTO `mcc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `se
 (3546, 0, 'config', 'config_mail_alert', '["account","affiliate","order","review"]', 1),
 (3547, 0, 'config', 'config_mail_alert_email', '', 0),
 (3548, 0, 'config', 'config_maintenance', '0', 0),
-(3549, 0, 'config', 'config_seo_url', '1', 0),
+(3549, 0, 'config', 'config_seo_url', '0', 0),
 (3550, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
 (670, 0, 'voucher', 'voucher_sort_order', '8', 0),
 (669, 0, 'voucher', 'voucher_status', '1', 0),
@@ -4887,7 +4881,7 @@ INSERT INTO `mcc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `se
 (3534, 0, 'config', 'config_ftp_port', '21', 0),
 (3535, 0, 'config', 'config_ftp_username', '', 0),
 (3536, 0, 'config', 'config_ftp_password', '', 0),
-(3533, 0, 'config', 'config_ftp_hostname', 'demotest.mycncart.com', 0),
+(3533, 0, 'config', 'config_ftp_hostname', '', 0),
 (3532, 0, 'config', 'config_icon', 'catalog/cart.png', 0),
 (3531, 0, 'config', 'config_logo', 'catalog/logo.png', 0),
 (3530, 0, 'config', 'config_limit_autocomplete', '50', 0),
@@ -5232,18 +5226,8 @@ CREATE TABLE `mcc_upload` (
   `code` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`upload_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `mcc_upload`
---
-
-INSERT INTO `mcc_upload` (`upload_id`, `name`, `filename`, `code`, `date_added`) VALUES
-(1, 'bb-bj.jpg', 'bb-bj.jpg.t21ygzb93Mr1Fax6rizyywS6OHZKI11a', '3966151ad88d1fd3d1e9ad187c37fafd01754822', '2016-08-25 14:12:27'),
-(2, 'bb-bj1.jpg', 'bb-bj1.jpg.TlK432yr8kJckqu7SX6PfyBOvkGjuAZf', 'e75887f8826347ea6e60f54e36facd95b6d41d3c', '2016-08-25 14:13:00'),
-(3, 'DSC3387.jpg', 'DSC3387.jpg.L4qCuqHba4PpzrgU946uaRiF3i0xZWMt', '6ae8706d742f9a188b466a5c479941e74f9a52d4', '2016-08-25 14:17:51'),
-(4, '.txt', '.txt.F7IdDSYL11rz9ZVPMswjp0mvdoCVvYR9', 'e3e8040a5a3c63a909d7c2a3e41a21534bf49be3', '2016-08-28 13:03:49'),
-(5, '.txt', '.txt.UTCWWH22oDEVGobchqwsErVC6IMGeYnk', '15d4d87dd2e3a3588e60f8b66e6c1337dff96b2e', '2016-09-01 09:20:02');
 
 -- --------------------------------------------------------
 
@@ -5364,8 +5348,7 @@ CREATE TABLE `mcc_user` (
 --
 
 INSERT INTO `mcc_user` (`user_id`, `user_group_id`, `username`, `password`, `salt`, `fullname`, `email`, `image`, `code`, `ip`, `status`, `date_added`) VALUES
-(1, 1, 'admin', 'ab5341d84a42222b94af5cdaba72665cae53d421', 'd7pVbiy74', '?????', 'opencart@qq.com', '', '', '119.182.217.156', 1, '2016-09-02 20:59:14'),
-(2, 10, 'demo', '3eef6dd0fa62be8bbb9fb165264e38c63364b708', '2j6OxdXZe', 'demo', 'opencartchina@qq.com', '', '', '36.57.165.151', 1, '2016-08-23 07:52:54');
+(1, 1, 'admin', 'ab5341d84a42222b94af5cdaba72665cae53d421', 'd7pVbiy74', '?????', 'opencart@qq.com', '', '', '119.182.217.156', 1, '2016-09-02 20:59:14');
 
 -- --------------------------------------------------------
 
