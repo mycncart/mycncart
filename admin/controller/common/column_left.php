@@ -12,7 +12,7 @@ class ControllerCommonColumnLeft extends Controller {
 	
 			if ($user_info) {
 				$data['fullname'] = $user_info['fullname'];
-	
+				$data['username']  = $user_info['username'];
 				$data['user_group'] = $user_info['user_group'];
 	
 				if (is_file(DIR_IMAGE . $user_info['image'])) {
