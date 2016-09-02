@@ -39,7 +39,7 @@ class ModelCatalogCategory extends Model {
 		}
 
 		// Set which layout to use with this category
-		if (isset($data['category_layout'])) {
+		if ($data['category_layout']) {
 			foreach ($data['category_layout'] as $store_id => $layout_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_layout SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
 			}
