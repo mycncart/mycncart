@@ -137,10 +137,10 @@ $(document).ready(function() {
 			
 			$('#modal-image').remove();
 			
-			if (Cookies.get('imagemanager_last_open_folder') == '') {
-				imagemanager_last_open_folder = 'catalog';
-			} else {
+			if (Cookies.get('imagemanager_last_open_folder') && (Cookies.get('imagemanager_last_open_folder')!='undefined')) {
 				imagemanager_last_open_folder = Cookies.get('imagemanager_last_open_folder');
+			} else {
+				imagemanager_last_open_folder = '';
 			}
 			
 			$.ajax({
