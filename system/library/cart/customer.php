@@ -74,10 +74,13 @@ class Customer {
 			
 			//if mobile weixin login
 			if(isset($this->session->data['weixin_login_openid']) &&  isset($this->session->data['weixin_login_unionid'])) {
-				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '" . $this->db->escape($this->session->data['weixin_login_openid']) . "', weixin_login_unionid = '" . $this->db->escape($this->session->data['weixin_login_unionid']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 				
-				//clear other customer's same weixin info
-				$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '', weixin_login_unionid = '' WHERE weixin_login_openid LIKE  '" . $this->db->escape($this->session->data['weixin_login_openid']) . "' AND weixin_login_unionid LIKE '" . $this->db->escape($this->session->data['weixin_login_unionid']) . "' AND customer_id != '" . (int)$this->customer_id . "'");
+				if ($this->session->data['weixin_login_unionid']) {
+					$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '" . $this->db->escape($this->session->data['weixin_login_openid']) . "', weixin_login_unionid = '" . $this->db->escape($this->session->data['weixin_login_unionid']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+					
+					//clear other customer's same weixin info
+					$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '', weixin_login_unionid = '' WHERE weixin_login_openid LIKE  '" . $this->db->escape($this->session->data['weixin_login_openid']) . "' AND weixin_login_unionid LIKE '" . $this->db->escape($this->session->data['weixin_login_unionid']) . "' AND customer_id != '" . (int)$this->customer_id . "'");
+				}
 						
 			}
 			
@@ -106,49 +109,55 @@ class Customer {
 	}
 	
 	public function login_weixin($weixin_login_unionid){
-		$customer = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE weixin_login_unionid = '" . $this->db->escape($weixin_login_unionid) . "'");
-
-		if ($customer->num_rows) {
-			$this->session->data['customer_id'] = $customer->row['customer_id'];
-
-			if ($customer->row['cart'] && is_string($customer->row['cart'])) {
-				$cart = unserialize($customer->row['cart']);
-
-				foreach ($cart as $key => $value) {
-					if (!array_key_exists($key, $this->session->data['cart'])) {
-						$this->session->data['cart'][$key] = $value;
-					} else {
-						$this->session->data['cart'][$key] += $value;
+		
+		if ($weixin_login_unionid) {
+			$customer = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE weixin_login_unionid = '" . $this->db->escape($weixin_login_unionid) . "'");
+	
+			if ($customer->num_rows) {
+				$this->session->data['customer_id'] = $customer->row['customer_id'];
+	
+				if ($customer->row['cart'] && is_string($customer->row['cart'])) {
+					$cart = unserialize($customer->row['cart']);
+	
+					foreach ($cart as $key => $value) {
+						if (!array_key_exists($key, $this->session->data['cart'])) {
+							$this->session->data['cart'][$key] = $value;
+						} else {
+							$this->session->data['cart'][$key] += $value;
+						}
 					}
 				}
-			}
-
-			if ($customer->row['wishlist'] && is_string($customer->row['wishlist'])) {
-				if (!isset($this->session->data['wishlist'])) {
-					$this->session->data['wishlist'] = array();
-				}
-
-				$wishlist = unserialize($customer->row['wishlist']);
-
-				foreach ($wishlist as $product_id) {
-					if (!in_array($product_id, $this->session->data['wishlist'])) {
-						$this->session->data['wishlist'][] = $product_id;
+	
+				if ($customer->row['wishlist'] && is_string($customer->row['wishlist'])) {
+					if (!isset($this->session->data['wishlist'])) {
+						$this->session->data['wishlist'] = array();
+					}
+	
+					$wishlist = unserialize($customer->row['wishlist']);
+	
+					foreach ($wishlist as $product_id) {
+						if (!in_array($product_id, $this->session->data['wishlist'])) {
+							$this->session->data['wishlist'][] = $product_id;
+						}
 					}
 				}
+	
+				$this->customer_id = $customer->row['customer_id'];
+				$this->fullname = $customer->row['fullname'];
+				$this->email = $customer->row['email'];
+				$this->telephone = $customer->row['telephone'];
+				$this->fax = $customer->row['fax'];
+				$this->newsletter = $customer->row['newsletter'];
+				$this->customer_group_id = $customer->row['customer_group_id'];
+				$this->address_id = $customer->row['address_id'];
+	
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+	
+				return true;
+			} else {
+				return false;
 			}
-
-			$this->customer_id = $customer->row['customer_id'];
-			$this->fullname = $customer->row['fullname'];
-			$this->email = $customer->row['email'];
-			$this->telephone = $customer->row['telephone'];
-			$this->fax = $customer->row['fax'];
-			$this->newsletter = $customer->row['newsletter'];
-			$this->customer_group_id = $customer->row['customer_group_id'];
-			$this->address_id = $customer->row['address_id'];
-
-			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
-
-			return true;
+		
 		} else {
 			return false;
 		}
