@@ -74,7 +74,7 @@ class ModelInstallInstall extends Model {
 
 
 
-			$db->query("INSERT INTO `" . $data['db_prefix'] . "user` SET user_id = '1', user_group_id = '1', username = '" . $db->escape($data['username']) . "', salt = '" . $db->escape($salt = token(9)) . "', password = '" . $db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', fullname = '超级管理员', email = '" . $db->escape($data['email']) . "', status = '1', date_added = NOW()");
+			$db->query("INSERT INTO `" . $data['db_prefix'] . "user` SET user_id = '1', user_group_id = '1', username = '" . $db->escape($data['username']) . "', salt = '" . $db->escape($salt = token(9)) . "', password = '" . $db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', fullname = 'SuperAdmin', email = '" . $db->escape($data['email']) . "', status = '1', date_added = NOW()");
 
 
 
