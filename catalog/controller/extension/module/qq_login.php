@@ -40,6 +40,7 @@ class ControllerExtensionModuleQQLogin extends Controller {
 		
 		define('QQ_LOGIN_APPID', $this->config->get('qq_login_appid'));
 		define('QQ_LOGIN_APPKEY', $this->config->get('qq_login_appkey'));
+		define('QQ_CALLBACK_URI', HTTP_SERVER.'catalog/controller/api/qq_callback.php');
 		require_once(DIR_SYSTEM.'library/qq/qqConnectAPI.php');
 		$qc = new QC();
 		$access_token = $qc->qq_callback();
@@ -92,6 +93,7 @@ class ControllerExtensionModuleQQLogin extends Controller {
 	public function login() {
 		define('QQ_LOGIN_APPID', $this->config->get('qq_login_appid'));
 		define('QQ_LOGIN_APPKEY', $this->config->get('qq_login_appkey'));
+		define('QQ_CALLBACK_URI', HTTP_SERVER.'catalog/controller/api/qq_callback.php');
 		require_once(DIR_SYSTEM.'library/qq/qqConnectAPI.php');
 		$qc = new QC();
 		$qc->qq_login();
