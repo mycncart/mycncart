@@ -26,7 +26,7 @@ class ControllerExtensionPaymentQrcodeWxPay extends Controller {
 
 		$data['action'] = $this->url->link('extension/payment/qrcode_wxpay', 'token=' . $this->session->data['token'], true);
 
-		$data['cancel'] = $this->url->link('extension/extension', 'token=' . $this->session->data['token'], true);
+		$data['cancel'] = $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=payment', true);
 		
 		$this->load->model('setting/setting');
 			
@@ -37,7 +37,7 @@ class ControllerExtensionPaymentQrcodeWxPay extends Controller {
 			
 			$this->session->data['success'] = $this->language->get('text_success');
 			
-			$this->response->redirect($this->url->link('extension/extension', 'token=' . $this->session->data['token'], true));
+			$this->response->redirect($this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=payment', true));
 		}
 
 		$data['heading_title'] = $this->language->get('heading_title');

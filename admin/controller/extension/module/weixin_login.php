@@ -14,7 +14,7 @@ class ControllerExtensionModuleWeiXinLogin extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->response->redirect($this->url->link('extension/extension', 'token=' . $this->session->data['token'], true));
+			$this->response->redirect($this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=module', true));
 		}
 
 		$data['heading_title'] = $this->language->get('heading_title');
@@ -70,7 +70,7 @@ class ControllerExtensionModuleWeiXinLogin extends Controller {
 
 		$data['action'] = $this->url->link('extension/module/weixin_login', 'token=' . $this->session->data['token'], true);
 
-		$data['cancel'] = $this->url->link('extension/extension', 'token=' . $this->session->data['token'], true);
+		$data['cancel'] = $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=module', true);
 
 		if (isset($this->request->post['weixin_login_appid'])) {
 			$data['weixin_login_appid'] = $this->request->post['weixin_login_appid'];
