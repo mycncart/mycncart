@@ -189,13 +189,13 @@ class ControllerExtensionPaymentQrcodeWxPay extends Controller {
 						
 						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id, '', true);
 						
-						$this->log->write('QrcodeWxPay :: 2: ');
+						if($log) $this->log->write('QrcodeWxPay :: 2: ');
 						
 					} else {
 						
 						$this->model_checkout_order->addOrderHistory($order_id, $order_status_id, '', true);
 						
-						$this->log->write('QrcodeWxPay :: 3: ');
+						if($log) $this->log->write('QrcodeWxPay :: 3: ');
 						
 					}
 					
@@ -239,7 +239,7 @@ class ControllerExtensionPaymentQrcodeWxPay extends Controller {
 			
 		}else{
 			
-			$this->log->write('QrcodeWxPay :: Four: '.$result);
+			if($log) $this->log->write('QrcodeWxPay :: Four: '.$result);
 			
 		}
 		
