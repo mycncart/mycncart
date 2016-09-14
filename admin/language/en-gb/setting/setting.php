@@ -140,6 +140,7 @@ $_['entry_error_log']              = 'Log Errors';
 $_['entry_error_filename']         = 'Error Log Filename';
 $_['entry_status']                 = 'Status';
 $_['entry_limit_autocomplete']     = 'Default Items For Autocomplete';
+$_['entry_baidu_api']              = 'BaiDu API';
 
 // Help
 $_['help_geocode']                 = 'Please enter your store location geocode manually.';
