@@ -2,6 +2,44 @@
   <div class="col-sm-6">
     <fieldset id="account">
       <legend><?php echo $text_your_details; ?></legend>
+      <ul class="nav nav-tabs">
+        <li class="active" ><a href="#tab-email" data-toggle="tab" onClick="setEmailRegister()"><?php echo $tab_email_register; ?></a>
+        <input id="email-register" class="hidden" type="radio" name="registertype" checked="checked"  value="email">
+        </li>
+		<li><a href="#tab-mobile" data-toggle="tab" onClick="setMobileRegister()"><?php echo $tab_mobile_register; ?></a>
+        <input id="mobile-register" class="hidden" type="radio" name="registertype"  value="mobile">
+        </li>
+      </ul>
+      
+      <div class="tab-content">
+      	<div class="tab-pane active " id="tab-email">
+        	
+            <div class="form-group required">
+              <label class="control-label" for="input-payment-email"><?php echo $entry_email; ?></label>
+              <input type="text" name="email" value="" placeholder="<?php echo $entry_email; ?>" id="input-payment-email" class="form-control" />
+            </div>
+            
+        </div>
+        
+        <div class="tab-pane" id="tab-mobile">
+        	<div class="form-group required">
+              <label class="control-label" for="input-payment-telephone"><?php echo $entry_telephone; ?></label>
+              <input type="text" name="telephone" value="" placeholder="<?php echo $entry_telephone; ?>" id="input-payment-telephone" class="form-control" />
+              <?php if($sms_gateway) { ?>
+              <br />
+              <input type="button" class="btn btn-long" id="mobile_code" value="<?php echo $text_get_sms_code; ?>" />
+              <?php } ?>
+            </div>
+            
+            <?php if($sms_gateway) { ?>
+            <div class="form-group required">
+              <label class="control-label" for="input-payment-sms-code"><?php echo $entry_sms_code; ?></label>
+                <input type="text" name="sms_code" value="<?php echo $sms_code; ?>" placeholder="<?php echo $entry_sms_code; ?>" id="input-payment-sms-code" class="form-control" />
+              </div>
+            <?php } ?>
+        </div>
+      </div>
+      
       <div class="form-group" style="display: <?php echo (count($customer_groups) > 1 ? 'block' : 'none'); ?>;">
         <label class="control-label"><?php echo $entry_customer_group; ?></label>
         <?php foreach ($customer_groups as $customer_group) { ?>
@@ -24,25 +62,6 @@
         <label class="control-label" for="input-payment-fullname"><?php echo $entry_fullname; ?></label>
         <input type="text" name="fullname" value="" placeholder="<?php echo $entry_fullname; ?>" id="input-payment-fullname" class="form-control" />
       </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-email"><?php echo $entry_email; ?></label>
-        <input type="text" name="email" value="" placeholder="<?php echo $entry_email; ?>" id="input-payment-email" class="form-control" />
-      </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-telephone"><?php echo $entry_telephone; ?></label>
-        <input type="text" name="telephone" value="" placeholder="<?php echo $entry_telephone; ?>" id="input-payment-telephone" class="form-control" />
-        <?php if($sms_gateway) { ?>
-        <br />
-        <input type="button" class="btn btn-long" id="mobile_code" value="<?php echo $text_get_sms_code; ?>" />
-        <?php } ?>
-      </div>
-      
-      <?php if($sms_gateway) { ?>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-sms-code"><?php echo $entry_sms_code; ?></label>
-          <input type="text" name="sms_code" value="<?php echo $sms_code; ?>" placeholder="<?php echo $entry_sms_code; ?>" id="input-payment-sms-code" class="form-control" />
-        </div>
-      <?php } ?>
       
       <div class="form-group">
         <label class="control-label" for="input-payment-fax"><?php echo $entry_fax; ?></label>
@@ -161,17 +180,9 @@
         <label class="control-label" for="input-payment-company"><?php echo $entry_company; ?></label>
         <input type="text" name="company" value="" placeholder="<?php echo $entry_company; ?>" id="input-payment-company" class="form-control" />
       </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-address"><?php echo $entry_address; ?></label>
-        <input type="text" name="address" value="" placeholder="<?php echo $entry_address; ?>" id="input-payment-address" class="form-control" />
-      </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-city"><?php echo $entry_city; ?></label>
-        <input type="text" name="city" value="" placeholder="<?php echo $entry_city; ?>" id="input-payment-city" class="form-control" />
-      </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-postcode"><?php echo $entry_postcode; ?></label>
-        <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-payment-postcode" class="form-control" />
+      <div id="register-receiver-telephone" class="form-group required">
+        <label class="control-label" for="input-payment-shipping-telephone"><?php echo $entry_shipping_telephone; ?></label>
+        <input type="text" name="shipping_telephone" value="" placeholder="<?php echo $entry_shipping_telephone; ?>" id="input-payment-shipping-telephone" class="form-control" />
       </div>
       <div class="form-group required">
         <label class="control-label" for="input-payment-country"><?php echo $entry_country; ?></label>
@@ -191,6 +202,20 @@
         <select name="zone_id" id="input-payment-zone" class="form-control">
         </select>
       </div>
+      <div class="form-group required">
+        <label class="control-label" for="input-payment-city"><?php echo $entry_city; ?></label>
+        <input type="text" name="city" value="" placeholder="<?php echo $entry_city; ?>" id="input-payment-city" class="form-control" />
+      </div>
+      <div class="form-group required">
+        <label class="control-label" for="input-payment-address"><?php echo $entry_address; ?></label>
+        <input type="text" name="address" value="" placeholder="<?php echo $entry_address; ?>" id="input-payment-address" class="form-control" />
+      </div>
+      
+      <div class="form-group required">
+        <label class="control-label" for="input-payment-postcode"><?php echo $entry_postcode; ?></label>
+        <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-payment-postcode" class="form-control" />
+      </div>
+      
       <?php foreach ($custom_fields as $custom_field) { ?>
       <?php if ($custom_field['location'] == 'address') { ?>
       <?php if ($custom_field['type'] == 'select') { ?>
@@ -316,6 +341,19 @@
   </div>
 </div>
 <?php } ?>
+
+<script type="text/javascript"><!--
+
+function setEmailRegister() {
+	$('input:radio[name=registertype][value=email]').click();
+}
+
+function setMobileRegister() {
+	$('input:radio[name=registertype][value=mobile]').click();
+}
+
+//--></script>
+
 <script type="text/javascript"><!--
 // Sort the custom fields
 $('#account .form-group[data-sort]').detach().each(function() {

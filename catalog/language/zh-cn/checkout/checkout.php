@@ -70,8 +70,13 @@ $_['entry_shipping'] 	             = '配送地址与账单地址一致。';
 $_['entry_shipping_telephone'] 	     = '收件人电话';
 $_['entry_sms_code']       			 = '短信验证码';
 
+//Tabs
+$_['tab_email_register']       		 = '邮箱注册';
+$_['tab_mobile_register']       	 = '手机号码注册';
+
 // Error
 $_['error_warning']                  = '存在问题，无法完成订单！如果持续出现此问题，请变换付款方式或者 <a href="%s">点击这里</a>联系网站管理员。';
+$_['error_telephone_exists']         = '手机号码已经被注册!';
 $_['error_login']                    = '警告: 用户名或密码错误。';
 $_['error_attempts']                 = '警告: 超过登录失败最大次数，请一小时后再登录。';
 $_['error_approved']                 = '警告: 登录前需要审核通过。';

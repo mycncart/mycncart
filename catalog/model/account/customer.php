@@ -12,13 +12,27 @@ class ModelAccountCustomer extends Model {
 		$customer_group_info = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
 		
 		if ($data['registertype'] == 'email') {
-			$fullname = $data['email'];
+			
+			if (isset($data['fullname'])) {
+				$fullname = $data['fullname'];
+			} else {
+				$fullname = $data['email'];
+			}
+			
 			$email = $data['email'];
 			$telephone = $data['email'];
+			
 		} else {
-			$fullname = $data['telephone'];
+			
+			if (isset($data['fullname'])) {
+				$fullname = $data['fullname'];
+			} else {
+				$fullname = $data['telephone'];
+			}
+
 			$email = $data['telephone'];
 			$telephone = $data['telephone'];
+			
 		}
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET customer_group_id = '" . (int)$customer_group_id . "', store_id = '" . (int)$this->config->get('config_store_id') . "', language_id = '" . (int)$this->config->get('config_language_id') . "', fullname = '" . $this->db->escape($fullname) . "', email = '" . $this->db->escape($email) . "', weixin_login_unionid = '" . $this->db->escape($weixin_login_unionid) . "', weixin_login_openid = '" . $this->db->escape($weixin_login_openid) . "', telephone = '" . $this->db->escape($telephone) . "', fax = '', custom_field = '" . $this->db->escape(isset($data['custom_field']['account']) ? json_encode($data['custom_field']['account']) : '') . "', salt = '" . $this->db->escape($salt = token(9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', status = '1', approved = '" . (int)!$customer_group_info['approval'] . "', date_added = NOW()");
@@ -27,7 +41,7 @@ class ModelAccountCustomer extends Model {
 		
 		if(isset($data['address'])) {
 
-		$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', fullname = '" . $this->db->escape($data['fullname']) . "', company = '" . $this->db->escape($data['company']) . "', address = '" . $this->db->escape($data['address']) . "', city = '" . $this->db->escape($data['city']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int)$data['country_id'] . "', zone_id = '" . (int)$data['zone_id'] . "', custom_field = '" . $this->db->escape(isset($data['custom_field']['address']) ? json_encode($data['custom_field']['address']) : '') . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', fullname = '" . $this->db->escape($data['fullname']) . "', company = '" . $this->db->escape($data['company']) . "', address = '" . $this->db->escape($data['address']) . "', city = '" . $this->db->escape($data['city']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int)$data['country_id'] . "', zone_id = '" . (int)$data['zone_id'] . "', shipping_telephone = '" . $this->db->escape($data['shipping_telephone']) . "', custom_field = '" . $this->db->escape(isset($data['custom_field']['address']) ? json_encode($data['custom_field']['address']) : '') . "'");
 
 		$address_id = $this->db->getLastId();
 
@@ -42,7 +56,7 @@ class ModelAccountCustomer extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "sms_mobile WHERE sms_mobile = '" . $this->db->escape($data['telephone']) . "'");
 		
 		//Send email to customer only register with email address
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		
 			$this->load->language('mail/customer');
 	

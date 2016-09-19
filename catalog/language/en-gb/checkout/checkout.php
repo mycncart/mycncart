@@ -68,15 +68,21 @@ $_['entry_newsletter']               = 'I wish to subscribe to the %s newsletter
 $_['entry_shipping'] 	             = 'My delivery and billing addresses are the same.';
 $_['entry_sms_code']       			 = 'SMS Verification Code';
 
+//Tabs
+$_['tab_email_register']       		 = 'Email Register';
+$_['tab_mobile_register']       	 = 'Mobile Register';
+
 // Error
 $_['error_warning']                  = 'There was a problem while trying to process your order! If the problem persists please try selecting a different payment method or you can contact the store owner by <a href="%s">clicking here</a>.';
+$_['error_telephone_exists']         = 'Telephone is already registered!';
 $_['error_login']                    = 'Warning: No match for E-Mail Address and/or Password.';
 $_['error_attempts']                 = 'Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.';
 $_['error_approved']                 = 'Warning: Your account requires approval before you can login.';
 $_['error_exists']                   = 'Warning: E-Mail Address is already registered!';
 $_['error_fullname']                 = 'Full Name must be between 1 and 32 characters!';
 $_['error_email']                    = 'E-Mail address does not appear to be valid!';
-$_['error_telephone']                = 'Telephone must be between 3 and 32 characters!';
+$_['error_shipping_telephone']       = 'Telephone must be between 3 and 32 characters!';
+$_['error_telephone']       		 = 'Telephone must be between 3 and 32 characters!';
 $_['error_password']                 = 'Password must be between 4 and 20 characters!';
 $_['error_confirm']                  = 'Password confirmation does not match password!';
 $_['error_address']                  = 'Address must be between 3 and 128 characters!';
