@@ -30,26 +30,7 @@
       </ul>
       <div class="tab-content">
       	<div class="tab-pane <?php if ($registertype == 'email') { ?> active <?php } ?> " id="tab-email">
-          <div class="form-group required" style="display: <?php echo (count($customer_groups) > 1 ? 'block' : 'none'); ?>;">
-            <label class="col-sm-2 control-label"><?php echo $entry_customer_group; ?></label>
-            <div class="col-sm-10">
-              <?php foreach ($customer_groups as $customer_group) { ?>
-              <?php if ($customer_group['customer_group_id'] == $customer_group_id) { ?>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" checked="checked" />
-                  <?php echo $customer_group['name']; ?></label>
-              </div>
-              <?php } else { ?>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" />
-                  <?php echo $customer_group['name']; ?></label>
-              </div>
-              <?php } ?>
-              <?php } ?>
-            </div>
-          </div>
+          
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-email"><?php echo $entry_email; ?></label>
             <div class="col-sm-10">
@@ -95,6 +76,27 @@
           
           <?php } ?>
           
+        </div>
+        
+        <div class="form-group required" style="display: <?php echo (count($customer_groups) > 1 ? 'block' : 'none'); ?>;">
+          <label class="col-sm-2 control-label"><?php echo $entry_customer_group; ?></label>
+          <div class="col-sm-10">
+            <?php foreach ($customer_groups as $customer_group) { ?>
+            <?php if ($customer_group['customer_group_id'] == $customer_group_id) { ?>
+            <div class="radio">
+              <label>
+                <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" checked="checked" />
+                <?php echo $customer_group['name']; ?></label>
+            </div>
+            <?php } else { ?>
+            <div class="radio">
+              <label>
+                <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" />
+                <?php echo $customer_group['name']; ?></label>
+            </div>
+            <?php } ?>
+            <?php } ?>
+          </div>
         </div>
         
         <?php foreach ($custom_fields as $custom_field) { ?>
