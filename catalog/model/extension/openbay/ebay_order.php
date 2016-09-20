@@ -212,22 +212,24 @@ class ModelExtensionOpenBayEbayOrder extends Model{
 
 				$message .= "\n\n";
 				$message .= 'eBay and Amazon order management - http://www.openbaypro.com/';
-
-				$mail = new Mail();
-				$mail->protocol = $this->config->get('config_mail_protocol');
-				$mail->parameter = $this->config->get('config_mail_parameter');
-				$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
-				$mail->smtp_username = $this->config->get('config_mail_smtp_username');
-				$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
-				$mail->smtp_port = $this->config->get('config_mail_smtp_port');
-				$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-
-				$mail->setTo($order_info['email']);
-				$mail->setFrom($this->config->get('config_email'));
-				$mail->setSender(html_entity_decode($order_info['store_name'], ENT_QUOTES, 'UTF-8'));
-				$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
-				$mail->setText($message);
-				$mail->send();
+				
+				if (filter_var($order_info['email'], FILTER_VALIDATE_EMAIL)) {
+					$mail = new Mail();
+					$mail->protocol = $this->config->get('config_mail_protocol');
+					$mail->parameter = $this->config->get('config_mail_parameter');
+					$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+					$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+					$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+					$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+					$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+	
+					$mail->setTo($order_info['email']);
+					$mail->setFrom($this->config->get('config_email'));
+					$mail->setSender(html_entity_decode($order_info['store_name'], ENT_QUOTES, 'UTF-8'));
+					$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
+					$mail->setText($message);
+					$mail->send();
+				}
 			}
 		}
 	}
@@ -477,22 +479,24 @@ class ModelExtensionOpenBayEbayOrder extends Model{
 				$text .= $language->get('text_new_footer') . "\n\n";
 
 				if ($notify == 1) {
-					$mail = new Mail();
-					$mail->protocol = $this->config->get('config_mail_protocol');
-					$mail->parameter = $this->config->get('config_mail_parameter');
-					$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
-					$mail->smtp_username = $this->config->get('config_mail_smtp_username');
-					$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
-					$mail->smtp_port = $this->config->get('config_mail_smtp_port');
-					$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-
-					$mail->setTo($order_info['email']);
-					$mail->setFrom($this->config->get('config_email'));
-					$mail->setSender(html_entity_decode($order_info['store_name'], ENT_QUOTES, 'UTF-8'));
-					$mail->setSubject($subject);
-					$mail->setHtml($this->load->view('mail/order', $data));
-					$mail->setText($text);
-					$mail->send();
+					if (filter_var($order_info['email'], FILTER_VALIDATE_EMAIL)) {
+						$mail = new Mail();
+						$mail->protocol = $this->config->get('config_mail_protocol');
+						$mail->parameter = $this->config->get('config_mail_parameter');
+						$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+						$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+						$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+						$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+						$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+	
+						$mail->setTo($order_info['email']);
+						$mail->setFrom($this->config->get('config_email'));
+						$mail->setSender(html_entity_decode($order_info['store_name'], ENT_QUOTES, 'UTF-8'));
+						$mail->setSubject($subject);
+						$mail->setHtml($this->load->view('mail/order', $data));
+						$mail->setText($text);
+						$mail->send();
+					}
 				}
 			}
 		}
