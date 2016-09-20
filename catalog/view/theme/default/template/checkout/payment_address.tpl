@@ -30,6 +30,12 @@
         <input type="text" name="fullname" value="" placeholder="<?php echo $entry_fullname; ?>" id="input-payment-fullname" class="form-control" />
       </div>
     </div>
+    <div class="form-group required">
+      <label class="col-sm-2 control-label" for="input-payment-shipping-telephone"><?php echo $entry_shipping_telephone; ?></label>
+      <div class="col-sm-10">
+        <input type="text" name="shipping_telephone" value="" placeholder="<?php echo $entry_shipping_telephone; ?>" id="input-payment-shipping-telephone" class="form-control" />
+      </div>
+    </div>
     <div class="form-group">
       <label class="col-sm-2 control-label" for="input-payment-company"><?php echo $entry_company; ?></label>
       <div class="col-sm-10">
@@ -76,7 +82,6 @@
         <input type="text" name="postcode" value="" placeholder="<?php echo $entry_postcode; ?>" id="input-payment-postcode" class="form-control" />
       </div>
     </div>
-    <input type="hidden" name="shipping_telephone" value="<?php echo $shipping_telephone; ?>" />
     <?php foreach ($custom_fields as $custom_field) { ?>
     <?php if ($custom_field['location'] == 'address') { ?>
     <?php if ($custom_field['type'] == 'select') { ?>

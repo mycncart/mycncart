@@ -16,6 +16,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
 		$data['entry_city'] = $this->language->get('entry_city');
 		$data['entry_country'] = $this->language->get('entry_country');
 		$data['entry_zone'] = $this->language->get('entry_zone');
+		$data['entry_shipping_telephone'] = $this->language->get('entry_shipping_telephone');
 
 		$data['button_continue'] = $this->language->get('button_continue');
 		$data['button_upload'] = $this->language->get('button_upload');
@@ -45,7 +46,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
 		if (isset($this->session->data['payment_address']['shipping_telephone'])) {
 			$data['shipping_telephone'] = $this->session->data['payment_address']['shipping_telephone'];
 		} else {
-			$data['shipping_telephone'] = $this->customer->getTelephone();
+			$data['shipping_telephone'] = '';
 		}
 
 		$this->load->model('localisation/country');
@@ -122,6 +123,10 @@ class ControllerCheckoutPaymentAddress extends Controller {
 			} else {
 				if ((utf8_strlen(trim($this->request->post['fullname'])) < 1) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
 					$json['error']['fullname'] = $this->language->get('error_fullname');
+				}
+				
+				if ((utf8_strlen($this->request->post['shipping_telephone']) < 3) || (utf8_strlen($this->request->post['shipping_telephone']) > 32)) {
+					$json['error']['shipping_telephone'] = $this->language->get('error_shipping_telephone');
 				}
 
 				if ((utf8_strlen(trim($this->request->post['address'])) < 1) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
