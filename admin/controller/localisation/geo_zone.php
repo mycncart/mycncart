@@ -264,11 +264,15 @@ class ControllerLocalisationGeoZone extends Controller {
 
 		$data['text_form'] = !isset($this->request->get['geo_zone_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 		$data['text_all_zones'] = $this->language->get('text_all_zones');
+		$data['text_all_cities'] = $this->language->get('text_all_cities');
+		$data['text_all_districts'] = $this->language->get('text_all_districts');
 
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_description'] = $this->language->get('entry_description');
 		$data['entry_country'] = $this->language->get('entry_country');
 		$data['entry_zone'] = $this->language->get('entry_zone');
+		$data['entry_city'] = $this->language->get('entry_city');
+		$data['entry_district'] = $this->language->get('entry_district');
 
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');

@@ -18,7 +18,9 @@ $_['column_action']      = '操作';
 $_['entry_name']         = '區域群組名稱';
 $_['entry_description']  = '描述';
 $_['entry_country']      = '國家';
-$_['entry_zone']         = '地區';
+$_['entry_zone']         = '州/省/地區';
+$_['entry_city']         = '城市';
+$_['entry_district']     = '區縣';
 
 // Error
 $_['error_permission']   = '警告: 無權限修改區域群組!';

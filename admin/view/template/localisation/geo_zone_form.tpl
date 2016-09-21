@@ -48,6 +48,8 @@
               <tr>
                 <td class="text-left"><?php echo $entry_country; ?></td>
                 <td class="text-left"><?php echo $entry_zone; ?></td>
+                <td class="text-left"><?php echo $entry_city; ?></td>
+                <td class="text-left"><?php echo $entry_district; ?></td>
                 <td></td>
               </tr>
             </thead>
@@ -66,6 +68,10 @@
                   </select></td>
                 <td class="text-left"><select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row; ?>][zone_id]" class="form-control">
                   </select></td>
+                <td class="text-left"><select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row; ?>][city_id]" class="form-control">
+                  </select></td>
+                <td class="text-left"><select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row; ?>][district_id]" class="form-control">
+                  </select></td>
                 <td class="text-left"><button type="button" onclick="$('#zone-to-geo-zone-row<?php echo $zone_to_geo_zone_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
               </tr>
               <?php $zone_to_geo_zone_row++; ?>
@@ -73,7 +79,7 @@
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="2"></td>
+                <td colspan="4"></td>
                 <td class="text-left"><button type="button" onclick="addGeoZone();" data-toggle="tooltip" title="<?php echo $button_geo_zone_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
               </tr>
             </tfoot>
@@ -93,6 +99,8 @@ function addGeoZone() {
 	<?php } ?>   
 	html += '</select></td>';
 	html += '  <td class="text-left"><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][zone_id]" class="form-control"><option value="0"><?php echo $text_all_zones; ?></option></select></td>';
+	html += '  <td class="text-left"><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][city_id]" class="form-control"><option value="0"><?php echo $text_all_cities; ?></option></select></td>';
+	html += '  <td class="text-left"><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][district_id]" class="form-control"><option value="0"><?php echo $text_all_districts; ?></option></select></td>';
 	html += '  <td class="text-left"><button type="button" onclick="$(\'#zone-to-geo-zone-row' + zone_to_geo_zone_row + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
 	
