@@ -432,4 +432,26 @@ class ControllerLocalisationCity extends Controller {
 
 		return !$this->error;
 	}
+	
+	public function city() {
+		$json = array();
+
+		$this->load->model('localisation/city');
+
+		$city_info = $this->model_localisation_city->getCity($this->request->get['city_id']);
+
+		if ($city_info) {
+			$this->load->model('localisation/district');
+
+			$json = array(
+				'city_id'        	=> $city_info['zone_id'],
+				'name'              => $city_info['name'],
+				'district'              => $this->model_localisation_district->getDistrictsByCityId($this->request->get['city_id']),
+				'status'            => $city_info['status']
+			);
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}	
 }

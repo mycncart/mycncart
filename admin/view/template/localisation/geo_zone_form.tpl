@@ -66,9 +66,9 @@
                     <?php } ?>
                     <?php } ?>
                   </select></td>
-                <td class="text-left"><select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row; ?>][zone_id]" class="form-control">
+                <td class="text-left"><select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row; ?>][zone_id]" class="form-control" onchange="zone(this, '<?php echo $zone_to_geo_zone_row; ?>', '<?php echo $zone_to_geo_zone['city_id']; ?>');">
                   </select></td>
-                <td class="text-left"><select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row; ?>][city_id]" class="form-control">
+                <td class="text-left"><select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row; ?>][city_id]" class="form-control" onchange="city(this, '<?php echo $zone_to_geo_zone_row; ?>', '<?php echo $zone_to_geo_zone['district_id']; ?>');">
                   </select></td>
                 <td class="text-left"><select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row; ?>][district_id]" class="form-control">
                   </select></td>
@@ -98,8 +98,8 @@ function addGeoZone() {
 	html += '    <option value="<?php echo $country['country_id']; ?>"><?php echo addslashes($country['name']); ?></option>';
 	<?php } ?>   
 	html += '</select></td>';
-	html += '  <td class="text-left"><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][zone_id]" class="form-control"><option value="0"><?php echo $text_all_zones; ?></option></select></td>';
-	html += '  <td class="text-left"><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][city_id]" class="form-control"><option value="0"><?php echo $text_all_cities; ?></option></select></td>';
+	html += '  <td class="text-left"><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][zone_id]" class="form-control" onchange="zone(this, \'' + zone_to_geo_zone_row + '\', \'0\');"><option value="0"><?php echo $text_all_zones; ?></option></select></td>';
+	html += '  <td class="text-left"><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][city_id]" class="form-control" onchange="city(this, \'' + zone_to_geo_zone_row + '\', \'0\');"><option value="0"><?php echo $text_all_cities; ?></option></select></td>';
 	html += '  <td class="text-left"><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][district_id]" class="form-control"><option value="0"><?php echo $text_all_districts; ?></option></select></td>';
 	html += '  <td class="text-left"><button type="button" onclick="$(\'#zone-to-geo-zone-row' + zone_to_geo_zone_row + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
@@ -137,6 +137,82 @@ function country(element, index, zone_id) {
 			}
 
 			$('select[name=\'zone_to_geo_zone[' + index + '][zone_id]\']').html(html);
+			
+			if (zone_id != 0) {
+				$('select[name$=\'[zone_id]\']').trigger('change');
+			}
+			
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+
+function zone(element, index, city_id) {
+	$.ajax({
+		url: 'index.php?route=localisation/zone/zone&token=<?php echo $token; ?>&zone_id=' + element.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('select[name=\'zone_to_geo_zone[' + index + '][zone_id]\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+			html = '<option value="0"><?php echo $text_all_cities; ?></option>';
+			
+			if (json['city'] && json['city'] != '') {	
+				for (i = 0; i < json['city'].length; i++) {
+					html += '<option value="' + json['city'][i]['city_id'] + '"';
+
+					if (json['city'][i]['city_id'] == city_id) {
+						html += ' selected="selected"';
+					}
+
+					html += '>' + json['city'][i]['name'] + '</option>';
+				}
+			}
+
+			$('select[name=\'zone_to_geo_zone[' + index + '][city_id]\']').html(html);
+			
+			if (city_id != 0) {
+				$('select[name$=\'[city_id]\']').trigger('change');
+			}
+			
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+
+function city(element, index, district_id) {
+	$.ajax({
+		url: 'index.php?route=localisation/city/city&token=<?php echo $token; ?>&city_id=' + element.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('select[name=\'zone_to_geo_zone[' + index + '][city_id]\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+			html = '<option value="0"><?php echo $text_all_districts; ?></option>';
+			
+			if (json['district'] && json['district'] != '') {	
+				for (i = 0; i < json['district'].length; i++) {
+					html += '<option value="' + json['district'][i]['district_id'] + '"';
+
+					if (json['district'][i]['district_id'] == district_id) {
+						html += ' selected="selected"';
+					}
+
+					html += '>' + json['district'][i]['name'] + '</option>';
+				}
+			}
+
+			$('select[name=\'zone_to_geo_zone[' + index + '][district_id]\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -145,5 +221,7 @@ function country(element, index, zone_id) {
 }
 
 $('select[name$=\'[country_id]\']').trigger('change');
+//$('select[name$=\'[zone_id]\']').trigger('change');
+//$('select[name$=\'[city_id]\']').trigger('change');
 //--></script></div>
 <?php echo $footer; ?>
