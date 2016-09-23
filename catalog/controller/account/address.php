@@ -212,7 +212,7 @@ class ControllerAccountAddress extends Controller {
 			if ($result['address_format']) {
 				$format = $result['address_format'];
 			} else {
-				$format = '{fullname}' . "\n" . '{company}' . "\n" . '{country}' . '{zone}' . '{city}' . '{address}' . "\n" .   '{postcode}' . "\n" .   '{shipping_telephone}';
+				$format = '{fullname}' . "\n" . '{company}' . "\n" . '{country}' . '{zone}' . '{city}' . '{district}' . '{address}' . "\n" .   '{postcode}' . "\n" .   '{shipping_telephone}';
 			}
 
 			$find = array(
@@ -221,6 +221,7 @@ class ControllerAccountAddress extends Controller {
 				'{country}',
 				'{zone}',
 				'{city}',
+				'{district}',
 				'{address}',
 				'{postcode}',
 				'{shipping_telephone}',
@@ -232,6 +233,7 @@ class ControllerAccountAddress extends Controller {
 				'country'   => $result['country'],
 				'zone'      => $result['zone'],
 				'city'      => $result['city'],
+				'district'      => $result['district'],
 				'address' => $result['address'],
 				'postcode' => $result['postcode'],
 				'shipping_telephone' => $result['shipping_telephone'],

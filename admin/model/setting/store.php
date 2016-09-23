@@ -85,6 +85,18 @@ class ModelSettingStore extends Model {
 
 		return $query->row['total'];
 	}
+	
+	public function getTotalStoresByCityId($city_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_city_id' AND `value` = '" . (int)$city_id . "' AND store_id != '0'");
+
+		return $query->row['total'];
+	}
+	
+	public function getTotalStoresByDistrictId($district_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_district_id' AND `value` = '" . (int)$district_id . "' AND store_id != '0'");
+
+		return $query->row['total'];
+	}
 
 	public function getTotalStoresByCustomerGroupId($customer_group_id) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_customer_group_id' AND `value` = '" . (int)$customer_group_id . "' AND store_id != '0'");

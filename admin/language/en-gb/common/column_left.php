@@ -117,3 +117,5 @@ $_['text_faq_category']			 	 = 'FAQs Category';
 $_['text_faq']		 			     = 'FAQs';
 $_['text_faq_config']	 			 = 'FAQs Configuration';
 $_['text_excelexportimport']	     = 'Excel Export/Import';
+$_['text_city']	     				 = 'City';
+$_['text_district']	     			 = 'District';

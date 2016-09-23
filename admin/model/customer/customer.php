@@ -349,6 +349,18 @@ class ModelCustomerCustomer extends Model {
 
 		return $query->row['total'];
 	}
+	
+	public function getTotalAddressesByCityId($city_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "address WHERE city_id = '" . (int)$city_id . "'");
+
+		return $query->row['total'];
+	}
+	
+	public function getTotalAddressesByDistrictId($district_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "address WHERE district_id = '" . (int)$district_id . "'");
+
+		return $query->row['total'];
+	}
 
 	public function getTotalCustomersByCustomerGroupId($customer_group_id) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer WHERE customer_group_id = '" . (int)$customer_group_id . "'");

@@ -140,6 +140,26 @@ class ModelAccountAddress extends Model {
 				$zone = '';
 				$zone_code = '';
 			}
+			
+			if ($result['country_id'] == 44) {
+				$city_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "city` WHERE city_id = '" . (int)$result['city_id'] . "'");
+	
+				if ($city_query->num_rows) {
+					$city = $city_query->row['name'];
+				} else {
+					$city = '';
+				}
+			} else {
+				$city = $result['city'];
+			}
+			
+			$district_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "district` WHERE district_id = '" . (int)$result['district_id'] . "'");
+
+			if ($district_query->num_rows) {
+				$district = $district_query->row['name'];
+			} else {
+				$district = '';
+			}
 
 			$address_data[$result['address_id']] = array(
 				'address_id'     	=> $result['address_id'],
@@ -148,7 +168,10 @@ class ModelAccountAddress extends Model {
 				'address'      		=> $result['address'],
 				'postcode'       	=> $result['postcode'],
 				'shipping_telephone'	=> $result['shipping_telephone'],
-				'city'           	=> $result['city'],
+				'city'           	=> $city,
+				'city_id'        	=> $result['city_id'],
+				'district'    	 	=> $district,
+				'district_id'    	=> $result['district_id'],
 				'zone_id'        	=> $result['zone_id'],
 				'zone'           	=> $zone,
 				'zone_code'      	=> $zone_code,

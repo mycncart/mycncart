@@ -127,4 +127,16 @@ class ModelLocalisationGeoZone extends Model {
 
 		return $query->row['total'];
 	}
+	
+	public function getTotalCityToGeoZoneByCityId($city_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "zone_to_geo_zone WHERE city_id = '" . (int)$city_id . "'");
+
+		return $query->row['total'];
+	}
+	
+	public function getTotalDistrictToGeoZoneByDistrictId($district_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "zone_to_geo_zone WHERE district_id = '" . (int)$district_id . "'");
+
+		return $query->row['total'];
+	}
 }

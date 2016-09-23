@@ -118,3 +118,5 @@ $_['text_faq_category']			 	 = '常見問題分類';
 $_['text_faq']		 			     = '常見問題與解答';
 $_['text_faq_config']	 			 = '常見問題設置';
 $_['text_excelexportimport']	     = 'Excel導入導出';
+$_['text_city']	     				 = '城市';
+$_['text_district']	     			 = '區縣';
