@@ -39,7 +39,21 @@
       </select>
     </div>
   </div>
-  <div class="form-group required">
+  <div class="form-group required" id="guest-shipping-china-city">
+    <label class="col-sm-2 control-label" for="input-shipping-city"><?php echo $entry_city; ?></label>
+    <div class="col-sm-10">
+      <select name="city_id" id="input-shipping-city" class="form-control">
+      </select>
+    </div>
+  </div>
+  <div class="form-group required" id="guest-shipping-china-district">
+    <label class="col-sm-2 control-label" for="input-shipping-district"><?php echo $entry_district; ?></label>
+    <div class="col-sm-10">
+      <select name="district_id" id="input-shipping-district" class="form-control">
+      </select>
+    </div>
+  </div>
+  <div class="form-group required" id="guest-shipping-world-city">
     <label class="col-sm-2 control-label" for="input-shipping-city"><?php echo $entry_city; ?></label>
     <div class="col-sm-10">
       <input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-shipping-city" class="form-control" />
@@ -279,6 +293,15 @@ $('.datetime').datetimepicker({
 //--></script>
 <script type="text/javascript"><!--
 $('#collapse-shipping-address select[name=\'country_id\']').on('change', function() {
+	if (this.value == 44) {
+		$('#guest-shipping-world-city').hide();
+		$('#guest-shipping-china-city').show();
+		$('#guest-shipping-china-district').show();
+	} else {
+		$('#guest-shipping-world-city').show();
+		$('#guest-shipping-china-city').hide();
+		$('#guest-shipping-china-district').hide();
+	}
 	$.ajax({
 		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,
 		dataType: 'json',
@@ -312,6 +335,82 @@ $('#collapse-shipping-address select[name=\'country_id\']').on('change', functio
 			}
 
 			$('#collapse-shipping-address select[name=\'zone_id\']').html(html);
+			
+			$('#collapse-shipping-address select[name=\'zone_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#collapse-shipping-address select[name=\'zone_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/checkout/zone&zone_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#collapse-shipping-address select[name=\'zone_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['city'] && json['city'] != '') {
+				for (i = 0; i < json['city'].length; i++) {
+					html += '<option value="' + json['city'][i]['city_id'] + '"';
+
+					if (json['city'][i]['city_id'] == '<?php echo $city_id; ?>') {
+						html += ' selected="selected"';
+          			}
+
+					html += '>' + json['city'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+
+			$('#collapse-shipping-address select[name=\'city_id\']').html(html);
+			
+			$('#collapse-shipping-address select[name=\'city_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#collapse-shipping-address select[name=\'city_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/checkout/city&city_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#collapse-shipping-address select[name=\'city_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['district'] && json['district'] != '') {
+				for (i = 0; i < json['district'].length; i++) {
+					html += '<option value="' + json['district'][i]['district_id'] + '"';
+
+					if (json['district'][i]['district_id'] == '<?php echo $district_id; ?>') {
+						html += ' selected="selected"';
+          			}
+
+					html += '>' + json['district'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+
+			$('#collapse-shipping-address select[name=\'district_id\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

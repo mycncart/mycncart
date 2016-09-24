@@ -22,6 +22,7 @@ class ControllerCheckoutRegister extends Controller {
 		$data['entry_address'] = $this->language->get('entry_address');
 		$data['entry_postcode'] = $this->language->get('entry_postcode');
 		$data['entry_city'] = $this->language->get('entry_city');
+		$data['entry_district'] = $this->language->get('entry_district');
 		$data['entry_country'] = $this->language->get('entry_country');
 		$data['entry_zone'] = $this->language->get('entry_zone');
 		$data['entry_sms_code'] = $this->language->get('entry_sms_code');
@@ -68,6 +69,18 @@ class ControllerCheckoutRegister extends Controller {
 			$data['zone_id'] = $this->session->data['shipping_address']['zone_id'];
 		} else {
 			$data['zone_id'] = '';
+		}
+		
+		if (isset($this->session->data['shipping_address']['city_id'])) {
+			$data['city_id'] = $this->session->data['shipping_address']['city_id'];
+		} else {
+			$data['city_id'] = '';
+		}
+		
+		if (isset($this->session->data['shipping_address']['district_id'])) {
+			$data['district_id'] = $this->session->data['shipping_address']['district_id'];
+		} else {
+			$data['district_id'] = '';
 		}
 		
 		//SMS
@@ -202,9 +215,23 @@ class ControllerCheckoutRegister extends Controller {
 			if ((utf8_strlen(trim($this->request->post['address'])) < 1) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
 				$json['error']['address'] = $this->language->get('error_address');
 			}
+			
+			if ($this->request->post['country_id'] == 44) {
+				
+				if (!isset($this->request->post['city_id']) || $this->request->post['city_id'] == '' || !is_numeric($this->request->post['city_id'])) {
+					$json['error']['city'] = $this->language->get('error_city');
+				}
+				
+				if (!isset($this->request->post['district_id']) || $this->request->post['district_id'] == '' || !is_numeric($this->request->post['district_id'])) {
+					$json['error']['district'] = $this->language->get('error_district');
+				}
+				
+			} else {
 
-			if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
-				$json['error']['city'] = $this->language->get('error_city');
+				if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
+					$json['error']['city'] = $this->language->get('error_city');
+				}
+			
 			}
 			
 			if ((utf8_strlen($this->request->post['shipping_telephone']) < 3) || (utf8_strlen($this->request->post['shipping_telephone']) > 32)) {

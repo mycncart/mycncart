@@ -13,6 +13,7 @@ class ControllerCheckoutGuestShipping extends Controller {
 		$data['entry_address'] = $this->language->get('entry_address');
 		$data['entry_postcode'] = $this->language->get('entry_postcode');
 		$data['entry_city'] = $this->language->get('entry_city');
+		$data['entry_district'] = $this->language->get('entry_district');
 		$data['entry_country'] = $this->language->get('entry_country');
 		$data['entry_zone'] = $this->language->get('entry_zone');
 
@@ -57,6 +58,18 @@ class ControllerCheckoutGuestShipping extends Controller {
 			$data['city'] = $this->session->data['shipping_address']['city'];
 		} else {
 			$data['city'] = '';
+		}
+		
+		if (isset($this->session->data['shipping_address']['city_id'])) {
+			$data['city_id'] = $this->session->data['shipping_address']['city_id'];
+		} else {
+			$data['city_id'] = '';
+		}
+		
+		if (isset($this->session->data['shipping_address']['district_id'])) {
+			$data['district_id'] = $this->session->data['shipping_address']['district_id'];
+		} else {
+			$data['district_id'] = '';
 		}
 
 		if (isset($this->session->data['shipping_address']['country_id'])) {
@@ -121,9 +134,23 @@ class ControllerCheckoutGuestShipping extends Controller {
 			if ((utf8_strlen(trim($this->request->post['address'])) < 1) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
 				$json['error']['address'] = $this->language->get('error_address');
 			}
+			
+			if ($this->request->post['country_id'] == 44) {
+				
+				if (!isset($this->request->post['city_id']) || $this->request->post['city_id'] == '' || !is_numeric($this->request->post['city_id'])) {
+					$json['error']['city'] = $this->language->get('error_city');
+				}
+				
+				if (!isset($this->request->post['district_id']) || $this->request->post['district_id'] == '' || !is_numeric($this->request->post['district_id'])) {
+					$json['error']['district'] = $this->language->get('error_district');
+				}
+				
+			} else {
 
-			if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
-				$json['error']['city'] = $this->language->get('error_city');
+				if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
+					$json['error']['city'] = $this->language->get('error_city');
+				}
+			
 			}
 
 			$this->load->model('localisation/country');
@@ -163,6 +190,8 @@ class ControllerCheckoutGuestShipping extends Controller {
 			$this->session->data['shipping_address']['address'] = $this->request->post['address'];
 			$this->session->data['shipping_address']['postcode'] = $this->request->post['postcode'];
 			$this->session->data['shipping_address']['city'] = $this->request->post['city'];
+			$this->session->data['shipping_address']['city_id'] = $this->request->post['city_id'];
+			$this->session->data['shipping_address']['district_id'] = $this->request->post['district_id'];
 			$this->session->data['shipping_address']['country_id'] = $this->request->post['country_id'];
 			$this->session->data['shipping_address']['zone_id'] = $this->request->post['zone_id'];
 
@@ -192,6 +221,34 @@ class ControllerCheckoutGuestShipping extends Controller {
 			} else {
 				$this->session->data['shipping_address']['zone'] = '';
 				$this->session->data['shipping_address']['zone_code'] = '';
+			}
+			
+			if ($this->request->post['country_id'] == 44) {
+				$this->load->model('localisation/city');
+
+				$city_info = $this->model_localisation_city->getCity($this->request->post['city_id']);
+	
+				if ($city_info) {
+					$this->session->data['shipping_address']['city'] = $city_info['name'];
+				} else {
+					$this->session->data['shipping_address']['city'] = '';
+				}
+			} else {
+				$this->session->data['shipping_address']['city'] = $this->request->post['city'];
+			}
+			
+			if ($this->request->post['country_id'] == 44) {
+				$this->load->model('localisation/district');
+
+				$district_info = $this->model_localisation_district->getDistrict($this->request->post['district_id']);
+	
+				if ($district_info) {
+					$this->session->data['shipping_address']['district'] = $district_info['name'];
+				} else {
+					$this->session->data['shipping_address']['district'] = '';
+				}
+			} else {
+				$this->session->data['shipping_address']['district'] = '';
 			}
 
 			if (isset($this->request->post['custom_field'])) {
