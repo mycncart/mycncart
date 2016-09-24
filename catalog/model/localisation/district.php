@@ -1,6 +1,6 @@
 <?php
 class ModelLocalisationDistrict extends Model {
-	public function getDistrcit($district_id) {
+	public function getDistrict($district_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "district WHERE district_id = '" . (int)$district_id . "' AND status = '1'");
 
 		return $query->row;
