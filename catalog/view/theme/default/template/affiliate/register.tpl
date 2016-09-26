@@ -99,7 +99,27 @@
               <?php } ?>
             </div>
           </div>
-          <div class="form-group required">
+          <div class="form-group required" id="china-city">
+            <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
+            <div class="col-sm-10">
+              <select name="city_id" id="input-city" class="form-control">
+              </select>
+              <?php if ($error_city) { ?>
+              <div class="text-danger"><?php echo $error_city; ?></div>
+              <?php } ?>
+            </div>
+          </div>
+          <div class="form-group required" id="china-district">
+            <label class="col-sm-2 control-label" for="input-district"><?php echo $entry_district; ?></label>
+            <div class="col-sm-10">
+              <select name="district_id" id="input-district" class="form-control">
+              </select>
+              <?php if ($error_district) { ?>
+              <div class="text-danger"><?php echo $error_district; ?></div>
+              <?php } ?>
+            </div>
+          </div>
+          <div class="form-group required" id="world-city">
             <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
             <div class="col-sm-10">
               <input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control" />
@@ -270,6 +290,15 @@
 </div>
 <script type="text/javascript"><!--
 $('select[name=\'country_id\']').on('change', function() {
+	if (this.value == 44) {
+		$('#world-city').hide();
+		$('#china-city').show();
+		$('#china-district').show();
+	} else {
+		$('#world-city').show();
+		$('#china-city').hide();
+		$('#china-district').hide();
+	}
 	$.ajax({
 		url: 'index.php?route=affiliate/register/country&country_id=' + this.value,
 		dataType: 'json',
@@ -303,6 +332,82 @@ $('select[name=\'country_id\']').on('change', function() {
 			}
 
 			$('select[name=\'zone_id\']').html(html);
+			
+			$('select[name=\'zone_id\']').trigger('change');
+    	},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('select[name=\'zone_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=affiliate/register/zone&zone_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('select[name=\'zone_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['city'] && json['city'] != '') {
+				for (i = 0; i < json['city'].length; i++) {
+					html += '<option value="' + json['city'][i]['city_id'] + '"';
+
+					if (json['city'][i]['city_id'] == '<?php echo $city_id; ?>') {
+						html += ' selected="selected"';
+					}
+
+					html += '>' + json['city'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+
+			$('select[name=\'city_id\']').html(html);
+			
+			$('select[name=\'city_id\']').trigger('change');
+    	},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('select[name=\'city_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=affiliate/register/city&city_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('select[name=\'city_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['district'] && json['district'] != '') {
+				for (i = 0; i < json['district'].length; i++) {
+					html += '<option value="' + json['district'][i]['district_id'] + '"';
+
+					if (json['district'][i]['district_id'] == '<?php echo $district_id; ?>') {
+						html += ' selected="selected"';
+					}
+
+					html += '>' + json['district'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+
+			$('select[name=\'district_id\']').html(html);
     	},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

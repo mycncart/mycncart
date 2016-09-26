@@ -68,6 +68,7 @@ class ControllerAffiliateEdit extends Controller {
 		$data['entry_address'] = $this->language->get('entry_address');
 		$data['entry_postcode'] = $this->language->get('entry_postcode');
 		$data['entry_city'] = $this->language->get('entry_city');
+		$data['entry_district'] = $this->language->get('entry_district');
 		$data['entry_country'] = $this->language->get('entry_country');
 		$data['entry_zone'] = $this->language->get('entry_zone');
 
@@ -107,6 +108,12 @@ class ControllerAffiliateEdit extends Controller {
 			$data['error_city'] = $this->error['city'];
 		} else {
 			$data['error_city'] = '';
+		}
+		
+		if (isset($this->error['district'])) {
+			$data['error_district'] = $this->error['district'];
+		} else {
+			$data['error_district'] = '';
 		}
 
 		if (isset($this->error['postcode'])) {
@@ -204,6 +211,22 @@ class ControllerAffiliateEdit extends Controller {
 		} else {
 			$data['city'] = '';
 		}
+		
+		if (isset($this->request->post['city_id'])) {
+			$data['city_id'] = $this->request->post['city_id'];
+		} elseif (!empty($affiliate_info)) {
+			$data['city_id'] = $affiliate_info['city_id'];
+		} else {
+			$data['city_id'] = '';
+		}
+		
+		if (isset($this->request->post['district_id'])) {
+			$data['district_id'] = $this->request->post['district_id'];
+		} elseif (!empty($affiliate_info)) {
+			$data['district_id'] = $affiliate_info['district_id'];
+		} else {
+			$data['district_id'] = '';
+		}
 
 		if (isset($this->request->post['country_id'])) {
 			$data['country_id'] = $this->request->post['country_id'];
@@ -256,9 +279,23 @@ class ControllerAffiliateEdit extends Controller {
 		if ((utf8_strlen(trim($this->request->post['address'])) < 1) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
 			$this->error['address'] = $this->language->get('error_address');
 		}
+		
+		if ($this->request->post['country_id'] == 44) {
+			
+			if (!isset($this->request->post['city_id']) || $this->request->post['city_id'] == '' || !is_numeric($this->request->post['city_id'])) {
+				$this->error['city'] = $this->language->get('error_city');
+			}
+			
+			if (!isset($this->request->post['district_id']) || $this->request->post['district_id'] == '' || !is_numeric($this->request->post['district_id'])) {
+				$this->error['district'] = $this->language->get('error_district');
+			}
+			
+		} else {
 
-		if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
-			$this->error['city'] = $this->language->get('error_city');
+			if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
+				$this->error['city'] = $this->language->get('error_city');
+			}
+		
 		}
 
 		$this->load->model('localisation/country');
@@ -299,6 +336,50 @@ class ControllerAffiliateEdit extends Controller {
 				'postcode_required' => $country_info['postcode_required'],
 				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
 				'status'            => $country_info['status']
+			);
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+	
+	public function zone() {
+		$json = array();
+
+		$this->load->model('localisation/zone');
+
+		$zone_info = $this->model_localisation_zone->getZone($this->request->get['zone_id']);
+
+		if ($zone_info) {
+			$this->load->model('localisation/city');
+
+			$json = array(
+				'zone_id'        	=> $zone_info['zone_id'],
+				'name'              => $zone_info['name'],
+				'city'              => $this->model_localisation_city->getCitysByZoneId($this->request->get['zone_id']),
+				'status'            => $zone_info['status']
+			);
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+	
+	public function city() {
+		$json = array();
+
+		$this->load->model('localisation/city');
+
+		$city_info = $this->model_localisation_city->getCity($this->request->get['city_id']);
+
+		if ($city_info) {
+			$this->load->model('localisation/district');
+
+			$json = array(
+				'city_id'        	=> $city_info['zone_id'],
+				'name'              => $city_info['name'],
+				'district'              => $this->model_localisation_district->getDistrictsByCityId($this->request->get['city_id']),
+				'status'            => $city_info['status']
 			);
 		}
 
