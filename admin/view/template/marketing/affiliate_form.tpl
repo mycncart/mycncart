@@ -126,33 +126,6 @@
                   </div>
                 </div>
                 <div class="form-group required">
-                  <label class="col-sm-2 control-label" for="input-address"><?php echo $entry_address; ?></label>
-                  <div class="col-sm-10">
-                    <input type="text" name="address" value="<?php echo $address; ?>" placeholder="<?php echo $entry_address; ?>" id="input-address" class="form-control" />
-                    <?php if ($error_address) { ?>
-                    <div class="text-danger"><?php echo $error_address; ?></div>
-                    <?php  } ?>
-                  </div>
-                </div>
-                <div class="form-group required">
-                  <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
-                  <div class="col-sm-10">
-                    <input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control" />
-                    <?php if ($error_city) { ?>
-                    <div class="text-danger"><?php echo $error_city; ?></div>
-                    <?php  } ?>
-                  </div>
-                </div>
-                <div class="form-group required">
-                  <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
-                  <div class="col-sm-10">
-                    <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode" class="form-control" />
-                    <?php if ($error_postcode) { ?>
-                    <div class="text-danger"><?php echo $error_postcode; ?></div>
-                    <?php  } ?>
-                  </div>
-                </div>
-                <div class="form-group required">
                   <label class="col-sm-2 control-label" for="input-country"><?php echo $entry_country; ?></label>
                   <div class="col-sm-10">
                     <select name="country_id" id="input-country" class="form-control">
@@ -180,6 +153,54 @@
                     <?php } ?>
                   </div>
                 </div>
+                <div class="form-group required" id="china-city">
+                  <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
+                  <div class="col-sm-10">
+                    <select name="city_id" id="input-city" class="form-control">
+                    </select>
+                    <?php if ($error_city) { ?>
+                    <div class="text-danger"><?php echo $error_city; ?></div>
+                    <?php } ?>
+                  </div>
+                </div>
+                <div class="form-group required" id="china-district">
+                  <label class="col-sm-2 control-label" for="input-district"><?php echo $entry_district; ?></label>
+                  <div class="col-sm-10">
+                    <select name="district_id" id="input-district" class="form-control">
+                    </select>
+                    <?php if ($error_district) { ?>
+                    <div class="text-danger"><?php echo $error_district; ?></div>
+                    <?php } ?>
+                  </div>
+                </div>
+                <div class="form-group required" id="world-city">
+                  <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control" />
+                    <?php if ($error_city) { ?>
+                    <div class="text-danger"><?php echo $error_city; ?></div>
+                    <?php  } ?>
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-address"><?php echo $entry_address; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="address" value="<?php echo $address; ?>" placeholder="<?php echo $entry_address; ?>" id="input-address" class="form-control" />
+                    <?php if ($error_address) { ?>
+                    <div class="text-danger"><?php echo $error_address; ?></div>
+                    <?php  } ?>
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode" class="form-control" />
+                    <?php if ($error_postcode) { ?>
+                    <div class="text-danger"><?php echo $error_postcode; ?></div>
+                    <?php  } ?>
+                  </div>
+                </div>
+                
               </fieldset>
             </div>
             <div class="tab-pane" id="tab-payment">
@@ -198,6 +219,15 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label"><?php echo $entry_payment; ?></label>
                 <div class="col-sm-10">
+                  <div class="radio">
+                    <label>
+                      <?php if ($payment == 'alipay') { ?>
+                      <input type="radio" name="payment" value="alipay" checked="checked" />
+                      <?php } else { ?>
+                      <input type="radio" name="payment" value="alipay" />
+                      <?php } ?>
+                      <?php echo $text_alipay; ?></label>
+                  </div>
                   <div class="radio">
                     <label>
                       <?php if ($payment == 'cheque') { ?>
@@ -224,6 +254,26 @@
                       <input type="radio" name="payment" value="bank" />
                       <?php } ?>
                       <?php echo $text_bank; ?></label>
+                  </div>
+                </div>
+              </div>
+              <div class="payment" id="payment-alipay">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-alipay-account-name"><?php echo $entry_alipay_account_name; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="alipay_account_name" value="<?php echo $alipay_account_name; ?>" placeholder="<?php echo $entry_alipay_account_name; ?>" id="input-alipay-account-name" class="form-control" />
+                    <?php if ($error_alipay_account_name) { ?>
+                    <div class="text-danger"><?php echo $error_alipay_account_name; ?></div>
+                    <?php } ?>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-alipay"><?php echo $entry_alipay; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="alipay" value="<?php echo $alipay; ?>" placeholder="<?php echo $entry_alipay; ?>" id="input-alipay" class="form-control" />
+                    <?php if ($error_alipay) { ?>
+                    <div class="text-danger"><?php echo $error_alipay; ?></div>
+                    <?php } ?>
                   </div>
                 </div>
               </div>
@@ -257,18 +307,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-bank-branch-number"><?php echo $entry_bank_branch_number; ?></label>
-                  <div class="col-sm-10">
-                    <input type="text" name="bank_branch_number" value="<?php echo $bank_branch_number; ?>" placeholder="<?php echo $entry_bank_branch_number; ?>" id="input-bank-branch-number" class="form-control" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-bank-swift-code"><?php echo $entry_bank_swift_code; ?></label>
-                  <div class="col-sm-10">
-                    <input type="text" name="bank_swift_code" value="<?php echo $bank_swift_code; ?>" placeholder="<?php echo $entry_bank_swift_code; ?>" id="input-bank-swift-code" class="form-control" />
-                  </div>
-                </div>
-                <div class="form-group required">
                   <label class="col-sm-2 control-label" for="input-bank-account-name"><?php echo $entry_bank_account_name; ?></label>
                   <div class="col-sm-10">
                     <input type="text" name="bank_account_name" value="<?php echo $bank_account_name; ?>" placeholder="<?php echo $entry_bank_account_name; ?>" id="input-bank-account-name" class="form-control" />
@@ -277,7 +315,7 @@
                     <?php } ?>
                   </div>
                 </div>
-                <div class="form-group required">
+                <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-bank-account-number"><?php echo $entry_bank_account_number; ?></label>
                   <div class="col-sm-10">
                     <input type="text" name="bank_account_number" value="<?php echo $bank_account_number; ?>" placeholder="<?php echo $entry_bank_account_number; ?>" id="input-bank-account-number" class="form-control" />
@@ -316,6 +354,15 @@
   </div>
   <script type="text/javascript"><!--
 $('select[name=\'country_id\']').on('change', function() {
+	if (this.value == 44) {
+		$('#world-city').hide();
+		$('#china-city').show();
+		$('#china-district').show();
+	} else {
+		$('#world-city').show();
+		$('#china-city').hide();
+		$('#china-district').hide();
+	}
 	$.ajax({
 		url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
 		dataType: 'json',
@@ -349,6 +396,82 @@ $('select[name=\'country_id\']').on('change', function() {
 			}
 
 			$('select[name=\'zone_id\']').html(html);
+			
+			$('select[name=\'zone_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('select[name=\'zone_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=localisation/zone/zone&token=<?php echo $token; ?>&zone_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('select[name=\'zone_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['city'] && json['city'] != '') {
+				for (i = 0; i < json['city'].length; i++) {
+					html += '<option value="' + json['city'][i]['city_id'] + '"';
+					
+					if (json['city'][i]['city_id'] == '<?php echo $city_id; ?>') {
+						html += ' selected="selected"';
+					}
+
+          			html += '>' + json['city'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+
+			$('select[name=\'city_id\']').html(html);
+			
+			$('select[name=\'city_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('select[name=\'city_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=localisation/city/city&token=<?php echo $token; ?>&city_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('select[name=\'city_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['district'] && json['district'] != '') {
+				for (i = 0; i < json['district'].length; i++) {
+					html += '<option value="' + json['district'][i]['district_id'] + '"';
+					
+					if (json['district'][i]['district_id'] == '<?php echo $district_id; ?>') {
+						html += ' selected="selected"';
+					}
+
+          			html += '>' + json['district'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+
+			$('select[name=\'district_id\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

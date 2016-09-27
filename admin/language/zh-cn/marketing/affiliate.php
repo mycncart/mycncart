@@ -60,6 +60,7 @@ $_['entry_description']         = '描述';
 $_['entry_name']                = '推广会员姓名';
 $_['entry_approved']            = '已审核';
 $_['entry_date_added']          = '添加日期';
+$_['entry_district']       		= '所在区县';
 
 // Help
 $_['help_code']                 = '跟踪码被用来跟踪被推荐人。';
@@ -81,7 +82,8 @@ $_['error_telephone']           = '电话必须为3-32字符！';
 $_['error_password']            = '密码必须为4-20字符！';
 $_['error_confirm']             = '密码和确认密码不一致！';
 $_['error_address']             = '地址必须为3-128字符！';
-$_['error_city']                = '城市必须为2-128字符！';
+$_['error_city']                = '请选择城市或必须为2-128字符！';
+$_['error_district']            = '请选择区县！';
 $_['error_postcode']            = '该国家邮政编码必须为2-10字符！';
 $_['error_country']             = '请选择国家！';
 $_['error_zone']                = '请选择州/省/地区！';

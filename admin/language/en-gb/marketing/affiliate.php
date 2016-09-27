@@ -14,6 +14,7 @@ $_['text_balance']              = 'Balance';
 $_['text_cheque']               = 'Cheque';
 $_['text_paypal']               = 'PayPal';
 $_['text_bank']                 = 'Bank Transfer';
+$_['text_alipay']               = 'Alipay';
 
 // Column
 $_['column_name']               = 'Affiliate Name';
@@ -48,16 +49,18 @@ $_['entry_tax']                 = 'Tax ID';
 $_['entry_payment']             = 'Payment Method';
 $_['entry_cheque']              = 'Cheque Payee Name';
 $_['entry_paypal']              = 'PayPal Email Account';
+$_['entry_paypal']              = 'PayPal Email Account';
 $_['entry_bank_name']           = 'Bank Name';
-$_['entry_bank_branch_number']  = 'ABA/BSB number (Branch Number)';
-$_['entry_bank_swift_code']     = 'SWIFT Code';
 $_['entry_bank_account_name']   = 'Account Name';
 $_['entry_bank_account_number'] = 'Account Number';
+$_['entry_alipay_account_name'] = 'Alipay Account Name';
+$_['entry_alipay'] 				= 'ALipay Account';
 $_['entry_amount']              = 'Amount';
 $_['entry_description']         = 'Description';
 $_['entry_name']                = 'Affiliate Name';
 $_['entry_approved']            = 'Approved';
 $_['entry_date_added']          = 'Date Added';
+$_['entry_district']       		= 'District';
 
 // Help
 $_['help_code']                 = 'The tracking code that will be used to track referrals.';
@@ -73,11 +76,14 @@ $_['error_cheque']              = 'Cheque Payee Name required!';
 $_['error_paypal']              = 'PayPal Email Address does not appear to be valid!';
 $_['error_bank_account_name']   = 'Account Name required!';
 $_['error_bank_account_number'] = 'Account Number required!';
+$_['error_alipay_account_name'] = 'Alipay Account Name Required!';
+$_['error_alipay'] 				= 'Alipay Account Required!';
 $_['error_telephone']           = 'Telephone must be between 3 and 32 characters!';
 $_['error_password']            = 'Password must be between 4 and 20 characters!';
 $_['error_confirm']             = 'Password and password confirmation do not match!';
-$_['error_address']           = 'Address must be between 3 and 128 characters!';
-$_['error_city']                = 'City must be between 2 and 128 characters!';
+$_['error_address']             = 'Address must be between 3 and 128 characters!';
+$_['error_city']                = 'Please select a city or must be between 2 and 128 characters!';
+$_['error_district']            = 'Please select a district!';
 $_['error_postcode']            = 'Postcode must be between 2 and 10 characters for this country!';
 $_['error_country']             = 'Please select a country!';
 $_['error_zone']                = 'Please select a region / state!';

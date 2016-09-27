@@ -60,6 +60,7 @@ $_['entry_description']         = '描述';
 $_['entry_name']                = '推廣會員姓名';
 $_['entry_approved']            = '已審核';
 $_['entry_date_added']          = '添加日期';
+$_['entry_district']            = '區縣';
 
 // Help
 $_['help_code']                 = '跟蹤碼被用來跟蹤被推薦人。';
@@ -81,7 +82,8 @@ $_['error_telephone']           = '電話必須為3-32字符！';
 $_['error_password']            = '密碼必須為4-20字符！';
 $_['error_confirm']             = '密碼和確認密碼不壹致！';
 $_['error_address']             = '地址必須為3-128字符！';
-$_['error_city']                = '城市必須為2-128字符！';
+$_['error_city']                = '請選擇城市或必須為2-128字符！';
+$_['error_district']            = '請選擇區縣！';
 $_['error_postcode']            = '該國家郵政編碼必須為2-10字符！';
 $_['error_country']             = '請選擇國家！';
 $_['error_zone']                = '請選擇州/省/地區！';

@@ -579,6 +579,7 @@ class ControllerMarketingAffiliate extends Controller {
 		$data['text_cheque'] = $this->language->get('text_cheque');
 		$data['text_paypal'] = $this->language->get('text_paypal');
 		$data['text_bank'] = $this->language->get('text_bank');
+		$data['text_alipay'] = $this->language->get('text_alipay');
 
 		$data['entry_fullname'] = $this->language->get('entry_fullname');
 		$data['entry_email'] = $this->language->get('entry_email');
@@ -588,6 +589,7 @@ class ControllerMarketingAffiliate extends Controller {
 		$data['entry_website'] = $this->language->get('entry_website');
 		$data['entry_address'] = $this->language->get('entry_address');
 		$data['entry_city'] = $this->language->get('entry_city');
+		$data['entry_district'] = $this->language->get('entry_district');
 		$data['entry_postcode'] = $this->language->get('entry_postcode');
 		$data['entry_country'] = $this->language->get('entry_country');
 		$data['entry_zone'] = $this->language->get('entry_zone');
@@ -598,10 +600,10 @@ class ControllerMarketingAffiliate extends Controller {
 		$data['entry_cheque'] = $this->language->get('entry_cheque');
 		$data['entry_paypal'] = $this->language->get('entry_paypal');
 		$data['entry_bank_name'] = $this->language->get('entry_bank_name');
-		$data['entry_bank_branch_number'] = $this->language->get('entry_bank_branch_number');
-		$data['entry_bank_swift_code'] = $this->language->get('entry_bank_swift_code');
 		$data['entry_bank_account_name'] = $this->language->get('entry_bank_account_name');
 		$data['entry_bank_account_number'] = $this->language->get('entry_bank_account_number');
+		$data['entry_alipay_account_name'] = $this->language->get('entry_alipay_account_name');
+		$data['entry_alipay'] = $this->language->get('entry_alipay');
 		$data['entry_password'] = $this->language->get('entry_password');
 		$data['entry_confirm'] = $this->language->get('entry_confirm');
 		$data['entry_status'] = $this->language->get('entry_status');
@@ -667,6 +669,18 @@ class ControllerMarketingAffiliate extends Controller {
 		} else {
 			$data['error_telephone'] = '';
 		}
+		
+		if (isset($this->error['alipay_account_name'])) {
+			$data['error_alipay_account_name'] = $this->error['alipay_account_name'];
+		} else {
+			$data['error_alipay_account_name'] = '';
+		}
+		
+		if (isset($this->error['alipay'])) {
+			$data['error_alipay'] = $this->error['alipay'];
+		} else {
+			$data['error_alipay'] = '';
+		}
 
 		if (isset($this->error['password'])) {
 			$data['error_password'] = $this->error['password'];
@@ -690,6 +704,12 @@ class ControllerMarketingAffiliate extends Controller {
 			$data['error_city'] = $this->error['city'];
 		} else {
 			$data['error_city'] = '';
+		}
+		
+		if (isset($this->error['district'])) {
+			$data['error_district'] = $this->error['district'];
+		} else {
+			$data['error_district'] = '';
 		}
 
 		if (isset($this->error['postcode'])) {
@@ -845,6 +865,22 @@ class ControllerMarketingAffiliate extends Controller {
 		} else {
 			$data['city'] = '';
 		}
+		
+		if (isset($this->request->post['city_id'])) {
+			$data['city_id'] = $this->request->post['city_id'];
+		} elseif (!empty($affiliate_info)) {
+			$data['city_id'] = $affiliate_info['city_id'];
+		} else {
+			$data['city_id'] = '';
+		}
+		
+		if (isset($this->request->post['district_id'])) {
+			$data['district_id'] = $this->request->post['district_id'];
+		} elseif (!empty($affiliate_info)) {
+			$data['district_id'] = $affiliate_info['district_id'];
+		} else {
+			$data['district_id'] = '';
+		}
 
 		if (isset($this->request->post['postcode'])) {
 			$data['postcode'] = $this->request->post['postcode'];
@@ -930,22 +966,6 @@ class ControllerMarketingAffiliate extends Controller {
 			$data['bank_name'] = '';
 		}
 
-		if (isset($this->request->post['bank_branch_number'])) {
-			$data['bank_branch_number'] = $this->request->post['bank_branch_number'];
-		} elseif (!empty($affiliate_info)) {
-			$data['bank_branch_number'] = $affiliate_info['bank_branch_number'];
-		} else {
-			$data['bank_branch_number'] = '';
-		}
-
-		if (isset($this->request->post['bank_swift_code'])) {
-			$data['bank_swift_code'] = $this->request->post['bank_swift_code'];
-		} elseif (!empty($affiliate_info)) {
-			$data['bank_swift_code'] = $affiliate_info['bank_swift_code'];
-		} else {
-			$data['bank_swift_code'] = '';
-		}
-
 		if (isset($this->request->post['bank_account_name'])) {
 			$data['bank_account_name'] = $this->request->post['bank_account_name'];
 		} elseif (!empty($affiliate_info)) {
@@ -960,6 +980,22 @@ class ControllerMarketingAffiliate extends Controller {
 			$data['bank_account_number'] = $affiliate_info['bank_account_number'];
 		} else {
 			$data['bank_account_number'] = '';
+		}
+		
+		if (isset($this->request->post['alipay_account_name'])) {
+			$data['alipay_account_name'] = $this->request->post['alipay_account_name'];
+		} elseif (!empty($affiliate_info)) {
+			$data['alipay_account_name'] = $affiliate_info['alipay_account_name'];
+		} else {
+			$data['alipay_account_name'] = '';
+		}
+
+		if (isset($this->request->post['alipay'])) {
+			$data['alipay'] = $this->request->post['alipay'];
+		} elseif (!empty($affiliate_info)) {
+			$data['alipay'] = $affiliate_info['alipay'];
+		} else {
+			$data['alipay'] = '';
 		}
 
 		if (isset($this->request->post['status'])) {
@@ -1018,6 +1054,14 @@ class ControllerMarketingAffiliate extends Controller {
 			if ($this->request->post['bank_account_number'] == '') {
 				$this->error['bank_account_number'] = $this->language->get('error_bank_account_number');
 			}
+		} elseif ($this->request->post['payment'] == 'bank') {
+			if ($this->request->post['alipay'] == '') {
+				$this->error['alipay'] = $this->language->get('error_alipay');
+			}
+
+			if ($this->request->post['alipay_account_number'] == '') {
+				$this->error['alipay_account_number'] = $this->language->get('error_alipay_account_number');
+			}
 		}
 
 		$affiliate_info = $this->model_marketing_affiliate->getAffiliateByEmail($this->request->post['email']);
@@ -1049,9 +1093,23 @@ class ControllerMarketingAffiliate extends Controller {
 		if ((utf8_strlen(trim($this->request->post['address'])) < 1) || (utf8_strlen(trim($this->request->post['address'])) > 128)) {
 			$this->error['address'] = $this->language->get('error_address');
 		}
+		
+		if ($this->request->post['country_id'] == 44) {
+			
+			if (!isset($this->request->post['city_id']) || $this->request->post['city_id'] == '' || !is_numeric($this->request->post['city_id'])) {
+				$this->error['city'] = $this->language->get('error_city');
+			}
+			
+			if (!isset($this->request->post['district_id']) || $this->request->post['district_id'] == '' || !is_numeric($this->request->post['district_id'])) {
+				$this->error['district'] = $this->language->get('error_district');
+			}
+			
+		} else {
 
-		if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
-			$this->error['city'] = $this->language->get('error_city');
+			if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
+				$this->error['city'] = $this->language->get('error_city');
+			}
+		
 		}
 
 		$this->load->model('localisation/country');
