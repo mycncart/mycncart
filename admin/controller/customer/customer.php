@@ -696,6 +696,7 @@ class ControllerCustomerCustomer extends Controller {
 		$data['entry_company'] = $this->language->get('entry_company');
 		$data['entry_address'] = $this->language->get('entry_address');
 		$data['entry_city'] = $this->language->get('entry_city');
+		$data['entry_district'] = $this->language->get('entry_district');
 		$data['entry_postcode'] = $this->language->get('entry_postcode');
 		$data['entry_zone'] = $this->language->get('entry_zone');
 		$data['entry_country'] = $this->language->get('entry_country');
@@ -1059,9 +1060,23 @@ class ControllerCustomerCustomer extends Controller {
 				if ((utf8_strlen($value['address']) < 1) || (utf8_strlen($value['address']) > 128)) {
 					$this->error['address'][$key]['address'] = $this->language->get('error_address');
 				}
+				
+				if ($value['country_id'] == 44) {
+					
+					if (!isset($value['city_id']) || $value['city_id'] == '') {
+						$this->error['address'][$key]['city'] = $this->language->get('error_city');
+					}
+					
+					if (!isset($value['district_id']) || $value['district_id'] == '') {
+						$this->error['address'][$key]['district'] = $this->language->get('error_district');
+					}
+				
+				} else {
 
-				if ((utf8_strlen($value['city']) < 2) || (utf8_strlen($value['city']) > 128)) {
-					$this->error['address'][$key]['city'] = $this->language->get('error_city');
+					if ((utf8_strlen($value['city']) < 2) || (utf8_strlen($value['city']) > 128)) {
+						$this->error['address'][$key]['city'] = $this->language->get('error_city');
+					}
+				
 				}
 
 				$this->load->model('localisation/country');

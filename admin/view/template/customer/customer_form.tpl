@@ -355,33 +355,6 @@
                         </div>
                       </div>
                       <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-address<?php echo $address_row; ?>"><?php echo $entry_address; ?></label>
-                        <div class="col-sm-10">
-                          <input type="text" name="address[<?php echo $address_row; ?>][address]" value="<?php echo $address['address']; ?>" placeholder="<?php echo $entry_address; ?>" id="input-address<?php echo $address_row; ?>" class="form-control" />
-                          <?php if (isset($error_address[$address_row]['address'])) { ?>
-                          <div class="text-danger"><?php echo $error_address[$address_row]['address']; ?></div>
-                          <?php } ?>
-                        </div>
-                      </div>
-                      <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-city<?php echo $address_row; ?>"><?php echo $entry_city; ?></label>
-                        <div class="col-sm-10">
-                          <input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city<?php echo $address_row; ?>" class="form-control" />
-                          <?php if (isset($error_address[$address_row]['city'])) { ?>
-                          <div class="text-danger"><?php echo $error_address[$address_row]['city']; ?></div>
-                          <?php } ?>
-                        </div>
-                      </div>
-                      <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-postcode<?php echo $address_row; ?>"><?php echo $entry_postcode; ?></label>
-                        <div class="col-sm-10">
-                          <input type="text" name="address[<?php echo $address_row; ?>][postcode]" value="<?php echo $address['postcode']; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode<?php echo $address_row; ?>" class="form-control" />
-                          <?php if (isset($error_address[$address_row]['postcode'])) { ?>
-                          <div class="text-danger"><?php echo $error_address[$address_row]['postcode']; ?></div>
-                          <?php } ?>
-                        </div>
-                      </div>
-                      <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-country<?php echo $address_row; ?>"><?php echo $entry_country; ?></label>
                         <div class="col-sm-10">
                           <select name="address[<?php echo $address_row; ?>][country_id]" id="input-country<?php echo $address_row; ?>" onchange="country(this, '<?php echo $address_row; ?>', '<?php echo $address['zone_id']; ?>');" class="form-control">
@@ -402,10 +375,57 @@
                       <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-zone<?php echo $address_row; ?>"><?php echo $entry_zone; ?></label>
                         <div class="col-sm-10">
-                          <select name="address[<?php echo $address_row; ?>][zone_id]" id="input-zone<?php echo $address_row; ?>" class="form-control">
+                          <select name="address[<?php echo $address_row; ?>][zone_id]" id="input-zone<?php echo $address_row; ?>" onchange="zone(this, '<?php echo $address_row; ?>', '<?php echo $address['city_id']; ?>');" class="form-control">
                           </select>
                           <?php if (isset($error_address[$address_row]['zone'])) { ?>
                           <div class="text-danger"><?php echo $error_address[$address_row]['zone']; ?></div>
+                          <?php } ?>
+                        </div>
+                      </div>
+                      <div class="form-group required" id="china-city<?php echo $address_row; ?>">
+                        <label class="col-sm-2 control-label" for="input-city<?php echo $address_row; ?>"><?php echo $entry_city; ?></label>
+                        <div class="col-sm-10">
+                          <select name="address[<?php echo $address_row; ?>][city_id]" id="input-city<?php echo $address_row; ?>" onchange="city(this, '<?php echo $address_row; ?>', '<?php echo $address['district_id']; ?>');" class="form-control">
+                          </select>
+                          <?php if (isset($error_address[$address_row]['city'])) { ?>
+                          <div class="text-danger"><?php echo $error_address[$address_row]['city']; ?></div>
+                          <?php } ?>
+                        </div>
+                      </div>
+                      <div class="form-group required" id="china-district<?php echo $address_row; ?>">
+                        <label class="col-sm-2 control-label" for="input-district<?php echo $address_row; ?>"><?php echo $entry_district; ?></label>
+                        <div class="col-sm-10">
+                          <select name="address[<?php echo $address_row; ?>][district_id]" id="input-district<?php echo $address_row; ?>" class="form-control">
+                          </select>
+                          <?php if (isset($error_address[$address_row]['district'])) { ?>
+                          <div class="text-danger"><?php echo $error_address[$address_row]['district']; ?></div>
+                          <?php } ?>
+                        </div>
+                      </div>
+                      <div class="form-group required" id="world-city<?php echo $address_row; ?>">
+                        <label class="col-sm-2 control-label" for="input-city<?php echo $address_row; ?>"><?php echo $entry_city; ?></label>
+                        <div class="col-sm-10">
+                          <input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city<?php echo $address_row; ?>" class="form-control" />
+                          <?php if (isset($error_address[$address_row]['city'])) { ?>
+                          <div class="text-danger"><?php echo $error_address[$address_row]['city']; ?></div>
+                          <?php } ?>
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-address<?php echo $address_row; ?>"><?php echo $entry_address; ?></label>
+                        <div class="col-sm-10">
+                          <input type="text" name="address[<?php echo $address_row; ?>][address]" value="<?php echo $address['address']; ?>" placeholder="<?php echo $entry_address; ?>" id="input-address<?php echo $address_row; ?>" class="form-control" />
+                          <?php if (isset($error_address[$address_row]['address'])) { ?>
+                          <div class="text-danger"><?php echo $error_address[$address_row]['address']; ?></div>
+                          <?php } ?>
+                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-postcode<?php echo $address_row; ?>"><?php echo $entry_postcode; ?></label>
+                        <div class="col-sm-10">
+                          <input type="text" name="address[<?php echo $address_row; ?>][postcode]" value="<?php echo $address['postcode']; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode<?php echo $address_row; ?>" class="form-control" />
+                          <?php if (isset($error_address[$address_row]['postcode'])) { ?>
+                          <div class="text-danger"><?php echo $error_address[$address_row]['postcode']; ?></div>
                           <?php } ?>
                         </div>
                       </div>
@@ -692,21 +712,6 @@ function addAddress() {
 	html += '  </div>';
 
 	html += '  <div class="form-group required">';
-	html += '    <label class="col-sm-2 control-label" for="input-address' + address_row + '"><?php echo $entry_address; ?></label>';
-	html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][address]" value="" placeholder="<?php echo $entry_address; ?>" id="input-address' + address_row + '" class="form-control" /></div>';
-	html += '  </div>';
-
-	html += '  <div class="form-group required">';
-	html += '    <label class="col-sm-2 control-label" for="input-city' + address_row + '"><?php echo $entry_city; ?></label>';
-	html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][city]" value="" placeholder="<?php echo $entry_city; ?>" id="input-city' + address_row + '" class="form-control" /></div>';
-	html += '  </div>';
-
-	html += '  <div class="form-group required">';
-	html += '    <label class="col-sm-2 control-label" for="input-postcode' + address_row + '"><?php echo $entry_postcode; ?></label>';
-	html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][postcode]" value="" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode' + address_row + '" class="form-control" /></div>';
-	html += '  </div>';
-
-	html += '  <div class="form-group required">';
 	html += '    <label class="col-sm-2 control-label" for="input-country' + address_row + '"><?php echo $entry_country; ?></label>';
 	html += '    <div class="col-sm-10"><select name="address[' + address_row + '][country_id]" id="input-country' + address_row + '" onchange="country(this, \'' + address_row + '\', \'0\');" class="form-control">';
     html += '         <option value=""><?php echo $text_select; ?></option>';
@@ -720,6 +725,33 @@ function addAddress() {
 	html += '    <label class="col-sm-2 control-label" for="input-zone' + address_row + '"><?php echo $entry_zone; ?></label>';
 	html += '    <div class="col-sm-10"><select name="address[' + address_row + '][zone_id]" id="input-zone' + address_row + '" class="form-control"><option value=""><?php echo $text_none; ?></option></select></div>';
 	html += '  </div>';
+	
+	html += '  <div class="form-group required" id="china-city' + address_row + '">';
+	html += '    <label class="col-sm-2 control-label" for="input-city' + address_row + '"><?php echo $entry_city; ?></label>';
+	html += '    <div class="col-sm-10"><select name="address[' + address_row + '][city_id]" id="input-city' + address_row + '" class="form-control"><option value=""><?php echo $text_none; ?></option></select></div>';
+	html += '  </div>';
+	
+	html += '  <div class="form-group required" id="china-district' + address_row + '">';
+	html += '    <label class="col-sm-2 control-label" for="input-district' + address_row + '"><?php echo $entry_district; ?></label>';
+	html += '    <div class="col-sm-10"><select name="address[' + address_row + '][district_id]" id="input-district' + address_row + '" class="form-control"><option value=""><?php echo $text_none; ?></option></select></div>';
+	html += '  </div>';
+
+	html += '  <div class="form-group required" id="world-city' + address_row + '">';
+	html += '    <label class="col-sm-2 control-label" for="input-city' + address_row + '"><?php echo $entry_city; ?></label>';
+	html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][city]" value="" placeholder="<?php echo $entry_city; ?>" id="input-city' + address_row + '" class="form-control" /></div>';
+	html += '  </div>';
+	
+	html += '  <div class="form-group required">';
+	html += '    <label class="col-sm-2 control-label" for="input-address' + address_row + '"><?php echo $entry_address; ?></label>';
+	html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][address]" value="" placeholder="<?php echo $entry_address; ?>" id="input-address' + address_row + '" class="form-control" /></div>';
+	html += '  </div>';
+
+	html += '  <div class="form-group required">';
+	html += '    <label class="col-sm-2 control-label" for="input-postcode' + address_row + '"><?php echo $entry_postcode; ?></label>';
+	html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][postcode]" value="" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode' + address_row + '" class="form-control" /></div>';
+	html += '  </div>';
+
+	
 
 	// Custom Fields
 	<?php foreach ($custom_fields as $custom_field) { ?>
@@ -878,6 +910,15 @@ function addAddress() {
 //--></script>
   <script type="text/javascript"><!--
 function country(element, index, zone_id) {
+	if (element.value == 44) {
+		$('#world-city' + index).hide();
+		$('#china-city' + index).show();
+		$('#china-district' + index).show();
+	} else {
+		$('#world-city' + index).show();
+		$('#china-city' + index).hide();
+		$('#china-district' + index).hide();
+	}
 	$.ajax({
 		url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + element.value,
 		dataType: 'json',
@@ -911,6 +952,81 @@ function country(element, index, zone_id) {
 			}
 
 			$('select[name=\'address[' + index + '][zone_id]\']').html(html);
+			
+			$('select[name=\'address[' + index + '][zone_id]\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+
+function zone(element, index, city_id) {
+	$.ajax({
+		url: 'index.php?route=localisation/zone/zone&token=<?php echo $token; ?>&zone_id=' + element.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('select[name=\'address[' + index + '][zone_id]\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['city'] && json['city'] != '') {
+				for (i = 0; i < json['city'].length; i++) {
+					html += '<option value="' + json['city'][i]['city_id'] + '"';
+
+					if (json['city'][i]['city_id'] == city_id) {
+						html += ' selected="selected"';
+					}
+
+					html += '>' + json['city'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0"><?php echo $text_none; ?></option>';
+			}
+
+			$('select[name=\'address[' + index + '][city_id]\']').html(html);
+			$('select[name=\'address[' + index + '][city_id]\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+}
+
+function city(element, index, district_id) {
+	$.ajax({
+		url: 'index.php?route=localisation/city/city&token=<?php echo $token; ?>&city_id=' + element.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('select[name=\'address[' + index + '][city_id]\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['district'] && json['district'] != '') {
+				for (i = 0; i < json['district'].length; i++) {
+					html += '<option value="' + json['district'][i]['district_id'] + '"';
+
+					if (json['district'][i]['district_id'] == district_id) {
+						html += ' selected="selected"';
+					}
+
+					html += '>' + json['district'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0"><?php echo $text_none; ?></option>';
+			}
+
+			$('select[name=\'address[' + index + '][district_id]\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

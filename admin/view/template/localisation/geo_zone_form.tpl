@@ -138,9 +138,9 @@ function country(element, index, zone_id) {
 
 			$('select[name=\'zone_to_geo_zone[' + index + '][zone_id]\']').html(html);
 			
-			if (zone_id != 0) {
-				$('select[name$=\'[zone_id]\']').trigger('change');
-			}
+			
+			$('select[name=\'zone_to_geo_zone[' + index + '][zone_id]\']').trigger('change');
+			
 			
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
@@ -176,9 +176,7 @@ function zone(element, index, city_id) {
 
 			$('select[name=\'zone_to_geo_zone[' + index + '][city_id]\']').html(html);
 			
-			if (city_id != 0) {
-				$('select[name$=\'[city_id]\']').trigger('change');
-			}
+			$('select[name=\'zone_to_geo_zone[' + index + '][city_id]\']').trigger('change');
 			
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
