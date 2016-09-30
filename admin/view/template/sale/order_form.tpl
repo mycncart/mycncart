@@ -411,28 +411,16 @@
                   <input type="text" name="fullname" value="<?php echo $payment_fullname; ?>" id="input-payment-fullname" class="form-control" />
                 </div>
               </div>
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-payment-payment-telephone"><?php echo $entry_payment_telephone; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="payment_telephone" value="<?php echo $payment_telephone; ?>" id="input-payment-payment-telephone" class="form-control" />
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-payment-company"><?php echo $entry_company; ?></label>
                 <div class="col-sm-10">
                   <input type="text" name="company" value="<?php echo $payment_company; ?>" id="input-payment-company" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-payment-address"><?php echo $entry_address; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="address" value="<?php echo $payment_address; ?>" id="input-payment-address" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-payment-city"><?php echo $entry_city; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="city" value="<?php echo $payment_city; ?>" id="input-payment-city" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-payment-postcode"><?php echo $entry_postcode; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="postcode" value="<?php echo $payment_postcode; ?>" id="input-payment-postcode" class="form-control" />
                 </div>
               </div>
               <div class="form-group required">
@@ -457,6 +445,39 @@
                   </select>
                 </div>
               </div>
+              <div class="form-group required" id="china-payment-city">
+                <label class="col-sm-2 control-label" for="input-payment-city"><?php echo $entry_city; ?></label>
+                <div class="col-sm-10">
+                  <select name="city_id" id="input-payment-city" class="form-control">
+                  </select>
+                </div>
+              </div>
+              <div class="form-group required" id="china-payment-district">
+                <label class="col-sm-2 control-label" for="input-payment-district"><?php echo $entry_district; ?></label>
+                <div class="col-sm-10">
+                  <select name="district_id" id="input-payment-district" class="form-control">
+                  </select>
+                </div>
+              </div>
+              <div class="form-group required" id="world-payment-city">
+                <label class="col-sm-2 control-label" for="input-payment-city"><?php echo $entry_city; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="city" value="<?php echo $payment_city; ?>" id="input-payment-city" class="form-control" />
+                </div>
+              </div>
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-payment-address"><?php echo $entry_address; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="address" value="<?php echo $payment_address; ?>" id="input-payment-address" class="form-control" />
+                </div>
+              </div>
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-payment-postcode"><?php echo $entry_postcode; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="postcode" value="<?php echo $payment_postcode; ?>" id="input-payment-postcode" class="form-control" />
+                </div>
+              </div>
+              
               <?php foreach ($custom_fields as $custom_field) { ?>
               <?php if ($custom_field['location'] == 'address') { ?>
               <?php if ($custom_field['type'] == 'select') { ?>
@@ -611,33 +632,15 @@
                 </div>
               </div>
               <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-shipping-shipping_telephone"><?php echo $entry_shipping_telephone; ?></label>
+                <label class="col-sm-2 control-label" for="input-shipping-shipping-telephone"><?php echo $entry_shipping_telephone; ?></label>
                 <div class="col-sm-10">
-                  <input type="text" name="shipping_telephone" value="<?php echo $shipping_telephone; ?>" id="input-shipping-shipping_telephone" class="form-control" />
+                  <input type="text" name="shipping_telephone" value="<?php echo $shipping_telephone; ?>" id="input-shipping-shipping-telephone" class="form-control" />
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-shipping-company"><?php echo $entry_company; ?></label>
                 <div class="col-sm-10">
                   <input type="text" name="company" value="<?php echo $shipping_company; ?>" id="input-shipping-company" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-shipping-address"><?php echo $entry_address; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="address" value="<?php echo $shipping_address; ?>" id="input-shipping-address" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-shipping-city"><?php echo $entry_city; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="city" value="<?php echo $shipping_city; ?>" id="input-shipping-city" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-shipping-postcode"><?php echo $entry_postcode; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="postcode" value="<?php echo $shipping_postcode; ?>" id="input-shipping-postcode" class="form-control" />
                 </div>
               </div>
               <div class="form-group required">
@@ -662,6 +665,39 @@
                   </select>
                 </div>
               </div>
+              <div class="form-group required" id="china-shipping-city">
+                <label class="col-sm-2 control-label" for="input-shipping-city"><?php echo $entry_city; ?></label>
+                <div class="col-sm-10">
+                  <select name="city_id" id="input-shipping-city" class="form-control">
+                  </select>
+                </div>
+              </div>
+              <div class="form-group required" id="china-shipping-district">
+                <label class="col-sm-2 control-label" for="input-shipping-district"><?php echo $entry_district; ?></label>
+                <div class="col-sm-10">
+                  <select name="district_id" id="input-shipping-district" class="form-control">
+                  </select>
+                </div>
+              </div>
+              <div class="form-group required" id="world-shipping-city">
+                <label class="col-sm-2 control-label" for="input-shipping-city"><?php echo $entry_city; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="city" value="<?php echo $shipping_city; ?>" id="input-shipping-city" class="form-control" />
+                </div>
+              </div>
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-shipping-address"><?php echo $entry_address; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="address" value="<?php echo $shipping_address; ?>" id="input-shipping-address" class="form-control" />
+                </div>
+              </div>
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-shipping-postcode"><?php echo $entry_postcode; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="postcode" value="<?php echo $shipping_postcode; ?>" id="input-shipping-postcode" class="form-control" />
+                </div>
+              </div>
+              
               <?php foreach ($custom_fields as $custom_field) { ?>
               <?php if ($custom_field['location'] == 'address') { ?>
               <?php if ($custom_field['type'] == 'select') { ?>
@@ -1799,6 +1835,7 @@ $('select[name=\'payment_address\']').on('change', function() {
 			$('#tab-payment input[type=\'checkbox\'], #tab-payment input[type=\'radio\']').removeAttr('checked');
 
 			$('#tab-payment input[name=\'fullname\']').val(json['fullname']);
+			$('#tab-payment input[name=\'payment_telephone\']').val(json['payment_telephone']);
 			$('#tab-payment input[name=\'company\']').val(json['company']);
 			$('#tab-payment input[name=\'address\']').val(json['address']);
 			$('#tab-payment input[name=\'city\']').val(json['city']);
@@ -1806,6 +1843,8 @@ $('select[name=\'payment_address\']').on('change', function() {
 			$('#tab-payment select[name=\'country_id\']').val(json['country_id']);
 
 			payment_zone_id = json['zone_id'];
+			payment_city_id = json['city_id'];
+			payment_district_id = json['district_id'];
 
 			for (i in json['custom_field']) {
 				$('#tab-payment select[name=\'custom_field[' + i + ']\']').val(json['custom_field'][i]);
@@ -1831,6 +1870,8 @@ $('select[name=\'payment_address\']').on('change', function() {
 });
 
 var payment_zone_id = '<?php echo $payment_zone_id; ?>';
+var payment_city_id = '<?php echo $payment_city_id; ?>';
+var payment_district_id = '<?php echo $payment_district_id; ?>';
 
 $('#tab-payment select[name=\'country_id\']').on('change', function() {
 	$.ajax({
@@ -1866,6 +1907,82 @@ $('#tab-payment select[name=\'country_id\']').on('change', function() {
 			}
 
 			$('#tab-payment select[name=\'zone_id\']').html(html);
+			
+			$('#tab-payment select[name=\'zone_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#tab-payment select[name=\'zone_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=localisation/zone/zone&token=<?php echo $token; ?>&zone_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#tab-payment select[name=\'zone_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('#tab-payment .fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['city'] && json['city'] != '') {
+				for (i = 0; i < json['city'].length; i++) {
+        			html += '<option value="' + json['city'][i]['city_id'] + '"';
+
+					if (json['city'][i]['city_id'] == payment_city_id) {
+	      				html += ' selected="selected"';
+	    			}
+
+	    			html += '>' + json['city'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+
+			$('#tab-payment select[name=\'city_id\']').html(html);
+			
+			$('#tab-payment select[name=\'city_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#tab-payment select[name=\'city_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=localisation/city/city&token=<?php echo $token; ?>&city_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#tab-payment select[name=\'city_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('#tab-payment .fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['district'] && json['district'] != '') {
+				for (i = 0; i < json['district'].length; i++) {
+        			html += '<option value="' + json['district'][i]['district_id'] + '"';
+
+					if (json['district'][i]['district_id'] == payment_district_id) {
+	      				html += ' selected="selected"';
+	    			}
+
+	    			html += '>' + json['district'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+
+			$('#tab-payment select[name=\'district_id\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -1990,6 +2107,8 @@ $('select[name=\'shipping_address\']').on('change', function() {
 			$('#tab-shipping select[name=\'country_id\']').val(json['country_id']);
 
 			shipping_zone_id = json['zone_id'];
+			shipping_city_id = json['city_id'];
+			shipping_district_id = json['district_id'];
 
 			for (i in json['custom_field']) {
 				$('#tab-shipping select[name=\'custom_field[' + i + ']\']').val(json['custom_field'][i]);
@@ -2015,6 +2134,8 @@ $('select[name=\'shipping_address\']').on('change', function() {
 });
 
 var shipping_zone_id = '<?php echo $shipping_zone_id; ?>';
+var shipping_city_id = '<?php echo $shipping_city_id; ?>';
+var shipping_district_id = '<?php echo $shipping_district_id; ?>';
 
 $('#tab-shipping select[name=\'country_id\']').on('change', function() {
 	$.ajax({
@@ -2050,6 +2171,82 @@ $('#tab-shipping select[name=\'country_id\']').on('change', function() {
 			}
 
 			$('#tab-shipping select[name=\'zone_id\']').html(html);
+			
+			$('#tab-shipping select[name=\'zone_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#tab-shipping select[name=\'zone_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=localisation/zone/zone&token=<?php echo $token; ?>&zone_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#tab-shipping select[name=\'zone_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('#tab-shipping .fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['city'] && json['city'] != '') {
+				for (i = 0; i < json['city'].length; i++) {
+        			html += '<option value="' + json['city'][i]['city_id'] + '"';
+
+					if (json['city'][i]['city_id'] == shipping_city_id) {
+	      				html += ' selected="selected"';
+	    			}
+
+	    			html += '>' + json['city'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+
+			$('#tab-shipping select[name=\'city_id\']').html(html);
+			
+			$('#tab-shipping select[name=\'city_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#tab-shipping select[name=\'city_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=localisation/city/city&token=<?php echo $token; ?>&city_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#tab-shipping select[name=\'city_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('#tab-shipping .fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value=""><?php echo $text_select; ?></option>';
+
+			if (json['district'] && json['district'] != '') {
+				for (i = 0; i < json['district'].length; i++) {
+        			html += '<option value="' + json['district'][i]['district_id'] + '"';
+
+					if (json['district'][i]['district_id'] == shipping_district_id) {
+	      				html += ' selected="selected"';
+	    			}
+
+	    			html += '>' + json['district'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+
+			$('#tab-shipping select[name=\'district_id\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

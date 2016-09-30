@@ -91,6 +91,7 @@ $_['entry_address']              = '選擇地址';
 $_['entry_company']              = '公司';
 $_['entry_address']              = '地址';
 $_['entry_city']                 = '城市';
+$_['entry_district']             = '區縣';
 $_['entry_postcode']             = '郵編';
 $_['entry_country']              = '國家';
 $_['entry_zone']                 = '州 / 省';
@@ -121,6 +122,7 @@ $_['entry_total']                = '總計';
 $_['entry_date_added']           = '創建日期';
 $_['entry_date_modified']        = '修改日期';
 $_['entry_shipping_telephone']   = '收件人電話';
+$_['entry_payment_telephone']    = '收件人電話';
 
 // Error
 $_['error_warning']              = '警告: 請詳細檢查錯誤！';

@@ -39,6 +39,46 @@ class ModelAccountOrder extends Model {
 			} else {
 				$shipping_zone_code = '';
 			}
+			
+			if ($order_query->row['payment_country_id'] == 44) {
+				$payment_city_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "city` WHERE city_id = '" . (int)$order_query->row['payment_city_id'] . "'");
+	
+				if ($payment_city_query->num_rows) {
+					$payment_city = $payment_city_query->row['name'];
+				} else {
+					$payment_city = '';
+				}
+			} else {
+				$payment_city = $order_query->row['payment_city'];
+			}
+			
+			$payment_district_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "district` WHERE district_id = '" . (int)$order_query->row['payment_district_id'] . "'");
+
+			if ($payment_district_query->num_rows) {
+				$payment_district = $payment_district_query->row['name'];
+			} else {
+				$payment_district = '';
+			}
+			
+			if ($order_query->row['shipping_country_id'] == 44) {
+				$shipping_city_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "city` WHERE city_id = '" . (int)$order_query->row['shipping_city_id'] . "'");
+	
+				if ($shipping_city_query->num_rows) {
+					$shipping_city = $shipping_city_query->row['name'];
+				} else {
+					$shipping_city = '';
+				}
+			} else {
+				$shipping_city = $order_query->row['shipping_city'];
+			}
+			
+			$shipping_district_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "district` WHERE district_id = '" . (int)$order_query->row['shipping_district_id'] . "'");
+
+			if ($shipping_district_query->num_rows) {
+				$shipping_district = $shipping_district_query->row['name'];
+			} else {
+				$shipping_district = '';
+			}
 
 			return array(
 				'order_id'                => $order_query->row['order_id'],
@@ -48,15 +88,19 @@ class ModelAccountOrder extends Model {
 				'store_name'              => $order_query->row['store_name'],
 				'store_url'               => $order_query->row['store_url'],
 				'customer_id'             => $order_query->row['customer_id'],
-				'fullname'               => $order_query->row['fullname'],
+				'fullname'                => $order_query->row['fullname'],
 				'telephone'               => $order_query->row['telephone'],
 				'fax'                     => $order_query->row['fax'],
 				'email'                   => $order_query->row['email'],
-				'payment_fullname'       => $order_query->row['payment_fullname'],
+				'payment_fullname'        => $order_query->row['payment_fullname'],
+				'payment_telephone'       => $order_query->row['payment_telephone'],
 				'payment_company'         => $order_query->row['payment_company'],
-				'payment_address'       => $order_query->row['payment_address'],
+				'payment_address'         => $order_query->row['payment_address'],
 				'payment_postcode'        => $order_query->row['payment_postcode'],
-				'payment_city'            => $order_query->row['payment_city'],
+				'payment_city'            => $payment_city,
+				'payment_city_id'         => $order_query->row['payment_city_id'],
+				'payment_district'        => $payment_district,
+				'payment_district_id'     => $order_query->row['payment_district_id'],
 				'payment_zone_id'         => $order_query->row['payment_zone_id'],
 				'payment_zone'            => $order_query->row['payment_zone'],
 				'payment_zone_code'       => $payment_zone_code,
@@ -66,11 +110,15 @@ class ModelAccountOrder extends Model {
 				'payment_iso_code_3'      => $payment_iso_code_3,
 				'payment_address_format'  => $order_query->row['payment_address_format'],
 				'payment_method'          => $order_query->row['payment_method'],
-				'shipping_fullname'      => $order_query->row['shipping_fullname'],
+				'shipping_fullname'       => $order_query->row['shipping_fullname'],
+				'shipping_telephone'      => $order_query->row['shipping_telephone'],
 				'shipping_company'        => $order_query->row['shipping_company'],
-				'shipping_address'      => $order_query->row['shipping_address'],
+				'shipping_address'        => $order_query->row['shipping_address'],
 				'shipping_postcode'       => $order_query->row['shipping_postcode'],
-				'shipping_city'           => $order_query->row['shipping_city'],
+				'shipping_city'           => $shipping_city,
+				'shipping_city_id'        => $order_query->row['shipping_city_id'],
+				'shipping_district'       => $shipping_district,
+				'shipping_district_id'    => $order_query->row['shipping_district_id'],
 				'shipping_zone_id'        => $order_query->row['shipping_zone_id'],
 				'shipping_zone'           => $order_query->row['shipping_zone'],
 				'shipping_zone_code'      => $shipping_zone_code,

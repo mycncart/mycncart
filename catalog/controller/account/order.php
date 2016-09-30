@@ -205,29 +205,33 @@ class ControllerAccountOrder extends Controller {
 			if ($order_info['payment_address_format']) {
 				$format = $order_info['payment_address_format'];
 			} else {
-				$format = '{fullname}' . "\n" . '{company}' . "\n" . '{address}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				$format = '{fullname}' . "\n" . '{company}' . "\n" . '{country}' . '{zone}' . '{city}' . '{district}' . '{address}' . "\n" . '{postcode}' . "\n" . '{payment_telephone}';
 			}
 
 			$find = array(
 				'{fullname}',
 				'{company}',
 				'{address}',
+				'{district}',
 				'{city}',
 				'{postcode}',
 				'{zone}',
 				'{zone_code}',
-				'{country}'
+				'{country}',
+				'{payment_telephone}'
 			);
 
 			$replace = array(
-				'fullname' => $order_info['payment_fullname'],
+				'fullname'   => $order_info['payment_fullname'],
 				'company'   => $order_info['payment_company'],
-				'address' => $order_info['payment_address'],
+				'address'   => $order_info['payment_address'],
+				'district'  => $order_info['payment_district'],
 				'city'      => $order_info['payment_city'],
 				'postcode'  => $order_info['payment_postcode'],
 				'zone'      => $order_info['payment_zone'],
 				'zone_code' => $order_info['payment_zone_code'],
-				'country'   => $order_info['payment_country']
+				'country'   => $order_info['payment_country'],
+				'payment_telephone'   => $order_info['payment_telephone']
 			);
 
 			$data['payment_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -237,29 +241,33 @@ class ControllerAccountOrder extends Controller {
 			if ($order_info['shipping_address_format']) {
 				$format = $order_info['shipping_address_format'];
 			} else {
-				$format = '{fullname}' . "\n" . '{company}' . "\n" . '{address}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				$format = '{fullname}' . "\n" . '{company}' . "\n" . '{country}' . '{zone}' . '{city}' . '{district}' . '{address}' . "\n" . '{postcode}' . "\n" . '{shipping_telephone}';
 			}
 
 			$find = array(
 				'{fullname}',
 				'{company}',
 				'{address}',
+				'{district}',
 				'{city}',
 				'{postcode}',
 				'{zone}',
 				'{zone_code}',
-				'{country}'
+				'{country}',
+				'{shipping_telephone}'
 			);
 
 			$replace = array(
-				'fullname' => $order_info['shipping_fullname'],
+				'fullname'   => $order_info['shipping_fullname'],
 				'company'   => $order_info['shipping_company'],
-				'address' => $order_info['shipping_address'],
+				'address'   => $order_info['shipping_address'],
+				'district'  => $order_info['shipping_district'],
 				'city'      => $order_info['shipping_city'],
 				'postcode'  => $order_info['shipping_postcode'],
 				'zone'      => $order_info['shipping_zone'],
 				'zone_code' => $order_info['shipping_zone_code'],
-				'country'   => $order_info['shipping_country']
+				'country'   => $order_info['shipping_country'],
+				'shipping_telephone'   => $order_info['shipping_telephone']
 			);
 
 			$data['shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));

@@ -267,6 +267,7 @@ class ModelCustomerCustomer extends Model {
 				'customer_id'    => $address_query->row['customer_id'],
 				'fullname'      => $address_query->row['fullname'],
 				'shipping_telephone'      => $address_query->row['shipping_telephone'],
+				'payment_telephone'      => $address_query->row['shipping_telephone'],
 				'company'        => $address_query->row['company'],
 				'address'      => $address_query->row['address'],
 				'postcode'       => $address_query->row['postcode'],

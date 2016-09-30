@@ -90,6 +90,7 @@ $_['entry_address']              = 'Choose Address';
 $_['entry_company']              = 'Company';
 $_['entry_address']              = 'Address';
 $_['entry_city']                 = 'City';
+$_['entry_district']             = 'District';
 $_['entry_postcode']             = 'Postcode';
 $_['entry_country']              = 'Country';
 $_['entry_zone']                 = 'Region / State';
@@ -119,6 +120,8 @@ $_['entry_order_id']             = 'Order ID';
 $_['entry_total']                = 'Total';
 $_['entry_date_added']           = 'Date Added';
 $_['entry_date_modified']        = 'Date Modified';
+$_['entry_shipping_telephone']   = 'Shipping Telephone';
+$_['entry_payment_telephone']    = 'Payment Telephone';
 
 // Help
 $_['help_override']              = 'If the customers order is being blocked from changing the order status due to an anti-fraud extension enable override.';

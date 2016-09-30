@@ -5,9 +5,10 @@ $_['text_method']        = 'Success: Payment method has been set!';
 
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to access the API!';
-$_['error_fullname']    = 'Full Name must be between 1 and 32 characters!';
-$_['error_address']    = 'Address must be between 3 and 128 characters!';
-$_['error_city']         = 'City must be between 3 and 128 characters!';
+$_['error_fullname']     = 'Full Name must be between 1 and 32 characters!';
+$_['error_address']      = 'Address must be between 3 and 128 characters!';
+$_['error_city']         = 'Please select a city or must be between 3 and 128 characters!';
+$_['error_district']     = 'Please select a district!';
 $_['error_postcode']     = 'Postcode must be between 2 and 10 characters for this country!';
 $_['error_country']      = 'Please select a country!';
 $_['error_zone']         = 'Please select a region / state!';
