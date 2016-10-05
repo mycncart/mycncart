@@ -44,6 +44,7 @@
     <?php echo $language; ?>
     <div id="top-links" class="nav pull-right">
       <ul class="list-inline">
+        <?php if ($qq_login_status) {  ?>
       	<?php if (!$logged) { ?>
         <?php if ($qq_nickname) {  ?>
         <li><?php echo $qq_nickname; ?></li>
@@ -51,6 +52,7 @@
         <li><a href="<?php echo $qq_login_url; ?>"><span class="hidden-xs hidden-sm hidden-md"><img src="catalog/view/theme/default/image/qq_login.png"></span></a> </li>
         <?php 
         	}
+            }
             } 
         ?>
         <li><a href="<?php echo $contact; ?>"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md"><?php echo $telephone; ?></span></li>

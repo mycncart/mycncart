@@ -117,6 +117,8 @@ class ControllerCommonHeader extends Controller {
 		}
 		
 		$data['qq_login_url'] = $this->url->link('extension/module/qq_login/login', '', true);
+		
+		$data['qq_login_status'] = (int)$this->config->get('qq_login_status');
 
 		// Menu
 		$this->load->model('catalog/category');
