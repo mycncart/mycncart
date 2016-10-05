@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+/* 浮动客服 */
+#floatDivBoxs{
+	width:170px;
+	background:#fff;
+	position:fixed;
+	top:180px;
+	right:0;
+	z-index:999;
+}
+#floatDivBoxs .floatDtt{
+	width:100%;
+	height:45px;
+	line-height:45px;
+	background:#f08326;
+	color:#fff;
+	font-size:18px;
+	text-indent:22px;
+	position:relative;
+}
+
+#floatDivBoxs .floatDqq{
+	padding:0 14px;
+	list-style:none;
+}
+
+#floatDivBoxs .floatDqq li{
+	height:45px;
+	line-height:45px;
+	font-size:15px;
+	border-bottom:1px solid #e3e3e3;
+	padding:0 0 0 50px;
+}
+
+#floatDivBoxs .floatDtxt{
+	font-size:18px;
+	color:#333;
+	padding:12px 14px;
+}
+
+#floatDivBoxs .floatDtel{
+	padding:0 0 15px 20px;
+	font-weight:bold;
+	font-size:16px;
+}
+
+#floatDivBoxs .floatDtel img{
+	display:block;
+}
+
+#floatDivBoxs .floatDbg{
+	width:100%;
+	height:20px;
+	background:url(../image/kefu/online_botbg.jpg) no-repeat;
+	box-shadow:-2px 0 3px rgba(0,0,0,0.25);
+}
+
+.floatShadow{
+	background:#fff;
+	box-shadow:-2px 0 3px rgba(0,0,0,0.25);
+}
+
+#rightArrow{
+	width:50px;
+	height:45px;
+	background:url(../image/kefu/online_arrow.jpg) no-repeat;
+	position:fixed;
+	top:180px;
+	right:170px;
+	z-index:999;
+}
+
+#rightArrow a{
+	display:block;
+	height:45px;
+}

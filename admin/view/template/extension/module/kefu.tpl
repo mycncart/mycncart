@@ -55,6 +55,12 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-image-title"><?php echo $entry_weixin_image_title; ?></label>
+            <div class="col-sm-10">
+              <input type="text" name="image_title" value="<?php echo $image_title; ?>" placeholder="<?php echo $entry_weixin_image_title; ?>" id="input-image-title" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
             <label class="col-sm-2 control-label"><?php echo $entry_weixin_image; ?></label>
             <div class="col-sm-10"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
               <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
@@ -68,6 +74,7 @@
                   <thead>
                     <tr>
                       <td class="text-left"><?php echo $entry_qq_number; ?></td>
+                      <td class="text-left"><?php echo $entry_qq_name; ?></td>
                       <td class="text-left"><?php echo $entry_sort_order; ?></td>
                       <td></td>
                     </tr>
@@ -77,6 +84,7 @@
                     <?php foreach ($service_qqs as $service_qq) { ?>
                     <tr id="qq-row<?php echo $qq_row; ?>">
                       <td class="text-left"><input type="text" name="service_qq[<?php echo $qq_row; ?>][qq_number]" value="<?php echo $service_qq['qq_number']; ?>" placeholder="<?php echo $entry_qq_number; ?>" class="form-control" /></td>
+                      <td class="text-left"><input type="text" name="service_qq[<?php echo $qq_row; ?>][qq_name]" value="<?php echo $service_qq['qq_name']; ?>" placeholder="<?php echo $entry_qq_name; ?>" class="form-control" /></td>
                       <td class="text-left"><input type="text" name="service_qq[<?php echo $qq_row; ?>][sort_order]" value="<?php echo $service_qq['sort_order']; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>
                       
                       <td class="text-left"><button type="button" onclick="$('#qq-row<?php echo $qq_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
@@ -105,6 +113,7 @@ var qq_row = <?php echo $qq_row; ?>;
 function addQQ() {
 	html  = '<tr id="qq-row' + qq_row + '">';
     html += '  <td class="text-right"><input type="text" name="service_qq[' + qq_row + '][qq_number]" value="" placeholder="<?php echo $entry_qq_number; ?>" class="form-control" /></td>';
+	html += '  <td class="text-right"><input type="text" name="service_qq[' + qq_row + '][qq_name]" value="" placeholder="<?php echo $entry_qq_name; ?>" class="form-control" /></td>';
 	html += '  <td class="text-right"><input type="text" name="service_qq[' + qq_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>';
 	html += '  <td class="text-left"><button type="button" onclick="$(\'#qq-row' + qq_row + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';

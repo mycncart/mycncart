@@ -5,17 +5,30 @@ class ControllerExtensionModuleKefu extends Controller {
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
+		$data['text_online'] = $this->language->get('text_online');
 		$data['text_telephone'] = $this->language->get('text_telephone');
 		$data['text_qq'] = $this->language->get('text_qq');
 		$data['text_weixin_image'] = $this->language->get('text_weixin_image');
 		
 		$data['telephone'] = $setting['telephone'];
-		$data['image'] = $setting['image'];
+		
+		//$data['image'] = $setting['image'];
+		if ($setting['image']) {
+			$data['image'] = $this->model_tool_image->resize($setting['image'], 106, 106);
+		} else {
+			$data['image'] = '';
+		}
+		
+		$data['image_title'] = $setting['image_title'];
 		$data['qqs'] = $setting['service_qq'];
 		
-
-		if ($data['telephone'] || $data['image'] || $data['qqs']) {
-			return $this->load->view('extension/module/kefu', $data);
+		$this->load->helper('mobile');
+		if (is_mobile()) {
+			
+		} else {
+			if ($data['telephone'] || $data['image'] || $data['qqs']) {
+				return $this->load->view('extension/module/kefu', $data);
+			}
 		}
 	}
 }

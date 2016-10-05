@@ -31,7 +31,9 @@ class ControllerExtensionModuleKefu extends Controller {
 		$data['entry_telephone'] = $this->language->get('entry_telephone');
 		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$data['entry_weixin_image'] = $this->language->get('entry_weixin_image');
+		$data['entry_weixin_image_title'] = $this->language->get('entry_weixin_image_title');
 		$data['entry_qq_number'] = $this->language->get('entry_qq_number');
+		$data['entry_qq_name'] = $this->language->get('entry_qq_name');
 		$data['entry_qq'] = $this->language->get('entry_qq');
 		$data['entry_status'] = $this->language->get('entry_status');
 
@@ -110,6 +112,14 @@ class ControllerExtensionModuleKefu extends Controller {
 			$data['telephone'] = '';
 		}
 
+		if (isset($this->request->post['image_title'])) {
+			$data['image_title'] = $this->request->post['image_title'];
+		} elseif (!empty($module_info)) {
+			$data['image_title'] = $module_info['image_title'];
+		} else {
+			$data['image_title'] = '';
+		}
+		
 		if (isset($this->request->post['image'])) {
 			$data['image'] = $this->request->post['image'];
 		} elseif (!empty($module_info)) {
