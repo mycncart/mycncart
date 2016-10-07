@@ -26,7 +26,7 @@
       <div class="panel-body">
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-chuanglan" class="form-horizontal">
         	
-            <h4>【上海创蓝国际国内短信接口】，申请测试账户请联系 <a href="http://www.mycncart.com" target="_blank">青岛万物一体网络科技有限公司</a> 。 客服QQ： 1507104973  客服电话：(+86) 18561800618</h4>
+            <h4>【上海创蓝国际国内短信接口】，申请测试账户请联系 <a href="http://www.mycncart.com" target="_blank">青岛万物一体网络科技有限公司</a>合作方上海创蓝客服QQ： 2881368335  客服电话：(+86) 15999872125</h4>
         
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-account"><?php echo $entry_account; ?></label>
