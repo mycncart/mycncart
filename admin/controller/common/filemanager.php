@@ -240,6 +240,8 @@ class ControllerCommonFileManager extends Controller {
 						'size'     => $this->request->files['file']['size'][$key]
 					);
 				}
+				
+				//var_dump($this->request->files['file']);exit;
 			}
 
 			foreach ($files as $file) {
@@ -281,6 +283,19 @@ class ControllerCommonFileManager extends Controller {
 					if ($file['error'] != UPLOAD_ERR_OK) {
 						$json['error'] = $this->language->get('error_upload_' . $file['error']);
 					}
+					
+					if (intval($file['size']) > 1024000) {
+						$json['error'] = $this->language->get('error_filesize');
+					}
+					
+					if (!isset($json['error'])) {
+						list($width_orig, $height_orig, $image_type) = getimagesize($file['tmp_name']);
+						
+						if ((intval($width_orig) > 2000) || (intval($height_orig) > 2000)) {
+							$json['error'] = $this->language->get('error_filesize');
+						}
+					}
+
 				} else {
 					$json['error'] = $this->language->get('error_upload');
 				}
