@@ -47,7 +47,9 @@ class ControllerExtensionSmsChuangLan extends Controller {
 				$post_data['msg'] = sprintf($this->language->get('text_content'), $verify_code);
 				$post_data['needstatus'] = 'true';
 				
-				$url = 'http://222.73.117.156/msg/HttpBatchSendSM';
+				//$url = 'http://222.73.117.156/msg/HttpBatchSendSM';
+				//safe url
+				$url = 'https://zapi.253.com/msg/HttpBatchSendSM';
 
 				$o = "";
 				foreach ($post_data as $k=>$v) {
