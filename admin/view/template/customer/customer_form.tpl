@@ -723,12 +723,12 @@ function addAddress() {
 
 	html += '  <div class="form-group required">';
 	html += '    <label class="col-sm-2 control-label" for="input-zone' + address_row + '"><?php echo $entry_zone; ?></label>';
-	html += '    <div class="col-sm-10"><select name="address[' + address_row + '][zone_id]" id="input-zone' + address_row + '" class="form-control"><option value=""><?php echo $text_none; ?></option></select></div>';
+	html += '    <div class="col-sm-10"><select name="address[' + address_row + '][zone_id]" id="input-zone' + address_row + '"  onchange="zone(this, \'' + address_row + '\', \'0\');" class="form-control"><option value=""><?php echo $text_none; ?></option></select></div>';
 	html += '  </div>';
 	
 	html += '  <div class="form-group required" id="china-city' + address_row + '">';
 	html += '    <label class="col-sm-2 control-label" for="input-city' + address_row + '"><?php echo $entry_city; ?></label>';
-	html += '    <div class="col-sm-10"><select name="address[' + address_row + '][city_id]" id="input-city' + address_row + '" class="form-control"><option value=""><?php echo $text_none; ?></option></select></div>';
+	html += '    <div class="col-sm-10"><select name="address[' + address_row + '][city_id]" id="input-city' + address_row + '"  onchange="city(this, \'' + address_row + '\', \'0\');" class="form-control"><option value=""><?php echo $text_none; ?></option></select></div>';
 	html += '  </div>';
 	
 	html += '  <div class="form-group required" id="china-district' + address_row + '">';
