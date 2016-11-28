@@ -155,6 +155,10 @@ class ModelBlogBlog extends Model {
 			
 			$this->cache->set('blog.filter.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $cache, $blog_data);
 		
+		}else{
+			foreach ($blog_data as $k => $v) {
+				$blog_data[$k]['hits'] = $this->db->query("SELECT hits from " . DB_PREFIX . 'blog where blog_id = ' . $k)->row['hits'];
+			}
 		}
 
 		return $blog_data;
