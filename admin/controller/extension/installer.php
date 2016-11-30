@@ -129,7 +129,7 @@ class ControllerExtensionInstaller extends Controller {
 						// FTP
 						$json['step'][] = array(
 							'text' => $this->language->get('text_ftp'),
-							'url'  => str_replace('&amp;', '&', $this->url->link('extension/installer/ftp', 'token=' . $this->session->data['token'], true)),
+							'url'  => str_replace('&amp;', '&', $this->url->link('extension/installer/localcopy', 'token=' . $this->session->data['token'], true)),
 							'path' => $path
 						);
 
@@ -206,6 +206,79 @@ class ControllerExtensionInstaller extends Controller {
 					}
 				} else {
 					$json['error'] = $this->language->get('error_file');
+				}
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+	
+				
+	public function localcopy() {
+		$this->load->language('extension/installer');
+
+		$json = array();
+
+		if (!$this->user->hasPermission('modify', 'extension/installer')) {
+			$json['error'] = $this->language->get('error_permission');
+		}
+
+		$directory = DIR_UPLOAD  . str_replace(array('../', '..\\', '..'), '', $this->request->post['path']) . '/upload/';
+
+		if (!is_dir($directory)) {
+			$json['error'] = $this->language->get('error_directory');
+		}
+
+		if (!$json) {
+			// Get a list of files ready to upload
+			$files = array();
+
+			$path = array($directory . '*');
+
+			while (count($path) != 0) {
+				$next = array_shift($path);
+
+				foreach (glob($next) as $file) {
+					if (is_dir($file)) {
+						$path[] = $file . '/*';
+					}
+
+					$files[] = $file;
+				}
+			}
+
+			$root = dirname(DIR_APPLICATION).'/';
+
+			foreach ($files as $file) {
+				// Upload everything in the upload directory
+				$destination = substr($file, strlen($directory));
+
+				// Update from newer OpenCart versions:
+				if (substr($destination, 0, 5) == 'admin') {
+					$destination = DIR_APPLICATION . substr($destination, 5);
+				} else if (substr($destination, 0, 7) == 'catalog') {
+					$destination = DIR_CATALOG . substr($destination, 7);
+				} else if (substr($destination, 0, 5) == 'image') {
+					$destination = DIR_IMAGE . substr($destination, 5);
+				} else if (substr($destination, 0, 6) == 'system') {
+					$destination = DIR_SYSTEM . substr($destination, 6);
+				} else {
+					$destination = $root.$destination;
+				}
+
+				if (is_dir($file)) {
+					if (!file_exists($destination)) {
+						if (!mkdir($destination)) {
+							$json['error'] = sprintf($this->language->get('error_ftp_directory'), $destination);
+						}
+					}
+				}
+
+				if (is_file($file)) {
+					if (!copy($file, $destination)) {
+						$json['error'] = sprintf($this->language->get('error_ftp_file'), $file);
+					}
 				}
 			}
 		}
