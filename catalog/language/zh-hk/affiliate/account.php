@@ -12,4 +12,5 @@ $_['text_password']        = '更改密碼';
 $_['text_payment']         = '更改預設支付方式';
 $_['text_tracking']        = '定制推廣會員跟蹤鏈接';
 $_['text_transaction']     = '查看我的交易記錄';
+$_['text_affiliate_logout']= '推廣會員退出登錄';
 $_['text_logout']     	   = '退出登錄';

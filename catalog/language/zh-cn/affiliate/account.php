@@ -12,4 +12,5 @@ $_['text_password']        = '更改密码';
 $_['text_payment']         = '更改预设支付方式';
 $_['text_tracking']        = '定制推广会员跟踪链接';
 $_['text_transaction']     = '查看我的交易记录';
+$_['text_affiliate_logout']= '推广会员退出登录';
 $_['text_logout']     	   = '退出登录';
