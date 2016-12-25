@@ -21,6 +21,7 @@ $_['entry_district']       = 'District';
 $_['entry_country']        = 'Country';
 $_['entry_zone']           = 'Region / State';
 $_['entry_default']        = 'Default Address';
+$_['entry_shipping_telephone'] 	     = 'Shipping Telephone';
 
 // Error
 $_['error_delete']                = 'Warning: You must have at least one address!';
@@ -34,3 +35,5 @@ $_['error_district']              = 'Distrcit required!';
 $_['error_country']               = 'Please select a country!';
 $_['error_zone']                  = 'Please select a region / state!';
 $_['error_custom_field']          = '%s required!';
+$_['error_shipping_telephone']    = 'Shipping telephone must be between 3 and 32 characters!';
+$_['error_custom_field_validate'] = '%s invalid!';
