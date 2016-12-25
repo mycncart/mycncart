@@ -12,7 +12,8 @@ class ControllerExtensionModuleKefu extends Controller {
 		
 		$data['telephone'] = $setting['telephone'];
 		
-		//$data['image'] = $setting['image'];
+		$this->load->model('tool/image');
+		
 		if ($setting['image']) {
 			$data['image'] = $this->model_tool_image->resize($setting['image'], 106, 106);
 		} else {
