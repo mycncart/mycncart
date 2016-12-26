@@ -31,21 +31,19 @@
         </div>
         
         <div class="form-group required" id="china-city">
-          <label class="control-label" for="input-city"><?php echo $entry_city; ?></label>
-          <select name="city_id" id="input-city" class="form-control">
-          </select>
+          <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
+          <div class="col-sm-10">
+          	<select name="city_id" id="input-city" class="form-control">
+          	</select>
+          </div>
         </div>
         <div class="form-group required" id="china-district">
-          <label class="control-label" for="input-district"><?php echo $entry_district; ?></label>
-          <select name="district_id" id="input-district" class="form-control">
-          </select>
+          <label class="col-sm-2 control-label" for="input-district"><?php echo $entry_district; ?></label>
+          <div class="col-sm-10">
+          	<select name="district_id" id="input-district" class="form-control">
+          	</select>
+          </div>
         </div>
-        
-        <div class="form-group required" id="world-city">
-          <label class="control-label" for="input-city"><?php echo $entry_city; ?></label>
-          <input type="text" name="city" value="" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control" />
-        </div>
-        
         
         <div class="form-group required">
           <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
@@ -60,7 +58,7 @@ $('#button-quote').on('click', function() {
 	$.ajax({
 		url: 'index.php?route=extension/total/shipping/quote',
 		type: 'post',
-		data: 'country_id=' + $('select[name=\'country_id\']').val() + '&zone_id=' + $('select[name=\'zone_id\']').val() + '&postcode=' + encodeURIComponent($('input[name=\'postcode\']').val()),
+		data: 'country_id=' + $('select[name=\'country_id\']').val() + '&zone_id=' + $('select[name=\'zone_id\']').val() + '&city_id=' + $('select[name=\'city_id\']').val() + '&district_id=' + $('select[name=\'district_id\']').val() + '&postcode=' + encodeURIComponent($('input[name=\'postcode\']').val()),
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-quote').button('loading');
@@ -84,6 +82,14 @@ $('#button-quote').on('click', function() {
 
 				if (json['error']['zone']) {
 					$('select[name=\'zone_id\']').after('<div class="text-danger">' + json['error']['zone'] + '</div>');
+				}
+				
+				if (json['error']['city']) {
+					$('select[name=\'city_id\']').after('<div class="text-danger">' + json['error']['city'] + '</div>');
+				}
+				
+				if (json['error']['district']) {
+					$('select[name=\'district_id\']').after('<div class="text-danger">' + json['error']['district'] + '</div>');
 				}
 
 				if (json['error']['postcode']) {
@@ -187,11 +193,9 @@ $(document).delegate('#button-shipping', 'click', function() {
 <script type="text/javascript"><!--
 $('select[name=\'country_id\']').on('change', function() {
 	if (this.value == 44) {
-		$('#world-city').hide();
 		$('#china-city').show();
 		$('#china-district').show();
 	} else {
-		$('#world-city').show();
 		$('#china-city').hide();
 		$('#china-district').hide();
 	}

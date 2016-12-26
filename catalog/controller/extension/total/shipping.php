@@ -14,6 +14,8 @@ class ControllerExtensionTotalShipping extends Controller {
 
 			$data['entry_country'] = $this->language->get('entry_country');
 			$data['entry_zone'] = $this->language->get('entry_zone');
+			$data['entry_city'] = $this->language->get('entry_city');
+			$data['entry_district'] = $this->language->get('entry_district');
 			$data['entry_postcode'] = $this->language->get('entry_postcode');
 
 			$data['button_quote'] = $this->language->get('button_quote');
@@ -72,6 +74,18 @@ class ControllerExtensionTotalShipping extends Controller {
 		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
 			$json['error']['zone'] = $this->language->get('error_zone');
 		}
+		
+		if ($this->request->post['country_id'] == 44) {
+				
+			if (!isset($this->request->post['city_id']) || $this->request->post['city_id'] == '' || !is_numeric($this->request->post['city_id'])) {
+				$json['error']['city'] = $this->language->get('error_city');
+			}
+			
+			if (!isset($this->request->post['district_id']) || $this->request->post['district_id'] == '' || !is_numeric($this->request->post['district_id'])) {
+				$json['error']['district'] = $this->language->get('error_district');
+			}
+			
+		}
 
 		$this->load->model('localisation/country');
 
@@ -107,13 +121,43 @@ class ControllerExtensionTotalShipping extends Controller {
 				$zone = '';
 				$zone_code = '';
 			}
+			
+			if ($this->request->post['country_id'] == 44) {
+				
+				$this->load->model('localisation/city');
+	
+				$city_info = $this->model_localisation_city->getCity($this->request->post['city_id']);
+	
+				if ($city_info) {
+					$city = $city_info['name'];
+				} else {
+					$city = '';
+				}
+				
+				$this->load->model('localisation/district');
+	
+				$district_info = $this->model_localisation_district->getDistrict($this->request->post['district_id']);
+	
+				if ($district_info) {
+					$district = $district_info['name'];
+				} else {
+					$district = '';
+				}
+			
+			} else {
+				$city = '';
+				$district = '';
+			}
 
 			$this->session->data['shipping_address'] = array(
 				'fullname'       => '',
 				'company'        => '',
 				'address'        => '',
 				'postcode'       => $this->request->post['postcode'],
-				'city'           => '',
+				'district_id'    => $this->request->post['district_id'],
+				'district'       => $district,
+				'city_id'        => $this->request->post['city_id'],
+				'city'           => $city,
 				'zone_id'        => $this->request->post['zone_id'],
 				'zone'           => $zone,
 				'zone_code'      => $zone_code,

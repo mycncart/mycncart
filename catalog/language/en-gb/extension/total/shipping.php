@@ -11,10 +11,14 @@ $_['text_shipping_method'] = 'Please select the preferred shipping method to use
 $_['entry_country']        = 'Country';
 $_['entry_zone']           = 'Region / State';
 $_['entry_postcode']       = 'Post Code';
+$_['entry_city']       	   = 'City';
+$_['entry_district']       = 'District';
 
 // Error
 $_['error_postcode']       = 'Postcode must be between 2 and 10 characters!';
 $_['error_country']        = 'Please select a country!';
 $_['error_zone']           = 'Please select a region / state!';
+$_['error_city']           = 'Please select city!';
+$_['error_district']       = 'Please select district!';
 $_['error_shipping']       = 'Warning: Shipping method required!';
 $_['error_no_shipping']    = 'Warning: No Shipping options are available. Please <a href="%s">contact us</a> for assistance!';
