@@ -12,3 +12,6 @@ $_['entry_voucher'] = 'Enter your gift certificate code here';
 // Error
 $_['error_voucher'] = 'Warning: Gift Certificate is either invalid or the balance has been used up!';
 $_['error_empty']   = 'Warning: Please enter a gift certificate code!';
+
+//Button
+$_['button_voucher_cz']            = 'Cancel';

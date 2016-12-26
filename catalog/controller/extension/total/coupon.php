@@ -11,6 +11,7 @@ class ControllerExtensionTotalCoupon extends Controller {
 			$data['entry_coupon'] = $this->language->get('entry_coupon');
 
 			$data['button_coupon'] = $this->language->get('button_coupon');
+			$data['button_coupon_cz'] = $this->language->get('button_coupon_cz');
 
 			if (isset($this->session->data['coupon'])) {
 				$data['coupon'] = $this->session->data['coupon'];
@@ -36,8 +37,11 @@ class ControllerExtensionTotalCoupon extends Controller {
 		}
 
 		$coupon_info = $this->model_extension_total_coupon->getCoupon($coupon);
-
-		if (empty($this->request->post['coupon'])) {
+		
+		if ($this->request->post['coupon'] == 'NO') {
+			$this->session->data['coupon'] = '';
+			$json['redirect'] = $this->url->link('checkout/cart');
+		} elseif (empty($this->request->post['coupon'])) {
 			$json['error'] = $this->language->get('error_empty');
 
 			unset($this->session->data['coupon']);

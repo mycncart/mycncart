@@ -12,3 +12,6 @@ $_['entry_voucher'] = '輸入禮品券碼';
 // Error
 $_['error_voucher'] = '警告: 禮品券無效或已用完！';
 $_['error_empty']   = '警告: 請輸入禮品券碼！';
+
+//Button
+$_['button_voucher_cz']            = '撤销使用';

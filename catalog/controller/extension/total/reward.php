@@ -21,6 +21,7 @@ class ControllerExtensionTotalReward extends Controller {
 			$data['entry_reward'] = sprintf($this->language->get('entry_reward'), $points_total);
 
 			$data['button_reward'] = $this->language->get('button_reward');
+			$data['button_reward_cz'] = $this->language->get('button_reward_cz');
 
 			if (isset($this->session->data['reward'])) {
 				$data['reward'] = $this->session->data['reward'];
@@ -46,8 +47,11 @@ class ControllerExtensionTotalReward extends Controller {
 				$points_total += $product['points'];
 			}
 		}
-
-		if (empty($this->request->post['reward'])) {
+		
+		if ($this->request->post['reward'] == '0') {			
+			$this->session->data['reward'] = '';
+			$json['redirect'] = $this->url->link('checkout/cart');	
+		}elseif (empty($this->request->post['reward'])) {
 			$json['error'] = $this->language->get('error_reward');
 		}
 

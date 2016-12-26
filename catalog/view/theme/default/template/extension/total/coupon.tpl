@@ -5,11 +5,19 @@
   <div id="collapse-coupon" class="panel-collapse collapse">
     <div class="panel-body">
       <label class="col-sm-2 control-label" for="input-coupon"><?php echo $entry_coupon; ?></label>
+      <?php if(!$coupon){ ?>
       <div class="input-group">
         <input type="text" name="coupon" value="<?php echo $coupon; ?>" placeholder="<?php echo $entry_coupon; ?>" id="input-coupon" class="form-control" />
         <span class="input-group-btn">
         <input type="button" value="<?php echo $button_coupon; ?>" id="button-coupon" data-loading-text="<?php echo $text_loading; ?>"  class="btn btn-primary" />
         </span></div>
+      <?php } else { ?>
+        <div class="input-group">
+        <input type="hidden" name="coupon" value="NO" placeholder="<?php echo $entry_coupon; ?>" id="input-coupon" class="form-control" />
+        <span class="input-group-btn">
+        <input type="button" value="<?php echo $button_coupon_cz; ?>" id="button-coupon" data-loading-text="<?php echo $text_loading; ?>"  class="btn btn-primary" />
+        </span></div>
+      <?php } ?>
       <script type="text/javascript"><!--
 $('#button-coupon').on('click', function() {
 	$.ajax({

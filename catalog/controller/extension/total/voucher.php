@@ -11,6 +11,7 @@ class ControllerExtensionTotalVoucher extends Controller {
 			$data['entry_voucher'] = $this->language->get('entry_voucher');
 
 			$data['button_voucher'] = $this->language->get('button_voucher');
+			$data['button_voucher_cz'] = $this->language->get('button_voucher_cz');
 
 			if (isset($this->session->data['voucher'])) {
 				$data['voucher'] = $this->session->data['voucher'];
@@ -36,8 +37,13 @@ class ControllerExtensionTotalVoucher extends Controller {
 		}
 
 		$voucher_info = $this->model_extension_total_voucher->getVoucher($voucher);
-
-		if (empty($this->request->post['voucher'])) {
+		
+		if ($this->request->post['voucher'] == 'NO') {
+			
+			$this->session->data['voucher'] = '';
+			$json['redirect'] = $this->url->link('checkout/cart');
+			
+		} elseif (empty($this->request->post['voucher'])) {
 			$json['error'] = $this->language->get('error_empty');
 		} elseif ($voucher_info) {
 			$this->session->data['voucher'] = $this->request->post['voucher'];

@@ -12,3 +12,6 @@ $_['entry_coupon']  = '此處輸入折扣券碼';
 // Error
 $_['error_coupon']  = '警告: 折扣券無效、過期或已超過使用次數！';
 $_['error_empty']   = '警告: 請輸入折扣券碼！';
+
+//Button
+$_['button_coupon_cz']            = '撤销使用';

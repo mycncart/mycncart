@@ -14,3 +14,6 @@ $_['entry_reward']  = '使用奖励积分 (最多 %s)';
 $_['error_reward']  = '警告: 请输入要使用的奖励积分数值！';
 $_['error_points']  = '警告: 您目前没有 %s 奖励积分！';
 $_['error_maximum'] = '警告: 可用奖励积分最大数值为 %s!';
+
+//Button
+$_['button_reward_cz']            = '撤销使用';
