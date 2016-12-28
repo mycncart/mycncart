@@ -39,52 +39,26 @@ class ControllerExtensionSmsChuangLan extends Controller {
 				$this->model_account_smsmobile->deleteSmsMobile(trim($this->request->post['telephone']));
 				
 				$this->model_account_smsmobile->addSmsMobile(trim($this->request->post['telephone']), $verify_code);
-
-				$post_data = array();
-				$post_data['account'] = $this->config->get('chuanglan_account');
-				$post_data['pswd'] = $this->config->get('chuanglan_password');
-				$post_data['mobile'] = trim($this->request->post['telephone']);
-				$post_data['msg'] = sprintf($this->language->get('text_content'), $verify_code);
-				$post_data['needstatus'] = 'true';
 				
-				//$url = 'http://222.73.117.156/msg/HttpBatchSendSM';
-				//safe url
-				$url = 'https://zapi.253.com/msg/HttpBatchSendSM';
-
-				$o = "";
-				foreach ($post_data as $k=>$v) {
-				   $o.= "$k=".urlencode($v)."&";
-				}
+				require_once(DIR_SYSTEM.'library/sms/chuanglansmsapi.php');
 				
-				$post_data=substr($o,0,-1);
+				define('SMS_ACCOUNT', $this->config->get('chuanglan_account'));
+				define('SMS_PASSWORD', $this->config->get('chuanglan_password'));
 				
-				$result = $this->sms_post($post_data, $url);
+				$chuanglan = new ChuanglanSmsApi();
 				
-				if ($result == 0) {
+				$result = $chuanglan->sendSMS(trim($this->request->post['telephone']), sprintf($this->language->get('text_content'), $verify_code));
+				$result = $chuanglan->execResult($result);
+				if(isset($result[1]) && $result[1]==0){
 					$json['success'] = $this->language->get('text_success');
-				} else {
-					$json['error'] = $this->language->get('text_error');
+				}else{
+					$json['error'] = $this->language->get('text_error').'{$result[1]}';
 				}
+				
 			}
 		}
 
 		$this->response->setOutput(json_encode($json));
 	}
-	
-	public function sms_post($curlPost,$url){
-		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_HEADER, false);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_NOBODY, true);
-		curl_setopt($curl, CURLOPT_POST, true);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
-		$result = curl_exec($curl);
-		curl_close($curl);
-		
-		$return_str = explode(',', $result);
-		
-		return $return_str[1];
-	}
-	
+
 }
