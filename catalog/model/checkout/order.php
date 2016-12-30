@@ -824,39 +824,16 @@ class ModelCheckoutOrder extends Model {
 	
 	private function send_message($phone, $message) {
 		
-		$post_data = array();
-		$post_data['account'] = $this->config->get('chuanglan_account');
-		$post_data['pswd'] = $this->config->get('chuanglan_password');
-		$post_data['mobile'] = trim($phone);
-		$post_data['msg'] = $message;
-		$post_data['needstatus'] = 'true';
+		require_once(DIR_SYSTEM.'library/sms/chuanglansmsapi.php');
+				
+		define('SMS_ACCOUNT', $this->config->get('chuanglan_account'));
+		define('SMS_PASSWORD', $this->config->get('chuanglan_password'));
 		
-		$url = 'http://222.73.117.156/msg/HttpBatchSendSM';
-
-		$o = "";
-		foreach ($post_data as $k=>$v) {
-		   $o.= "$k=".urlencode($v)."&";
-		}
+		$chuanglan = new ChuanglanSmsApi();
 		
-		$post_data=substr($o,0,-1);
+		$result = $chuanglan->sendSMS(trim($phone), $message);
+		$result = $chuanglan->execResult($result);
 		
-		$result = $this->sms_post($post_data, $url);
 		
-	}
-	
-	private function sms_post($curlPost,$url){
-		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_HEADER, false);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_NOBODY, true);
-		curl_setopt($curl, CURLOPT_POST, true);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
-		$result = curl_exec($curl);
-		curl_close($curl);
-		
-		$return_str = explode(',', $result);
-		
-		return $return_str[1];
 	}
 }
