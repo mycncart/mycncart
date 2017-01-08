@@ -344,13 +344,10 @@ class ControllerAccountRegister extends Controller {
 					$this->error['telephone'] = $this->language->get('error_telephone_exists');
 				} else {
 					// if sms code is not correct
-					if (isset($this->request->post['sms_code'])) {
-						$this->load->model('account/smsmobile');
-						if($this->model_account_smsmobile->verifySmsCode($this->request->post['telephone'], $this->request->post['sms_code']) == 0) {
-							$this->error['sms_code'] = $this->language->get('error_sms_code');
-						}
+					$this->load->model('account/smsmobile');
+					if($this->model_account_smsmobile->verifySmsCode($this->request->post['telephone'], $this->request->post['sms_code']) == 0) {
+						$this->error['sms_code'] = $this->language->get('error_sms_code');
 					}
-				
 				}
 				
 			}
