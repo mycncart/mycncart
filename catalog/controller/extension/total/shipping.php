@@ -37,6 +37,18 @@ class ControllerExtensionTotalShipping extends Controller {
 			} else {
 				$data['zone_id'] = '';
 			}
+			
+			if (isset($this->session->data['shipping_address']['city_id'])) {
+				$data['city_id'] = $this->session->data['shipping_address']['city_id'];
+			} else {
+				$data['city_id'] = '';
+			}
+			
+			if (isset($this->session->data['shipping_address']['district_id'])) {
+				$data['district_id'] = $this->session->data['shipping_address']['district_id'];
+			} else {
+				$data['district_id'] = '';
+			}
 
 			if (isset($this->session->data['shipping_address']['postcode'])) {
 				$data['postcode'] = $this->session->data['shipping_address']['postcode'];
