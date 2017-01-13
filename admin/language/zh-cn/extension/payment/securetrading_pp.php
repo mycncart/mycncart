@@ -1,6 +1,7 @@
 <?php
 $_['heading_title'] = 'Secure Trading Payment Pages';
 
+$_['text_extension']   = '扩充功能';
 $_['text_securetrading_pp'] = '<a href="http://www.securetradingfs.com/partner/open-cart/" target="_blank"><img src="view/image/payment/secure_trading.png" alt="Secure Trading" title="Secure Trading" style="border: 1px solid #EEEEEE;" /></a>';
 $_['text_payment'] = 'Payment';
 $_['text_all_geo_zones'] = 'All Geo Zones';

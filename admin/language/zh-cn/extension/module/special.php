@@ -4,6 +4,7 @@
 $_['heading_title']    = '特价商品';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']      = '模组';
 $_['text_success']     = '成功: 已修改特价商品模组！';
 $_['text_edit']        = '编辑特价商品模组';

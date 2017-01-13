@@ -1,5 +1,6 @@
 <?php
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_payment_info']				= 'Payment information';
 $_['text_capture_status']			= 'Capture status';
 $_['text_amount_auth']				= 'Amount authorised';

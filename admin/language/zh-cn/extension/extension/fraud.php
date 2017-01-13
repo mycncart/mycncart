@@ -3,6 +3,7 @@
 $_['heading_title']    = '防欺诈';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_success']     = '成功: 已修改防欺诈部分！';
 $_['text_list']        = '防欺诈列表';
 

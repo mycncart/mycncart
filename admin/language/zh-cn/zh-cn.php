@@ -31,6 +31,7 @@ $_['text_loading']                  = '加载中...';
 $_['text_no_results']               = '没有符合条件的结果！';
 $_['text_confirm']                  = '确定吗？';
 $_['text_home']                     = '首页';
+$_['text_extension']   				= '扩充功能';
 
 // Button
 $_['button_add']                    = '新增';

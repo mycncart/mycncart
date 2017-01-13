@@ -29,6 +29,7 @@ $_['text_loading']                  = '加載中...';
 $_['text_no_results']               = '沒有符合條件的結果！';
 $_['text_confirm']                  = '確定嗎？';
 $_['text_home']                     = '首頁';
+$_['text_extension']   				= '擴充功能';
 
 // Button
 $_['button_add']                    = '新增';

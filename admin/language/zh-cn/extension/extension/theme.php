@@ -3,6 +3,7 @@
 $_['heading_title']    = '模板主题';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_success']     = '成功: 已修改模板主题！';
 $_['text_list']        = '模板主题列表';
 

@@ -4,6 +4,7 @@
 $_['heading_title']    = '模组';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_success']     = '成功: 已修改模组！';
 $_['text_layout']      = '安装并配置完成一个模组后，可以 <a href="%s" class="alert-link">点击这里</a> 来添加到页面布局排版中!';
 $_['text_add']         = '添加模组';

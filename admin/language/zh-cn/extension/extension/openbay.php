@@ -3,6 +3,7 @@
 $_['heading_title']        				= 'OpenBay Pro';
 
 // Buttons
+$_['text_extension']   = '扩充功能';
 $_['button_retry']						= 'Retry';
 $_['button_update']						= 'Update';
 $_['button_patch']						= 'Patch';

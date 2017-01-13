@@ -4,6 +4,7 @@
 $_['heading_title']    = '幻灯片';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']      = '模组';
 $_['text_success']     = '成功: 已修改幻灯片模组！';
 $_['text_edit']        = '编辑幻灯片模组';

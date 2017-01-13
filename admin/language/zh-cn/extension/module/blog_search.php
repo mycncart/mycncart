@@ -4,6 +4,7 @@
 $_['heading_title']    = '博客检索';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']      = '模组';
 $_['text_success']     = '成功: 已修改博客检索模组！';
 $_['text_edit']        = '编辑博客检索模组';

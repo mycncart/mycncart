@@ -3,6 +3,7 @@
 $_['heading_title']          = 'Baidu / Google Base';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_feed']        		 = '输出共享';
 $_['text_success']     		 = '成功: 已修改 Baidu / Google Base 输出共享！';
 $_['text_edit']        		 = '编辑 Baidu / Google Base';

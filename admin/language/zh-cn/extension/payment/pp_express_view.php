@@ -3,6 +3,7 @@
 $_['heading_title']					= 'View Transaction';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_pp_express']				= 'PayPal Express Checkout';
 $_['text_product_lines']			= 'Product lines';
 $_['text_ebay_txn_id']				= 'eBay transaction ID';

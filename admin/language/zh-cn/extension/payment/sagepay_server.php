@@ -3,6 +3,7 @@
 $_['heading_title']					= 'SagePay Server';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_payment']					= 'Payment';
 $_['text_success']					= 'Success: You have modified SagePay account details!';
 $_['text_edit']                     = 'Edit SagePay Server';

@@ -4,6 +4,7 @@
 $_['heading_title']        		= '微信账号登录';
 
 //Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']          		= '模组';
 $_['text_success']         		= '成功: 已修改微信账号登录模组！';
 $_['text_edit']            		= '编辑微信账号登录 模组';

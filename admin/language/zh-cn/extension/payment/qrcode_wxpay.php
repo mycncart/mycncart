@@ -3,6 +3,7 @@
 $_['heading_title']      				= '微信扫码支付';
 
 // Text 
+$_['text_extension']   = '扩充功能';
 $_['text_mchid'] 						= '商户号';
 $_['text_appid'] 						= '公众账号APPID或者应用APPID';
 $_['text_key'] 							= 'API密钥';

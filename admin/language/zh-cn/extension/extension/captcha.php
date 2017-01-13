@@ -3,6 +3,7 @@
 $_['heading_title']    = '验证码';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_success']     = '成功: 已修改验证码！';
 $_['text_list']        = '验证码列表';
 

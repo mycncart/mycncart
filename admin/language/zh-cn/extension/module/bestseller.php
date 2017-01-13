@@ -4,6 +4,7 @@
 $_['heading_title']    = '畅销商品';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']      = '模组';
 $_['text_success']     = '成功: 已修改畅销商品模组！';
 $_['text_edit']        = '编辑畅销商品模组';

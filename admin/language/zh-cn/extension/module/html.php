@@ -4,6 +4,7 @@
 $_['heading_title']     = 'HTML 内容';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']       = '模组';
 $_['text_success']      = '成功: 已修改HTML 内容模组！';
 $_['text_edit']         = '编辑 HTML 内容模组';

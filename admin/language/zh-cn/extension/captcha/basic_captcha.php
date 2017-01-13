@@ -2,6 +2,7 @@
 $_['heading_title']    = '基本验证码';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_captcha']     = '验证码';
 $_['text_success']	   = '成功: 已修改基本验证码！';
 $_['text_edit']        = '编辑基本验证码';

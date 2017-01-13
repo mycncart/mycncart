@@ -4,6 +4,7 @@
 $_['heading_title']    = 'PayPal Express Checkout 按钮';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']      = '模组';
 $_['text_success']     = '成功: 已修改PayPal Express Checkout 按钮模组！';
 $_['text_edit']        = '编辑 PayPal Express Checkout 按钮模组';

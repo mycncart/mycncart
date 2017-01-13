@@ -4,6 +4,7 @@
 $_['heading_title']     = '最新订单';
 
 // Column
+$_['text_extension']   = '扩充功能';
 $_['column_order_id']   = '订单 ID';
 $_['column_customer']   = '会员';
 $_['column_status']     = '状态';

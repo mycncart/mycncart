@@ -4,6 +4,7 @@
 $_['heading_title']    = '最新商品';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']      = '模组s';
 $_['text_success']     = '成功: 已修改最新商品模组！';
 $_['text_edit']        = '编辑最新商品模组';

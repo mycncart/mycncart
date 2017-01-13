@@ -4,6 +4,7 @@
 $_['heading_title']    = '输出共享';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_success']     = '成功: 已修改输出共享！';
 $_['text_list']        = '输出共享列表';
 

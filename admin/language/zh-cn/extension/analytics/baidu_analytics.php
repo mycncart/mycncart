@@ -2,6 +2,7 @@
 $_['heading_title']    = '百度分析';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_analytics']   = '分析';
 $_['text_success']	   = '成功: 已修改百度分析!';
 $_['text_edit']        = '编辑百度分析';

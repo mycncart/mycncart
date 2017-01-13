@@ -3,6 +3,7 @@
 $_['heading_title']    = '常见问题与解答(FAQs)分类';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']      = '模组';
 $_['text_success']     = '成功: 已修改常见问题与解答(FAQs)分类模组!';
 $_['text_edit']        = '编辑常见问题与解答(FAQs)分类模组';

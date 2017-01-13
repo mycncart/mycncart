@@ -3,6 +3,7 @@
 $_['heading_title']      = 'Anti-Fraud IP';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_fraud']         = 'Anti-Fraud';
 $_['text_success']       = 'Success: You have modified Anti-Fraud IP!';
 $_['text_edit']          = 'Edit Anti-Fraud IP';

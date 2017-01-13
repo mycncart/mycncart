@@ -4,6 +4,7 @@
 $_['heading_title']    = '百度 / 谷歌网站地图';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_feed']        = '输出共享';
 $_['text_success']     = '成功: 已修改百度 / 谷歌网站地图！';
 $_['text_edit']        = '编辑百度 / 谷歌网站地图';

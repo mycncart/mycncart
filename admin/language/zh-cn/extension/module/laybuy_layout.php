@@ -3,6 +3,7 @@
 $_['heading_title']        = 'Lay-Buy 分期缴款计划';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']          = '模组';
 $_['text_success']         = '成功: 已修改 Lay-Buy 分期缴款计划模组！';
 $_['text_edit']            = '编辑 Lay-Buy 分期缴款计划模组';

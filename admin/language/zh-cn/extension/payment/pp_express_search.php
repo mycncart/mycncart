@@ -16,6 +16,7 @@ $_['tbl_column_netamt']				= 'Net Amount';
 $_['tbl_column_action']				= 'Action';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_pp_express']				= 'PayPal Express Checkout';
 $_['text_date_search']				= 'Search by date';
 $_['text_searching']				= 'Searching';

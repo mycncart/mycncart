@@ -3,6 +3,7 @@
 $_['heading_title']                           = 'MaxMind Anti-Fraud';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_fraud']                              = 'Anti-Fraud';
 $_['text_success']                            = 'Success: You have modified MaxMind anti-fraud!';
 $_['text_edit']                               = 'Edit MaxMind Anti-Fraud';

@@ -3,6 +3,7 @@
 $_['heading_title']					 = 'PayPal Express Checkout';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_payment']				  	 = 'Payment';
 $_['text_success']				 	 = 'Success: You have modified PayPal Express Checkout account details!';
 $_['text_edit']                      = 'Edit PayPal Express Checkout';

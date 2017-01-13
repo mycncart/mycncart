@@ -4,6 +4,7 @@
 $_['heading_title']                = '最新活动';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_customer_address_add']    = '<a href="customer_id=%d">%s</a> 添加新地址。';
 $_['text_customer_address_edit']   = '<a href="customer_id=%d">%s</a> 更新地址。';
 $_['text_customer_address_delete'] = '<a href="customer_id=%d">%s</a> 删除一个地址。';

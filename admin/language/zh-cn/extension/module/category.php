@@ -4,6 +4,7 @@
 $_['heading_title']    = '分类';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']      = '模组';
 $_['text_success']     = '成功: 已修改分类模组！';
 $_['text_edit']        = '编辑分类模组';

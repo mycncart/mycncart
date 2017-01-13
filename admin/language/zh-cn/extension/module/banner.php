@@ -4,6 +4,7 @@
 $_['heading_title']    = '横幅广告';
 
 // Text
+$_['text_extension']   = '扩充功能';
 $_['text_module']      = '模组';
 $_['text_success']     = '成功: 已修改横幅广告模组！';
 $_['text_edit']        = '编辑横幅广告模组';
