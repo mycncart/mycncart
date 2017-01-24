@@ -1247,9 +1247,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-mail-alert-email"><span data-toggle="tooltip" title="<?php echo $help_mail_alert_email; ?>"><?php echo $entry_mail_alert; ?></span></label>
+                  <label class="col-sm-2 control-label" for="input-alert-email"><span data-toggle="tooltip" title="<?php echo $help_alert_email; ?>"><?php echo $entry_alert_mail; ?></span></label>
                   <div class="col-sm-10">
-                    <textarea name="config_mail_alert" rows="5" placeholder="<?php echo $entry_mail_alert; ?>" id="input-alert-email" class="form-control"><?php echo $config_alert_email; ?></textarea>
+                    <textarea name="config_alert_email" rows="5" placeholder="<?php echo $entry_alert_email; ?>" id="input-alert-email" class="form-control"><?php echo $config_alert_email; ?></textarea>
                   </div>
                 </div>
               </fieldset>
