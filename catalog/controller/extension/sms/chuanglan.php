@@ -52,7 +52,7 @@ class ControllerExtensionSmsChuangLan extends Controller {
 				if(isset($result[1]) && $result[1]==0){
 					$json['success'] = $this->language->get('text_success');
 				}else{
-					$json['error'] = $this->language->get('text_error').'{$result[1]}';
+					$json['error'] = $this->language->get('text_error').$result[1];
 				}
 				
 			}
