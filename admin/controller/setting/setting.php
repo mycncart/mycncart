@@ -143,7 +143,6 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_mail_smtp_timeout'] = $this->language->get('entry_mail_smtp_timeout');
 		$data['entry_mail_alert'] = $this->language->get('entry_mail_alert');
 		$data['entry_alert_email'] = $this->language->get('entry_alert_email');
-		$data['entry_alert_email'] = $this->language->get('entry_alert_email');
 		$data['entry_secure'] = $this->language->get('entry_secure');
 		$data['entry_shared'] = $this->language->get('entry_shared');
 		$data['entry_robots'] = $this->language->get('entry_robots');
