@@ -14,7 +14,7 @@ $_['text_for']         = '%s 赠送礼品券给 %s';
 // Entry
 $_['entry_to_name']    = '收券人的姓名：';
 $_['entry_to_email']   = '收券人的邮箱：';
-$_['entry_from_name']  = '您的改名：';
+$_['entry_from_name']  = '您的姓名：';
 $_['entry_from_email'] = '您的邮箱：';
 $_['entry_theme']      = '礼品券主题：';
 $_['entry_message']    = '信息';
