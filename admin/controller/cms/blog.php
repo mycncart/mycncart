@@ -47,7 +47,7 @@ class ControllerCmsBlog extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/blog', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/blog', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -89,7 +89,7 @@ class ControllerCmsBlog extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/blog', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/blog', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -132,7 +132,7 @@ class ControllerCmsBlog extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/blog', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/blog', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getList();
@@ -197,17 +197,17 @@ class ControllerCmsBlog extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/blog', 'token=' . $this->session->data['token'] . $url, true)
+			'href' => $this->url->link('cms/blog', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
 
-		$data['add'] = $this->url->link('cms/blog/add', 'token=' . $this->session->data['token'] . $url, true);
-		$data['copy'] = $this->url->link('cms/blog/copy', 'token=' . $this->session->data['token'] . $url, true);
-		$data['delete'] = $this->url->link('cms/blog/delete', 'token=' . $this->session->data['token'] . $url, true);
+		$data['add'] = $this->url->link('cms/blog/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		$data['copy'] = $this->url->link('cms/blog/copy', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		$data['delete'] = $this->url->link('cms/blog/delete', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
 		$data['blogs'] = array();
 
@@ -232,7 +232,7 @@ class ControllerCmsBlog extends Controller {
 				'blog_id' => $result['blog_id'],
 				'title'       => $result['title'],
 				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-				'edit'       => $this->url->link('cms/blog/edit', 'token=' . $this->session->data['token'] . '&blog_id=' . $result['blog_id'] . $url, true)
+				'edit'       => $this->url->link('cms/blog/edit', 'user_token=' . $this->session->data['user_token'] . '&blog_id=' . $result['blog_id'] . $url, true)
 			);
 		}
 
@@ -256,7 +256,7 @@ class ControllerCmsBlog extends Controller {
 		$data['button_delete'] = $this->language->get('button_delete');
 		$data['button_filter'] = $this->language->get('button_filter');
 
-		$data['token'] = $this->session->data['token'];
+		$data['user_token'] = $this->session->data['user_token'];
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -298,9 +298,9 @@ class ControllerCmsBlog extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_title'] = $this->url->link('cms/blog', 'token=' . $this->session->data['token'] . '&sort=pd.title' . $url, true);
-		$data['sort_status'] = $this->url->link('cms/blog', 'token=' . $this->session->data['token'] . '&sort=p.status' . $url, true);
-		$data['sort_order'] = $this->url->link('cms/blog', 'token=' . $this->session->data['token'] . '&sort=p.sort_order' . $url, true);
+		$data['sort_title'] = $this->url->link('cms/blog', 'user_token=' . $this->session->data['user_token'] . '&sort=pd.title' . $url, true);
+		$data['sort_status'] = $this->url->link('cms/blog', 'user_token=' . $this->session->data['user_token'] . '&sort=p.status' . $url, true);
+		$data['sort_order'] = $this->url->link('cms/blog', 'user_token=' . $this->session->data['user_token'] . '&sort=p.sort_order' . $url, true);
 
 		$url = '';
 
@@ -324,7 +324,7 @@ class ControllerCmsBlog extends Controller {
 		$pagination->total = $blog_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('cms/blog', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
+		$pagination->url = $this->url->link('cms/blog', 'user_token=' . $this->session->data['user_token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
@@ -457,27 +457,27 @@ class ControllerCmsBlog extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/blog', 'token=' . $this->session->data['token'] . $url, true)
+			'href' => $this->url->link('cms/blog', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
 
 		if (!isset($this->request->get['blog_id'])) {
-			$data['action'] = $this->url->link('cms/blog/add', 'token=' . $this->session->data['token'] . $url, true);
+			$data['action'] = $this->url->link('cms/blog/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
 		} else {
-			$data['action'] = $this->url->link('cms/blog/edit', 'token=' . $this->session->data['token'] . '&blog_id=' . $this->request->get['blog_id'] . $url, true);
+			$data['action'] = $this->url->link('cms/blog/edit', 'user_token=' . $this->session->data['user_token'] . '&blog_id=' . $this->request->get['blog_id'] . $url, true);
 		}
 
-		$data['cancel'] = $this->url->link('cms/blog', 'token=' . $this->session->data['token'] . $url, true);
+		$data['cancel'] = $this->url->link('cms/blog', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
 		if (isset($this->request->get['blog_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$blog_info = $this->model_cms_blog->getBlog($this->request->get['blog_id']);
 		}
 
-		$data['token'] = $this->session->data['token'];
+		$data['user_token'] = $this->session->data['user_token'];
 
 		$this->load->model('localisation/language');
 

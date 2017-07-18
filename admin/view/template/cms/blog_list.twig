@@ -44,16 +44,17 @@
                 <label class="control-label" for="input-status">{{ entry_status }} </label>
                 <select title="filter_status" id="input-status" class="form-control">
                   <option value="*"></option>
-                  {% if filter_status %} 
+                  {% if filter_status == '1' %} 
                   <option value="1" selected="selected">{{ text_enabled }} </option>
-                  {% endif %} {% else %}   
+                  {% else %}   
                   <option value="1">{{ text_enabled }} </option>
+				  {% endif %} 
                    
-                  {% if not filter_status  and  not is_null(filter_status ) %}
+                  {% if filter_status == '0' %}
                   <option value="0" selected="selected">{{ text_disabled}} </option>
-                  {% endif %} {% else %}   
+                  {% else %}   
                   <option value="0">{{ text_disabled }} </option>
-                   
+                  {% endif %} 
                 </select>
               </div>
              
@@ -72,16 +73,18 @@
               <thead>
                 <tr>
                   <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
-                  <td class="text-left">{% if sort  is  'pd.title' %} 
-                    <a href="{{ sort_title }} " class="{{ strtolower(order) }} ">{{ column_title }} </a>
-                    {% endif %} {% else %}   
+                  <td class="text-left">{% if sort == 'pd.title' %} 
+                    <a href="{{ sort_title }} " class="{{  order|lower  }} ">{{ column_title }} </a>
+                    {% else %}   
                     <a href="{{ sort_title }} ">{{ column_title }} </a>
+					{% endif %}
                      </td>
                   
-                  <td class="text-left">{% if sort  is  'p.status' %} 
-                    <a href="{{ sort_status }} " class="{{ strtolower(order) }} ">{{ column_status }} </a>
-                    {% endif %} {% else %}   
+                  <td class="text-left">{% if sort == 'p.status' %} 
+                    <a href="{{ sort_status }} " class="{{  order|lower  }} ">{{ column_status }} </a>
+                    {% else %}   
                     <a href="{{ sort_status }} ">{{ column_status }} </a>
+					{% endif %}
                      </td>
                   <td class="text-right">{{ column_action }} </td>
                 </tr>
@@ -90,9 +93,9 @@
                 {% if blogs %} 
                 {% for blog in blogs %} 
                 <tr>
-                  <td class="text-center">{% if in_array(blog.blog_id, selected ) %}
+                  <td class="text-center">{% if blog.blog_id in selected %}
                     <input type="checkbox" name="selected[]" value="{{ blog.blog_id}} " checked="checked" />
-                    {% endfor %}{% endif %} {% else %}   
+                    {% else %}   
                     <input type="checkbox" name="selected[]" value="{{ blog.blog_id }} " />
                     {% endif %} </td>
                   <td class="text-left">{{ blog.title }} </td>
@@ -100,12 +103,12 @@
                   <td class="text-left">{{ blog.status }} </td>
                   <td class="text-right"><a href="{{ blog.edit }} " data-toggle="tooltip" title="{{ button_edit }} " class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
-                 
+                 {% endfor %}
                  {% else %}   
                 <tr>
                   <td class="text-center" colspan="8">{{ text_no_results }} </td>
                 </tr>
-                 
+                 {% endif %}
               </tbody>
             </table>
           </div>
@@ -119,7 +122,7 @@
   </div>
   <script type="text/javascript"><!--
 $('#button-filter').on('click', function() {
-	var url = 'index.php?route=cms/blog&token={{ token }} ';
+	var url = 'index.php?route=cms/blog&user_token={{ user_token }} ';
 
 	var filter_title = $('input[title=\'filter_title\']').val();
 
@@ -140,7 +143,7 @@ $('#button-filter').on('click', function() {
 $('input[title=\'filter_title\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
-			url: 'index.php?route=cms/blog/autocomplete&token={{ token }} &filter_title=' +  encodeURIComponent(request),
+			url: 'index.php?route=cms/blog/autocomplete&user_token={{ user_token }} &filter_title=' +  encodeURIComponent(request),
 			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {
