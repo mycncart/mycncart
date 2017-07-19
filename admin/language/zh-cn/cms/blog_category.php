@@ -1,11 +1,10 @@
 <?php
-
 // Heading
 $_['heading_title']          = '博客分类';
 
 // Text
 $_['text_success']           = '成功: 已经修改博客分类！';
-$_['text_list']              = '博客分类列表';
+$_['text_list']              = '博客分类列表 - (在线教程: <a href="http://www.mycncart.com/blog-26.html" target="_blank">http://www.mycncart.com/blog-26.html</a>)';
 $_['text_add']               = '添加博客分类';
 $_['text_edit']              = '编辑博客分类';
 $_['text_default']           = '默认';

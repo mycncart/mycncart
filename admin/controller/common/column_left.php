@@ -128,6 +128,132 @@ class ControllerCommonColumnLeft extends Controller {
 				);		
 			}
 			
+			// CMS
+			$cms = array();
+			
+			// Press
+			$press = array();
+			
+			if ($this->user->hasPermission('access', 'cms/press_category')) {
+				$press[] = array(
+					'name'	   => $this->language->get('text_press_category'),
+					'href'     => $this->url->link('cms/press_category', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			
+			if ($this->user->hasPermission('access', 'cms/press')) {
+				$press[] = array(
+					'name'	   => $this->language->get('text_press'),
+					'href'     => $this->url->link('cms/press', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			
+			if ($this->user->hasPermission('access', 'cms/press_config')) {
+				$press[] = array(
+					'name'	   => $this->language->get('text_press_config'),
+					'href'     => $this->url->link('cms/press_config', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			
+			if ($press) {
+				$cms[] = array(
+					'name'	   => $this->language->get('text_press'),
+					'href'     => '',
+					'children' => $press		
+				);		
+			}
+			
+			// Blog
+			$blog = array();
+			
+			if ($this->user->hasPermission('access', 'cms/blog_category')) {
+				$blog[] = array(
+					'name'	   => $this->language->get('text_blog_category'),
+					'href'     => $this->url->link('cms/blog_category', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			
+			if ($this->user->hasPermission('access', 'cms/blog')) {
+				$blog[] = array(
+					'name'	   => $this->language->get('text_blog'),
+					'href'     => $this->url->link('cms/blog', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			
+			if ($this->user->hasPermission('access', 'cms/blog_comment')) {
+				$blog[] = array(
+					'name'	   => $this->language->get('text_blog_comment'),
+					'href'     => $this->url->link('cms/blog_comment', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			
+			if ($this->user->hasPermission('access', 'cms/blog_config')) {
+				$blog[] = array(
+					'name'	   => $this->language->get('text_blog_config'),
+					'href'     => $this->url->link('cms/blog_config', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			
+			if ($blog) {
+				$cms[] = array(
+					'name'	   => $this->language->get('text_blog'),
+					'href'     => '',
+					'children' => $blog		
+				);		
+			}
+			
+			// FAQ
+			$faq = array();
+			
+			if ($this->user->hasPermission('access', 'cms/faq_category')) {
+				$faq[] = array(
+					'name'	   => $this->language->get('text_faq_category'),
+					'href'     => $this->url->link('cms/faq_category', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			
+			if ($this->user->hasPermission('access', 'cms/faq')) {
+				$faq[] = array(
+					'name'	   => $this->language->get('text_faq'),
+					'href'     => $this->url->link('cms/faq', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			
+			if ($this->user->hasPermission('access', 'cms/faq_config')) {
+				$faq[] = array(
+					'name'	   => $this->language->get('text_faq_config'),
+					'href'     => $this->url->link('cms/faq_config', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			
+			if ($faq) {
+				$cms[] = array(
+					'name'	   => $this->language->get('text_faq'),
+					'href'     => '',
+					'children' => $faq		
+				);		
+			}
+			
+			if ($cms) {
+				$data['menus'][] = array(
+					'id'       => 'menu-cms',
+					'icon'	   => 'fa-newspaper-o', 
+					'name'	   => $this->language->get('text_cms'),
+					'href'     => '',
+					'children' => $cms
+				);
+			}
+			
 			// Extension
 			$marketplace = array();
 			
@@ -377,6 +503,27 @@ class ControllerCommonColumnLeft extends Controller {
 					'name'	   => $this->language->get('text_marketing'),
 					'href'     => '',
 					'children' => $marketing
+				);	
+			}
+			
+			// Baidu
+			$baidu = array();
+			
+			if ($this->user->hasPermission('access', 'baidu/pushurl')) {
+				$baidu[] = array(
+					'name'	   => $this->language->get('text_pushurl'),
+					'href'     => $this->url->link('baidu/pushurl', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			
+			if ($baidu) {
+				$data['menus'][] = array(
+					'id'       => 'menu-baidu',
+					'icon'	   => 'fa-search', 
+					'name'	   => $this->language->get('text_baidu_seo'),
+					'href'     => '',
+					'children' => $baidu
 				);	
 			}
 			
