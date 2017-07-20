@@ -407,7 +407,21 @@ class ControllerCmsBlogCategory extends Controller {
 
 		$this->load->model('setting/store');
 
-		$data['stores'] = $this->model_setting_store->getStores();
+		$data['stores'] = array();
+		
+		$data['stores'][] = array(
+			'store_id' => 0,
+			'name'     => $this->language->get('text_default')
+		);
+		
+		$stores = $this->model_setting_store->getStores();
+
+		foreach ($stores as $store) {
+			$data['stores'][] = array(
+				'store_id' => $store['store_id'],
+				'name'     => $store['name']
+			);
+		}
 
 		if (isset($this->request->post['blog_category_store'])) {
 			$data['blog_category_store'] = $this->request->post['blog_category_store'];
@@ -462,12 +476,20 @@ class ControllerCmsBlogCategory extends Controller {
 			$data['status'] = true;
 		}
 		
-		if (isset($this->request->post['keyword'])) {
-			$data['keyword'] = $this->request->post['keyword'];
-		} elseif (!empty($blog_category_info)) {
-			$data['keyword'] = $blog_category_info['keyword'];
+		if (isset($this->request->post['blog_category_seo_url'])) {
+			$data['blog_category_seo_url'] = $this->request->post['blog_category_seo_url'];
+		} elseif (isset($this->request->get['blog_category_id'])) {
+			$data['blog_category_seo_url'] = $this->model_cms_blog_category->getBlogCategorySeoUrls($this->request->get['blog_category_id']);
 		} else {
-			$data['keyword'] = '';
+			$data['blog_category_seo_url'] = array();
+		}
+		
+		if (isset($this->request->post['blog_category_layout'])) {
+			$data['blog_category_layout'] = $this->request->post['blog_category_layout'];
+		} elseif (isset($this->request->get['blog_category_id'])) {
+			$data['blog_category_layout'] = $this->model_cms_blog_category->getBlogCategoryLayouts($this->request->get['blog_category_id']);
+		} else {
+			$data['blog_category_layout'] = array();
 		}
 
 		$this->load->model('design/layout');
@@ -496,21 +518,27 @@ class ControllerCmsBlogCategory extends Controller {
 			}
 		}
 
-		if (utf8_strlen($this->request->post['keyword']) > 0) {
-			$this->load->model('catalog/url_alias');
+		if ($this->request->post['blog_category_seo_url']) {
+			$this->load->model('design/seo_url');
+			
+			foreach ($this->request->post['blog_category_seo_url'] as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						if (count(array_keys($language, $keyword)) > 1) {
+							$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_unique');
+						}
 
-			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['keyword']);
-		
-			if ($url_alias_info && isset($this->request->get['blog_category_id']) && $url_alias_info['query'] != 'blog_category_id=' . $this->request->get['blog_category_id']) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-			}
-
-			if ($url_alias_info && !isset($this->request->get['blog_category_id'])) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-			}
-
-			if ($this->error && !isset($this->error['warning'])) {
-				$this->error['warning'] = $this->language->get('error_warning');
+						$seo_urls = $this->model_design_seo_url->getSeoUrlsByKeyword($keyword);
+	
+						foreach ($seo_urls as $seo_url) {
+							if (($seo_url['store_id'] == $store_id) && (!isset($this->request->get['blog_category_id']) || ($seo_url['query'] != 'blog_category_id=' . $this->request->get['blog_category_id']))) {		
+								$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_keyword');
+				
+								break;
+							}
+						}
+					}
+				}
 			}
 		}
 
@@ -544,7 +572,7 @@ class ControllerCmsBlogCategory extends Controller {
 				'sort'        => 'name',
 				'order'       => 'ASC',
 				'start'       => 0,
-				'limit'       => $this->config->get('config_limit_autocomplete')
+				'limit'       => 5
 			);
 
 			$results = $this->model_cms_blog_category->getBlogCategories($filter_data);

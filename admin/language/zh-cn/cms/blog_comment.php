@@ -1,11 +1,10 @@
 <?php
-
 // Heading
 $_['heading_title']     = '博客评论';
 
 // Text
 $_['text_success']      = '成功: 已经修改博客评论！';
-$_['text_list']         = '博客评论列表';
+$_['text_list']         = '博客评论列表 - (在线教程: <a href="http://www.mycncart.com/blog-131.html" target="_blank">http://www.mycncart.com/blog-131.html</a>)';
 $_['text_add']          = '添加博客评论';
 $_['text_edit']         = '编辑';
 
