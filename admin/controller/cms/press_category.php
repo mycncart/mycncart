@@ -38,7 +38,7 @@ class ControllerCmsPressCategory extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/press_category', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/press_category', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -70,7 +70,7 @@ class ControllerCmsPressCategory extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/press_category', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/press_category', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -104,7 +104,7 @@ class ControllerCmsPressCategory extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/press_category', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/press_category', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getList();
@@ -122,7 +122,7 @@ class ControllerCmsPressCategory extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->response->redirect($this->url->link('cms/press_category', 'token=' . $this->session->data['token'], true));
+			$this->response->redirect($this->url->link('cms/press_category', 'user_token=' . $this->session->data['user_token'], true));
 		}
 
 		$this->getList();
@@ -165,17 +165,17 @@ class ControllerCmsPressCategory extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/press_category', 'token=' . $this->session->data['token'] . $url, true)
+			'href' => $this->url->link('cms/press_category', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
 		
-		$data['add'] = $this->url->link('cms/press_category/add', 'token=' . $this->session->data['token'] . $url, true);
-		$data['delete'] = $this->url->link('cms/press_category/delete', 'token=' . $this->session->data['token'] . $url, true);
-		$data['repair'] = $this->url->link('cms/press_category/repair', 'token=' . $this->session->data['token'] . $url, true);
+		$data['add'] = $this->url->link('cms/press_category/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		$data['delete'] = $this->url->link('cms/press_category/delete', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		$data['repair'] = $this->url->link('cms/press_category/repair', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
 		$data['press_categories'] = array();
 
@@ -195,8 +195,8 @@ class ControllerCmsPressCategory extends Controller {
 				'press_category_id' => $result['press_category_id'],
 				'name'        => $result['name'],
 				'sort_order'  => $result['sort_order'],
-				'edit'        => $this->url->link('cms/press_category/edit', 'token=' . $this->session->data['token'] . '&press_category_id=' . $result['press_category_id'] . $url, true),
-				'delete'      => $this->url->link('cms/press_category/delete', 'token=' . $this->session->data['token'] . '&press_category_id=' . $result['press_category_id'] . $url, true)
+				'edit'        => $this->url->link('cms/press_category/edit', 'user_token=' . $this->session->data['user_token'] . '&press_category_id=' . $result['press_category_id'] . $url, true),
+				'delete'      => $this->url->link('cms/press_category/delete', 'user_token=' . $this->session->data['user_token'] . '&press_category_id=' . $result['press_category_id'] . $url, true)
 			);
 		}
 
@@ -247,8 +247,8 @@ class ControllerCmsPressCategory extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_name'] = $this->url->link('cms/press_category', 'token=' . $this->session->data['token'] . '&sort=name' . $url, true);
-		$data['sort_sort_order'] = $this->url->link('cms/press_category', 'token=' . $this->session->data['token'] . '&sort=sort_order' . $url, true);
+		$data['sort_name'] = $this->url->link('cms/press_category', 'user_token=' . $this->session->data['user_token'] . '&sort=name' . $url, true);
+		$data['sort_sort_order'] = $this->url->link('cms/press_category', 'user_token=' . $this->session->data['user_token'] . '&sort=sort_order' . $url, true);
 
 		$url = '';
 
@@ -264,7 +264,7 @@ class ControllerCmsPressCategory extends Controller {
 		$pagination->total = $press_category_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('cms/press_category', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
+		$pagination->url = $this->url->link('cms/press_category', 'user_token=' . $this->session->data['user_token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
@@ -355,27 +355,27 @@ class ControllerCmsPressCategory extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/press_category', 'token=' . $this->session->data['token'] . $url, true)
+			'href' => $this->url->link('cms/press_category', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
 		
 		if (!isset($this->request->get['press_category_id'])) {
-			$data['action'] = $this->url->link('cms/press_category/add', 'token=' . $this->session->data['token'] . $url, true);
+			$data['action'] = $this->url->link('cms/press_category/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
 		} else {
-			$data['action'] = $this->url->link('cms/press_category/edit', 'token=' . $this->session->data['token'] . '&press_category_id=' . $this->request->get['press_category_id'] . $url, true);
+			$data['action'] = $this->url->link('cms/press_category/edit', 'user_token=' . $this->session->data['user_token'] . '&press_category_id=' . $this->request->get['press_category_id'] . $url, true);
 		}
 
-		$data['cancel'] = $this->url->link('cms/press_category', 'token=' . $this->session->data['token'] . $url, true);
+		$data['cancel'] = $this->url->link('cms/press_category', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
 		if (isset($this->request->get['press_category_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$press_category_info = $this->model_cms_press_category->getPressCategory($this->request->get['press_category_id']);
 		}
 
-		$data['token'] = $this->session->data['token'];
+		$data['user_token'] = $this->session->data['user_token'];
 
 		$this->load->model('localisation/language');
 
@@ -407,7 +407,21 @@ class ControllerCmsPressCategory extends Controller {
 
 		$this->load->model('setting/store');
 
-		$data['stores'] = $this->model_setting_store->getStores();
+		$data['stores'] = array();
+		
+		$data['stores'][] = array(
+			'store_id' => 0,
+			'name'     => $this->language->get('text_default')
+		);
+		
+		$stores = $this->model_setting_store->getStores();
+
+		foreach ($stores as $store) {
+			$data['stores'][] = array(
+				'store_id' => $store['store_id'],
+				'name'     => $store['name']
+			);
+		}
 
 		if (isset($this->request->post['press_category_store'])) {
 			$data['press_category_store'] = $this->request->post['press_category_store'];
@@ -415,14 +429,6 @@ class ControllerCmsPressCategory extends Controller {
 			$data['press_category_store'] = $this->model_cms_press_category->getPressCategoryStores($this->request->get['press_category_id']);
 		} else {
 			$data['press_category_store'] = array(0);
-		}
-
-		if (isset($this->request->post['keyword'])) {
-			$data['keyword'] = $this->request->post['keyword'];
-		} elseif (!empty($press_category_info)) {
-			$data['keyword'] = $press_category_info['keyword'];
-		} else {
-			$data['keyword'] = '';
 		}
 
 		if (isset($this->request->post['image'])) {
@@ -462,12 +468,20 @@ class ControllerCmsPressCategory extends Controller {
 			$data['status'] = true;
 		}
 		
-		if (isset($this->request->post['keyword'])) {
-			$data['keyword'] = $this->request->post['keyword'];
-		} elseif (!empty($press_category_info)) {
-			$data['keyword'] = $press_category_info['keyword'];
+		if (isset($this->request->post['press_category_seo_url'])) {
+			$data['press_category_seo_url'] = $this->request->post['press_category_seo_url'];
+		} elseif (isset($this->request->get['press_category_id'])) {
+			$data['press_category_seo_url'] = $this->model_cms_press_category->getPressCategorySeoUrls($this->request->get['press_category_id']);
 		} else {
-			$data['keyword'] = '';
+			$data['press_category_seo_url'] = array();
+		}
+		
+		if (isset($this->request->post['press_category_layout'])) {
+			$data['press_category_layout'] = $this->request->post['press_category_layout'];
+		} elseif (isset($this->request->get['press_category_id'])) {
+			$data['press_category_layout'] = $this->model_cms_press_category->getPressCategoryLayouts($this->request->get['press_category_id']);
+		} else {
+			$data['press_category_layout'] = array();
 		}
 
 		$this->load->model('design/layout');
@@ -496,21 +510,27 @@ class ControllerCmsPressCategory extends Controller {
 			}
 		}
 
-		if (utf8_strlen($this->request->post['keyword']) > 0) {
-			$this->load->model('catalog/url_alias');
+		if ($this->request->post['press_category_seo_url']) {
+			$this->load->model('design/seo_url');
+			
+			foreach ($this->request->post['press_category_seo_url'] as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						if (count(array_keys($language, $keyword)) > 1) {
+							$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_unique');
+						}
 
-			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['keyword']);
-		
-			if ($url_alias_info && isset($this->request->get['press_category_id']) && $url_alias_info['query'] != 'press_category_id=' . $this->request->get['press_category_id']) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-			}
-
-			if ($url_alias_info && !isset($this->request->get['press_category_id'])) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-			}
-
-			if ($this->error && !isset($this->error['warning'])) {
-				$this->error['warning'] = $this->language->get('error_warning');
+						$seo_urls = $this->model_design_seo_url->getSeoUrlsByKeyword($keyword);
+	
+						foreach ($seo_urls as $seo_url) {
+							if (($seo_url['store_id'] == $store_id) && (!isset($this->request->get['press_category_id']) || ($seo_url['query'] != 'press_category_id=' . $this->request->get['press_category_id']))) {		
+								$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_keyword');
+				
+								break;
+							}
+						}
+					}
+				}
 			}
 		}
 
@@ -544,7 +564,7 @@ class ControllerCmsPressCategory extends Controller {
 				'sort'        => 'name',
 				'order'       => 'ASC',
 				'start'       => 0,
-				'limit'       => $this->config->get('config_limit_autocomplete')
+				'limit'       => 5
 			);
 
 			$results = $this->model_cms_press_category->getPressCategories($filter_data);

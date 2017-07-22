@@ -1,5 +1,4 @@
 <?php
-
 // Heading
 $_['heading_title']          = '新闻分类';
 
@@ -9,6 +8,7 @@ $_['text_list']              = '新闻分类列表';
 $_['text_add']               = '添加新闻分类';
 $_['text_edit']              = '编辑新闻分类';
 $_['text_default']           = '默认';
+$_['text_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
 
 // Column
 $_['column_name']            = '新闻分类名称';

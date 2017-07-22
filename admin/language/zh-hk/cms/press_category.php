@@ -1,5 +1,4 @@
 <?php
-
 // Heading
 $_['heading_title']          = '新聞分類';
 
@@ -9,6 +8,7 @@ $_['text_list']              = '新聞分類列表';
 $_['text_add']               = '添加新聞分類';
 $_['text_edit']              = '編輯新聞分類';
 $_['text_default']           = '默認';
+$_['text_keyword']			 = '請勿使用空格，使用 - 取代空格，並確定靜態網址(SEO URL)是沒有重複過的。';
 
 // Column
 $_['column_name']            = '新聞分類名稱';
@@ -31,7 +31,7 @@ $_['entry_column']           = '列排顯示';
 $_['entry_sort_order']       = '排序';
 $_['entry_status']           = '狀態';
 $_['entry_layout']           = '布局排版覆蓋';
-$_['entry_post2u_url']           = 'Post2U對應新聞分類網址';
+$_['entry_post2u_url']       = 'Post2U對應新聞分類網址';
 
 // Help
 $_['help_filter']            = '(輸入時自動篩選結果)';

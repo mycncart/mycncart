@@ -25,7 +25,7 @@ class ModelCmsPressCategory extends Model {
 			$level++;
 		}
 
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "press_category_path` SET `press_category_id` = '" . (int)$press_category_id . "', `path_id` = '" . (int)$press_category_id . "', `level` = '" . (int)$level . "'");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "category_path` SET `category_id` = '" . (int)$category_id . "', `path_id` = '" . (int)$category_id . "', `level` = '" . (int)$level . "'");
 
 		if (isset($data['press_category_store'])) {
 			foreach ($data['press_category_store'] as $store_id) {
@@ -40,11 +40,18 @@ class ModelCmsPressCategory extends Model {
 			}
 		}
 
-		if (isset($data['keyword'])) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'press_category_id=" . (int)$press_category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		if (isset($data['press_category_seo_url'])) {
+			foreach ($data['press_category_seo_url'] as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET store_id = '" . (int)$store_id . "', language_id = '" . (int)$language_id . "', query = 'press_category_id=" . (int)$press_category_id . "', keyword = '" . $this->db->escape($keyword) . "'");
+					}
+				}
+			}
 		}
 
 		$this->cache->delete('press_category');
+
 
 		return $press_category_id;
 	}
@@ -129,11 +136,18 @@ class ModelCmsPressCategory extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "press_category_to_layout SET press_category_id = '" . (int)$press_category_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
 			}
 		}
+		
+		// SEO URL
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "seo_url` WHERE query = 'press_category_id=" . (int)$press_category_id . "'");
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'press_category_id=" . (int)$press_category_id . "'");
-
-		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'press_category_id=" . (int)$press_category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		if (isset($data['press_category_seo_url'])) {
+			foreach ($data['press_category_seo_url'] as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET store_id = '" . (int)$store_id . "', language_id = '" . (int)$language_id . "', query = 'press_category_id=" . (int)$press_category_id . "', keyword = '" . $this->db->escape($keyword) . "'");
+					}
+				}
+			}
 		}
 
 		$this->cache->delete('press_category');
@@ -154,7 +168,7 @@ class ModelCmsPressCategory extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_category_description WHERE press_category_id = '" . (int)$press_category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_category_to_store WHERE press_category_id = '" . (int)$press_category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_category_to_layout WHERE press_category_id = '" . (int)$press_category_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'press_category_id=" . (int)$press_category_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'press_category_id=" . (int)$press_category_id . "'");
 
 		$this->cache->delete('press_category');
 
@@ -185,7 +199,7 @@ class ModelCmsPressCategory extends Model {
 	}
 
 	public function getPressCategory($press_category_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM " . DB_PREFIX . "press_category_path cp LEFT JOIN " . DB_PREFIX . "press_category_description cd1 ON (cp.path_id = cd1.press_category_id AND cp.press_category_id != cp.path_id) WHERE cp.press_category_id = c.press_category_id AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY cp.press_category_id) AS path, (SELECT DISTINCT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'press_category_id=" . (int)$press_category_id . "') AS keyword FROM " . DB_PREFIX . "press_category c LEFT JOIN " . DB_PREFIX . "press_category_description cd2 ON (c.press_category_id = cd2.press_category_id) WHERE c.press_category_id = '" . (int)$press_category_id . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM " . DB_PREFIX . "press_category_path cp LEFT JOIN " . DB_PREFIX . "press_category_description cd1 ON (cp.path_id = cd1.press_category_id AND cp.press_category_id != cp.path_id) WHERE cp.press_category_id = c.press_category_id AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY cp.press_category_id) AS path FROM " . DB_PREFIX . "press_category c LEFT JOIN " . DB_PREFIX . "press_category_description cd2 ON (c.press_category_id = cd2.press_category_id) WHERE c.press_category_id = '" . (int)$press_category_id . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
@@ -207,7 +221,7 @@ class ModelCmsPressCategory extends Model {
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY sort_order";
+			$sql .= " ORDER BY name";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {
@@ -263,6 +277,18 @@ class ModelCmsPressCategory extends Model {
 		return $press_category_store_data;
 	}
 
+	public function getPressCategorySeoUrls($press_category_id) {
+		$press_category_seo_url_data = array();
+		
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "seo_url WHERE query = 'press_category_id=" . (int)$press_category_id . "'");
+
+		foreach ($query->rows as $result) {
+			$press_category_seo_url_data[$result['store_id']][$result['language_id']] = $result['keyword'];
+		}
+
+		return $press_category_seo_url_data;
+	}
+	
 	public function getPressCategoryLayouts($press_category_id) {
 		$press_category_layout_data = array();
 

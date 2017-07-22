@@ -8,7 +8,7 @@ $_['text_list']              = 'Press Category List';
 $_['text_add']               = 'Add Press Category';
 $_['text_edit']              = 'Edit Press Category';
 $_['text_default']           = 'Default';
-$_['text_press_category_warning']           = 'In development, please wait for newest version to release!';
+$_['text_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the SEO URL is globally unique.';
 
 // Column
 $_['column_name']            = 'Press Category Name';
