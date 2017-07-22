@@ -10,6 +10,7 @@ $_['text_edit']              = '编辑博客';
 $_['text_default']           = '默认';
 $_['text_slider'] 			 = '幻灯片';
 $_['text_classic'] 			 = '经典';
+$_['text_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
 
 
 // Column

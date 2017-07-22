@@ -358,6 +358,7 @@ class ControllerCmsBlog extends Controller {
 		$data['text_select'] = $this->language->get('text_select');
 		$data['text_slider'] = $this->language->get('text_slider');
 		$data['text_classic'] = $this->language->get('text_classic');
+		$data['text_keyword'] = $this->language->get('text_keyword');
 
 		$data['entry_title'] = $this->language->get('entry_title');
 		$data['entry_brief'] = $this->language->get('entry_brief');
@@ -568,17 +569,46 @@ class ControllerCmsBlog extends Controller {
 			$data['user_id'] = $this->user->getId();
 		}
 		
+
+		$data['stores'] = array();
 		
+		$data['stores'][] = array(
+			'store_id' => 0,
+			'name'     => $this->language->get('text_default')
+		);
+		
+		$stores = $this->model_setting_store->getStores();
+
+		foreach ($stores as $store) {
+			$data['stores'][] = array(
+				'store_id' => $store['store_id'],
+				'name'     => $store['name']
+			);
+		}
+		
+		
+		//Blog Categories
 		$this->load->model('cms/blog_category');
-				
-		$data['blog_categories'] = $this->model_cms_blog_category->getBlogCategories(0);
-		
-		if (isset($this->request->post['blog_blog_category'])) {
-			$data['blog_blog_category'] = $this->request->post['blog_blog_category'];
+
+		if (isset($this->request->post['blog_category'])) {
+			$blog_categories = $this->request->post['blog_category'];
 		} elseif (isset($this->request->get['blog_id'])) {
-			$data['blog_blog_category'] = $this->model_cms_blog->getBlogBlogCategories($this->request->get['blog_id']);
+			$blog_categories = $this->model_cms_blog->getBlogBlogCategories($this->request->get['blog_id']);
 		} else {
-			$data['blog_blog_category'] = array();
+			$blog_categories = array();
+		}
+
+		$data['blog_categories'] = array();
+
+		foreach ($blog_categories as $blog_category_id) {
+			$blog_category_info = $this->model_cms_blog_category->getBlogCategory($blog_category_id);
+
+			if ($blog_category_info) {
+				$data['blog_categories'][] = array(
+					'blog_category_id' => $blog_category_info['blog_category_id'],
+					'name'        => ($blog_category_info['path']) ? $blog_category_info['path'] . ' &gt; ' . $blog_category_info['name'] : $blog_category_info['name']
+				);
+			}
 		}	
 		
 		if (isset($this->request->post['video_code'])) {
@@ -616,7 +646,6 @@ class ControllerCmsBlog extends Controller {
 		}
 
 		$data['product_relateds'] = array();
-		
 
 		foreach ($products as $product_id) {
 			$related_info = $this->model_catalog_product->getProduct($product_id);
@@ -628,6 +657,7 @@ class ControllerCmsBlog extends Controller {
 				);
 			}
 		}
+		
 		
 		if (isset($this->request->post['blog_related'])) {
 			$blogs = $this->request->post['blog_related'];
@@ -649,6 +679,14 @@ class ControllerCmsBlog extends Controller {
 					'title'       => $related_info['title']
 				);
 			}
+		}
+		
+		if (isset($this->request->post['blog_seo_url'])) {
+			$data['blog_seo_url'] = $this->request->post['blog_seo_url'];
+		} elseif (isset($this->request->get['blog_id'])) {
+			$data['blog_seo_url'] = $this->model_cms_blog->getBlogSeoUrls($this->request->get['blog_id']);
+		} else {
+			$data['blog_seo_url'] = array();
 		}
 		
 		if (isset($this->request->post['blog_layout'])) {
@@ -689,20 +727,29 @@ class ControllerCmsBlog extends Controller {
 			}
 		}
 		
-		if (utf8_strlen($this->request->post['keyword']) > 0) {
-			$this->load->model('catalog/url_alias');
+		if ($this->request->post['blog_seo_url']) {
+			$this->load->model('design/seo_url');
+			
+			foreach ($this->request->post['blog_seo_url'] as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						if (count(array_keys($language, $keyword)) > 1) {
+							$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_unique');
+						}
 
-			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['keyword']);
-
-			if ($url_alias_info && isset($this->request->get['blog_id']) && $url_alias_info['query'] != 'blog_id=' . $this->request->get['blog_id']) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-			}
-
-			if ($url_alias_info && !isset($this->request->get['blog_id'])) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
+						$seo_urls = $this->model_design_seo_url->getSeoUrlsByKeyword($keyword);
+	
+						foreach ($seo_urls as $seo_url) {
+							if (($seo_url['store_id'] == $store_id) && (!isset($this->request->get['blog_id']) || ($seo_url['query'] != 'blog_id=' . $this->request->get['blog_id']))) {		
+								$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_keyword');
+				
+								break;
+							}
+						}
+					}
+				}
 			}
 		}
-
 		
 
 		if ($this->error && !isset($this->error['warning'])) {

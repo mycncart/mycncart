@@ -21,8 +21,8 @@ class ModelCmsBlog extends Model {
 			}
 		}
 		
-		if (isset($data['blog_blog_category'])) {
-			foreach ($data['blog_blog_category'] as $blog_category_id) {
+		if (isset($data['blog_category'])) {
+			foreach ($data['blog_category'] as $blog_category_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_to_blog_category SET blog_id = '" . (int)$blog_id . "', blog_category_id = '" . (int)$blog_category_id . "'");
 			}
 		}
@@ -50,10 +50,15 @@ class ModelCmsBlog extends Model {
 			
 		}
 		
-		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_id=" . (int)$blog_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
-		}else{
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_id=" . (int)$blog_id . "', keyword = 'blog-" . (int)$blog_id . ".html'");
+		// SEO URL
+		if (isset($data['blog_seo_url'])) {
+			foreach ($data['blog_seo_url'] as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET store_id = '" . (int)$store_id . "', language_id = '" . (int)$language_id . "', query = 'blog_id=" . (int)$blog_id . "', keyword = '" . $this->db->escape($keyword) . "'");
+					}
+				}
+			}
 		}
 		
 
@@ -93,8 +98,8 @@ class ModelCmsBlog extends Model {
 		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_to_blog_category WHERE blog_id = '" . (int)$blog_id . "'");
 
-		if (isset($data['blog_blog_category'])) {
-			foreach ($data['blog_blog_category'] as $blog_category_id) {
+		if (isset($data['blog_category'])) {
+			foreach ($data['blog_category'] as $blog_category_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "blog_to_blog_category SET blog_id = '" . (int)$blog_id . "', blog_category_id = '" . (int)$blog_category_id . "'");
 			}
 		}
@@ -121,12 +126,17 @@ class ModelCmsBlog extends Model {
 			
 		}
 		
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'blog_id=" . (int)$blog_id . "'");
-
-		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_id=" . (int)$blog_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
-		}else{
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'blog_id=" . (int)$blog_id . "', keyword = 'blog-" . (int)$blog_id . ".html'");
+		// SEO URL
+		$this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'blog_id=" . (int)$blog_id . "'");
+		
+		if (isset($data['blog_seo_url'])) {
+			foreach ($data['blog_seo_url']as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET store_id = '" . (int)$store_id . "', language_id = '" . (int)$language_id . "', query = 'blog_id=" . (int)$blog_id . "', keyword = '" . $this->db->escape($keyword) . "'");
+					}
+				}
+			}
 		}
 
 
@@ -152,14 +162,14 @@ class ModelCmsBlog extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_product WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_to_layout WHERE blog_id = '" . (int)$blog_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog_to_store WHERE blog_id = '" . (int)$blog_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'blog_id=" . (int)$blog_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'blog_id=" . (int)$blog_id . "'");
 
 		$this->cache->delete('blog');
 
 	}
 
 	public function getBlog($blog_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'blog_id=" . (int)$blog_id . "') AS keyword FROM " . DB_PREFIX . "blog p LEFT JOIN " . DB_PREFIX . "blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.blog_id = '" . (int)$blog_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "blog p LEFT JOIN " . DB_PREFIX . "blog_description pd ON (p.blog_id = pd.blog_id) WHERE p.blog_id = '" . (int)$blog_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
@@ -321,6 +331,18 @@ class ModelCmsBlog extends Model {
 		}
 		
 		return $blog_related_data;
+	}
+	
+	public function getBlogSeoUrls($blog_id) {
+		$blog_seo_url_data = array();
+		
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "seo_url WHERE query = 'blog_id=" . (int)$blog_id . "'");
+
+		foreach ($query->rows as $result) {
+			$blog_seo_url_data[$result['store_id']][$result['language_id']] = $result['keyword'];
+		}
+
+		return $blog_seo_url_data;
 	}
 	
 }

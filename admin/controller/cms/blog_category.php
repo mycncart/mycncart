@@ -431,14 +431,6 @@ class ControllerCmsBlogCategory extends Controller {
 			$data['blog_category_store'] = array(0);
 		}
 
-		if (isset($this->request->post['keyword'])) {
-			$data['keyword'] = $this->request->post['keyword'];
-		} elseif (!empty($blog_category_info)) {
-			$data['keyword'] = $blog_category_info['keyword'];
-		} else {
-			$data['keyword'] = '';
-		}
-
 		if (isset($this->request->post['image'])) {
 			$data['image'] = $this->request->post['image'];
 		} elseif (!empty($blog_category_info)) {

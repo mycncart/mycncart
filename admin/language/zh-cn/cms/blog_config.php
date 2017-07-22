@@ -8,9 +8,11 @@ $_['text_edit']              									= '编辑博客设置';
 $_['text_large']              									= '大图片尺寸';
 $_['text_middle']              									= '中图片尺寸';
 $_['text_small']              									= '小图片尺寸';
+$_['text_keyword']           									= '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
 
 // Entry
 $_['entry_title']            									= '博客标题';
+$_['entry_keyword']          									= 'SEO URL';
 $_['entry_meta_title'] 	     									= 'Meta Tag 标题';
 $_['entry_meta_keyword'] 	 									= 'Meta Tag 关键词';
 $_['entry_meta_description'] 									= 'Meta Tag 描述';

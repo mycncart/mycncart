@@ -8,6 +8,7 @@ $_['text_list']              = '博客分类列表 - (在线教程: <a href="htt
 $_['text_add']               = '添加博客分类';
 $_['text_edit']              = '编辑博客分类';
 $_['text_default']           = '默认';
+$_['text_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
 
 // Column
 $_['column_name']            = '博客分类名称';
