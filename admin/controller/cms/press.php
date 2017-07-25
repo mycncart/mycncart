@@ -47,7 +47,7 @@ class ControllerCmsPress extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/press', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -89,7 +89,7 @@ class ControllerCmsPress extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/press', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -132,7 +132,7 @@ class ControllerCmsPress extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/press', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getList();
@@ -197,17 +197,17 @@ class ControllerCmsPress extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true)
+			'href' => $this->url->link('cms/press', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
 
-		$data['add'] = $this->url->link('cms/press/add', 'token=' . $this->session->data['token'] . $url, true);
-		$data['copy'] = $this->url->link('cms/press/copy', 'token=' . $this->session->data['token'] . $url, true);
-		$data['delete'] = $this->url->link('cms/press/delete', 'token=' . $this->session->data['token'] . $url, true);
+		$data['add'] = $this->url->link('cms/press/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		$data['copy'] = $this->url->link('cms/press/copy', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		$data['delete'] = $this->url->link('cms/press/delete', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
 		$data['presses'] = array();
 
@@ -232,7 +232,7 @@ class ControllerCmsPress extends Controller {
 				'press_id' => $result['press_id'],
 				'title'       => $result['title'],
 				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-				'edit'       => $this->url->link('cms/press/edit', 'token=' . $this->session->data['token'] . '&press_id=' . $result['press_id'] . $url, true)
+				'edit'       => $this->url->link('cms/press/edit', 'user_token=' . $this->session->data['user_token'] . '&press_id=' . $result['press_id'] . $url, true)
 			);
 		}
 
@@ -256,7 +256,7 @@ class ControllerCmsPress extends Controller {
 		$data['button_delete'] = $this->language->get('button_delete');
 		$data['button_filter'] = $this->language->get('button_filter');
 
-		$data['token'] = $this->session->data['token'];
+		$data['user_token'] = $this->session->data['user_token'];
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -298,9 +298,9 @@ class ControllerCmsPress extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_title'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . '&sort=pd.title' . $url, true);
-		$data['sort_status'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . '&sort=p.status' . $url, true);
-		$data['sort_order'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . '&sort=p.sort_order' . $url, true);
+		$data['sort_title'] = $this->url->link('cms/press', 'user_token=' . $this->session->data['user_token'] . '&sort=pd.title' . $url, true);
+		$data['sort_status'] = $this->url->link('cms/press', 'user_token=' . $this->session->data['user_token'] . '&sort=p.status' . $url, true);
+		$data['sort_order'] = $this->url->link('cms/press', 'user_token=' . $this->session->data['user_token'] . '&sort=p.sort_order' . $url, true);
 
 		$url = '';
 
@@ -324,7 +324,7 @@ class ControllerCmsPress extends Controller {
 		$pagination->total = $press_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
+		$pagination->url = $this->url->link('cms/press', 'user_token=' . $this->session->data['user_token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
@@ -440,27 +440,27 @@ class ControllerCmsPress extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true)
+			'href' => $this->url->link('cms/press', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
 
 		if (!isset($this->request->get['press_id'])) {
-			$data['action'] = $this->url->link('cms/press/add', 'token=' . $this->session->data['token'] . $url, true);
+			$data['action'] = $this->url->link('cms/press/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
 		} else {
-			$data['action'] = $this->url->link('cms/press/edit', 'token=' . $this->session->data['token'] . '&press_id=' . $this->request->get['press_id'] . $url, true);
+			$data['action'] = $this->url->link('cms/press/edit', 'user_token=' . $this->session->data['user_token'] . '&press_id=' . $this->request->get['press_id'] . $url, true);
 		}
 
-		$data['cancel'] = $this->url->link('cms/press', 'token=' . $this->session->data['token'] . $url, true);
+		$data['cancel'] = $this->url->link('cms/press', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
 		if (isset($this->request->get['press_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$press_info = $this->model_cms_press->getPress($this->request->get['press_id']);
 		}
 
-		$data['token'] = $this->session->data['token'];
+		$data['user_token'] = $this->session->data['user_token'];
 
 		$this->load->model('localisation/language');
 
