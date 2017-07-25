@@ -507,14 +507,6 @@ class ControllerCmsPress extends Controller {
 
 		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 		
-		if (isset($this->request->post['keyword'])) {
-			$data['keyword'] = $this->request->post['keyword'];
-		} elseif (!empty($press_info)) {
-			$data['keyword'] = $press_info['keyword'];
-		} else {
-			$data['keyword'] = '';
-		}
-
 
 		if (isset($this->request->post['sort_order'])) {
 			$data['sort_order'] = $this->request->post['sort_order'];
@@ -532,6 +524,22 @@ class ControllerCmsPress extends Controller {
 			$data['status'] = true;
 		}
 		
+		$data['stores'] = array();
+		
+		$data['stores'][] = array(
+			'store_id' => 0,
+			'name'     => $this->language->get('text_default')
+		);
+		
+		$stores = $this->model_setting_store->getStores();
+
+		foreach ($stores as $store) {
+			$data['stores'][] = array(
+				'store_id' => $store['store_id'],
+				'name'     => $store['name']
+			);
+		}
+		
 		$this->load->model('catalog/product');
 		
 		if (isset($this->request->post['product_related'])) {
@@ -543,7 +551,6 @@ class ControllerCmsPress extends Controller {
 		}
 
 		$data['product_relateds'] = array();
-		
 
 		foreach ($products as $product_id) {
 			$related_info = $this->model_catalog_product->getProduct($product_id);
@@ -557,19 +564,39 @@ class ControllerCmsPress extends Controller {
 		}
 
 
+		//Press Categories
 		$this->load->model('cms/press_category');
-				
-		$data['press_categories'] = $this->model_cms_press_category->getPressCategories(0);
-		
-		if (isset($this->request->post['press_press_category'])) {
-			$data['press_press_category'] = $this->request->post['press_press_category'];
+
+		if (isset($this->request->post['press_category'])) {
+			$press_categories = $this->request->post['press_category'];
 		} elseif (isset($this->request->get['press_id'])) {
-			$data['press_press_category'] = $this->model_cms_press->getPressPressCategories($this->request->get['press_id']);
+			$press_categories = $this->model_cms_press->getPressPressCategories($this->request->get['press_id']);
 		} else {
-			$data['press_press_category'] = array();
+			$press_categories = array();
+		}
+
+		$data['press_categories'] = array();
+
+		foreach ($press_categories as $press_category_id) {
+			$press_category_info = $this->model_cms_press_category->getPressCategory($press_category_id);
+
+			if ($press_category_info) {
+				$data['press_categories'][] = array(
+					'press_category_id' => $press_category_info['press_category_id'],
+					'name'        => ($press_category_info['path']) ? $press_category_info['path'] . ' &gt; ' . $press_category_info['name'] : $press_category_info['name']
+				);
+			}
 		}		
 
 
+		if (isset($this->request->post['press_seo_url'])) {
+			$data['press_seo_url'] = $this->request->post['press_seo_url'];
+		} elseif (isset($this->request->get['press_id'])) {
+			$data['press_seo_url'] = $this->model_cms_press->getPressSeoUrls($this->request->get['press_id']);
+		} else {
+			$data['press_seo_url'] = array();
+		}
+		
 		if (isset($this->request->post['press_layout'])) {
 			$data['press_layout'] = $this->request->post['press_layout'];
 		} elseif (isset($this->request->get['press_id'])) {

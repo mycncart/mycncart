@@ -21,8 +21,8 @@ class ModelCmsPress extends Model {
 			}
 		}
 
-		if (isset($data['press_press_category'])) {
-			foreach ($data['press_press_category'] as $press_category_id) {
+		if (isset($data['press_category'])) {
+			foreach ($data['press_category'] as $press_category_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "press_to_press_category SET press_id = '" . (int)$press_id . "', press_category_id = '" . (int)$press_category_id . "'");
 			}
 		}
@@ -38,10 +38,15 @@ class ModelCmsPress extends Model {
 			
 		}
 		
-		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'press_id=" . (int)$press_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
-		}else{
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'press_id=" . (int)$press_id . "', keyword = 'press-" . (int)$press_id . ".html'");
+		// SEO URL
+		if (isset($data['press_seo_url'])) {
+			foreach ($data['press_seo_url'] as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET store_id = '" . (int)$store_id . "', language_id = '" . (int)$language_id . "', query = 'press_id=" . (int)$press_id . "', keyword = '" . $this->db->escape($keyword) . "'");
+					}
+				}
+			}
 		}
 
 		if (isset($data['press_layout'])) {
@@ -82,8 +87,8 @@ class ModelCmsPress extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_to_press_category WHERE press_id = '" . (int)$press_id . "'");
 
-		if (isset($data['press_press_category'])) {
-			foreach ($data['press_press_category'] as $press_category_id) {
+		if (isset($data['press_category'])) {
+			foreach ($data['press_category'] as $press_category_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "press_to_press_category SET press_id = '" . (int)$press_id . "', press_category_id = '" . (int)$press_category_id . "'");
 			}
 		}
@@ -99,12 +104,17 @@ class ModelCmsPress extends Model {
 			
 		}
 		
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'press_id=" . (int)$press_id . "'");
-
-		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'press_id=" . (int)$press_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
-		}else{
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'press_id=" . (int)$press_id . "', keyword = 'press-" . (int)$press_id . ".html'");
+		// SEO URL
+		$this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'press_id=" . (int)$press_id . "'");
+		
+		if (isset($data['press_seo_url'])) {
+			foreach ($data['press_seo_url']as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET store_id = '" . (int)$store_id . "', language_id = '" . (int)$language_id . "', query = 'press_id=" . (int)$press_id . "', keyword = '" . $this->db->escape($keyword) . "'");
+					}
+				}
+			}
 		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_to_layout WHERE press_id = '" . (int)$press_id . "'");
@@ -127,14 +137,14 @@ class ModelCmsPress extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_to_press_category WHERE press_id = '" . (int)$press_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_to_layout WHERE press_id = '" . (int)$press_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "press_to_store WHERE press_id = '" . (int)$press_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'press_id=" . (int)$press_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'press_id=" . (int)$press_id . "'");
 
 		$this->cache->delete('press');
 
 	}
 
 	public function getPress($press_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'press_id=" . (int)$press_id . "') AS keyword FROM " . DB_PREFIX . "press p LEFT JOIN " . DB_PREFIX . "press_description pd ON (p.press_id = pd.press_id) WHERE p.press_id = '" . (int)$press_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "press p LEFT JOIN " . DB_PREFIX . "press_description pd ON (p.press_id = pd.press_id) WHERE p.press_id = '" . (int)$press_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
@@ -282,5 +292,17 @@ class ModelCmsPress extends Model {
 		}
 		
 		return $product_related_data;
+	}
+	
+	public function getPressSeoUrls($press_id) {
+		$press_seo_url_data = array();
+		
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "seo_url WHERE query = 'press_id=" . (int)$press_id . "'");
+
+		foreach ($query->rows as $result) {
+			$press_seo_url_data[$result['store_id']][$result['language_id']] = $result['keyword'];
+		}
+
+		return $press_seo_url_data;
 	}
 }
