@@ -39,8 +39,14 @@ class ModelCmsFaqCategory extends Model {
 			}
 		}
 
-		if (isset($data['keyword'])) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'faq_category_id=" . (int)$faq_category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		if (isset($data['faq_category_seo_url'])) {
+			foreach ($data['faq_category_seo_url'] as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET store_id = '" . (int)$store_id . "', language_id = '" . (int)$language_id . "', query = 'faq_category_id=" . (int)$faq_category_id . "', keyword = '" . $this->db->escape($keyword) . "'");
+					}
+				}
+			}
 		}
 
 		$this->cache->delete('faq_category');
@@ -128,10 +134,17 @@ class ModelCmsFaqCategory extends Model {
 			}
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'faq_category_id=" . (int)$faq_category_id . "'");
+		// SEO URL
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "seo_url` WHERE query = 'faq_category_id=" . (int)$faq_category_id . "'");
 
-		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'faq_category_id=" . (int)$faq_category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		if (isset($data['faq_category_seo_url'])) {
+			foreach ($data['faq_category_seo_url'] as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET store_id = '" . (int)$store_id . "', language_id = '" . (int)$language_id . "', query = 'faq_category_id=" . (int)$faq_category_id . "', keyword = '" . $this->db->escape($keyword) . "'");
+					}
+				}
+			}
 		}
 
 		$this->cache->delete('faq_category');
@@ -153,7 +166,7 @@ class ModelCmsFaqCategory extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_category_to_store WHERE faq_category_id = '" . (int)$faq_category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_category_to_layout WHERE faq_category_id = '" . (int)$faq_category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_to_faq_category WHERE faq_category_id = '" . (int)$faq_category_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'faq_category_id=" . (int)$faq_category_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'faq_category_id=" . (int)$faq_category_id . "'");
 
 		$this->cache->delete('faq_category');
 
@@ -184,7 +197,7 @@ class ModelCmsFaqCategory extends Model {
 	}
 
 	public function getFaqCategory($faq_category_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM " . DB_PREFIX . "faq_category_path cp LEFT JOIN " . DB_PREFIX . "faq_category_description cd1 ON (cp.path_id = cd1.faq_category_id AND cp.faq_category_id != cp.path_id) WHERE cp.faq_category_id = c.faq_category_id AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY cp.faq_category_id) AS path, (SELECT DISTINCT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'faq_category_id=" . (int)$faq_category_id . "') AS keyword FROM " . DB_PREFIX . "faq_category c LEFT JOIN " . DB_PREFIX . "faq_category_description cd2 ON (c.faq_category_id = cd2.faq_category_id) WHERE c.faq_category_id = '" . (int)$faq_category_id . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM " . DB_PREFIX . "faq_category_path cp LEFT JOIN " . DB_PREFIX . "faq_category_description cd1 ON (cp.path_id = cd1.faq_category_id AND cp.faq_category_id != cp.path_id) WHERE cp.faq_category_id = c.faq_category_id AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY cp.faq_category_id) AS path FROM " . DB_PREFIX . "faq_category c LEFT JOIN " . DB_PREFIX . "faq_category_description cd2 ON (c.faq_category_id = cd2.faq_category_id) WHERE c.faq_category_id = '" . (int)$faq_category_id . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
@@ -285,5 +298,18 @@ class ModelCmsFaqCategory extends Model {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "faq_category_to_layout WHERE layout_id = '" . (int)$layout_id . "'");
 
 		return $query->row['total'];
-	}	
+	}
+	
+	public function getFaqCategorySeoUrls($faq_category_id) {
+		$faq_category_seo_url_data = array();
+		
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "seo_url WHERE query = 'faq_category_id=" . (int)$faq_category_id . "'");
+
+		foreach ($query->rows as $result) {
+			$faq_category_seo_url_data[$result['store_id']][$result['language_id']] = $result['keyword'];
+		}
+
+		return $faq_category_seo_url_data;
+	}
+		
 }

@@ -11,12 +11,10 @@ $_['entry_title']            		   = 'Press Title';
 $_['entry_meta_title'] 	     		   = 'Meta Tag Title';
 $_['entry_meta_keyword'] 	 		   = 'Meta Tag Keywords';
 $_['entry_meta_description'] 		   = 'Meta Tag Description';
-$_['entry_cms_press_seo_keyword']  	   = 'SEO URL';
 $_['entry_cms_press_brief_length']     = 'Press Brief Characters Number';
 $_['entry_cms_press_items_per_page']   = 'Items Per Page';
 
 // Help
-$_['help_cms_press_seo_keyword']       = 'Do not use spaces, instead replace spaces with - and make sure the keyword is globally unique.';
 $_['help_cms_press_brief_length']      = 'Characters Number in Latest Press Module etc.';
 
 //Tab

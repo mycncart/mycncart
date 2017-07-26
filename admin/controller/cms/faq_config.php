@@ -14,7 +14,7 @@ class ControllerCmsFaqConfig extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->response->redirect($this->url->link('cms/faq_config', 'token=' . $this->session->data['token'], true));
+			$this->response->redirect($this->url->link('cms/faq_config', 'user_token=' . $this->session->data['user_token'], true));
 		}
 
 		$data['heading_title'] = $this->language->get('heading_title');
@@ -27,7 +27,6 @@ class ControllerCmsFaqConfig extends Controller {
 		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
 		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
-		$data['entry_cms_faq_seo_keyword'] = $this->language->get('entry_cms_faq_seo_keyword');
 		$data['entry_cms_faq_items_per_page'] = $this->language->get('entry_cms_faq_items_per_page');
 
 		$data['help_cms_faq_seo_keyword'] = $this->language->get('help_cms_faq_seo_keyword');
@@ -44,22 +43,16 @@ class ControllerCmsFaqConfig extends Controller {
 			$data['error_warning'] = '';
 		}
 		
-		if (isset($this->error['cms_faq_seo_keyword'])) {
-			$data['error_cms_faq_seo_keyword'] = $this->error['cms_faq_seo_keyword'];
-		} else {
-			$data['error_cms_faq_seo_keyword'] = '';
-		}
-		
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/faq_config', 'token=' . $this->session->data['token'], true)
+			'href' => $this->url->link('cms/faq_config', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		if (isset($this->session->data['success'])) {
@@ -70,17 +63,11 @@ class ControllerCmsFaqConfig extends Controller {
 			$data['success'] = '';
 		}
 
-		$data['action'] = $this->url->link('cms/faq_config', 'token=' . $this->session->data['token'], true);
+		$data['action'] = $this->url->link('cms/faq_config', 'user_token=' . $this->session->data['user_token'], true);
 
-		$data['cancel'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true);
+		$data['cancel'] = $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true);
 
-		$data['token'] = $this->session->data['token'];
-		
-		if (isset($this->request->post['cms_faq_seo_keyword'])) {
-			$data['cms_faq_seo_keyword'] = $this->request->post['cms_faq_seo_keyword'];
-		} else {
-			$data['cms_faq_seo_keyword'] = $this->config->get('cms_faq_seo_keyword');
-		}
+		$data['user_token'] = $this->session->data['user_token'];
 		
 		if (isset($this->request->post['cms_faq_items_per_page'])) {
 			$data['cms_faq_items_per_page'] = $this->request->post['cms_faq_items_per_page'];
@@ -100,8 +87,6 @@ class ControllerCmsFaqConfig extends Controller {
 			$data['cms_faq_description'] = array();
 		}
 		
-
-
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
@@ -123,18 +108,6 @@ class ControllerCmsFaqConfig extends Controller {
 				$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
 			}
 		}
-
-		if (utf8_strlen($this->request->post['cms_faq_seo_keyword']) > 0) {
-			$this->load->model('catalog/url_alias');
-
-			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['cms_faq_seo_keyword']);
-
-			if ($url_alias_info) {
-				$this->error['cms_faq_seo_keyword'] = sprintf($this->language->get('error_cms_faq_seo_keyword'));
-			}
-
-		}
-
 
 		if ($this->error && !isset($this->error['warning'])) {
 			$this->error['warning'] = $this->language->get('error_warning');
