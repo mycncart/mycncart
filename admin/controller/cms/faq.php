@@ -47,7 +47,7 @@ class ControllerCmsFaq extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/faq', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -89,7 +89,7 @@ class ControllerCmsFaq extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/faq', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -132,7 +132,7 @@ class ControllerCmsFaq extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, true));
+			$this->response->redirect($this->url->link('cms/faq', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getList();
@@ -197,17 +197,17 @@ class ControllerCmsFaq extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, true)
+			'href' => $this->url->link('cms/faq', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
 
-		$data['add'] = $this->url->link('cms/faq/add', 'token=' . $this->session->data['token'] . $url, true);
-		$data['copy'] = $this->url->link('cms/faq/copy', 'token=' . $this->session->data['token'] . $url, true);
-		$data['delete'] = $this->url->link('cms/faq/delete', 'token=' . $this->session->data['token'] . $url, true);
+		$data['add'] = $this->url->link('cms/faq/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		$data['copy'] = $this->url->link('cms/faq/copy', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		$data['delete'] = $this->url->link('cms/faq/delete', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
 		$data['faqs'] = array();
 
@@ -232,7 +232,7 @@ class ControllerCmsFaq extends Controller {
 				'faq_id' => $result['faq_id'],
 				'title'       => $result['title'],
 				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-				'edit'       => $this->url->link('cms/faq/edit', 'token=' . $this->session->data['token'] . '&faq_id=' . $result['faq_id'] . $url, true)
+				'edit'       => $this->url->link('cms/faq/edit', 'user_token=' . $this->session->data['user_token'] . '&faq_id=' . $result['faq_id'] . $url, true)
 			);
 		}
 
@@ -256,7 +256,7 @@ class ControllerCmsFaq extends Controller {
 		$data['button_delete'] = $this->language->get('button_delete');
 		$data['button_filter'] = $this->language->get('button_filter');
 
-		$data['token'] = $this->session->data['token'];
+		$data['user_token'] = $this->session->data['user_token'];
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -298,9 +298,9 @@ class ControllerCmsFaq extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_title'] = $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . '&sort=pd.title' . $url, true);
-		$data['sort_status'] = $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . '&sort=p.status' . $url, true);
-		$data['sort_order'] = $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . '&sort=p.sort_order' . $url, true);
+		$data['sort_title'] = $this->url->link('cms/faq', 'user_token=' . $this->session->data['user_token'] . '&sort=pd.title' . $url, true);
+		$data['sort_status'] = $this->url->link('cms/faq', 'user_token=' . $this->session->data['user_token'] . '&sort=p.status' . $url, true);
+		$data['sort_order'] = $this->url->link('cms/faq', 'user_token=' . $this->session->data['user_token'] . '&sort=p.sort_order' . $url, true);
 
 		$url = '';
 
@@ -324,7 +324,7 @@ class ControllerCmsFaq extends Controller {
 		$pagination->total = $faq_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
+		$pagination->url = $this->url->link('cms/faq', 'user_token=' . $this->session->data['user_token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
@@ -419,27 +419,27 @@ class ControllerCmsFaq extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, true)
+			'href' => $this->url->link('cms/faq', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
 
 		if (!isset($this->request->get['faq_id'])) {
-			$data['action'] = $this->url->link('cms/faq/add', 'token=' . $this->session->data['token'] . $url, true);
+			$data['action'] = $this->url->link('cms/faq/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
 		} else {
-			$data['action'] = $this->url->link('cms/faq/edit', 'token=' . $this->session->data['token'] . '&faq_id=' . $this->request->get['faq_id'] . $url, true);
+			$data['action'] = $this->url->link('cms/faq/edit', 'user_token=' . $this->session->data['user_token'] . '&faq_id=' . $this->request->get['faq_id'] . $url, true);
 		}
 
-		$data['cancel'] = $this->url->link('cms/faq', 'token=' . $this->session->data['token'] . $url, true);
+		$data['cancel'] = $this->url->link('cms/faq', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
 		if (isset($this->request->get['faq_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$faq_info = $this->model_cms_faq->getFaq($this->request->get['faq_id']);
 		}
 
-		$data['token'] = $this->session->data['token'];
+		$data['user_token'] = $this->session->data['user_token'];
 
 		$this->load->model('localisation/language');
 
@@ -483,6 +483,22 @@ class ControllerCmsFaq extends Controller {
 			$data['status'] = true;
 		}
 		
+		$data['stores'] = array();
+		
+		$data['stores'][] = array(
+			'store_id' => 0,
+			'name'     => $this->language->get('text_default')
+		);
+		
+		$stores = $this->model_setting_store->getStores();
+
+		foreach ($stores as $store) {
+			$data['stores'][] = array(
+				'store_id' => $store['store_id'],
+				'name'     => $store['name']
+			);
+		}
+		
 		$this->load->model('catalog/product');
 		
 		if (isset($this->request->post['product_related'])) {
@@ -494,7 +510,6 @@ class ControllerCmsFaq extends Controller {
 		}
 
 		$data['product_relateds'] = array();
-		
 
 		foreach ($products as $product_id) {
 			$related_info = $this->model_catalog_product->getProduct($product_id);
@@ -508,16 +523,28 @@ class ControllerCmsFaq extends Controller {
 		}
 
 
+		//Faq Categories
 		$this->load->model('cms/faq_category');
-				
-		$data['doc_categories'] = $this->model_cms_faq_category->getFaqCategories(0);
-		
-		if (isset($this->request->post['faq_faq_category'])) {
-			$data['faq_faq_category'] = $this->request->post['faq_faq_category'];
+
+		if (isset($this->request->post['faq_category'])) {
+			$faq_categories = $this->request->post['faq_category'];
 		} elseif (isset($this->request->get['faq_id'])) {
-			$data['faq_faq_category'] = $this->model_cms_faq->getFaqFaqCategories($this->request->get['faq_id']);
+			$faq_categories = $this->model_cms_faq->getFaqFaqCategories($this->request->get['faq_id']);
 		} else {
-			$data['faq_faq_category'] = array();
+			$faq_categories = array();
+		}
+
+		$data['faq_categories'] = array();
+
+		foreach ($faq_categories as $faq_category_id) {
+			$faq_category_info = $this->model_cms_faq_category->getFaqCategory($faq_category_id);
+
+			if ($faq_category_info) {
+				$data['faq_categories'][] = array(
+					'faq_category_id' => $faq_category_info['faq_category_id'],
+					'name'        => ($faq_category_info['path']) ? $faq_category_info['path'] . ' &gt; ' . $faq_category_info['name'] : $faq_category_info['name']
+				);
+			}
 		}		
 
 
@@ -551,8 +578,6 @@ class ControllerCmsFaq extends Controller {
 			}
 
 		}
-
-		
 
 		if ($this->error && !isset($this->error['warning'])) {
 			$this->error['warning'] = $this->language->get('error_warning');

@@ -17,8 +17,8 @@ class ModelCmsFaq extends Model {
 			}
 		}
 
-		if (isset($data['faq_faq_category'])) {
-			foreach ($data['faq_faq_category'] as $faq_category_id) {
+		if (isset($data['faq_category'])) {
+			foreach ($data['faq_category'] as $faq_category_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "faq_to_faq_category SET faq_id = '" . (int)$faq_id . "', faq_category_id = '" . (int)$faq_category_id . "'");
 			}
 		}
@@ -65,8 +65,8 @@ class ModelCmsFaq extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_to_faq_category WHERE faq_id = '" . (int)$faq_id . "'");
 
-		if (isset($data['faq_faq_category'])) {
-			foreach ($data['faq_faq_category'] as $faq_category_id) {
+		if (isset($data['faq_category'])) {
+			foreach ($data['faq_category'] as $faq_category_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "faq_to_faq_category SET faq_id = '" . (int)$faq_id . "', faq_category_id = '" . (int)$faq_category_id . "'");
 			}
 		}
@@ -103,14 +103,14 @@ class ModelCmsFaq extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_to_faq_category WHERE faq_id = '" . (int)$faq_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_to_layout WHERE faq_id = '" . (int)$faq_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "faq_to_store WHERE faq_id = '" . (int)$faq_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'faq_id=" . (int)$faq_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'faq_id=" . (int)$faq_id . "'");
 
 		$this->cache->delete('faq');
 
 	}
 
 	public function getFaq($faq_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'faq_id=" . (int)$faq_id . "') AS keyword FROM " . DB_PREFIX . "faq p LEFT JOIN " . DB_PREFIX . "faq_description pd ON (p.faq_id = pd.faq_id) WHERE p.faq_id = '" . (int)$faq_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "faq p LEFT JOIN " . DB_PREFIX . "faq_description pd ON (p.faq_id = pd.faq_id) WHERE p.faq_id = '" . (int)$faq_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}

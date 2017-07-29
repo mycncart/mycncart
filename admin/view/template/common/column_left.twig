@@ -7,7 +7,13 @@
       {% if menu.children %}
       <ul id="collapse{{ i }}" class="collapse">
         {% for children_1 in menu.children %}
-        <li>{% if children_1.href %}<a href="{{ children_1.href }}">{{ children_1.name }}</a>{% else %}<a href="#collapse{{ i }}" data-toggle="collapse" class="parent collapsed">{{ children_1.name }}</a>{% endif %}
+        <li>
+		{% if children_1.href %}
+		<a href="{{ children_1.href }}">{{ children_1.name }}</a>
+		{% else %}
+		{% set i = i + 1 %}
+		<a href="#collapse{{ i }}" data-toggle="collapse" class="parent collapsed">{{ children_1.name }}</a>
+		{% endif %}
           {% if children_1.children %}
           <ul id="collapse{{ i }}" class="collapse">
             {% for children_2 in children_1.children %}
