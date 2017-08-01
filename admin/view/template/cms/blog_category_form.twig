@@ -3,12 +3,12 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right">
-        <button type="submit" form="form-blog_category" data-toggle="tooltip" title="{{ button_save }} " class="btn btn-primary"><i class="fa fa-save"></i></button>
-        <a href="{{ cancel }} " data-toggle="tooltip" title="{{ button_cancel }} " class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+        <button type="submit" form="form-blog_category" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
       <h1>{{ heading_title }} </h1>
       <ul class="breadcrumb">
         {% for breadcrumb in breadcrumbs %} 
-        <li><a href="{{ breadcrumb.href }} ">{{ breadcrumb.text }} </a></li>
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }} </a></li>
         {% endfor %} 
       </ul>
     </div>
@@ -24,7 +24,7 @@
         <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_form }} </h3>
       </div>
       <div class="panel-body">
-        <form action="{{ action }} " method="post" enctype="multipart/form-data" id="form-blog_category" class="form-horizontal">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-blog_category" class="form-horizontal">
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-general" data-toggle="tab">{{ tab_general }} </a></li>
             <li><a href="#tab-data" data-toggle="tab">{{ tab_data }} </a></li>
@@ -115,7 +115,7 @@
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">{{ entry_image }} </label>
-                <div class="col-sm-10"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="{{ thumb }}" alt="" title="" data-placeholder="{{ placeholder }} " /></a>
+                <div class="col-sm-10"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="{{ thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a>
                   <input type="hidden" name="image" value="{{ image }}" id="input-image" />
                 </div>
               </div>

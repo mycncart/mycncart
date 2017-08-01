@@ -3,12 +3,12 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right">
-        <button type="submit" form="form-blog" data-toggle="tooltip" title="{{ button_save }} " class="btn btn-primary"><i class="fa fa-save"></i></button>
-        <a href="{{ cancel }} " data-toggle="tooltip" title="{{ button_cancel }} " class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+        <button type="submit" form="form-blog" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
       <h1>{{ heading_title }} </h1>
       <ul class="breadcrumb">
         {% for breadcrumb in breadcrumbs %} 
-        <li><a href="{{ breadcrumb.href }} ">{{ breadcrumb.text }} </a></li>
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }} </a></li>
         {% endfor %} 
       </ul>
     </div>
@@ -24,7 +24,7 @@
         <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_form }} </h3>
       </div>
       <div class="panel-body">
-        <form action="{{ action }} " method="post" enctype="multipart/form-data" id="form-blog" class="form-horizontal">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-blog" class="form-horizontal">
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-general" data-toggle="tab">{{ tab_general }} </a></li>
             <li><a href="#tab-data" data-toggle="tab">{{ tab_data }} </a></li>
@@ -88,8 +88,8 @@
               
               <div class="form-group">
                 <label class="col-sm-2 control-label">{{ entry_image }} </label>
-                <div class="col-sm-10"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="{{ thumb }} " alt="" title="" data-placeholder="{{ placeholder }} " /></a>
-                  <input type="hidden" name="image" value="{{ image }} " id="input-image" />
+                <div class="col-sm-10"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="{{ thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a>
+                  <input type="hidden" name="image" value="{{ image }}" id="input-image" />
                 </div>
               </div>
               
@@ -126,7 +126,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-hits">{{ entry_hits }} </label>
                 <div class="col-sm-10">
-                  <input type="text" name="hits" value="{{ hits }} " placeholder="{{ entry_hits }} " id="input-hits" class="form-control" />
+                  <input type="text" name="hits" value="{{ hits }}" placeholder="{{ entry_hits }}" id="input-hits" class="form-control" />
                 </div>
               </div>
               
@@ -134,7 +134,7 @@
                 <label class="col-sm-2 control-label" for="input-created">{{ entry_created }} </label>
                 <div class="col-sm-3">
                   <div class="input-group date">
-                    <input type="text" name="created" value="{{ created }} " placeholder="{{ entry_created }} " data-date-format="YYYY-MM-DD" id="input-created" class="form-control" />
+                    <input type="text" name="created" value="{{ created }}" placeholder="{{ entry_created }}" data-date-format="YYYY-MM-DD" id="input-created" class="form-control" />
                     <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
                     </span></div>
@@ -147,9 +147,9 @@
                   <select name="user_id" id="input-user" class="form-control">
                     {% for user in users %} 
                     {% if user.user_id  ==  user_id %} 
-                    <option value="{{ user.user_id }} " selected="selected">{{ user.username }} </option>
+                    <option value="{{ user.user_id }}" selected="selected">{{ user.username }} </option>
                     {% else %}   
-                    <option value="{{ user.user_id }} ">{{ user.username }} </option>
+                    <option value="{{ user.user_id }}">{{ user.username }} </option>
                     {% endif %} 
                     {% endfor %} 
                   </select>
@@ -159,14 +159,14 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-video-code; ">{{ entry_video_code }} </label>
                 <div class="col-sm-10">
-                  <textarea name="video_code" rows="5" placeholder="{{ entry_video_code }} " id="input-video-code" class="form-control">{{ video_code }} </textarea>
+                  <textarea name="video_code" rows="5" placeholder="{{ entry_video_code }}" id="input-video-code" class="form-control">{{ video_code }} </textarea>
                 </div>
               </div>
               
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-sort-order">{{ entry_sort_order }} </label>
                 <div class="col-sm-10">
-                  <input type="text" name="sort_order" value="{{ sort_order }} " placeholder="{{ entry_sort_order }} " id="input-sort-order" class="form-control" />
+                  <input type="text" name="sort_order" value="{{ sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control" />
                 </div>
               </div>
             </div>
@@ -187,7 +187,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-product-related">{{ entry_product_related }} </label>
                   <div class="col-sm-10">
-                    <input type="text" name="prelated" value="" placeholder="{{ entry_product_related }} " id="input-product-related" class="form-control" />
+                    <input type="text" name="prelated" value="" placeholder="{{ entry_product_related }}" id="input-product-related" class="form-control" />
                     <div id="product-related" class="well well-sm" style="height: 150px; overflow: auto;"> {% for product_related in product_relateds %}
                     <div id="product-related{{ product_related.product_id }}"><i class="fa fa-minus-circle"></i> {{ product_related.name }}
                       <input type="hidden" name="product_related[]" value="{{ product_related.product_id }}" />
@@ -199,7 +199,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-blog-related">{{ entry_blog_related }} </label>
                   <div class="col-sm-10">
-                    <input type="text" name="brelated" value="" placeholder="{{ entry_blog_related }} " id="input-blog-related" class="form-control" />
+                    <input type="text" name="brelated" value="" placeholder="{{ entry_blog_related }}" id="input-blog-related" class="form-control" />
                     <div id="blog-related" class="well well-sm" style="height: 150px; overflow: auto;"> {% for blog_related in blog_relateds %}
                     <div id="blog-related{{ blog_related.blog_id }}"><i class="fa fa-minus-circle"></i> {{ blog_related.title }}
                       <input type="hidden" name="blog_related[]" value="{{ blog_related.blog_id }}" />
