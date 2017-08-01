@@ -103,7 +103,7 @@ $_['help_related']           = '(输入时自动筛选结果)';
 $_['help_tag']          	 = '英文逗号分割';
 
 // Error
-$_['error_warning']          = '警告: 存在错误，请检查！';
+$_['error_warning']          = '警告: 存在错误，请检查各项录入，尤其是不同语言项下是否都填写完整！';
 $_['error_permission']       = '警告: 无权限修改商品！';
 $_['error_name']             = '商品名称必须介于3-255字符之间！';
 $_['error_meta_title']       = 'Meta 标题必须介于3-255字符之间！';

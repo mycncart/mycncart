@@ -1,15 +1,15 @@
 <?php
 // Heading
-$_['heading_title']      	= '支付宝手机网页即时到账';
+$_['heading_title']      					= '支付宝手机网页即时到账';
 
 // Text 
-$_['text_seller_email'] 	= '商家邮箱';
-$_['text_security_code'] 	= '安全校验码(Key)';
-$_['text_partner'] 			= '合作者身份(PID)';
-$_['text_payment']       	= '支付方式';
-$_['text_alipay_wap']	= '<img src="view/image/payment/alipay_wap.png" alt="支付宝手机网页即时到账" title="支付宝手机网页即时到账" style="border: 1px solid #EEEEEE;" />';
-$_['text_success']       	= '成功: 已修改支付宝手机网页即时到账！';
-$_['text_edit']          	= '编辑支付宝手机网页即时到账';
+$_['text_seller_email'] 					= '商家邮箱';
+$_['text_security_code'] 					= '安全校验码(Key)';
+$_['text_partner'] 							= '合作者身份(PID)';
+$_['text_payment']       					= '支付方式';
+$_['text_alipay_wap']						= '<img src="view/image/payment/alipay_wap.png" alt="支付宝手机网页即时到账" title="支付宝手机网页即时到账" style="border: 1px solid #EEEEEE;" />';
+$_['text_success']       					= '成功: 已修改支付宝手机网页即时到账！';
+$_['text_edit']          					= '编辑支付宝手机网页即时到账 - (在线教程: <a href="http://www.mycncart.com/blog-21.html" target="_blank">http://www.mycncart.com/blog-21.html</a>)';
 
 // Entry
 $_['entry_alipay_wap_seller_email'] 		= '商家邮箱';

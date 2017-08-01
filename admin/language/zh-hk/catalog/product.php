@@ -101,7 +101,7 @@ $_['help_related']				= '(自動完成)';
 $_['help_tag']					= '使用逗號分開';
 
 // Error
-$_['error_warning']				= '警告：資料未正確輸入！';
+$_['error_warning']				= '警告: 存在錯誤，請檢查各項錄入，尤其是不同語言項下是否都填寫完整！';
 $_['error_permission']			= '警告：您沒有權限更改商品資料！';
 $_['error_name']				= '商品名稱長度必須在 1 到 255 個字！';
 $_['error_meta_title']			= 'Meta標題必須在 1 到 255 個字！';

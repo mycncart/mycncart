@@ -1,15 +1,15 @@
 <?php
 // Heading
-$_['heading_title']      	= '支付宝PC端即时到账接口';
+$_['heading_title']      					= '支付宝PC端即时到账接口';
 
 // Text 
-$_['text_seller_email'] 	= '商家邮箱';
-$_['text_security_code'] 	= '安全校验码(Key)';
-$_['text_partner'] 			= '合作者身份(PID)';
-$_['text_payment']       	= '支付方式';
-$_['text_alipay_direct']	= '<img src="view/image/payment/alipay_direct.png" alt="支付宝PC端即时到账接口" title="支付宝PC端即时到账接口" style="border: 1px solid #EEEEEE;" />';
-$_['text_success']       	= '成功: 已修改支付宝PC端即时到账接口！';
-$_['text_edit']          	= '编辑支付宝PC端即时到账接口';
+$_['text_seller_email'] 					= '商家邮箱';
+$_['text_security_code'] 					= '安全校验码(Key)';
+$_['text_partner'] 							= '合作者身份(PID)';
+$_['text_payment']       					= '支付方式';
+$_['text_alipay_direct']					= '<img src="view/image/payment/alipay_direct.png" alt="支付宝PC端即时到账接口" title="支付宝PC端即时到账接口" style="border: 1px solid #EEEEEE;" />';
+$_['text_success']       					= '成功: 已修改支付宝PC端即时到账接口！';
+$_['text_edit']          					= '编辑支付宝PC端即时到账接口 - (在线教程: <a href="http://www.mycncart.com/blog-136.html" target="_blank">http://www.mycncart.com/blog-136.html</a>)';
 
 // Entry
 $_['entry_alipay_direct_seller_email'] 		= '商家邮箱';
