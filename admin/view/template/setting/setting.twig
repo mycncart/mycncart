@@ -37,6 +37,7 @@
             <li><a href="#tab-image" data-toggle="tab">{{ tab_image }}</a></li>
             <li><a href="#tab-mail" data-toggle="tab">{{ tab_mail }}</a></li>
             <li><a href="#tab-server" data-toggle="tab">{{ tab_server }}</a></li>
+			<li><a href="#tab-thirdparty" data-toggle="tab">{{ tab_thirdparty }}</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
@@ -127,6 +128,35 @@
                   <div class="text-danger">{{ error_address }}</div>
                   {% endif %} </div>
               </div>
+			  <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-miit">{{ entry_miit }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_miit" value="{{ config_miit }}" placeholder="{{ entry_miit }}" id="input-miit" class="form-control" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">{{ entry_map_select }}</label>
+                <div class="col-sm-10">
+                  <label class="radio-inline">
+                    {% if config_map_select  ==  "baidu" %} 
+                    <input type="radio" name="config_map_select" value="baidu" checked="checked" />
+                    {{ text_baidu }} 
+                    {% else %}   
+                    <input type="radio" name="config_map_select" value="baidu" />
+                    {{ text_baidu }} 
+                    {% endif %} 
+                  </label>
+                  <label class="radio-inline">
+                    {% if config_map_select  ==  "google" %} 
+                    <input type="radio" name="config_map_select" value="google" checked="checked" />
+                    {{ text_google }} 
+                    {% else %}   
+                    <input type="radio" name="config_map_select" value="google" />
+                    {{ text_google }} 
+                    {% endif %} 
+                  </label>
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-geocode"><span data-toggle="tooltip" data-container="#tab-general" title="{{ help_geocode }}">{{ entry_geocode }}</span></label>
                 <div class="col-sm-10">
@@ -148,6 +178,12 @@
                   {% if error_telephone %}
                   <div class="text-danger">{{ error_telephone }}</div>
                   {% endif %} </div>
+              </div>
+			  <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-sms-telephone">{{ entry_sms_telephone }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_sms_telephone" value="{{ config_sms_telephone }}" placeholder="{{ entry_sms_telephone }}" id="input-sms-telephone" class="form-control" />
+                </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-fax">{{ entry_fax }}</label>
@@ -1048,6 +1084,56 @@
                   </div>
                 </div>
               </fieldset>
+			  <fieldset>
+                <legend>{{ text_sms }} </legend>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="{{ help_sms }}">{{ entry_sms }}</span></label>
+                  <div class="col-sm-10">
+                    <select name="config_sms" id="input-sms" class="form-control">
+                      <option value="">{{ text_none }}</option>
+                      {% for sms in smses %} 
+                      {% if sms.value  == config_sms %} 
+                      <option value="{{ sms.value }}" selected="selected">{{ sms.text }}</option>
+                      {% else %}
+                      <option value="{{ sms.value }}">{{ sms.text }}</option>
+                      {% endif %} 
+                      {% endfor %} 
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">{{ entry_sms_page }}</label>
+                  <div class="col-sm-10">
+                    <div class="well well-sm" style="height: 150px; overflow: auto;">
+                      {% for sms_page in sms_pages %} 
+                      <div class="checkbox">
+                        <label>
+                          {% if sms_page.value in config_sms_page %}
+                          <input type="checkbox" name="config_sms_page[]" value="{{ sms_page.value}}" checked="checked" />
+                          {{ sms_page.text }} 
+                          {% else %}   
+                          <input type="checkbox" name="config_sms_page[]" value="{{ sms_page.value }}" />
+                          {{ sms_page.text }} 
+                          {% endif %} 
+                        </label>
+                      </div>
+                      {% endfor %} 
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset>
+                <legend>{{ text_autocomplete }}</legend>
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-autocomplete-limit"><span data-toggle="tooltip" title="{{ help_limit_autocomplete }}">{{ entry_limit_autocomplete }}</span></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_limit_autocomplete" value="{{ config_limit_autocomplete }}" placeholder="{{ entry_limit_autocomplete }}" id="input-autocomplete-limit" class="form-control" />
+                    {% if error_limit_autocomplete %} 
+                    <div class="text-danger">{{ error_limit_autocomplete }}</div>
+                    {% endif %} 
+                  </div>
+                </div>
+              </fieldset>
             </div>
             <div class="tab-pane" id="tab-image">
               <div class="form-group">
@@ -1347,6 +1433,20 @@
                     <div class="text-danger">{{ error_log }}</div>
                     {% endif %} </div>
                 </div>
+              </fieldset>
+            </div>
+			<div class="tab-pane" id="tab-thirdparty">
+              <fieldset>
+                <legend>{{ text_baidu }}</legend>
+                <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ text_baidu_signup }} 
+            	<button type="button" class="close" data-dismiss="alert">&times;</button></div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-baidu-api">{{ entry_baidu_api }}</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_baidu_api" value="{{ config_baidu_api }}" placeholder="{{ entry_baidu_api }}" id="input-baidu-api" class="form-control" />
+                  </div>
+                </div>
+                
               </fieldset>
             </div>
           </div>

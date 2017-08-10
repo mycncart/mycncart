@@ -768,6 +768,14 @@ class ControllerCommonColumnLeft extends Controller {
 					'children' => array()		
 				);
 			}
+			
+			if ($this->user->hasPermission('access', 'tool/excelexportimport')) {
+				$maintenance[] = array(
+					'name'	   => $this->language->get('text_excelexportimport'),
+					'href'     => $this->url->link('tool/excelexportimport', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);
+			}
 		
 			if ($maintenance) {
 				$system[] = array(

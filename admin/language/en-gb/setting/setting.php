@@ -32,7 +32,13 @@ $_['text_general']                   = 'General';
 $_['text_security']                  = 'Security';
 $_['text_upload']                    = 'Uploads';
 $_['text_error']                     = 'Error Handling';
-
+$_['text_baidu']                   = 'BaiDu';
+$_['text_google']                  = 'Google';
+$_['text_baidu_signup']            = 'Login <a href="http://zhanzhang.baidu.com" target="_blank"><u>BaiDu Webmaster</u></a> , and get api.';
+$_['text_account_edit']            = 'Edit Account';
+$_['text_valid_order_to_admin']    = 'Send sms to admin when order become valid';
+$_['text_valid_order_to_admin']    = 'Send sms to customer when order become valid';
+$_['text_autocomplete']    		   = 'Autocomplte Item';
 // Entry
 $_['entry_meta_title']               = 'Meta Title';
 $_['entry_meta_description']         = 'Meta Tag Description';
@@ -122,6 +128,10 @@ $_['entry_error_display']            = 'Display Errors';
 $_['entry_error_log']                = 'Log Errors';
 $_['entry_error_filename']           = 'Error Log Filename';
 $_['entry_status']                   = 'Status';
+$_['entry_sms']                	   = 'Sms';
+$_['entry_sms_page']           	   = 'Sms Page';
+$_['entry_limit_autocomplete']     = 'Default Items For Autocomplete';
+$_['entry_baidu_api']              = 'BaiDu API';
 
 // Help
 $_['help_geocode']                   = 'Please enter your store location geocode manually.';

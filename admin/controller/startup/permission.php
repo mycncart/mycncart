@@ -28,6 +28,7 @@ class ControllerStartupPermission extends Controller {
 				'extension/theme',
 				'extension/total',
 				'extension/report',
+				'extension/sms',
                 'extension/openbay'
 			);
 

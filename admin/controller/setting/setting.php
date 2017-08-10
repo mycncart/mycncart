@@ -23,6 +23,9 @@ class ControllerSettingSetting extends Controller {
 			$this->response->redirect($this->url->link('setting/store', 'user_token=' . $this->session->data['user_token'], true));
 		}
 		
+		$data['heading_title'] = $this->language->get('heading_title');
+		$data['text_edit'] = $this->language->get('text_edit');
+		
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
 		} else {
@@ -130,6 +133,12 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$data['error_encryption'] = '';
 		}
+		
+		if (isset($this->error['limit_autocomplete'])) {
+			$data['error_limit_autocomplete'] = $this->error['limit_autocomplete'];
+		} else {
+			$data['error_limit_autocomplete'] = '';
+		}
 
 		$data['breadcrumbs'] = array();
 
@@ -234,6 +243,20 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$data['config_address'] = $this->config->get('config_address');
 		}
+		
+		if (isset($this->request->post['config_miit'])) {
+			$data['config_miit'] = $this->request->post['config_miit'];
+		} else {
+			$data['config_miit'] = $this->config->get('config_miit');
+		}
+		
+		if (isset($this->request->post['config_map_select'])) {
+			$data['config_map_select'] = $this->request->post['config_map_select'];
+		} elseif ($this->config->get('config_map_select')) {
+			$data['config_map_select'] = $this->config->get('config_map_select');
+		} else {
+			$data['config_map_select'] = 'baidu';
+		}
 
 		if (isset($this->request->post['config_geocode'])) {
 			$data['config_geocode'] = $this->request->post['config_geocode'];
@@ -251,6 +274,12 @@ class ControllerSettingSetting extends Controller {
 			$data['config_telephone'] = $this->request->post['config_telephone'];
 		} else {
 			$data['config_telephone'] = $this->config->get('config_telephone');
+		}
+		
+		if (isset($this->request->post['config_sms_telephone'])) {
+			$data['config_sms_telephone'] = $this->request->post['config_sms_telephone'];
+		} else {
+			$data['config_sms_telephone'] = $this->config->get('config_sms_telephone');
 		}
 		
 		if (isset($this->request->post['config_fax'])) {
@@ -679,6 +708,64 @@ class ControllerSettingSetting extends Controller {
 			'text'  => $this->language->get('text_contact'),
 			'value' => 'contact'
 		);
+		
+		if (isset($this->request->post['config_sms'])) {
+			$data['config_sms'] = $this->request->post['config_sms'];
+		} else {
+			$data['config_sms'] = $this->config->get('config_sms');
+		}
+
+		$data['smses'] = array();
+
+		// Get a list of installed smses
+		$extensions = $this->model_setting_extension->getInstalled('sms');
+
+		foreach ($extensions as $code) {
+			$this->load->language('extension/sms/' . $code);
+
+			if ($this->config->get($code . '_status')) {
+				$data['smses'][] = array(
+					'text'  => $this->language->get('heading_title'),
+					'value' => $code
+				);
+			}
+		}
+
+		if (isset($this->request->post['config_sms_page'])) {
+			$data['config_sms_page'] = $this->request->post['config_sms_page'];
+		} elseif ($this->config->has('config_sms_page')) {
+		   	$data['config_sms_page'] = $this->config->get('config_sms_page');
+		} else {
+			$data['config_sms_page'] = array();
+		}
+
+		$data['sms_pages'] = array();
+
+		$data['sms_pages'][] = array(
+			'text'  => $this->language->get('text_register'),
+			'value' => 'register'
+		);
+		
+		$data['sms_pages'][] = array(
+			'text'  => $this->language->get('text_account_edit'),
+			'value' => 'edit_account'
+		);
+		
+		$data['sms_pages'][] = array(
+			'text'  => $this->language->get('text_valid_order_to_admin'),
+			'value' => 'order_admin'
+		);
+		
+		$data['sms_pages'][] = array(
+			'text'  => $this->language->get('text_valid_order_to_customer'),
+			'value' => 'order_customer'
+		);
+		
+		if (isset($this->request->post['config_limit_autocomplete'])) {
+			$data['config_limit_autocomplete'] = $this->request->post['config_limit_autocomplete'];
+		} else {
+			$data['config_limit_autocomplete'] = $this->config->get('config_limit_autocomplete');
+		}
 
 		if (isset($this->request->post['config_logo'])) {
 			$data['config_logo'] = $this->request->post['config_logo'];
@@ -875,6 +962,12 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$data['config_error_filename'] = $this->config->get('config_error_filename');
 		}
+		
+		if (isset($this->request->post['config_baidu_api'])) {
+			$data['config_baidu_api'] = $this->request->post['config_baidu_api'];
+		} else {
+			$data['config_baidu_api'] = $this->config->get('config_baidu_api');
+		}
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
@@ -918,6 +1011,10 @@ class ControllerSettingSetting extends Controller {
 
 		if (!$this->request->post['config_limit_admin']) {
 			$this->error['limit_admin'] = $this->language->get('error_limit');
+		}
+		
+		if (!$this->request->post['config_limit_autocomplete']) {
+			$this->error['limit_autocomplete'] = $this->language->get('error_autocomplete');
 		}
 
 		if ($this->request->post['config_login_attempts'] < 1) {
