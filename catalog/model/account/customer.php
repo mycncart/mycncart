@@ -1,6 +1,6 @@
 <?php
 class ModelAccountCustomer extends Model {
-	public function addCustomer($data) {
+	public function addCustomer($data, $weixin_login_openid = '', $weixin_login_unionid = '') {
 		if (isset($data['customer_group_id']) && is_array($this->config->get('config_customer_group_display')) && in_array($data['customer_group_id'], $this->config->get('config_customer_group_display'))) {
 			$customer_group_id = $data['customer_group_id'];
 		} else {
@@ -10,8 +10,17 @@ class ModelAccountCustomer extends Model {
 		$this->load->model('account/customer_group');
 
 		$customer_group_info = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
+		
+		if ($data['registertype'] == 'email') {
+			$email = $data['email'];
+			$telephone = $data['email'];
+		} else {
+			$email = $data['telephone'];
+			$telephone = $data['telephone'];
+			
+		}
 
-		$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET customer_group_id = '" . (int)$customer_group_id . "', store_id = '" . (int)$this->config->get('config_store_id') . "', language_id = '" . (int)$this->config->get('config_language_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', custom_field = '" . $this->db->escape(isset($data['custom_field']['account']) ? json_encode($data['custom_field']['account']) : '') . "', salt = '" . $this->db->escape($salt = token(9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', status = '" . (int)!$customer_group_info['approval'] . "', date_added = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET customer_group_id = '" . (int)$customer_group_id . "', store_id = '" . (int)$this->config->get('config_store_id') . "', language_id = '" . (int)$this->config->get('config_language_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($email) . "', weixin_login_unionid = '" . $this->db->escape($weixin_login_unionid) . "', weixin_login_openid = '" . $this->db->escape($weixin_login_openid) . "', telephone = '" . $this->db->escape($telephone) . "', fax = '', custom_field = '" . $this->db->escape(isset($data['custom_field']['account']) ? json_encode($data['custom_field']['account']) : '') . "', salt = '" . $this->db->escape($salt = token(9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', status = '" . (int)!$customer_group_info['approval'] . "', date_added = NOW()");
 
 		$customer_id = $this->db->getLastId();
 
@@ -19,11 +28,20 @@ class ModelAccountCustomer extends Model {
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "customer_approval` SET customer_id = '" . (int)$customer_id . "', type = 'customer', date_added = NOW()");
 		}
 		
+		//clear other customer's same weixin info
+		$this->db->query("UPDATE " . DB_PREFIX . "customer SET weixin_login_openid = '', weixin_login_unionid = '' WHERE weixin_login_openid LIKE  '" . $weixin_login_openid . "' AND weixin_login_unionid LIKE '" . $weixin_login_unionid . "' AND customer_id != '" . (int)$customer_id . "'");
+
+		//delete temporary mobile number
+		$this->db->query("DELETE FROM " . DB_PREFIX . "sms_mobile WHERE sms_mobile = '" . $this->db->escape($data['telephone']) . "'");
+		
 		return $customer_id;
 	}
 
 	public function editCustomer($customer_id, $data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', custom_field = '" . $this->db->escape(isset($data['custom_field']['account']) ? json_encode($data['custom_field']['account']) : '') . "' WHERE customer_id = '" . (int)$customer_id . "'");
+		
+		//delete temporary mobile number
+		$this->db->query("DELETE FROM " . DB_PREFIX . "sms_mobile WHERE sms_mobile = '" . $this->db->escape($data['telephone']) . "'");
 	}
 
 	public function editPassword($email, $password) {
@@ -148,5 +166,17 @@ class ModelAccountCustomer extends Model {
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "customer_affiliate` WHERE `tracking` = '" . $this->db->escape($tracking) . "'");
 
 		return $query->row;
+	}
+	
+	public function updateCustomerWeiBoInfo($customer_id, $weibo_login_access_token, $weibo_login_uid) {
+
+		$this->db->query("UPDATE " . DB_PREFIX . "customer SET weibo_login_access_token = '" . $this->db->escape(trim($weibo_login_access_token)) . "', weibo_login_uid = '" . $this->db->escape(trim($weibo_login_uid)) . "' WHERE customer_id = '" . (int)$customer_id . "'");
+
+	}
+	
+	public function updateCustomerQQInfo($customer_id, $qq_openid) {
+
+		$this->db->query("UPDATE " . DB_PREFIX . "customer SET qq_openid = '" . $this->db->escape(trim($qq_openid)) . "' WHERE customer_id = '" . (int)$customer_id . "'");
+
 	}			
 }

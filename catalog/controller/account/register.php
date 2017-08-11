@@ -6,6 +6,34 @@ class ControllerAccountRegister extends Controller {
 		if ($this->customer->isLogged()) {
 			$this->response->redirect($this->url->link('account/account', '', true));
 		}
+		
+		//weixin
+		if(isset($this->session->data['weixin_login_openid']) &&  isset($this->session->data['weixin_login_unionid'])){
+			$weixin_login_unionid = $this->session->data['weixin_login_unionid'];
+			$weixin_login_openid = $this->session->data['weixin_login_openid'];
+		}elseif(isset($this->session->data['weixin_pclogin_openid']) &&  isset($this->session->data['weixin_pclogin_unionid'])){
+			$weixin_login_unionid = $this->session->data['weixin_pclogin_unionid'];
+			$weixin_login_openid = $this->session->data['weixin_pclogin_openid'];
+		}else{
+			$weixin_login_unionid = '';
+			$weixin_login_openid = '';
+		}
+		
+		//weibo
+		if(isset($this->session->data['weibo_login_access_token']) &&  isset($this->session->data['weibo_login_uid'])) {
+			$weibo_login_uid = $this->session->data['weibo_login_uid'];
+			$weibo_login_access_token = $this->session->data['weibo_login_access_token'];
+		}else{
+			$weibo_login_uid = '';
+			$weibo_login_access_token = '';
+		}
+		
+		//qq
+		if(isset($this->session->data['qq_openid'])) {
+			$qq_openid = $this->session->data['qq_openid'];
+		}else{
+			$qq_openid = '';
+		}
 
 		$this->load->language('account/register');
 
@@ -19,12 +47,30 @@ class ControllerAccountRegister extends Controller {
 		$this->load->model('account/customer');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$customer_id = $this->model_account_customer->addCustomer($this->request->post);
+			$customer_id = $this->model_account_customer->addCustomer($this->request->post, $weixin_login_openid, $weixin_login_unionid);
+			
+			if($weibo_login_access_token && $weibo_login_uid) {
+				$this->model_account_customer->updateCustomerWeiBoInfo($customer_id, $weibo_login_access_token, $weibo_login_uid);
+			}
+			
+			if($qq_openid) {
+				$this->model_account_customer->updateCustomerQQInfo($customer_id, $qq_openid);
+			}
 
 			// Clear any previous login attempts for unregistered accounts.
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
-
-			$this->customer->login($this->request->post['email'], $this->request->post['password']);
+			
+			if ($this->request->post['email']) {
+				$this->customer->login($this->request->post['email'], $this->request->post['password']);
+			} else {
+				$this->customer->login($this->request->post['telephone'], $this->request->post['password']);
+			}
+			
+			//Unset Third party login session
+			unset($this->session->data['qq_login_warning']);
+			unset($this->session->data['weibo_login_warning']);
+			unset($this->session->data['weixin_login_warning']);
+			unset($this->session->data['qq_nickname']);
 
 			unset($this->session->data['guest']);
 
@@ -61,12 +107,6 @@ class ControllerAccountRegister extends Controller {
 			$data['error_firstname'] = '';
 		}
 
-		if (isset($this->error['lastname'])) {
-			$data['error_lastname'] = $this->error['lastname'];
-		} else {
-			$data['error_lastname'] = '';
-		}
-
 		if (isset($this->error['email'])) {
 			$data['error_email'] = $this->error['email'];
 		} else {
@@ -96,6 +136,12 @@ class ControllerAccountRegister extends Controller {
 		} else {
 			$data['error_confirm'] = '';
 		}
+		
+		if (isset($this->error['sms_code'])) {
+			$data['error_sms_code'] = $this->error['sms_code'];
+		} else {
+			$data['error_sms_code'] = '';
+		}
 
 		$data['action'] = $this->url->link('account/register', '', true);
 
@@ -117,6 +163,12 @@ class ControllerAccountRegister extends Controller {
 			$data['customer_group_id'] = $this->request->post['customer_group_id'];
 		} else {
 			$data['customer_group_id'] = $this->config->get('config_customer_group_id');
+		}
+		
+		if (isset($this->request->post['registertype'])) {
+			$data['registertype'] = $this->request->post['registertype'];
+		} else {
+			$data['registertype'] = 'email';
 		}
 
 		if (isset($this->request->post['firstname'])) {
@@ -141,6 +193,20 @@ class ControllerAccountRegister extends Controller {
 			$data['telephone'] = $this->request->post['telephone'];
 		} else {
 			$data['telephone'] = '';
+		}
+		
+		//SMS
+		
+		if ($this->config->get($this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
+			$data['sms_gateway'] = $this->config->get('config_sms');
+		} else {
+			$data['sms_gateway'] = '';
+		}
+		
+		if (isset($this->request->post['sms_code'])) {
+			$data['sms_code'] = $this->request->post['sms_code'];
+		} else {
+			$data['sms_code'] = '';
 		}
 
 		// Custom Fields
@@ -218,24 +284,39 @@ class ControllerAccountRegister extends Controller {
 	}
 
 	private function validate() {
+		
+		if ($this->request->post['registertype'] == 'email') {
+			
+			if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
+				$this->error['email'] = $this->language->get('error_email');
+			}
+	
+			if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
+				$this->error['email'] = $this->language->get('error_exists');
+			}
+			
+		} else {
+			
+			if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+				$this->error['telephone'] = $this->language->get('error_telephone');
+			}else{
+				
+				if ($this->model_account_customer->getTotalCustomersByTelephone(trim($this->request->post['telephone']))) {
+					$this->error['telephone'] = $this->language->get('error_telephone_exists');
+				} else {
+					// if sms code is not correct
+					$this->load->model('account/smsmobile');
+					if($this->model_account_smsmobile->verifySmsCode($this->request->post['telephone'], $this->request->post['sms_code']) == 0) {
+						$this->error['sms_code'] = $this->language->get('error_sms_code');
+					}
+				}
+				
+			}
+		
+		}
+		
 		if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
 			$this->error['firstname'] = $this->language->get('error_firstname');
-		}
-
-		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
-			$this->error['lastname'] = $this->language->get('error_lastname');
-		}
-
-		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
-			$this->error['email'] = $this->language->get('error_email');
-		}
-
-		if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_exists');
-		}
-
-		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
-			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
 		// Customer Group

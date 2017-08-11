@@ -10,16 +10,21 @@ $_['text_your_details']    			= '您的个人资料';
 $_['text_newsletter']     			= '新闻订阅';
 $_['text_your_password']   			= '账户密码';
 $_['text_agree']           			= '我已经阅读并同意 <a href="%s" class="agree"><b>%s</b></a>条款';
+$_['text_get_sms_code']    			= '点击获取手机短信验证码';
 
 // Entry
 $_['entry_customer_group'] 			= '会员等级';
-$_['entry_firstname']      			= '名字';
-$_['entry_lastname']       			= '姓氏';
+$_['entry_firstname']      			= '姓名';
 $_['entry_email']          			= 'E-Mail';
 $_['entry_telephone']      			= '手机号码';
 $_['entry_newsletter']     			= '订阅';
 $_['entry_password']       			= '密码';
 $_['entry_confirm']        			= '确认密码';
+$_['entry_sms_code']       			= '短信验证码';
+
+//Tabs
+$_['tab_email_register']       		= '邮箱注册';
+$_['tab_mobile_register']       	= '手机号码注册';
 
 // Error
 $_['error_exists']         			= 'E-Mail 地址已经被注册！';
@@ -31,3 +36,5 @@ $_['error_custom_field']   			= '%s 必须！';
 $_['error_password']       			= '密码必须为 4-20字符！';
 $_['error_confirm']        			= '确认密码与密码不一致！';
 $_['error_agree']          			= '警告:必须同意 %s!';
+$_['error_telephone_exists']        = '手机号码已经被注册!';
+$_['error_sms_code']       			= '错误的短信验证码!';
