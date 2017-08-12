@@ -23,10 +23,7 @@
         <label class="control-label" for="input-payment-firstname">{{ entry_firstname }}</label>
         <input type="text" name="firstname" value="{{ firstname }}" placeholder="{{ entry_firstname }}" id="input-payment-firstname" class="form-control" />
       </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-lastname">{{ entry_lastname }}</label>
-        <input type="text" name="lastname" value="{{ lastname }}" placeholder="{{ entry_lastname }}" id="input-payment-lastname" class="form-control" />
-      </div>
+        <input type="hidden" name="lastname" value="{{ lastname }}" placeholder="{{ entry_lastname }}" id="input-payment-lastname" class="form-control" />
       <div class="form-group required">
         <label class="control-label" for="input-payment-email">{{ entry_email }}</label>
         <input type="text" name="email" value="{{ email }}" placeholder="{{ entry_email }}" id="input-payment-email" class="form-control" />
@@ -155,22 +152,7 @@
         <label class="control-label" for="input-payment-company">{{ entry_company }}</label>
         <input type="text" name="company" value="{{ company }}" placeholder="{{ entry_company }}" id="input-payment-company" class="form-control" />
       </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-address-1">{{ entry_address_1 }}</label>
-        <input type="text" name="address_1" value="{{ address_1 }}" placeholder="{{ entry_address_1 }}" id="input-payment-address-1" class="form-control" />
-      </div>
-      <div class="form-group">
-        <label class="control-label" for="input-payment-address-2">{{ entry_address_2 }}</label>
-        <input type="text" name="address_2" value="{{ address_2 }}" placeholder="{{ entry_address_2 }}" id="input-payment-address-2" class="form-control" />
-      </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-city">{{ entry_city }}</label>
-        <input type="text" name="city" value="{{ city }}" placeholder="{{ entry_city }}" id="input-payment-city" class="form-control" />
-      </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-postcode">{{ entry_postcode }}</label>
-        <input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-payment-postcode" class="form-control" />
-      </div>
+      
       <div class="form-group required">
         <label class="control-label" for="input-payment-country">{{ entry_country }}</label>
         <select name="country_id" id="input-payment-country" class="form-control">
@@ -201,6 +183,33 @@
         <select name="zone_id" id="input-payment-zone" class="form-control">
         </select>
       </div>
+	  
+	  <div class="form-group required" id="guest-payment-china-city">
+        <label class="control-label" for="input-payment-city">{{ entry_city }}</label>
+        <select name="city_id" id="input-payment-city" class="form-control">
+        </select>
+      </div>
+      <div class="form-group required" id="guest-payment-china-district">
+        <label class="control-label" for="input-payment-district">{{ entry_district }}</label>
+        <select name="district_id" id="input-payment-district" class="form-control">
+        </select>
+      </div>
+      <div class="form-group required" id="guest-payment-world-city">
+        <label class="control-label" for="input-payment-city">{{ entry_city }}</label>
+        <input type="text" name="city" value="{{ city }}" placeholder="{{ entry_city }}" id="input-payment-city" class="form-control" />
+      </div>
+      
+	  <div class="form-group required">
+        <label class="control-label" for="input-payment-address-1">{{ entry_address_1 }}</label>
+        <input type="text" name="address_1" value="{{ address_1 }}" placeholder="{{ entry_address_1 }}" id="input-payment-address-1" class="form-control" />
+      </div>
+      <input type="hidden" name="address_2" value="{{ address_2 }}" placeholder="{{ entry_address_2 }}" id="input-payment-address-2" class="form-control" />
+	  
+	  <div class="form-group required">
+        <label class="control-label" for="input-payment-postcode">{{ entry_postcode }}</label>
+        <input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-payment-postcode" class="form-control" />
+      </div>
+	  
       {% for custom_field in custom_fields %}
       {% if custom_field.location == 'address' %}
       {% if custom_field.type == 'select' %}
@@ -468,14 +477,23 @@ $('.datetime').datetimepicker({
 //--></script> 
 <script type="text/javascript"><!--
 $('#collapse-payment-address select[name=\'country_id\']').on('change', function() {
+	if (this.value == 44) {
+		$('#guest-payment-world-city').hide();
+		$('#guest-payment-china-city').show();
+		$('#guest-payment-china-district').show();
+	} else {
+		$('#guest-payment-world-city').show();
+		$('#guest-payment-china-city').hide();
+		$('#guest-payment-china-district').hide();
+	}
 	$.ajax({
 		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
-			$('#collapse-payment-address select[name=\'country_id\']').prop('disabled', true);
+			$('#collapse-payment-address select[name=\'country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
 		},
 		complete: function() {
-			$('#collapse-payment-address select[name=\'country_id\']').prop('disabled', false);
+			$('.fa-spin').remove();
 		},
 		success: function(json) {
 			if (json['postcode_required'] == '1') {
@@ -501,6 +519,82 @@ $('#collapse-payment-address select[name=\'country_id\']').on('change', function
 			}
 
 			$('#collapse-payment-address select[name=\'zone_id\']').html(html);
+			
+			$('#collapse-payment-address select[name=\'zone_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#collapse-payment-address select[name=\'zone_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/checkout/zone&zone_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#collapse-payment-address select[name=\'zone_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value="">{{ text_select }}</option>';
+
+			if (json['city'] && json['city'] != '') {
+				for (i = 0; i < json['city'].length; i++) {
+					html += '<option value="' + json['city'][i]['city_id'] + '"';
+
+					if (json['city'][i]['city_id'] == '{{ city_id }}') {
+						html += ' selected="selected"';
+					}
+
+					html += '>' + json['city'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected">{{ text_none }}</option>';
+			}
+
+			$('#collapse-payment-address select[name=\'city_id\']').html(html);
+			
+			$('#collapse-payment-address select[name=\'city_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#collapse-payment-address select[name=\'city_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/checkout/city&city_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#collapse-payment-address select[name=\'city_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value="">{{ text_select }}</option>';
+
+			if (json['district'] && json['district'] != '') {
+				for (i = 0; i < json['district'].length; i++) {
+					html += '<option value="' + json['district'][i]['district_id'] + '"';
+
+					if (json['district'][i]['district_id'] == '{{ district_id }}') {
+						html += ' selected="selected"';
+					}
+
+					html += '>' + json['district'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected">{{ text_none }}</option>';
+			}
+
+			$('#collapse-payment-address select[name=\'district_id\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -509,4 +603,4 @@ $('#collapse-payment-address select[name=\'country_id\']').on('change', function
 });
 
 $('#collapse-payment-address select[name=\'country_id\']').trigger('change');
-//--></script> 
+//--></script>

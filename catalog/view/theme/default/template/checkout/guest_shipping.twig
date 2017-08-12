@@ -5,11 +5,12 @@
       <input type="text" name="firstname" value="{{ firstname }}" placeholder="{{ entry_firstname }}" id="input-shipping-firstname" class="form-control" />
     </div>
   </div>
+  <input type="hidden" name="lastname" value="{{ lastname }}" placeholder="{{ entry_lastname }}" id="input-shipping-lastname" class="form-control" />
   <div class="form-group required">
-    <label class="col-sm-2 control-label" for="input-shipping-lastname">{{ entry_lastname }}</label>
-    <div class="col-sm-10">
-      <input type="text" name="lastname" value="{{ lastname }}" placeholder="{{ entry_lastname }}" id="input-shipping-lastname" class="form-control" />
-    </div>
+      <label class="col-sm-2 control-label" for="input-shipping-telephone">{{ entry_telephone }}</label>
+      <div class="col-sm-10">
+        <input type="text" name="telephone" value="{{ telephone }}" placeholder="{{ entry_telephone }}" id="input-shipping-telephone" class="form-control" />
+      </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label" for="input-shipping-company">{{ entry_company }}</label>
@@ -17,30 +18,7 @@
       <input type="text" name="company" value="{{ company }}" placeholder="{{ entry_company }}" id="input-shipping-company" class="form-control" />
     </div>
   </div>
-  <div class="form-group required">
-    <label class="col-sm-2 control-label" for="input-shipping-address-1">{{ entry_address_1 }}</label>
-    <div class="col-sm-10">
-      <input type="text" name="address_1" value="{{ address_1 }}" placeholder="{{ entry_address_1 }}" id="input-shipping-address-1" class="form-control" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label" for="input-shipping-address-2">{{ entry_address_2 }}</label>
-    <div class="col-sm-10">
-      <input type="text" name="address_2" value="{{ address_2 }}" placeholder="{{ entry_address_2 }}" id="input-shipping-address-2" class="form-control" />
-    </div>
-  </div>
-  <div class="form-group required">
-    <label class="col-sm-2 control-label" for="input-shipping-city">{{ entry_city }}</label>
-    <div class="col-sm-10">
-      <input type="text" name="city" value="{{ city }}" placeholder="{{ entry_city }}" id="input-shipping-city" class="form-control" />
-    </div>
-  </div>
-  <div class="form-group required">
-    <label class="col-sm-2 control-label" for="input-shipping-postcode">{{ entry_postcode }}</label>
-    <div class="col-sm-10">
-      <input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-shipping-postcode" class="form-control" />
-    </div>
-  </div>
+  
   <div class="form-group required">
     <label class="col-sm-2 control-label" for="input-shipping-country">{{ entry_country }}</label>
     <div class="col-sm-10">
@@ -69,6 +47,42 @@
       </select>
     </div>
   </div>
+ 
+  <div class="form-group required" id="guest-shipping-china-city">
+    <label class="col-sm-2 control-label" for="input-shipping-city">{{ entry_city }}</label>
+    <div class="col-sm-10">
+      <select name="city_id" id="input-shipping-city" class="form-control">
+      </select>
+    </div>
+  </div>
+  <div class="form-group required" id="guest-shipping-china-district">
+    <label class="col-sm-2 control-label" for="input-shipping-district">{{ entry_district }}</label>
+    <div class="col-sm-10">
+      <select name="district_id" id="input-shipping-district" class="form-control">
+      </select>
+    </div>
+  </div>
+  <div class="form-group required" id="guest-shipping-world-city">
+    <label class="col-sm-2 control-label" for="input-shipping-city">{{ entry_city }}</label>
+    <div class="col-sm-10">
+      <input type="text" name="city" value="{{ city }}" placeholder="{{ entry_city }}" id="input-shipping-city" class="form-control" />
+    </div>
+  </div>
+  
+   <div class="form-group required">
+    <label class="col-sm-2 control-label" for="input-shipping-address-1">{{ entry_address_1 }}</label>
+    <div class="col-sm-10">
+      <input type="text" name="address_1" value="{{ address_1 }}" placeholder="{{ entry_address_1 }}" id="input-shipping-address-1" class="form-control" />
+    </div>
+  </div>
+  <input type="hidden" name="address_2" value="{{ address_2 }}" placeholder="{{ entry_address_2 }}" id="input-shipping-address-2" class="form-control" />
+  <div class="form-group required">
+    <label class="col-sm-2 control-label" for="input-shipping-postcode">{{ entry_postcode }}</label>
+    <div class="col-sm-10">
+      <input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-shipping-postcode" class="form-control" />
+    </div>
+  </div>
+  
   {% for custom_field in custom_fields %}
   {% if custom_field.location == 'address' %}
   {% if custom_field.type == 'select' %}
@@ -291,14 +305,23 @@ $('.datetime').datetimepicker({
 //--></script> 
 <script type="text/javascript"><!--
 $('#collapse-shipping-address select[name=\'country_id\']').on('change', function() {
+	if (this.value == 44) {
+		$('#guest-shipping-world-city').hide();
+		$('#guest-shipping-china-city').show();
+		$('#guest-shipping-china-district').show();
+	} else {
+		$('#guest-shipping-world-city').show();
+		$('#guest-shipping-china-city').hide();
+		$('#guest-shipping-china-district').hide();
+	}
 	$.ajax({
 		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
-			$('#collapse-shipping-address select[name=\'country_id\']').prop('disabled', true);
+			$('#collapse-shipping-address select[name=\'country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
 		},
 		complete: function() {
-			$('#collapse-shipping-address select[name=\'country_id\']').prop('disabled', false);
+			$('.fa-spin').remove();
 		},
 		success: function(json) {
 			if (json['postcode_required'] == '1') {
@@ -324,6 +347,82 @@ $('#collapse-shipping-address select[name=\'country_id\']').on('change', functio
 			}
 
 			$('#collapse-shipping-address select[name=\'zone_id\']').html(html);
+			
+			$('#collapse-shipping-address select[name=\'zone_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#collapse-shipping-address select[name=\'zone_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/checkout/zone&zone_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#collapse-shipping-address select[name=\'zone_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value="">{{ text_select }}</option>';
+
+			if (json['city'] && json['city'] != '') {
+				for (i = 0; i < json['city'].length; i++) {
+					html += '<option value="' + json['city'][i]['city_id'] + '"';
+
+					if (json['city'][i]['city_id'] == '{{ city_id }}') {
+						html += ' selected="selected"';
+          			}
+
+					html += '>' + json['city'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected">{{ text_none }}</option>';
+			}
+
+			$('#collapse-shipping-address select[name=\'city_id\']').html(html);
+			
+			$('#collapse-shipping-address select[name=\'city_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#collapse-shipping-address select[name=\'city_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/checkout/city&city_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#collapse-shipping-address select[name=\'city_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value="">{{ text_select }}</option>';
+
+			if (json['district'] && json['district'] != '') {
+				for (i = 0; i < json['district'].length; i++) {
+					html += '<option value="' + json['district'][i]['district_id'] + '"';
+
+					if (json['district'][i]['district_id'] == '{{ district_id }}') {
+						html += ' selected="selected"';
+          			}
+
+					html += '>' + json['district'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected">{{ text_none }}</option>';
+			}
+
+			$('#collapse-shipping-address select[name=\'district_id\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

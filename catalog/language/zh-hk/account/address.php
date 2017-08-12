@@ -23,8 +23,8 @@ $_['entry_city']         = '鄉鎮市區';
 $_['entry_country']      = '國家';
 $_['entry_zone']         = '縣市/地區';
 $_['entry_default']      = '預設地址';
-$_['entry_district']       			= '所在區縣';
-$_['entry_shipping_telephone'] 	    = '收件人電話';
+$_['entry_district']     = '所在區縣';
+$_['entry_telephone'] 	 = '電話';
 
 // Error
 $_['error_delete']       = '警告：您必須至少有一組地址！';
@@ -37,5 +37,5 @@ $_['error_city']         = '鄉鎮市區必須是 2 到 128 個字！';
 $_['error_country']      = '請選擇一個國家！';
 $_['error_zone']         = '請選擇一個縣市/地區！';
 $_['error_custom_field'] = '%s 必須填寫！';
-$_['error_district']       			= '請選擇區縣！';
-$_['error_shipping_telephone']      = '收件人電話必須為3到32字節！';
+$_['error_district']     = '請選擇區縣！';
+$_['error_telephone']    = '電話必須為3到32字節！';

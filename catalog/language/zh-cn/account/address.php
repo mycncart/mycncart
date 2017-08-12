@@ -23,8 +23,8 @@ $_['entry_city']         	= '城市';
 $_['entry_country']      	= '国家';
 $_['entry_zone']         	= '州/省/地区';
 $_['entry_default']      	= '默认地址';
-$_['entry_district']       			= '所在区县';
-$_['entry_shipping_telephone'] 	    = '收件人电话';
+$_['entry_district']       	= '所在区县';
+$_['entry_telephone'] 	    = '电话';
 
 // Error
 $_['error_delete']         	= '警告: 必须拥有至少一个地址！';
@@ -37,5 +37,5 @@ $_['error_city']           	= '请选择城市或必须为 2-128字符！';
 $_['error_country']        	= '请选择国家';
 $_['error_zone']           	= '请选择州/省/地区！';
 $_['error_custom_field']   	= '%s 必须！';
-$_['error_district']        		= '请选择区县!';
-$_['error_shipping_telephone']      = '收件人电话必须为3到32字节！';
+$_['error_district']        = '请选择区县!';
+$_['error_telephone']       = '电话必须为3到32字节！';

@@ -39,6 +39,7 @@ $_['text_week']                      = '週';
 $_['text_semi_month']                = '半月';
 $_['text_month']                     = '月';
 $_['text_year']                      = '年';
+$_['text_get_sms_code']    			 = '點擊獲取手機短信驗證碼';
 
 // Column
 $_['column_name']                    = '品名';
@@ -52,7 +53,7 @@ $_['entry_email_address']            = '郵件地址';
 $_['entry_email']                    = 'E-Mail';
 $_['entry_password']                 = '密碼';
 $_['entry_confirm']                  = '確認密碼';
-$_['entry_firstname']                = '名字';
+$_['entry_firstname']                = '姓名';
 $_['entry_lastname']                 = '姓氏';
 $_['entry_telephone']                = '電話';
 $_['entry_address']                  = '選擇地址';
@@ -66,6 +67,12 @@ $_['entry_country']                  = '國家';
 $_['entry_zone']                     = '縣市/地區';
 $_['entry_newsletter']               = '我希望訂閱 %s 電子報。';
 $_['entry_shipping'] 	             = '我的運送地址和帳單地址相同。';
+$_['entry_district']                 = '區縣';
+$_['entry_sms_code']       			 = '短信驗證碼';
+
+//Tabs
+$_['tab_email_register']       		 = '郵箱註冊';
+$_['tab_mobile_register']       	 = '手機號碼註冊';
 
 // Error
 $_['error_warning']                  = '在結帳時出現了問題！ 如果此問題繼續存在請使用其它支付方式或<a href="%s">連絡我們</a>。';
@@ -91,3 +98,5 @@ $_['error_no_shipping']              = '警告：無可使用的運送方式，�
 $_['error_payment']                  = '警告：請選擇一個支付方式！';
 $_['error_no_payment']               = '警告：無可使用的支付方式，請<a href="%s">連絡我們</a>！';
 $_['error_custom_field']             = '%s 必須填寫!';
+$_['error_distict']                  = '請選擇區縣!';
+$_['error_sms_code']       			 = '錯誤的短信驗證碼!';

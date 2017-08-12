@@ -149,6 +149,10 @@ class ControllerCheckoutConfirm extends Controller {
 			$order_data['payment_country_id'] = $this->session->data['payment_address']['country_id'];
 			$order_data['payment_address_format'] = $this->session->data['payment_address']['address_format'];
 			$order_data['payment_custom_field'] = (isset($this->session->data['payment_address']['custom_field']) ? $this->session->data['payment_address']['custom_field'] : array());
+			$order_data['payment_telephone'] = $this->session->data['payment_address']['telephone'];
+			$order_data['payment_city_id'] = $this->session->data['payment_address']['city_id'];
+			$order_data['payment_district'] = $this->session->data['payment_address']['district'];
+			$order_data['payment_district_id'] = $this->session->data['payment_address']['district_id'];
 
 			if (isset($this->session->data['payment_method']['title'])) {
 				$order_data['payment_method'] = $this->session->data['payment_method']['title'];
@@ -176,6 +180,10 @@ class ControllerCheckoutConfirm extends Controller {
 				$order_data['shipping_country_id'] = $this->session->data['shipping_address']['country_id'];
 				$order_data['shipping_address_format'] = $this->session->data['shipping_address']['address_format'];
 				$order_data['shipping_custom_field'] = (isset($this->session->data['shipping_address']['custom_field']) ? $this->session->data['shipping_address']['custom_field'] : array());
+				$order_data['shipping_telephone'] = $this->session->data['shipping_address']['telephone'];
+				$order_data['shipping_city_id'] = $this->session->data['shipping_address']['city_id'];
+				$order_data['shipping_district'] = $this->session->data['shipping_address']['district'];
+				$order_data['shipping_district_id'] = $this->session->data['shipping_address']['district_id'];
 
 				if (isset($this->session->data['shipping_method']['title'])) {
 					$order_data['shipping_method'] = $this->session->data['shipping_method']['title'];
@@ -204,6 +212,10 @@ class ControllerCheckoutConfirm extends Controller {
 				$order_data['shipping_custom_field'] = array();
 				$order_data['shipping_method'] = '';
 				$order_data['shipping_code'] = '';
+				$order_data['shipping_telephone'] = '';
+				$order_data['shipping_city_id'] = '';
+				$order_data['shipping_district'] = '';
+				$order_data['shipping_district_id'] = '';
 			}
 
 			$order_data['products'] = array();

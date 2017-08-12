@@ -29,11 +29,11 @@
           <input type="hidden" name="lastname" value="{{ lastname }}" placeholder="{{ entry_lastname }}" id="input-lastname" class="form-control" />
        
 		  <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-shipping-telephone">{{ entry_shipping_telephone }}</label>
+            <label class="col-sm-2 control-label" for="input-shipping-telephone">{{ entry_telephone }}</label>
             <div class="col-sm-10">
-              <input type="text" name="shipping_telephone" value="{{ shipping_telephone }}" placeholder="{{ entry_shipping_telephone }}" id="input-shipping-telephone" class="form-control" />
-              {% if error_shipping_telephone %}
-              <div class="text-danger">{{ error_shipping_telephone }}</div>
+              <input type="text" name="telephone" value="{{ telephone }}" placeholder="{{ entry_telephone }}" id="input-shipping-telephone" class="form-control" />
+              {% if error_telephone %}
+              <div class="text-danger">{{ error_telephone }}</div>
               {% endif %}
             </div>
           </div>

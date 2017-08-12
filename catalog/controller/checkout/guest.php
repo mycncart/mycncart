@@ -165,10 +165,6 @@ class ControllerCheckoutGuest extends Controller {
 				$json['error']['firstname'] = $this->language->get('error_firstname');
 			}
 
-			if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
-				$json['error']['lastname'] = $this->language->get('error_lastname');
-			}
-
 			if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 				$json['error']['email'] = $this->language->get('error_email');
 			}
@@ -182,8 +178,22 @@ class ControllerCheckoutGuest extends Controller {
 				$json['error']['address_1'] = $this->language->get('error_address_1');
 			}
 
-			if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
-				$json['error']['city'] = $this->language->get('error_city');
+			if ($this->request->post['country_id'] == 44) {
+				
+				if (!isset($this->request->post['city_id']) || $this->request->post['city_id'] == '' || !is_numeric($this->request->post['city_id'])) {
+					$json['error']['city'] = $this->language->get('error_city');
+				}
+				
+				if (!isset($this->request->post['district_id']) || $this->request->post['district_id'] == '' || !is_numeric($this->request->post['district_id'])) {
+					$json['error']['district'] = $this->language->get('error_district');
+				}
+				
+			} else {
+
+				if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
+					$json['error']['city'] = $this->language->get('error_city');
+				}
+			
 			}
 
 			$this->load->model('localisation/country');
@@ -253,9 +263,12 @@ class ControllerCheckoutGuest extends Controller {
 			$this->session->data['payment_address']['address_1'] = $this->request->post['address_1'];
 			$this->session->data['payment_address']['address_2'] = $this->request->post['address_2'];
 			$this->session->data['payment_address']['postcode'] = $this->request->post['postcode'];
-			$this->session->data['payment_address']['city'] = $this->request->post['city'];
 			$this->session->data['payment_address']['country_id'] = $this->request->post['country_id'];
 			$this->session->data['payment_address']['zone_id'] = $this->request->post['zone_id'];
+			$this->session->data['payment_address']['city'] = $this->request->post['city'];
+			$this->session->data['payment_address']['city_id'] = $this->request->post['city_id'];
+			$this->session->data['payment_address']['district_id'] = $this->request->post['district_id'];
+			$this->session->data['payment_address']['telephone'] = $this->request->post['telephone'];
 
 			$this->load->model('localisation/country');
 
@@ -290,6 +303,38 @@ class ControllerCheckoutGuest extends Controller {
 				$this->session->data['payment_address']['zone'] = '';
 				$this->session->data['payment_address']['zone_code'] = '';
 			}
+			
+			if ($this->request->post['country_id'] == 44) {
+			
+				$this->load->model('localisation/city');
+	
+				$city_info = $this->model_localisation_city->getCity($this->request->post['city_id']);
+	
+				if ($city_info) {
+					$this->session->data['payment_address']['city'] = $city_info['name'];
+				} else {
+					$this->session->data['payment_address']['city'] = '';
+				}
+			
+			} else {
+				$this->session->data['payment_address']['city'] = $this->request->post['city'];
+			}
+			
+			if ($this->request->post['country_id'] == 44) {
+			
+				$this->load->model('localisation/district');
+	
+				$district_info = $this->model_localisation_district->getDistrict($this->request->post['district_id']);
+	
+				if ($district_info) {
+					$this->session->data['payment_address']['district'] = $district_info['name'];
+				} else {
+					$this->session->data['payment_address']['district'] = '';
+				}
+			
+			} else {
+				$this->session->data['payment_address']['district'] = '';
+			}
 
 			if (!empty($this->request->post['shipping_address'])) {
 				$this->session->data['guest']['shipping_address'] = $this->request->post['shipping_address'];
@@ -307,6 +352,9 @@ class ControllerCheckoutGuest extends Controller {
 				$this->session->data['shipping_address']['city'] = $this->request->post['city'];
 				$this->session->data['shipping_address']['country_id'] = $this->request->post['country_id'];
 				$this->session->data['shipping_address']['zone_id'] = $this->request->post['zone_id'];
+				$this->session->data['shipping_address']['city_id'] = $this->request->post['city_id'];
+				$this->session->data['shipping_address']['district_id'] = $this->request->post['district_id'];
+				$this->session->data['shipping_address']['telephone'] = $this->request->post['telephone'];
 
 				if ($country_info) {
 					$this->session->data['shipping_address']['country'] = $country_info['name'];
@@ -326,6 +374,28 @@ class ControllerCheckoutGuest extends Controller {
 				} else {
 					$this->session->data['shipping_address']['zone'] = '';
 					$this->session->data['shipping_address']['zone_code'] = '';
+				}
+				
+				if ($this->request->post['country_id'] == 44) {
+					if ($city_info) {
+						$this->session->data['shipping_address']['city'] = $city_info['name'];
+					} else {
+						$this->session->data['shipping_address']['city'] = '';
+					}
+				} else {
+					$this->session->data['shipping_address']['city'] = $this->request->post['city'];
+				}
+				
+				if ($this->request->post['country_id'] == 44) {
+				
+					if ($district_info) {
+						$this->session->data['shipping_address']['district'] = $district_info['name'];
+					} else {
+						$this->session->data['shipping_address']['district'] = '';
+					}
+				
+				} else {
+					$this->session->data['shipping_address']['district'] = '';
 				}
 
 				if (isset($this->request->post['custom_field']['address'])) {

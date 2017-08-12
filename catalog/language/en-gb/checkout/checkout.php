@@ -39,6 +39,7 @@ $_['text_week']                      = 'week';
 $_['text_semi_month']                = 'half-month';
 $_['text_month']                     = 'month';
 $_['text_year']                      = 'year';
+$_['text_get_sms_code']    			 = 'Click to get SMS Verificate Code';
 
 // Column
 $_['column_name']                    = 'Product Name';
@@ -52,13 +53,13 @@ $_['entry_email_address']            = 'E-Mail Address';
 $_['entry_email']                    = 'E-Mail';
 $_['entry_password']                 = 'Password';
 $_['entry_confirm']                  = 'Password Confirm';
-$_['entry_firstname']                = 'First Name';
+$_['entry_firstname']                = 'Full Name';
 $_['entry_lastname']                 = 'Last Name';
 $_['entry_telephone']                = 'Telephone';
 $_['entry_address']                  = 'Choose Address';
 $_['entry_company']                  = 'Company';
 $_['entry_customer_group']           = 'Customer Group';
-$_['entry_address_1']                = 'Address 1';
+$_['entry_address_1']                = 'Address';
 $_['entry_address_2']                = 'Address 2';
 $_['entry_postcode']                 = 'Post Code';
 $_['entry_city']                     = 'City';
@@ -66,6 +67,12 @@ $_['entry_country']                  = 'Country';
 $_['entry_zone']                     = 'Region / State';
 $_['entry_newsletter']               = 'I wish to subscribe to the %s newsletter.';
 $_['entry_shipping']                 = 'My delivery and billing addresses are the same.';
+$_['entry_district']                 = 'District';
+$_['entry_sms_code']       			 = 'SMS Verification Code';
+
+//Tabs
+$_['tab_email_register']       		 = 'Email Register';
+$_['tab_mobile_register']       	 = 'Mobile Register';
 
 // Error
 $_['error_warning']                  = 'There was a problem while trying to process your order! If the problem persists please try selecting a different payment method or you can contact the store owner by <a href="%s">clicking here</a>.';
@@ -91,3 +98,5 @@ $_['error_no_shipping']              = 'Warning: No Shipping options are availab
 $_['error_payment']                  = 'Warning: Payment method required!';
 $_['error_no_payment']               = 'Warning: No Payment options are available. Please <a href="%s">contact us</a> for assistance!';
 $_['error_custom_field']             = '%s required!';
+$_['error_district']                 = 'Please select a district!';
+$_['error_sms_code']       			 = 'Wrong SMS Verification Code!';
