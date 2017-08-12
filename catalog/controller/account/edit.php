@@ -74,6 +74,12 @@ class ControllerAccountEdit extends Controller {
 		} else {
 			$data['error_telephone'] = '';
 		}
+		
+		if (isset($this->error['sms_code'])) {
+			$data['error_sms_code'] = $this->error['sms_code'];
+		} else {
+			$data['error_sms_code'] = '';
+		}
 
 		if (isset($this->error['custom_field'])) {
 			$data['error_custom_field'] = $this->error['custom_field'];
@@ -118,6 +124,19 @@ class ControllerAccountEdit extends Controller {
 		} else {
 			$data['telephone'] = '';
 		}
+		
+		//SMS
+		if ($this->config->get($this->config->get('config_sms') . '_status') && in_array('edit_account', (array)$this->config->get('config_sms_page'))) {
+			$data['sms_gateway'] = $this->config->get('config_sms');
+		}else{
+			$data['sms_gateway'] = '';
+		}
+		
+		if (isset($this->request->post['sms_code'])) {
+			$data['sms_code'] = $this->request->post['sms_code'];
+		} else {
+			$data['sms_code'] = '';
+		}
 
 		// Custom Fields
 		$data['custom_fields'] = array();
@@ -157,10 +176,6 @@ class ControllerAccountEdit extends Controller {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
 
-		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
-			$this->error['lastname'] = $this->language->get('error_lastname');
-		}
-
 		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
@@ -171,6 +186,18 @@ class ControllerAccountEdit extends Controller {
 
 		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
+		}else{
+			if($this->customer->getTelephone() == trim($this->request->post['telephone'])) {
+			
+			}else{
+				// if sms code is not correct
+				if (isset($this->request->post['sms_code'])) {
+					$this->load->model('account/smsmobile');
+					if($this->model_account_smsmobile->verifySmsCode($this->request->post['telephone'], $this->request->post['sms_code']) == 0) {
+						$this->error['sms_code'] = $this->language->get('error_sms_code');
+					}
+				}
+			}
 		}
 
 		// Custom field validation
