@@ -1,0 +1,36 @@
+<link href="catalog/view/theme/default/stylesheet/kefu.css" rel="stylesheet" type="text/css" />
+<div id="rightArrow"><a href="javascript:;" title="{{ text_online }}"></a></div>
+<div id="floatDivBoxs">
+	<div class="floatDtt">{{ text_online }}</div>
+    <div class="floatShadow">
+        {% if qqs %} 
+        <ul class="floatDqq">
+        	{% for qq in qqs %} 
+            <li style="padding-left:0px;"><a target="_blank" href="tencent://message/?uin={{ qq.qq_number }}&Menu=yes"><img src="catalog/view/theme/default/image/kefu/qq.png" align="absmiddle" title="{{ qq.qq_name }}" alt="{{ qq.qq_name }}">&nbsp;&nbsp;{{ qq.qq_name }}</a></li>
+            {% endfor %} 
+        </ul>
+        {% endif %} 
+        <div class="floatDtxt">{{ text_telephone }}</div>
+        <div class="floatDtel">{{ telephone }}</div>
+        <div class="floatDtxt">{{ image_title }}</div>
+        <div style="text-align:center;padding:10PX 0 5px 0;background:#EBEBEB;"><img src="{{ image }}"></div>
+    </div>
+    <div class="floatDbg"></div>
+</div>
+
+<script type="text/javascript"><!--
+var flag=1;
+$('#rightArrow').click(function(){
+	if(flag==1){
+		$("#floatDivBoxs").animate({right: '-175px'},300);
+		$(this).animate({right: '-5px'},300);
+		$(this).css('background-position','-50px 0');
+		flag=0;
+	}else{
+		$("#floatDivBoxs").animate({right: '0'},300);
+		$(this).animate({right: '170px'},300);
+		$(this).css('background-position','0px 0');
+		flag=1;
+	}
+});
+//--></script>

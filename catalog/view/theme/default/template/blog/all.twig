@@ -1,0 +1,110 @@
+{{ header }} 
+{% if categories %} 
+<div class="container visible-xs">
+  <nav id="menu" class="navbar">
+    <div class="navbar-header"><span id="category" class="visible-xs">{{ text_blog_category }}</span>
+      <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex2-collapse"><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="collapse navbar-collapse navbar-ex2-collapse">
+      <ul class="nav navbar-nav">
+        {% for category in categories %} 
+        {% if category.children %} 
+        <li class="dropdown"><a href="{{ category.href }} " class="dropdown-toggle" data-toggle="dropdown">{{ category.name }}</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-inner">
+              {% for children in category %} 
+              <ul class="list-unstyled">
+                <li><a href="{{ children.href }} ">{{ children.name }}</a></li>
+              </ul>
+              {% endfor %} 
+            </div>
+          </div>
+        </li>
+        {% else %}   
+        <li><a href="{{ category.href }} ">{{ category.name }}</a></li>
+        {% endif %}
+        {% endfor %} 
+      </ul>
+    </div>
+  </nav>
+</div>
+{% endif %} 
+<div class="container">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %} 
+    <li><a href="{{ breadcrumb.href }} ">{{ breadcrumb.text }}</a></li>
+    {% endfor %} 
+  </ul>
+  <div class="row">{{ column_left }} 
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %} 
+     
+    <div id="content" class="{{ class }} ">{{ content_top }} 
+      {% if blogs %} 
+      
+        {% for blog in blogs %} 
+          
+          {% if cms_blog_category_page_show_image %} 
+            {% if blog.thumb %} 
+            <div><img src="{{ blog.thumb }} " alt="{{ blog.title }} " title="{{ blog.title }} " class="img-thumbnail" /></div>
+            {% endif %} 
+          {% endif %} 
+          
+      
+          {% if cms_blog_category_page_show_title %} 
+          <h4><a href="{{ blog.link }}" title="{{ blog.title }}">{{ blog.title }}</a></h4>
+          {% endif %} 
+          
+          <div>
+		
+		  	{% if cms_blog_category_page_show_author  %} 
+			<span><i class="fa fa-pencil"></i> <b>{{ text_written_by }}</b> {{ blog.author }}</span> 
+			{% endif %} 
+			
+			{% if cms_blog_category_page_show_created_date  %} 
+			<span><i class="fa fa-calendar"></i> <b>{{ text_created_date }}</b> {{ blog.created }}</span> 
+			{% endif %} 
+			
+			
+			{% if cms_blog_category_page_show_hits  %} 
+			<span><i class="fa fa-insert-template"></i> <b>{{ text_hits }}</b> {{ blog.hits }}  </span>
+			{% endif %} 		
+			
+
+			
+			{% if cms_blog_category_page_show_comment_counter  %} 
+			<span><i class="fa fa-comment"></i> <b>{{ text_comment_count }}</b> {{ blog.comment_count }}  </span>
+			{% endif %} 	
+			
+		
+		  </div>
+          
+          {% if cms_blog_category_page_show_brief %} 
+            {% if blog.brief %} 
+            <div>{{ blog.brief }}</div>
+            {% endif %} 
+          {% endif %} 
+          
+          
+        
+        <hr>
+        {% endfor %}
+        <div class="row">
+            <div class="col-sm-6 text-left">{{ pagination }}</div>
+            <div class="col-sm-6 text-right">{{ results }}</div>
+        </div>
+       {% else %}   
+      <p>{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }} " class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}  
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+{{ footer }} 

@@ -1,0 +1,79 @@
+{{ header }} 
+{% if categories %} 
+<div class="container visible-xs">
+  <nav id="menu" class="navbar">
+    <div class="navbar-header"><span id="category" class="visible-xs">{{ text_faq_category }}</span>
+      <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex2-collapse"><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="collapse navbar-collapse navbar-ex2-collapse">
+      <ul class="nav navbar-nav">
+        {% for category in categories %} 
+        {% if category.children %} 
+        <li class="dropdown"><a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }}</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-inner">
+              {% for children in category %} 
+              <ul class="list-unstyled">
+                <li><a href="{{ children.href }}">{{ children.name }}</a></li>
+              </ul>
+              {% endfor %} 
+            </div>
+          </div>
+        </li>
+        {% else %}   
+        <li><a href="{{ category.href }}">{{ category.name }}</a></li>
+        {% endif %}
+        {% endfor %}  
+      </ul>
+    </div>
+  </nav>
+</div>
+{% endif %} 
+<div class="container">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %} 
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %} 
+  </ul>
+  <div class="row">{{ column_left }} 
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}  
+     
+    <div id="content" class="{{ class }}">{{ content_top }} 
+
+      {% if faqs %} 
+      
+        <div class="panel-group" id="accordion">
+          {% for faq in faqs %} 
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ faq.faq_id }}"><h4 class="panel-title">{{ faq.title }}</h4></a>
+            </div>
+            <div id="collapse{{ faq.faq_id }}" class="panel-collapse collapse">
+              <div class="panel-body">{{ faq.answer }}</div>
+            </div>
+          </div>
+          {% endfor %} 
+        </div>
+         
+        <div class="row">
+           <div class="col-sm-6 text-left">{{ pagination }}</div>
+           <div class="col-sm-6 text-right">{{ results }}</div>
+        </div>
+      
+       {% else %}   
+      <p>{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %} 
+      
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+{{ footer }} 
