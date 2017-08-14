@@ -69,6 +69,7 @@ $_['entry_newsletter']               = 'I wish to subscribe to the %s newsletter
 $_['entry_shipping']                 = 'My delivery and billing addresses are the same.';
 $_['entry_district']                 = 'District';
 $_['entry_sms_code']       			 = 'SMS Verification Code';
+$_['entry_shipping_telephone']  	 = 'Shipping Telephone';
 
 //Tabs
 $_['tab_email_register']       		 = 'Email Register';

@@ -69,6 +69,7 @@ $_['entry_newsletter']               = '订阅 %s 新闻邮件。';
 $_['entry_shipping'] 	             = '配送地址与账单地址一致。';
 $_['entry_district']                 = '区县';
 $_['entry_sms_code']       			 = '短信验证码';
+$_['entry_shipping_telephone']  	 = '收件人电话';
 
 //Tabs
 $_['tab_email_register']       		 = '邮箱注册';

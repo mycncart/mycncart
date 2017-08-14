@@ -69,6 +69,7 @@ $_['entry_newsletter']               = '我希望訂閱 %s 電子報。';
 $_['entry_shipping'] 	             = '我的運送地址和帳單地址相同。';
 $_['entry_district']                 = '區縣';
 $_['entry_sms_code']       			 = '短信驗證碼';
+$_['entry_shipping_telephone']  	 = '收件人電話';
 
 //Tabs
 $_['tab_email_register']       		 = '郵箱註冊';

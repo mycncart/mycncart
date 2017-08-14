@@ -2,6 +2,44 @@
   <div class="col-sm-6">
     <fieldset id="account">
       <legend>{{ text_your_details }}</legend>
+	  <ul class="nav nav-tabs">
+        <li class="active" ><a href="#tab-email" data-toggle="tab" onClick="setEmailRegister()">{{ tab_email_register }}</a>
+        <input id="email-register" class="hidden" type="radio" name="registertype" checked="checked"  value="email">
+        </li>
+		<li><a href="#tab-mobile" data-toggle="tab" onClick="setMobileRegister()">{{ tab_mobile_register }}</a>
+        <input id="mobile-register" class="hidden" type="radio" name="registertype"  value="mobile">
+        </li>
+      </ul>
+      
+      <div class="tab-content">
+      	<div class="tab-pane active " id="tab-email">
+        	
+            <div class="form-group required">
+              <label class="control-label" for="input-payment-email">{{ entry_email }}</label>
+              <input type="text" name="email" value="" placeholder="{{ entry_email }}" id="input-payment-email" class="form-control" />
+            </div>
+            
+        </div>
+        
+        <div class="tab-pane" id="tab-mobile">
+        	<div class="form-group required">
+              <label class="control-label" for="input-payment-telephone">{{ entry_telephone }}</label>
+              <input type="text" name="telephone" value="" placeholder="{{ entry_telephone }}" id="input-payment-telephone" class="form-control" />
+              {% if sms_gateway %} 
+              <br />
+              <input type="button" class="btn btn-long" id="mobile_code" value="{{ text_get_sms_code }}" />
+              {% endif %} 
+            </div>
+            
+            {% if sms_gateway %} 
+            <div class="form-group required">
+              <label class="control-label" for="input-payment-sms-code">{{ entry_sms_code }}</label>
+                <input type="text" name="sms_code" value="{{ sms_code }}" placeholder="{{ entry_sms_code }}" id="input-payment-sms-code" class="form-control" />
+              </div>
+            {% endif %} 
+        </div>
+      </div>
+	  
       <div class="form-group" style="display: {% if customer_groups|length > 1 %} block {% else %} none {% endif %};">
         <label class="control-label">{{ entry_customer_group }}</label>
         {% for customer_group in customer_groups %}
@@ -19,22 +57,14 @@
         </div>
         {% endif %}
         {% endfor %}</div>
-      <div class="form-group required">
+	  
+	  <div class="form-group required">
         <label class="control-label" for="input-payment-firstname">{{ entry_firstname }}</label>
         <input type="text" name="firstname" value="" placeholder="{{ entry_firstname }}" id="input-payment-firstname" class="form-control" />
       </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-lastname">{{ entry_lastname }}</label>
-        <input type="text" name="lastname" value="" placeholder="{{ entry_lastname }}" id="input-payment-lastname" class="form-control" />
-      </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-email">{{ entry_email }}</label>
-        <input type="text" name="email" value="" placeholder="{{ entry_email }}" id="input-payment-email" class="form-control" />
-      </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-telephone">{{ entry_telephone }}</label>
-        <input type="text" name="telephone" value="" placeholder="{{ entry_telephone }}" id="input-payment-telephone" class="form-control" />
-      </div>
+      <input type="hidden" name="lastname" value="" placeholder="{{ entry_lastname }}" id="input-payment-lastname" class="form-control" />
+     
+      
       {% for custom_field in custom_fields %}
       
       {% if custom_field.location == 'account' %}
@@ -168,23 +198,14 @@
         <label class="control-label" for="input-payment-company">{{ entry_company }}</label>
         <input type="text" name="company" value="" placeholder="{{ entry_company }}" id="input-payment-company" class="form-control" />
       </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-address-1">{{ entry_address_1 }}</label>
-        <input type="text" name="address_1" value="" placeholder="{{ entry_address_1 }}" id="input-payment-address-1" class="form-control" />
+	  
+	  <div id="register-receiver-telephone" class="form-group required">
+        <label class="control-label" for="input-payment-shipping-telephone">{{ entry_shipping_telephone }}</label>
+        <input type="text" name="shipping_telephone" value="" placeholder="{{ entry_shipping_telephone }}" id="input-payment-shipping-telephone" class="form-control" />
       </div>
-      <div class="form-group">
-        <label class="control-label" for="input-payment-address-2">{{ entry_address_2 }}</label>
-        <input type="text" name="address_2" value="" placeholder="{{ entry_address_2 }}" id="input-payment-address-2" class="form-control" />
-      </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-city">{{ entry_city }}</label>
-        <input type="text" name="city" value="" placeholder="{{ entry_city }}" id="input-payment-city" class="form-control" />
-      </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-postcode">{{ entry_postcode }}</label>
-        <input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-payment-postcode" class="form-control" />
-      </div>
-      <div class="form-group required">
+	  
+	  
+	  <div class="form-group required">
         <label class="control-label" for="input-payment-country">{{ entry_country }}</label>
         <select name="country_id" id="input-payment-country" class="form-control">
           <option value="">{{ text_select }}</option>
@@ -220,6 +241,33 @@
         <select name="zone_id" id="input-payment-zone" class="form-control">
         </select>
       </div>
+	  
+	  <div class="form-group required" id="register-china-city">
+        <label class="control-label" for="input-payment-city">{{ entry_city }}</label>
+        <select name="city_id" id="input-payment-city" class="form-control">
+        </select>
+      </div>
+      <div class="form-group required" id="register-china-district">
+        <label class="control-label" for="input-payment-district">{{ entry_district }}</label>
+        <select name="district_id" id="input-payment-district" class="form-control">
+        </select>
+      </div>
+      <div class="form-group required" id="register-world-city">
+        <label class="control-label" for="input-payment-city">{{ entry_city }}</label>
+        <input type="text" name="city" value="" placeholder="{{ entry_city }}" id="input-payment-city" class="form-control" />
+      </div>
+	  
+      <div class="form-group required">
+        <label class="control-label" for="input-payment-address-1">{{ entry_address_1 }}</label>
+        <input type="text" name="address_1" value="" placeholder="{{ entry_address_1 }}" id="input-payment-address-1" class="form-control" />
+      </div>
+      <input type="hidden" name="address_2" value="" placeholder="{{ entry_address_2 }}" id="input-payment-address-2" class="form-control" />
+      
+      <div class="form-group required">
+        <label class="control-label" for="input-payment-postcode">{{ entry_postcode }}</label>
+        <input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-payment-postcode" class="form-control" />
+      </div>
+      
       {% for custom_field in custom_fields %}
       
       {% if custom_field.location == 'address' %}
@@ -363,6 +411,20 @@
   </div>
 </div>
 {% endif %} 
+
+<script type="text/javascript"><!--
+
+function setEmailRegister() {
+	$('input:radio[name=registertype][value=email]').click();
+}
+
+function setMobileRegister() {
+	$('input:radio[name=registertype][value=mobile]').click();
+}
+
+//--></script>
+
+
 <script type="text/javascript"><!--
 // Sort the custom fields
 $('#account .form-group[data-sort]').detach().each(function() {
@@ -499,14 +561,23 @@ $('.datetime').datetimepicker({
 //--></script> 
 <script type="text/javascript"><!--
 $('#collapse-payment-address select[name=\'country_id\']').on('change', function() {
+	if (this.value == 44) {
+		$('#register-world-city').hide();
+		$('#register-china-city').show();
+		$('#register-china-district').show();
+	} else {
+		$('#register-world-city').show();
+		$('#register-china-city').hide();
+		$('#register-china-district').hide();
+	}
 	$.ajax({
 		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
-			$('#collapse-payment-address select[name=\'country_id\']').prop('disabled', true);
+			$('#collapse-payment-address select[name=\'country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
 		},
 		complete: function() {
-			$('#collapse-payment-address select[name=\'country_id\']').prop('disabled', false);
+			$('.fa-spin').remove();
 		},
 		success: function(json) {
 			if (json['postcode_required'] == '1') {
@@ -532,6 +603,83 @@ $('#collapse-payment-address select[name=\'country_id\']').on('change', function
 			}
 
 			$('#collapse-payment-address select[name=\'zone_id\']').html(html);
+			
+			$('#collapse-payment-address select[name=\'zone_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#collapse-payment-address select[name=\'zone_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/checkout/zone&zone_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#collapse-payment-address select[name=\'zone_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value="">{{ text_select }}</option>';
+
+			if (json['city'] && json['city'] != '') {
+				for (i = 0; i < json['city'].length; i++) {
+					html += '<option value="' + json['city'][i]['city_id'] + '"';
+
+					if (json['city'][i]['city_id'] == '{{ city_id }}') {
+						html += ' selected="selected"';
+					}
+
+					html += '>' + json['city'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected">{{ text_none }}</option>';
+			}
+
+			$('#collapse-payment-address select[name=\'city_id\']').html(html);
+			
+			$('#collapse-payment-address select[name=\'city_id\']').trigger('change');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#collapse-payment-address select[name=\'city_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/checkout/city&city_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#collapse-payment-address select[name=\'city_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+
+			html = '<option value="">{{ text_select }}</option>';
+
+			if (json['district'] && json['district'] != '') {
+				for (i = 0; i < json['district'].length; i++) {
+					html += '<option value="' + json['district'][i]['district_id'] + '"';
+
+					if (json['district'][i]['district_id'] == '{{ district_id }}') {
+						html += ' selected="selected"';
+					}
+
+					html += '>' + json['district'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected">{{ text_none }}</option>';
+			}
+
+
+			$('#collapse-payment-address select[name=\'district_id\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -540,4 +688,43 @@ $('#collapse-payment-address select[name=\'country_id\']').on('change', function
 });
 
 $('#collapse-payment-address select[name=\'country_id\']').trigger('change');
+//--></script>
+
+
+{% if sms_gateway %}
+<script type="text/javascript"><!--
+$('#mobile_code').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=extension/sms/{{ sms_gateway }}/create_mobile_code',
+		type: 'post',
+		dataType: 'json',
+		data: 'telephone=' + encodeURIComponent($('input[name=\'telephone\']').val()),
+		beforeSend: function() {
+			$('.alert-success, .alert-danger').remove();
+			$('#mobile_code').attr('disabled', true);
+			
+		},
+		complete: function() {
+			//$('#mobile_code').attr('disabled', false);
+			//$('.attention').remove();
+		},
+		success: function(data) {
+			if (data['error']) {
+				$('#mobile_code').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + data['error'] + '</div>');
+				$('#mobile_code').attr('disabled', false);
+			}
+			
+			if (data['success']) {
+				$('#mobile_code').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + data['success'] + '</div>');
+				
+				setTimeout(function(){
+					$('#mobile_code').attr('disabled', false);
+				}, 60000);
+								
+			}
+		}
+	});
+});
+
 //--></script> 
+{% endif %}
