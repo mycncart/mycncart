@@ -10,7 +10,7 @@ class ControllerExtensionModulePressLatest extends Controller {
 		$this->load->model('setting/setting');
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('press_latest', $this->request->post);
+			$this->model_setting_setting->editSetting('module_press_latest', $this->request->post);
 			
 			$this->session->data['success'] = $this->language->get('text_success');
 			
@@ -55,10 +55,10 @@ class ControllerExtensionModulePressLatest extends Controller {
 		
 		$data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'], true);
 		
-		if (isset($this->request->post['press_latest_status'])) {
-			$data['press_latest_status'] = $this->request->post['press_latest_status'];
+		if (isset($this->request->post['module_press_latest_status'])) {
+			$data['module_press_latest_status'] = $this->request->post['module_press_latest_status'];
 		} else {
-			$data['press_latest_status'] = $this->config->get('press_latest_status');
+			$data['module_press_latest_status'] = $this->config->get('module_press_latest_status');
 		}
 		
 		$data['header'] = $this->load->controller('common/header');

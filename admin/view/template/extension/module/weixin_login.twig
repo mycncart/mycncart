@@ -31,7 +31,7 @@
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="entry-appid">{{ entry_appid }}</label>
             <div class="col-sm-10">
-              <input type="text" name="weixin_login_appid" value="{{ weixin_login_appid }}" placeholder="{{ entry_appid }}" id="entry-appid" class="form-control"/>
+              <input type="text" name="module_weixin_login_appid" value="{{ module_weixin_login_appid }}" placeholder="{{ entry_appid }}" id="entry-appid" class="form-control"/>
               {% if error_appid %} 
               <div class="text-danger">{{ error_appid }}</div>
               {% endif %} 
@@ -41,7 +41,7 @@
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="entry-appsecret">{{ entry_appsecret }}</label>
             <div class="col-sm-10">
-              <input type="text" name="weixin_login_appsecret" value="{{ weixin_login_appsecret }}" placeholder="{{ entry_appsecret }}" id="entry-appsecret" class="form-control"/>
+              <input type="text" name="module_weixin_login_appsecret" value="{{ module_weixin_login_appsecret }}" placeholder="{{ entry_appsecret }}" id="entry-appsecret" class="form-control"/>
               {% if error_appsecret %} 
               <div class="text-danger">{{ error_appsecret }}</div>
               {% endif %} 
@@ -51,8 +51,8 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
             <div class="col-sm-10">
-              <select name="weixin_login_status" id="input-status" class="form-control">
-                {% if weixin_login_status %} 
+              <select name="module_weixin_login_status" id="input-status" class="form-control">
+                {% if module_weixin_login_status %} 
                 <option value="1" selected="selected">{{ text_enabled }}</option>
                 <option value="0">{{ text_disabled }}</option>
                 {% else %}   

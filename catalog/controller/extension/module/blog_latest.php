@@ -27,12 +27,13 @@ class ControllerExtensionModuleBlogLatest extends Controller {
 				} else {
 					$image = $this->model_tool_image->resize('placeholder.png', $setting['width'], $setting['height']);
 				}
+				
 
 				$data['blogs'][] = array(
 					'blog_id'  => $result['blog_id'],
 					'thumb'       => $image,
 					'name'        => $result['title'],
-					'brief' 	  => utf8_substr(strip_tags(html_entity_decode($result['brief'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('cms_blog_brief_length')) . '..',
+					'brief' 	  => utf8_substr(trim(strip_tags(html_entity_decode($result['brief'], ENT_QUOTES, 'UTF-8'))), 0, (int)$this->config->get('cms_blog_brief_length')) . '..',
 					'href'        => $this->url->link('blog/blog', 'blog_id=' . $result['blog_id'])
 				);
 			}

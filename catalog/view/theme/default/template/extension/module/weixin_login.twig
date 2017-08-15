@@ -1,0 +1,13 @@
+{% if logged %} 
+
+{% elseif  is_weixin %} 
+
+<div class="list-group">
+	<a href="{{ weixin_login }} " class="list-group-item"><img src="catalog/view/theme/default/image/weixin_login.png" title="{{ text_weixin_login }} " alt="{{ text_weixin_login }} " border="0" /></a>
+</div>
+{% else %}   
+
+<div class="list-group">
+	<a href="{{ wxpclogin_url }} " class="list-group-item"><img src="catalog/view/theme/default/image/weixin_login.png" title="{{ text_weixin_login }} " alt="{{ text_weixin_login }} " border="0" /></a>
+</div>
+{% endif %} 

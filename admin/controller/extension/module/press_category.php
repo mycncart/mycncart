@@ -10,23 +10,12 @@ class ControllerExtensionModulePressCategory extends Controller {
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('press_category', $this->request->post);
+			$this->model_setting_setting->editSetting('module_press_category', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			$this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true));
 		}
-
-		$data['heading_title'] = $this->language->get('heading_title');
-		
-		$data['text_edit'] = $this->language->get('text_edit');
-		$data['text_enabled'] = $this->language->get('text_enabled');
-		$data['text_disabled'] = $this->language->get('text_disabled');
-
-		$data['entry_status'] = $this->language->get('entry_status');
-
-		$data['button_save'] = $this->language->get('button_save');
-		$data['button_cancel'] = $this->language->get('button_cancel');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -42,7 +31,7 @@ class ControllerExtensionModulePressCategory extends Controller {
 		);
 
 		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_module'),
+			'text' => $this->language->get('text_extension'),
 			'href' => $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true)
 		);
 
@@ -53,14 +42,14 @@ class ControllerExtensionModulePressCategory extends Controller {
 
 		$data['action'] = $this->url->link('extension/module/press_category', 'user_token=' . $this->session->data['user_token'], true);
 
-		$data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'], true);
+		$data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true);
 
-		if (isset($this->request->post['press_category_status'])) {
-			$data['press_category_status'] = $this->request->post['press_category_status'];
+		if (isset($this->request->post['module_press_category_status'])) {
+			$data['module_press_category_status'] = $this->request->post['module_press_category_status'];
 		} else {
-			$data['press_category_status'] = $this->config->get('press_category_status');
+			$data['module_press_category_status'] = $this->config->get('module_press_category_status');
 		}
-		
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

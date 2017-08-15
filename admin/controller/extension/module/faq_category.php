@@ -10,7 +10,7 @@ class ControllerExtensionModuleFaqCategory extends Controller {
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('faq_category', $this->request->post);
+			$this->model_setting_setting->editSetting('module_faq_category', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -55,10 +55,10 @@ class ControllerExtensionModuleFaqCategory extends Controller {
 
 		$data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'], true);
 
-		if (isset($this->request->post['faq_category_status'])) {
-			$data['faq_category_status'] = $this->request->post['faq_category_status'];
+		if (isset($this->request->post['module_faq_category_status'])) {
+			$data['module_faq_category_status'] = $this->request->post['module_faq_category_status'];
 		} else {
-			$data['faq_category_status'] = $this->config->get('faq_category_status');
+			$data['module_faq_category_status'] = $this->config->get('module_faq_category_status');
 		}
 		
 		$data['header'] = $this->load->controller('common/header');

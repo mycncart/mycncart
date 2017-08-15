@@ -10,7 +10,7 @@ class ControllerExtensionModuleBlogCategory extends Controller {
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('blog_category', $this->request->post);
+			$this->model_setting_setting->editSetting('module_blog_category', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -55,10 +55,10 @@ class ControllerExtensionModuleBlogCategory extends Controller {
 
 		$data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'], true);
 
-		if (isset($this->request->post['blog_category_status'])) {
-			$data['blog_category_status'] = $this->request->post['blog_category_status'];
+		if (isset($this->request->post['module_blog_category_status'])) {
+			$data['module_blog_category_status'] = $this->request->post['module_blog_category_status'];
 		} else {
-			$data['blog_category_status'] = $this->config->get('blog_category_status');
+			$data['module_blog_category_status'] = $this->config->get('module_blog_category_status');
 		}
 		
 		$data['header'] = $this->load->controller('common/header');

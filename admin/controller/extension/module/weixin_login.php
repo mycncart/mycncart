@@ -10,7 +10,7 @@ class ControllerExtensionModuleWeiXinLogin extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('weixin_login', $this->request->post);
+			$this->model_setting_setting->editSetting('module_weixin_login', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -72,22 +72,22 @@ class ControllerExtensionModuleWeiXinLogin extends Controller {
 
 		$data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true);
 
-		if (isset($this->request->post['weixin_login_appid'])) {
-			$data['weixin_login_appid'] = $this->request->post['weixin_login_appid'];
+		if (isset($this->request->post['module_weixin_login_appid'])) {
+			$data['module_weixin_login_appid'] = $this->request->post['module_weixin_login_appid'];
 		} else {
-			$data['weixin_login_appid'] = $this->config->get('weixin_login_appid');
+			$data['module_weixin_login_appid'] = $this->config->get('module_weixin_login_appid');
 		}
 
-		if (isset($this->request->post['weixin_login_appsecret'])) {
-			$data['weixin_login_appsecret'] = $this->request->post['weixin_login_appsecret'];
+		if (isset($this->request->post['module_weixin_login_appsecret'])) {
+			$data['module_weixin_login_appsecret'] = $this->request->post['module_weixin_login_appsecret'];
 		} else {
-			$data['weixin_login_appsecret'] = $this->config->get('weixin_login_appsecret');
+			$data['module_weixin_login_appsecret'] = $this->config->get('module_weixin_login_appsecret');
 		}
 
-		if (isset($this->request->post['weixin_login_status'])) {
-			$data['weixin_login_status'] = $this->request->post['weixin_login_status'];
+		if (isset($this->request->post['module_weixin_login_status'])) {
+			$data['module_weixin_login_status'] = $this->request->post['module_weixin_login_status'];
 		} else {
-			$data['weixin_login_status'] = $this->config->get('weixin_login_status');
+			$data['module_weixin_login_status'] = $this->config->get('module_weixin_login_status');
 		}
 
 		$data['header'] = $this->load->controller('common/header');
@@ -102,11 +102,11 @@ class ControllerExtensionModuleWeiXinLogin extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->request->post['weixin_login_appid']) {
+		if (!$this->request->post['module_weixin_login_appid']) {
 			$this->error['appid'] = $this->language->get('error_appid');
 		}
 
-		if (!$this->request->post['weixin_login_appsecret']) {
+		if (!$this->request->post['module_weixin_login_appsecret']) {
 			$this->error['appsecret'] = $this->language->get('error_appsecret');
 		}
 
@@ -114,14 +114,14 @@ class ControllerExtensionModuleWeiXinLogin extends Controller {
 	}
 
 	public function install() {
-		$this->load->model('extension/event');
+		$this->load->model('setting/event');
 
-		$this->model_extension_event->addEvent('weixin_login', 'catalog/controller/account/logout/after', 'extension/module/weixin_login/logout');
+		$this->model_setting_event->addEvent('weixin_login', 'catalog/controller/account/logout/after', 'extension/module/weixin_login/logout');
 	}
 
 	public function uninstall() {
-		$this->load->model('extension/event');
+		$this->load->model('setting/event');
 
-		$this->model_extension_event->deleteEvent('weixin_login');
+		$this->model_setting_event->deleteEvent('weixin_login');
 	}
 }

@@ -10,7 +10,7 @@ class ControllerExtensionModuleWeiBoLogin extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('weibo_login', $this->request->post);
+			$this->model_setting_setting->editSetting('module_weibo_login', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -72,22 +72,22 @@ class ControllerExtensionModuleWeiBoLogin extends Controller {
 
 		$data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true);
 
-		if (isset($this->request->post['weibo_login_appkey'])) {
-			$data['weibo_login_appkey'] = $this->request->post['weibo_login_appkey'];
+		if (isset($this->request->post['module_weibo_login_appkey'])) {
+			$data['module_weibo_login_appkey'] = $this->request->post['module_weibo_login_appkey'];
 		} else {
-			$data['weibo_login_appkey'] = $this->config->get('weibo_login_appkey');
+			$data['module_weibo_login_appkey'] = $this->config->get('module_weibo_login_appkey');
 		}
 
-		if (isset($this->request->post['weibo_login_appsecret'])) {
-			$data['weibo_login_appsecret'] = $this->request->post['weibo_login_appsecret'];
+		if (isset($this->request->post['module_weibo_login_appsecret'])) {
+			$data['module_weibo_login_appsecret'] = $this->request->post['module_weibo_login_appsecret'];
 		} else {
-			$data['weibo_login_appsecret'] = $this->config->get('weibo_login_appsecret');
+			$data['module_weibo_login_appsecret'] = $this->config->get('module_weibo_login_appsecret');
 		}
 
-		if (isset($this->request->post['weibo_login_status'])) {
-			$data['weibo_login_status'] = $this->request->post['weibo_login_status'];
+		if (isset($this->request->post['module_weibo_login_status'])) {
+			$data['module_weibo_login_status'] = $this->request->post['module_weibo_login_status'];
 		} else {
-			$data['weibo_login_status'] = $this->config->get('weibo_login_status');
+			$data['module_weibo_login_status'] = $this->config->get('module_weibo_login_status');
 		}
 
 		$data['header'] = $this->load->controller('common/header');
@@ -102,11 +102,11 @@ class ControllerExtensionModuleWeiBoLogin extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->request->post['weibo_login_appkey']) {
+		if (!$this->request->post['module_weibo_login_appkey']) {
 			$this->error['appkey'] = $this->language->get('error_appkey');
 		}
 
-		if (!$this->request->post['weibo_login_appsecret']) {
+		if (!$this->request->post['module_weibo_login_appsecret']) {
 			$this->error['appsecret'] = $this->language->get('error_appsecret');
 		}
 		
@@ -114,14 +114,14 @@ class ControllerExtensionModuleWeiBoLogin extends Controller {
 	}
 
 	public function install() {
-		$this->load->model('extension/event');
+		$this->load->model('setting/event');
 
-		$this->model_extension_event->addEvent('weibo_login', 'catalog/controller/account/logout/after', 'extension/module/weibo_login/logout');
+		$this->model_setting_event->addEvent('weibo_login', 'catalog/controller/account/logout/after', 'extension/module/weibo_login/logout');
 	}
 
 	public function uninstall() {
-		$this->load->model('extension/event');
+		$this->load->model('setting/event');
 
-		$this->model_extension_event->deleteEvent('weibo_login');
+		$this->model_setting_event->deleteEvent('weibo_login');
 	}
 }

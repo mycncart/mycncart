@@ -1,0 +1,12 @@
+{% if logged %} 
+
+{% elseif weibo_login_authorized %} 
+
+{% elseif is_weixin %} 
+
+{% else %}   
+<div class="list-group">
+	<a href="{{ code_url }}" class="list-group-item"><img src="catalog/view/theme/default/image/weibo_login.png" title="{{ text_weibo_login }}" alt="{{ text_weibo_login }}" border="0" /></a>
+      
+</div>
+{% endif %} 
