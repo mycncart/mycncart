@@ -1,0 +1,11 @@
+<h3>{{ heading_title }}</h3>
+{% if comments %}
+<div class="list-group">
+	{% for comment in comments %}
+  		<li class="list-group-item">
+        <i class="fa fa-commenting"></i> {{ comment['text'] }}
+        <div class="text-right"><strong>----{{ comment.author }}</strong></div>
+        </li>
+    {% endfor %}
+</div>
+{% endif %}

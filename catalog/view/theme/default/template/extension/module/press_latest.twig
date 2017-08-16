@@ -1,0 +1,8 @@
+<h3>{{ heading_title }} </h3>
+{% if presses %} 
+<div class="list-group">
+	{% for press in presses %} 
+  <a href="{{ press.href }}" class="list-group-item">{{ press.name }}</a>
+    {% endfor %}
+</div>
+{% endif %}

@@ -83,7 +83,7 @@ $_['column_weight']				 = '商品重量';
 $_['entry_store']				 = '商店';
 $_['entry_customer']			 = '會員';
 $_['entry_customer_group']		 = '會員群組';
-$_['entry_firstname']			 = '名字';
+$_['entry_firstname']			 = '姓名';
 $_['entry_lastname']			 = '姓氏';
 $_['entry_email']				 = 'E-Mail';
 $_['entry_telephone']			 = '電話';
@@ -121,6 +121,9 @@ $_['entry_order_id']			 = '訂單 ID';
 $_['entry_total']				 = '總計';
 $_['entry_date_added']			 = '新增日期';
 $_['entry_date_modified']		 = '修改日期';
+$_['entry_district']             = '區縣';
+$_['entry_shipping_telephone']   = '收件人電話';
+$_['entry_payment_telephone']    = '收件人電話';
 
 // Help
 $_['help_override']				 = 'If the customers order is being blocked from changing the order status due to a anti-fraud extension enable override.';

@@ -9,9 +9,9 @@
     <select name="address_id" class="form-control">
      {% for address in addresses %}
       {% if address.address_id == address_id %}
-      <option value="{{ address.address_id }}" selected="selected">{{ address.firstname }} {{ address.lastname }}, {{ address.address_1 }}, {{ address.city }}, {{ address.zone }}, {{ address.country }}</option>
+      <option value="{{ address.address_id }}" selected="selected">{{ address.firstname }} {{ address.lastname }}, {{ address.country }}, {{ address.zone }}, {{ address.city }}, {{ address.district }}, {{ address.address_1 }}, {{ address.telephone }}</option>
       {% else %}
-      <option value="{{ address.address_id }}">{{ address.firstname }} {{ address.lastname }}, {{ address.address_1 }}, {{ address.city }}, {{ address.zone }}, {{ address.country }}</option>
+      <option value="{{ address.address_id }}">{{ address.firstname }} {{ address.lastname }}, {{ address.country }}, {{ address.zone }}, {{ address.city }}, {{ address.district }}, {{ address.address_1 }}, {{ address.telephone }}</option>
       {% endif %}
       {% endfor %}
     </select>

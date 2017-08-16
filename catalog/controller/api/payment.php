@@ -17,11 +17,14 @@ class ControllerApiPayment extends Controller {
 			$keys = array(
 				'firstname',
 				'lastname',
+				'payment_telephone',
 				'company',
 				'address_1',
 				'address_2',
 				'postcode',
 				'city',
+				'city_id',
+				'district_id',
 				'zone_id',
 				'country_id'
 			);
@@ -36,16 +39,31 @@ class ControllerApiPayment extends Controller {
 				$json['error']['firstname'] = $this->language->get('error_firstname');
 			}
 
-			if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
-				$json['error']['lastname'] = $this->language->get('error_lastname');
+			
+			if ((utf8_strlen(trim($this->request->post['payment_telephone'])) < 3) || (utf8_strlen(trim($this->request->post['payment_telephone'])) > 32)) {
+				$json['error']['payment_telephone'] = $this->language->get('error_payment_telephone');
 			}
 
 			if ((utf8_strlen(trim($this->request->post['address_1'])) < 3) || (utf8_strlen(trim($this->request->post['address_1'])) > 128)) {
 				$json['error']['address_1'] = $this->language->get('error_address_1');
 			}
 
-			if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 32)) {
-				$json['error']['city'] = $this->language->get('error_city');
+			if ($this->request->post['country_id'] == 44) {
+
+				if (!isset($this->request->post['city_id']) || $this->request->post['city_id'] == '') {
+					$json['error']['city'] = $this->language->get('error_city');
+				}
+				
+				if (!isset($this->request->post['district_id']) || $this->request->post['district_id'] == '') {
+					$json['error']['district'] = $this->language->get('error_district');
+				}
+			
+			} else {
+				
+				if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 32)) {
+					$json['error']['city'] = $this->language->get('error_city');
+				}
+				
 			}
 
 			$this->load->model('localisation/country');
@@ -107,15 +125,51 @@ class ControllerApiPayment extends Controller {
 					$zone = '';
 					$zone_code = '';
 				}
+				
+				if ($this->request->post['country_id'] == 44) {
+					
+					$this->load->model('localisation/city');
+	
+					$city_info = $this->model_localisation_city->getCity($this->request->post['city_id']);
+	
+					if ($city_info) {
+						$city = $city_info['name'];
+					} else {
+						$city = '';
+					}
+				
+				} else {
+					$city = $this->request->post['city'];
+				}
+				
+				if ($this->request->post['country_id'] == 44) {
+					
+					$this->load->model('localisation/district');
+	
+					$district_info = $this->model_localisation_district->getDistrict($this->request->post['district_id']);
+	
+					if ($district_info) {
+						$district = $district_info['name'];
+					} else {
+						$district = '';
+					}
+				
+				} else {
+					$district = '';
+				}
 
 				$this->session->data['payment_address'] = array(
 					'firstname'      => $this->request->post['firstname'],
 					'lastname'       => $this->request->post['lastname'],
+					'payment_telephone'      => $this->request->post['payment_telephone'],
 					'company'        => $this->request->post['company'],
 					'address_1'      => $this->request->post['address_1'],
 					'address_2'      => $this->request->post['address_2'],
 					'postcode'       => $this->request->post['postcode'],
 					'city'           => $this->request->post['city'],
+					'city_id'        => $this->request->post['city_id'],
+					'district'       => $district,
+					'district_id'    => $this->request->post['district_id'],
 					'zone_id'        => $this->request->post['zone_id'],
 					'zone'           => $zone,
 					'zone_code'      => $zone_code,

@@ -83,13 +83,13 @@ $_['column_weight']              = '商品重量';
 $_['entry_store']                = '商店';
 $_['entry_customer']             = '会员';
 $_['entry_customer_group']       = '会员等级';
-$_['entry_firstname']            = '名字';
+$_['entry_firstname']            = '姓名';
 $_['entry_lastname']             = '姓氏';
 $_['entry_email']                = 'E-Mail';
 $_['entry_telephone']            = '电话';
 $_['entry_address']              = '选择地址';
 $_['entry_company']              = '公司';
-$_['entry_address_1']            = '地址 1';
+$_['entry_address_1']            = '地址';
 $_['entry_address_2']            = '地址 2';
 $_['entry_city']                 = '城市';
 $_['entry_postcode']             = '邮编';
@@ -121,6 +121,9 @@ $_['entry_order_id']             = '订单 ID';
 $_['entry_total']                = '总计';
 $_['entry_date_added']           = '创建日期';
 $_['entry_date_modified']        = '修改日期';
+$_['entry_district']             = '区县';
+$_['entry_shipping_telephone']   = '收件人电话';
+$_['entry_payment_telephone']    = '收件人电话';
 
 // Help
 $_['help_override']              = '在由于反欺诈而造成订单被锁的情况下，仍然可以覆盖操作。';
