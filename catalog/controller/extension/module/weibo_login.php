@@ -80,32 +80,60 @@ class ControllerExtensionModuleWeiBoLogin extends Controller {
 			$uid = $uid_get['uid'];
 			$user_message = $c->show_user_by_id($uid);
 			
+			$this->load->model('account/customer');
+			
 			$this->session->data['weibo_login_access_token'] = $token['access_token'];
 			
 			$this->session->data['weibo_login_uid'] = $uid;
 			
 			if ($this->customer->login_weibo($this->session->data['weibo_login_access_token'],  $this->session->data['weibo_login_uid'])) {
 				
-					unset($this->session->data['guest']);
-		
-					// Default Shipping Address
-					$this->load->model('account/address');
-		
-					if ($this->config->get('config_tax_customer') == 'payment') {
-						$this->session->data['payment_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
-					}
-		
-					if ($this->config->get('config_tax_customer') == 'shipping') {
-						$this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
-					}
-		
-					$this->response->redirect($this->url->link('account/account', '', 'SSL'));
-				}else{
-					
-					$this->session->data['weibo_login_warning'] = sprintf($this->language->get('text_weibo_login_warning'), $this->config->get('config_name'));
-					
-					$this->response->redirect($this->url->link('account/login', '', 'SSL'));
+				unset($this->session->data['guest']);
+	
+				// Default Shipping Address
+				$this->load->model('account/address');
+	
+				if ($this->config->get('config_tax_customer') == 'payment') {
+					$this->session->data['payment_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
 				}
+	
+				if ($this->config->get('config_tax_customer') == 'shipping') {
+					$this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
+				}
+	
+				$this->response->redirect($this->url->link('account/account', '', 'SSL'));
+			}else{
+				
+				$weixin_login_unionid = '';
+				$weixin_login_openid = '';
+				
+				$customer_data = array(
+					'registertype'	=> 'email',
+					'firstname'	=> $uid,
+					'lastname'	=> '',
+					'email'		=> $uid,
+					'telephone'	=> $uid,
+					'password'	=> $uid,
+				);
+				
+				$customer_id = $this->model_account_customer->addCustomer($customer_data, $weixin_login_openid, $weixin_login_unionid);
+			
+				if($uid) {
+					$this->model_account_customer->updateCustomerWeiBoInfo($customer_id, $this->session->data['weibo_login_access_token'], $uid);
+				}
+				
+				$this->customer->login($uid, $uid);
+				
+				//Unset Third party login session
+				unset($this->session->data['qq_login_warning']);
+				unset($this->session->data['weibo_login_warning']);
+				unset($this->session->data['weixin_login_warning']);
+				unset($this->session->data['qq_nickname']);
+	
+				unset($this->session->data['guest']);
+				
+				$this->response->redirect($this->url->link('account/account'));
+			}
 			
 		}else{
 			echo $this->language->get('text_weibo_fail');	

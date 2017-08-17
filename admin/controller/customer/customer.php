@@ -960,10 +960,6 @@ class ControllerCustomerCustomer extends Controller {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
 
-		if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
-			$this->error['lastname'] = $this->language->get('error_lastname');
-		}
-
 		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
@@ -1013,16 +1009,30 @@ class ControllerCustomerCustomer extends Controller {
 					$this->error['address'][$key]['firstname'] = $this->language->get('error_firstname');
 				}
 
-				if ((utf8_strlen($value['lastname']) < 1) || (utf8_strlen($value['lastname']) > 32)) {
-					$this->error['address'][$key]['lastname'] = $this->language->get('error_lastname');
+				if ((utf8_strlen($value['shipping_telephone']) < 1) || (utf8_strlen($value['shipping_telephone']) > 32)) {
+					$this->error['address'][$key]['shipping_telephone'] = $this->language->get('error_shipping_telephone');
 				}
 
 				if ((utf8_strlen($value['address_1']) < 3) || (utf8_strlen($value['address_1']) > 128)) {
 					$this->error['address'][$key]['address_1'] = $this->language->get('error_address_1');
 				}
 
-				if ((utf8_strlen($value['city']) < 2) || (utf8_strlen($value['city']) > 128)) {
-					$this->error['address'][$key]['city'] = $this->language->get('error_city');
+				if ($value['country_id'] == 44) {
+					
+					if (!isset($value['city_id']) || $value['city_id'] == '') {
+						$this->error['address'][$key]['city'] = $this->language->get('error_city');
+					}
+					
+					if (!isset($value['district_id']) || $value['district_id'] == '') {
+						$this->error['address'][$key]['district'] = $this->language->get('error_district');
+					}
+				
+				} else {
+
+					if ((utf8_strlen($value['city']) < 2) || (utf8_strlen($value['city']) > 128)) {
+						$this->error['address'][$key]['city'] = $this->language->get('error_city');
+					}
+				
 				}
 
 				$this->load->model('localisation/country');

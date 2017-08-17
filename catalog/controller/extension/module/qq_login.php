@@ -49,6 +49,8 @@ class ControllerExtensionModuleQQLogin extends Controller {
 		$qui = new QC($access_token, $openid);
 		$user_info = $qui->get_user_info();
 		
+		$this->load->model('account/customer');
+		
 		$this->session->data['qq_nickname'] = $user_info['nickname'];
 		
 		$this->load->language('extension/module/qq_login');
@@ -79,9 +81,35 @@ class ControllerExtensionModuleQQLogin extends Controller {
 				$this->response->redirect($this->url->link('account/account', '', 'SSL'));
 			}else{
 				
-				$this->session->data['qq_login_warning'] = sprintf($this->language->get('text_qq_login_warning'), $this->config->get('config_name'));
+				$weixin_login_unionid = '';
+				$weixin_login_openid = '';
 				
-				$this->response->redirect($this->url->link('account/login', '', 'SSL'));
+				$customer_data = array(
+					'registertype'	=> 'email',
+					'firstname'	=> $this->session->data['qq_nickname'],
+					'lastname'	=> '',
+					'email'		=> $qq_openid,
+					'telephone'	=> $qq_openid,
+					'password'	=> $qq_openid,
+				);
+				
+				$customer_id = $this->model_account_customer->addCustomer($customer_data, $weixin_login_openid, $weixin_login_unionid);
+			
+				if($qq_openid) {
+					$this->model_account_customer->updateCustomerQQInfo($customer_id, $qq_openid);
+				}
+				
+				$this->customer->login($qq_openid, $qq_openid);
+				
+				//Unset Third party login session
+				unset($this->session->data['qq_login_warning']);
+				unset($this->session->data['weibo_login_warning']);
+				unset($this->session->data['weixin_login_warning']);
+				unset($this->session->data['qq_nickname']);
+	
+				unset($this->session->data['guest']);
+				
+				$this->response->redirect($this->url->link('account/account'));
 			}
 			
 		}else{

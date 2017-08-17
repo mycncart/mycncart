@@ -44,7 +44,7 @@ $_['column_action']             = 'Action';
 
 // Entry
 $_['entry_customer_group']      = 'Customer Group';
-$_['entry_firstname']           = 'First Name';
+$_['entry_firstname']           = 'Full Name';
 $_['entry_lastname']            = 'Last Name';
 $_['entry_email']               = 'E-Mail';
 $_['entry_telephone']           = 'Telephone';
@@ -82,6 +82,8 @@ $_['entry_points']              = 'Points';
 $_['entry_name']                = 'Customer Name';
 $_['entry_ip']                  = 'IP';
 $_['entry_date_added']          = 'Date Added';
+$_['entry_district']            = 'District';
+$_['entry_shipping_telephone']  = 'Shipping Telephone';
 
 // Help
 $_['help_safe']                 = 'Set to true to avoid this customer from being caught by the anti-fraud system';
@@ -112,3 +114,5 @@ $_['error_cheque']              = 'Cheque Payee Name required!';
 $_['error_paypal']              = 'PayPal Email Address does not appear to be valid!';
 $_['error_bank_account_name']   = 'Account Name required!';
 $_['error_bank_account_number'] = 'Account Number required!';
+$_['error_district']       		= 'Please select a district!';
+$_['error_shipping_telephone']  = 'Shipping Telephone Required！';

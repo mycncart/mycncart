@@ -44,7 +44,7 @@ $_['column_action']         	= '管理';
 
 // Entry
 $_['entry_customer_group']  	= '會員群組';
-$_['entry_firstname']       	= '名字';
+$_['entry_firstname']       	= '姓名';
 $_['entry_lastname']        	= '姓氏';
 $_['entry_email']           	= 'E-Mail';
 $_['entry_telephone']       	= '電話';
@@ -82,6 +82,8 @@ $_['entry_points']          	= '點數';
 $_['entry_name']            	= '會員名稱';
 $_['entry_ip']              	= 'IP';
 $_['entry_date_added']      	= '加入日期';
+$_['entry_district']        	= '区县';
+$_['entry_shipping_telephone']  = '收件人电话';
 
 // Help
 $_['help_safe']             	= '請設定是(true)以避免會員被反詐欺系統攔截。';
@@ -112,3 +114,5 @@ $_['error_cheque']              = '支票收款人姓名必須輸入!';
 $_['error_paypal']              = 'PayPal Email Address 必須有效!';
 $_['error_bank_account_name']   = '銀行帳戶名稱必須輸入!';
 $_['error_bank_account_number'] = '銀行帳戶號碼必須輸入!';
+$_['error_district']        	= '请选择区县！';
+$_['error_shipping_telephone']  = '收件人电话必填！';

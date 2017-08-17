@@ -121,11 +121,11 @@ class ControllerExtensionModuleWeiXinLogin extends Controller {
 			$this->response->redirect($this->url->link('account/account', '', true));
 		}
 		
-		if (isset($this->session->data['weixin_login_unionid'])) {
+		if (isset($this->session->data['weixin_login_openid'])) {
 			
 			$this->load->language('extension/module/weixin_login');
 			
-			if ($this->customer->login_weixin($this->session->data['weixin_login_unionid'])) {
+			if ($this->customer->login_weixin($this->session->data['weixin_login_openid'])) {
 				
 				unset($this->session->data['guest']);
 	
