@@ -176,4 +176,16 @@ class ModelAccountOrder extends Model {
 
 		return $query->row['total'];
 	}
+	
+	public function getWxQrcodeUnpaidOrder($order_id) {
+		$order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order` WHERE order_id = '" . (int)$order_id . "' AND customer_id = '" . (int)$this->customer->getId() . "' AND order_status_id > '0'");
+
+		if ($order_query->num_rows) {
+			return array(
+				'order_id'	=> $order_query->row['order_id']
+			);
+		} else {
+			return false;
+		}
+	}
 }

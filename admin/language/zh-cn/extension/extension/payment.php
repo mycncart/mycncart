@@ -1,12 +1,12 @@
 <?php
-
 // Heading
 $_['heading_title']     = '支付方式';
 
 // Text
-$_['text_extension']   = '扩展功能';
 $_['text_success']      = '成功: 已修改支付方式！';
 $_['text_list']         = '支付方式列表';
+$_['text_recommended']  = '支付方式 - 推荐支付方式';
+
 
 // Column
 $_['column_name']       = '支付方式';

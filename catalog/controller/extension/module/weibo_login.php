@@ -4,8 +4,8 @@ class ControllerExtensionModuleWeiBoLogin extends Controller {
 
 	public function index() {
 		if (!$this->customer->isLogged()) {
-			$appkey = $this->config->get('weibo_login_appkey');
-			$appsecret = $this->config->get('weibo_login_appsecret');
+			$appkey = $this->config->get('module_weibo_login_appkey');
+			$appsecret = $this->config->get('module_weibo_login_appsecret');
 			$callback_url = $this->url->link('extension/module/weibo_login/callback', '', true);
 			
 			$this->load->language('extension/module/weibo_login');
@@ -48,8 +48,8 @@ class ControllerExtensionModuleWeiBoLogin extends Controller {
 	
 	public function callback() {
 
-		$appkey = $this->config->get('weibo_login_appkey');
-		$appsecret = $this->config->get('weibo_login_appsecret');
+		$appkey = $this->config->get('module_weibo_login_appkey');
+		$appsecret = $this->config->get('module_weibo_login_appsecret');
 		$callback_url = $this->url->link('extension/module/weibo_login/callback', '', true);
 		
 		$this->load->language('extension/module/weibo_login');

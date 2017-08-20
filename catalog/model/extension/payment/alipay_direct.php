@@ -36,7 +36,7 @@ class ModelExtensionPaymentAlipayDirect extends Model {
 				'code'       => 'alipay_direct',
 				'title'      => $this->language->get('text_title'),
 				'terms'      => '',
-				'sort_order' => $this->config->get('alipay_direct_sort_order')
+				'sort_order' => $this->config->get('payment_alipay_direct_sort_order')
 			);
 		}
 

@@ -1,7 +1,7 @@
 <?php
 class ControllerExtensionModuleQQLogin extends Controller {
 	private $error = array();
-
+	
 	public function index() {
 		if (!$this->customer->isLogged()) {
 			$data['qq_login_url'] = $this->url->link('extension/module/qq_login/login', '', true);
@@ -37,9 +37,8 @@ class ControllerExtensionModuleQQLogin extends Controller {
 	}
 	
 	public function callback() {
-		
-		define('QQ_LOGIN_APPID', $this->config->get('qq_login_appid'));
-		define('QQ_LOGIN_APPKEY', $this->config->get('qq_login_appkey'));
+		define('QQ_LOGIN_APPID', $this->config->get('module_qq_login_appid'));
+		define('QQ_LOGIN_APPKEY', $this->config->get('module_qq_login_appkey'));
 		define('QQ_CALLBACK_URI', HTTP_SERVER.'catalog/controller/api/qq_callback.php');
 		require_once(DIR_SYSTEM.'library/qq/qqConnectAPI.php');
 		$qc = new QC();
@@ -81,6 +80,7 @@ class ControllerExtensionModuleQQLogin extends Controller {
 				$this->response->redirect($this->url->link('account/account', '', 'SSL'));
 			}else{
 				
+				
 				$weixin_login_unionid = '';
 				$weixin_login_openid = '';
 				
@@ -88,18 +88,18 @@ class ControllerExtensionModuleQQLogin extends Controller {
 					'registertype'	=> 'email',
 					'firstname'	=> $this->session->data['qq_nickname'],
 					'lastname'	=> '',
-					'email'		=> $qq_openid,
-					'telephone'	=> $qq_openid,
-					'password'	=> $qq_openid,
+					'email'		=> $openid,
+					'telephone'	=> $openid,
+					'password'	=> $openid,
 				);
 				
 				$customer_id = $this->model_account_customer->addCustomer($customer_data, $weixin_login_openid, $weixin_login_unionid);
 			
-				if($qq_openid) {
-					$this->model_account_customer->updateCustomerQQInfo($customer_id, $qq_openid);
-				}
 				
-				$this->customer->login($qq_openid, $qq_openid);
+				$this->model_account_customer->updateCustomerQQInfo($customer_id, $openid);
+				
+				
+				$this->customer->login($openid, $openid);
 				
 				//Unset Third party login session
 				unset($this->session->data['qq_login_warning']);
@@ -119,9 +119,11 @@ class ControllerExtensionModuleQQLogin extends Controller {
 	}
 	
 	public function login() {
-		define('QQ_LOGIN_APPID', $this->config->get('qq_login_appid'));
-		define('QQ_LOGIN_APPKEY', $this->config->get('qq_login_appkey'));
+		define('QQ_LOGIN_APPID', $this->config->get('module_qq_login_appid'));
+		define('QQ_LOGIN_APPKEY', $this->config->get('module_qq_login_appkey'));
 		define('QQ_CALLBACK_URI', HTTP_SERVER.'catalog/controller/api/qq_callback.php');
+		
+		
 		require_once(DIR_SYSTEM.'library/qq/qqConnectAPI.php');
 		$qc = new QC();
 		$qc->qq_login();

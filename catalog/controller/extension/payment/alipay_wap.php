@@ -1,9 +1,9 @@
 <?php
 class ControllerExtensionPaymentAlipayWap extends Controller {
 	public function index() {
-		$alipay_config['partner']		= $this->config->get('alipay_wap_partner');
+		$alipay_config['partner']		= $this->config->get('payment_alipay_wap_partner');
 		
-		$alipay_config['seller_id']	= $this->config->get('alipay_wap_seller_email');
+		$alipay_config['seller_id']	= $this->config->get('payment_alipay_wap_seller_email');
 		
 		$alipay_config['private_key_path']	= DIR_SYSTEM.'helper/alipay_wap_key/rsa_private_key.pem';
 		
@@ -97,9 +97,9 @@ class ControllerExtensionPaymentAlipayWap extends Controller {
 	
 	public function callback() {
 		
-		$alipay_config['partner']		= $this->config->get('alipay_wap_partner');
+		$alipay_config['partner']		= $this->config->get('payment_alipay_wap_partner');
 		
-		$alipay_config['seller_id']	= $this->config->get('alipay_wap_seller_email');
+		$alipay_config['seller_id']	= $this->config->get('payment_alipay_wap_seller_email');
 		
 		$alipay_config['private_key_path']	= DIR_SYSTEM.'helper/alipay_wap_key/rsa_private_key.pem';
 		
@@ -118,7 +118,7 @@ class ControllerExtensionPaymentAlipayWap extends Controller {
 		
 		
 		
-		$log = $this->config->get('alipay_wap_log');
+		$log = $this->config->get('payment_alipay_wap_log');
 		
 		
 		if($log) {
@@ -177,7 +177,7 @@ class ControllerExtensionPaymentAlipayWap extends Controller {
 						$this->log->write('Alipay_Wap :: Five: ');
 					}
 				
-					$order_status_id = $this->config->get('alipay_wap_trade_finished_status_id');
+					$order_status_id = $this->config->get('payment_alipay_wap_trade_finished_status_id');
 					
 					if (!$order_info['order_status_id']) {
 						
@@ -198,7 +198,7 @@ class ControllerExtensionPaymentAlipayWap extends Controller {
 						
 					}
 				
-					$order_status_id = $this->config->get('alipay_wap_trade_success_status_id');
+					$order_status_id = $this->config->get('payment_alipay_wap_trade_success_status_id');
 					
 					if (!$order_info['order_status_id']) {
 						

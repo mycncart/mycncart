@@ -1,5 +1,4 @@
 <?php
-
 class ControllerExtensionPaymentAlipayDirect extends Controller {
 	public function index() {
 		
@@ -10,9 +9,9 @@ class ControllerExtensionPaymentAlipayDirect extends Controller {
 
 		$data['button_confirm'] = $this->language->get('button_confirm');
 		
-		$alipay_config['partner']	=	$this->config->get('alipay_direct_partner');
+		$alipay_config['partner']	=	$this->config->get('payment_alipay_direct_partner');
 
-		$alipay_config['key']		=	$this->config->get('alipay_direct_security_code');
+		$alipay_config['key']		=	$this->config->get('payment_alipay_direct_security_code');
 		
 		$alipay_config['sign_type']    = strtoupper('MD5');
 		
@@ -30,7 +29,7 @@ class ControllerExtensionPaymentAlipayDirect extends Controller {
 		
 		$item_name = $this->config->get('config_name');
 		
-		$fullname = $order_info['payment_fullname'];
+		$fullname = $order_info['payment_firstname'];
 		
 		$this->load->model('account/order');
 
@@ -55,7 +54,7 @@ class ControllerExtensionPaymentAlipayDirect extends Controller {
 
         $return_url = $this->url->link('checkout/success');
 
-        $seller_email = $this->config->get('alipay_direct_seller_email');
+        $seller_email = $this->config->get('payment_alipay_direct_seller_email');
 
         $out_trade_no = $this->session->data['order_id'];
 
@@ -112,9 +111,9 @@ class ControllerExtensionPaymentAlipayDirect extends Controller {
 		$this->load->helper('alipay_direct/alipay_dt_core');
 		$this->load->helper('alipay_direct/alipay_dt_md');	
 		
-		$alipay_config['partner']	=	$this->config->get('alipay_direct_partner');
+		$alipay_config['partner']	=	$this->config->get('payment_alipay_direct_partner');
 
-		$alipay_config['key']		=	$this->config->get('alipay_direct_security_code');
+		$alipay_config['key']		=	$this->config->get('payment_alipay_direct_security_code');
 		
 		$alipay_config['sign_type']    = strtoupper('MD5');
 		
@@ -124,7 +123,7 @@ class ControllerExtensionPaymentAlipayDirect extends Controller {
 		
 		$alipay_config['transport']    = HTTPS_SERVER;
 		
-		$log = $this->config->get('alipay_direct_log');
+		$log = $this->config->get('payment_alipay_direct_log');
 		
 		if($log) {
 			$this->log->write('Alipay_Direct :: One: ');
@@ -175,7 +174,7 @@ class ControllerExtensionPaymentAlipayDirect extends Controller {
 						$this->log->write('Alipay_Direct :: Five: ');
 					}
 				
-					$order_status_id = $this->config->get('alipay_direct_trade_finished_status_id');
+					$order_status_id = $this->config->get('payment_alipay_direct_trade_finished_status_id');
 					
 					if (!$order_info['order_status_id']) {
 						
@@ -196,7 +195,7 @@ class ControllerExtensionPaymentAlipayDirect extends Controller {
 						$this->log->write('Alipay_Direct :: Six: ');
 					}
 				
-					$order_status_id = $this->config->get('alipay_direct_trade_success_status_id');
+					$order_status_id = $this->config->get('payment_alipay_direct_trade_success_status_id');
 					
 					if (!$order_info['order_status_id']) {
 						

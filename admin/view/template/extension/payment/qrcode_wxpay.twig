@@ -34,7 +34,7 @@
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="entry-qrcode_wxpay-mchid"><span data-toggle="tooltip" title="{{ help_mchid }}">{{ entry_qrcode_wxpay_mchid }} </span></label>
                 <div class="col-sm-10">
-                  <input type="text" name="qrcode_wxpay_mchid" value="{{ qrcode_wxpay_mchid }}" placeholder="{{ entry_qrcode_wxpay_mchid }}" id="entry-qrcode_wxpay-mchid" class="form-control"/>
+                  <input type="text" name="payment_qrcode_wxpay_mchid" value="{{ payment_qrcode_wxpay_mchid }}" placeholder="{{ entry_qrcode_wxpay_mchid }}" id="entry-qrcode_wxpay-mchid" class="form-control"/>
                   {% if error_qrcode_wxpay_mchid %} 
                   <div class="text-danger">{{ error_qrcode_wxpay_mchid }} </div>
                   {% endif %} 
@@ -44,7 +44,7 @@
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="entry-qrcode_wxpay-appid"><span data-toggle="tooltip" title="{{ help_appid }}">{{ entry_qrcode_wxpay_appid }} </span></label>
                 <div class="col-sm-10">
-                  <input type="text" name="qrcode_wxpay_appid" value="{{ qrcode_wxpay_appid }}" placeholder="{{ entry_qrcode_wxpay_appid }}" id="entry-qrcode_wxpay-appid" class="form-control"/>
+                  <input type="text" name="payment_qrcode_wxpay_appid" value="{{ payment_qrcode_wxpay_appid }}" placeholder="{{ entry_qrcode_wxpay_appid }}" id="entry-qrcode_wxpay-appid" class="form-control"/>
                   {% if error_qrcode_wxpay_appid %} 
                   <div class="text-danger">{{ error_qrcode_wxpay_appid }} </div>
                   {% endif %} 
@@ -54,7 +54,7 @@
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="entry-qrcode_wxpay-key"><span data-toggle="tooltip" title="{{ help_key }}">{{ entry_qrcode_wxpay_key }} </span></label>
                 <div class="col-sm-10">
-                  <input type="text" name="qrcode_wxpay_key" value="{{ qrcode_wxpay_key }}" placeholder="{{ entry_qrcode_wxpay_key }}" id="entry-qrcode_wxpay-key" class="form-control"/>
+                  <input type="text" name="payment_qrcode_wxpay_key" value="{{ payment_qrcode_wxpay_key }}" placeholder="{{ entry_qrcode_wxpay_key }}" id="entry-qrcode_wxpay-key" class="form-control"/>
                   {% if error_qrcode_wxpay_key %} 
                   <div class="text-danger">{{ error_qrcode_wxpay_key }} </div>
                   {% endif %} 
@@ -64,7 +64,7 @@
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="entry-qrcode_wxpay-appsecret"><span data-toggle="tooltip" title="{{ help_appsecret }}">{{ entry_qrcode_wxpay_appsecret }} </span></label>
                 <div class="col-sm-10">
-                  <input type="text" name="qrcode_wxpay_appsecret" value="{{ qrcode_wxpay_appsecret }}" placeholder="{{ entry_qrcode_wxpay_appsecret }}" id="entry-qrcode_wxpay-appsecret" class="form-control"/>
+                  <input type="text" name="payment_qrcode_wxpay_appsecret" value="{{ payment_qrcode_wxpay_appsecret }}" placeholder="{{ entry_qrcode_wxpay_appsecret }}" id="entry-qrcode_wxpay-appsecret" class="form-control"/>
                   {% if error_qrcode_wxpay_appsecret %} 
                   <div class="text-danger">{{ error_qrcode_wxpay_appsecret }} </div>
                   {% endif %} 
@@ -74,7 +74,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-total"><span data-toggle="tooltip" title="{{ help_total }}">{{ entry_total }} </span></label>
                 <div class="col-sm-10">
-                  <input type="text" name="qrcode_wxpay_total" value="{{ qrcode_wxpay_total }}" placeholder="{{ entry_total }}" id="input-total" class="form-control"/>
+                  <input type="text" name="payment_qrcode_wxpay_total" value="{{ payment_qrcode_wxpay_total }}" placeholder="{{ entry_total }}" id="input-total" class="form-control"/>
                 </div>
               </div>
               
@@ -83,17 +83,17 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-qrcode_wxpay-sort-order">{{ entry_qrcode_wxpay_sort_order }} </label>
                 <div class="col-sm-10">
-                  <input type="text" name="qrcode_wxpay_sort_order" value="{{ qrcode_wxpay_sort_order }}" placeholder="{{ entry_qrcode_wxpay_sort_order }}" id="input-qrcode_wxpay-sort-order" class="form-control"/>
+                  <input type="text" name="payment_qrcode_wxpay_sort_order" value="{{ payment_qrcode_wxpay_sort_order }}" placeholder="{{ entry_qrcode_wxpay_sort_order }}" id="input-qrcode_wxpay-sort-order" class="form-control"/>
                 </div>
               </div>
               
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-geo-zone">{{ entry_geo_zone }} </label>
                 <div class="col-sm-10">
-                  <select name="qrcode_wxpay_geo_zone_id" id="input-geo-zone" class="form-control">
+                  <select name="payment_qrcode_wxpay_geo_zone_id" id="input-geo-zone" class="form-control">
                     <option value="0">{{ text_all_zones }} </option>
                     {% for geo_zone in geo_zones %} 
-                    {% if geo_zone.geo_zone_id  == qrcode_wxpay_geo_zone_id %} 
+                    {% if geo_zone.geo_zone_id  == payment_qrcode_wxpay_geo_zone_id %} 
                     <option value="{{ geo_zone.geo_zone_id }}" selected="selected">{{ geo_zone.name }} </option>
                     {% else %}   
                     <option value="{{ geo_zone.geo_zone_id }}">{{ geo_zone.name }} </option>
@@ -106,8 +106,8 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-status">{{ entry_qrcode_wxpay_status }} </label>
                 <div class="col-sm-10">
-                  <select name="qrcode_wxpay_status" id="input-qrcode_wxpay-status" class="form-control">
-                    {% if qrcode_wxpay_status == '1' %} 
+                  <select name="payment_qrcode_wxpay_status" id="input-qrcode_wxpay-status" class="form-control">
+                    {% if payment_qrcode_wxpay_status == '1' %} 
                     <option value="1" selected="selected">{{ text_enabled }} </option>
                     <option value="0">{{ text_disabled }} </option>
                     {% else %}   
@@ -121,8 +121,8 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-debug"><span data-toggle="tooltip" title="{{ help_log }}">{{ entry_log }} </span></label>
                 <div class="col-sm-10">
-                  <select name="qrcode_wxpay_log" id="input-debug" class="form-control">
-                    {% if qrcode_wxpay_log == '1' %} 
+                  <select name="payment_qrcode_wxpay_log" id="input-debug" class="form-control">
+                    {% if payment_qrcode_wxpay_log == '1' %} 
                     <option value="1" selected="selected">{{ text_enabled }} </option>
                     <option value="0">{{ text_disabled }} </option>
                     {% else %}   
@@ -144,9 +144,9 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-total"><span data-toggle="tooltip" title="{{ help_trade_success }}">{{ entry_trade_success_status }} </span></label>
                 <div class="col-sm-10">
-                  <select name="qrcode_wxpay_trade_success_status_id" class="form-control">
+                  <select name="payment_qrcode_wxpay_trade_success_status_id" class="form-control">
                     {% for order_status in order_statuses %} 
-                    {% if order_status.order_status_id  ==  qrcode_wxpay_trade_success_status_id %} 
+                    {% if order_status.order_status_id  ==  payment_qrcode_wxpay_trade_success_status_id %} 
                     <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }} </option>
                     {% else %}   
                     <option value="{{ order_status.order_status_id }}">{{ order_status.name }} </option>

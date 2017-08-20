@@ -8,6 +8,11 @@ $config->load('default');
 $config->load($application_config);
 $registry->set('config', $config);
 
+//Payment Method Callback
+if (defined('PAY_METHOD_CALLBACK') && PAY_METHOD_CALLBACK) {
+	$config->set('action_default', PAY_METHOD_CALLBACK);
+}
+
 // Log
 $log = new Log($config->get('error_filename'));
 $registry->set('log', $log);

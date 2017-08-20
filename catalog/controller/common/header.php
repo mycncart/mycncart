@@ -76,6 +76,28 @@ class ControllerCommonHeader extends Controller {
 		$data['search'] = $this->load->controller('common/search');
 		$data['cart'] = $this->load->controller('common/cart');
 		$data['menu'] = $this->load->controller('common/menu');
+		
+		//Mobile & Weixin
+		$this->load->helper('mobile');
+		
+		if (is_mobile()) {
+			
+			$data['is_mobile'] = 1;
+			
+			if (is_weixin()) {
+				$data['is_weixin'] = 1;
+			} else {
+				$data['is_weixin'] = 0;
+			}
+		
+		} else {
+			$data['is_mobile'] = 0;
+			$data['is_weixin'] = 0;
+		}
+		
+		$data['qq_login_url'] = $this->url->link('extension/module/qq_login/login', '', true);
+		
+		$data['qq_login_status'] = (int)$this->config->get('module_qq_login_status');
 
 		return $this->load->view('common/header', $data);
 	}

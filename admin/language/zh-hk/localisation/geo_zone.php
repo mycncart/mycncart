@@ -19,6 +19,8 @@ $_['entry_name']         = '地區名稱';
 $_['entry_description']  = '說明';
 $_['entry_country']      = '國家';
 $_['entry_zone']         = '縣市';
+$_['entry_city']         = '城市';
+$_['entry_district']     = '區縣';
 
 // Error
 $_['error_permission']   = '警告：您沒有權限編輯地區管理！';

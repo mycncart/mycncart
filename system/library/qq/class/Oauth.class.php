@@ -8,7 +8,7 @@
 require_once(CLASS_PATH."Recorder.class.php");
 require_once(CLASS_PATH."URL.class.php");
 require_once(CLASS_PATH."ErrorCase.class.php");
-
+session_start();
 class Oauth{
 
     const VERSION = "2.0";
@@ -35,6 +35,10 @@ class Oauth{
         //-------生成唯一随机串防CSRF攻击
         $state = md5(uniqid(rand(), TRUE));
         $this->recorder->write('state',$state);
+		
+		$_SESSION['qq_login_csrf_state'] = $state;
+		
+		
 
         //-------构造请求参数列表
         $keysArr = array(
@@ -52,11 +56,16 @@ class Oauth{
 
     public function qq_callback(){
         $state = $this->recorder->read("state");
+		//echo "Get State:".$_GET['state'].'<br>';
+		//echo "Write State:".$_SESSION['qq_login_csrf_state'].'<br>';
+		//exit;
 
         //--------验证state防止CSRF攻击
-        if($_GET['state'] != $state){
+        //if($_GET['state'] != $state){
+		if($_GET['state'] != $_SESSION['qq_login_csrf_state']){
             $this->error->showError("30001");
         }
+		unset($_SESSION['qq_login_csrf_state']);
 
         //-------请求参数列表
         $keysArr = array(

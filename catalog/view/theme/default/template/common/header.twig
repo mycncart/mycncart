@@ -43,6 +43,13 @@
     {{ language }}
     <div id="top-links" class="nav pull-right">
       <ul class="list-inline">
+	  	
+		{% if qq_login_status  %}
+      	{% if not logged %}
+        <li><a href="{{ qq_login_url }}"><span class="hidden-xs hidden-sm hidden-md"><img src="catalog/view/theme/default/image/qq_login.png"></span></a> </li>
+        {% endif %}
+		{% endif %}
+	  
         <li><a href="{{ contact }}"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md">{{ telephone }}</span></li>
         <li class="dropdown"><a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_account }}</span> <span class="caret"></span></a>
           <ul class="dropdown-menu dropdown-menu-right">
