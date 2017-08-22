@@ -7,11 +7,11 @@ $_['site_ssl']             = false;
 $_['url_autostart']        = true;
 
 // Language
-$_['language_directory']   = 'en-gb';
-$_['language_autoload']    = array('en-gb');
+$_['language_directory']   = 'zh-cn';
+$_['language_autoload']    = array('zh-cn');
 
 // Date
-$_['date_timezone']        = 'UTC';
+$_['date_timezone']        = 'PRC';
 
 // Database
 $_['db_engine']            = 'mysqli'; // mpdo, mssql, mysql, mysqli or postgre
@@ -36,7 +36,7 @@ $_['mail_verp']            = false;
 $_['mail_parameter']       = '';
 
 // Cache
-$_['cache_engine']         = 'file'; // apc, file or mem
+$_['cache_engine']         = 'file'; // apc, file, mem or memcached
 $_['cache_expire']         = 3600;
 
 // Session

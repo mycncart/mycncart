@@ -3,6 +3,8 @@
 $_['heading_title']    = '商品浏览报告';
 
 // Text
+$_['text_extension']   = '扩展功能';
+$_['text_edit']        = '编辑商品浏览报告';
 $_['text_success']     = '成功: 已重置商品浏览报告！';
 
 // Column

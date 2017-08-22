@@ -34,7 +34,9 @@ class UrlValidator extends ConstraintValidator
                 \]  # an IPv6 address
             )
             (:[0-9]+)?                              # a port (optional)
-            (/?|/\S+|\?\S*|\#\S*)                   # a /, nothing, a / with something, a query or a fragment
+            (?:/ (?:[\pL\pN\-._\~!$&\'()*+,;=:@]|%%[0-9A-Fa-f]{2})* )*      # a path
+            (?:\? (?:[\pL\pN\-._\~!$&\'()*+,;=:@/?]|%%[0-9A-Fa-f]{2})* )?   # a query (optional)
+            (?:\# (?:[\pL\pN\-._\~!$&\'()*+,;=:@/?]|%%[0-9A-Fa-f]{2})* )?   # a fragment (optional)
         $~ixu';
 
     /**
@@ -46,7 +48,7 @@ class UrlValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Url');
         }
 
-        if (null === $value) {
+        if (null === $value || '' === $value) {
             return;
         }
 
@@ -80,7 +82,7 @@ class UrlValidator extends ConstraintValidator
         if ($constraint->checkDNS) {
             $host = parse_url($value, PHP_URL_HOST);
 
-            if (!checkdnsrr($host, 'ANY')) {
+            if (!is_string($host) || !checkdnsrr($host, 'ANY')) {
                 if ($this->context instanceof ExecutionContextInterface) {
                     $this->context->buildViolation($constraint->dnsMessage)
                         ->setParameter('{{ value }}', $this->formatValue($host))

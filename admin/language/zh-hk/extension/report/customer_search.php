@@ -4,6 +4,7 @@ $_['heading_title']     = '會員搜尋統計';
 
 // Text
 $_['text_extension']    = '擴充模組';
+$_['text_edit']         = '编辑會員搜尋統計';
 $_['text_success']      = '成功：您已更新會員搜尋統計!';
 $_['text_filter']       = '篩選';
 $_['text_guest']        = '訪客';

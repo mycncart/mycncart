@@ -3,6 +3,8 @@
 $_['heading_title']         = '会员奖励积分报告';
 
 // Text
+$_['text_extension']        = '扩展功能';
+$_['text_edit']             = '编辑会员奖励积分报告';
 $_['text_success']          = '成功: 已修改会员奖励积分报告！';
 $_['text_filter']           = '筛选';
 

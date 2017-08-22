@@ -3,6 +3,8 @@
 $_['heading_title']     = '税种报告';
 
 // Text
+$_['text_extension']    = '扩展功能';
+$_['text_edit']         = '编辑税种报告';
 $_['text_success']      = '成功: 已修改税种报告！';
 $_['text_filter']       = '筛选';
 $_['text_year']         = '年份';

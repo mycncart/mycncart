@@ -4,6 +4,7 @@ $_['heading_title']                = '会员活动报告';
 
 // Text
 $_['text_extension']	 		   = '扩展功能';
+$_['text_edit']                    = '编辑会员活动报告';
 $_['text_success']                 = '成功: 已修改会员活动报告！';
 $_['text_filter']                  = '筛选';
 $_['text_activity_register']       = '<a href="customer_id=%d">%s</a> 注册新账号。';

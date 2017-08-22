@@ -4,6 +4,7 @@ $_['heading_title']     = '運送統計報表';
 
 // Text
 $_['text_extension']    = '擴充模組';
+$_['text_edit']         = '编辑運送統計報表';
 $_['text_success']      = '成功：您已更新運送統計報表!';
 $_['text_filter']       = '篩選';
 $_['text_year']         = '以年統計';

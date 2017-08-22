@@ -87,7 +87,7 @@ class ControllerExtensionExtensionSMS extends Controller {
 			foreach ($files as $file) {
 				$extension = basename($file, '.php');
 
-				$this->language->load('extension/sms/' . $extension, 'extension');
+				$this->load->language('extension/sms/' . $extension, 'extension');
 
 				$data['extensions'][] = array(
 					'name'      => $this->language->get('extension')->get('heading_title') . (($extension == $this->config->get('config_sms')) ? $this->language->get('text_default') : null),

@@ -4,6 +4,7 @@ $_['heading_title']    = '優惠券報表';
 
 // Text
 $_['text_extension']   = '擴充模組';
+$_['text_edit']        = '编辑優惠券報表';
 $_['text_success']     = '成功：您已更新優惠券報表!';
 $_['text_filter']      = '篩選';
 

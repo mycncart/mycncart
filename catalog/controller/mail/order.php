@@ -123,37 +123,33 @@ class ControllerMailOrder extends Controller {
 		if ($order_info['payment_address_format']) {
 			$format = $order_info['payment_address_format'];
 		} else {
-			$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{country}' . '{zone}' . '{city}' . '{district}' . '{address_1}' . "\n" . '{address_2}' . "\n" .   '{postcode}' . "\n" .   '{telephone}';
+			$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
 		}
 
 		$find = array(
 			'{firstname}',
 			'{lastname}',
 			'{company}',
-			'{country}',
-			'{zone}',
-			'{zone_code}',
-			'{city}',
-			'{district}',
 			'{address_1}',
 			'{address_2}',
+			'{city}',
 			'{postcode}',
-			'{telephone}',
+			'{zone}',
+			'{zone_code}',
+			'{country}'
 		);
 
 		$replace = array(
 			'firstname' => $order_info['payment_firstname'],
 			'lastname'  => $order_info['payment_lastname'],
 			'company'   => $order_info['payment_company'],
-			'country'   => $order_info['payment_country'],
-			'zone'      => $order_info['payment_zone'],
-			'zone_code' => $order_info['payment_zone_code'],
-			'city'      => $order_info['payment_city'],
-			'district'  => $order_info['payment_district'],
 			'address_1' => $order_info['payment_address_1'],
 			'address_2' => $order_info['payment_address_2'],
+			'city'      => $order_info['payment_city'],
 			'postcode'  => $order_info['payment_postcode'],
-			'telephone' => $order_info['payment_telephone'],
+			'zone'      => $order_info['payment_zone'],
+			'zone_code' => $order_info['payment_zone_code'],
+			'country'   => $order_info['payment_country']
 		);
 
 		$data['payment_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -161,37 +157,33 @@ class ControllerMailOrder extends Controller {
 		if ($order_info['shipping_address_format']) {
 			$format = $order_info['shipping_address_format'];
 		} else {
-			$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{country}' . '{zone}' . '{city}' . '{district}' . '{address_1}' . "\n" . '{address_2}' . "\n" .   '{postcode}' . "\n" .   '{telephone}';
+			$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
 		}
 
 		$find = array(
 			'{firstname}',
 			'{lastname}',
 			'{company}',
-			'{country}',
-			'{zone}',
-			'{zone_code}',
-			'{city}',
-			'{district}',
 			'{address_1}',
 			'{address_2}',
+			'{city}',
 			'{postcode}',
-			'{telephone}',
+			'{zone}',
+			'{zone_code}',
+			'{country}'
 		);
 
 		$replace = array(
 			'firstname' => $order_info['shipping_firstname'],
 			'lastname'  => $order_info['shipping_lastname'],
 			'company'   => $order_info['shipping_company'],
-			'country'   => $order_info['shipping_country'],
-			'zone'      => $order_info['shipping_zone'],
-			'zone_code' => $order_info['shipping_zone_code'],
-			'city'      => $order_info['shipping_city'],
-			'district'  => $order_info['shipping_district'],
 			'address_1' => $order_info['shipping_address_1'],
 			'address_2' => $order_info['shipping_address_2'],
+			'city'      => $order_info['shipping_city'],
 			'postcode'  => $order_info['shipping_postcode'],
-			'telephone' => $order_info['shipping_telephone'],
+			'zone'      => $order_info['shipping_zone'],
+			'zone_code' => $order_info['shipping_zone_code'],
+			'country'   => $order_info['shipping_country']
 		);
 
 		$data['shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -367,7 +359,7 @@ class ControllerMailOrder extends Controller {
 		$order_info = $this->model_checkout_order->getOrder($order_id);
 		
 		if ($order_info && !$order_info['order_status_id'] && $order_status_id && in_array('order', (array)$this->config->get('config_mail_alert'))) {	
-			$this->language->load('mail/order_alert');
+			$this->load->language('mail/order_alert');
 			
 			// HTML Mail
 			$data['text_received'] = $this->language->get('text_received');

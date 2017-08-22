@@ -3,6 +3,8 @@
 $_['heading_title']    = '市场推广统计报告';
 
 // Text
+$_['text_extension']   = '扩展功能';
+$_['text_edit']        = '编辑市场推广统计报告';
 $_['text_success']     = '成功: 已修改市场推广统计报告！';
 $_['text_filter']      = '筛选';
 $_['text_all_status']  = '所有状态';

@@ -4,6 +4,7 @@ $_['heading_title']         = '會員交易報表';
 
 // Column
 $_['text_extension']        = '擴充模組';
+$_['text_edit']             = '编辑會員交易報表';
 $_['text_success']          = '成功：您已更新會員交易報表!';
 $_['text_filter']           = '篩選';
 

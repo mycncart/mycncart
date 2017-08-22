@@ -3,6 +3,8 @@
 $_['heading_title']     = '销售报告';
 
 // Text
+$_['text_extension']    = '扩展功能';
+$_['text_edit']         = '编辑销售报告';
 $_['text_success']      = '成功: 已修改销售报告！';
 $_['text_filter']       = '筛选';
 $_['text_year']         = '年份';

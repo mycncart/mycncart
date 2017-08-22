@@ -4,6 +4,7 @@ $_['heading_title']     = '銷售統計報表';
 
 // Text
 $_['text_extension']    = '擴充模組';
+$_['text_edit']         = '编辑銷售統計報表';
 $_['text_success']      = '成功：您已更新銷售統計報表!';
 $_['text_filter']       = '篩選';
 $_['text_year']         = '以年統計';

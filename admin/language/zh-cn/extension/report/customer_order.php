@@ -4,6 +4,7 @@ $_['heading_title']         = '会员订单报告';
 
 // Text
 $_['text_extension']	 	= '扩展功能';
+$_['text_edit']             = '编辑会员订单报告';
 $_['text_success']          = '成功: 已修改会员订单报告！';
 $_['text_filter']           = '筛选';
 $_['text_all_status']       = '所有状态';

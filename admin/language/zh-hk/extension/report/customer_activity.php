@@ -4,6 +4,7 @@ $_['heading_title']                = '會員活動記錄';
 
 // Text
 $_['text_extension']               = '擴充模組';
+$_['text_edit']                    = '编辑會員活動記錄';
 $_['text_success']                 = '成功：您已更新會員活動記錄!';
 $_['text_filter']                  = '記錄篩選';
 $_['text_activity_register']       = '<a href="customer_id=%d">%s</a> 註冊一個帳號';

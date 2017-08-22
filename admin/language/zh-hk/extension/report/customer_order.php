@@ -4,6 +4,7 @@ $_['heading_title']         = '會員訂單報表';
 
 // Text
 $_['text_extension']        = '擴充模組';
+$_['text_edit']             = '编辑會員訂單報表';
 $_['text_success']          = '成功：您已更新會員訂單報表!';
 $_['text_filter']           = '篩選';
 $_['text_all_status']       = '全部狀態';

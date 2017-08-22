@@ -30,7 +30,7 @@ class IdenticalToValidatorTest extends AbstractComparisonValidatorTestCase
         return new IdenticalToValidator();
     }
 
-    protected function createConstraint(array $options)
+    protected function createConstraint(array $options = null)
     {
         return new IdenticalTo($options);
     }
@@ -69,7 +69,7 @@ class IdenticalToValidatorTest extends AbstractComparisonValidatorTestCase
             array(null, 1),
         );
 
-        if (PHP_VERSION_ID >= 50500) {
+        if (\PHP_VERSION_ID >= 50500) {
             $immutableDate = new \DateTimeImmutable('2000-01-01');
             $comparisons[] = array($immutableDate, $immutableDate);
         }
