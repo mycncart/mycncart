@@ -75,12 +75,6 @@
                       <textarea name="press_description[{{ language.language_id }}][meta_keyword]" rows="5" placeholder="{{ entry_meta_keyword }}" id="input-meta-keyword{{ language.language_id }}" class="form-control">{{ press_description[language.language_id] ? press_description[language.language_id].meta_keyword }}</textarea>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label" for="input-tag{{ language.language_id }}"><span data-toggle="tooltip" title="{{ help_tag }}">{{ entry_tag }}</span></label>
-                    <div class="col-sm-10">
-                      <input type="text" name="press_description[{{ language.language_id }}][tag]" value="{{ press_description[language.language_id] ? press_description[language.language_id].tag }}" placeholder="{{ entry_tag }}" id="input-tag{{ language.language_id }}" class="form-control" />
-                    </div>
-                  </div>
                 </div>
                 {% endfor %}</div>
             </div>

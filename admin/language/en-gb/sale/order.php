@@ -83,13 +83,13 @@ $_['column_weight']              = 'Product Weight';
 $_['entry_store']                = 'Store';
 $_['entry_customer']             = 'Customer';
 $_['entry_customer_group']       = 'Customer Group';
-$_['entry_firstname']            = 'Full Name';
+$_['entry_firstname']            = 'First Name';
 $_['entry_lastname']             = 'Last Name';
 $_['entry_email']                = 'E-Mail';
 $_['entry_telephone']            = 'Telephone';
 $_['entry_address']              = 'Choose Address';
 $_['entry_company']              = 'Company';
-$_['entry_address_1']            = 'Address';
+$_['entry_address_1']            = 'Address 1';
 $_['entry_address_2']            = 'Address 2';
 $_['entry_city']                 = 'City';
 $_['entry_postcode']             = 'Postcode';
@@ -121,9 +121,6 @@ $_['entry_order_id']             = 'Order ID';
 $_['entry_total']                = 'Total';
 $_['entry_date_added']           = 'Date Added';
 $_['entry_date_modified']        = 'Date Modified';
-$_['entry_district']             = 'District';
-$_['entry_shipping_telephone']   = 'Shipping Telephone';
-$_['entry_payment_telephone']    = 'Payment Telephone';
 
 // Help
 $_['help_override']              = 'If the customers order is being blocked from changing the order status due to an anti-fraud extension enable override.';

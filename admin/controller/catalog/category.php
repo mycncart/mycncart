@@ -593,7 +593,7 @@ class ControllerCatalogCategory extends Controller {
 				'sort'        => 'name',
 				'order'       => 'ASC',
 				'start'       => 0,
-				'limit'       => $this->config->get('config_limit_autocomplete')
+				'limit'       => 5
 			);
 
 			$results = $this->model_catalog_category->getCategories($filter_data);

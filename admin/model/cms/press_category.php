@@ -25,7 +25,7 @@ class ModelCmsPressCategory extends Model {
 			$level++;
 		}
 
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "category_path` SET `category_id` = '" . (int)$category_id . "', `path_id` = '" . (int)$category_id . "', `level` = '" . (int)$level . "'");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "press_category_path` SET `press_category_id` = '" . (int)$press_category_id . "', `path_id` = '" . (int)$press_category_id . "', `level` = '" . (int)$level . "'");
 
 		if (isset($data['press_category_store'])) {
 			foreach ($data['press_category_store'] as $store_id) {

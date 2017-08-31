@@ -25,7 +25,7 @@ class ModelCmsBlogCategory extends Model {
 			$level++;
 		}
 
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "category_path` SET `category_id` = '" . (int)$category_id . "', `path_id` = '" . (int)$category_id . "', `level` = '" . (int)$level . "'");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "blog_category_path` SET `blog_category_id` = '" . (int)$blog_category_id . "', `path_id` = '" . (int)$blog_category_id . "', `level` = '" . (int)$level . "'");
 
 		if (isset($data['blog_category_store'])) {
 			foreach ($data['blog_category_store'] as $store_id) {

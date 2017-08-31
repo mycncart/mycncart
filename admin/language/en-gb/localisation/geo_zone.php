@@ -19,8 +19,6 @@ $_['entry_name']         = 'Geo Zone Name';
 $_['entry_description']  = 'Description';
 $_['entry_country']      = 'Country';
 $_['entry_zone']         = 'Zone';
-$_['entry_city']         = 'City';
-$_['entry_district']     = 'District';
 
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify geo zones!';

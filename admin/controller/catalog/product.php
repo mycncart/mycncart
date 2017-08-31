@@ -1259,7 +1259,7 @@ class ControllerCatalogProduct extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$limit = $this->request->get['limit'];
 			} else {
-				$limit = $this->config->get('config_limit_autocomplete');
+				$limit = 5;
 			}
 
 			$filter_data = array(

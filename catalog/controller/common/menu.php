@@ -40,10 +40,6 @@ class ControllerCommonMenu extends Controller {
 				);
 			}
 		}
-		
-		$data['blog'] = $this->url->link('blog/all', '', true);
-		$data['press'] = $this->url->link('press/all', '', true);
-		$data['faq'] = $this->url->link('faq/faq', '', true);
 
 		return $this->load->view('common/menu', $data);
 	}

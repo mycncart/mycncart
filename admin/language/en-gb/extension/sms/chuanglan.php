@@ -1,9 +1,8 @@
 <?php
 // Heading
-$_['heading_title']     = 'Chuang Lan China Main Land Sms';
+$_['heading_title']     = 'Chuang Lan China Main Land & International Sms';
 
 // Text
-$_['text_extension']   	= 'Extension';
 $_['text_sms']    	    = 'Sms';
 $_['text_success']      = 'Success: You have modified chuanglan sms!';
 $_['text_edit']         = 'Edit ChuangLan Sms';

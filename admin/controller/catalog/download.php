@@ -487,7 +487,7 @@ class ControllerCatalogDownload extends Controller {
 			$filter_data = array(
 				'filter_name' => $this->request->get['filter_name'],
 				'start'       => 0,
-				'limit'       => $this->config->get('config_limit_autocomplete')
+				'limit'       => 5
 			);
 
 			$results = $this->model_catalog_download->getDownloads($filter_data);
