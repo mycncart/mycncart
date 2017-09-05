@@ -48,14 +48,8 @@ function getOpenid($appid, $appsecret, $code){
 }
 
 
-function getWeiXinUserInfo($APPID, $APPSECRET, $openid){
-	$TOKEN_URL="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$APPID."&secret=".$APPSECRET;
-
-	$json=file_get_contents($TOKEN_URL);
-	$result=json_decode($json);
-
-	$ACC_TOKEN=$result->access_token;
-	$USER_URL = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=' . $ACC_TOKEN . '&openid=' . $openid . '&lang=zh_CN';
+function getWeiXinUserInfo($APPID, $APPSECRET, $openid, $access_token){
+	$USER_URL = 'https://api.weixin.qq.com/sns/userinfo?access_token=' . $access_token . '&openid=' . $openid . '&lang=zh_CN';
 
 	$wxuser_json = file_get_contents($USER_URL);
 	$result = json_decode($wxuser_json,true);

@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']    = 'OpenCart 扩展商城 API';
+$_['heading_title']    = 'OpenCart/MyCnCart 扩展商城 API';
 
 // Text
 $_['text_success']     = '成功: 已修改 API 信息！';

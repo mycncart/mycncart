@@ -278,13 +278,13 @@ class ControllerCustomerCustomer extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'name';
+			$sort = 'c.date_added';
 		}
 
 		if (isset($this->request->get['order'])) {
 			$order = $this->request->get['order'];
 		} else {
-			$order = 'ASC';
+			$order = 'DESC';
 		}
 
 		if (isset($this->request->get['page'])) {
@@ -1427,7 +1427,7 @@ class ControllerCustomerCustomer extends Controller {
 				'filter_email'     => $filter_email,
 				'filter_affiliate' => $filter_affiliate,
 				'start'            => 0,
-				'limit'            => 5
+				'limit'       => $this->config->get('config_limit_autocomplete')
 			);
 
 			$results = $this->model_customer_customer->getCustomers($filter_data);

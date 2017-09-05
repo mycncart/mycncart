@@ -6,18 +6,18 @@
     {% endfor %} 
   </ul>
   <div class="row">{{ column_left }} 
-    {% if column_left  and  column_right %} 
-    class  'col-sm-6' 
-    {% elseif  column_left  or  column_right %} 
-    class  'col-sm-9' 
-    {% else %}   
-    class  'col-sm-12' 
-    {% endif %} 
-    <div id="content" class="{{ class }}">{{ content_top }} 
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
       <h1 class="text-center">{{ heading_title }}</h1>
       <div class="text-center">
         <p>
-          <img alt="微信扫码支付" src="http://paysdk.weixin.qq.com/example/qrcode.php?data={{ urlencode(code_url) }}" style="width:150px;height:150px;">
+          <img alt="微信扫码支付" src="http://paysdk.weixin.qq.com/example/qrcode.php?data={{ qrcode_url }}" style="width:150px;height:150px;">
         </p>
       </div>
       {{ content_bottom }} 

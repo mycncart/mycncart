@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']    = 'OpenCart 擴充模組市集 API';
+$_['heading_title']    = 'OpenCart/MyCnCart 擴充模組市集 API';
 
 // Text
 $_['text_success']     = '成功：您已更新擴充模組市集 API 模組!';

@@ -49,7 +49,7 @@ class ControllerExtensionPaymentWxPay extends Controller {
 		
 		$item_name = $this->config->get('config_name');
 		
-		$fullname = $order_info['payment_fullname'];
+		$fullname = $order_info['payment_firstname'];
 		
 		$this->load->model('account/order');
 
@@ -208,8 +208,8 @@ class ControllerExtensionPaymentWxPay extends Controller {
 		
 		$notify->Handle(false);
 		
-		$getxml = $GLOBALS['HTTP_RAW_POST_DATA'];
-		//$getxml = file_get_contents('php://input');
+		//$getxml = $GLOBALS['HTTP_RAW_POST_DATA'];
+		$getxml = file_get_contents('php://input');
 		
 		libxml_disable_entity_loader(true);
 		
@@ -280,13 +280,6 @@ class ControllerExtensionPaymentWxPay extends Controller {
 					unset($this->session->data['voucher']);
 					unset($this->session->data['vouchers']);
 					unset($this->session->data['totals']);
-					if(isset($this->session->data['cs_shipfrom'])) {
-						unset($this->session->data['cs_shipfrom']);
-					}
-					
-					if(isset($this->sesssion->data['personal_card'])) {
-						unset($this->sesssion->data['personal_card']);
-					}
 				
 					
 				}else{

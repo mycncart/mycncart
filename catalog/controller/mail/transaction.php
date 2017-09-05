@@ -7,7 +7,7 @@ class ControllerMailTransaction extends Controller {
 		
 		$customer_info = $this->model_account_customer->getCustomer($args[0]);
 
-		if ($customer_info) {
+		if (filter_var($customer_info['email'], FILTER_VALIDATE_EMAIL)) {
 			$data['text_received'] = sprintf($this->language->get('text_received'), $this->config->get('config_name'));
 			$data['text_amount'] = $this->language->get('text_amount');
 			$data['text_total'] = $this->language->get('text_total');

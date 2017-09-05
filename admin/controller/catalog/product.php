@@ -1266,7 +1266,7 @@ class ControllerCatalogProduct extends Controller {
 				'filter_name'  => $filter_name,
 				'filter_model' => $filter_model,
 				'start'        => 0,
-				'limit'        => $limit
+				'limit'       => $this->config->get('config_limit_autocomplete')
 			);
 
 			$results = $this->model_catalog_product->getProducts($filter_data);

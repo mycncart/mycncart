@@ -308,7 +308,7 @@ function write_config_files($options) {
 	$output .= 'define(\'DB_PORT\', \'' . addslashes($options['db_port']) . '\');' . "\n";
 
 	$output .= '// MyCnCart API' . "\n";
-	$output .= 'define(\'OPENCART_SERVER\', \'https://www.opencart.com/\');' . "\n";
+	$output .= 'define(\'MYCNCART_SERVER\', \'https://www.opencart.com/\');' . "\n";
 
 
 	$file = fopen(DIR_MYCNCART . 'admin/config.php', 'w');

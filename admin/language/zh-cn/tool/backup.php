@@ -4,6 +4,7 @@ $_['heading_title']    = '备份 / 恢复';
 
 // Text
 $_['text_success']     = '成功：已成功导入数据库！';
+$_['text_edit']        = '备份 / 恢复 - (在线教程: <a href="http://www.mycncart.com/blog-139.html" target="_blank">http://www.mycncart.com/blog-139.html</a>)';
 
 // Entry
 $_['entry_progress']   = '进程';

@@ -57,24 +57,15 @@ class ControllerInstallStep2 extends Controller {
 		// catalog config
 		if (!is_file(DIR_MYCNCART . 'config.php')) {
 			$data['error_catalog_config'] = $this->language->get('error_missing');
+		} elseif (!is_writable(DIR_MYCNCART . 'config.php')) {
+			$data['error_catalog_config'] = $this->language->get('error_unwritable');		
 		} else {
 			$data['error_catalog_config'] = '';
 		}
-		
-		if (!is_writable(DIR_MYCNCART . 'config.php')) {
-			$data['error_catalog'] = $this->language->get('error_unwritable');
-		} else {
-			$data['error_catalog'] = '';
-		}
-
 		// admin configs
 		if (!is_file(DIR_MYCNCART . 'admin/config.php')) {
 			$data['error_admin_config'] = $this->language->get('error_missing');
-		} else {
-			$data['error_admin_config_admin'] = '';
-		}
-		
-		if (!is_writable(DIR_MYCNCART . 'admin/config.php')) {
+		} elseif (!is_writable(DIR_MYCNCART . 'admin/config.php')) {
 			$data['error_admin_config'] = $this->language->get('error_unwritable');
 		} else {
 			$data['error_admin_config'] = '';

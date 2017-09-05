@@ -30,7 +30,7 @@ $_['text_reviews']       = '评论';
 $_['text_compatibility'] = '兼容性';
 $_['text_downloaded']    = '已下载';
 $_['text_price']         = '价格';
-$_['text_partner']       = '由 OpenCart 合作者开发';
+$_['text_partner']       = '由 OpenCart/MyCnCart 合作者开发';
 $_['text_support']       = '12 个月免费支持';
 $_['text_documentation'] = '包含文档';
 $_['text_sales']         = '促销';
@@ -61,7 +61,7 @@ $_['button_reply']       = '回复';
 
 // Error
 $_['error_permission']   = '警告: 无权限修改扩展功能！';
-$_['error_opencart']     = '警告: 需要输入 OpenCart API 信息以进行购买操作！';
+$_['error_opencart']     = '警告: 需要输入 OpenCa/MyCnCartrt API 信息以进行购买操作！';
 $_['error_install']      = '正在安装扩展功能中，请耐心等待。!';
 $_['error_purchase']     = '无法购买扩展功能!';
 $_['error_download']     = '无法下载扩展功能!';

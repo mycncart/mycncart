@@ -23,30 +23,48 @@ class ControllerMailAffiliate extends Controller {
 			$data['approval'] = ($this->config->get('config_affiliate_approval') || $customer_group_info['approval']);
 		} else {
 			$data['approval'] = '';
-		}		
-		
-		$data['login'] = $this->url->link('affiliate/login', '', true);
-		$data['store'] = html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8');
-
-		$mail = new Mail($this->config->get('config_mail_engine'));
-		$mail->parameter = $this->config->get('config_mail_parameter');
-		$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
-		$mail->smtp_username = $this->config->get('config_mail_smtp_username');
-		$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
-		$mail->smtp_port = $this->config->get('config_mail_smtp_port');
-		$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-
-		if ($this->customer->isLogged()) {
-			$mail->setTo($this->customer->getEmail());
-		} else {
-			$mail->setTo($args[1]['email']);
 		}
 		
-		$mail->setFrom($this->config->get('config_email'));
-		$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
-		$mail->setSubject(sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')));
-		$mail->setText($this->load->view('mail/affiliate', $data));
-		$mail->send();
+		if ($this->customer->isLogged()) {
+				if (filter_var($this->customer->getEmail(), FILTER_VALIDATE_EMAIL)) {
+					$can_send_email = true;
+				} else {
+					$can_send_email = false;
+				}
+			} else {
+				if (filter_var($args[1]['email'], FILTER_VALIDATE_EMAIL)) {
+					$can_send_email = true;
+				} else {
+					$can_send_email = false;
+				}
+			}
+		
+		if ($can_send_email) {		
+		
+			$data['login'] = $this->url->link('affiliate/login', '', true);
+			$data['store'] = html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8');
+	
+			$mail = new Mail($this->config->get('config_mail_engine'));
+			$mail->parameter = $this->config->get('config_mail_parameter');
+			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+			$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+			$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+			$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+	
+			if ($this->customer->isLogged()) {
+				$mail->setTo($this->customer->getEmail());
+			} else {
+				$mail->setTo($args[1]['email']);
+			}
+			
+			$mail->setFrom($this->config->get('config_email'));
+			$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject(sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')));
+			$mail->setText($this->load->view('mail/affiliate', $data));
+			$mail->send();
+		
+		}
  	}
 	
 	public function alert(&$route, &$args, &$output) {

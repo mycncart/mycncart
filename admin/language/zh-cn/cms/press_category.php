@@ -4,7 +4,7 @@ $_['heading_title']          = '新闻分类';
 
 // Text
 $_['text_success']           = '成功: 已经修改新闻分类！';
-$_['text_list']              = '新闻分类列表';
+$_['text_list']              = '新闻分类列表 - (在线教程: <a href="http://www.mycncart.com/blog-42.html" target="_blank">http://www.mycncart.com/blog-42.html</a>)';
 $_['text_add']               = '添加新闻分类';
 $_['text_edit']              = '编辑新闻分类';
 $_['text_default']           = '默认';

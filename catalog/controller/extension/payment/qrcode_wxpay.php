@@ -147,8 +147,8 @@ class ControllerExtensionPaymentQrcodeWxPay extends Controller {
 			$this->log->write('QrcodeWxPay :: Two ');
 		}
 		
-		$getxml = $GLOBALS['HTTP_RAW_POST_DATA'];
-		
+		//$getxml = $GLOBALS['HTTP_RAW_POST_DATA'];
+		$getxml = file_get_contents('php://input');
 		
 		
 		libxml_disable_entity_loader(true);
@@ -220,13 +220,7 @@ class ControllerExtensionPaymentQrcodeWxPay extends Controller {
 					unset($this->session->data['voucher']);
 					unset($this->session->data['vouchers']);
 					unset($this->session->data['totals']);
-					if(isset($this->session->data['cs_shipfrom'])) {
-						unset($this->session->data['cs_shipfrom']);
-					}
 					
-					if(isset($this->sesssion->data['personal_card'])) {
-						unset($this->sesssion->data['personal_card']);
-					}
 					
 					if(isset($this->sesssion->data['code_url'])) {
 						unset($this->sesssion->data['code_url']);

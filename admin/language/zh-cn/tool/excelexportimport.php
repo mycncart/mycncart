@@ -1,18 +1,19 @@
 <?php
 // Heading
-$_['heading_title']     			= 'Excel格式导入导出数据';
+$_['heading_title']     			= 'Excel格式导入导出商品数据';
 
 // Text
-$_['text_success']      			= '成功: 已导入分类和商品数据!';
+$_['text_success']      			= '成功: 已导入商品数据!';
 $_['text_nochange']     			= '数据没有任何更新。';
 $_['text_log_details']  			= '请查看系统里面的日志错误';
 $_['text_select_file_to_import']  	= '选择导入文件';
 $_['text_select_type_to_export']  	= '选择导出类型';
+$_['text_edit']  				    = 'Excel格式导入导出商品数据 - (在线教程: <a href="http://www.mycncart.com/blog-141.html" target="_blank">http://www.mycncart.com/blog-141.html</a>)';
 
 // Entry
-$_['entry_restore']     			= '从excel文件导入数据';
-$_['entry_description'] 			= '使用Excel表格管理您的数据';
-$_['entry_exportway_sel'] 			= '选择导出数据的方式';
+$_['entry_restore']     			= '从excel文件导入商品数据';
+$_['entry_description'] 			= '使用Excel表格管理您的商品数据';
+$_['entry_exportway_sel'] 			= '选择导出商品数据的方式';
 $_['entry_start_id'] 				= '商品起始ID号';
 $_['entry_end_id'] 					= '商品终止ID号';
 $_['entry_start_index'] 			= '每批次商品个数';

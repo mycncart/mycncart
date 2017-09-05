@@ -1,0 +1,168 @@
+{{ header }} {{ column_left }} 
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-pp-std-uk" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %} 
+        <li><a href="{{ breadcrumb.href }} ">{{ breadcrumb.text }}</a></li>
+        {% endfor %} 
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error.error_warning %} 
+    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error.error_warning }} 
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %} 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-pp-std-uk" class="form-horizontal">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab-general" data-toggle="tab">{{ tab_general }}</a></li>
+            <li><a href="#tab-status" data-toggle="tab">{{ tab_order_status }}</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab-general">
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="entry-wxpay_web-mchid"><span data-toggle="tooltip" title="{{ help_mchid }}">{{ entry_wxpay_web_mchid }}</span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="payment_wxpay_web_mchid" value="{{ payment_wxpay_web_mchid }}" placeholder="{{ entry_wxpay_web_mchid }}" id="entry-wxpay_web-mchid" class="form-control"/>
+                  {% if error_wxpay_web_mchid %} 
+                  <div class="text-danger">{{ error_wxpay_web_mchid }}</div>
+                  {% endif %} 
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="entry-wxpay_web-appid"><span data-toggle="tooltip" title="{{ help_appid }}">{{ entry_wxpay_web_appid }}</span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="payment_wxpay_web_appid" value="{{ payment_wxpay_web_appid }}" placeholder="{{ entry_wxpay_web_appid }}" id="entry-wxpay_web-appid" class="form-control"/>
+                  {% if error_wxpay_web_appid %} 
+                  <div class="text-danger">{{ error_wxpay_web_appid }}</div>
+                  {% endif %} 
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="entry-wxpay_web-key"><span data-toggle="tooltip" title="{{ help_key }}">{{ entry_wxpay_web_key }}</span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="payment_wxpay_web_key" value="{{ payment_wxpay_web_key }}" placeholder="{{ entry_wxpay_web_key }}" id="entry-wxpay_web-key" class="form-control"/>
+                  {% if error_wxpay_web_key %} 
+                  <div class="text-danger">{{ error_wxpay_web_key }}</div>
+                  {% endif %} 
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="entry-wxpay_web-appsecret"><span data-toggle="tooltip" title="{{ help_appsecret }}">{{ entry_wxpay_web_appsecret }}</span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="payment_wxpay_web_appsecret" value="{{ payment_wxpay_web_appsecret }}" placeholder="{{ entry_wxpay_web_appsecret }}" id="entry-wxpay_web-appsecret" class="form-control"/>
+                  {% if error_wxpay_web_appsecret %} 
+                  <div class="text-danger">{{ error_wxpay_web_appsecret }}</div>
+                  {% endif %} 
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-total"><span data-toggle="tooltip" title="{{ help_total }}">{{ entry_total }}</span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="payment_wxpay_web_total" value="{{ payment_wxpay_web_total }}" placeholder="{{ entry_total }}" id="input-total" class="form-control"/>
+                </div>
+              </div>
+              
+             
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-wxpay_web-sort-order">{{ entry_wxpay_web_sort_order }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="payment_wxpay_web_sort_order" value="{{ payment_wxpay_web_sort_order }}" placeholder="{{ entry_wxpay_web_sort_order }}" id="input-wxpay_web-sort-order" class="form-control"/>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-geo-zone">{{ entry_geo_zone }}</label>
+                <div class="col-sm-10">
+                  <select name="payment_wxpay_web_geo_zone_id" id="input-geo-zone" class="form-control">
+                    <option value="0">{{ text_all_zones }}</option>
+                    {% for geo_zone in geo_zones %} 
+                    {% if geo_zone.geo_zone_id  ==  payment_wxpay_web_geo_zone_id %} 
+                    <option value="{{ geo_zone.geo_zone_id }}" selected="selected">{{ geo_zone.name }}</option>
+                    {% else %}   
+                    <option value="{{ geo_zone.geo_zone_id }}">{{ geo_zone.name }}</option>
+                    {% endif %} 
+                    {% endfor %} 
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-status">{{ entry_wxpay_web_status }}</label>
+                <div class="col-sm-10">
+                  <select name="payment_wxpay_web_status" id="input-wxpay_web-status" class="form-control">
+                    {% if payment_wxpay_web_status %} 
+                    <option value="1" selected="selected">{{ text_enabled }}</option>
+                    <option value="0">{{ text_disabled }}</option>
+                    {% else %}   
+                    <option value="1">{{ text_enabled }}</option>
+                    <option value="0" selected="selected">{{ text_disabled }}</option>
+                    {% endif %} 
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-debug"><span data-toggle="tooltip" title="{{ help_log }}">{{ entry_log }}</span></label>
+                <div class="col-sm-10">
+                  <select name="payment_wxpay_web_log" id="input-debug" class="form-control">
+                    {% if payment_wxpay_web_log %} 
+                    <option value="1" selected="selected">{{ text_enabled }}</option>
+                    <option value="0">{{ text_disabled }}</option>
+                    {% else %}   
+                    <option value="1">{{ text_enabled }}</option>
+                    <option value="0" selected="selected">{{ text_disabled }}</option>
+                    {% endif %} 
+                  </select>
+                </div>
+              </div>
+              
+            </div>
+            
+            
+            
+            <div class="tab-pane" id="tab-status">
+              
+             
+             
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-total"><span data-toggle="tooltip" title="{{ help_trade_success }}">{{ entry_trade_success_status }}</span></label>
+                <div class="col-sm-10">
+                  <select name="payment_wxpay_web_trade_success_status_id" class="form-control">
+                    {% for order_status in order_statuses %} 
+                    {% if order_status.order_status_id  ==  payment_wxpay_web_trade_success_status_id %} 
+                    <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
+                    {% else %}   
+                    <option value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
+                    {% endif %} 
+                    {% endfor %} 
+                  </select>
+                </div>
+              </div>
+              
+              
+            </div>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }} 

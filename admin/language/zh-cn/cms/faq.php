@@ -4,7 +4,7 @@ $_['heading_title']          = '常见问题与解答(FAQs)';
 
 // Text
 $_['text_success']           = '成功: 已修改常见问题与解答(FAQs)!';
-$_['text_list']              = '常见问题与解答(FAQs)列表';
+$_['text_list']              = '常见问题与解答(FAQs)列表 - (在线教程: <a href="http://www.mycncart.com/blog-43.html" target="_blank">http://www.mycncart.com/blog-43.html</a>)';
 $_['text_add']               = '新增常见问题与解答(FAQs)';
 $_['text_edit']              = '编辑常见问题与解答(FAQs)';
 $_['text_default']           = '默认';

@@ -37,6 +37,8 @@ class ControllerCheckoutQrcodeWxPaySuccess extends Controller {
 			$data['redirect'] = $this->url->link('checkout/checkout');
 		}
 		
+		$data['qrcode_url'] = urlencode($data['code_url']);
+		
 		$data['order_id'] = $order_id;
 		$data['ajax_check_order_status'] = $this->url->link('checkout/qrcode_wxpay_success/check', '', true);
 		

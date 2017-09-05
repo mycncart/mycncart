@@ -16,6 +16,12 @@ class ControllerAccountLogout extends Controller {
 			unset($this->session->data['reward']);
 			unset($this->session->data['voucher']);
 			unset($this->session->data['vouchers']);
+			
+			//remember weixin click logout
+			$this->load->helper('mobile');
+			if(is_weixin()) {
+				$this->response->redirect($this->url->link('account/account', '', true));
+			}
 
 			$this->response->redirect($this->url->link('account/logout', '', true));
 		}

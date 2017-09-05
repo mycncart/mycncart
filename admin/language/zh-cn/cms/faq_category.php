@@ -4,7 +4,7 @@ $_['heading_title']          = '问题分类';
 
 // Text
 $_['text_success']           = '成功: 已修改问题分类！';
-$_['text_list']              = '问题分类列表';
+$_['text_list']              = '问题分类列表 - (在线教程: <a href="http://www.mycncart.com/blog-43.html" target="_blank">http://www.mycncart.com/blog-43.html</a>)';
 $_['text_add']               = '添加问题分类';
 $_['text_edit']              = '编辑问题分类';
 $_['text_default']           = '默认';

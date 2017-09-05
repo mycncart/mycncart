@@ -40,6 +40,9 @@
     </div>
     <hr>
     <p>{{ powered }}</p>
+	{% if miit %}
+    <p><a target="_blank" href="http://www.miitbeian.gov.cn/">{{ miit }}</a></p>
+    {% endif %}
   </div>
 </footer>
 {% for script in scripts %}

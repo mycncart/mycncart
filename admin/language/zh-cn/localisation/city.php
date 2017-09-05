@@ -5,7 +5,7 @@ $_['heading_title']          = '城市';
 
 // Text
 $_['text_success']           = '成功: 已修改城市！';
-$_['text_list']              = '城市列表';
+$_['text_list']              = '城市列表 - (在线教程: <a href="http://www.mycncart.com/blog-76.html" target="_blank">http://www.mycncart.com/blog-76.html</a>)';
 $_['text_add']               = '添加城市';
 $_['text_edit']              = '编辑城市';
 

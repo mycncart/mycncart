@@ -30,6 +30,7 @@ class ControllerCommonFooter extends Controller {
 		$data['newsletter'] = $this->url->link('account/newsletter', '', true);
 
 		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
+		$data['miit'] = $this->config->get('config_miit');
 
 		// Whos Online
 		if ($this->config->get('config_customer_online')) {

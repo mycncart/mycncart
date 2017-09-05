@@ -386,8 +386,54 @@ class ModelCheckoutOrder extends Model {
 					$this->model_account_customer->deleteTransactionByOrderId($order_id);
 				}
 			}
+			
+			// If order status is 0 then becomes greater than 0 send sms
+			if (!$order_info['order_status_id'] && $order_status_id) {
+			
+				//Send sms to admin
+				$language = new Language($order_info['language_code']);
+				$language->load($order_info['language_code']);
+				$language->load('sms/order');
+				if ($this->config->get($this->config->get('config_sms') . '_status') && in_array('order_admin', (array)$this->config->get('config_sms_page')) && ($this->config->get('config_sms_telephone'))) {
+					$phone = $this->config->get('config_sms_telephone');
+					if (is_numeric($phone) && (utf8_strlen($phone) == 11)) {
+						$message = sprintf($language->get('text_order_admin'), $order_id);
+						$this->send_message($phone, $message);
+					}
+				}
+				
+				//Send sms to customer
+				if ($this->config->get($this->config->get('config_sms') . '_status') && in_array('order_customer', (array)$this->config->get('config_sms_page'))) {
+					$phone = $customer_info['telephone'];
+					if (is_numeric($phone) && (utf8_strlen($phone) == 11)) {
+						$message = sprintf($language->get('text_order_customer'), $order_id);
+						$this->send_message($phone, $message);
+					}
+				}
+				
+			}
+			
 
 			$this->cache->delete('product');
 		}
+	}
+	
+	private function send_message($phone, $message) {
+		
+		if (defined('SMS_ACCOUNT')) {
+			
+		} else {
+			define('SMS_ACCOUNT', $this->config->get('chuanglan_account'));
+			define('SMS_PASSWORD', $this->config->get('chuanglan_password'));
+		}
+		
+		require_once(DIR_SYSTEM.'library/sms/chuanglansmsapi.php');
+				
+		$chuanglan = new ChuanglanSmsApi();
+		
+		$result = $chuanglan->sendSMS(trim($phone), $message);
+		$result = $chuanglan->execResult($result);
+		
+		
 	}
 }
