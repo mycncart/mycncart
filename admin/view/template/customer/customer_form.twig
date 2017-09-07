@@ -967,36 +967,18 @@
     html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][firstname]" value="" placeholder="{{ entry_firstname }}" id="input-firstname' + address_row + '" class="form-control" /></div>';
     html += '  </div>';
 
-    html += '  <div class="form-group required">';
-    html += '    <label class="col-sm-2 control-label" for="input-lastname' + address_row + '">{{ entry_lastname }}</label>';
-    html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][lastname]" value="" placeholder="{{ entry_lastname }}" id="input-lastname' + address_row + '" class="form-control" /></div>';
+    html += '    <input type="hidden" name="address[' + address_row + '][lastname]" value="" placeholder="{{ entry_lastname }}" id="input-lastname' + address_row + '" class="form-control" />';
+	
+	html += '  <div class="form-group required">';
+    html += '    <label class="col-sm-2 control-label" for="input-shipping-telephone' + address_row + '">{{ entry_shipping_telephone }}</label>';
+    html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][shipping_telephone]" value="" placeholder="{{ entry_shipping_telephone }}" id="input-shipping-telephone' + address_row + '" class="form-control" /></div>';
     html += '  </div>';
 
     html += '  <div class="form-group">';
     html += '    <label class="col-sm-2 control-label" for="input-company' + address_row + '">{{ entry_company }}</label>';
     html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][company]" value="" placeholder="{{ entry_company }}" id="input-company' + address_row + '" class="form-control" /></div>';
     html += '  </div>';
-
-    html += '  <div class="form-group required">';
-    html += '    <label class="col-sm-2 control-label" for="input-address-1' + address_row + '">{{ entry_address_1 }}</label>';
-    html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][address_1]" value="" placeholder="{{ entry_address_1 }}" id="input-address-1' + address_row + '" class="form-control" /></div>';
-    html += '  </div>';
-
-    html += '  <div class="form-group">';
-    html += '    <label class="col-sm-2 control-label" for="input-address-2' + address_row + '">{{ entry_address_2 }}</label>';
-    html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][address_2]" value="" placeholder="{{ entry_address_2 }}" id="input-address-2' + address_row + '" class="form-control" /></div>';
-    html += '  </div>';
-
-    html += '  <div class="form-group required">';
-    html += '    <label class="col-sm-2 control-label" for="input-city' + address_row + '">{{ entry_city }}</label>';
-    html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][city]" value="" placeholder="{{ entry_city }}" id="input-city' + address_row + '" class="form-control" /></div>';
-    html += '  </div>';
-
-    html += '  <div class="form-group required">';
-    html += '    <label class="col-sm-2 control-label" for="input-postcode' + address_row + '">{{ entry_postcode }}</label>';
-    html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][postcode]" value="" placeholder="{{ entry_postcode }}" id="input-postcode' + address_row + '" class="form-control" /></div>';
-    html += '  </div>';
-
+	
     html += '  <div class="form-group required">';
     html += '    <label class="col-sm-2 control-label" for="input-country' + address_row + '">{{ entry_country }}</label>';
     html += '    <div class="col-sm-10"><select name="address[' + address_row + '][country_id]" id="input-country' + address_row + '" onchange="country(this, \'' + address_row + '\', \'0\');" class="form-control">';
@@ -1007,9 +989,36 @@
       html += '      </select></div>';
     html += '  </div>';
 
-    html += '  <div class="form-group required">';
-    html += '    <label class="col-sm-2 control-label" for="input-zone' + address_row + '">{{ entry_zone }}</label>';
-    html += '    <div class="col-sm-10"><select name="address[' + address_row + '][zone_id]" id="input-zone' + address_row + '" class="form-control"><option value="">{{ text_none }}</option></select></div>';
+	html += '  <div class="form-group required">';
+	html += '    <label class="col-sm-2 control-label" for="input-zone' + address_row + '">{{ entry_zone }}</label>';
+	html += '    <div class="col-sm-10"><select name="address[' + address_row + '][zone_id]" id="input-zone' + address_row + '"  onchange="zone(this, \'' + address_row + '\', \'0\');" class="form-control"><option value="">{{ text_none }}</option></select></div>';
+	html += '  </div>';
+	
+	html += '  <div class="form-group required" id="china-city' + address_row + '">';
+	html += '    <label class="col-sm-2 control-label" for="input-city' + address_row + '">{{ entry_city }}</label>';
+	html += '    <div class="col-sm-10"><select name="address[' + address_row + '][city_id]" id="input-city' + address_row + '"  onchange="city(this, \'' + address_row + '\', \'0\');" class="form-control"><option value="">{{ text_none }}</option></select></div>';
+	html += '  </div>';
+	
+	html += '  <div class="form-group required" id="china-district' + address_row + '">';
+	html += '    <label class="col-sm-2 control-label" for="input-district' + address_row + '">{{ entry_district }}</label>';
+	html += '    <div class="col-sm-10"><select name="address[' + address_row + '][district_id]" id="input-district' + address_row + '" class="form-control"><option value="">{{ text_none }}</option></select></div>';
+	html += '  </div>';
+
+	html += '  <div class="form-group required" id="world-city' + address_row + '">';
+	html += '    <label class="col-sm-2 control-label" for="input-city' + address_row + '">{{ entry_city }}</label>';
+	html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][city]" value="" placeholder="{{ entry_city }}" id="input-city' + address_row + '" class="form-control" /></div>';
+	html += '  </div>';
+	
+	html += '  <div class="form-group required">';
+    html += '    <label class="col-sm-2 control-label" for="input-address-1' + address_row + '">{{ entry_address_1 }}</label>';
+    html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][address_1]" value="" placeholder="{{ entry_address_1 }}" id="input-address-1' + address_row + '" class="form-control" /></div>';
+    html += '  </div>';
+
+    html += '    <input type="hidden" name="address[' + address_row + '][address_2]" value="" placeholder="{{ entry_address_2 }}" id="input-address-2' + address_row + '" class="form-control" />';
+	
+	html += '  <div class="form-group required">';
+    html += '    <label class="col-sm-2 control-label" for="input-postcode' + address_row + '">{{ entry_postcode }}</label>';
+    html += '    <div class="col-sm-10"><input type="text" name="address[' + address_row + '][postcode]" value="" placeholder="{{ entry_postcode }}" id="input-postcode' + address_row + '" class="form-control" /></div>';
     html += '  </div>';
 
     // Custom Fields

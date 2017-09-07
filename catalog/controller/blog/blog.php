@@ -85,7 +85,7 @@ class ControllerBlogBlog extends Controller {
 			$data['blog_id'] = $this->request->get['blog_id'];
 			
 			if($this->customer->isLogged()) {
-				$data['name'] = $this->customer->getFullName();
+				$data['name'] = $this->customer->getFirstName();
 			}else{
 				$data['name'] = '';
 			}
@@ -149,7 +149,7 @@ class ControllerBlogBlog extends Controller {
 			}
 
 			if ($this->customer->isLogged()) {
-				$data['customer_name'] = $this->customer->getFullName();
+				$data['customer_name'] = $this->customer->getFirstName();
 			} else {
 				$data['customer_name'] = '';
 			}
