@@ -266,11 +266,15 @@ class ControllerAccountRegister extends Controller {
 				if ($this->model_account_customer->getTotalCustomersByTelephone(trim($this->request->post['telephone']))) {
 					$this->error['telephone'] = $this->language->get('error_telephone_exists');
 				} else {
+					
 					// if sms code is not correct
-					$this->load->model('account/smsmobile');
-					if($this->model_account_smsmobile->verifySmsCode($this->request->post['telephone'], $this->request->post['sms_code']) == 0) {
-						$this->error['sms_code'] = $this->language->get('error_sms_code');
+					if ($this->config->get($this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
+						$this->load->model('account/smsmobile');
+						if($this->model_account_smsmobile->verifySmsCode($this->request->post['telephone'], $this->request->post['sms_code']) == 0) {
+							$this->error['sms_code'] = $this->language->get('error_sms_code');
+						}
 					}
+					
 				}
 				
 			}
