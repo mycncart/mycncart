@@ -626,30 +626,36 @@ class ControllerCmsPress extends Controller {
 				$this->error['title'][$language_id] = $this->language->get('error_title');
 			}
 
-			if (utf8_strlen($value['description']) < 1) {
-				$this->error['description'][$language_id] = $this->language->get('error_description');
-			}
-
 			if ((utf8_strlen($value['meta_title']) < 1) || (utf8_strlen($value['meta_title']) > 255)) {
 				$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
 			}
 		}
 		
-		if (utf8_strlen($this->request->post['keyword']) > 0) {
-			$this->load->model('catalog/url_alias');
+		if ($this->request->post['press_seo_url']) {
+			$this->load->model('design/seo_url');
+			
+			foreach ($this->request->post['press_seo_url'] as $store_id => $language) {
+				foreach ($language as $language_id => $keyword) {
+					if (trim($keyword)) {
+						if (count(array_keys($language, $keyword)) > 1) {
+							$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_unique');
+						}
 
-			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['keyword']);
-
-			if ($url_alias_info && isset($this->request->get['press_id']) && $url_alias_info['query'] != 'press_id=' . $this->request->get['press_id']) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-			}
-
-			if ($url_alias_info && !isset($this->request->get['press_id'])) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
+						$seo_urls = $this->model_design_seo_url->getSeoUrlsByKeyword($keyword);
+	
+						foreach ($seo_urls as $seo_url) {
+							if (($seo_url['store_id'] == $store_id) && (!isset($this->request->get['press_id']) || ($seo_url['query'] != 'press_id=' . $this->request->get['press_id']))) {		
+								$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_keyword');
+				
+								break;
+							}
+						}
+					}
+				}
 			}
 		}
 
-		
+		print_r($this->error);
 
 		if ($this->error && !isset($this->error['warning'])) {
 			$this->error['warning'] = $this->language->get('error_warning');

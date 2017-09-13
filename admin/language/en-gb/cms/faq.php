@@ -38,3 +38,4 @@ $_['error_permission']       = 'Warning: You do not have permission to modify FA
 $_['error_title']            = 'FAQs Title must be greater than 3 and less than 255 characters!';
 $_['error_meta_title']       = 'Meta Title must be greater than 3 and less than 255 characters!';
 $_['error_keyword']          = 'SEO URL already in use!';
+$_['error_unique']           = 'SEO URL must be unique!';
