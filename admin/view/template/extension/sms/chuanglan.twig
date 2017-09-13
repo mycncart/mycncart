@@ -31,7 +31,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-account">{{ entry_account }}</label>
             <div class="col-sm-10">
-              <input type="text" name="chuanglan_account" value="{{ chuanglan_account }}" placeholder="{{ entry_account }}" id="input-account" class="form-control" />
+              <input type="text" name="sms_chuanglan_account" value="{{ sms_chuanglan_account }}" placeholder="{{ entry_account }}" id="input-account" class="form-control" />
               {% if error_account %} 
                   <div class="text-danger">{{ error_account }}</div>
               {% endif %} 
@@ -41,7 +41,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-password">{{ entry_password }}</label>
             <div class="col-sm-10">
-              <input type="text" name="chuanglan_password" value="{{ chuanglan_password }}" placeholder="{{ entry_password }}" id="input-password" class="form-control" />
+              <input type="text" name="sms_chuanglan_password" value="{{ sms_chuanglan_password }}" placeholder="{{ entry_password }}" id="input-password" class="form-control" />
               {% if error_password %} 
                   <div class="text-danger">{{ error_password }}</div>
               {% endif %} 
@@ -51,8 +51,8 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
             <div class="col-sm-10">
-              <select name="chuanglan_status" id="input-status" class="form-control">
-                {% if chuanglan_status == 1 %} 
+              <select name="sms_chuanglan_status" id="input-status" class="form-control">
+                {% if sms_chuanglan_status == 1 %} 
                 <option value="1" selected="selected">{{ text_enabled }}</option>
                 <option value="0">{{ text_disabled }}</option>
                 {% else %}   

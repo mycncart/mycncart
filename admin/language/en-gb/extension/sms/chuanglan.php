@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']     = 'Chuang Lan China Main Land & International Sms';
+$_['heading_title']     = 'Chuang Lan China Main Land Sms';
 
 // Text
 $_['text_sms']    	    = 'Sms';

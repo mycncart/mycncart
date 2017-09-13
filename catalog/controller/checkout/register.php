@@ -53,7 +53,7 @@ class ControllerCheckoutRegister extends Controller {
 		
 		//SMS
 		
-		if ($this->config->get($this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
+		if ($this->config->get('sms_' . $this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
 			$data['sms_gateway'] = $this->config->get('config_sms');
 		} else {
 			$data['sms_gateway'] = '';

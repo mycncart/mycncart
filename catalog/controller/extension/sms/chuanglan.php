@@ -42,8 +42,8 @@ class ControllerExtensionSmsChuangLan extends Controller {
 				
 				require_once(DIR_SYSTEM.'library/sms/chuanglansmsapi.php');
 				
-				define('SMS_ACCOUNT', $this->config->get('chuanglan_account'));
-				define('SMS_PASSWORD', $this->config->get('chuanglan_password'));
+				define('SMS_ACCOUNT', $this->config->get('sms_chuanglan_account'));
+				define('SMS_PASSWORD', $this->config->get('sms_chuanglan_password'));
 				
 				$chuanglan = new ChuanglanSmsApi();
 				

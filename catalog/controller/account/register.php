@@ -159,7 +159,7 @@ class ControllerAccountRegister extends Controller {
 		
 		//SMS
 		
-		if ($this->config->get($this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
+		if ($this->config->get('sms_' . $this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
 			$data['sms_gateway'] = $this->config->get('config_sms');
 		} else {
 			$data['sms_gateway'] = '';
@@ -268,7 +268,7 @@ class ControllerAccountRegister extends Controller {
 				} else {
 					
 					// if sms code is not correct
-					if ($this->config->get($this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
+					if ($this->config->get('sms_' . $this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
 						$this->load->model('account/smsmobile');
 						if($this->model_account_smsmobile->verifySmsCode($this->request->post['telephone'], $this->request->post['sms_code']) == 0) {
 							$this->error['sms_code'] = $this->language->get('error_sms_code');

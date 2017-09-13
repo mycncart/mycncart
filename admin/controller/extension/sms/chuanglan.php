@@ -10,7 +10,7 @@ class ControllerExtensionSmsChuangLan extends Controller {
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('chuanglan', $this->request->post);
+			$this->model_setting_setting->editSetting('sms_chuanglan', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -58,7 +58,7 @@ class ControllerExtensionSmsChuangLan extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_sms'),
-			'href' => $this->url->link('extension/extension', 'user_token=' . $this->session->data['user_token'], true)
+			'href' => $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
@@ -68,24 +68,24 @@ class ControllerExtensionSmsChuangLan extends Controller {
 
 		$data['action'] = $this->url->link('extension/sms/chuanglan', 'user_token=' . $this->session->data['user_token'], true);
 
-		$data['cancel'] = $this->url->link('extension/extension', 'user_token=' . $this->session->data['user_token'], true);
+		$data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'], true);
 
-		if (isset($this->request->post['chuanglan_account'])) {
-			$data['chuanglan_account'] = $this->request->post['chuanglan_account'];
+		if (isset($this->request->post['sms_chuanglan_account'])) {
+			$data['sms_chuanglan_account'] = $this->request->post['sms_chuanglan_account'];
 		} else {
-			$data['chuanglan_account'] = $this->config->get('chuanglan_account');
+			$data['sms_chuanglan_account'] = $this->config->get('sms_chuanglan_account');
 		}
 		
-		if (isset($this->request->post['chuanglan_password'])) {
-			$data['chuanglan_password'] = $this->request->post['chuanglan_password'];
+		if (isset($this->request->post['sms_chuanglan_password'])) {
+			$data['sms_chuanglan_password'] = $this->request->post['sms_chuanglan_password'];
 		} else {
-			$data['chuanglan_password'] = $this->config->get('chuanglan_password');
+			$data['sms_chuanglan_password'] = $this->config->get('sms_chuanglan_password');
 		}
 		
-		if (isset($this->request->post['chuanglan_status'])) {
-			$data['chuanglan_status'] = $this->request->post['chuanglan_status'];
+		if (isset($this->request->post['sms_chuanglan_status'])) {
+			$data['sms_chuanglan_status'] = $this->request->post['sms_chuanglan_status'];
 		} else {
-			$data['chuanglan_status'] = $this->config->get('chuanglan_status');
+			$data['sms_chuanglan_status'] = $this->config->get('sms_chuanglan_status');
 		}
 
 		$data['header'] = $this->load->controller('common/header');
@@ -100,11 +100,11 @@ class ControllerExtensionSmsChuangLan extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 		
-		if (!$this->request->post['chuanglan_account']) {
+		if (!$this->request->post['sms_chuanglan_account']) {
 			$this->error['account'] = $this->language->get('error_account');
 		}
 		
-		if (!$this->request->post['chuanglan_password']) {
+		if (!$this->request->post['sms_chuanglan_password']) {
 			$this->error['password'] = $this->language->get('error_password');
 		}
 		
