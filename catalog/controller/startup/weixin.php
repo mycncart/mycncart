@@ -7,6 +7,13 @@ class ControllerStartupWeiXin extends Controller {
 		
 		if(is_weixin()) {
 			
+			//solve redirect error in weixin
+			if (isset($this->session->data['first_wechat_url'])) {
+				$wechat_url = $this->session->data['first_wechat_url'];
+			} else {
+				$this->session->data['first_wechat_url'] = $wechat_url;
+			}
+			
 			if (!$this->customer->isLogged()) {
 				 
 				if ($this->config->get('payment_wxpay_status')) {
@@ -44,7 +51,7 @@ class ControllerStartupWeiXin extends Controller {
 						} else {
 							
 							unset($this->session->data['weixin_openid']);
-							header('Location: '.$wechat_url);
+							$this->response->redirect($this->session->data['first_wechat_url']);
 							
 						}
 						 
@@ -88,6 +95,8 @@ class ControllerStartupWeiXin extends Controller {
 										unset($this->session->data['wishlist'][$key]);
 									}
 								}
+								
+								$this->response->redirect($this->session->data['first_wechat_url']);
 					
 								
 							}else{ //register
@@ -116,6 +125,8 @@ class ControllerStartupWeiXin extends Controller {
 							  unset($this->session->data['qq_nickname']);
 				  
 							  unset($this->session->data['guest']);
+							  
+							  $this->response->redirect($this->session->data['first_wechat_url']);
 							  
 							  //$this->response->redirect($this->url->link('account/account'));
 								
