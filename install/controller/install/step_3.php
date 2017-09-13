@@ -82,7 +82,7 @@ class ControllerInstallStep3 extends Controller {
 			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n\n";
 			
 			$output .= '// MyCnCart API' . "\n";
-			$output .= 'define(\'MYCNCART_SERVER\', \'https://www.mycncart.com/\');' . "\n";
+			$output .= 'define(\'OPENCART_SERVER\', \'https://www.opencart.com/\');' . "\n";
 
 			$file = fopen(DIR_MYCNCART . 'admin/config.php', 'w');
 
