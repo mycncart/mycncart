@@ -94,7 +94,7 @@ CREATE TABLE `mcc_api_session` (
 
 DROP TABLE IF EXISTS `mcc_attribute`;
 CREATE TABLE `mcc_attribute` (
-  `attribute_id` int(11) NOT NULL,
+  `attribute_id` int(11) NOT NULL AUTO_INCREMENT,
   `attribute_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`attribute_id`)
@@ -178,7 +178,7 @@ INSERT INTO `mcc_attribute_description` (`attribute_id`, `language_id`, `name`) 
 
 DROP TABLE IF EXISTS `mcc_attribute_group`;
 CREATE TABLE `mcc_attribute_group` (
-  `attribute_group_id` int(11) NOT NULL,
+  `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`attribute_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
