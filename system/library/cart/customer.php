@@ -194,8 +194,8 @@ class Customer {
 			}
 
 			$this->customer_id = $customer->row['customer_id'];
-			$this->firstname = $customer_query->row['firstname'];
-			$this->lastname = $customer_query->row['lastname'];
+			$this->firstname = $customer->row['firstname'];
+			$this->lastname = $customer->row['lastname'];
 			$this->email = $customer->row['email'];
 			$this->telephone = $customer->row['telephone'];
 			$this->newsletter = $customer->row['newsletter'];
