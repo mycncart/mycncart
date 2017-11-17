@@ -87,7 +87,7 @@ class ControllerAccountOrder extends Controller {
 
 	public function info() {
 		$this->load->language('account/order');
-
+		
 		if (isset($this->request->get['order_id'])) {
 			$order_id = $this->request->get['order_id'];
 		} else {
@@ -106,6 +106,8 @@ class ControllerAccountOrder extends Controller {
 
 		if ($order_info) {
 			$this->document->setTitle($this->language->get('text_order'));
+			
+			$data['text_order_id'] = $this->language->get('text_order_id');
 
 			$url = '';
 
