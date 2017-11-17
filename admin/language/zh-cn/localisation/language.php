@@ -29,7 +29,7 @@ $_['help_status']       = '在语言下拉项中隐藏/显示';
 // Error
 $_['error_permission']  = '警告: 无权限修改语言！';
 $_['error_exists']      = '警告: 已存在！';
-$_['error_name']        = '语言名称必须为3-32字符！';
+$_['error_name']        = '语言名称必须为 1 -32字符！';
 $_['error_code']        = '语言代码至少为2个字符！';
 $_['error_locale']      = '本地化必填！';
 $_['error_default']     = '警告: 不能删除此语言，该语言已经被关联为商店前台默认语言！';

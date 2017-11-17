@@ -28,7 +28,7 @@ $_['help_status']       = '是否在前台語系選擇中顯示';
 // Error
 $_['error_permission']  = '警告：您沒有權限更改語系！';
 $_['error_exists']      = '警告：您已新增過此語系!';
-$_['error_name']        = '語系名稱必須是 3 到 32 個字！';
+$_['error_name']        = '語系名稱必須是 1 到 32 個字！';
 $_['error_code']        = '語系代碼必須是 2 個字！';
 $_['error_locale']      = 'Locale 必須填寫!';
 $_['error_default']     = '警告：該語系不能刪除，因為它是商店前台的預設語系！';
