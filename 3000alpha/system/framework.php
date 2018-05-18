@@ -156,5 +156,6 @@ if ($config->has('action_pre_action')) {
 // 错误输出
 $route->dispatch(new Action($config->get('action_router')), new Action($config->get('action_error')));
 
+
 // 输出
 $response->output();
