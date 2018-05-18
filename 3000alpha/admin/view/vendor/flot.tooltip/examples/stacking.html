@@ -1,0 +1,97 @@
+<!doctype html>  
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>flot.tooltip plugin example page</title>
+    <meta name="author" content="@krzysu, myviews.pl">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
+    <script src="js/jquery.flot.js"></script>
+    <script src="js/jquery.flot.stack.js"></script>
+    <script src="../js/jquery.flot.tooltip.js"></script>
+    
+    <style type="text/css">
+        body {font-family: sans-serif; font-size: 16px; margin: 50px; max-width: 800px;}
+        #flotTip {}
+    </style>
+</head>
+
+
+<body>
+    <h1>flot.tooltip plugin example page</h1>
+
+    <div id="placeholder" style="width:600px;height:300px;"></div>
+
+    <p>With the stack plugin, you can have Flot stack the
+    series. This is useful if you wish to display both a total and the
+    constituents it is made of. The only requirement is that you provide
+    the input sorted on x.</p>
+
+    <p class="stackControls">
+    <input type="button" value="With stacking">
+    <input type="button" value="Without stacking">
+    </p>
+
+    <p class="graphControls">
+    <input type="button" value="Bars">
+    <input type="button" value="Lines">
+    <input type="button" value="Lines with steps">
+    </p>
+
+    <script id="source">
+    $(function () {
+        var d1 = [];
+        for (var i = 0; i <= 10; i += 1)
+            d1.push([i, parseInt(Math.random() * 30)]);
+
+        var d2 = [];
+        for (var i = 0; i <= 10; i += 1)
+            d2.push([i, parseInt(Math.random() * 30)]);
+
+        var d3 = [];
+        for (var i = 0; i <= 10; i += 1)
+            d3.push([i, parseInt(Math.random() * 30)]);
+
+        var stack = 0, bars = true, lines = false, steps = false;
+        
+        function plotWithOptions() {
+            $.plot($("#placeholder"), [ d1, d2, d3 ], {
+                series: {
+                    stack: stack,
+                    lines: { show: lines, fill: true, steps: steps },
+                    bars: { show: bars, barWidth: 0.6 }
+                },
+                grid: {
+                    hoverable: true //IMPORTANT! this is needed for tooltip to work
+                },
+                tooltip: {
+                    show: true,
+                    content: "x: %x, y: %y"
+                }
+            });
+        }
+
+        plotWithOptions();
+        
+        $(".stackControls input").click(function (e) {
+            e.preventDefault();
+            stack = $(this).val() == "With stacking" ? true : null;
+            plotWithOptions();
+        });
+        $(".graphControls input").click(function (e) {
+            e.preventDefault();
+            bars = $(this).val().indexOf("Bars") != -1;
+            lines = $(this).val().indexOf("Lines") != -1;
+            steps = $(this).val().indexOf("steps") != -1;
+            plotWithOptions();
+        });
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.flot.js"></script>
+<script src="js/jquery.flot.time.js"></script>
+<script src="../js/jquery.flot.tooltip.js"></script>
+
+<div id="chart1" style="width:600px;height:150px;"></div>
+<div id="chart2" style="width:600px;height:150px;"></div>
+
+<script>
+  
+  $(function () {
+
+    // first chart
+    var chart1Options = {
+      series: {
+        lines: { show: true },
+        points: { show: true }
+      },
+      xaxis: { mode: "time", timeformat: "%m/%d", minTickSize: [1, "day"] },
+      grid:  { hoverable: true },
+      legend: { show: false },
+      tooltip: {
+        show: true,
+        content: "y: %y"
+      }
+    };
+    var chart1Data = { label: "chart1", data: [
+      [1354521600000, 6322],
+      [1355040000000, 6360],
+      [1355223600000, 6368],
+      [1355306400000, 6374],
+      [1355487300000, 6388],
+      [1355571900000, 6393]
+    ]};
+    $.plot($("#chart1"), [chart1Data], chart1Options);
+    
+    // second chart
+    var chart2Options = {
+      series: {
+        bars: { show: true, barWidth: 43200000 }
+      },
+      xaxis: { mode: "time", timeformat: "%m/%d", minTickSize: [1, "day"] },
+      grid:  { hoverable: true },
+      legend: { show: false },
+      tooltip: {
+        show: true,
+        content: "x: %x, y: %y"
+      }
+    };
+    var chart2Data = { label: "chart2", data: [
+      [1354521600000, 1000],
+      [1355040000000, 2000],
+      [1355223600000, 3000],
+      [1355306400000, 4000],
+      [1355487300000, 5000],
+      [1355571900000, 6000]
+    ]};
+    $.plot($("#chart2"), [chart2Data], chart2Options);
+    
+
+  });
+</script>

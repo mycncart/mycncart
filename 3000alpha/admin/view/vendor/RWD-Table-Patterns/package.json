@@ -1,0 +1,42 @@
+{
+  "name": "RWD-Table-Patterns",
+  "description": "This is an awesome solution for responsive tables with complex data.",
+  "version": "5.1.0",
+  "keywords": [
+    "RWD",
+    "responsive",
+    "tables",
+    "mobile-first"
+  ],
+  "homepage": "http://gergeo.se/RWD-Table-Patterns",
+  "authors": [
+    "Nadan Gergeo <nadan.gergeo@gmail.com> (www.gergeo.se)",
+    "Maggie Wachs (www.filamentgroup.com)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nadangergeo/RWD-Table-Patterns.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nadangergeo/RWD-Table-Patterns/issues"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-banner": "^0.2.3",
+    "grunt-bump": "0.0.13",
+    "grunt-contrib-connect": "~0.7.1",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-less": "^0.11.4",
+    "grunt-contrib-uglify": "^0.4.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "load-grunt-tasks": "~0.4.0"
+  },
+  "scripts": {
+    "postinstall": "bower install"
+  }
+}

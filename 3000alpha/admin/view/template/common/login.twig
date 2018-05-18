@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Meta tags -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>MyCnCart系统管理后台</title>
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="view/vendor/bootstrap4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="view/vendor/themify-icons/themify-icons.css">
+		<link rel="stylesheet" href="view/vendor/font-awesome/css/font-awesome.min.css">
+
+		<link rel="stylesheet" href="view/stylesheet/core.css">
+
+		<!--[if lt IE 9]>
+		<script src="view/javascript/html5shiv.min.js"></script>
+		<script src="view/javascript/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body class="material-design img-cover" style="background-image: url(view/image/admin/admin-photo-1.jpg);">
+		
+		<div class="container-fluid">
+			<div class="sign-form">
+				<div class="row">
+					<div class="col-md-4 offset-md-4 px-3">
+						<div class="box b-a-0">
+							<div class="p-2 text-xs-center">
+								<h5>Welcome</h5>
+							</div>
+							<form class="form-material mb-1" action="{{ action }}" method="post" enctype="multipart/form-data">
+								<div class="form-group">
+									<input type="username" name="username" class="form-control" placeholder="用户名">
+								</div>
+								<div class="form-group">
+									<input type="password" name="password" class="form-control" placeholder="密码">
+								</div>
+								<div class="px-2 form-group mb-0">
+									<button type="submit" class="btn btn-purple btn-block text-uppercase">登录</button>
+								</div>
+							</form>
+							
+							<div class="p-2 text-xs-center text-muted">
+								<a class="text-black" href="#"><span class="underline">忘记了密码？</span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Vendor JS -->
+		<script type="text/javascript" src="view/vendor/jquery/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="view/vendor/tether/js/tether.min.js"></script>
+		<script type="text/javascript" src="view/vendor/bootstrap4/js/bootstrap.min.js"></script>
+	</body>
+</html>
