@@ -3,13 +3,13 @@
 $_['heading_title']					 = 'Globalpay Redirect';
 
 // Text
-$_['text_extension']				  	 = 'Extensions';
+$_['text_extension']	 = '扩展功能';
 $_['text_success']					 = 'Success: You have modified Globalpay account details!';
 $_['text_edit']                      = 'Edit Globalpay Redirect';
 $_['text_live']						 = 'Live';
 $_['text_demo']						 = 'Demo';
 $_['text_card_type']				 = 'Card type';
-$_['text_enabled']					 = 'Enabled';
+$_['text_enabled']					 = '启用';
 $_['text_use_default']				 = 'Use default';
 $_['text_merchant_id']				 = 'Merchant ID';
 $_['text_subaccount']				 = 'Subaccount';

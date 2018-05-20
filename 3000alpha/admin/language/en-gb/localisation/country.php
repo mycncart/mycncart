@@ -1,36 +1,37 @@
 <?php
+
 // Heading
-$_['heading_title']           = 'Countries';
+$_['heading_title']           = '国家';
 
 // Text
-$_['text_success']            = 'Success: You have modified countries!';
-$_['text_list']               = 'Country List';
-$_['text_add']                = 'Add Country';
-$_['text_edit']               = 'Edit Country';
+$_['text_success']            = '成功: 已修改国家！';
+$_['text_list']               = '国家列表 - (在线教程: <a href="http://www.mycncart.com/blog-76.html" target="_blank">http://www.mycncart.com/blog-76.html</a>)';
+$_['text_add']                = '添加国家';
+$_['text_edit']               = '编辑国家';
 
 // Column
-$_['column_name']             = 'Country Name';
+$_['column_name']             = '国家名称';
 $_['column_iso_code_2']       = 'ISO Code (2)';
 $_['column_iso_code_3']       = 'ISO Code (3)';
-$_['column_action']           = 'Action';
+$_['column_action']           = '操作';
 
 // Entry
-$_['entry_name']              = 'Country Name';
+$_['entry_name']              = '国家名称';
 $_['entry_iso_code_2']        = 'ISO Code (2)';
 $_['entry_iso_code_3']        = 'ISO Code (3)';
-$_['entry_address_format']    = 'Address Format';
-$_['entry_postcode_required'] = 'Postcode Required';
-$_['entry_status']            = 'Status';
+$_['entry_address_format']    = '地址格式';
+$_['entry_postcode_required'] = '需要邮政编码';
+$_['entry_status']            = '状态';
 
 // Help
-$_['help_address_format']     = 'First Name = {firstname}<br />Last Name = {lastname}<br />Company = {company}<br />Address 1 = {address_1}<br />Address 2 = {address_2}<br />City = {city}<br />Postcode = {postcode}<br />Zone = {zone}<br />Zone Code = {zone_code}<br />Country = {country}';
+$_['help_address_format']     = '姓氏 = {firstname}<br />名称 = {lastname}<br />公司 = {company}<br /地址 1 = {address_1}<br />地址 2 = {address_2}<br />城市 = {city}<br />邮政编码 = {postcode}<br />州/省/地区 = {zone}<br />地区编码 = {zone_code}<br />国家 = {country}';
 
 // Error
-$_['error_permission']        = 'Warning: You do not have permission to modify countries!';
-$_['error_name']              = 'Country Name must be between 1 and 128 characters!';
-$_['error_default']           = 'Warning: This country cannot be deleted as it is currently assigned as the default store country!';
-$_['error_store']             = 'Warning: This country cannot be deleted as it is currently assigned to %s stores!';
-$_['error_address']           = 'Warning: This country cannot be deleted as it is currently assigned to %s address book entries!';
-$_['error_affiliate']         = 'Warning: This country cannot be deleted as it is currently assigned to %s affiliates!';
-$_['error_zone']              = 'Warning: This country cannot be deleted as it is currently assigned to %s zones!';
-$_['error_zone_to_geo_zone']  = 'Warning: This country cannot be deleted as it is currently assigned to %s zones to geo zones!';
+$_['error_permission']        = '警告: 无权限修改国家！';
+$_['error_name']              = '国家名称必须介于3-128字符之间！';
+$_['error_default']           = '警告: 不能删除此国家，该国家已关联为默认商店所在国家！';
+$_['error_store']             = '警告: 不能删除此国家，该国家已关联到 %s 个商店！!';
+$_['error_address']           = '警告: 不能删除此国家，该国家已关联到 %s 个地址簿！';
+$_['error_affiliate']         = '警告: 不能删除此国家，该国家已关联到 %s 个推广会员！';
+$_['error_zone']              = '警告: 不能删除此国家，该国家已关联到 %s 个地区！';
+$_['error_zone_to_geo_zone']  = '警告: 不能删除此国家，该国家已关联到 %s 区域群组中的地区！';

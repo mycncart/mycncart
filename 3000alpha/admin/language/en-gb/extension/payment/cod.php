@@ -1,21 +1,22 @@
 <?php
+
 // Heading
-$_['heading_title']      = 'Cash On Delivery';
+$_['heading_title']					= '货到付款';
 
 // Text
-$_['text_extension']     = 'Extensions';
-$_['text_success']       = 'Success: You have modified Cash On Delivery payment module!';
-$_['text_edit']          = 'Edit Cash On Delivery';
+$_['text_extension']	 			= '扩展功能';
+$_['text_success']					= '成功: 已修改货到付款支付方式！';
+$_['text_edit']                     = '编辑货到付款 - (在线教程: <a href="http://www.mycncart.com/blog-121.html" target="_blank">http://www.mycncart.com/blog-121.html</a>)';
 
 // Entry
-$_['entry_total']        = 'Total';
-$_['entry_order_status'] = 'Order Status';
-$_['entry_geo_zone']     = 'Geo Zone';
-$_['entry_status']       = 'Status';
-$_['entry_sort_order']   = 'Sort Order';
+$_['entry_total']					= '金额';
+$_['entry_order_status']			= '订单状态';
+$_['entry_geo_zone']				= '区域群组';
+$_['entry_status']					= '状态';
+$_['entry_sort_order']				= '排序';
 
 // Help
-$_['help_total']         = 'The checkout total the order must reach before this payment method becomes active.';
+$_['help_total']					= '若使该支付方式有效，需要订单金额至少达到此金额。';
 
 // Error
-$_['error_permission']   = 'Warning: You do not have permission to modify payment Cash On Delivery!';
+$_['error_permission']				= '警告: 无权限修改货到付款支付方式！';

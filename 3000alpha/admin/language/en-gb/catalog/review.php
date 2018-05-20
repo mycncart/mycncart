@@ -1,36 +1,36 @@
 <?php
 // Heading
-$_['heading_title']     = 'Reviews';
+$_['heading_title']     = '评论';
 
 // Text
-$_['text_success']      = 'Success: You have modified reviews!';
-$_['text_list']         = 'Review List';
-$_['text_add']          = 'Add Review';
-$_['text_edit']         = 'Edit Review';
-$_['text_filter']       = 'Filter';
+$_['text_success']      = '成功: 已经修改评论！';
+$_['text_list']         = '评论列表 - (在线教程: <a href="http://www.mycncart.com/blog-131.html" target="_blank">http://www.mycncart.com/blog-131.html</a>)';
+$_['text_add']          = '添加评论';
+$_['text_edit']         = '编辑';
+$_['text_filter']       = '筛选';
 
 // Column
-$_['column_product']    = 'Product';
-$_['column_author']     = 'Author';
-$_['column_rating']     = 'Rating';
-$_['column_status']     = 'Status';
-$_['column_date_added'] = 'Date Added';
-$_['column_action']     = 'Action';
+$_['column_product']    = '商品';
+$_['column_author']     = '作者';
+$_['column_rating']     = '评级';
+$_['column_status']     = '状态';
+$_['column_date_added'] = '添加日期';
+$_['column_action']     = '操作';
 
 // Entry
-$_['entry_product']     = 'Product';
-$_['entry_author']      = 'Author';
-$_['entry_rating']      = 'Rating';
-$_['entry_status']      = 'Status';
-$_['entry_text']        = 'Text';
-$_['entry_date_added']  = 'Date Added';
+$_['entry_product']     = '商品';
+$_['entry_author']      = '作者';
+$_['entry_rating']      = '评级';
+$_['entry_status']      = '状态';
+$_['entry_text']        = '内容';
+$_['entry_date_added']  = '添加日期';
 
 // Help
-$_['help_product']      = '(Autocomplete)';
+$_['help_product']      = '(输入时自动筛选结果)';
 
 // Error
-$_['error_permission']  = 'Warning: You do not have permission to modify reviews!';
-$_['error_product']     = 'Product required!';
-$_['error_author']      = 'Author must be between 3 and 64 characters!';
-$_['error_text']        = 'Review Text must be at least 1 character!';
-$_['error_rating']      = 'Review rating required!';
+$_['error_permission']  = '警告: 无权限修改评论！';
+$_['error_product']     = '必须选择商品！';
+$_['error_author']      = '作者必须介于1-64字符之间！';
+$_['error_text']        = '内容必须至少1个字符！';
+$_['error_rating']      = '必须选择评级！';

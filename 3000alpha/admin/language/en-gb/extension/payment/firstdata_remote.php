@@ -4,11 +4,11 @@ $_['heading_title']					 = 'First Data EMEA Web Service API';
 
 // Text
 $_['text_firstdata_remote']			 = '<img src="view/image/payment/firstdata.png" alt="First Data" title="First Data" style="border: 1px solid #EEEEEE;" />';
-$_['text_extension']					 = 'Extensions';
+$_['text_extension']	 = '扩展功能';
 $_['text_success']					 = 'Success: You have modified First Data account details!';
 $_['text_edit']                      = 'Edit First Data EMEA Web Service API';
 $_['text_card_type']				 = 'Card type';
-$_['text_enabled']					 = 'Enabled';
+$_['text_enabled']					 = '启用';
 $_['text_merchant_id']				 = 'Store ID';
 $_['text_subaccount']				 = 'Subaccount';
 $_['text_user_id']					 = 'User ID';
@@ -75,15 +75,15 @@ $_['tab_order_status']				 = 'Order status';
 $_['tab_payment']					 = 'Payment settings';
 
 // Button
-$_['button_capture']				 = 'Capture';
-$_['button_refund']					 = 'Refund';
-$_['button_void']					 = 'Void';
+$_['button_capture']				= 'Capture';
+$_['button_refund']					= 'Refund';
+$_['button_void']					= 'Void';
 
 // Error
-$_['error_merchant_id']				 = 'Store ID is required';
-$_['error_user_id']					 = 'User ID is required';
-$_['error_password']				 = 'Password is required';
-$_['error_certificate']				 = 'Certificate path is required';
-$_['error_key']						 = 'Certificate key is required';
-$_['error_key_pw']					 = 'Certificate key password is required';
-$_['error_ca']						 = 'Certificate Authority (CA) is required';
+$_['error_merchant_id']				= 'Store ID is required';
+$_['error_user_id']					= 'User ID is required';
+$_['error_password']				= 'Password is required';
+$_['error_certificate']				= 'Certificate path is required';
+$_['error_key']						= 'Certificate key is required';
+$_['error_key_pw']					= 'Certificate key password is required';
+$_['error_ca']						= 'Certificate Authority (CA) is required';

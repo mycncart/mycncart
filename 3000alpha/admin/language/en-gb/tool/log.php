@@ -1,11 +1,11 @@
 <?php
 // Heading
-$_['heading_title']    = 'Error Log';
+$_['heading_title']	   = '错误日志';
 
 // Text
-$_['text_success']     = 'Success: You have successfully cleared your error log!';
-$_['text_list']        = 'Errors List';
+$_['text_success']	   = '成功: 已清除错误日志！';
+$_['text_list']        = '错误列表 - (在线教程: <a href="http://www.mycncart.com/blog-140.html" target="_blank">http://www.mycncart.com/blog-140.html</a>)';
 
 // Error
-$_['error_warning']    = 'Warning: Your error log file %s is %s!';
-$_['error_permission'] = 'Warning: You do not have permission to clear error log!';
+$_['error_warning']	   = '警告: 错误日志文件 %s 是 %s!';
+$_['error_permission'] = '警告: 无权限清除错误日志！';

@@ -1,21 +1,21 @@
 <?php
 // Heading
-$_['heading_title']    = 'Products Viewed Report';
+$_['heading_title']    = '商品浏览报告';
 
 // Text
-$_['text_extension']   = 'Extensions';
-$_['text_edit']        = 'Edit Products Viewed Report';
-$_['text_success']     = 'Success: You have reset the products viewed report!';
+$_['text_extension']   = '扩展功能';
+$_['text_edit']        = '编辑商品浏览报告';
+$_['text_success']     = '成功: 已重置商品浏览报告！';
 
 // Column
-$_['column_name']      = 'Product Name';
-$_['column_model']     = 'Model';
-$_['column_viewed']    = 'Viewed';
-$_['column_percent']   = 'Percent';
+$_['column_name']      = '商品名称';
+$_['column_model']     = '型号';
+$_['column_viewed']    = '浏览次数';
+$_['column_percent']   = '百分比';
 
 // Entry
-$_['entry_status']     = 'Status';
-$_['entry_sort_order'] = 'Sort Order';
+$_['entry_status']     = '状态';
+$_['entry_sort_order'] = '排序';
 
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify products viewed report!';
+$_['error_permission'] = '警告: 无权限修改商品浏览报告！';

@@ -1,19 +1,19 @@
 <?php
 // Heading
-$_['heading_title']    = 'Google Hangouts';
+$_['heading_title']    = '谷歌环聊';
 
 // Text
-$_['text_extension']   = 'Extensions';
-$_['text_success']     = 'Success: You have modified Google Hangouts module!';
-$_['text_edit']        = 'Edit Google Hangouts Module';
+$_['text_extension']   = '扩展功能';
+$_['text_success']     = '成功: 以修改谷歌环聊!';
+$_['text_edit']        = '编辑谷歌环聊';
 
 // Entry
-$_['entry_code']       = 'Google Talk Code';
-$_['entry_status']     = 'Status';
+$_['entry_code']       = '谷歌环聊代码';
+$_['entry_status']     = '状态';
 
 // Help
-$_['help_code']        = 'Goto <a href="https://developers.google.com/+/hangouts/button" target="_blank">Create a Google Hangout chatback badge</a> and copy &amp; paste the generated code into the text box.';
+$_['help_code']        = '访问 <a href="https://developers.google.com/+/hangouts/button" target="_blank">创建谷歌环聊标记</a> 并复制和粘贴生成的代码到这里文本框中。';
 
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify Google Hangouts module!';
-$_['error_code']       = 'Code Required';
+$_['error_permission'] = '警告: 无权限修改谷歌环聊模组！';
+$_['error_code']       = '代码必填';

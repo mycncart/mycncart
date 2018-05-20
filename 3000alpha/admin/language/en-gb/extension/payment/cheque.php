@@ -1,23 +1,24 @@
 <?php
+
 // Heading
-$_['heading_title']      = 'Cheque / Money Order';
+$_['heading_title']					= '支票';
 
 // Text
-$_['text_extension']     = 'Extensions';
-$_['text_success']       = 'Success: You have modified cheque / money order account details!';
-$_['text_edit']          = 'Edit Cheque / Money Order';
+$_['text_extension']	 = '扩展功能';
+$_['text_success']					= '成功: 已修改支票支付方式信息！';
+$_['text_edit']                     = '编辑支票支付方式';
 
 // Entry
-$_['entry_payable']      = 'Payable To';
-$_['entry_total']        = 'Total';
-$_['entry_order_status'] = 'Order Status';
-$_['entry_geo_zone']     = 'Geo Zone';
-$_['entry_status']       = 'Status';
-$_['entry_sort_order']   = 'Sort Order';
+$_['entry_payable']					= '支付给';
+$_['entry_total']					= '金额';
+$_['entry_order_status']			= '订单状态';
+$_['entry_geo_zone']				= '区域群组';
+$_['entry_status']					= '状态';
+$_['entry_sort_order']				= '排序';
 
 // Help
-$_['help_total']         = 'The checkout total the order must reach before this payment method becomes active.';
+$_['help_total']					= '若使该支付方式有效，需要订单金额至少达到此金额。';
 
 // Error
-$_['error_permission']   = 'Warning: You do not have permission to modify payment cheque / money order!';
-$_['error_payable']      = 'Payable To Required!';
+$_['error_permission']				= '警告: 无权限修改支票支付方式！';
+$_['error_payable']					= '支付给必填！';

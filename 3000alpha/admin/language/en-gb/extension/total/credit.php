@@ -1,15 +1,15 @@
 <?php
 // Heading
-$_['heading_title']    = 'Store Credit';
+$_['heading_title']    = '账户余额';
 
 // Text
-$_['text_extension']   = 'Extensions';
-$_['text_success']     = 'Success: You have modified store credit total!';
-$_['text_edit']        = 'Edit Store Credit Total';
+$_['text_extension']   = '扩展功能';
+$_['text_success']     = '成功: 已修改账户余额！';
+$_['text_edit']        = '编辑账户余额';
 
 // Entry
-$_['entry_status']     = 'Status';
-$_['entry_sort_order'] = 'Sort Order';
+$_['entry_status']     = '状态';
+$_['entry_sort_order'] = '排序';
 
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify store credit total!';
+$_['error_permission'] = '警告: 无权限修改账户余额！';

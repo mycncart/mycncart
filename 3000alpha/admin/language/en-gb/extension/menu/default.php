@@ -1,12 +1,12 @@
 <?php
 // Heading
-$_['heading_title']          = 'Default Menu';
+$_['heading_title']          = '默认菜单导航';
 
 // Text
-$_['text_extension']         = 'Extensions';
-$_['text_success']           = 'Success: You have modified Google Base feed!';
-$_['text_edit']              = 'Edit Google Base';
-$_['text_import']            = 'To download the latest Google category list by <a href="https://support.google.com/merchants/answer/160081?hl=en" target="_blank" class="alert-link">clicking here</a> and choose taxonomy with numeric IDs in Plain Text (.txt) file. Upload via the green import button.';
+$_['text_extension']         = '扩展功能';
+$_['text_success']           = '成功: 已修改默认菜单导航！';
+$_['text_edit']              = '编辑默认菜单导航';
+$_['text_import']            = '导入';
 
 // Column
 $_['column_google_category'] = 'Google Category';

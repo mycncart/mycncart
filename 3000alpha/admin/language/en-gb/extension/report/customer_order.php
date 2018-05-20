@@ -1,31 +1,30 @@
 <?php
 // Heading
-$_['heading_title']         = 'Customer Orders Report';
+$_['heading_title']         = '会员订单报告';
 
 // Text
-$_['text_extension']        = 'Extensions';
-$_['text_edit']             = 'Edit Customer Orders Report';
-$_['text_success']          = 'Success: You have modified customer orders report!';
-$_['text_filter']           = 'Filter';
-$_['text_all_status']       = 'All Statuses';
+$_['text_extension']	 	= '扩展功能';
+$_['text_edit']             = '编辑会员订单报告';
+$_['text_success']          = '成功: 已修改会员订单报告！';
+$_['text_filter']           = '筛选';
+$_['text_all_status']       = '所有状态';
 
 // Column
-$_['column_customer']       = 'Customer Name';
+$_['column_customer']       = '会员姓名';
 $_['column_email']          = 'E-Mail';
-$_['column_customer_group'] = 'Customer Group';
-$_['column_status']         = 'Status';
-$_['column_orders']         = 'No. Orders';
-$_['column_products']       = 'No. Products';
-$_['column_total']          = 'Total';
-$_['column_action']         = 'Action';
+$_['column_customer_group'] = '会员等级';
+$_['column_status']         = '状态';
+$_['column_orders']         = '订单数量';
+$_['column_products']       = '产品数量';
+$_['column_total']          = '总计';
+$_['column_action']         = '操作';
 
 // Entry
-$_['entry_date_start']      = 'Date Start';
-$_['entry_date_end']        = 'Date End';
-$_['entry_customer']        = 'Customer';
-$_['entry_status']          = 'Order Status';
-$_['entry_status']          = 'Status';
-$_['entry_sort_order']      = 'Sort Order';
+$_['entry_date_start']      = '开始日期';
+$_['entry_date_end']        = '结束日期';
+$_['entry_customer']		= '会员';
+$_['entry_status']          = '订单状态';
+$_['entry_sort_order']      = '排序';
 
 // Error
-$_['error_permission']  = 'Warning: You do not have permission to modify customer orders report!';
+$_['error_permission']  	= '警告: 无权限修改会员订单报告！';

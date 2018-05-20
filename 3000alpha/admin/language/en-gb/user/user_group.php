@@ -1,23 +1,23 @@
 <?php
 // Heading
-$_['heading_title']    = 'User Groups';
+$_['heading_title']     = '管理员群组';
 
 // Text
-$_['text_success']     = 'Success: You have modified user groups!';
-$_['text_list']        = 'User Group';
-$_['text_add']         = 'Add User Group';
-$_['text_edit']        = 'Edit User Group';
+$_['text_success']      = '成功： 已成功更新管理员群组设置！';
+$_['text_list']         = '管理员群组列表 - (在线教程: <a href="http://www.mycncart.com/blog-10.html" target="_blank">http://www.mycncart.com/blog-10.html</a>)';
+$_['text_add']          = '添加管理员群组';
+$_['text_edit']         = '编辑管理员群组';
 
 // Column
-$_['column_name']      = 'User Group Name';
-$_['column_action']    = 'Action';
+$_['column_name']       = '管理员群组名称';
+$_['column_action']     = '操作';
 
 // Entry
-$_['entry_name']       = 'User Group Name';
-$_['entry_access']     = 'Access Permission';
-$_['entry_modify']     = 'Modify Permission';
+$_['entry_name']        = '管理员群组名称';
+$_['entry_access']      = '查看权限';
+$_['entry_modify']      = '修改权限';
 
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify user groups!';
-$_['error_name']       = 'User Group Name must be between 3 and 64 characters!';
-$_['error_user']       = 'Warning: This user group cannot be deleted as it is currently assigned to %s users!';
+$_['error_permission']  = '警告：无权限修改管理员群组！';
+$_['error_name']        = '警告：管理员群组名称长度必须在3至64个字符之间！';
+$_['error_user']        = '警告: 不能删除此管理员群组，该管理员劝阻已被关联到 %s 个管理员！';

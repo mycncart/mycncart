@@ -1,18 +1,18 @@
 <?php
 // Text
-$_['text_success']     = 'Success: You have modified extensions!';
-$_['text_unzip']       = 'Extracting files!';
-$_['text_move']        = 'Copying files!';
-$_['text_xml']         = 'Applying modifications!';
-$_['text_clear']       = 'Clearing temporary files!';
+$_['text_success']     = '成功: 已修改扩展功能！';
+$_['text_unzip']       = '解压缩文件！';
+$_['text_move']        = '复制文件！';
+$_['text_xml']         = '开始代码调整！';
+$_['text_remove']      = '移除临时文件！';
 
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify extensions!';
-$_['error_install']    = 'Extension installation taking place please wait a few seconds before trying to install!';
-$_['error_unzip']      = 'Zip file could not be opened!';
-$_['error_file']       = 'Install file could not be found!';
-$_['error_directory']  = 'Install directory could not be found!';
-$_['error_code']       = 'Unique code is required for modification XML!';
-$_['error_xml']        = 'Modification %s is already being used!';
-$_['error_exists']     = 'The file %s already exists!';
-$_['error_allowed']    = 'The directory %s is not allowed to be written to!';
+$_['error_permission'] = '警告: 无权限修改扩展功能！';
+$_['error_install']    = '正在进行扩展功能的安装，请耐心等待！';
+$_['error_unzip']      = '无法打开压缩文件！';
+$_['error_file']       = '未发现安装文件！';
+$_['error_directory']  = '未发现安装目录！';
+$_['error_code']       = '代码调整 XML 文件必须有唯一码！';
+$_['error_xml']        = '已存在该代码调整文件 %s ！';
+$_['error_exists']     = '文件 %s 已存在！';
+$_['error_allowed']    = '目录 %s 无法写入！';

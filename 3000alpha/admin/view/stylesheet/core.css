@@ -26,6 +26,8 @@
   - Helper classes
   - Components
   - Animations
+  - 页面顶部
+  - 左侧导航
 
 ================================================================= */
 
@@ -40,12 +42,12 @@ html, body {
 
 html {
   position: relative;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 body {
   background-color: #bbc2ce;
-  font-family: 'Open Sans', sans-serif;
+  font-family:"微软雅黑";
 }
 
 .wrapper {
@@ -444,9 +446,9 @@ a:active {
 }
 
 .site-header .navbar-brand .logo {
-  width: 100px;
-  height: 25px;
-  background: url(../img/logo.png) no-repeat;
+  width: 180px;
+  height: 35px;
+  background: url(../image/logo.png) no-repeat;
 }
 
 @media (min-width: 768px) {
@@ -1408,7 +1410,7 @@ a:active {
 }
 
 .skin-5 .site-header .navbar-left {
-  background-color: #3e70c9;
+  background-color: #fff;
 }
 
 .skin-5 .site-header .navbar {
@@ -10214,4 +10216,53 @@ a.text-grey:focus .underline, a.text-grey:hover .underline {
 
 @-moz-keyframes rotate {
   100%{ -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+/* =================================================================
+  页面顶部
+================================================================= */
+
+.page-header {
+	background-color: #fff;
+	border-bottom-width: 0px;
+	margin-bottom: 20px;
+	box-shadow: 0 1px 0 0 #ddd;
+	padding: 0;
+	margin: 0;
+	border-bottom: 1px solid #ddd;
+	
+}
+
+.page-header-content {
+	position: relative;
+	padding: 0 15px;
+}
+
+.page-title {
+	padding: 10px 36px 10px 0;
+	position: relative;
+	display:block;
+}
+
+.breadcrumb-line {
+    position: relative;
+    border-top: 1px solid #ddd;
+	padding: 10px 15px 0px 15px;
+	border-bottom: 1px solid #ddd;
+	height:40px;
+	background-color: #fcfcfc;
+}
+
+/* =================================================================
+  左侧导航
+================================================================= */
+
+.user-profile {
+    background-image: url(../image/user/user-info.jpg);
+}
+
+.user-profile > a img {
+    width: 50px;
+    border-radius: 100%;
+	
 }

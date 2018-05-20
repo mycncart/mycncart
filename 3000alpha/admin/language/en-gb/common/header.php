@@ -1,12 +1,12 @@
 <?php
 // Heading
-$_['heading_title']      = 'OpenCart';
+$_['heading_title']      = 'MyCnCart';
 
 // Text
-$_['text_profile']       = 'Your Profile';
-$_['text_store']         = 'Stores';
-$_['text_help']          = 'Help';
-$_['text_homepage']      = 'OpenCart Homepage';
-$_['text_support']       = 'Support Forum';
-$_['text_documentation'] = 'Documentation';
-$_['text_logout']        = 'Logout';
+$_['text_profile']       = '您的资料';
+$_['text_store']         = '商店';
+$_['text_help']          = '帮助';
+$_['text_homepage']      = 'MyCnCart 主页';
+$_['text_support']       = '官方论坛';
+$_['text_documentation'] = '文档资料';
+$_['text_logout']        = '退出登录';
