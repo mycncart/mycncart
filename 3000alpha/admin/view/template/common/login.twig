@@ -1,61 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<!-- Meta tags -->
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<meta name="description" content="">
-		<meta name="author" content="">
-
-		<title>MyCnCart系统管理后台</title>
-
-		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="view/vendor/bootstrap4/css/bootstrap.min.css">
-		<link rel="stylesheet" href="view/vendor/themify-icons/themify-icons.css">
-		<link rel="stylesheet" href="view/vendor/font-awesome/css/font-awesome.min.css">
-
-		<link rel="stylesheet" href="view/stylesheet/core.css">
-
-		<!--[if lt IE 9]>
-		<script src="view/javascript/html5shiv.min.js"></script>
-		<script src="view/javascript/respond.min.js"></script>
-		<![endif]-->
-	</head>
-	<body class="material-design img-cover" style="background-image: url(view/image/admin/admin-photo-1.jpg);">
-		
-		<div class="container-fluid">
-			<div class="sign-form">
-				<div class="row">
-					<div class="col-md-4 offset-md-4 px-3">
-						<div class="box b-a-0">
-							<div class="p-2 text-xs-center">
-								<h5>Welcome</h5>
-							</div>
-							<form class="form-material mb-1" action="{{ action }}" method="post" enctype="multipart/form-data">
-								<div class="form-group">
-									<input type="username" name="username" class="form-control" placeholder="用户名">
-								</div>
-								<div class="form-group">
-									<input type="password" name="password" class="form-control" placeholder="密码">
-								</div>
-								<div class="px-2 form-group mb-0">
-									<button type="submit" class="btn btn-purple btn-block text-uppercase">登录</button>
-								</div>
-							</form>
-							
-							<div class="p-2 text-xs-center text-muted">
-								<a class="text-black" href="#"><span class="underline">忘记了密码？</span></a>
-							</div>
-						</div>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="MyCnCart电商系统响应式后台模板" />
+    <meta name="author" content="青岛万物一体网络科技有限公司" />
+    <title>系统后台登录</title>
+    <link href="view/javascript/font-awesome/css/all.css" rel="stylesheet" type="text/css"/>
+	<link href="view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="view/javascript/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="view/stylesheet/login.css">
+</head>
+<body>
+    <div class="mcc-login">
+		<div class="container-loginmcc page-background">
+			<div class="wrap-loginmcc">
+			    {% if success %}
+				  <div class="alert alert-success"><i class="fas fa-check-circle"></i> {{ success }}
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+				  </div>
+				{% endif %}
+				{% if error_warning %}
+				  <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+				  </div>
+				{% endif %}
+				<form class="loginmcc-form" action="{{ action }}" method="post" enctype="multipart/form-data">
+					<span class="loginmcc-form-logo">
+						<img alt="" src="view/image/hospital.png">
+					</span>
+					<span class="loginmcc-form-title p-b-34 p-t-27">
+						{{ text_login }}
+					</span>
+					<div class="wrap-inputmcc validate-input" data-validate = "{{ entry_username }}">
+						<input class="inputmcc" type="text" name="username" placeholder="{{ entry_username }}" value="{{ username }}">
+						<span class="focus-inputmcc" data-placeholder="&#xf207;"></span>
 					</div>
-				</div>
+					<div class="wrap-inputmcc validate-input" data-validate="{{ entry_password }}">
+						<input class="inputmcc" type="password" name="password" placeholder="{{ entry_password }}" value="{{ password }}">
+						<span class="focus-inputmcc" data-placeholder="&#xf191;"></span>
+					</div>
+					
+					<div class="container-loginmcc-form-btn">
+						<button class="loginmcc-form-btn">{{ button_login }}</button>
+					</div>
+					{% if forgotten %}
+					<div class="text-center p-t-30">
+						<a class="txt1" href="forgot_password.html">{{ text_forgotten }}</a>
+					</div>
+					{% endif %}
+					{% if redirect %}
+					  <input type="hidden" name="redirect" value="{{ redirect }}"/>
+					{% endif %}
+				</form>
 			</div>
 		</div>
-
-		<!-- Vendor JS -->
-		<script type="text/javascript" src="view/vendor/jquery/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="view/vendor/tether/js/tether.min.js"></script>
-		<script type="text/javascript" src="view/vendor/bootstrap4/js/bootstrap.min.js"></script>
-	</body>
+	</div>
+     <script src="view/javascript/jquery/jquery-3.3.1.min.js" ></script>
+    <script src="view/javascript/bootstrap/js/bootstrap.min.js" ></script>
+</body>
 </html>

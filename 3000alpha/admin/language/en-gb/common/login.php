@@ -4,7 +4,7 @@ $_['heading_title']  = '管理员';
 
 // Text
 $_['text_heading']   = '管理员';
-$_['text_login']     = '输入登录信息。';
+$_['text_login']     = '输入登录信息';
 $_['text_forgotten'] = '忘记密码';
 
 // Entry
