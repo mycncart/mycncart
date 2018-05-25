@@ -25,7 +25,7 @@ throw new Error('template requires jQuery')
 +function ($) {
   'use strict'
 
-  var DataKey = 'fabadmin.layout'
+  var DataKey = 'mycncartadmin.layout'
 
   var Default = {
     slimscroll : true,
@@ -200,7 +200,7 @@ throw new Error('template requires jQuery')
 +function ($) {
   'use strict'
 
-  var DataKey = 'fabadmin.pushmenu'
+  var DataKey = 'mycncartadmin.pushmenu'
 
   var Default = {
     collapseScreenSize   : 767,
@@ -374,10 +374,10 @@ throw new Error('template requires jQuery')
 +function ($) {
   'use strict'
 
-  var DataKey = 'fabadmin.tree'
+  var DataKey = 'mycncartadmin.tree'
 
   var Default = {
-    animationSpeed: 500,
+    animationSpeed: 100,
     accordion     : true,
     followLink    : false,
     trigger       : '.treeview a'
@@ -515,7 +515,7 @@ throw new Error('template requires jQuery')
 +function ($) {
   'use strict'
 
-  var DataKey = 'fabadmin.controlsidebar'
+  var DataKey = 'mycncartadmin.controlsidebar'
 
   var Default = {
     slide: true
@@ -650,7 +650,7 @@ throw new Error('template requires jQuery')
 +function ($) {
   'use strict'
 
-  var DataKey = 'fabadmin.boxwidget'
+  var DataKey = 'mycncartadmin.boxwidget'
 
   var Default = {
     animationSpeed : 500,
@@ -810,7 +810,7 @@ throw new Error('template requires jQuery')
 +function ($) {
   'use strict'
 
-  var DataKey = 'fabadmin.todolist'
+  var DataKey = 'mycncartadmin.todolist'
 
   var Default = {
     iCheck   : false,
@@ -913,7 +913,7 @@ throw new Error('template requires jQuery')
 +function ($) {
   'use strict'
 
-  var DataKey = 'fabadmin.directchat'
+  var DataKey = 'mycncartadmin.directchat'
 
   var Selector = {
     data: '[data-widget="chat-pane-toggle"]',

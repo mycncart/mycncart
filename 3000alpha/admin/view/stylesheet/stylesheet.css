@@ -608,7 +608,7 @@ a:active, a:focus, a:hover {
     background-image:url(../image/user/user-info.jpg);
 }
 .sidebar-menu .user-profile > a img {
-    width: 30px;
+    width: 50px;
     border-radius: 100%;
     margin-right: 10px;
 }
