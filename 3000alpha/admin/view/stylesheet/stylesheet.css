@@ -40,14 +40,9 @@
 /******************* 
 import icon and fonts Styles 
 *******************/
-@import url(../../assets/vendor_components/font-awesome/css/font-awesome.css);
-@import url(../../assets/vendor_components/Ionicons/css/ionicons.css);
-@import url(../../assets/vendor_components/themify-icons/themify-icons.css);
-@import url(../../assets/vendor_components/linea-icons/linea.css);
-@import url(../../assets/vendor_components/glyphicons/glyphicon.css);
-@import url(../../assets/vendor_components/flag-icon/css/flag-icon.css);
-@import url(../../assets/vendor_components/material-design-iconic-font/css/materialdesignicons.css);
-@import url(../../assets/vendor_components/simple-line-icons-master/css/simple-line-icons.css);
+
+
+
 
 /*------------------------------------------------------------------
 
@@ -610,7 +605,7 @@ a:active, a:focus, a:hover {
     margin: 15px 0;
 }
 .user-profile {
-    background-image:url(../../images//user-info.jpg);
+    background-image:url(../image/user/user-info.jpg);
 }
 .sidebar-menu .user-profile > a img {
     width: 30px;

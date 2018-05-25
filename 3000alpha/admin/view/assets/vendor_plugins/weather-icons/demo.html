@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type='text/javascript' src='WeatherIcon.js'></script>
+</head>
+
+<!-- HEADER -->
+<body>
+	
+	<canvas id='icon1'></canvas>
+	<canvas id='icon2'></canvas>
+	<canvas id='icon3'></canvas>
+	
+</body>
+</html>
+
+<script type='text/javascript'>
+	
+	WeatherIcon.add('icon1'	, WeatherIcon.SUN , { mode:WeatherIcon.DAY	, stroke:true , shadow:true , animated:true } );
+	WeatherIcon.add('icon2'	, WeatherIcon.LIGHTRAINSUN , { mode:WeatherIcon.NIGHT	, stroke:true , shadow:true , animated:true } ); 
+	WeatherIcon.add('icon3'	, WeatherIcon.LIGHTRAINTHUNDERSUN ); // no parameters
+	
+</script>
