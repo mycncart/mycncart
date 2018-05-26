@@ -1,10 +1,11 @@
 <?php
 // Heading
-$_['heading_title']                        = '分期付款订单';
+$_['heading_title']                        = 'Recurring Orders';
 
 // Text
 $_['text_success']                         = 'Success: You have modified recurring profiles!';
 $_['text_list']                            = 'Recurring Order List';
+$_['text_filter']                          = 'Filter';
 $_['text_recurring_detail']                = 'Recurring Details';
 $_['text_order_detail']                    = 'Order Details';
 $_['text_product_detail']                  = 'Product Details';
@@ -36,7 +37,7 @@ $_['text_status_6']                        = 'Pending';
 $_['text_transactions']                    = 'Transactions';
 $_['text_cancel_confirm']                  = 'Profile\'s cancellation cannot be undone! Are you sure want to do this?';
 $_['text_transaction_date_added']          = 'Date added';
-$_['text_transaction_payment'] 			   = 'Payment';
+$_['text_transaction_payment']             = 'Payment';
 $_['text_transaction_outstanding_payment'] = 'Outstanding payment';
 $_['text_transaction_skipped']             = 'Payment skipped';
 $_['text_transaction_failed']              = 'Payment failed';

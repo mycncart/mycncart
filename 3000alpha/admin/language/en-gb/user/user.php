@@ -1,36 +1,38 @@
 <?php
 // Heading
-$_['heading_title']     	= '网店管理员';
+$_['heading_title']         = 'Users';
 
 // Text
-$_['text_success']      	= '成功: 已修改管理员！';
-$_['text_list']         	= '管理员列表 - (在线教程: <a href="http://www.mycncart.com/blog-10.html" target="_blank">http://www.mycncart.com/blog-10.html</a>)';
-$_['text_add']          	= '添加管理员';
-$_['text_edit']         	= '编辑管理员';
+$_['text_success']          = 'Success: You have modified users!';
+$_['text_list']             = 'User List';
+$_['text_add']              = 'Add User';
+$_['text_edit']             = 'Edit User';
 
 // Column
-$_['column_username']   	= '用户名';
-$_['column_status']     	= '状态';
-$_['column_date_added'] 	= '添加日期';
-$_['column_action']     	= '操作';
+$_['column_username']       = 'Username';
+$_['column_status']         = 'Status';
+$_['column_date_added']     = 'Date Added';
+$_['column_action']         = 'Action';
 
 // Entry
-$_['entry_username']   		= '用户名';
-$_['entry_user_group'] 		= '管理员群组';
-$_['entry_password']   		= '密码';
-$_['entry_confirm']    		= '确认密码';
-$_['entry_fullname']  		= '姓名';
-$_['entry_email']      		= 'E-Mail';
-$_['entry_image']      		= '图像';
-$_['entry_status']     		= '状态';
+$_['entry_username']        = 'Username';
+$_['entry_user_group']      = 'User Group';
+$_['entry_password']        = 'Password';
+$_['entry_confirm']         = 'Confirm';
+$_['entry_firstname']       = 'First Name';
+$_['entry_lastname']        = 'Last Name';
+$_['entry_email']           = 'E-Mail';
+$_['entry_image']           = 'Image';
+$_['entry_status']          = 'Status';
 
 // Error
-$_['error_permission'] 		= '警告: 无权限修改管理员！';
-$_['error_account']    		= '警告: 不能删除自己！';
-$_['error_exists_username'] = '警告: 用户名已被使用！';
-$_['error_username']   		= '用户名必须为3-20字符！';
-$_['error_password']   		= '密码必须为4-20字符！';
-$_['error_confirm']    		= '密码和确认密码不一致！';
-$_['error_fullname']  		= '姓名必须为2-32字符！';
-$_['error_email']           = '电邮无效！';
-$_['error_exists_email']    = '警告: 该电邮已被使用！';
+$_['error_permission']      = 'Warning: You do not have permission to modify users!';
+$_['error_account']         = 'Warning: You can not delete your own account!';
+$_['error_exists_username'] = 'Warning: Username is already in use!';
+$_['error_username']        = 'Username must be between 3 and 20 characters!';
+$_['error_password']        = 'Password must be between 4 and 20 characters!';
+$_['error_confirm']         = 'Password and password confirmation do not match!';
+$_['error_firstname']       = 'First Name must be between 1 and 32 characters!';
+$_['error_lastname']        = 'Last Name must be between 1 and 32 characters!';
+$_['error_email']           = 'E-Mail Address does not appear to be valid!';
+$_['error_exists_email']    = 'Warning: E-Mail Address is already registered!';

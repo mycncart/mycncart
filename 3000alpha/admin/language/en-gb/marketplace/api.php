@@ -1,16 +1,16 @@
 <?php
 // Heading
-$_['heading_title']    = 'OpenCart/MyCnCart 扩展商城 API';
+$_['heading_title']    = 'OpenCart Marketplace API';
 
 // Text
-$_['text_success']     = '成功: 已修改 API 信息！';
-$_['text_signup']      = '请输入您的 opencart API 信息，该信息您可以在 <a href="https://www.opencart.com/index.php?route=account/store" target="_blank" class="alert-link">这里</a>获得。';
+$_['text_success']     = 'Success: You have modified your API information!';
+$_['text_signup']      = 'Please enter your OpenCart API information which you can obtain <a href="https://www.opencart.com/index.php?route=account/store" target="_blank" class="alert-link">here</a>.';
 
 // Entry
-$_['entry_username']   = '用户名';
-$_['entry_secret']     = '密钥';
+$_['entry_username']   = 'Username';
+$_['entry_secret']     = 'Secret';
 
 // Error
-$_['error_permission'] = '警告: 无权限修改扩展商城 API！';
-$_['error_username']   = '用户名必填！';
-$_['error_secret']     = '密钥必填！';
+$_['error_permission'] = 'Warning: You do not have permission to modify marketplace API!';
+$_['error_username']   = 'Username required!';
+$_['error_secret']     = 'Secret required!';

@@ -180,6 +180,8 @@ class ControllerLocalisationWeightClass extends Controller {
 				'edit'            => $this->url->link('localisation/weight_class/edit', 'user_token=' . $this->session->data['user_token'] . '&weight_class_id=' . $result['weight_class_id'] . $url)
 			);
 		}
+		
+		
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -306,24 +308,28 @@ class ControllerLocalisationWeightClass extends Controller {
 			$weight_class_info = $this->model_localisation_weight_class->getWeightClass($this->request->get['weight_class_id']);
 		}
 
-		$this->load->model('localisation/language');
-
-		$data['languages'] = $this->model_localisation_language->getLanguages();
-
-		if (isset($this->request->post['weight_class_description'])) {
-			$data['weight_class_description'] = $this->request->post['weight_class_description'];
-		} elseif (isset($this->request->get['weight_class_id'])) {
-			$data['weight_class_description'] = $this->model_localisation_weight_class->getWeightClassDescriptions($this->request->get['weight_class_id']);
-		} else {
-			$data['weight_class_description'] = array();
-		}
-
 		if (isset($this->request->post['value'])) {
 			$data['value'] = $this->request->post['value'];
 		} elseif (!empty($weight_class_info)) {
 			$data['value'] = $weight_class_info['value'];
 		} else {
 			$data['value'] = '';
+		}
+		
+		if (isset($this->request->post['title'])) {
+			$data['title'] = $this->request->post['title'];
+		} elseif (!empty($weight_class_info)) {
+			$data['title'] = $weight_class_info['title'];
+		} else {
+			$data['title'] = '';
+		}
+		
+		if (isset($this->request->post['unit'])) {
+			$data['unit'] = $this->request->post['unit'];
+		} elseif (!empty($weight_class_info)) {
+			$data['unit'] = $weight_class_info['unit'];
+		} else {
+			$data['unit'] = '';
 		}
 
 		$data['header'] = $this->load->controller('common/header');
@@ -338,15 +344,15 @@ class ControllerLocalisationWeightClass extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		foreach ($this->request->post['weight_class_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 32)) {
-				$this->error['title'][$language_id] = $this->language->get('error_title');
-			}
-
-			if (!$value['unit'] || (utf8_strlen($value['unit']) > 4)) {
-				$this->error['unit'][$language_id] = $this->language->get('error_unit');
-			}
+		
+		if ((utf8_strlen($this->request->post['title']) < 1) || (utf8_strlen($this->request->post['title']) > 32)) {
+			$this->error['title'] = $this->language->get('error_title');
 		}
+
+		if (!$this->request->post['unit'] || (utf8_strlen($this->request->post['unit']) > 4)) {
+			$this->error['unit'] = $this->language->get('error_unit');
+		}
+		
 
 		return !$this->error;
 	}
@@ -356,18 +362,20 @@ class ControllerLocalisationWeightClass extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		$this->load->model('catalog/product');
+		//$this->load->model('catalog/product');
 
 		foreach ($this->request->post['selected'] as $weight_class_id) {
 			if ($this->config->get('config_weight_class_id') == $weight_class_id) {
 				$this->error['warning'] = $this->language->get('error_default');
 			}
-
+			
+/*
 			$product_total = $this->model_catalog_product->getTotalProductsByWeightClassId($weight_class_id);
 
 			if ($product_total) {
 				$this->error['warning'] = sprintf($this->language->get('error_product'), $product_total);
 			}
+			*/
 		}
 
 		return !$this->error;

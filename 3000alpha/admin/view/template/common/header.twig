@@ -10,8 +10,8 @@
 
     <title>Fab Admin - Dashboard Fixed</title>
   
-	<!-- FontAweSome 5.0.13-->
-	<link href="view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<!-- FontAweSome 5.0.9-->
+	<link href="view/javascript/font-awesome/css/fontawesome-all.css" rel="stylesheet" type="text/css"/>
 	
     
 	<!-- Bootstrap 4.1.1-->
@@ -68,15 +68,19 @@
 	  <div>
 		  <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
 			<span class="sr-only">Toggle navigation</span>
+			<i class="mdi mdi-email"></i>
 		  </a>
 	  </div>
 
       <div class="navbar-custom-menu">
+	  
+		
         <ul class="nav navbar-nav">
 		  
-		  	
 		  
+		  {{ language }}
           <!-- Messages -->
+		  
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="mdi mdi-email"></i>

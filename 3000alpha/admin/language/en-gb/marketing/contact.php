@@ -1,36 +1,36 @@
 <?php
 // Heading
-$_['heading_title']        = '邮件通知会员';
+$_['heading_title']        = 'Mail';
 
 // Text
-$_['text_success']         = '您的邮件已成功发送!';
-$_['text_sent']            = '您的邮件已成功发送 %s 封，共 %s 收件人！';
-$_['text_list']            = '邮件推广列表 - (在线教程: <a href="http://www.mycncart.com/blog-93.html" target="_blank">http://www.mycncart.com/blog-93.html</a>)';
-$_['text_default']         = '默认';
-$_['text_newsletter']      = '所有资讯订阅者';
-$_['text_customer_all']    = '所有会员';
-$_['text_customer_group']  = '会员等级';
-$_['text_customer']        = '会员';
-$_['text_affiliate_all']   = '所有推广会员';
-$_['text_affiliate']       = '推广会员';
-$_['text_product']         = '商品';
+$_['text_success']         = 'Your message has been successfully sent!';
+$_['text_sent']            = 'Your message has been successfully sent to %s - %s recipients!';
+$_['text_list']            = 'Mail List';
+$_['text_default']         = 'Default';
+$_['text_newsletter']      = 'All Newsletter Subscribers';
+$_['text_customer_all']    = 'All Customers';
+$_['text_customer_group']  = 'Customer Group';
+$_['text_customer']        = 'Customers';
+$_['text_affiliate_all']   = 'All Affiliates';
+$_['text_affiliate']       = 'Affiliates';
+$_['text_product']         = 'Products';
 
 // Entry
-$_['entry_store']          = '来自于';
-$_['entry_to']             = '发送至';
-$_['entry_customer_group'] = '会员等级';
-$_['entry_customer']       = '会员';
-$_['entry_affiliate']      = '推广会员';
-$_['entry_product']        = '商品';
-$_['entry_subject']        = '邮件标题';
-$_['entry_message']        = '邮件内容';
+$_['entry_store']          = 'From';
+$_['entry_to']             = 'To';
+$_['entry_customer_group'] = 'Customer Group';
+$_['entry_customer']       = 'Customer';
+$_['entry_affiliate']      = 'Affiliate';
+$_['entry_product']        = 'Products';
+$_['entry_subject']        = 'Subject';
+$_['entry_message']        = 'Message';
 
 // Help
-$_['help_customer']        = '输入时自动筛选结果';
-$_['help_affiliate']       = '输入时自动筛选结果';
-$_['help_product']         = '仅发送给购买了下面列表中商品的会员。 (输入时自动筛选结果)';
+$_['help_customer']        = '(Autocomplete)';
+$_['help_affiliate']       = '(Autocomplete)';
+$_['help_product']         = 'Send only to customers who have ordered products in the list. (Autocomplete)';
 
 // Error
-$_['error_permission']     = '警告: 无权限发送邮件！';
-$_['error_subject']        = '邮件标题必填！';
-$_['error_message']        = '邮件内容必填！';
+$_['error_permission']     = 'Warning: You do not have permission to send E-Mails!';
+$_['error_subject']        = 'E-Mail Subject required!';
+$_['error_message']        = 'E-Mail Message required!';

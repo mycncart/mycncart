@@ -1,17 +1,17 @@
 <?php
 // Heading
-$_['heading_title']    = '总销售额';
+$_['heading_title']    = 'Total Sales';
 
 // Text
-$_['text_extension']   = '扩展功能';
-$_['text_success']     = '成功： 已修改仪表盘总销售额！';
-$_['text_edit']        = '编辑仪表盘总销售额';
-$_['text_view']        = '查看更多......';
+$_['text_extension']   = 'Extensions';
+$_['text_success']     = 'Success: You have modified dashboard sales!';
+$_['text_edit']        = 'Edit Dashboard Sales';
+$_['text_view']        = 'View more...';
 
 // Entry
-$_['entry_status']     = '状态';
-$_['entry_sort_order'] = '排序';
-$_['entry_width']      = '宽度';
+$_['entry_status']     = 'Status';
+$_['entry_sort_order'] = 'Sort Order';
+$_['entry_width']      = 'Width';
 
 // Error
-$_['error_permission'] = '警告： 无权限修改仪表盘总销售额！';
+$_['error_permission'] = 'Warning: You do not have permission to modify dashboard sales!';

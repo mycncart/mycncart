@@ -1,20 +1,30 @@
 <?php
 // Heading
-$_['heading_title']    = '备份 / 恢复';
+$_['heading_title']     = 'Backup &amp; Restore';
 
 // Text
-$_['text_success']     = '成功：已成功导入数据库！';
-$_['text_edit']        = '备份 / 恢复 - (在线教程: <a href="http://www.mycncart.com/blog-139.html" target="_blank">http://www.mycncart.com/blog-139.html</a>)';
+$_['text_success']      = 'Success: You have successfully modified your database!';
+
+$_['text_backup']       = 'Backing up table %s records %s to %s records';
+$_['text_restore']      = 'Restoring %s of %s';
+$_['text_option']       = 'Backup Options';
+$_['text_history']      = 'Backup History';
+$_['text_progress']     = 'Progress';
+$_['text_import']       = 'For large backup files its better to upload the sql file via ftp to the <strong>system/storage/backup/</strong> directory.';
+
+// Column
+$_['column_filename']   = 'Filename';
+$_['column_size']       = 'Size';
+$_['column_date_added'] = 'Date Added';
+$_['column_action']     = 'Action';
 
 // Entry
-$_['entry_progress']   = '进程';
-$_['entry_export']     = '导出备份';
-
-// Tab
-$_['tab_backup']       = '备份';
-$_['tab_restore']      = '恢复';
+$_['entry_progress']    = 'Progress';
+$_['entry_export']      = 'Export';
 
 // Error
-$_['error_permission'] = '警告：您没有权限修改备份！';
-$_['error_backup']     = '警告：您尚未选择单元格！';
-$_['error_empty']      = '警告：您上传的是空文件！';
+$_['error_permission']  = 'Warning: You do not have permission to modify Backup &amp; Restore!';
+$_['error_export']      = 'Warning: You must select at least one table to export!';
+$_['error_table']       = 'Table %s is not in the allowed list!';
+$_['error_file']        = 'File could not be found!';
+$_['error_directory']   = 'Directory could not be found!';

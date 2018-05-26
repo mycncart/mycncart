@@ -3,7 +3,7 @@
 $_['heading_title']                    = 'Royal Mail';
 
 // Text
-$_['text_shipping']                    = '配送管理';
+$_['text_extension']                   = 'Extensions';
 $_['text_success']                     = 'Success: You have modified Royal Mail shipping!';
 $_['text_edit']                        = 'Edit Royal Mail Shipping';
 

@@ -1,16 +1,20 @@
 <?php
-
 // Heading
-$_['heading_title']    = 'PayPal Express Checkout 按钮';
+$_['heading_title']    = 'PayPal Express Checkout Button';
 
 // Text
-$_['text_extension']   = '扩展功能';
-$_['text_module']      = '模组';
-$_['text_success']     = '成功: 已修改PayPal Express Checkout 按钮模组！';
-$_['text_edit']        = '编辑 PayPal Express Checkout 按钮模组';
+$_['text_extension']   = 'Extensions';
+$_['text_success']     = 'Success: You have modified PayPal Express Checkout Button module!';
+$_['text_edit']        = 'Edit PayPal Express Checkout Button Module';
+$_['text_info']        = 'The button will <u>not</u> appear under certain conditions:';
+$_['text_info_li1']    = 'The cart is empty and no vouchers have been applied';
+$_['text_info_li2']    = 'The cart has downloads or recurring payments and the user is not logged in';
+$_['text_info_li3']    = 'Out of stock item checkout is disabled and the cart contains an out of stock item';
+$_['text_layouts']     = 'After enabling the module, use the layout manager to add the button to areas on the store.';
+$_['text_layout_link'] = 'Click here to access layouts page';
 
 // Entry
-$_['entry_status']     = '状态';
+$_['entry_status']     = 'Status';
 
 // Error
-$_['error_permission'] = '警告: 无权限修改 PayPal Express Checkout 按钮模组！';
+$_['error_permission'] = 'Warning: You do not have permission to modify PayPal Express Checkout Button module!';

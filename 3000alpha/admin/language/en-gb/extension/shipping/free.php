@@ -1,20 +1,20 @@
 <?php
 // Heading
-$_['heading_title']    = '免费配送';
+$_['heading_title']    = 'Free Shipping';
 
 // Text
-$_['text_extension']   = '扩展功能';
-$_['text_success']     = '成功: 已修改免费配送！';
-$_['text_edit']        = '编辑免费配送 - (在线教程: <a href="http://www.mycncart.com/blog-124.html" target="_blank">http://www.mycncart.com/blog-124.html</a>)';
+$_['text_extension']   = 'Extensions';
+$_['text_success']     = 'Success: You have modified free shipping!';
+$_['text_edit']        = 'Edit Free Shipping';
 
 // Entry
-$_['entry_total']      = '最低订单小计';
-$_['entry_geo_zone']   = '区域群组';
-$_['entry_status']     = '状态';
-$_['entry_sort_order'] = '排序';
+$_['entry_total']      = 'Total';
+$_['entry_geo_zone']   = 'Geo Zone';
+$_['entry_status']     = 'Status';
+$_['entry_sort_order'] = 'Sort Order';
 
 // Help
-$_['help_total']       = '激活免费配送所需最低订单小计金额。';
+$_['help_total']       = 'Sub-Total amount needed before the free shipping module becomes available.';
 
 // Error
-$_['error_permission'] = '警告: 无权限修改免费配送！';
+$_['error_permission'] = 'Warning: You do not have permission to modify free shipping!';

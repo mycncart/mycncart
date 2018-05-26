@@ -1,15 +1,17 @@
 <?php
 // Heading
-$_['heading_title']  = '重置密码';
+$_['heading_title']  = 'Reset your password';
 
 // Text
-$_['text_password']  = '输入新密码。';
-$_['text_success']   = '成功: 密码已更新。';
+$_['text_password']  = 'Enter the new password you wish to use.';
+$_['text_success']   = 'Success: Your password has been successfully updated.';
 
 // Entry
-$_['entry_password'] = '密码';
-$_['entry_confirm']  = '确认密码';
+$_['entry_password'] = 'Password';
+$_['entry_confirm']  = 'Confirm';
 
 // Error
-$_['error_password'] = '密码必须为 4 到 20 字符！';
-$_['error_confirm']  = '密码与确认密码不一致！';
+$_['error_code']     = 'Reset code does not match!';
+$_['error_disabled'] = 'Password reset has been disabled!';
+$_['error_password'] = 'Password must be between 4 and 20 characters!';
+$_['error_confirm']  = 'Password and password confirmation do not match!';

@@ -1,15 +1,14 @@
 <?php
 // Heading
-$_['heading_title']    = '分类';
+$_['heading_title']    = 'Category';
 
 // Text
-$_['text_extension']   = '扩展功能';
-$_['text_module']      = '模组';
-$_['text_success']     = '成功: 已修改分类模组！';
-$_['text_edit']        = '编辑分类模组 - (在线教程: <a href="http://www.mycncart.com/blog-111.html" target="_blank">http://www.mycncart.com/blog-111.html</a>)';
+$_['text_extension']   = 'Extensions';
+$_['text_success']     = 'Success: You have modified category module!';
+$_['text_edit']        = 'Edit Category Module';
 
 // Entry
-$_['entry_status']     = '状态';
+$_['entry_status']     = 'Status';
 
 // Error
-$_['error_permission'] = '警告: 无权限修改分类模组！';
+$_['error_permission'] = 'Warning: You do not have permission to modify category module!';

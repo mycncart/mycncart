@@ -17,7 +17,7 @@
 		{% if menu.href %}
 			<li>
 				<a href="{{ menu.href }}">
-				  <i class="fa fa-dashboard"></i> <span>{{ menu.name }}</span>
+				  <i class="fas {{ menu.icon }}"></i> <span>{{ menu.name }}</span>
 				  <span class="pull-right-container">
 					<i class="fa fa-angle-right pull-right"></i>
 				  </span>
@@ -26,7 +26,7 @@
 		{% else %}
 			<li class="treeview">
 			  <a href="#">
-				<i class="fa {{ menu.icon }}"></i> <span>{{ menu.name }}</span>
+				<i class="fas {{ menu.icon }}"></i> <span>{{ menu.name }}</span>
 				<span class="pull-right-container">
 				  <i class="fa fa-angle-right pull-right"></i>
 				</span>
@@ -37,13 +37,13 @@
 				
 				{% if children_1.href %}
 				
-					<li><a href="{{ children_1.href }}"><i class="fa fa-circle-thin"></i>{{ children_1.name }}</a></li>
+					<li><a href="{{ children_1.href }}"><i class="far fa-circle"></i>{{ children_1.name }}</a></li>
 				
 				{% else %}
 					<li class="treeview">
-					  <a href="#"><i class="fa fa-circle-thin"></i>{{ children_1.name }}
+					  <a href="#"><i class="far fa-circle"></i>{{ children_1.name }}
 						<span class="pull-right-container">
-					  <i class="fa fa-angle-right pull-right"></i>
+					  <i class="fas fa-angle-right pull-right"></i>
 					</span>
 					  </a>
 					  <ul class="treeview-menu">
@@ -51,18 +51,18 @@
 					  	{% for children_2 in children_1.children %}
 						
 							{% if children_2.href %}
-							 	<li><a href="{{ children_2.href }}"><i class="fa fa-circle-thin"></i>{{ children_2.name }}</a></li>
+							 	<li><a href="{{ children_2.href }}"><i class="far fa-circle"></i>{{ children_2.name }}</a></li>
 							 {% else %}
 							 
 							 	<li class="treeview">
-								  <a href="#"><i class="fa fa-circle-thin"></i>{{ children_2.name }}
+								  <a href="#"><i class="far fa-circle"></i>{{ children_2.name }}
 									<span class="pull-right-container">
-									<i class="fa fa-angle-right pull-right"></i>
+									<i class="fas fa-angle-right pull-right"></i>
 									</span>
 								  </a>
 								  <ul class="treeview-menu">
 								 	{% for children_3 in children_2.children %}
-								 		<li><a href="{{ children_3.href }}"><i class="fa fa-circle-thin"></i>{{ children_3.name }}</a></li>
+								 		<li><a href="{{ children_3.href }}"><i class="far fa-circle"></i>{{ children_3.name }}</a></li>
 								 	{% endfor %}
 									
 								  </ul>

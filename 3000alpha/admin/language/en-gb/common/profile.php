@@ -1,33 +1,33 @@
 <?php
 // Heading
-$_['heading_title']         = '资料';
+$_['heading_title']         = 'Profile';
 
 // Text
-$_['text_success']          = '成功: 已修改资料！';
-$_['text_edit']             = '编辑资料';
+$_['text_success']          = 'Success: You have modified your profile!';
+$_['text_edit']             = 'Edit Your Profile';
 
 // Column
-$_['column_username']       = '用户名';
-$_['column_status']         = '状态';
-$_['column_date_added']     = '添加日期';
-$_['column_action']         = '操作';
+$_['column_username']       = 'Username';
+$_['column_status']         = 'Status';
+$_['column_date_added']     = 'Date Added';
+$_['column_action']         = 'Action';
 
 // Entry
-$_['entry_username']        = '用户名';
-$_['entry_password']        = '密码';
-$_['entry_confirm']         = '确认密码';
-$_['entry_firstname']       = '名字';
-$_['entry_lastname']        = '姓氏';
+$_['entry_username']        = 'Username';
+$_['entry_password']        = 'Password';
+$_['entry_confirm']         = 'Confirm';
+$_['entry_firstname']       = 'First Name';
+$_['entry_lastname']        = 'Last Name';
 $_['entry_email']           = 'E-Mail';
-$_['entry_image']           = '图片';
+$_['entry_image']           = 'Image';
 
 // Error
-$_['error_permission']      = '警告: 无权限修改资料！';
-$_['error_exists_username'] = '警告: 用户名已被使用！';
-$_['error_username']        = '用户名必须为 3 到 20 字符！';
-$_['error_password']        = '密码必须为 4 到 20 字符！';
-$_['error_confirm']         = '密码与确认密码不一致！';
-$_['error_firstname']       = '名字必须为 1 到 32 字符！';
-$_['error_lastname']        = '姓氏必须为 1 到 32 字符！';
-$_['error_email']           = 'E-Mail 电邮地址无效！';
-$_['error_exists_email']    = '警告: E-Mail 电邮地址已被使用！';
+$_['error_permission']      = 'Warning: You do not have permission to modify your profile!';
+$_['error_username_exists'] = 'Warning: Username is already in use!';
+$_['error_username']        = 'Username must be between 3 and 20 characters!';
+$_['error_password']        = 'Password must be between 4 and 20 characters!';
+$_['error_confirm']         = 'Password and password confirmation do not match!';
+$_['error_firstname']       = 'First Name must be between 1 and 32 characters!';
+$_['error_lastname']        = 'Last Name must be between 1 and 32 characters!';
+$_['error_email']           = 'E-Mail Address does not appear to be valid!';
+$_['error_email_exists']    = 'Warning: E-Mail Address is already registered!';

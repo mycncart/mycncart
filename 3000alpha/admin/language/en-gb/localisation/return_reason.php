@@ -1,22 +1,21 @@
 <?php
-
 // Heading
-$_['heading_title']    = '退换原因';
+$_['heading_title']    = 'Return Reasons';
 
 // Text
-$_['text_success']     = '成功: 已修改退换原因！';
-$_['text_list']        = '退换原因列表 - (在线教程: <a href="http://www.mycncart.com/blog-84.html" target="_blank">http://www.mycncart.com/blog-84.html</a>)';
-$_['text_add']         = '添加退换原因';
-$_['text_edit']        = '编辑退换原因';
+$_['text_success']     = 'Success: You have modified return reasons!';
+$_['text_list']        = 'Return Reason List';
+$_['text_add']         = 'Add Return Reason';
+$_['text_edit']        = 'Edit Return Reason';
 
 // Column
-$_['column_name']      = '退换原因名称';
-$_['column_action']    = '操作';
+$_['column_name']      = 'Return Reason Name';
+$_['column_action']    = 'Action';
 
 // Entry
-$_['entry_name']       = '退换原因名称';
+$_['entry_name']       = 'Return Reason Name';
 
 // Error
-$_['error_permission'] = '警告: 无权限修改退换原因！';
-$_['error_name']       = '退换原因名称必须为3-128字符！';
-$_['error_return']     = '警告: 不能删除此退换原因，该退换原因已被关联到 %s 个退换商品！';
+$_['error_permission'] = 'Warning: You do not have permission to modify return reasons!';
+$_['error_name']       = 'Return Reason Name must be between 3 and 128 characters!';
+$_['error_return']     = 'Warning: This return reason cannot be deleted as it is currently assigned to %s returned products!';

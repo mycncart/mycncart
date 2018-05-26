@@ -69,6 +69,8 @@ class ControllerCommonHeader extends Controller {
 				);
 			}
 		}
+		
+		$data['language'] = $this->load->controller('common/language');
 
 		return $this->load->view('common/header', $data);
 	}

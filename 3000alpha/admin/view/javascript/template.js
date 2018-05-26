@@ -1,11 +1,5 @@
 //[Master Javascript]
 
-//Project:	Fab Admin - Responsive Admin Template
-//Primary use:	Fab Admin - Responsive Admin Template
-
-//should be included in all pages. It controls some layout
-
-
 // Make sure jQuery has been loaded
 if (typeof jQuery === 'undefined') {
 throw new Error('template requires jQuery')
@@ -1071,3 +1065,56 @@ throw new Error('template requires jQuery')
 	
 }(jQuery) // End of use strict
 
+$(document).ready(function() {
+	//Form Submit for IE Browser
+	$('button[type=\'submit\']').on('click', function() {
+		$("form[id*='form-']").submit();
+	});
+
+	// 表单有错误时，突出显示该部分
+	$('.help-block').each(function() {
+		var element = $(this).parent().parent();
+
+		if (element.hasClass('form-group')) {
+			element.addClass('has-error');
+		}
+	});
+	
+	// Language
+	$('#form-language .language-select').on('click', function(e) {
+		e.preventDefault();
+
+		$('#form-language input[name=\'code\']').val($(this).attr('name'));
+
+		$('#form-language').submit();
+	});
+
+	// 以下待测试
+	/*
+	$('#button-menu').on('click', function(e) {
+		e.preventDefault();
+		
+		$('#column-left').toggleClass('active');
+	});
+
+	// Set last page opened on the menu
+	$('#menu a[href]').on('click', function() {
+		sessionStorage.setItem('menu', $(this).attr('href'));
+	});
+
+	if (!sessionStorage.getItem('menu')) {
+		$('#menu #dashboard').addClass('active');
+	} else {
+		// Sets active and open to selected page in the left column menu.
+		$('#menu a[href=\'' + sessionStorage.getItem('menu') + '\']').parent().addClass('active');
+	}
+	
+	$('#menu a[href=\'' + sessionStorage.getItem('menu') + '\']').parents('li > a').removeClass('collapsed');
+	
+	$('#menu a[href=\'' + sessionStorage.getItem('menu') + '\']').parents('ul').addClass('in');
+	
+	$('#menu a[href=\'' + sessionStorage.getItem('menu') + '\']').parents('li').addClass('active');
+	*/
+	
+	
+});

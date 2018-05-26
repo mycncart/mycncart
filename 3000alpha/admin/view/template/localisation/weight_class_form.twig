@@ -1,70 +1,94 @@
 {{ header }}{{ column_left }}
-<div id="content">
-  <div class="page-header">
-    <div class="container-fluid">
-      <div class="float-right">
-        <button type="submit" form="form-weight-class" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fas fa-save"></i></button>
-        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-light"><i class="fas fa-reply"></i></a></div>
-      <h1>{{ heading_title }}</h1>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>{{ heading_title }} <button type="button" class="btn btn-rounded btn-info btn-sm" data-toggle="modal" data-target="#hint">操作提示</button></h1>
       <ol class="breadcrumb">
         {% for breadcrumb in breadcrumbs %}
           <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
         {% endfor %}
       </ol>
-    </div>
+    </section>
+	
+    <section class="content">
+		
+	  {% if error_warning %}
+		<div class="alert alert-warning alert-dismissible"><i class="fas fa-exclamation-circle"></i> {{ error_warning }}
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		</div>
+	  {% endif %}
+      
+	  <div class="row">
+	  	<div class="col-12">
+         
+         <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title"><i class="fas fa-pencil-alt"></i> {{ text_form }}</h3>
+			  <div class="float-right">
+				<button type="submit" form="form-weight-class" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fas fa-save"></i></button>
+				<a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-light"><i class="fas fa-reply"></i></a>
+			  </div>
+            </div>
+            
+            <div class="box-body">
+				<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-weight-class">
+				  <div class="form-group row required">
+					<label class="col-sm-2 col-form-label">{{ entry_title }}</label>
+					<div class="col-sm-10">
+						<input type="text" name="title" value="{{ title }}" placeholder="{{ entry_title }}" class="form-control"/>
+						{% if error_title %}
+						  <span class="help-block">{{ error_title }}</span>
+						{% endif %}
+					</div>
+				  </div>
+				  <div class="form-group row required">
+					<label class="col-sm-2 col-form-label">{{ entry_unit }}</label>
+					<div class="col-sm-10">
+						<input type="text" name="unit" value="{{ unit }}" placeholder="{{ entry_unit }}" class="form-control"/>
+						{% if error_unit %}
+						  <span class="help-block">{{ error_unit }}</span>
+						{% endif %}
+					</div>
+				  </div>
+				  <div class="form-group row">
+					<label class="col-sm-2 col-form-label" for="input-value">{{ entry_value }}</label>
+					<div class="col-sm-10">
+					  <input type="text" name="value" value="{{ value }}" placeholder="{{ entry_value }}" id="input-value" class="form-control"/>
+					  <small class="form-text text-muted">{{ help_value }}</small>
+					</div>
+				  </div>
+				</form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->      
+        </div>
+	  
+	  </div>
+	  
+	  <div id="hint" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				</div>
+				<div class="modal-body">
+					<h4>Overflowing text to show scroll behavior</h4>
+					<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+					<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	  
+	</section>  
+    <!-- /.content -->
   </div>
-  <div class="container-fluid">
-    {% if error_warning %}
-      <div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> {{ error_warning }}
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-      </div>
-    {% endif %}
-    <div class="card">
-      <div class="card-header"><i class="fas fa-pencil-alt"></i> {{ text_form }}</div>
-      <div class="card-body">
-        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-weight-class">
-          <div class="form-group row required">
-            <label class="col-sm-2 col-form-label">{{ entry_title }}</label>
-            <div class="col-sm-10">
-              {% for language in languages %}
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}"/></span>
-                  </div>
-                  <input type="text" name="weight_class_description[{{ language.language_id }}][title]" value="{{ weight_class_description[language.language_id] ? weight_class_description[language.language_id].title }}" placeholder="{{ entry_title }}" class="form-control"/>
-                </div>
-                {% if error_title[language.language_id] %}
-                  <div class="invalid-tooltip">{{ error_title[language.language_id] }}</div>
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-          <div class="form-group row required">
-            <label class="col-sm-2 col-form-label">{{ entry_unit }}</label>
-            <div class="col-sm-10">
-              {% for language in languages %}
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}"/></span>
-                  </div>
-                  <input type="text" name="weight_class_description[{{ language.language_id }}][unit]" value="{{ weight_class_description[language.language_id] ? weight_class_description[language.language_id].unit }}" placeholder="{{ entry_unit }}" class="form-control"/>
-                </div>
-                {% if error_unit[language.language_id] %}
-                  <div class="invalid-tooltip">{{ error_unit[language.language_id] }}</div>
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="input-value">{{ entry_value }}</label>
-            <div class="col-sm-10">
-              <input type="text" name="value" value="{{ value }}" placeholder="{{ entry_value }}" id="input-value" class="form-control"/>
-              <small class="form-text text-muted">{{ help_value }}</small>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
 {{ footer }}
+

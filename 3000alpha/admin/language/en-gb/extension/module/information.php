@@ -1,15 +1,14 @@
 <?php
 // Heading
-$_['heading_title']    = '文章';
+$_['heading_title']    = 'Information';
 
 // Text
-$_['text_extension']   = '扩展功能';
-$_['text_module']      = '模组';
-$_['text_success']     = '成功: 已修改文章模组！';
-$_['text_edit']        = '编辑文章模组 - (在线教程: <a href="http://www.mycncart.com/blog-114.html" target="_blank">http://www.mycncart.com/blog-114.html</a>)';
+$_['text_extension']   = 'Extensions';
+$_['text_success']     = 'Success: You have modified information module!';
+$_['text_edit']        = 'Edit Information Module';
 
 // Entry
-$_['entry_status']     = '状态';
+$_['entry_status']     = 'Status';
 
 // Error
-$_['error_permission'] = '警告: 无权限修改文章模组！';
+$_['error_permission'] = 'Warning: You do not have permission to modify information module!';

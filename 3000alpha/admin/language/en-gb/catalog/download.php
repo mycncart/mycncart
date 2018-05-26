@@ -1,34 +1,39 @@
 <?php
 // Heading
-$_['heading_title']     = '下载文件';
+$_['heading_title']     = 'Downloads';
 
 // Text
-$_['text_success']      = '成功: 已修改下载文件！';
-$_['text_list']         = '下载文件列表 - (在线教程: <a href="http://www.mycncart.com/blog-130.html" target="_blank">http://www.mycncart.com/blog-130.html</a>)';
-$_['text_add']          = '添加下载文件';
-$_['text_edit']         = '编辑下载文件';
-$_['text_upload']       = '文件已成功上传！';
+$_['text_success']      = 'Success: You have modified downloads!';
+$_['text_list']         = 'Download List';
+$_['text_add']          = 'Add Download';
+$_['text_edit']         = 'Edit Download';
+$_['text_upload']       = 'Your file was successfully uploaded!';
+$_['text_report']       = 'Report';
 
 // Column
-$_['column_name']       = '下载文件名称';
-$_['column_date_added'] = '添加日期';
-$_['column_action']     = '操作';
+$_['column_name']       = 'Download Name';
+$_['column_ip']         = 'IP';
+$_['column_account']    = 'Accounts';
+$_['column_store']      = 'Store';
+$_['column_country']    = 'Country';
+$_['column_date_added'] = 'Date Added';
+$_['column_action']     = 'Action';
 
 // Entry
-$_['entry_name']        = '下载文件名称';
-$_['entry_filename']    = '文件名';
-$_['entry_mask']        = '掩码';
+$_['entry_name']        = 'Download Name';
+$_['entry_filename']    = 'Filename';
+$_['entry_mask']        = 'Mask';
 
 // Help
-$_['help_filename']     = '可以通过点击上传按钮上传，也可以使用FTP工具上传到download下载目录并在下面输入相关资料。';
-$_['help_mask']         = '建议文件名和掩码是不同的，以防止获取到您的直接下载链接。';
+$_['help_filename']     = 'You can upload via the upload button or use FTP to upload to the download directory and enter the details below.';
+$_['help_mask']         = 'It is recommended that the filename and the mask are different to stop people trying to directly link to your downloads.';
 
 // Error
-$_['error_permission']  = '警告: 无权限修改下载文件！';
-$_['error_name']        = '下载文件名称必须介于3-64字符之间！';
-$_['error_upload']      = '必须上传文件！';
-$_['error_filename']    = '文件名必须介于3-128字符之间！';
-$_['error_exists']      = '文件不存在！';
-$_['error_mask']        = '掩码必须介于3-128字符之间！';
-$_['error_filetype']    = '无效文件类型！';
-$_['error_product']     = '警告: 无法删除该下载文件，该下载文件已经关联到 %s 个商品！';
+$_['error_permission']  = 'Warning: You do not have permission to modify downloads!';
+$_['error_name']        = 'Download Name must be between 3 and 64 characters!';
+$_['error_upload']      = 'Upload required!';
+$_['error_filename']    = 'Filename must be between 3 and 128 characters!';
+$_['error_exists']      = 'File does not exist!';
+$_['error_mask']        = 'Mask must be between 3 and 128 characters!';
+$_['error_filetype']    = 'Invalid file type!';
+$_['error_product']     = 'Warning: This download cannot be deleted as it is currently assigned to %s products!';

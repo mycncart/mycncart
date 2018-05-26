@@ -3,7 +3,7 @@
 $_['heading_title']					 = 'PayPal (Powered by Braintree)';
 
 // Text
-$_['text_extension']   = '扩展功能';
+$_['text_extension']		 		 = 'Extensions';
 $_['text_pp_braintree']				 = '<img src="view/image/payment/paypal.png" alt="PayPal (Powered by Braintree)" title="PayPal (Powered by Braintree)" style="border: 1px solid #EEEEEE;" />';
 $_['text_payment']					 = 'Payment';
 $_['text_success']					 = 'Success: You have modified Braintree account details!';
@@ -59,6 +59,7 @@ $_['text_merchant_connected']		 = 'Connected Merchant ID: ';
 $_['text_enable_button']			 = 'We recommend offering PayPal Express Shortcut to maximise checkout conversion, this allows customers to use their PayPal address book and <strong>checkout is as little as three taps</strong> from the basket page. Click enable to install the extension and access the layout manager, you will ned to add "PayPal (Powered by Braintree) Button" to the checkout layout';
 $_['text_3ds_ssl']		 			 = '3D Secure requires the store to be using an SSL certificate';
 $_['text_unlink']		 			 = 'Delete link';
+$_['text_connect_braintree']		 = 'Connect to Braintree';
 
 // Column
 $_['column_void']					 = 'Void';

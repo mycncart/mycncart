@@ -1,38 +1,37 @@
 <?php
-
 // Heading
-$_['heading_title']     = '语言管理';
+$_['heading_title']     = 'Languages';
 
 // Text
-$_['text_success']      = '成功: 已修改语言！';
-$_['text_list']         = '语言列表 - (在线教程: <a href="http://www.mycncart.com/blog-60.html" target="_blank">http://www.mycncart.com/blog-60.html</a>)';
-$_['text_add']          = '添加语言';
-$_['text_edit']         = '编辑语言';
+$_['text_success']      = 'Success: You have modified languages!';
+$_['text_list']         = 'Language List';
+$_['text_add']          = 'Add Language';
+$_['text_edit']         = 'Edit Language';
 
 // Column
-$_['column_name']       = '语言名称';
-$_['column_code']       = '代码';
-$_['column_sort_order'] = '排序';
-$_['column_action']     = '操作';
+$_['column_name']       = 'Language Name';
+$_['column_code']       = 'Code';
+$_['column_sort_order'] = 'Sort Order';
+$_['column_action']     = 'Action';
 
 // Entry
-$_['entry_name']        = '语言名称';
-$_['entry_code']        = '代码';
-$_['entry_locale']      = '本地化';
-$_['entry_status']      = '状态';
-$_['entry_sort_order']  = '排序';
+$_['entry_name']        = 'Language Name';
+$_['entry_code']        = 'Code';
+$_['entry_locale']      = 'Locale';
+$_['entry_status']      = 'Status';
+$_['entry_sort_order']  = 'Sort Order';
 
 // Help
-$_['help_locale']       = '例如: en_US.UTF-8,en_US,en-gb,en_gb,english';
-$_['help_status']       = '在语言下拉项中隐藏/显示';
+$_['help_locale']       = 'Example: en_US.UTF-8,en_US,en-gb,en_gb,english';
+$_['help_status']       = 'Hide/Show it in language dropdown';
 
 // Error
-$_['error_permission']  = '警告: 无权限修改语言！';
-$_['error_exists']      = '警告: 已存在！';
-$_['error_name']        = '语言名称必须为 1 -32字符！';
-$_['error_code']        = '语言代码至少为2个字符！';
-$_['error_locale']      = '本地化必填！';
-$_['error_default']     = '警告: 不能删除此语言，该语言已经被关联为商店前台默认语言！';
-$_['error_admin']       = '警告: 不能删除此语言，该语言已经被关联为网站后台默认语言！';
-$_['error_store']       = '警告: 不能删除此语言，该语言已经被关联到 %s 商店！';
-$_['error_order']       = '警告: 不能删除此语言，该语言已经被关联到 %s 个订单！';
+$_['error_permission']  = 'Warning: You do not have permission to modify languages!';
+$_['error_exists']      = 'Warning: You have already added this language!';
+$_['error_name']        = 'Language Name must be between 3 and 32 characters!';
+$_['error_code']        = 'Language Code must at least 2 characters!';
+$_['error_locale']      = 'Locale required!';
+$_['error_default']     = 'Warning: This language cannot be deleted as it is currently assigned as the default store language!';
+$_['error_admin']       = 'Warning: This Language cannot be deleted as it is currently assigned as the administration language!';
+$_['error_store']       = 'Warning: This language cannot be deleted as it is currently assigned to %s stores!';
+$_['error_order']       = 'Warning: This language cannot be deleted as it is currently assigned to %s orders!';

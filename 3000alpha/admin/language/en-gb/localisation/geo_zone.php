@@ -1,29 +1,27 @@
 <?php
 // Heading
-$_['heading_title']      = '区域群组';
+$_['heading_title']      = 'Geo Zones';
 
 // Text
-$_['text_success']       = '成功: 已修改区域群组!';
-$_['text_list']          = '区域群组列表 - (在线教程: <a href="http://www.mycncart.com/blog-76.html" target="_blank">http://www.mycncart.com/blog-76.html</a>)';
-$_['text_add']           = '添加区域群组';
-$_['text_edit']          = '编辑区域群组';
-$_['text_geo_zone']      = '区域群组';
+$_['text_success']       = 'Success: You have modified geo zones!';
+$_['text_list']          = 'Geo Zone List';
+$_['text_add']           = 'Add Geo Zone';
+$_['text_edit']          = 'Edit Geo Zone';
+$_['text_geo_zone']      = 'Geo Zones';
 
 // Column
-$_['column_name']        = '区域群组名称';
-$_['column_description'] = '描述';
-$_['column_action']      = '操作';
+$_['column_name']        = 'Geo Zone Name';
+$_['column_description'] = 'Description';
+$_['column_action']      = 'Action';
 
 // Entry
-$_['entry_name']         = '区域群组名称';
-$_['entry_description']  = '描述';
-$_['entry_country']      = '国家';
-$_['entry_zone']         = '州/省/地区';
-$_['entry_city']         = '城市';
-$_['entry_district']     = '区县';
+$_['entry_name']         = 'Geo Zone Name';
+$_['entry_description']  = 'Description';
+$_['entry_country']      = 'Country';
+$_['entry_zone']         = 'Zone';
 
 // Error
-$_['error_permission']   = '警告: 无权限修改区域群组!';
-$_['error_name']         = '区域群组名称必须为3-32字符！';
-$_['error_description']  = '描述名称必须为3-255字符！';
-$_['error_tax_rate']     = '警告: 不能删除此区域群组，该区域群组已被关联到一个或多个税率！';
+$_['error_permission']   = 'Warning: You do not have permission to modify geo zones!';
+$_['error_name']         = 'Geo Zone Name must be between 3 and 32 characters!';
+$_['error_description']  = 'Description Name must be between 3 and 255 characters!';
+$_['error_tax_rate']     = 'Warning: This geo zone cannot be deleted as it is currently assigned to one or more tax rates!';

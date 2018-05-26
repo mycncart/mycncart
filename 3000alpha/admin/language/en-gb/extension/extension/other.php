@@ -1,15 +1,15 @@
 <?php
 // Heading
-$_['heading_title']     = '其它';
+$_['heading_title']     = 'Other';
 
 // Text
-$_['text_success']      = '成功: 已修改其它扩展功能！';
-$_['text_list']         = '其它列表';
+$_['text_success']      = 'Success: You have modified other extension!';
+$_['text_list']         = 'Other List';
 
 // Column
-$_['column_name']       = '其它';
-$_['column_status']     = '状态';
-$_['column_action']     = '操作';
+$_['column_name']       = 'Other';
+$_['column_status']     = 'Status';
+$_['column_action']     = 'Action';
 
 // Error
-$_['error_permission']  = '警告: 无权限修改其它扩展功能！';
+$_['error_permission']  = 'Warning: You do not have permission to modify other extension!';

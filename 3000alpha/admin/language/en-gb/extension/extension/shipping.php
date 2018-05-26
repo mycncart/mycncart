@@ -1,18 +1,16 @@
 <?php
-
 // Heading
-$_['heading_title']     = '配送方式';
+$_['heading_title']     = 'Shipping';
 
 // Text
-$_['text_extension']   = '扩展功能';
-$_['text_success']      = '成功: 已修改配送方式！';
-$_['text_list']         = '配送方式列表';
+$_['text_success']      = 'Success: You have modified shipping!';
+$_['text_list']         = 'Shipping List';
 
 // Column
-$_['column_name']       = '配送方式';
-$_['column_status']     = '状态';
-$_['column_sort_order'] = '排序';
-$_['column_action']     = '操作';
+$_['column_name']       = 'Shipping Method';
+$_['column_status']     = 'Status';
+$_['column_sort_order'] = 'Sort Order';
+$_['column_action']     = 'Action';
 
 // Error
-$_['error_permission']  = '警告: 无权限修改配送方式！';
+$_['error_permission']  = 'Warning: You do not have permission to modify shipping!';

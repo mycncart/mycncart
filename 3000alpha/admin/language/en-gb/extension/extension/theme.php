@@ -1,16 +1,15 @@
 <?php
 // Heading
-$_['heading_title']    = '模板主题';
+$_['heading_title']    = 'Themes';
 
 // Text
-$_['text_extension']   = '扩展功能';
-$_['text_success']     = '成功: 已修改模板主题！';
-$_['text_list']        = '模板主题列表';
+$_['text_success']     = 'Success: You have modified themes!';
+$_['text_list']        = 'Theme List';
 
 // Column
-$_['column_name']      = '模板主题名称';
-$_['column_status']    = '状态';
-$_['column_action']    = '操作';
+$_['column_name']      = 'Theme Name';
+$_['column_status']    = 'Status';
+$_['column_action']    = 'Action';
 
 // Error
-$_['error_permission'] = '警告: 无权限修改模板主题！';
+$_['error_permission'] = 'Warning: You do not have permission to modify themes!';

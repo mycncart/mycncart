@@ -1,16 +1,15 @@
 <?php
 // Heading
-$_['heading_title']    = '搜索引擎分析代码';
+$_['heading_title']    = 'Analytics';
 
 // Text
-$_['text_extension']   = '扩展功能';
-$_['text_success']     = '成功: 已修改搜索引擎分析代码！';
-$_['text_list']        = '搜索引擎分析代码列表';
+$_['text_success']     = 'Success: You have modified analytics!';
+$_['text_list']        = 'Analytics List';
 
 // Column
-$_['column_name']      = '搜索引擎分析代码名称';
-$_['column_status']    = '状态';
-$_['column_action']    = '操作';
+$_['column_name']      = 'Analytics Name';
+$_['column_status']    = 'Status';
+$_['column_action']    = 'Action';
 
 // Error
-$_['error_permission'] = '警告: 无权限修改搜索引擎分析代码！';
+$_['error_permission'] = 'Warning: You do not have permission to modify analytics!';

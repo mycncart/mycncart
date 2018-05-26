@@ -1,17 +1,17 @@
 <?php
-$_['heading_title']    = '谷歌分析';
+$_['heading_title']    = 'Google Analytics';
 
 // Text
-$_['text_extension']   = '扩展功能';
-$_['text_success']	   = '成功: 已修改谷歌分析!';
-$_['text_edit']        = '编辑谷歌分析 - (在线教程: <a href="http://www.mycncart.com/blog-106.html" target="_blank">http://www.mycncart.com/blog-106.html</a>)';
-$_['text_signup']      = '登录您在 <a href="http://www.google.com/analytics/" target="_blank"><u>谷歌分析网站</u></a> 的账户，然后创建您的网站资料，然后复制并粘贴分析代码到此处。';
-$_['text_default']     = '默认';
+$_['text_extension']   = 'Extensions';
+$_['text_success']	   = 'Success: You have modified Google Analytics!';
+$_['text_edit']        = 'Edit Google Analytics';
+$_['text_signup']      = 'Login to your <a href="http://www.google.com/analytics/" target="_blank"><u>Google Analytics</u></a> account and after creating your website profile copy and paste the analytics code into this field.';
+$_['text_default']     = 'Default';
 
 // Entry
-$_['entry_code']       = '谷歌分析代码';
-$_['entry_status']     = '状态';
+$_['entry_code']       = 'Google Analytics Code';
+$_['entry_status']     = 'Status';
 
 // Error
-$_['error_permission'] = '警告: 无权限修改谷歌分析！';
-$_['error_code']	   = '代码必填！';
+$_['error_permission'] = 'Warning: You do not have permission to modify Google Analytics!';
+$_['error_code']	   = 'Code required!';

@@ -1,47 +1,48 @@
 <?php
 // Heading
-$_['heading_title']          = '分类';
+$_['heading_title']          = 'Categories';
 
 // Text
-$_['text_success']           = '成功: 已经修改分类！';
-$_['text_list']              = '分类列表 - (在线教程: <a href="http://www.mycncart.com/blog-7.html" target="_blank">http://www.mycncart.com/blog-7.html</a>)';
-$_['text_add']               = '添加分类';
-$_['text_edit']              = '编辑分类';
-$_['text_default']           = '默认';
-$_['text_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
+$_['text_success']           = 'Success: You have modified categories!';
+$_['text_list']              = 'Category List';
+$_['text_add']               = 'Add Category';
+$_['text_edit']              = 'Edit Category';
+$_['text_default']           = 'Default';
+$_['text_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the SEO URL is globally unique.';
 
 // Column
-$_['column_name']            = '分类名称';
-$_['column_sort_order']      = '排序';
-$_['column_action']          = '操作';
+$_['column_name']            = 'Category Name';
+$_['column_sort_order']      = 'Sort Order';
+$_['column_action']          = 'Action';
 
 // Entry
-$_['entry_name']             = '分类名称';
-$_['entry_description']      = '描述';
-$_['entry_meta_title'] 	     = 'Meta Tag 标题';
-$_['entry_meta_keyword'] 	 = 'Meta Tag 关键词';
-$_['entry_meta_description'] = 'Meta Tag 描述';
-$_['entry_store']            = '商店';
-$_['entry_keyword']          = 'SEO URL';
-$_['entry_parent']           = '上一级';
-$_['entry_filter']           = '筛选';
-$_['entry_image']            = '图像';
-$_['entry_top']              = '顶部菜单显示';
-$_['entry_column']           = '列排显示';
-$_['entry_sort_order']       = '排序';
-$_['entry_status']           = '状态';
-$_['entry_layout']           = '布局排版覆盖';
+$_['entry_name']             = 'Category Name';
+$_['entry_description']      = 'Description';
+$_['entry_meta_title'] 	     = 'Meta Tag Title';
+$_['entry_meta_keyword']     = 'Meta Tag Keywords';
+$_['entry_meta_description'] = 'Meta Tag Description';
+$_['entry_store']            = 'Stores';
+$_['entry_keyword']          = 'Keyword';
+$_['entry_parent']           = 'Parent';
+$_['entry_filter']           = 'Filters';
+$_['entry_image']            = 'Image';
+$_['entry_top']              = 'Top';
+$_['entry_column']           = 'Columns';
+$_['entry_sort_order']       = 'Sort Order';
+$_['entry_status']           = 'Status';
+$_['entry_layout']           = 'Layout Override';
 
 // Help
-$_['help_filter']            = '(输入时自动筛选结果)';
-$_['help_top']               = '在页面顶部菜单显示，仅适用顶级目录。';
-$_['help_column']            = '在页面顶部菜单的子目录显示时排列的行数。 仅适用顶级目录。';
+$_['help_parent']            = '(Autocomplete)';
+$_['help_filter']            = '(Autocomplete)';
+$_['help_top']               = 'Display in the top menu bar. Only works for the top parent categories.';
+$_['help_column']            = 'Number of columns to use for the bottom 3 categories. Only works for the top parent categories.';
 
 // Error
-$_['error_warning']          = '警告: 存在错误，请检查！';
-$_['error_permission']       = '警告: 无权限修改分类！';
-$_['error_name']             = '分类名称必须介于2-255字符之间！';
-$_['error_meta_title']       = 'Meta 标题必须介于3-255字符之间！';
-$_['error_keyword']          = '该 SEO URL 已经存在了！';
-$_['error_unique']           = 'SEO URL 必须全站唯一！';
-$_['error_parent']           = '您选择的父分类是当前分类的子分类！';
+$_['error_warning']          = 'Warning: Please check the form carefully for errors!';
+$_['error_permission']       = 'Warning: You do not have permission to modify categories!';
+$_['error_name']             = 'Category Name must be between 1 and 255 characters!';
+$_['error_meta_title']       = 'Meta Title must be greater than 1 and less than 255 characters!';
+$_['error_seo']              = 'SEO URL keyword required!';
+$_['error_keyword']          = 'SEO URL must be unique!';
+$_['error_parent']           = 'The parent category you have chosen is a child of the current one!';

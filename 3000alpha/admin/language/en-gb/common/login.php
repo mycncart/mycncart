@@ -1,19 +1,19 @@
 <?php
 // Heading
-$_['heading_title']  = '管理员';
+$_['heading_title']  = 'Administration';
 
 // Text
-$_['text_heading']   = '管理员';
-$_['text_login']     = '输入登录信息';
-$_['text_forgotten'] = '忘记密码';
+$_['text_heading']   = 'Administration';
+$_['text_login']     = 'Please enter your login details.';
+$_['text_forgotten'] = 'Forgotten Password';
 
 // Entry
-$_['entry_username'] = '用户名';
-$_['entry_password'] = '密码';
+$_['entry_username'] = 'Username';
+$_['entry_password'] = 'Password';
 
 // Button
-$_['button_login']   = '登录';
+$_['button_login']   = 'Login';
 
 // Error
-$_['error_login']    = '用户名或密码不正确。';
-$_['error_token']    = '无效 token 会话。请重新登录。';
+$_['error_login']    = 'No match for Username and/or Password.';
+$_['error_token']    = 'Invalid token session. Please login again.';

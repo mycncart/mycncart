@@ -1,24 +1,23 @@
 <?php
-
 // Heading
-$_['heading_title']    = '模组';
+$_['heading_title']    = 'Modules';
 
 // Text
-$_['text_extension']   = '扩展功能';
-$_['text_success']     = '成功: 已修改模组！';
-$_['text_layout']      = '安装并配置完成一个模组后，可以 <a href="%s" class="alert-link">点击这里</a> 来添加到页面布局排版中!';
-$_['text_add']         = '添加模组';
-$_['text_list']        = '模组列表';
+$_['text_success']     = 'Success: You have modified modules!';
+$_['text_layout']      = 'After you have installed and configured a module you can add it to a layout <a href="%s" class="alert-link">here</a>!';
+$_['text_add']         = 'Add Module';
+$_['text_list']        = 'Module List';
 
 // Column
-$_['column_name']      = '模组名称';
-$_['column_action']    = '操作';
+$_['column_name']      = 'Module Name';
+$_['column_status']    = 'Status';
+$_['column_action']    = 'Action';
 
 // Entry
-$_['entry_code']       = '模组';
-$_['entry_name']       = '模组名称';
+$_['entry_code']       = 'Module';
+$_['entry_name']       = 'Module Name';
 
 // Error
-$_['error_permission'] = '警告: 无权限修改模组！';
-$_['error_name']       = '模组名称必须介于3-64字符之间！';
+$_['error_permission'] = 'Warning: You do not have permission to modify modules!';
+$_['error_name']       = 'Module Name must be between 3 and 64 characters!';
 $_['error_code']       = 'Extension required!';

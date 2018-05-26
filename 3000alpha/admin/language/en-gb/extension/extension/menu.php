@@ -1,15 +1,15 @@
 <?php
 // Heading
-$_['heading_title']    = '菜单';
+$_['heading_title']    = 'Menu';
 
 // Text
-$_['text_success']     = '成功: 已修改菜单！';
-$_['text_list']        = '菜单列表';
+$_['text_success']     = 'Success: You have modified menu!';
+$_['text_list']        = 'Menu List';
 
 // Column
-$_['column_name']      = '菜单名称';
-$_['column_status']    = '状态';
-$_['column_action']    = '操作';
+$_['column_name']      = 'Menu Name';
+$_['column_status']    = 'Status';
+$_['column_action']    = 'Action';
 
 // Error
-$_['error_permission'] = '警告: 无权限修改菜单！';
+$_['error_permission'] = 'Warning: You do not have permission to modify menu!';
