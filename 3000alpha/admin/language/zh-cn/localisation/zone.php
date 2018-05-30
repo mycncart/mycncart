@@ -1,5 +1,4 @@
 <?php
-
 // Heading
 $_['heading_title']          = '地区设置';
 
@@ -8,12 +7,19 @@ $_['text_success']           = '成功: 已修地区设置！';
 $_['text_list']              = '地区列表';
 $_['text_add']               = '添加地区';
 $_['text_edit']              = '编辑地区';
+$_['text_parent_zones']      = '所属地区: ';
+$_['text_current_parent_zone']   = '所属地区: %s';
+$_['text_current_parent_zone_id_top']   = '所属地区: 顶级';
 
 // Column
 $_['column_name']            = '地区名称';
 $_['column_level']           = '所在层级';
 $_['column_parent_id']       = '上级地区ID';
 $_['column_action']          = '操作';
+
+//按钮
+$_['button_back_parent']     = '回到上一级';
+$_['button_back_top']        = '回到顶级';
 
 // Entry
 $_['entry_status']           = '状态';

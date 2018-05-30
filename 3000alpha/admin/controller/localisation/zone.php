@@ -26,6 +26,10 @@ class ControllerLocalisationZone extends Controller {
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			$url = '';
+			
+			if (isset($this->request->get['parent_id'])) {
+				$url .= '&parent_id=' . $this->request->get['parent_id'];
+			}
 
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
@@ -59,7 +63,11 @@ class ControllerLocalisationZone extends Controller {
 
 			$url = '';
 
-			if (isset($this->request->get['sort'])) {
+			if (isset($this->request->get['parent_id'])) {
+				$url .= '&parent_id=' . $this->request->get['parent_id'];
+			}
+			
+			if (isset($this->request->get['parent_id'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
 
@@ -92,6 +100,10 @@ class ControllerLocalisationZone extends Controller {
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			$url = '';
+			
+			if (isset($this->request->get['parent_id'])) {
+				$url .= '&parent_id=' . $this->request->get['parent_id'];
+			}
 
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
@@ -163,8 +175,8 @@ class ControllerLocalisationZone extends Controller {
 			'href' => $this->url->link('localisation/zone', 'user_token=' . $this->session->data['user_token'] . $url)
 		);
 
-		$data['add'] = $this->url->link('localisation/zone/add', 'user_token=' . $this->session->data['user_token'] . $url);
-		$data['delete'] = $this->url->link('localisation/zone/delete', 'user_token=' . $this->session->data['user_token'] . $url);
+		$data['add'] = $this->url->link('localisation/zone/add', 'user_token=' . $this->session->data['user_token'] . '&parent_id=' . $parent_id . $url);
+		$data['delete'] = $this->url->link('localisation/zone/delete', 'user_token=' . $this->session->data['user_token'] . '&parent_id=' . $parent_id . $url);
 
 		$data['zones'] = array();
 
@@ -187,11 +199,14 @@ class ControllerLocalisationZone extends Controller {
 				'level'    => $result['level'],
 				'parent_id'    => $result['parent_id'],
 				'edit'    => $this->url->link('localisation/zone/edit', 'user_token=' . $this->session->data['user_token'] . '&zone_id=' . $result['zone_id'] . '&parent_id=' . $result['parent_id'] . $url),
+				'add_subzone'    => $this->url->link('localisation/zone/add', 'user_token=' . $this->session->data['user_token'] . '&parent_id=' . $result['zone_id'] . $url),
 				'subzone'    => $this->url->link('localisation/zone', 'user_token=' . $this->session->data['user_token'] . '&parent_id=' . $result['zone_id'] . $url)
 			);
 		}
 		
+		$data['back_top'] = $this->url->link('localisation/zone', 'user_token=' . $this->session->data['user_token'] . $url);
 		
+		//获取上级循环级的资料
 		$list = $this->getParentZones($parent_id);
 		
 		$data['parent_zones'] = array_reverse($list);
@@ -301,24 +316,38 @@ class ControllerLocalisationZone extends Controller {
 			'href' => $this->url->link('localisation/zone', 'user_token=' . $this->session->data['user_token'] . $url)
 		);
 
-		if (!isset($this->request->get['zone_id'])) {
-			$data['action'] = $this->url->link('localisation/zone/add', 'user_token=' . $this->session->data['user_token'] . $url);
-		} else {
-			$data['action'] = $this->url->link('localisation/zone/edit', 'user_token=' . $this->session->data['user_token'] . '&zone_id=' . $this->request->get['zone_id'] . $url);
-		}
-
-		$data['cancel'] = $this->url->link('localisation/zone', 'user_token=' . $this->session->data['user_token'] . $url);
-
+		
 		if (isset($this->request->get['zone_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$zone_info = $this->model_localisation_zone->getZone($this->request->get['zone_id']);
 		}
-
-		if (isset($this->request->post['status'])) {
-			$data['status'] = $this->request->post['status'];
-		} elseif (!empty($zone_info)) {
-			$data['status'] = $zone_info['status'];
+		
+		if (isset($this->request->get['parent_id'])) {
+			$parent_zone_info = $this->model_localisation_zone->getZone($this->request->get['parent_id']);
+		}
+		
+		//设定所处上一级参数
+		if (isset($this->request->get['parent_id'])) {
+			$data['parent_id'] = (int)$this->request->get['parent_id'];
+			$parent_id = (int)$this->request->get['parent_id'];
 		} else {
-			$data['status'] = '1';
+			$data['parent_id'] = 0;
+			$parent_id = 0;
+		}
+		
+		//设定所在层级参数
+		if ($parent_id == 0) {
+			$data['level'] = 1;
+		} elseif (!empty($parent_zone_info)) {
+			$data['level'] = $parent_zone_info['level'] + 1;
+		} else {
+			$data['level'] = 1;
+		}
+		
+		//设定上一级的信息展示
+		if ($parent_zone_info) {
+			$data['text_current_parent'] = sprintf($this->language->get('text_current_parent_zone'), $parent_zone_info['name']);;
+		} else {
+			$data['text_current_parent'] = $this->language->get('text_current_parent_zone_id_top');
 		}
 
 		if (isset($this->request->post['name'])) {
@@ -328,26 +357,15 @@ class ControllerLocalisationZone extends Controller {
 		} else {
 			$data['name'] = '';
 		}
-
-		if (isset($this->request->post['code'])) {
-			$data['code'] = $this->request->post['code'];
-		} elseif (!empty($zone_info)) {
-			$data['code'] = $zone_info['code'];
+		
+		if (!isset($this->request->get['zone_id'])) {
+			$data['action'] = $this->url->link('localisation/zone/add', 'user_token=' . $this->session->data['user_token'] . '&parent_id=' . $parent_id . $url);
 		} else {
-			$data['code'] = '';
+			$data['action'] = $this->url->link('localisation/zone/edit', 'user_token=' . $this->session->data['user_token'] . '&zone_id=' . $this->request->get['zone_id'] . '&parent_id=' . $parent_id  . $url);
 		}
 
-		if (isset($this->request->post['country_id'])) {
-			$data['country_id'] = $this->request->post['country_id'];
-		} elseif (!empty($zone_info)) {
-			$data['country_id'] = $zone_info['country_id'];
-		} else {
-			$data['country_id'] = '';
-		}
+		$data['cancel'] = $this->url->link('localisation/zone', 'user_token=' . $this->session->data['user_token'] . '&parent_id=' . $parent_id . $url);
 
-		$this->load->model('localisation/country');
-
-		$data['countries'] = $this->model_localisation_country->getCountries();
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
@@ -372,7 +390,8 @@ class ControllerLocalisationZone extends Controller {
 		if (!$this->user->hasPermission('modify', 'localisation/zone')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
-
+		
+		/*
 		$this->load->model('setting/store');
 		$this->load->model('customer/customer');
 		$this->load->model('localisation/geo_zone');
@@ -400,6 +419,7 @@ class ControllerLocalisationZone extends Controller {
 				$this->error['warning'] = sprintf($this->language->get('error_zone_to_geo_zone'), $zone_to_geo_zone_total);
 			}
 		}
+		*/
 
 		return !$this->error;
 	}
@@ -411,6 +431,7 @@ class ControllerLocalisationZone extends Controller {
 		if ($zone_info) {
 			$this->parent_zones[] = array(
 				'zone_id' => $zone_info['zone_id'],
+				'href' => $this->url->link('localisation/zone', 'user_token=' . $this->session->data['user_token'] . '&parent_id=' . $zone_info['zone_id']),
 				'name' => $zone_info['name'],
 			);
 			$this->getParentZones($zone_info['parent_id']);
@@ -418,43 +439,5 @@ class ControllerLocalisationZone extends Controller {
 
 		return $this->parent_zones;
 	}
-	
-/**
- * 对查询结果集进行排序
- * @access public
- * @param array $list 查询结果
- * @param string $field 排序的字段名
- * @param string $sortby 排序类型 （asc正向排序 desc逆向排序 nat自然排序）
- * @return array
- */
-  public function list_sort_by($list, $field, $sortby = 'asc')
-  {
-    if (is_array($list))
-    {
-      $refer = $resultSet = array();
-      foreach ($list as $i => $data)
-      {
-        $refer[$i] = &$data[$field];
-      }
-      switch ($sortby)
-      {
-        case 'asc': // 正向排序
-          asort($refer);
-          break;
-        case 'desc': // 逆向排序
-          arsort($refer);
-          break;
-        case 'nat': // 自然排序
-          natcasesort($refer);
-          break;
-      }
-      foreach ($refer as $key => $val)
-      {
-        $resultSet[] = &$list[$key];
-      }
-      return $resultSet;
-    }
-    return false;
-  }
 	
 }
