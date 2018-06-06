@@ -1,7 +1,7 @@
 <?php
 class ControllerStartupStartup extends Controller {
 	public function index() {
-		// Settings
+		// 获取默认商店参数
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0'");
 		
 		foreach ($query->rows as $setting) {
@@ -12,7 +12,7 @@ class ControllerStartupStartup extends Controller {
 			}
 		}
 
-		// Set time zone
+		// 设定时区
 		if ($this->config->get('config_timezone')) {
 			date_default_timezone_set($this->config->get('config_timezone'));
 		}
@@ -35,7 +35,7 @@ class ControllerStartupStartup extends Controller {
 			$code = $this->request->cookie['admin_language'];
 		}
 		
-		// Language Detection
+		// 检测浏览器语言
 		if (!empty($this->request->server['HTTP_ACCEPT_LANGUAGE']) && !array_key_exists($code, $languages)) {
 			$detect = '';
 			

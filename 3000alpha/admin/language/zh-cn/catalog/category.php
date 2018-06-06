@@ -4,7 +4,7 @@ $_['heading_title']          = '分类';
 
 // Text
 $_['text_success']           = '成功: 已经修改分类！';
-$_['text_list']              = '分类列表 - (在线教程: <a href="http://www.mycncart.com/blog-7.html" target="_blank">http://www.mycncart.com/blog-7.html</a>)';
+$_['text_list']              = '分类列表';
 $_['text_add']               = '添加分类';
 $_['text_edit']              = '编辑分类';
 $_['text_default']           = '默认';

@@ -742,12 +742,6 @@ class ControllerCommonColumnLeft extends Controller {
 			} else {
 				$data['other_status'] = 0;
 			}
-			
-			/*
-			echo "<pre>";
-			print_r($data['menus']);
-			exit;
-			*/
 
 			return $this->load->view('common/column_left', $data);
 		}

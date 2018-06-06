@@ -1,87 +1,67 @@
 {{ header }}{{ column_left }}
-  <div class="content-wrapper">
-    <section class="content-header">
-      <h1>{{ heading_title }} <button type="button" class="btn btn-rounded btn-info btn-sm" data-toggle="modal" data-target="#hint">操作提示</button></h1>
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="float-right">
+        <button type="submit" form="form-zone" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fas fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-light"><i class="fas fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
       <ol class="breadcrumb">
         {% for breadcrumb in breadcrumbs %}
           <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
         {% endfor %}
       </ol>
-    </section>
-	
-    <section class="content">
-	  {% if error_warning %}
-		<div class="alert alert-warning alert-dismissible"><i class="fas fa-exclamation-circle"></i> {{ error_warning }}
-		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-	  {% endif %}
-      
-	  <div class="row">
-	  	<div class="col-12">
-         
-         <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title"><i class="fas fa-pencil-alt"></i> {{ text_form }}</h3>
-			  
-			  <div class="float-right"><button type="submit" form="form-zone" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fas fa-save"></i></button> 
-			  <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-light"><i class="fas fa-reply"></i></a>
-			  </div>
-            </div>
-			
-			<div class="box-body">
-				<div class="clearfix">
-			  		{{ text_current_parent }}
-			  	</div>
-			</div>
-            
-            <div class="box-body">
-				<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-zone">
-				  <div class="form-group row required">
-					<label class="col-sm-2 col-form-label" for="input-name">{{ entry_name }}</label>
-					<div class="col-sm-10">
-					  <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control"/>
-					  {% if error_name %}
-						<div class="invalid-tooltip">{{ error_name }}</div>
-					  {% endif %}
-					</div>
-				  </div>
-				  
-				  <input type="hidden" name="parent_id" value="{{ parent_id }}" id="input-parent-id" />
-				  <input type="hidden" name="level" value="{{ level }}" id="input-level" />
-				  
-				</form>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->      
-        </div>
-	  
-	  </div>
-	  
-	  <div id="hint" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				</div>
-				<div class="modal-body">
-					<h4>Overflowing text to show scroll behavior</h4>
-					<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-					<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	  
-	</section>  
-    <!-- /.content -->
+	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hint">{{ text_hint }}</button>
+    </div>
   </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+      <div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> {{ error_warning }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    {% endif %}
+    <div class="card">
+      <div class="card-header"><i class="fas fa-pencil-alt"></i> {{ text_form }} <span class="belong-zone">{{ text_current_parent }}</span> 
+	 	
+	  </div>
+      <div class="card-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-zone">
+		  <div class="form-group row required">
+			<label class="col-sm-2 col-form-label" for="input-name">{{ entry_name }}</label>
+			<div class="col-sm-10">
+			  <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control"/>
+			  {% if error_name %}
+				<div class="invalid-tooltip">{{ error_name }}</div>
+			  {% endif %}
+			</div>
+		  </div>
+		  
+		  <input type="hidden" name="parent_id" value="{{ parent_id }}" id="input-parent-id" />
+		  <input type="hidden" name="level" value="{{ level }}" id="input-level" />
+		  
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="hint" tabindex="-1" role="dialog" aria-labelledby="hintlabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="hintlabel">{{ text_hint }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ hint_zone }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ text_close }}</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {{ footer }}
-

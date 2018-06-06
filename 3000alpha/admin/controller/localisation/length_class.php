@@ -310,12 +310,20 @@ class ControllerLocalisationLengthClass extends Controller {
 
 		$data['languages'] = $this->model_localisation_language->getLanguages();
 
-		if (isset($this->request->post['length_class_description'])) {
-			$data['length_class_description'] = $this->request->post['length_class_description'];
-		} elseif (isset($this->request->get['length_class_id'])) {
-			$data['length_class_description'] = $this->model_localisation_length_class->getLengthClassDescriptions($this->request->get['length_class_id']);
+		if (isset($this->request->post['title'])) {
+			$data['title'] = $this->request->post['title'];
+		} elseif (!empty($length_class_info)) {
+			$data['title'] = $length_class_info['title'];
 		} else {
-			$data['length_class_description'] = array();
+			$data['title'] = '';
+		}
+		
+		if (isset($this->request->post['unit'])) {
+			$data['unit'] = $this->request->post['unit'];
+		} elseif (!empty($length_class_info)) {
+			$data['unit'] = $length_class_info['unit'];
+		} else {
+			$data['unit'] = '';
 		}
 
 		if (isset($this->request->post['value'])) {
@@ -337,15 +345,13 @@ class ControllerLocalisationLengthClass extends Controller {
 		if (!$this->user->hasPermission('modify', 'localisation/length_class')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
+		
+		if ((utf8_strlen($this->request->post['title']) < 1) || (utf8_strlen($this->request->post['title']) > 32)) {
+			$this->error['title'] = $this->language->get('error_title');
+		}
 
-		foreach ($this->request->post['length_class_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 32)) {
-				$this->error['title'][$language_id] = $this->language->get('error_title');
-			}
-
-			if (!$value['unit'] || (utf8_strlen($value['unit']) > 4)) {
-				$this->error['unit'][$language_id] = $this->language->get('error_unit');
-			}
+		if (!$this->request->post['unit'] || (utf8_strlen($this->request->post['unit']) > 4)) {
+			$this->error['unit'] = $this->language->get('error_unit');
 		}
 
 		return !$this->error;
@@ -355,7 +361,7 @@ class ControllerLocalisationLengthClass extends Controller {
 		if (!$this->user->hasPermission('modify', 'localisation/length_class')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
-
+		/*
 		$this->load->model('catalog/product');
 
 		foreach ($this->request->post['selected'] as $length_class_id) {
@@ -369,6 +375,7 @@ class ControllerLocalisationLengthClass extends Controller {
 				$this->error['warning'] = sprintf($this->language->get('error_product'), $product_total);
 			}
 		}
+		*/
 
 		return !$this->error;
 	}

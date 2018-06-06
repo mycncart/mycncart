@@ -75,14 +75,12 @@ class ControllerCommonDashboard extends Controller {
 				$column = array();
 			}
 		}
-		
-		/*
+
 		if (DIR_STORAGE == DIR_SYSTEM . 'storage/') {
 			$data['security'] = $this->load->controller('common/security');
 		} else {
 			$data['security'] = '';
 		}
-		*/
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');

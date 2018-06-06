@@ -1,63 +1,56 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="MyCnCart电商系统响应式后台模板" />
-    <meta name="author" content="青岛万物一体网络科技有限公司" />
-    <title>系统后台登录</title>
-    <link href="view/javascript/font-awesome/css/all.css" rel="stylesheet" type="text/css"/>
-	<link href="view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="view/stylesheet/material-design-iconic-font/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="view/stylesheet/login.css">
-</head>
-<body>
-    <div class="mcc-login">
-		<div class="container-loginmcc page-background">
-			<div class="wrap-loginmcc">
-			    {% if success %}
-				  <div class="alert alert-success"><i class="fas fa-check-circle"></i> {{ success }}
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-				  </div>
-				{% endif %}
-				{% if error_warning %}
-				  <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-				  </div>
-				{% endif %}
-				<form class="loginmcc-form" action="{{ action }}" method="post" enctype="multipart/form-data">
-					<span class="loginmcc-form-logo">
-						<img alt="" src="view/image/hospital.png">
-					</span>
-					<span class="loginmcc-form-title p-b-34 p-t-27">
-						{{ text_login }}
-					</span>
-					<div class="wrap-inputmcc validate-input" data-validate = "{{ entry_username }}">
-						<input class="inputmcc" type="text" name="username" placeholder="{{ entry_username }}" value="{{ username }}">
-						<span class="focus-inputmcc" data-placeholder="&#xf207;"></span>
-					</div>
-					<div class="wrap-inputmcc validate-input" data-validate="{{ entry_password }}">
-						<input class="inputmcc" type="password" name="password" placeholder="{{ entry_password }}" value="{{ password }}">
-						<span class="focus-inputmcc" data-placeholder="&#xf191;"></span>
-					</div>
-					
-					<div class="container-loginmcc-form-btn">
-						<button class="loginmcc-form-btn">{{ button_login }}</button>
-					</div>
-					{% if forgotten %}
-					<div class="text-center p-t-30">
-						<a class="txt1" href="forgot_password.html">{{ text_forgotten }}</a>
-					</div>
-					{% endif %}
-					{% if redirect %}
-					  <input type="hidden" name="redirect" value="{{ redirect }}"/>
-					{% endif %}
-				</form>
-			</div>
-		</div>
-	</div>
-     <script src="view/javascript/jquery/jquery-3.3.1.min.js" ></script>
-    <script src="view/javascript/bootstrap/js/bootstrap.min.js" ></script>
-</body>
-</html>
+{{ header }}
+<div id="content">
+  <div class="container-fluid">
+    <br/>
+    <br/>
+    <div class="row">
+      <div class="offset-sm-4 col-sm-4">
+        <div class="card">
+          <div class="card-header"><i class="fas fa-lock"></i> {{ text_login }}</div>
+          <div class="card-body">
+            {% if success %}
+              <div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> {{ success }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+              </div>
+            {% endif %}
+            {% if error_warning %}
+              <div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> {{ error_warning }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+              </div>
+            {% endif %}
+            <form action="{{ action }}" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label class="col-form-label" for="input-username">{{ entry_username }}</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" name="username" value="{{ username }}" placeholder="{{ entry_username }}" id="input-username" class="form-control"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label" for="input-password">{{ entry_password }}</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                  </div>
+                  <input type="password" name="password" value="{{ password }}" placeholder="{{ entry_password }}" id="input-password" class="form-control"/>
+                </div>
+                {% if forgotten %}
+                  <div class="form-text"><a href="{{ forgotten }}">{{ text_forgotten }}</a></div>
+                {% endif %}
+              </div>
+              <div class="text-right">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-key"></i> {{ button_login }}</button>
+              </div>
+              {% if redirect %}
+                <input type="hidden" name="redirect" value="{{ redirect }}"/>
+              {% endif %}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}

@@ -44,8 +44,8 @@ class ControllerStartupPermission extends Controller {
 				'common/logout',
 				'common/forgotten',
 				'common/reset',
-				'common/language',
 				'common/cron',
+				'common/language',
 				'error/not_found',
 				'error/permission'
 			);

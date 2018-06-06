@@ -1,46 +1,58 @@
 {{ header }}{{ column_left }}
-  
-  <div class="content-wrapper">
-    <section class="content-header">
-      <h1>
-        Fixed Layout
-      </h1>
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="float-right">
+        <button type="button" id="button-setting" data-toggle="tooltip" title="{{ button_developer }}" data-loading-text="{{ text_loading }}" class="btn btn-info"><i class="fas fa-cog"></i></button>
+      </div>
+      <h1>{{ heading_title }}</h1>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Layout</a></li>
-        <li  class="breadcrumb-item active">Fixed</li>
+        {% for breadcrumb in breadcrumbs %}
+          <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
       </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="callout callout-info">
-        <h4>Tip!</h4>
-
-        <p>Add the fixed class to the body tag to get this layout. The fixed layout is your best option if your sidebar is bigger than your content because it prevents extra unwanted scrolling.</p>
-      </div>
-      <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-          <h4 class="box-title">Title</h4>
-	      <ul class="box-controls pull-right">
-             <li><a class="box-btn-close" href="#"></a></li>
-             <li><a class="box-btn-slide" href="#"></a></li>	
-             <li><a class="box-btn-fullscreen" href="#"></a></li>
-          </ul>
-        </div>
-        <div class="box-body">
-          Start creating your amazing application!
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          Footer
-        </div>
-        <!-- /.box-footer-->
-      </div>
-      <!-- /.box -->
-    </section>
-    <!-- /.content -->
+    </div>
   </div>
+  <div class="container-fluid">
+    {% if error_install %}
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close float-right" data-dismiss="alert">&times;</button>
+        <i class="fas fa-exclamation-circle"></i> {{ error_install }}</div>
+    {% endif %}
+    {% for row in rows %}
+      <div class="row">{% for dashboard_1 in row %}
+          {% set class = 'col-lg-%s %s'|format(dashboard_1.width, 'col-md-3 col-sm-6') %}
+          {% for dashboard_2 in row %}
+            {% if dashboard_2.width > 3 %}
+              {% set class = 'col-lg-%s %s'|format(dashboard_1.width, 'col-md-12 col-sm-12') %}
+            {% endif %}
+          {% endfor %}
+          <div class="{{ class }}">{{ dashboard_1.output }}</div>
+        {% endfor %}</div>
+    {% endfor %}</div>
+  {{ security }}</div>
+<script type="text/javascript"><!--
+$('#button-setting').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=common/developer&user_token={{ user_token }}',
+		dataType: 'html',
+		beforeSend: function() {
+			$('#button-setting').button('loading');
+		},
+		complete: function() {
+			$('#button-setting').button('reset');
+		},
+		success: function(html) {
+			$('#modal-developer').remove();
 
+			$('body').prepend(html);
+
+			$('#modal-developer').modal('show');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+//--></script>
 {{ footer }}

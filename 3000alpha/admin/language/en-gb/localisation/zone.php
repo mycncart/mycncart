@@ -7,18 +7,27 @@ $_['text_success']           = 'Success: You have modified zones!';
 $_['text_list']              = 'Zone List';
 $_['text_add']               = 'Add Zone';
 $_['text_edit']              = 'Edit Zone';
+$_['text_parent_zones']      = 'Parent Zone: ';
+$_['text_current_parent_zone']   = 'Current Parent Zone: %s';
+$_['text_current_parent_zone_id_top']   = 'Parent Zone: Top';
 
 // Column
 $_['column_name']            = 'Zone Name';
-$_['column_code']            = 'Zone Code';
-$_['column_country']         = 'Country';
+$_['column_level']           = 'Current Level';
+$_['column_parent_id']       = 'Parent Zone ID';
 $_['column_action']          = 'Action';
+
+// Button
+$_['button_back_top']        = 'Back to Top Zone';
 
 // Entry
 $_['entry_name']             = 'Zone Name';
 $_['entry_code']             = 'Zone Code';
 $_['entry_country']          = 'Country';
 $_['entry_status']           = 'Status';
+
+// Hint
+$_['hint_zone']          	 = '<ul><li>提示内容1</li><li>提示内容2</li><li>提示内容3</li></ul>';
 
 // Error
 $_['error_permission']       = 'Warning: You do not have permission to modify zones!';
