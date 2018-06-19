@@ -23,7 +23,7 @@ function getURLVar(key) {
 }
 
 $(document).ready(function() {
-	//Form Submit for IE Browser
+	//适合IE浏览器的提交操作
 	$('button[type=\'submit\']').on('click', function() {
 		$("form[id*='form-']").submit();
 	});
@@ -37,7 +37,7 @@ $(document).ready(function() {
 		$('#form-language').submit();
 	});
 
-	// Highlight any found errors
+	// 高亮显示相关错误
 	$('.invalid-tooltip').each(function() {
 		var element = $(this).parent().find(':input');
 
@@ -48,7 +48,7 @@ $(document).ready(function() {
 
 	$('.invalid-tooltip').show();
 
-	// tooltips on hover
+	// 鼠标置上显示提示
 	$('[data-toggle=\'tooltip\']').tooltip({container: 'body', html: true});
 
 	// Makes tooltips work on ajax generated content
@@ -56,7 +56,7 @@ $(document).ready(function() {
 		$('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
 	});
 
-	// tooltip remove
+	// 去除提示
 	$('[data-toggle=\'tooltip\']').on('remove', function() {
 		$(this).tooltip('dispose');
 	});
@@ -80,7 +80,7 @@ $(document).ready(function() {
 		$('#column-left').toggleClass('active');
 	});
 
-	// Set last page opened on the menu
+	// 设置最后显示的菜单项
 	$('#menu a[href]').on('click', function() {
 		sessionStorage.setItem('menu', $(this).attr('href'));
 	});
@@ -88,7 +88,7 @@ $(document).ready(function() {
 	if (!sessionStorage.getItem('menu')) {
 		$('#menu #dashboard').addClass('active');
 	} else {
-		// Sets active and open to selected page in the left column menu.
+		// 左侧惨淡蓝设置目前选项并打开选择的页面
 		$('#menu a[href=\'' + sessionStorage.getItem('menu') + '\']').parent().addClass('active');
 	}
 
@@ -98,7 +98,7 @@ $(document).ready(function() {
 
 	$('#menu a[href=\'' + sessionStorage.getItem('menu') + '\']').parents('li').addClass('active');
 
-	// Image Manager
+	// 图像管理器
 	$(document).on('click', '[data-toggle=\'image\']', function(e) {
 		var element = this;
 

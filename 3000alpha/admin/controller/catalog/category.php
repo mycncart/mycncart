@@ -355,16 +355,44 @@ class ControllerCatalogCategory extends Controller {
 
 		$data['user_token'] = $this->session->data['user_token'];
 
-		$this->load->model('localisation/language');
-
-		$data['languages'] = $this->model_localisation_language->getLanguages();
-
-		if (isset($this->request->post['category_description'])) {
-			$data['category_description'] = $this->request->post['category_description'];
+		if (isset($this->request->post['name'])) {
+			$data['name'] = $this->request->post['name'];
 		} elseif (isset($this->request->get['category_id'])) {
-			$data['category_description'] = $this->model_catalog_category->getCategoryDescriptions($this->request->get['category_id']);
+			$data['name'] = $category_info['name'];
 		} else {
-			$data['category_description'] = array();
+			$data['name'] = '';
+		}
+		
+		if (isset($this->request->post['description'])) {
+			$data['description'] = $this->request->post['description'];
+		} elseif (isset($this->request->get['category_id'])) {
+			$data['description'] = $category_info['description'];
+		} else {
+			$data['description'] = '';
+		}
+		
+		if (isset($this->request->post['meta_title'])) {
+			$data['meta_title'] = $this->request->post['meta_title'];
+		} elseif (isset($this->request->get['category_id'])) {
+			$data['meta_title'] = $category_info['meta_title'];
+		} else {
+			$data['meta_title'] = '';
+		}
+		
+		if (isset($this->request->post['meta_description'])) {
+			$data['meta_description'] = $this->request->post['meta_description'];
+		} elseif (isset($this->request->get['category_id'])) {
+			$data['meta_description'] = $category_info['meta_description'];
+		} else {
+			$data['meta_description'] = '';
+		}
+		
+		if (isset($this->request->post['meta_keyword'])) {
+			$data['meta_keyword'] = $this->request->post['meta_keyword'];
+		} elseif (isset($this->request->get['category_id'])) {
+			$data['meta_keyword'] = $category_info['meta_keyword'];
+		} else {
+			$data['meta_keyword'] = '';
 		}
 
 		if (isset($this->request->post['path'])) {
@@ -381,29 +409,6 @@ class ControllerCatalogCategory extends Controller {
 			$data['parent_id'] = $category_info['parent_id'];
 		} else {
 			$data['parent_id'] = 0;
-		}
-
-		$this->load->model('catalog/filter');
-
-		if (isset($this->request->post['category_filter'])) {
-			$filters = $this->request->post['category_filter'];
-		} elseif (isset($this->request->get['category_id'])) {
-			$filters = $this->model_catalog_category->getCategoryFilters($this->request->get['category_id']);
-		} else {
-			$filters = array();
-		}
-
-		$data['category_filters'] = array();
-
-		foreach ($filters as $filter_id) {
-			$filter_info = $this->model_catalog_filter->getFilter($filter_id);
-
-			if ($filter_info) {
-				$data['category_filters'][] = array(
-					'filter_id' => $filter_info['filter_id'],
-					'name'      => $filter_info['group'] . ' &gt; ' . $filter_info['name']
-				);
-			}
 		}
 
 		$this->load->model('setting/store');
@@ -423,13 +428,13 @@ class ControllerCatalogCategory extends Controller {
 				'name'     => $store['name']
 			);
 		}
-
-		if (isset($this->request->post['category_store'])) {
-			$data['category_store'] = $this->request->post['category_store'];
-		} elseif (isset($this->request->get['category_id'])) {
-			$data['category_store'] = $this->model_catalog_category->getCategoryStores($this->request->get['category_id']);
+		
+		if (isset($this->request->post['store_id'])) {
+			$data['store_id'] = $this->request->post['store_id'];
+		} elseif (!empty($category_info)) {
+			$data['store_id'] = $category_info['store_id'];
 		} else {
-			$data['category_store'] = array(0);
+			$data['store_id'] = 0;
 		}
 
 		if (isset($this->request->post['image'])) {
@@ -484,12 +489,12 @@ class ControllerCatalogCategory extends Controller {
 			$data['status'] = true;
 		}
 		
-		if (isset($this->request->post['category_seo_url'])) {
-			$data['category_seo_url'] = $this->request->post['category_seo_url'];
+		if (isset($this->request->post['seo_keyword'])) {
+			$data['seo_keyword'] = $this->request->post['seo_keyword'];
 		} elseif (isset($this->request->get['category_id'])) {
-			$data['category_seo_url'] = $this->model_catalog_category->getCategorySeoUrls($this->request->get['category_id']);
+			$data['seo_keyword'] = $this->model_catalog_category->getCategorySeoUrl($this->request->get['category_id']);
 		} else {
-			$data['category_seo_url'] = array();
+			$data['seo_keyword'] = '';
 		}
 				
 		if (isset($this->request->post['category_layout'])) {
@@ -497,7 +502,7 @@ class ControllerCatalogCategory extends Controller {
 		} elseif (isset($this->request->get['category_id'])) {
 			$data['category_layout'] = $this->model_catalog_category->getCategoryLayouts($this->request->get['category_id']);
 		} else {
-			$data['category_layout'] = array();
+			$data['category_layout'] = '';
 		}
 
 		$this->load->model('design/layout');
@@ -516,15 +521,15 @@ class ControllerCatalogCategory extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		foreach ($this->request->post['category_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['name']) < 1) || (utf8_strlen($value['name']) > 255)) {
-				$this->error['name'][$language_id] = $this->language->get('error_name');
-			}
-
-			if ((utf8_strlen($value['meta_title']) < 1) || (utf8_strlen($value['meta_title']) > 255)) {
-				$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
-			}
+		
+		if ((utf8_strlen($this->request->post['name']) < 1) || (utf8_strlen($this->request->post['name']) > 255)) {
+			$this->error['name'] = $this->language->get('error_name');
 		}
+
+		if ((utf8_strlen($this->request->post['meta_title']) < 1) || (utf8_strlen($this->request->post['meta_title']) > 255)) {
+			$this->error['meta_title'] = $this->language->get('error_meta_title');
+		}
+		
 
 		if (isset($this->request->get['category_id']) && $this->request->post['parent_id']) {
 			$results = $this->model_catalog_category->getCategoryPath($this->request->post['parent_id']);
@@ -537,27 +542,28 @@ class ControllerCatalogCategory extends Controller {
 				}
 			}
 		}
+		
+		$store_id = (int)$this->request->post['store_id'];
 
-		if ($this->request->post['category_seo_url']) {
+		if ($this->request->post['seo_keyword']) {
 			$this->load->model('design/seo_url');
+			
+			$keyword = $this->request->post['seo_keyword'];
+			
+			if ($keyword) {
+				$seo_urls = $this->model_design_seo_url->getSeoUrlsByKeyword($keyword);
 
-			foreach ($this->request->post['category_seo_url'] as $store_id => $language) {
-				foreach ($language as $language_id => $keyword) {
-					if ($keyword) {
-						$seo_urls = $this->model_design_seo_url->getSeoUrlsByKeyword($keyword);
+				foreach ($seo_urls as $seo_url) {
+					if (($seo_url['store_id'] == $store_id) && (!isset($this->request->get['category_id']) || ($seo_url['query'] != 'path=' . $this->model_catalog_category->getPath($this->request->get['category_id'])))) {
+						$this->error['keyword'] = $this->language->get('error_keyword');
 
-						foreach ($seo_urls as $seo_url) {
-							if (($seo_url['store_id'] == $store_id) && ($seo_url['language_id'] == $language_id) && (!isset($this->request->get['category_id']) || ($seo_url['query'] != 'path=' . $this->model_catalog_category->getPath($this->request->get['category_id'])))) {
-								$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_keyword');
-
-								break;
-							}
-						}
-					} else {
-						$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_seo');
+						break;
 					}
 				}
+			} else {
+				$this->error['keyword'] = $this->language->get('error_seo');
 			}
+				
 		}
 
 		if ($this->error && !isset($this->error['warning'])) {
