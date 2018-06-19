@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-06-19 05:58:03
+-- Generation Time: 2018-06-19 09:34:13
 -- 服务器版本： 5.7.14
 -- PHP Version: 7.0.10
 
@@ -597,6 +597,40 @@ INSERT INTO `mcc_length_class` (`length_class_id`, `value`, `title`, `unit`) VAL
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `mcc_manufacturer`
+--
+
+DROP TABLE IF EXISTS `mcc_manufacturer`;
+CREATE TABLE IF NOT EXISTS `mcc_manufacturer` (
+  `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `store_id` int(11) NOT NULL COMMENT '所属店铺',
+  `name` varchar(128) NOT NULL COMMENT '名称',
+  `image` varchar(255) DEFAULT NULL COMMENT '图片',
+  `sort_order` int(3) NOT NULL COMMENT '排序',
+  `description` text NOT NULL COMMENT '描述',
+  `meta_title` varchar(128) NOT NULL COMMENT 'META 标题',
+  `meta_keyword` varchar(255) NOT NULL COMMENT 'META 关键词',
+  `meta_description` varchar(255) NOT NULL COMMENT 'META 描述',
+  PRIMARY KEY (`manufacturer_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='品牌';
+
+--
+-- 转存表中的数据 `mcc_manufacturer`
+--
+
+INSERT INTO `mcc_manufacturer` (`manufacturer_id`, `store_id`, `name`, `image`, `sort_order`, `description`, `meta_title`, `meta_keyword`, `meta_description`) VALUES
+(5, 0, '中兴', 'catalog/demo/htc_logo.jpg', 0, '&lt;p&gt;中兴&lt;/p&gt;\r\n', '中兴', '', ''),
+(6, 0, '手掌', 'catalog/demo/palm_logo.jpg', 0, '', '手掌', '', ''),
+(7, 0, '少女', 'catalog/demo/hp_logo.jpg', 0, '', '少女', '少女', '少女'),
+(8, 0, '苹果', 'catalog/demo/apple_logo.jpg', 0, '&lt;p&gt;apple descripiton&lt;br&gt;&lt;/p&gt;', 'Apple', 'meta apple keyword', 'meta apple description'),
+(9, 0, '摄像机', 'catalog/demo/canon_logo.jpg', 0, '', '摄像机', '', ''),
+(10, 0, '索尼', 'catalog/demo/sony_logo.jpg', 0, '', '索尼', '', ''),
+(11, 0, '话机', '', 0, '', '话机', '', ''),
+(12, 0, '帅哥', '', 0, '&lt;p&gt;帅哥&lt;/p&gt;\r\n', '帅哥', '帅哥', '帅哥');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `mcc_option`
 --
 
@@ -1090,7 +1124,7 @@ CREATE TABLE IF NOT EXISTS `mcc_seo_url` (
   PRIMARY KEY (`seo_url_id`),
   KEY `query` (`query`),
   KEY `keyword` (`keyword`)
-) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `mcc_seo_url`
@@ -1154,7 +1188,8 @@ INSERT INTO `mcc_seo_url` (`seo_url_id`, `store_id`, `query`, `keyword`, `push`)
 (55, 0, 'product_id=34', 'ipod-shuffle', 'route=product/product&product_id=34'),
 (56, 0, 'product_id=32', 'ipod-touch', 'route=product/product&product_id=32'),
 (57, 0, 'manufacturer_id=9', 'canon', 'route=product/manufacturer/info&manufacturer_id=9'),
-(58, 0, 'manufacturer_id=5', 'htc', 'route=product/manufacturer/info&manufacturer_id=5'),
+(75, 0, 'manufacturer_id=5', '中兴', ''),
+(76, 0, 'manufacturer_id=12', '帅哥', ''),
 (59, 0, 'manufacturer_id=7', 'hewlett-packard', 'route=product/manufacturer/info&manufacturer_id=7'),
 (60, 0, 'manufacturer_id=6', 'palm', 'route=product/manufacturer/info&manufacturer_id=6'),
 (61, 0, 'manufacturer_id=10', 'sony', 'route=product/manufacturer/info&manufacturer_id=10'),
@@ -1212,7 +1247,7 @@ INSERT INTO `mcc_session` (`session_id`, `data`, `expire`) VALUES
 ('a4c6b96e617d97d03a3d89c6f6', 'false', '2018-05-23 20:04:22'),
 ('a882a05e8bf196cf99e1ac4020', '{"user_id":"1","user_token":"c49e7924c5e28416909e151b5a633624"}', '2018-05-17 21:59:11'),
 ('ab93a085721fa54db5fecd3650', '{"admin_language":"zh-cn","user_id":"1","user_token":"7e4042c252274a13c1ef274aed142e83"}', '2018-06-07 08:40:33'),
-('bd50e03b9807cf400b0dff8d41', '{"admin_language":"zh-cn","user_id":"1","user_token":"f0a0cf17e73fdd4fd361bc78faf472e5"}', '2018-06-19 14:20:19'),
+('bd50e03b9807cf400b0dff8d41', '{"admin_language":"zh-cn","user_id":"1","user_token":"9b8f4167d57144937b3c775ca3c413ff"}', '2018-06-19 17:53:12'),
 ('cc297f08685b087fb0a117fac5', '{"user_id":"1","user_token":"65a4566b20ea6da426f5b16d17e6be7d"}', '2018-05-21 20:42:14'),
 ('cf75b4ba3b76cbbc89c2f10be0', '{"admin_language":"zh-cn","user_id":"1","user_token":"38e9898cb58310540fdd9f28d9378976"}', '2018-06-06 22:22:59'),
 ('d1def21c24fc1efabd59bf06ee', '{"user_id":"1","user_token":"ab8ae4bea2e61b322288b8c2bb53aece"}', '2018-05-17 20:39:59'),

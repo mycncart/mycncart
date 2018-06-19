@@ -38,7 +38,7 @@ class ControllerCatalogManufacturer extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url));
+			$this->response->redirect($this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -70,7 +70,7 @@ class ControllerCatalogManufacturer extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url));
+			$this->response->redirect($this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -104,7 +104,7 @@ class ControllerCatalogManufacturer extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url));
+			$this->response->redirect($this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getList();
@@ -147,16 +147,16 @@ class ControllerCatalogManufacturer extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url)
+			'href' => $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
 
-		$data['add'] = $this->url->link('catalog/manufacturer/add', 'user_token=' . $this->session->data['user_token'] . $url);
-		$data['delete'] = $this->url->link('catalog/manufacturer/delete', 'user_token=' . $this->session->data['user_token'] . $url);
+		$data['add'] = $this->url->link('catalog/manufacturer/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		$data['delete'] = $this->url->link('catalog/manufacturer/delete', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
 		$data['manufacturers'] = array();
 
@@ -176,7 +176,7 @@ class ControllerCatalogManufacturer extends Controller {
 				'manufacturer_id' => $result['manufacturer_id'],
 				'name'            => $result['name'],
 				'sort_order'      => $result['sort_order'],
-				'edit'            => $this->url->link('catalog/manufacturer/edit', 'user_token=' . $this->session->data['user_token'] . '&manufacturer_id=' . $result['manufacturer_id'] . $url)
+				'edit'            => $this->url->link('catalog/manufacturer/edit', 'user_token=' . $this->session->data['user_token'] . '&manufacturer_id=' . $result['manufacturer_id'] . $url, true)
 			);
 		}
 
@@ -212,8 +212,8 @@ class ControllerCatalogManufacturer extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_name'] = $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . '&sort=name' . $url);
-		$data['sort_sort_order'] = $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . '&sort=sort_order' . $url);
+		$data['sort_name'] = $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . '&sort=name' . $url, true);
+		$data['sort_sort_order'] = $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . '&sort=sort_order' . $url, true);
 
 		$url = '';
 
@@ -229,7 +229,7 @@ class ControllerCatalogManufacturer extends Controller {
 		$pagination->total = $manufacturer_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url . '&page={page}');
+		$pagination->url = $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
@@ -246,6 +246,9 @@ class ControllerCatalogManufacturer extends Controller {
 	}
 
 	protected function getForm() {
+		$this->document->addScript('view/javascript/ckeditor/ckeditor.js');
+		$this->document->addScript('view/javascript/ckeditor/adapters/jquery.js');
+		
 		$data['text_form'] = !isset($this->request->get['manufacturer_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
 		if (isset($this->error['warning'])) {
@@ -258,6 +261,12 @@ class ControllerCatalogManufacturer extends Controller {
 			$data['error_name'] = $this->error['name'];
 		} else {
 			$data['error_name'] = '';
+		}
+		
+		if (isset($this->error['meta_title'])) {
+			$data['error_meta_title'] = $this->error['meta_title'];
+		} else {
+			$data['error_meta_title'] = '';
 		}
 
 		if (isset($this->error['keyword'])) {
@@ -284,21 +293,21 @@ class ControllerCatalogManufacturer extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url)
+			'href' => $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url, true)
 		);
 
 		if (!isset($this->request->get['manufacturer_id'])) {
-			$data['action'] = $this->url->link('catalog/manufacturer/add', 'user_token=' . $this->session->data['user_token'] . $url);
+			$data['action'] = $this->url->link('catalog/manufacturer/add', 'user_token=' . $this->session->data['user_token'] . $url, true);
 		} else {
-			$data['action'] = $this->url->link('catalog/manufacturer/edit', 'user_token=' . $this->session->data['user_token'] . '&manufacturer_id=' . $this->request->get['manufacturer_id'] . $url);
+			$data['action'] = $this->url->link('catalog/manufacturer/edit', 'user_token=' . $this->session->data['user_token'] . '&manufacturer_id=' . $this->request->get['manufacturer_id'] . $url, true);
 		}
 
-		$data['cancel'] = $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url);
+		$data['cancel'] = $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token'] . $url, true);
 
 		if (isset($this->request->get['manufacturer_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$manufacturer_info = $this->model_catalog_manufacturer->getManufacturer($this->request->get['manufacturer_id']);
@@ -312,6 +321,38 @@ class ControllerCatalogManufacturer extends Controller {
 			$data['name'] = $manufacturer_info['name'];
 		} else {
 			$data['name'] = '';
+		}
+		
+		if (isset($this->request->post['description'])) {
+			$data['description'] = $this->request->post['description'];
+		} elseif (!empty($manufacturer_info)) {
+			$data['description'] = $manufacturer_info['description'];
+		} else {
+			$data['description'] = '';
+		}
+		
+		if (isset($this->request->post['meta_title'])) {
+			$data['meta_title'] = $this->request->post['meta_title'];
+		} elseif (!empty($manufacturer_info)) {
+			$data['meta_title'] = $manufacturer_info['meta_title'];
+		} else {
+			$data['meta_title'] = '';
+		}
+		
+		if (isset($this->request->post['meta_keyword'])) {
+			$data['meta_keyword'] = $this->request->post['meta_keyword'];
+		} elseif (!empty($manufacturer_info)) {
+			$data['meta_keyword'] = $manufacturer_info['meta_keyword'];
+		} else {
+			$data['meta_keyword'] = '';
+		}
+		
+		if (isset($this->request->post['meta_description'])) {
+			$data['meta_description'] = $this->request->post['meta_description'];
+		} elseif (!empty($manufacturer_info)) {
+			$data['meta_description'] = $manufacturer_info['meta_description'];
+		} else {
+			$data['meta_description'] = '';
 		}
 
 		$this->load->model('setting/store');
@@ -332,12 +373,12 @@ class ControllerCatalogManufacturer extends Controller {
 			);
 		}
 
-		if (isset($this->request->post['manufacturer_store'])) {
-			$data['manufacturer_store'] = $this->request->post['manufacturer_store'];
-		} elseif (isset($this->request->get['manufacturer_id'])) {
-			$data['manufacturer_store'] = $this->model_catalog_manufacturer->getManufacturerStores($this->request->get['manufacturer_id']);
+		if (isset($this->request->post['store_id'])) {
+			$data['store_id'] = $this->request->post['store_id'];
+		} elseif (!empty($manufacturer_info)) {
+			$data['store_id'] = $manufacturer_info['store_id'];
 		} else {
-			$data['manufacturer_store'] = array(0);
+			$data['store_id'] = 0;
 		}
 
 		if (isset($this->request->post['image'])) {
@@ -368,16 +409,12 @@ class ControllerCatalogManufacturer extends Controller {
 			$data['sort_order'] = '';
 		}
 
-		$this->load->model('localisation/language');
-
-		$data['languages'] = $this->model_localisation_language->getLanguages();
-		
-		if (isset($this->request->post['manufacturer_seo_url'])) {
-			$data['manufacturer_seo_url'] = $this->request->post['manufacturer_seo_url'];
+		if (isset($this->request->post['seo_keyword'])) {
+			$data['seo_keyword'] = $this->request->post['seo_keyword'];
 		} elseif (isset($this->request->get['manufacturer_id'])) {
-			$data['manufacturer_seo_url'] = $this->model_catalog_manufacturer->getManufacturerSeoUrls($this->request->get['manufacturer_id']);
+			$data['seo_keyword'] = $this->model_catalog_manufacturer->getManufacturerSeoUrls($this->request->get['manufacturer_id']);
 		} else {
-			$data['manufacturer_seo_url'] = array();
+			$data['seo_keyword'] = '';
 		}
 				
 		$data['header'] = $this->load->controller('common/header');
@@ -392,30 +429,33 @@ class ControllerCatalogManufacturer extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if ((utf8_strlen($this->request->post['name']) < 1) || (utf8_strlen($this->request->post['name']) > 64)) {
+		if ((utf8_strlen($this->request->post['name']) < 1) || (utf8_strlen($this->request->post['name']) > 128)) {
 			$this->error['name'] = $this->language->get('error_name');
 		}
+		
+		if ((utf8_strlen($this->request->post['meta_title']) < 1) || (utf8_strlen($this->request->post['meta_title']) > 128)) {
+			$this->error['meta_title'] = $this->language->get('error_meta_title');
+		}
 
-		if ($this->request->post['manufacturer_seo_url']) {
+		$store_id = (int)$this->request->post['store_id'];
+
+		if ($this->request->post['seo_keyword']) {
 			$this->load->model('design/seo_url');
 			
-			foreach ($this->request->post['manufacturer_seo_url'] as $store_id => $language) {
-				foreach ($language as $language_id => $keyword) {
-					if ($keyword) {
-						$seo_urls = $this->model_design_seo_url->getSeoUrlsByKeyword($keyword);
-						
-						foreach ($seo_urls as $seo_url) {
-							if (($seo_url['store_id'] == $store_id) && ($seo_url['language_id'] == $language_id) && (!isset($this->request->get['manufacturer_id']) || (($seo_url['query'] != 'manufacturer_id=' . $this->request->get['manufacturer_id'])))) {
-								$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_keyword');
+			$keyword = $this->request->post['seo_keyword'];
+			
+			if ($keyword) {
+				$seo_urls = $this->model_design_seo_url->getSeoUrlsByKeyword($keyword);
 
-								break;
-							}
-						}
-					} else {
-						$this->error['keyword'][$store_id][$language_id] = $this->language->get('error_seo');
+				foreach ($seo_urls as $seo_url) {
+					if (($seo_url['store_id'] == $store_id) && (!isset($this->request->get['manufacturer_id']) || (($seo_url['query'] != 'manufacturer_id=' . $this->request->get['manufacturer_id'])))) {
+						$this->error['keyword'] = $this->language->get('error_keyword');
 					}
 				}
+			} else {
+				$this->error['keyword'] = $this->language->get('error_seo');
 			}
+				
 		}
 
 		return !$this->error;
@@ -448,7 +488,7 @@ class ControllerCatalogManufacturer extends Controller {
 			$filter_data = array(
 				'filter_name' => $this->request->get['filter_name'],
 				'start'       => 0,
-				'limit'       => 5
+				'limit'       => $this->config->get('config_limit_autocomplete')
 			);
 
 			$results = $this->model_catalog_manufacturer->getManufacturers($filter_data);
