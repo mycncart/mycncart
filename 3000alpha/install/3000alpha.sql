@@ -1,20 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: 2018-06-19 09:34:13
--- 服务器版本： 5.7.14
--- PHP Version: 7.0.10
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `3000alpha`
@@ -528,47 +511,90 @@ INSERT INTO `mcc_language` (`language_id`, `name`, `code`, `locale`, `image`, `d
 -- --------------------------------------------------------
 
 --
--- 表的结构 `mcc_layout`
+-- 表的结构 `mcc_layout_mobile`
 --
 
-DROP TABLE IF EXISTS `mcc_layout`;
-CREATE TABLE IF NOT EXISTS `mcc_layout` (
-  `layout_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+DROP TABLE IF EXISTS `mcc_layout_mobile`;
+CREATE TABLE IF NOT EXISTS `mcc_layout_mobile` (
+  `layout_mobile_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `name` varchar(64) NOT NULL COMMENT '名称',
-  PRIMARY KEY (`layout_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='规划设计';
+  PRIMARY KEY (`layout_mobile_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='手机移动版规划设计';
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `mcc_layout_module`
+-- 表的结构 `mcc_layout_mobile_module`
 --
 
-DROP TABLE IF EXISTS `mcc_layout_module`;
-CREATE TABLE IF NOT EXISTS `mcc_layout_module` (
-  `layout_module_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-  `layout_id` int(11) NOT NULL COMMENT '布局ID',
+DROP TABLE IF EXISTS `mcc_layout_mobile_module`;
+CREATE TABLE IF NOT EXISTS `mcc_layout_mobile_module` (
+  `layout_mobile_module_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `layout_mobile_id` int(11) NOT NULL COMMENT '手机移动版布局ID',
   `code` varchar(64) NOT NULL COMMENT '代码',
   `position` varchar(14) NOT NULL COMMENT '位置',
   `sort_order` int(3) NOT NULL COMMENT '排序',
-  PRIMARY KEY (`layout_module_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COMMENT='规划设计模组';
+  PRIMARY KEY (`layout_mobile_module_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='手机移动版规划包含模组';
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `mcc_layout_route`
+-- 表的结构 `mcc_layout_mobile_route`
 --
 
-DROP TABLE IF EXISTS `mcc_layout_route`;
-CREATE TABLE IF NOT EXISTS `mcc_layout_route` (
-  `layout_route_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-  `layout_id` int(11) NOT NULL COMMENT '规划设计ID',
+DROP TABLE IF EXISTS `mcc_layout_mobile_route`;
+CREATE TABLE IF NOT EXISTS `mcc_layout_mobile_route` (
+  `layout_mobile_route_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `layout_mobile_id` int(11) NOT NULL COMMENT '手机移动版布局ID',
   `store_id` int(11) NOT NULL COMMENT '所属店铺',
   `route` varchar(64) NOT NULL COMMENT '路由',
-  `type` varchar(10) NOT NULL DEFAULT 'PC' COMMENT '类型; PC 或 Mobile',
-  PRIMARY KEY (`layout_route_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COMMENT='规划设计路由';
+  PRIMARY KEY (`layout_mobile_route_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='手机移动版路由';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mcc_layout_pc`
+--
+
+DROP TABLE IF EXISTS `mcc_layout_pc`;
+CREATE TABLE IF NOT EXISTS `mcc_layout_pc` (
+  `layout_pc_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `name` varchar(64) NOT NULL COMMENT '名称',
+  PRIMARY KEY (`layout_pc_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='PC电脑板规划设计';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mcc_layout_pc_module`
+--
+
+DROP TABLE IF EXISTS `mcc_layout_pc_module`;
+CREATE TABLE IF NOT EXISTS `mcc_layout_pc_module` (
+  `layout_pc_module_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `layout_pc_id` int(11) NOT NULL COMMENT '电脑布局ID',
+  `code` varchar(64) NOT NULL COMMENT '代码',
+  `position` varchar(14) NOT NULL COMMENT '位置',
+  `sort_order` int(3) NOT NULL COMMENT '排序',
+  PRIMARY KEY (`layout_pc_module_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='PC电脑板规划设计包含模组';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mcc_layout_pc_route`
+--
+
+DROP TABLE IF EXISTS `mcc_layout_pc_route`;
+CREATE TABLE IF NOT EXISTS `mcc_layout_pc_route` (
+  `layout_pc_route_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `layout_pc_id` int(11) NOT NULL COMMENT '电脑布局ID',
+  `store_id` int(11) NOT NULL COMMENT '所属店铺',
+  `route` varchar(64) NOT NULL COMMENT '路由',
+  PRIMARY KEY (`layout_pc_route_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='PC电脑板路由';
 
 -- --------------------------------------------------------
 
@@ -627,6 +653,36 @@ INSERT INTO `mcc_manufacturer` (`manufacturer_id`, `store_id`, `name`, `image`, 
 (10, 0, '索尼', 'catalog/demo/sony_logo.jpg', 0, '', '索尼', '', ''),
 (11, 0, '话机', '', 0, '', '话机', '', ''),
 (12, 0, '帅哥', '', 0, '&lt;p&gt;帅哥&lt;/p&gt;\r\n', '帅哥', '帅哥', '帅哥');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mcc_module_mobile`
+--
+
+DROP TABLE IF EXISTS `mcc_module_mobile`;
+CREATE TABLE IF NOT EXISTS `mcc_module_mobile` (
+  `module_mobile_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `name` varchar(64) NOT NULL COMMENT '名称',
+  `code` varchar(32) NOT NULL COMMENT '代码',
+  `setting` text NOT NULL COMMENT '参数',
+  PRIMARY KEY (`module_mobile_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='手机移动版模组';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mcc_module_pc`
+--
+
+DROP TABLE IF EXISTS `mcc_module_pc`;
+CREATE TABLE IF NOT EXISTS `mcc_module_pc` (
+  `module_pc_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `name` varchar(64) NOT NULL COMMENT '名称',
+  `code` varchar(32) NOT NULL COMMENT '代码',
+  `setting` text NOT NULL COMMENT '参数',
+  PRIMARY KEY (`module_pc_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='PC电脑板模组';
 
 -- --------------------------------------------------------
 
@@ -49285,6 +49341,3 @@ CREATE TABLE IF NOT EXISTS `mcc_zone_to_geo_zone` (
   PRIMARY KEY (`zone_to_geo_zone_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
