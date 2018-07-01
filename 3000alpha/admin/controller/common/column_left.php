@@ -186,6 +186,38 @@ class ControllerCommonColumnLeft extends Controller {
 					'children' => array()
 				);
 			}
+			
+			if ($this->user->hasPermission('access', 'marketplace/extension')) {
+				$marketplace[] = array(
+					'name'	   => $this->language->get('text_module_pc'),
+					'href'     => $this->url->link('marketplace/extension', 'type=module_pc&user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+			
+			if ($this->user->hasPermission('access', 'marketplace/extension')) {
+				$marketplace[] = array(
+					'name'	   => $this->language->get('text_module_mobile'),
+					'href'     => $this->url->link('marketplace/extension', 'type=module_mobile&user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+			
+			if ($this->user->hasPermission('access', 'marketplace/extension')) {
+				$marketplace[] = array(
+					'name'	   => $this->language->get('text_payment'),
+					'href'     => $this->url->link('marketplace/extension', 'type=payment&user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+			
+			if ($this->user->hasPermission('access', 'marketplace/extension')) {
+				$marketplace[] = array(
+					'name'	   => $this->language->get('text_shipping'),
+					'href'     => $this->url->link('marketplace/extension', 'type=shipping&user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
 
 			if ($marketplace) {
 				$data['menus'][] = array(

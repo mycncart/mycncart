@@ -104,3 +104,7 @@ $_['text_faq_config']	 			 = '常见问题设置';
 $_['text_excelexportimport']	     = 'Excel导入导出';
 $_['text_city']	     				 = '城市';
 $_['text_district']	     			 = '区县';
+$_['text_module_pc']         		 = '电脑板模组';
+$_['text_module_mobile']        	 = '手机移动版模组';
+$_['text_payment']         			 = '支付方式';
+$_['text_shipping']         		 = '配送方式';
