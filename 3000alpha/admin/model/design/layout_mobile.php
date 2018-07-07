@@ -5,15 +5,15 @@ class ModelDesignLayoutMobile extends Model {
 
 		$layout_mobile_id = $this->db->getLastId();
 
-		if (isset($data['layout_mobile_route'])) {
-			foreach ($data['layout_mobile_route'] as $layout_mobile_route) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_mobile_route SET layout_mobile_id = '" . (int)$layout_mobile_id . "', store_id = '" . (int)$layout_mobile_route['store_id'] . "', route = '" . $this->db->escape($layout_mobile_route['route']) . "'");
+		if (isset($data['layout_route_mobile'])) {
+			foreach ($data['layout_route_mobile'] as $layout_route_mobile) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_route_mobile SET layout_mobile_id = '" . (int)$layout_mobile_id . "', store_id = '" . (int)$layout_route_mobile['store_id'] . "', route = '" . $this->db->escape($layout_route_mobile['route']) . "'");
 			}
 		}
 
-		if (isset($data['layout_mobile_module'])) {
-			foreach ($data['layout_mobile_module'] as $layout_mobile_module) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_mobile_module SET layout_mobile_id = '" . (int)$layout_mobile_id . "', code = '" . $this->db->escape($layout_mobile_module['code']) . "', position = '" . $this->db->escape($layout_mobile_module['position']) . "', sort_order = '" . (int)$layout_mobile_module['sort_order'] . "'");
+		if (isset($data['layout_module_mobile'])) {
+			foreach ($data['layout_module_mobile'] as $layout_module_mobile) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_module_mobile SET layout_mobile_id = '" . (int)$layout_mobile_id . "', code = '" . $this->db->escape($layout_module_mobile['code']) . "', position = '" . $this->db->escape($layout_module_mobile['position']) . "', sort_order = '" . (int)$layout_module_mobile['sort_order'] . "'");
 			}
 		}
 
@@ -23,27 +23,27 @@ class ModelDesignLayoutMobile extends Model {
 	public function editLayoutMobile($layout_mobile_id, $data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "layout_mobile SET name = '" . $this->db->escape((string)$data['name']) . "' WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_mobile_route WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_route_mobile WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
 
-		if (isset($data['layout_mobile_route'])) {
-			foreach ($data['layout_mobile_route'] as $layout_mobile_route) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_mobile_route SET layout_mobile_id = '" . (int)$layout_mobile_id . "', store_id = '" . (int)$layout_mobile_route['store_id'] . "', route = '" . $this->db->escape($layout_mobile_route['route']) . "'");
+		if (isset($data['layout_route_mobile'])) {
+			foreach ($data['layout_route_mobile'] as $layout_route_mobile) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_route_mobile SET layout_mobile_id = '" . (int)$layout_mobile_id . "', store_id = '" . (int)$layout_route_mobile['store_id'] . "', route = '" . $this->db->escape($layout_route_mobile['route']) . "'");
 			}
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_mobile_module WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_module_mobile WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
 
-		if (isset($data['layout_mobile_module'])) {
-			foreach ($data['layout_mobile_module'] as $layout_mobile_module) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_mobile_module SET layout_mobile_id = '" . (int)$layout_mobile_id . "', code = '" . $this->db->escape($layout_mobile_module['code']) . "', position = '" . $this->db->escape($layout_mobile_module['position']) . "', sort_order = '" . (int)$layout_mobile_module['sort_order'] . "'");
+		if (isset($data['layout_module_mobile'])) {
+			foreach ($data['layout_module_mobile'] as $layout_module_mobile) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_module_mobile SET layout_mobile_id = '" . (int)$layout_mobile_id . "', code = '" . $this->db->escape($layout_module_mobile['code']) . "', position = '" . $this->db->escape($layout_module_mobile['position']) . "', sort_order = '" . (int)$layout_module_mobile['sort_order'] . "'");
 			}
 		}
 	}
 
 	public function deleteLayoutMobile($layout_mobile_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_mobile WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_mobile_route WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_mobile_module WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_route_mobile WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_module_mobile WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_layout_mobile WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_layout_mobile WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "information_to_layout_mobile WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
@@ -90,13 +90,13 @@ class ModelDesignLayoutMobile extends Model {
 	}
 
 	public function getLayoutMobileRoutes($layout_mobile_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout_mobile_route WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout_route_mobile WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "'");
 
 		return $query->rows;
 	}
 
 	public function getLayoutMobileModules($layout_mobile_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout_mobile_module WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "' ORDER BY position ASC, sort_order ASC");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout_module_mobile WHERE layout_mobile_id = '" . (int)$layout_mobile_id . "' ORDER BY position ASC, sort_order ASC");
 
 		return $query->rows;
 	}

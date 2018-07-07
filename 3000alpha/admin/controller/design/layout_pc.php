@@ -310,12 +310,12 @@ class ControllerDesignLayoutPC extends Controller {
 
 		$data['stores'] = $this->model_setting_store->getStores();
 
-		if (isset($this->request->post['layout_pc_route'])) {
-			$data['layout_pc_routes'] = $this->request->post['layout_pc_route'];
+		if (isset($this->request->post['layout_route_pc'])) {
+			$data['layout_route_pcs'] = $this->request->post['layout_route_pc'];
 		} elseif (isset($this->request->get['layout_pc_id'])) {
-			$data['layout_pc_routes'] = $this->model_design_layout_pc->getLayoutPCRoutes($this->request->get['layout_pc_id']);
+			$data['layout_route_pcs'] = $this->model_design_layout_pc->getLayoutPCRoutes($this->request->get['layout_pc_id']);
 		} else {
-			$data['layout_pc_routes'] = array();
+			$data['layout_route_pcs'] = array();
 		}
 
 		$this->load->model('setting/extension');
@@ -352,38 +352,38 @@ class ControllerDesignLayoutPC extends Controller {
 		}
 
 		// Modules layout_pc
-		if (isset($this->request->post['layout_pc_module'])) {
-			$layout_pc_modules = $this->request->post['layout_pc_module'];
+		if (isset($this->request->post['layout_module_pc'])) {
+			$layout_module_pcs = $this->request->post['layout_module_pc'];
 		} elseif (isset($this->request->get['layout_pc_id'])) {
-			$layout_pc_modules = $this->model_design_layout_pc->getLayoutPCModules($this->request->get['layout_pc_id']);
+			$layout_module_pcs = $this->model_design_layout_pc->getLayoutPCModules($this->request->get['layout_pc_id']);
 		} else {
-			$layout_pc_modules = array();
+			$layout_module_pcs = array();
 		}
 
-		$data['layout_pc_modules'] = array();
+		$data['layout_module_pcs'] = array();
 		
 		// Add all the modules which have multiple settings for each module
-		foreach ($layout_pc_modules as $layout_pc_module) {
-			$part = explode('.', $layout_pc_module['code']);
+		foreach ($layout_module_pcs as $layout_module_pc) {
+			$part = explode('.', $layout_module_pc['code']);
 		
 			$this->load->language('extension/module_pc/' . $part[0]);
 
 			if (!isset($part[1])) {
-				$data['layout_pc_modules'][] = array(
+				$data['layout_module_pcs'][] = array(
 					'name'       => strip_tags($this->language->get('heading_title')),
-					'code'       => $layout_pc_module['code'],
-					'position'   => $layout_pc_module['position'],
-					'sort_order' => $layout_pc_module['sort_order']
+					'code'       => $layout_module_pc['code'],
+					'position'   => $layout_module_pc['position'],
+					'sort_order' => $layout_module_pc['sort_order']
 				);
 			} else {
 				$module_info = $this->model_setting_module_pc->getModulePC($part[1]);
 				
 				if ($module_info) {
-					$data['layout_pc_modules'][] = array(
+					$data['layout_module_pcs'][] = array(
 						'name'       => strip_tags($module_info['name']),
-						'code'       => $layout_pc_module['code'],
-						'position'   => $layout_pc_module['position'],
-						'sort_order' => $layout_pc_module['sort_order']
+						'code'       => $layout_module_pc['code'],
+						'position'   => $layout_module_pc['position'],
+						'sort_order' => $layout_module_pc['sort_order']
 					);
 				}				
 			}

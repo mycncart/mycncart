@@ -5,15 +5,15 @@ class ModelDesignLayoutPC extends Model {
 
 		$layout_pc_id = $this->db->getLastId();
 
-		if (isset($data['layout_pc_route'])) {
-			foreach ($data['layout_pc_route'] as $layout_pc_route) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_pc_route SET layout_pc_id = '" . (int)$layout_pc_id . "', store_id = '" . (int)$layout_pc_route['store_id'] . "', route = '" . $this->db->escape($layout_pc_route['route']) . "'");
+		if (isset($data['layout_route_pc'])) {
+			foreach ($data['layout_route_pc'] as $layout_route_pc) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_route_pc SET layout_pc_id = '" . (int)$layout_pc_id . "', store_id = '" . (int)$layout_route_pc['store_id'] . "', route = '" . $this->db->escape($layout_route_pc['route']) . "'");
 			}
 		}
 
-		if (isset($data['layout_pc_module'])) {
-			foreach ($data['layout_pc_module'] as $layout_pc_module) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_pc_module SET layout_pc_id = '" . (int)$layout_pc_id . "', code = '" . $this->db->escape($layout_pc_module['code']) . "', position = '" . $this->db->escape($layout_pc_module['position']) . "', sort_order = '" . (int)$layout_pc_module['sort_order'] . "'");
+		if (isset($data['layout_module_pc'])) {
+			foreach ($data['layout_module_pc'] as $layout_module_pc) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_module_pc SET layout_pc_id = '" . (int)$layout_pc_id . "', code = '" . $this->db->escape($layout_module_pc['code']) . "', position = '" . $this->db->escape($layout_module_pc['position']) . "', sort_order = '" . (int)$layout_module_pc['sort_order'] . "'");
 			}
 		}
 
@@ -23,27 +23,27 @@ class ModelDesignLayoutPC extends Model {
 	public function editLayoutPC($layout_pc_id, $data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "layout_pc SET name = '" . $this->db->escape((string)$data['name']) . "' WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_pc_route WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_route_pc WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
 
-		if (isset($data['layout_pc_route'])) {
-			foreach ($data['layout_pc_route'] as $layout_pc_route) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_pc_route SET layout_pc_id = '" . (int)$layout_pc_id . "', store_id = '" . (int)$layout_pc_route['store_id'] . "', route = '" . $this->db->escape($layout_pc_route['route']) . "'");
+		if (isset($data['layout_route_pc'])) {
+			foreach ($data['layout_route_pc'] as $layout_route_pc) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_route_pc SET layout_pc_id = '" . (int)$layout_pc_id . "', store_id = '" . (int)$layout_route_pc['store_id'] . "', route = '" . $this->db->escape($layout_route_pc['route']) . "'");
 			}
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_pc_module WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_module_pc WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
 
-		if (isset($data['layout_pc_module'])) {
-			foreach ($data['layout_pc_module'] as $layout_pc_module) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_pc_module SET layout_pc_id = '" . (int)$layout_pc_id . "', code = '" . $this->db->escape($layout_pc_module['code']) . "', position = '" . $this->db->escape($layout_pc_module['position']) . "', sort_order = '" . (int)$layout_pc_module['sort_order'] . "'");
+		if (isset($data['layout_module_pc'])) {
+			foreach ($data['layout_module_pc'] as $layout_module_pc) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "layout_module_pc SET layout_pc_id = '" . (int)$layout_pc_id . "', code = '" . $this->db->escape($layout_module_pc['code']) . "', position = '" . $this->db->escape($layout_module_pc['position']) . "', sort_order = '" . (int)$layout_module_pc['sort_order'] . "'");
 			}
 		}
 	}
 
 	public function deleteLayoutPC($layout_pc_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_pc WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_pc_route WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_pc_module WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_route_pc WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "layout_module_pc WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_layout_pc WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_layout_pc WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "information_to_layout_pc WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
@@ -90,13 +90,13 @@ class ModelDesignLayoutPC extends Model {
 	}
 
 	public function getLayoutPCRoutes($layout_pc_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout_pc_route WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout_route_pc WHERE layout_pc_id = '" . (int)$layout_pc_id . "'");
 
 		return $query->rows;
 	}
 
 	public function getLayoutPCModules($layout_pc_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout_pc_module WHERE layout_pc_id = '" . (int)$layout_pc_id . "' ORDER BY position ASC, sort_order ASC");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout_module_pc WHERE layout_pc_id = '" . (int)$layout_pc_id . "' ORDER BY position ASC, sort_order ASC");
 
 		return $query->rows;
 	}

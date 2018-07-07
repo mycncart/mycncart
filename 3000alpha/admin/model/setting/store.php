@@ -56,11 +56,18 @@ class ModelSettingStore extends Model {
 		return $query->row['total'];
 	}
 
-	public function getTotalStoresByLayoutId($layout_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_layout_id' AND `value` = '" . (int)$layout_id . "' AND store_id != '0'");
+	public function getTotalStoresByLayoutPCId($layout_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_layout_pc_id' AND `value` = '" . (int)$layout_id . "' AND store_id != '0'");
 
 		return $query->row['total'];
 	}
+	
+	public function getTotalStoresByLayoutMobileId($layout_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_layout_mobile_id' AND `value` = '" . (int)$layout_id . "' AND store_id != '0'");
+
+		return $query->row['total'];
+	}
+	
 
 	public function getTotalStoresByLanguage($language) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_language' AND `value` = '" . $this->db->escape($language) . "' AND store_id != '0'");

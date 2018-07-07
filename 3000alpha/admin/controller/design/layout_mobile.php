@@ -320,7 +320,7 @@ class ControllerDesignLayoutMobile extends Controller {
 
 		$this->load->model('setting/extension');
 
-		$this->load->model('setting/module');
+		$this->load->model('setting/module_mobile');
 
 		$data['extensions'] = array();
 		
@@ -329,20 +329,20 @@ class ControllerDesignLayoutMobile extends Controller {
 
 		// Add all the modules which have multiple settings for each module
 		foreach ($extensions as $code) {
-			$this->load->language('extension/module/' . $code, 'extension');
+			$this->load->language('extension/module_mobile/' . $code, 'extension');
 
 			$module_data = array();
 
-			$modules = $this->model_setting_module->getModulesByCode($code);
+			$modules = $this->model_setting_module_mobile->getModuleMobilesByCode($code);
 
 			foreach ($modules as $module) {
 				$module_data[] = array(
 					'name' => strip_tags($module['name']),
-					'code' => $code . '.' .  $module['module_id']
+					'code' => $code . '.' .  $module['module_mobile_id']
 				);
 			}
 
-			if ($this->config->has('module_' . $code . '_status') || $module_data) {
+			if ($this->config->has('module_mobile_' . $code . '_status') || $module_data) {
 				$data['extensions'][] = array(
 					'name'   => strip_tags($this->language->get('extension')->get('heading_title')),
 					'code'   => $code,
