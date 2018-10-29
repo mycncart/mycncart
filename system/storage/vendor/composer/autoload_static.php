@@ -4,11 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit529edf555723ee7d6785bff5252964ab
+class ComposerStaticInit167789ffe806ec460a83d9e4acc6ff30
 {
     public static $files = array (
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -16,9 +17,14 @@ class ComposerStaticInit529edf555723ee7d6785bff5252964ab
         array (
             'Wechat\\' => 7,
         ),
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Validator\\' => 28,
             'Symfony\\Component\\Translation\\' => 30,
         ),
@@ -29,6 +35,10 @@ class ComposerStaticInit529edf555723ee7d6785bff5252964ab
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+        ),
+        'L' => 
+        array (
+            'Leafo\\ScssPhp\\' => 14,
         ),
         'G' => 
         array (
@@ -49,9 +59,17 @@ class ComposerStaticInit529edf555723ee7d6785bff5252964ab
         array (
             0 => __DIR__ . '/..' . '/zoujingli/wechat-php-sdk/Wechat',
         ),
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
         'Symfony\\Component\\Validator\\' => 
         array (
@@ -68,6 +86,10 @@ class ComposerStaticInit529edf555723ee7d6785bff5252964ab
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Leafo\\ScssPhp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/leafo/scssphp/src',
         ),
         'GuzzleHttp\\Subscriber\\Oauth\\' => 
         array (
@@ -100,6 +122,13 @@ class ComposerStaticInit529edf555723ee7d6785bff5252964ab
     );
 
     public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
         'D' => 
         array (
             'Divido' => 
@@ -116,23 +145,13 @@ class ComposerStaticInit529edf555723ee7d6785bff5252964ab
         ),
     );
 
-    public static $classMap = array (
-        'scss_formatter' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
-        'scss_formatter_compressed' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
-        'scss_formatter_nested' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
-        'scss_parser' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
-        'scss_server' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
-        'scssc' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit529edf555723ee7d6785bff5252964ab::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit529edf555723ee7d6785bff5252964ab::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit529edf555723ee7d6785bff5252964ab::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit529edf555723ee7d6785bff5252964ab::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit529edf555723ee7d6785bff5252964ab::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit167789ffe806ec460a83d9e4acc6ff30::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit167789ffe806ec460a83d9e4acc6ff30::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit167789ffe806ec460a83d9e4acc6ff30::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit167789ffe806ec460a83d9e4acc6ff30::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
