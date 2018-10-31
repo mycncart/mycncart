@@ -1,10 +1,10 @@
 .breadcrumb {
   display: flex;
   //display: flex;
-  /* MyCnCart Start */
+  /* OpenCart Start */
   display: inline-block;
   //border: 1px solid #000000;
-  /* MyCnCart End */
+  /* OpenCart End */
   flex-wrap: wrap;
   padding: $breadcrumb-padding-y $breadcrumb-padding-x;
   margin-bottom: $breadcrumb-margin-bottom;
@@ -13,7 +13,7 @@
   @include border-radius($breadcrumb-border-radius);
 }
 
-/* MyCnCart Start */
+/* OpenCart Start */
 .breadcrumb-item a {
   color: #999999;
 }
@@ -21,14 +21,14 @@
 .breadcrumb-item:last-child a {
   color: #1e91cf;
 }
-/* MyCnCart End */
+/* OpenCart End */
 
 .breadcrumb-item {
-  /* MyCnCart Start */
+  /* OpenCart Start */
   text-shadow: 0 1px #fff;
   font-size: .9231rem;
   display: inline-block;
-  /* MyCnCart End */
+  /* OpenCart End */
 
   // The separator between breadcrumbs (by default, a forward-slash: "/")
   + .breadcrumb-item {
@@ -40,12 +40,12 @@
       color: $breadcrumb-divider-color;
       content: $breadcrumb-divider;
 
-      /* MyCnCart Start */
+      /* OpenCart Start */
       font-family: "Font Awesome 5 Free";
       font-weight: 600;
       font-size: .7692rem;
       color: #BBBBBB;
-      /* MyCnCart End */
+      /* OpenCart End */
     }
   }
 

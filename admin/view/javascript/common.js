@@ -57,6 +57,7 @@ $(document).ready(function() {
 		$('body > .tooltip').remove();
 	});
 
+	// https://github.com/opencart/opencart/issues/2595
 	$.event.special.remove = {
 		remove: function(o) {
 			if (o.handler) {
