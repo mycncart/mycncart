@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']    = 'OpenCart/MyCnCart Marketplace API';
+$_['heading_title']    = 'OpenCart Marketplace API';
 
 // Text
 $_['text_success']     = 'Success: You have modified your API information!';

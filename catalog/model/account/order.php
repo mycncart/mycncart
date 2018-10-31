@@ -1,7 +1,7 @@
 <?php
 class ModelAccountOrder extends Model {
 	public function getOrder($order_id) {
-		$order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order` WHERE order_id = '" . (int)$order_id . "' AND customer_id = '" . (int)$this->customer->getId() . "' AND order_status_id > '0'");
+		$order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order` WHERE order_id = '" . (int)$order_id . "' AND customer_id = '" . (int)$this->customer->getId() . "' AND customer_id != '0' AND order_status_id > '0'");
 
 		if ($order_query->num_rows) {
 			$country_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE country_id = '" . (int)$order_query->row['payment_country_id'] . "'");
@@ -54,15 +54,11 @@ class ModelAccountOrder extends Model {
 				'email'                   => $order_query->row['email'],
 				'payment_firstname'       => $order_query->row['payment_firstname'],
 				'payment_lastname'        => $order_query->row['payment_lastname'],
-				'payment_telephone'       => $order_query->row['payment_telephone'],
 				'payment_company'         => $order_query->row['payment_company'],
 				'payment_address_1'       => $order_query->row['payment_address_1'],
 				'payment_address_2'       => $order_query->row['payment_address_2'],
 				'payment_postcode'        => $order_query->row['payment_postcode'],
 				'payment_city'            => $order_query->row['payment_city'],
-				'payment_city_id'         => $order_query->row['payment_city_id'],
-				'payment_district'        => $order_query->row['payment_district'],
-				'payment_district_id'     => $order_query->row['payment_district_id'],
 				'payment_zone_id'         => $order_query->row['payment_zone_id'],
 				'payment_zone'            => $order_query->row['payment_zone'],
 				'payment_zone_code'       => $payment_zone_code,
@@ -74,16 +70,11 @@ class ModelAccountOrder extends Model {
 				'payment_method'          => $order_query->row['payment_method'],
 				'shipping_firstname'      => $order_query->row['shipping_firstname'],
 				'shipping_lastname'       => $order_query->row['shipping_lastname'],
-				'shipping_telephone'      => $order_query->row['shipping_telephone'],
 				'shipping_company'        => $order_query->row['shipping_company'],
 				'shipping_address_1'      => $order_query->row['shipping_address_1'],
 				'shipping_address_2'      => $order_query->row['shipping_address_2'],
 				'shipping_postcode'       => $order_query->row['shipping_postcode'],
 				'shipping_city'           => $order_query->row['shipping_city'],
-				'shipping_city_id'        => $order_query->row['shipping_city_id'],
-				'shipping_district'       => $order_query->row['shipping_district'],
-				'shipping_district_id'    => $order_query->row['shipping_district_id'],
-				'shipping_zone_id'        => $order_query->row['shipping_zone_id'],
 				'shipping_zone_id'        => $order_query->row['shipping_zone_id'],
 				'shipping_zone'           => $order_query->row['shipping_zone'],
 				'shipping_zone_code'      => $shipping_zone_code,
@@ -175,17 +166,5 @@ class ModelAccountOrder extends Model {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order_voucher` WHERE order_id = '" . (int)$order_id . "'");
 
 		return $query->row['total'];
-	}
-	
-	public function getWxQrcodeUnpaidOrder($order_id) {
-		$order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order` WHERE order_id = '" . (int)$order_id . "' AND customer_id = '" . (int)$this->customer->getId() . "' AND order_status_id > '0'");
-
-		if ($order_query->num_rows) {
-			return array(
-				'order_id'	=> $order_query->row['order_id']
-			);
-		} else {
-			return false;
-		}
 	}
 }

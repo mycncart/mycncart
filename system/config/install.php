@@ -4,17 +4,20 @@ $_['site_base']         = HTTP_SERVER;
 $_['site_ssl']          = HTTP_SERVER;
 
 // Language
-$_['language_default']  = 'zh-cn';
-$_['language_autoload'] = array('zh-cn');
+$_['language_default']  = 'en-gb';
+$_['language_autoload'] = array('en-gb');
 
 // Session
-$_['session_engine']     = 'file';
-$_['session_autostart']  = true;
-$_['session_name']       = 'OCSESSID';
+$_['session_engine']    = 'file';
+$_['session_autostart'] = true;
+$_['session_name']      = 'OCSESSID';
 
 // Template
 $_['template_engine']   = 'twig';
 $_['template_cache']    = true;
+
+// Error
+$_['error_display']     = true;
 
 // Actions
 $_['action_default']    = 'install/step_1';

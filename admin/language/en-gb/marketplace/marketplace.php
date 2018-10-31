@@ -22,6 +22,7 @@ $_['text_other']         = 'Other';
 $_['text_free']          = 'Free';
 $_['text_paid']          = 'Paid';
 $_['text_purchased']     = 'Purchased';
+$_['text_recommended']   = 'Recommended';
 $_['text_date_modified'] = 'Date Modified';
 $_['text_date_added']    = 'Date Added';
 $_['text_rating']        = 'Rating';
@@ -63,10 +64,11 @@ $_['button_view_all']    = 'View all extensions';
 $_['button_get_support'] = 'Get Support';
 $_['button_comment']     = 'Comment';
 $_['button_reply']       = 'Reply';
+$_['button_forgot_pin']  = 'Forgot PIN?';
 
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify extensions!';
-$_['error_opencart']     = 'Warning: You must enter your OpenCart/MyCnCart API information before you can make any purchases!';
+$_['error_opencart']     = 'Warning: You must enter your OpenCart API information before you can make any purchases!';
 $_['error_install']      = 'Extension installation taking place please wait a few seconds before trying to install!';
 $_['error_purchase']     = 'Extension could not be purchased!';
 $_['error_download']     = 'Extension could not be downloaded!';

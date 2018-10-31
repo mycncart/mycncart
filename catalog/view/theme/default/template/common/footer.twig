@@ -1,15 +1,16 @@
+</main>
 <footer>
   <div class="container">
     <div class="row">
       {% if informations %}
-      <div class="col-sm-3">
-        <h5>{{ text_information }}</h5>
-        <ul class="list-unstyled">
-         {% for information in informations %}
-          <li><a href="{{ information.href }}">{{ information.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
+        <div class="col-sm-3">
+          <h5>{{ text_information }}</h5>
+          <ul class="list-unstyled">
+            {% for information in informations %}
+              <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
       {% endif %}
       <div class="col-sm-3">
         <h5>{{ text_service }}</h5>
@@ -40,17 +41,12 @@
     </div>
     <hr>
     <p>{{ powered }}</p>
-	{% if miit %}
-    <p><a target="_blank" href="http://www.miitbeian.gov.cn/">{{ miit }}</a></p>
-    {% endif %}
   </div>
 </footer>
 {% for script in scripts %}
-<script src="{{ script }}" type="text/javascript"></script>
+  <script src="{{ script }}" type="text/javascript"></script>
 {% endfor %}
-
 <!--
-MyCnCart 是开源软件，是送给华语市场朋友们的一件优美礼物，它没有任何加密。 请保留底部的【技术支持 MyCnCart】。 MyCnCart商标由青岛万物一体网络科技有限公司拥有。 您也可以将该商标移除， 但请支付100元人民币。购买许可支付地址：http://www.mycncart.com/index.php?route=product/product&product_id=126
-//--> 
-
+MyCnCart is open source software and you are free to remove the powered by MyCnCart if you want.
+//-->
 </body></html>

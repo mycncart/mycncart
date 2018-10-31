@@ -4,9 +4,9 @@ class ControllerAccountEdit extends Controller {
 
 	public function index() {
 		if (!$this->customer->isLogged()) {
-			$this->session->data['redirect'] = $this->url->link('account/edit', '', true);
+			$this->session->data['redirect'] = $this->url->link('account/edit', 'language=' . $this->config->get('config_language'));
 
-			$this->response->redirect($this->url->link('account/login', '', true));
+			$this->response->redirect($this->url->link('account/login', 'language=' . $this->config->get('config_language')));
 		}
 
 		$this->load->language('account/edit');
@@ -25,24 +25,24 @@ class ControllerAccountEdit extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->response->redirect($this->url->link('account/account', '', true));
+			$this->response->redirect($this->url->link('account/account', 'language=' . $this->config->get('config_language')));
 		}
 
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
+			'href' => $this->url->link('common/home', 'language=' . $this->config->get('config_language'))
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_account'),
-			'href' => $this->url->link('account/account', '', true)
+			'href' => $this->url->link('account/account', 'language=' . $this->config->get('config_language'))
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_edit'),
-			'href' => $this->url->link('account/edit', '', true)
+			'href' => $this->url->link('account/edit', 'language=' . $this->config->get('config_language'))
 		);
 
 		if (isset($this->error['warning'])) {
@@ -74,12 +74,6 @@ class ControllerAccountEdit extends Controller {
 		} else {
 			$data['error_telephone'] = '';
 		}
-		
-		if (isset($this->error['sms_code'])) {
-			$data['error_sms_code'] = $this->error['sms_code'];
-		} else {
-			$data['error_sms_code'] = '';
-		}
 
 		if (isset($this->error['custom_field'])) {
 			$data['error_custom_field'] = $this->error['custom_field'];
@@ -87,7 +81,7 @@ class ControllerAccountEdit extends Controller {
 			$data['error_custom_field'] = array();
 		}
 
-		$data['action'] = $this->url->link('account/edit', '', true);
+		$data['action'] = $this->url->link('account/edit', 'language=' . $this->config->get('config_language'));
 
 		if ($this->request->server['REQUEST_METHOD'] != 'POST') {
 			$customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
@@ -124,19 +118,6 @@ class ControllerAccountEdit extends Controller {
 		} else {
 			$data['telephone'] = '';
 		}
-		
-		//SMS
-		if ('sms_' . $this->config->get($this->config->get('config_sms') . '_status') && in_array('edit_account', (array)$this->config->get('config_sms_page'))) {
-			$data['sms_gateway'] = $this->config->get('config_sms');
-		}else{
-			$data['sms_gateway'] = '';
-		}
-		
-		if (isset($this->request->post['sms_code'])) {
-			$data['sms_code'] = $this->request->post['sms_code'];
-		} else {
-			$data['sms_code'] = '';
-		}
 
 		// Custom Fields
 		$data['custom_fields'] = array();
@@ -159,7 +140,7 @@ class ControllerAccountEdit extends Controller {
 			$data['account_custom_field'] = array();
 		}
 
-		$data['back'] = $this->url->link('account/account', '', true);
+		$data['back'] = $this->url->link('account/account', 'language=' . $this->config->get('config_language'));
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
@@ -176,6 +157,10 @@ class ControllerAccountEdit extends Controller {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
 
+		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
+			$this->error['lastname'] = $this->language->get('error_lastname');
+		}
+
 		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
@@ -186,30 +171,18 @@ class ControllerAccountEdit extends Controller {
 
 		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
-		}else{
-			if($this->customer->getTelephone() == trim($this->request->post['telephone'])) {
-			
-			}else{
-				// if sms code is not correct
-				if (isset($this->request->post['sms_code'])) {
-					$this->load->model('account/smsmobile');
-					if($this->model_account_smsmobile->verifySmsCode($this->request->post['telephone'], $this->request->post['sms_code']) == 0) {
-						$this->error['sms_code'] = $this->language->get('error_sms_code');
-					}
-				}
-			}
 		}
 
 		// Custom field validation
 		$this->load->model('account/custom_field');
 
-		$custom_fields = $this->model_account_custom_field->getCustomFields('account', $this->config->get('config_customer_group_id'));
+		$custom_fields = $this->model_account_custom_field->getCustomFields($this->config->get('config_customer_group_id'));
 
 		foreach ($custom_fields as $custom_field) {
 			if ($custom_field['location'] == 'account') {
 				if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
 					$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
-				} elseif (($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
+				} elseif (($custom_field['type'] == 'text') && !empty($custom_field['validation']) && filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/' . html_entity_decode($custom_field['validation'], ENT_QUOTES, 'UTF-8') . '/')))) {
 					$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
 				}
 			}

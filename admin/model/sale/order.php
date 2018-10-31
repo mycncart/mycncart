@@ -87,15 +87,11 @@ class ModelSaleOrder extends Model {
 				'custom_field'            => json_decode($order_query->row['custom_field'], true),
 				'payment_firstname'       => $order_query->row['payment_firstname'],
 				'payment_lastname'        => $order_query->row['payment_lastname'],
-				'payment_telephone'       => $order_query->row['payment_telephone'],
 				'payment_company'         => $order_query->row['payment_company'],
 				'payment_address_1'       => $order_query->row['payment_address_1'],
 				'payment_address_2'       => $order_query->row['payment_address_2'],
 				'payment_postcode'        => $order_query->row['payment_postcode'],
 				'payment_city'            => $order_query->row['payment_city'],
-				'payment_city_id'         => $order_query->row['payment_city_id'],
-				'payment_district'        => $order_query->row['payment_district'],
-				'payment_district_id'     => $order_query->row['payment_district_id'],
 				'payment_zone_id'         => $order_query->row['payment_zone_id'],
 				'payment_zone'            => $order_query->row['payment_zone'],
 				'payment_zone_code'       => $payment_zone_code,
@@ -109,15 +105,11 @@ class ModelSaleOrder extends Model {
 				'payment_code'            => $order_query->row['payment_code'],
 				'shipping_firstname'      => $order_query->row['shipping_firstname'],
 				'shipping_lastname'       => $order_query->row['shipping_lastname'],
-				'shipping_telephone'      => $order_query->row['shipping_telephone'],
 				'shipping_company'        => $order_query->row['shipping_company'],
 				'shipping_address_1'      => $order_query->row['shipping_address_1'],
 				'shipping_address_2'      => $order_query->row['shipping_address_2'],
 				'shipping_postcode'       => $order_query->row['shipping_postcode'],
 				'shipping_city'           => $order_query->row['shipping_city'],
-				'shipping_city_id'        => $order_query->row['shipping_city_id'],
-				'shipping_district'       => $order_query->row['shipping_district'],
-				'shipping_district_id'    => $order_query->row['shipping_district_id'],
 				'shipping_zone_id'        => $order_query->row['shipping_zone_id'],
 				'shipping_zone'           => $order_query->row['shipping_zone'],
 				'shipping_zone_code'      => $shipping_zone_code,
@@ -181,15 +173,15 @@ class ModelSaleOrder extends Model {
 		}
 
 		if (!empty($data['filter_customer'])) {
-			$sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+			$sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape((string)$data['filter_customer']) . "%'";
 		}
 
 		if (!empty($data['filter_date_added'])) {
-			$sql .= " AND DATE(o.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+			$sql .= " AND DATE(o.date_added) = DATE('" . $this->db->escape((string)$data['filter_date_added']) . "')";
 		}
 
 		if (!empty($data['filter_date_modified'])) {
-			$sql .= " AND DATE(o.date_modified) = DATE('" . $this->db->escape($data['filter_date_modified']) . "')";
+			$sql .= " AND DATE(o.date_modified) = DATE('" . $this->db->escape((string)$data['filter_date_modified']) . "')";
 		}
 
 		if (!empty($data['filter_total'])) {
@@ -290,15 +282,15 @@ class ModelSaleOrder extends Model {
 		}
 
 		if (!empty($data['filter_customer'])) {
-			$sql .= " AND CONCAT(firstname, ' ', lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+			$sql .= " AND CONCAT(firstname, ' ', lastname) LIKE '%" . $this->db->escape((string)$data['filter_customer']) . "%'";
 		}
 
 		if (!empty($data['filter_date_added'])) {
-			$sql .= " AND DATE(date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+			$sql .= " AND DATE(date_added) = DATE('" . $this->db->escape((string)$data['filter_date_added']) . "')";
 		}
 
 		if (!empty($data['filter_date_modified'])) {
-			$sql .= " AND DATE(date_modified) = DATE('" . $this->db->escape($data['filter_date_modified']) . "')";
+			$sql .= " AND DATE(date_modified) = DATE('" . $this->db->escape((string)$data['filter_date_modified']) . "')";
 		}
 
 		if (!empty($data['filter_total'])) {
@@ -396,15 +388,15 @@ class ModelSaleOrder extends Model {
 		}
 
 		if (!empty($data['filter_customer'])) {
-			$sql .= " AND CONCAT(firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+			$sql .= " AND CONCAT(firstname, ' ', o.lastname) LIKE '%" . $this->db->escape((string)$data['filter_customer']) . "%'";
 		}
 
 		if (!empty($data['filter_date_added'])) {
-			$sql .= " AND DATE(date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+			$sql .= " AND DATE(date_added) = DATE('" . $this->db->escape((string)$data['filter_date_added']) . "')";
 		}
 
 		if (!empty($data['filter_date_modified'])) {
-			$sql .= " AND DATE(date_modified) = DATE('" . $this->db->escape($data['filter_date_modified']) . "')";
+			$sql .= " AND DATE(date_modified) = DATE('" . $this->db->escape((string)$data['filter_date_modified']) . "')";
 		}
 
 		if (!empty($data['filter_total'])) {

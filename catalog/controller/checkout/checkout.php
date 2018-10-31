@@ -3,7 +3,7 @@ class ControllerCheckoutCheckout extends Controller {
 	public function index() {
 		// Validate cart has products and has stock.
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
-			$this->response->redirect($this->url->link('checkout/cart'));
+			$this->response->redirect($this->url->link('checkout/cart', 'language=' . $this->config->get('config_language')));
 		}
 
 		// Validate minimum quantity requirements.
@@ -19,7 +19,7 @@ class ControllerCheckoutCheckout extends Controller {
 			}
 
 			if ($product['minimum'] > $product_total) {
-				$this->response->redirect($this->url->link('checkout/cart'));
+				$this->response->redirect($this->url->link('checkout/cart', 'language=' . $this->config->get('config_language')));
 			}
 		}
 
@@ -32,26 +32,21 @@ class ControllerCheckoutCheckout extends Controller {
 		$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');
 
-		// Required by klarna
-		if ($this->config->get('payment_klarna_account') || $this->config->get('payment_klarna_invoice')) {
-			$this->document->addScript('http://cdn.klarna.com/public/kitt/toc/v1.0/js/klarna.terms.min.js');
-		}
-
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
+			'href' => $this->url->link('common/home', 'language=' . $this->config->get('config_language'))
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_cart'),
-			'href' => $this->url->link('checkout/cart')
+			'href' => $this->url->link('checkout/cart', 'language=' . $this->config->get('config_language'))
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('checkout/checkout', '', true)
+			'href' => $this->url->link('checkout/checkout', 'language=' . $this->config->get('config_language'))
 		);
 
 		$data['text_checkout_option'] = sprintf($this->language->get('text_checkout_option'), 1);
@@ -114,50 +109,6 @@ class ControllerCheckoutCheckout extends Controller {
 				'postcode_required' => $country_info['postcode_required'],
 				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
 				'status'            => $country_info['status']
-			);
-		}
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
-	
-	public function zone() {
-		$json = array();
-
-		$this->load->model('localisation/zone');
-
-		$zone_info = $this->model_localisation_zone->getZone($this->request->get['zone_id']);
-
-		if ($zone_info) {
-			$this->load->model('localisation/city');
-
-			$json = array(
-				'zone_id'        	=> $zone_info['zone_id'],
-				'name'              => $zone_info['name'],
-				'city'              => $this->model_localisation_city->getCitysByZoneId($this->request->get['zone_id']),
-				'status'            => $zone_info['status']
-			);
-		}
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
-	
-	public function city() {
-		$json = array();
-
-		$this->load->model('localisation/city');
-
-		$city_info = $this->model_localisation_city->getCity($this->request->get['city_id']);
-
-		if ($city_info) {
-			$this->load->model('localisation/district');
-
-			$json = array(
-				'city_id'        	=> $city_info['zone_id'],
-				'name'              => $city_info['name'],
-				'district'              => $this->model_localisation_district->getDistrictsByCityId($this->request->get['city_id']),
-				'status'            => $city_info['status']
 			);
 		}
 

@@ -30,12 +30,6 @@ class Customer {
 				$this->address_id = $customer_query->row['address_id'];
 
 				$this->db->query("UPDATE " . DB_PREFIX . "customer SET language_id = '" . (int)$this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
-
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_ip WHERE customer_id = '" . (int)$this->session->data['customer_id'] . "' AND ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "'");
-
-				if (!$query->num_rows) {
-					$this->db->query("INSERT INTO " . DB_PREFIX . "customer_ip SET customer_id = '" . (int)$this->session->data['customer_id'] . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', date_added = NOW()");
-				}
 			} else {
 				$this->logout();
 			}
@@ -43,20 +37,31 @@ class Customer {
 	}
 
   public function login($email, $password, $override = false) {
-		if ($override) {
-			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "' AND status = '1'");
-		} else {
-			//Email login
-			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "' AND (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "') AND status = '1'");
-			
-			if ($customer_query->num_rows == 0) {
-				//Telephone login
-				$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE LOWER(telephone) = '" . $this->db->escape(utf8_strtolower($email)) . "' AND (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "') AND status = '1'");
-				
-			}
-		}
+		$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "' AND status = '1'");
 
 		if ($customer_query->num_rows) {
+			if (!$override) {
+
+				if (password_verify($password, $customer_query->row['password']) ) {
+
+					if (password_needs_rehash($customer_query->row['password'], PASSWORD_DEFAULT)) {
+						$new_password_hashed = password_hash($password, PASSWORD_DEFAULT);
+					}
+
+
+				} elseif ($customer_query->row['password'] == sha1($customer_query->row['salt'] . sha1($customer_query->row['salt'] . sha1($password)))) {
+					$new_password_hashed = password_hash($password, PASSWORD_DEFAULT);
+				} elseif ($customer_query->row['password'] == md5($password)) {
+					$new_password_hashed = password_hash($password, PASSWORD_DEFAULT);
+				} else {
+					return false;
+				}
+
+				if ($new_password_hashed) {
+					$this->db->query("UPDATE " . DB_PREFIX . "customer SET salt = '', password = '" . $this->db->escape($new_password_hashed) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+				}
+			}
+
 			$this->session->data['customer_id'] = $customer_query->row['customer_id'];
 
 			$this->customer_id = $customer_query->row['customer_id'];
@@ -67,156 +72,17 @@ class Customer {
 			$this->telephone = $customer_query->row['telephone'];
 			$this->newsletter = $customer_query->row['newsletter'];
 			$this->address_id = $customer_query->row['address_id'];
-		
+
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET language_id = '" . (int)$this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
-			
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public function login_weixin($weixin_login_openid){
-		
-		if ($weixin_login_openid) {
-			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE weixin_login_openid = '" . $this->db->escape($weixin_login_openid) . "'");
-	
-			if ($customer_query->num_rows) {
-				$this->session->data['customer_id'] = $customer_query->row['customer_id'];
-
-				$this->customer_id = $customer_query->row['customer_id'];
-				$this->firstname = $customer_query->row['firstname'];
-				$this->lastname = $customer_query->row['lastname'];
-				$this->customer_group_id = $customer_query->row['customer_group_id'];
-				$this->email = $customer_query->row['email'];
-				$this->telephone = $customer_query->row['telephone'];
-				$this->newsletter = $customer_query->row['newsletter'];
-				$this->address_id = $customer_query->row['address_id'];
-			
-				$this->db->query("UPDATE " . DB_PREFIX . "customer SET language_id = '" . (int)$this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
-	
-				return true;
-			} else {
-				return false;
-			}
-		
-		} else {
-			return false;
-		}
-
-	}
-	
-	public function login_weibo($weibo_login_access_token, $weibo_login_uid){
-		$customer = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE weibo_login_access_token = '" . $this->db->escape($weibo_login_access_token) . "' AND weibo_login_uid = '" . $this->db->escape($weibo_login_uid) . "'");
-
-		
-		if ($customer->num_rows) {
-			$this->session->data['customer_id'] = $customer->row['customer_id'];
-
-			if ($customer->row['cart'] && is_string($customer->row['cart'])) {
-				$cart = unserialize($customer->row['cart']);
-
-				foreach ($cart as $key => $value) {
-					if (!array_key_exists($key, $this->session->data['cart'])) {
-						$this->session->data['cart'][$key] = $value;
-					} else {
-						$this->session->data['cart'][$key] += $value;
-					}
-				}
-			}
-
-			if ($customer->row['wishlist'] && is_string($customer->row['wishlist'])) {
-				if (!isset($this->session->data['wishlist'])) {
-					$this->session->data['wishlist'] = array();
-				}
-
-				$wishlist = unserialize($customer->row['wishlist']);
-
-				foreach ($wishlist as $product_id) {
-					if (!in_array($product_id, $this->session->data['wishlist'])) {
-						$this->session->data['wishlist'][] = $product_id;
-					}
-				}
-			}
-
-			$this->customer_id = $customer->row['customer_id'];
-			$this->firstname = $customer_query->row['firstname'];
-			$this->lastname = $customer_query->row['lastname'];
-			$this->email = $customer->row['email'];
-			$this->telephone = $customer->row['telephone'];
-			$this->newsletter = $customer->row['newsletter'];
-			$this->customer_group_id = $customer->row['customer_group_id'];
-			$this->address_id = $customer->row['address_id'];
-
-			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
-			
-			$this->session->data['weibo_logout_status'] = 0;
 
 			return true;
 		} else {
 			return false;
 		}
-		
-
-	}
-	
-	public function login_qq($qq_openid){
-		$customer = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE qq_openid = '" . $this->db->escape($qq_openid) . "'");
-
-		
-		if ($customer->num_rows) {
-			$this->session->data['customer_id'] = $customer->row['customer_id'];
-
-			if ($customer->row['cart'] && is_string($customer->row['cart'])) {
-				$cart = unserialize($customer->row['cart']);
-
-				foreach ($cart as $key => $value) {
-					if (!array_key_exists($key, $this->session->data['cart'])) {
-						$this->session->data['cart'][$key] = $value;
-					} else {
-						$this->session->data['cart'][$key] += $value;
-					}
-				}
-			}
-
-			if ($customer->row['wishlist'] && is_string($customer->row['wishlist'])) {
-				if (!isset($this->session->data['wishlist'])) {
-					$this->session->data['wishlist'] = array();
-				}
-
-				$wishlist = unserialize($customer->row['wishlist']);
-
-				foreach ($wishlist as $product_id) {
-					if (!in_array($product_id, $this->session->data['wishlist'])) {
-						$this->session->data['wishlist'][] = $product_id;
-					}
-				}
-			}
-
-			$this->customer_id = $customer->row['customer_id'];
-			$this->firstname = $customer->row['firstname'];
-			$this->lastname = $customer->row['lastname'];
-			$this->email = $customer->row['email'];
-			$this->telephone = $customer->row['telephone'];
-			$this->newsletter = $customer->row['newsletter'];
-			$this->customer_group_id = $customer->row['customer_group_id'];
-			$this->address_id = $customer->row['address_id'];
-
-			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
-			
-			return true;
-		} else {
-			return false;
-		}
-		
-
 	}
 
 	public function logout() {
 		unset($this->session->data['customer_id']);
-		unset($this->session->data['weibo_login_access_token']);
-		unset($this->session->data['weibo_login_uid']);
-		unset($this->session->data['qq_openid']);
 
 		$this->customer_id = '';
 		$this->firstname = '';

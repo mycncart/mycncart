@@ -4,11 +4,8 @@ class ControllerAccountRegister extends Controller {
 
 	public function index() {
 		if ($this->customer->isLogged()) {
-			$this->response->redirect($this->url->link('account/account', '', true));
+			$this->response->redirect($this->url->link('account/account', 'language=' . $this->config->get('config_language')));
 		}
-		
-		$weixin_login_openid = '';
-		$weixin_login_unionid = '';
 
 		$this->load->language('account/register');
 
@@ -22,40 +19,39 @@ class ControllerAccountRegister extends Controller {
 		$this->load->model('account/customer');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$customer_id = $this->model_account_customer->addCustomer($this->request->post, $weixin_login_openid, $weixin_login_unionid);
-			
-			// Clear any previous login attempts for unregistered accounts.
-			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
-			
-			if ($this->request->post['email']) {
-				$this->customer->login($this->request->post['email'], $this->request->post['password']);
-			} else {
-				$this->customer->login($this->request->post['telephone'], $this->request->post['password']);
-			}
-			
-			//Unset Third party login session
 			unset($this->session->data['guest']);
 
-			$this->response->redirect($this->url->link('account/success'));
+			$customer_id = $this->model_account_customer->addCustomer($this->request->post);
+
+			// Clear any previous login attempts for unregistered accounts.
+			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
+
+			$this->customer->login($this->request->post['email'], $this->request->post['password']);
+
+			// Log the IP info
+			$this->model_account_customer->addLogin($this->customer->getId(), $this->request->server['REMOTE_ADDR']);
+
+			$this->response->redirect($this->url->link('account/success', 'language=' . $this->config->get('config_language')));
 		}
 
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
+			'href' => $this->url->link('common/home', 'language=' . $this->config->get('config_language'))
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_account'),
-			'href' => $this->url->link('account/account', '', true)
+			'href' => $this->url->link('account/account', 'language=' . $this->config->get('config_language'))
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_register'),
-			'href' => $this->url->link('account/register', '', true)
+			'href' => $this->url->link('account/register', 'language=' . $this->config->get('config_language'))
 		);
-		$data['text_account_already'] = sprintf($this->language->get('text_account_already'), $this->url->link('account/login', '', true));
+
+		$data['text_account_already'] = sprintf($this->language->get('text_account_already'), $this->url->link('account/login', 'language=' . $this->config->get('config_language')));
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -67,6 +63,12 @@ class ControllerAccountRegister extends Controller {
 			$data['error_firstname'] = $this->error['firstname'];
 		} else {
 			$data['error_firstname'] = '';
+		}
+
+		if (isset($this->error['lastname'])) {
+			$data['error_lastname'] = $this->error['lastname'];
+		} else {
+			$data['error_lastname'] = '';
 		}
 
 		if (isset($this->error['email'])) {
@@ -98,14 +100,8 @@ class ControllerAccountRegister extends Controller {
 		} else {
 			$data['error_confirm'] = '';
 		}
-		
-		if (isset($this->error['sms_code'])) {
-			$data['error_sms_code'] = $this->error['sms_code'];
-		} else {
-			$data['error_sms_code'] = '';
-		}
 
-		$data['action'] = $this->url->link('account/register', '', true);
+		$data['action'] = $this->url->link('account/register', 'language=' . $this->config->get('config_language'));
 
 		$data['customer_groups'] = array();
 
@@ -125,12 +121,6 @@ class ControllerAccountRegister extends Controller {
 			$data['customer_group_id'] = $this->request->post['customer_group_id'];
 		} else {
 			$data['customer_group_id'] = $this->config->get('config_customer_group_id');
-		}
-		
-		if (isset($this->request->post['registertype'])) {
-			$data['registertype'] = $this->request->post['registertype'];
-		} else {
-			$data['registertype'] = 'email';
 		}
 
 		if (isset($this->request->post['firstname'])) {
@@ -156,20 +146,6 @@ class ControllerAccountRegister extends Controller {
 		} else {
 			$data['telephone'] = '';
 		}
-		
-		//SMS
-		
-		if ($this->config->get('sms_' . $this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
-			$data['sms_gateway'] = $this->config->get('config_sms');
-		} else {
-			$data['sms_gateway'] = '';
-		}
-		
-		if (isset($this->request->post['sms_code'])) {
-			$data['sms_code'] = $this->request->post['sms_code'];
-		} else {
-			$data['sms_code'] = '';
-		}
 
 		// Custom Fields
 		$data['custom_fields'] = array();
@@ -183,7 +159,7 @@ class ControllerAccountRegister extends Controller {
 				$data['custom_fields'][] = $custom_field;
 			}
 		}
-		
+
 		if (isset($this->request->post['custom_field']['account'])) {
 			$data['register_custom_field'] = $this->request->post['custom_field']['account'];
 		} else {
@@ -221,7 +197,7 @@ class ControllerAccountRegister extends Controller {
 			$information_info = $this->model_catalog_information->getInformation($this->config->get('config_account_id'));
 
 			if ($information_info) {
-				$data['text_agree'] = sprintf($this->language->get('text_agree'), $this->url->link('information/information/agree', 'information_id=' . $this->config->get('config_account_id'), true), $information_info['title'], $information_info['title']);
+				$data['text_agree'] = sprintf($this->language->get('text_agree'), $this->url->link('information/information/agree', 'language=' . $this->config->get('config_language') . '&information_id=' . $this->config->get('config_account_id')), $information_info['title']);
 			} else {
 				$data['text_agree'] = '';
 			}
@@ -246,43 +222,24 @@ class ControllerAccountRegister extends Controller {
 	}
 
 	private function validate() {
-		
-		if ($this->request->post['registertype'] == 'email') {
-			
-			if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
-				$this->error['email'] = $this->language->get('error_email');
-			}
-	
-			if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
-				$this->error['email'] = $this->language->get('error_exists');
-			}
-			
-		} else {
-			
-			if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
-				$this->error['telephone'] = $this->language->get('error_telephone');
-			}else{
-				
-				if ($this->model_account_customer->getTotalCustomersByTelephone(trim($this->request->post['telephone']))) {
-					$this->error['telephone'] = $this->language->get('error_telephone_exists');
-				} else {
-					
-					// if sms code is not correct
-					if ($this->config->get('sms_' . $this->config->get('config_sms') . '_status') && in_array('register', (array)$this->config->get('config_sms_page'))) {
-						$this->load->model('account/smsmobile');
-						if($this->model_account_smsmobile->verifySmsCode($this->request->post['telephone'], $this->request->post['sms_code']) == 0) {
-							$this->error['sms_code'] = $this->language->get('error_sms_code');
-						}
-					}
-					
-				}
-				
-			}
-		
-		}
-		
 		if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
 			$this->error['firstname'] = $this->language->get('error_firstname');
+		}
+
+		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
+			$this->error['lastname'] = $this->language->get('error_lastname');
+		}
+
+		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
+			$this->error['email'] = $this->language->get('error_email');
+		}
+
+		if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
+			$this->error['warning'] = $this->language->get('error_exists');
+		}
+
+		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
 		// Customer Group
@@ -301,7 +258,7 @@ class ControllerAccountRegister extends Controller {
 			if ($custom_field['location'] == 'account') {
 				if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
 					$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
-				} elseif (($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
+				} elseif (($custom_field['type'] == 'text') && !empty($custom_field['validation']) && filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/' . html_entity_decode($custom_field['validation'], ENT_QUOTES, 'UTF-8') . '/')))) {
 					$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
 				}
 			}
@@ -311,7 +268,7 @@ class ControllerAccountRegister extends Controller {
 			$this->error['password'] = $this->language->get('error_password');
 		}
 
-		if ($this->request->post['confirm'] != $this->request->post['password']) {
+		if ($this->request->post['confirm'] !== $this->request->post['password']) {
 			$this->error['confirm'] = $this->language->get('error_confirm');
 		}
 

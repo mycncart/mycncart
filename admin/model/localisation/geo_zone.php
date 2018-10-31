@@ -1,15 +1,15 @@
 <?php
 class ModelLocalisationGeoZone extends Model {
 	public function addGeoZone($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "geo_zone SET name = '" . $this->db->escape($data['name']) . "', description = '" . $this->db->escape($data['description']) . "', date_added = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "geo_zone SET name = '" . $this->db->escape((string)$data['name']) . "', description = '" . $this->db->escape((string)$data['description']) . "', date_added = NOW()");
 
 		$geo_zone_id = $this->db->getLastId();
 
 		if (isset($data['zone_to_geo_zone'])) {
 			foreach ($data['zone_to_geo_zone'] as $value) {
-				$this->db->query("DELETE FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$geo_zone_id . "' AND country_id = '" . (int)$value['country_id'] . "' AND zone_id = '" . (int)$value['zone_id'] . "' AND city_id = '" . (int)$value['city_id'] . "' AND district_id = '" . (int)$value['district_id'] . "'");				
+				$this->db->query("DELETE FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$geo_zone_id . "' AND country_id = '" . (int)$value['country_id'] . "' AND zone_id = '" . (int)$value['zone_id'] . "'");				
 
-				$this->db->query("INSERT INTO " . DB_PREFIX . "zone_to_geo_zone SET country_id = '" . (int)$value['country_id'] . "', zone_id = '" . (int)$value['zone_id'] . "', city_id = '" . (int)$value['city_id'] . "', district_id = '" . (int)$value['district_id'] . "', geo_zone_id = '" . (int)$geo_zone_id . "', date_added = NOW()");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "zone_to_geo_zone SET country_id = '" . (int)$value['country_id'] . "', zone_id = '" . (int)$value['zone_id'] . "', geo_zone_id = '" . (int)$geo_zone_id . "', date_added = NOW()");
 			}
 		}
 
@@ -19,15 +19,15 @@ class ModelLocalisationGeoZone extends Model {
 	}
 
 	public function editGeoZone($geo_zone_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "geo_zone SET name = '" . $this->db->escape($data['name']) . "', description = '" . $this->db->escape($data['description']) . "', date_modified = NOW() WHERE geo_zone_id = '" . (int)$geo_zone_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "geo_zone SET name = '" . $this->db->escape((string)$data['name']) . "', description = '" . $this->db->escape((string)$data['description']) . "', date_modified = NOW() WHERE geo_zone_id = '" . (int)$geo_zone_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$geo_zone_id . "'");
 
 		if (isset($data['zone_to_geo_zone'])) {
 			foreach ($data['zone_to_geo_zone'] as $value) {
-				$this->db->query("DELETE FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$geo_zone_id . "' AND country_id = '" . (int)$value['country_id'] . "' AND zone_id = '" . (int)$value['zone_id'] . "' AND city_id = '" . (int)$value['city_id'] . "' AND district_id = '" . (int)$value['district_id'] . "'");				
+				$this->db->query("DELETE FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$geo_zone_id . "' AND country_id = '" . (int)$value['country_id'] . "' AND zone_id = '" . (int)$value['zone_id'] . "'");				
 
-				$this->db->query("INSERT INTO " . DB_PREFIX . "zone_to_geo_zone SET country_id = '" . (int)$value['country_id'] . "', zone_id = '" . (int)$value['zone_id'] . "', city_id = '" . (int)$value['city_id'] . "', district_id = '" . (int)$value['district_id'] . "', geo_zone_id = '" . (int)$geo_zone_id . "', date_added = NOW()");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "zone_to_geo_zone SET country_id = '" . (int)$value['country_id'] . "', zone_id = '" . (int)$value['zone_id'] . "', geo_zone_id = '" . (int)$geo_zone_id . "', date_added = NOW()");
 			}
 		}
 

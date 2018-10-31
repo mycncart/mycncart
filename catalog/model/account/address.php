@@ -1,37 +1,19 @@
 <?php
 class ModelAccountAddress extends Model {
 	public function addAddress($customer_id, $data) {
-		
-		//compatabile with register in checkout process
-		if (isset($data['shipping_telephone'])) {
-			$telephone = $data['shipping_telephone'];
-		} else {
-			$telephone = $data['telephone'];
-		}
-		
-		$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', company = '" . $this->db->escape($data['company']) . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', city = '" . $this->db->escape($data['city']) . "', district_id = '" . (int)$data['district_id'] . "', city_id = '" . (int)$data['city_id'] . "', zone_id = '" . (int)$data['zone_id'] . "', country_id = '" . (int)$data['country_id'] . "', telephone = '" . $this->db->escape($telephone) . "', custom_field = '" . $this->db->escape(isset($data['custom_field']['address']) ? json_encode($data['custom_field']['address']) : '') . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape((string)$data['firstname']) . "', lastname = '" . $this->db->escape((string)$data['lastname']) . "', company = '" . $this->db->escape((string)$data['company']) . "', address_1 = '" . $this->db->escape((string)$data['address_1']) . "', address_2 = '" . $this->db->escape((string)$data['address_2']) . "', postcode = '" . $this->db->escape((string)$data['postcode']) . "', city = '" . $this->db->escape((string)$data['city']) . "', zone_id = '" . (int)$data['zone_id'] . "', country_id = '" . (int)$data['country_id'] . "', custom_field = '" . $this->db->escape(isset($data['custom_field']['address']) ? json_encode($data['custom_field']['address']) : '') . "'");
 
 		$address_id = $this->db->getLastId();
 
-		$total_address = $this->getTotalAddresses();
-		
-		if($total_address == 1) {
-			
+		if (!empty($data['default'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . (int)$address_id . "' WHERE customer_id = '" . (int)$customer_id . "'");
-			
-		}else{
-
-			if (!empty($data['default'])) {
-				$this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . (int)$address_id . "' WHERE customer_id = '" . (int)$customer_id . "'");
-			}
-		
 		}
 
 		return $address_id;
 	}
 
 	public function editAddress($address_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "address SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', company = '" . $this->db->escape($data['company']) . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', city = '" . $this->db->escape($data['city']) . "', district_id = '" . (int)$data['district_id'] . "', city_id = '" . (int)$data['city_id'] . "', zone_id = '" . (int)$data['zone_id'] . "', country_id = '" . (int)$data['country_id'] . "', telephone = '" . $this->db->escape($data['telephone']) . "', custom_field = '" . $this->db->escape(isset($data['custom_field']['address']) ? json_encode($data['custom_field']['address']) : '') . "' WHERE address_id  = '" . (int)$address_id . "' AND customer_id = '" . (int)$this->customer->getId() . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "address SET firstname = '" . $this->db->escape((string)$data['firstname']) . "', lastname = '" . $this->db->escape((string)$data['lastname']) . "', company = '" . $this->db->escape((string)$data['company']) . "', address_1 = '" . $this->db->escape((string)$data['address_1']) . "', address_2 = '" . $this->db->escape((string)$data['address_2']) . "', postcode = '" . $this->db->escape((string)$data['postcode']) . "', city = '" . $this->db->escape((string)$data['city']) . "', zone_id = '" . (int)$data['zone_id'] . "', country_id = '" . (int)$data['country_id'] . "', custom_field = '" . $this->db->escape(isset($data['custom_field']['address']) ? json_encode($data['custom_field']['address']) : '') . "' WHERE address_id  = '" . (int)$address_id . "' AND customer_id = '" . (int)$this->customer->getId() . "'");
 
 		if (!empty($data['default'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . (int)$address_id . "' WHERE customer_id = '" . (int)$this->customer->getId() . "'");
@@ -69,26 +51,6 @@ class ModelAccountAddress extends Model {
 				$zone = '';
 				$zone_code = '';
 			}
-			
-			if ($address_query->row['country_id'] == 44) {
-				$city_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "city` WHERE city_id = '" . (int)$address_query->row['city_id'] . "'");
-	
-				if ($city_query->num_rows) {
-					$city = $city_query->row['name'];
-				} else {
-					$city = '';
-				}
-			} else {
-				$city = $address_query->row['city'];
-			}
-			
-			$district_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "district` WHERE district_id = '" . (int)$address_query->row['district_id'] . "'");
-
-			if ($district_query->num_rows) {
-				$district = $district_query->row['name'];
-			} else {
-				$district = '';
-			}
 
 			$address_data = array(
 				'address_id'     => $address_query->row['address_id'],
@@ -98,11 +60,7 @@ class ModelAccountAddress extends Model {
 				'address_1'      => $address_query->row['address_1'],
 				'address_2'      => $address_query->row['address_2'],
 				'postcode'       => $address_query->row['postcode'],
-				'telephone'       => $address_query->row['telephone'],
-				'city'           => $city,
-				'city_id'        => $address_query->row['city_id'],
-				'district'    	 => $district,
-				'district_id'    => $address_query->row['district_id'],
+				'city'           => $address_query->row['city'],
 				'zone_id'        => $address_query->row['zone_id'],
 				'zone'           => $zone,
 				'zone_code'      => $zone_code,
@@ -149,26 +107,6 @@ class ModelAccountAddress extends Model {
 				$zone = '';
 				$zone_code = '';
 			}
-			
-			if ($result['country_id'] == 44) {
-				$city_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "city` WHERE city_id = '" . (int)$result['city_id'] . "'");
-	
-				if ($city_query->num_rows) {
-					$city = $city_query->row['name'];
-				} else {
-					$city = '';
-				}
-			} else {
-				$city = $result['city'];
-			}
-			
-			$district_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "district` WHERE district_id = '" . (int)$result['district_id'] . "'");
-
-			if ($district_query->num_rows) {
-				$district = $district_query->row['name'];
-			} else {
-				$district = '';
-			}
 
 			$address_data[$result['address_id']] = array(
 				'address_id'     => $result['address_id'],
@@ -178,11 +116,7 @@ class ModelAccountAddress extends Model {
 				'address_1'      => $result['address_1'],
 				'address_2'      => $result['address_2'],
 				'postcode'       => $result['postcode'],
-				'telephone'		 => $result['telephone'],
-				'city'           => $city,
-				'city_id'        => $result['city_id'],
-				'district'    	 => $district,
-				'district_id'    => $result['district_id'],
+				'city'           => $result['city'],
 				'zone_id'        => $result['zone_id'],
 				'zone'           => $zone,
 				'zone_code'      => $zone_code,

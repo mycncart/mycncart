@@ -2,16 +2,16 @@
 // Error Reporting
 error_reporting(E_ALL);
 
-// Check Version
-if (version_compare(phpversion(), '5.4.0', '<') == true) {
-	exit('PHP5.4+ Required');
+// 检查PHP版本
+if (version_compare(phpversion(), '7.0.0', '<')) {
+	exit('PHP7+ Required');
 }
 
 if (!ini_get('date.timezone')) {
-	date_default_timezone_set('UTC');
+	date_default_timezone_set('PRC');
 }
 
-// Windows IIS Compatibility
+// Windows IIS 兼容性
 if (!isset($_SERVER['DOCUMENT_ROOT'])) {
 	if (isset($_SERVER['SCRIPT_FILENAME'])) {
 		$_SERVER['DOCUMENT_ROOT'] = str_replace('\\', '/', substr($_SERVER['SCRIPT_FILENAME'], 0, 0 - strlen($_SERVER['PHP_SELF'])));
@@ -36,7 +36,7 @@ if (!isset($_SERVER['HTTP_HOST'])) {
 	$_SERVER['HTTP_HOST'] = getenv('HTTP_HOST');
 }
 
-// Check if SSL
+// 检查是否启用了 SSL
 if ((isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTPS'] == '1'))) || (isset($_SERVER['HTTPS']) && (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443))) {
 	$_SERVER['HTTPS'] = true;
 } elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
@@ -45,7 +45,7 @@ if ((isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTP
 	$_SERVER['HTTPS'] = false;
 }
 
-// Modification Override
+// 代码调整覆盖
 function modification($filename) {
 	if (defined('DIR_CATALOG')) {
 		$file = DIR_MODIFICATION . 'admin/' .  substr($filename, strlen(DIR_APPLICATION));
@@ -66,7 +66,7 @@ function modification($filename) {
 	return $filename;
 }
 
-// Autoloader
+// 加载相关第三方类库如symfony,twig,leafo,psr等
 if (is_file(DIR_STORAGE . 'vendor/autoload.php')) {
 	require_once(DIR_STORAGE . 'vendor/autoload.php');
 }
@@ -86,7 +86,7 @@ function library($class) {
 spl_autoload_register('library');
 spl_autoload_extensions('.php');
 
-// Engine
+// 引擎
 require_once(modification(DIR_SYSTEM . 'engine/action.php'));
 require_once(modification(DIR_SYSTEM . 'engine/controller.php'));
 require_once(modification(DIR_SYSTEM . 'engine/event.php'));
@@ -96,7 +96,7 @@ require_once(modification(DIR_SYSTEM . 'engine/model.php'));
 require_once(modification(DIR_SYSTEM . 'engine/registry.php'));
 require_once(modification(DIR_SYSTEM . 'engine/proxy.php'));
 
-// Helper
+// 自定义函数
 require_once(DIR_SYSTEM . 'helper/general.php');
 require_once(DIR_SYSTEM . 'helper/utf8.php');
 

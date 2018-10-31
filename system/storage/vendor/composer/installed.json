@@ -1,140 +1,5 @@
 [
     {
-        "name": "braintree/braintree_php",
-        "version": "3.2.0",
-        "version_normalized": "3.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/braintree/braintree_php.git",
-            "reference": "c7e0e2d1ae21d659cddb5507fb0bf181813b5733"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/braintree/braintree_php/zipball/c7e0e2d1ae21d659cddb5507fb0bf181813b5733",
-            "reference": "c7e0e2d1ae21d659cddb5507fb0bf181813b5733",
-            "shasum": ""
-        },
-        "require": {
-            "ext-curl": "*",
-            "ext-dom": "*",
-            "ext-hash": "*",
-            "ext-openssl": "*",
-            "ext-xmlwriter": "*",
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2015-07-15T15:07:13+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Braintree": "lib"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Braintree",
-                "homepage": "http://www.braintreepayments.com"
-            }
-        ],
-        "description": "Braintree PHP Client Library"
-    },
-    {
-        "name": "cardinity/cardinity-sdk-php",
-        "version": "v1.0.3",
-        "version_normalized": "1.0.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/cardinity/cardinity-sdk-php.git",
-            "reference": "f51f6fbacee393b4eeff7b80be2b1cee77896b4c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/cardinity/cardinity-sdk-php/zipball/f51f6fbacee393b4eeff7b80be2b1cee77896b4c",
-            "reference": "f51f6fbacee393b4eeff7b80be2b1cee77896b4c",
-            "shasum": ""
-        },
-        "require": {
-            "guzzlehttp/guzzle": "~5.1",
-            "guzzlehttp/log-subscriber": "~1.0",
-            "guzzlehttp/oauth-subscriber": "0.2.*",
-            "php": ">=5.4.0",
-            "symfony/validator": "~2.6"
-        },
-        "require-dev": {
-            "monolog/monolog": "~1.0",
-            "phpspec/phpspec": "~2.1",
-            "phpunit/phpunit": "~4.3"
-        },
-        "time": "2016-12-29T09:57:23+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Cardinity\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "description": "Client library for Cardinity credit card processing API",
-        "homepage": "http://cardinity.com"
-    },
-    {
-        "name": "divido/divido-php",
-        "version": "v1.15-stable",
-        "version_normalized": "1.15.0.0",
-        "source": {
-            "type": "git",
-            "url": "git@github.com:DividoFinancialServices/divido-api-php.git",
-            "reference": "8edd902ec2be8151331985021107031292b41ca1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/DividoFinancialServices/divido-api-php/zipball/8edd902ec2be8151331985021107031292b41ca1",
-            "reference": "8edd902ec2be8151331985021107031292b41ca1",
-            "shasum": ""
-        },
-        "require": {
-            "ext-curl": "*",
-            "php": ">=5.2.0"
-        },
-        "time": "2018-01-21T15:38:57+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "master": "2.0-dev",
-                "v1.1.1": "1.1.1-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Divido": "lib"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "description": "Divido PHP library",
-        "homepage": "https://www.divido.com/",
-        "keywords": [
-            "api",
-            "divido",
-            "finance",
-            "instalments",
-            "payment processing"
-        ]
-    },
-    {
         "name": "guzzlehttp/guzzle",
         "version": "5.3.2",
         "version_normalized": "5.3.2.0",
@@ -388,6 +253,7 @@
         "license": [
             "MIT"
         ],
+
         "authors": [
             {
                 "name": "Michael Dowling",
@@ -401,56 +267,6 @@
             "Guzzle",
             "stream"
         ]
-    },
-    {
-        "name": "klarna/kco_rest",
-        "version": "v2.2.0",
-        "version_normalized": "2.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/klarna/kco_rest_php.git",
-            "reference": "8a2142a2ebb087bb61901d51d1bb9698790e78c5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/klarna/kco_rest_php/zipball/8a2142a2ebb087bb61901d51d1bb9698790e78c5",
-            "reference": "8a2142a2ebb087bb61901d51d1bb9698790e78c5",
-            "shasum": ""
-        },
-        "require": {
-            "guzzlehttp/guzzle": ">=4.2,<6.0",
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "apigen/apigen": "4.0.*",
-            "klarna/apigen-theme": "~1.0",
-            "phploc/phploc": "2.0.*",
-            "phpmd/phpmd": "2.1.*",
-            "phpunit/phpunit": "4.2.*",
-            "satooshi/php-coveralls": "0.6.*",
-            "sebastian/phpcpd": "2.0.*",
-            "squizlabs/php_codesniffer": "1.5.*"
-        },
-        "time": "2015-12-07T09:51:35+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "authors": [
-            {
-                "name": "Klarna AB",
-                "email": "integration@klarna.com"
-            }
-        ],
-        "description": "Klarna Checkout PHP SDK",
-        "homepage": "http://developers.klarna.com"
     },
     {
         "name": "leafo/scssphp",
@@ -929,42 +745,6 @@
         "homepage": "http://twig.sensiolabs.org",
         "keywords": [
             "templating"
-        ]
-    },
-    {
-        "name": "zoujingli/wechat-php-sdk",
-        "version": "v1.3.15",
-        "version_normalized": "1.3.15.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/zoujingli/wechat-php-sdk.git",
-            "reference": "ccd6533775d2b8c4e2fe95cc04cefa3eef9fc095"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/zoujingli/wechat-php-sdk/zipball/ccd6533775d2b8c4e2fe95cc04cefa3eef9fc095",
-            "reference": "ccd6533775d2b8c4e2fe95cc04cefa3eef9fc095",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "time": "2018-05-25T09:51:41+00:00",
-        "type": "project",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Wechat\\": "./Wechat"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "description": "WeChat development of SDK",
-        "homepage": "http://www.kancloud.cn/zoujingli/wechat-php-sdk",
-        "keywords": [
-            "wechat-php-sdk"
         ]
     }
 ]
