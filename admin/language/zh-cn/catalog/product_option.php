@@ -1,44 +1,44 @@
 <?php
 // Heading
-$_['heading_title']      = 'Product Options';
+$_['heading_title']      = '商品选项';
 
 // Text
-$_['text_success']       = 'Success: You have modified product options!';
-$_['text_list']          = 'Product Option List';
-$_['text_add']           = 'Add Product Option';
-$_['text_edit']          = 'Edit Product Option';
-$_['text_option']        = 'Product Option';
-$_['text_option_value']  = 'Product Option Values';
-$_['text_select']        = 'Select';
-$_['text_radio']         = 'Radio';
-$_['text_checkbox']      = 'Checkbox';
-$_['text_input']         = 'Input';
-$_['text_text']          = 'Text';
-$_['text_textarea']      = 'Textarea';
-$_['text_file']          = 'File';
-$_['text_date']          = 'Date';
-$_['text_datetime']      = 'Date &amp; Time';
-$_['text_time']          = 'Time';
+$_['text_success']       = '成功: 已修改商品选项!';
+$_['text_list']          = '商品选项列表';
+$_['text_add']           = '添加商品选项';
+$_['text_edit']          = '管理商品选项';
+$_['text_option']        = '商品选项';
+$_['text_option_value']  = '商品选项值';
+$_['text_select']        = '下拉列表';
+$_['text_radio']         = '单选按钮组';
+$_['text_checkbox']      = '复选框';
+$_['text_input']         = '文字录入';
+$_['text_text']          = '单行文本';
+$_['text_textarea']      = '多行文本区';
+$_['text_file']           = '文件';
+$_['text_date']           = '日期';
+$_['text_datetime']       = '日期 &amp; 时间';
+$_['text_time']           = '时间';
 
 // Column
-$_['column_product']     = 'Product';
-$_['column_option']      = 'Option';
-$_['column_type']        = 'Type';
-$_['column_sort_order']  = 'Sort Order';
-$_['column_action']      = 'Action';
+$_['column_product']     = '商品';
+$_['column_option']      = '选项';
+$_['column_type']        = '类型';
+$_['column_sort_order']  = '排序';
+$_['column_action']      = '操作';
 
 // Entry
-$_['entry_product']      = 'Product';
-$_['entry_option']       = 'Option';
-$_['entry_required']     = 'Required';
-$_['entry_option_value'] = 'Option Value';
-$_['entry_quantity']     = 'Quantity';
-$_['entry_subtract']     = 'Subtract Stock';
-$_['entry_price']        = 'Price';
-$_['entry_points']       = 'Points';
-$_['entry_weight']       = 'Weight';
+$_['entry_product']      = '商品';
+$_['entry_option']       = '选项';
+$_['entry_required']     = '必填';
+$_['entry_option_value'] = '选项值';
+$_['entry_quantity']     = '数量';
+$_['entry_subtract']     = '减少库存';
+$_['entry_price']        = '价格';
+$_['entry_points']       = '所需积分';
+$_['entry_weight']       = '重量';
 
 // Error
-$_['error_permission']   = 'Warning: You do not have permission to modify product options!';
-$_['error_product']      = 'Product required!';
-$_['error_option']       = 'Option required!';
+$_['error_permission']   = '警告: 无权限修改商品选项！';
+$_['error_product']      = '商品必选！';
+$_['error_option']       = '选项必选！';

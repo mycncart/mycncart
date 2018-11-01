@@ -1,46 +1,46 @@
 <?php
 // Heading
-$_['heading_title']          = 'Information';
+$_['heading_title']          = '文章';
 
 // Text
-$_['text_success']           = 'Success: You have modified information!';
-$_['text_list']              = 'Information List';
-$_['text_add']               = 'Add Information';
-$_['text_edit']              = 'Edit Information';
-$_['text_default']           = 'Default';
-$_['text_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the SEO URL is globally unique.';
+$_['text_success']           = '成功: 已经修改文章！';
+$_['text_list']              = '文章列表';
+$_['text_add']               = '添加文章';
+$_['text_edit']              = '编辑文章';
+$_['text_default']           = '默认';
+$_['text_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
 
 // Column
-$_['column_title']           = 'Information Title';
-$_['column_sort_order']      = 'Sort Order';
-$_['column_action']          = 'Action';
+$_['column_title']           = '文章标题';
+$_['column_sort_order']	     = '排序';
+$_['column_action']          = '操作';
 
 // Entry
-$_['entry_title']            = 'Information Title';
-$_['entry_description']      = 'Description';
-$_['entry_meta_title']       = 'Meta Tag Title';
-$_['entry_meta_keyword']     = 'Meta Tag Keywords';
-$_['entry_meta_description'] = 'Meta Tag Description';
-$_['entry_store']            = 'Stores';
-$_['entry_keyword']          = 'Keyword';
-$_['entry_bottom']           = 'Bottom';
-$_['entry_status']           = 'Status';
-$_['entry_sort_order']       = 'Sort Order';
-$_['entry_layout']           = 'Layout Override';
+$_['entry_title']            = '文章标题';
+$_['entry_description']      = '描述';
+$_['entry_store']            = '商店';
+$_['entry_meta_title'] 	     = 'Meta Tag 标题';
+$_['entry_meta_keyword'] 	 = 'Meta Tag 关键词';
+$_['entry_meta_description'] = 'Meta Tag 描述';
+$_['entry_keyword']          = 'SEO URL';
+$_['entry_bottom']           = '底部显示';
+$_['entry_status']           = '状态';
+$_['entry_sort_order']       = '排序';
+$_['entry_layout']           = '布局排版覆盖';
 
 // Help
-$_['help_bottom']            = 'Display in the bottom footer.';
+$_['help_bottom']            = '在页面底部显示。';
 
 // Error
-$_['error_warning']          = 'Warning: Please check the form carefully for errors!';
-$_['error_permission']       = 'Warning: You do not have permission to modify information!';
-$_['error_title']            = 'Information Title must be between 1 and 64 characters!';
-$_['error_description']      = 'Description must be more than 3 characters!';
-$_['error_meta_title']       = 'Meta Title must be greater than 1 and less than 255 characters!';
-$_['error_seo']              = 'SEO URL keyword required!';
-$_['error_keyword']          = 'SEO URL must be unique!';
-$_['error_account']          = 'Warning: This information page cannot be deleted as it is currently assigned as the store account terms!';
-$_['error_checkout']         = 'Warning: This information page cannot be deleted as it is currently assigned as the store checkout terms!';
-$_['error_affiliate']        = 'Warning: This information page cannot be deleted as it is currently assigned as the store affiliate terms!';
-$_['error_return']           = 'Warning: This information page cannot be deleted as it is currently assigned as the store return terms!';
-$_['error_store']            = 'Warning: This information page cannot be deleted as it is currently used by %s stores!';
+$_['error_warning']          = '警告: 存在错误，请检查！';
+$_['error_permission']       = '警告:无权限修改文章！';
+$_['error_title']            = '文章标题必须介于3-64字符之间！';
+$_['error_description']      = '描述内容必须大于3个字符！';
+$_['error_meta_title']       = 'Meta 标题必须介于3-255字符之间！';
+$_['error_seo']              = 'SEO URL 必填!';
+$_['error_keyword']          = '该 SEO URL 已经存在了！';
+$_['error_account']          = '警告: 不能删除此文章，该文章已经关联到了账户条款！';
+$_['error_checkout']         = '警告: 不能删除此文章，该文章已经关联到了结账条款！';
+$_['error_affiliate']        = '警告: 不能删除此文章，该文章已经关联到了推广条款！';
+$_['error_return']           = '警告: 不能删除此文章，该文章已经关联到了退货条款！';
+$_['error_store']            = '警告: 不能删除此文章，该文章已经关联到了 %s 个商店！';

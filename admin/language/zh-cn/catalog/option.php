@@ -1,42 +1,42 @@
 <?php
 // Heading
-$_['heading_title']      = 'Options';
+$_['heading_title']       = '选项';
 
 // Text
-$_['text_success']       = 'Success: You have modified options!';
-$_['text_list']          = 'Option List';
-$_['text_add']           = 'Add Option';
-$_['text_edit']          = 'Edit Option';
-$_['text_choose']        = 'Choose';
-$_['text_select']        = 'Select';
-$_['text_radio']         = 'Radio';
-$_['text_checkbox']      = 'Checkbox';
-$_['text_input']         = 'Input';
-$_['text_text']          = 'Text';
-$_['text_textarea']      = 'Textarea';
-$_['text_file']          = 'File';
-$_['text_date']          = 'Date';
-$_['text_datetime']      = 'Date &amp; Time';
-$_['text_time']          = 'Time';
-$_['text_option']        = 'Option';
-$_['text_value']         = 'Option Values';
+$_['text_success']        = '成功: 已经修改选项！';
+$_['text_list']           = '选项列表';
+$_['text_add']            = '添加选项';
+$_['text_edit']           = '编辑选项';
+$_['text_choose']         = '选择';
+$_['text_select']         = '下拉列表';
+$_['text_radio']          = '单选按钮组';
+$_['text_checkbox']       = '复选框';
+$_['text_input']          = '文字录入';
+$_['text_text']           = '单行文本';
+$_['text_textarea']       = '多行文本区';
+$_['text_file']           = '文件';
+$_['text_date']           = '日期';
+$_['text_datetime']       = '日期 &amp; 时间';
+$_['text_time']           = '时间';
+$_['text_option']         = '选项';
+$_['text_value']          = '选项值';
 
 // Column
-$_['column_name']        = 'Option Name';
-$_['column_sort_order']  = 'Sort Order';
-$_['column_action']      = 'Action';
+$_['column_name']         = '选项名称';
+$_['column_sort_order']   = '排序';
+$_['column_action']       = '操作';
 
 // Entry
-$_['entry_name']         = 'Option Name';
-$_['entry_type']         = 'Type';
-$_['entry_option_value'] = 'Option Value Name';
-$_['entry_image']        = 'Image';
-$_['entry_sort_order']   = 'Sort Order';
+$_['entry_name']          = '选项名称';
+$_['entry_type']          = '类型';
+$_['entry_option_value']  = '选项值';
+$_['entry_image']         = '图像';
+$_['entry_sort_order']    = '排序';
 
 // Error
-$_['error_permission']   = 'Warning: You do not have permission to modify options!';
-$_['error_name']         = 'Option Name must be between 1 and 128 characters!';
-$_['error_type']         = 'Warning: Option Values required!';
-$_['error_option_value'] = 'Option Value Name must be between 1 and 128 characters!';
-$_['error_option']       = 'Warning: This option value cannot be deleted as it is currently assigned to %s products!';
-$_['error_product']      = 'Warning: This option cannot be deleted as it is currently assigned to %s products!';
+$_['error_permission']    = '警告: 无权限修改选项！';
+$_['error_name']          = '选项名称必须介于1-128字符之间！';
+$_['error_type']          = '警告: 选项值必填！';
+$_['error_option_value']  = '选项值必须介于1-128字符之间！';
+$_['error_option']        = '警告: 不能删除此选项，该选项已经被关联到了 %s 个商品！';
+$_['error_product']       = '警告: 不能删除此选项值，该选项值已经被关联到了 %s 个商品！';
