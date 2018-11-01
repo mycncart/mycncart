@@ -6,8 +6,8 @@ $_['site_url']             = '';
 $_['url_autostart']        = true;
 
 // Language
-$_['language_directory']   = 'en-gb';
-$_['language_autoload']    = array('en-gb');
+$_['language_directory']   = 'zh-cn';
+$_['language_autoload']    = array('zh-cn');
 
 // Date
 $_['date_timezone']        = 'UTC';
@@ -41,7 +41,7 @@ $_['cache_expire']         = 3600;
 // Session
 $_['session_engine']       = 'file';
 $_['session_autostart']    = true;
-$_['session_name']         = 'OCSESSID';
+$_['session_name']         = 'MCCSESSID';
 
 // Template
 $_['template_engine']      = 'twig';

@@ -4,13 +4,13 @@ $_['site_base']         = HTTP_SERVER;
 $_['site_ssl']          = HTTP_SERVER;
 
 // Language
-$_['language_default']  = 'en-gb';
-$_['language_autoload'] = array('en-gb');
+$_['language_default']  = 'zh-cn';
+$_['language_autoload'] = array('zh-cn');
 
 // Session
 $_['session_engine']    = 'file';
 $_['session_autostart'] = true;
-$_['session_name']      = 'OCSESSID';
+$_['session_name']      = 'MCCSESSID';
 
 // Template
 $_['template_engine']   = 'twig';
