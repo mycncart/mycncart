@@ -1,24 +1,24 @@
 <?php
 // Heading
-$_['heading_title']    = 'Klarna Fee';
+$_['heading_title']    = 'Klarna 收费';
 
 // Text
-$_['text_extension']   = 'Extensions';
-$_['text_success']     = 'Success: You have modified Klarna fee total!';
-$_['text_edit']        = 'Edit Klarna Fee Total';
-$_['text_sweden']      = 'Sweden';
-$_['text_norway']      = 'Norway';
-$_['text_finland']     = 'Finland';
-$_['text_denmark']     = 'Denmark';
-$_['text_germany']     = 'Germany';
-$_['text_netherlands'] = 'The Netherlands';
+$_['text_extension']   = '扩展功能';
+$_['text_success']     = '成功: 已修改 Klarna 收费！';
+$_['text_edit']        = '编辑 Klarna 收费';
+$_['text_sweden']      = '瑞典';
+$_['text_norway']      = '挪威';
+$_['text_finland']     = '芬兰';
+$_['text_denmark']     = '丹麦';
+$_['text_germany']     = '德国';
+$_['text_netherlands'] = '爱尔兰';
 
 // Entry
-$_['entry_total']      = 'Order Total';
-$_['entry_fee']        = 'Invoice Fee';
-$_['entry_tax_class']  = 'Tax Class';
-$_['entry_status']     = 'Status';
-$_['entry_sort_order'] = 'Sort Order';
+$_['entry_total']      = '订单总计';
+$_['entry_fee']        = '收费';
+$_['entry_tax_class']  = '税种';
+$_['entry_status']     = '状态';
+$_['entry_sort_order'] = '排序';
 
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify Klarna fee total!';
+$_['error_permission'] = '警告: 无权限修改 Klarna 收费！';

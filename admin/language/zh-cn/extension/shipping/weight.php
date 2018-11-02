@@ -1,21 +1,21 @@
 <?php
 // Heading
-$_['heading_title']    = 'Weight Based Shipping';
+$_['heading_title']    = '按重量配送';
 
 // Text
-$_['text_extension']   = 'Extensions';
-$_['text_success']     = 'Success: You have modified weight based shipping!';
-$_['text_edit']        = 'Edit Weight Based Shipping';
+$_['text_extension']   = '扩展功能';
+$_['text_success']     = '成功: 已修改按重量配送！';
+$_['text_edit']        = '编辑按重量配送 - (在线教程: <a href="http://www.mycncart.com/blog-125.html" target="_blank">http://www.mycncart.com/blog-125.html</a>)';
 
 // Entry
-$_['entry_rate']       = 'Rates';
-$_['entry_tax_class']  = 'Tax Class';
-$_['entry_geo_zone']   = 'Geo Zone';
-$_['entry_status']     = 'Status';
-$_['entry_sort_order'] = 'Sort Order';
+$_['entry_rate']       = '费率';
+$_['entry_tax_class']  = '税种';
+$_['entry_geo_zone']   = '区域群组';
+$_['entry_status']     = '状态';
+$_['entry_sort_order'] = '排序';
 
 // Help
-$_['help_rate']        = 'Example: 5:10.00,7:12.00 Weight:Cost,Weight:Cost, etc..';
+$_['help_rate']        = '例如：5：10.00，7：12.00 重量：运费，重量：运费，等等。';
 
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify weight based shipping!';
+$_['error_permission'] = '警告: 无权限修改按重量配送！';

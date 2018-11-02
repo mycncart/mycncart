@@ -1,15 +1,15 @@
 <?php
 // Heading
-$_['heading_title']    = 'Anti-Fraud';
+$_['heading_title']    = '防欺诈';
 
 // Text
-$_['text_success']     = 'Success: You have modified anti-fraud!';
-$_['text_list']        = 'Anti-Fraud List';
+$_['text_success']     = '成功: 已修改防欺诈部分！';
+$_['text_list']        = '防欺诈列表';
 
 // Column
-$_['column_name']      = 'Anti-Fraud Name';
-$_['column_status']    = 'Status';
-$_['column_action']    = 'Action';
+$_['column_name']      = '防欺诈名称';
+$_['column_status']    = '状态';
+$_['column_action']    = '操作';
 
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify anti-fraud!';
+$_['error_permission'] = '警告: 无权限修改防欺诈！';

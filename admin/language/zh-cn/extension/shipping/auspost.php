@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']      = 'Australia Post';
+$_['heading_title']      = '澳大利亚邮政';
 
 // Text
 $_['text_extension']     = 'Extensions';
