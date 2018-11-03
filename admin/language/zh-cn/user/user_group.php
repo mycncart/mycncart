@@ -4,7 +4,7 @@ $_['heading_title']     = '管理员群组';
 
 // Text
 $_['text_success']      = '成功： 已成功更新管理员群组设置！';
-$_['text_list']         = '管理员群组列表 - (在线教程: <a href="http://www.mycncart.com/blog-10.html" target="_blank">http://www.mycncart.com/blog-10.html</a>)';
+$_['text_list']         = '管理员群组列表';
 $_['text_add']          = '添加管理员群组';
 $_['text_edit']         = '编辑管理员群组';
 
