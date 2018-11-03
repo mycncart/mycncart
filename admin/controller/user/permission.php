@@ -157,6 +157,8 @@ class ControllerUserPermission extends Controller {
 
 		$data['add'] = $this->url->link('user/permission/add', 'user_token=' . $this->session->data['user_token'] . $url);
 		$data['delete'] = $this->url->link('user/permission/delete', 'user_token=' . $this->session->data['user_token'] . $url);
+		
+		$data['generate_all'] = $this->url->link('user/permission/generate_all', 'user_token=' . $this->session->data['user_token'] . $url);
 
 		$data['permissions'] = array();
 
@@ -184,6 +186,10 @@ class ControllerUserPermission extends Controller {
 		
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
+		} elseif (isset($this->session->data['warning'])) {
+			$data['error_warning'] = $this->session->data['warning'];
+
+			unset($this->session->data['warning']);
 		} else {
 			$data['error_warning'] = '';
 		}
@@ -442,6 +448,101 @@ class ControllerUserPermission extends Controller {
 		}
 
 		return !$this->error;
+	}
+	
+	public function generate_all() {
+		
+		if (!$this->user->hasPermission('modify', 'user/permission')) {
+			
+			$this->session->data['warning'] = $this->language->get('error_permission');
+			
+		} else {
+		
+			$ignore = array(
+				'common/dashboard',
+				'common/startup',
+				'common/login',
+				'common/logout',
+				'common/forgotten',
+				'common/reset',			
+				'common/footer',
+				'common/header',
+				'error/not_found',
+				'error/permission'
+			);
+	
+			$permissions = array();
+	
+			$files = array();
+	
+			// Make path into an array
+			$path = array(DIR_APPLICATION . 'controller/*');
+	
+			// While the path array is still populated keep looping through
+			while (count($path) != 0) {
+				$next = array_shift($path);
+	
+				foreach (glob($next) as $file) {
+					// If directory add to path array
+					if (is_dir($file)) {
+						$path[] = $file . '/*';
+					}
+	
+					// Add the file to the files to be deleted array
+					if (is_file($file)) {
+						$files[] = $file;
+					}
+				}
+			}
+	
+			// Sort the file array
+			sort($files);
+						
+			foreach ($files as $file) {
+				$controller = substr($file, strlen(DIR_APPLICATION . 'controller/'));
+	
+				$permission = substr($controller, 0, strrpos($controller, '.'));
+	
+				if (!in_array($permission, $ignore)) {
+					$permissions[] = $permission;
+				}
+			}
+			
+			$this->load->model('user/permission');
+			
+			foreach ($permissions as $controller) {
+				$result = $this->model_user_permission->getPermissionByControllerName($controller);
+				if (!$result) {
+					$data = array(
+						'name' => $controller,
+						'controller' => $controller,
+						'permission_group_id' => 9999,
+						'sort_order' => 0
+					);
+					$this->model_user_permission->addPermission($data);
+				}
+			}
+			
+			$this->session->data['success'] = $this->language->get('text_success');
+	
+		}
+		
+		$url = '';
+	
+		if (isset($this->request->get['sort'])) {
+			$url .= '&sort=' . $this->request->get['sort'];
+		}
+
+		if (isset($this->request->get['order'])) {
+			$url .= '&order=' . $this->request->get['order'];
+		}
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
+		}
+		
+		$this->response->redirect($this->url->link('user/permission', 'user_token=' . $this->session->data['user_token'] . $url));
+		
 	}
 
 }

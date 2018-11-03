@@ -2,6 +2,8 @@
 class ModelUserPermission extends Model {
 	public function addPermission($data) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "permission SET name = '" . $this->db->escape($data['name']) . "', permission_group_id = '" . (int)$data['permission_group_id'] . "', controller = '" . $this->db->escape($data['controller']) . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW(), date_modified = NOW()");
+		
+		$permission_id = $this->db->getLastId();
 
 		return $permission_id;
 	}
@@ -78,4 +80,11 @@ class ModelUserPermission extends Model {
 
 		return $query->row['total'];
 	}
+	
+	public function getPermissionByControllerName($controller) {
+		$query = $this->db->query("SELECT permission_id FROM " . DB_PREFIX . "permission WHERE controller LIKE '" . $controller . "'");
+
+		return $query->row;
+	}
+	
 }
