@@ -1,24 +1,24 @@
 <?php
 // Heading
-$_['heading_title']     = 'Voucher Themes';
+$_['heading_title']     = '代金券主题';
 
 // Text
-$_['text_success']      = 'Success: You have modified voucher themes!';
-$_['text_list']         = 'Voucher Theme List';
-$_['text_add']          = 'Add Voucher Theme';
-$_['text_edit']         = 'Edit Voucher Theme';
+$_['text_success']      = '成功: 已修改代金券主题！';
+$_['text_list']         = '代金券主题列表 - (在线教程: <a href="http://www.mycncart.com/blog-99.html" target="_blank">http://www.mycncart.com/blog-99.html</a>)';
+$_['text_add']          = '添加代金券主题';
+$_['text_edit']         = '编辑代金券主题';
 
 // Column
-$_['column_name']       = 'Voucher Theme Name';
-$_['column_action']     = 'Action';
+$_['column_name']       = '代金券主题名称';
+$_['column_action']     = '操作';
 
 // Entry
-$_['entry_name']        = 'Voucher Theme Name';
-$_['entry_description'] = 'Voucher Theme Description';
-$_['entry_image']       = 'Image';
+$_['entry_name']        = '代金券主题名称';
+$_['entry_description'] = '代金券主题描述';
+$_['entry_image']       = '图像';
 
 // Error
-$_['error_permission']  = 'Warning: You do not have permission to modify voucher themes!';
-$_['error_name']        = 'Voucher Theme Name must be between 3 and 32 characters!';
-$_['error_image']       = 'Image required!';
-$_['error_voucher']     = 'Warning: This voucher theme cannot be deleted as it is currently assigned to %s vouchers!';
+$_['error_permission']  = '警告: 无权限修改代金券主题！';
+$_['error_name']        = '代金券主题名称必须为3-32字符！';
+$_['error_image']       = '图像必须有！';
+$_['error_voucher']     = '警告: 不能删除此代金券主题，该代金券主题已被关联到 %s 个代金券！';

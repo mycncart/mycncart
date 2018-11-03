@@ -1,30 +1,30 @@
 <?php
 // Heading
-$_['heading_title']     = 'Backup &amp; Restore';
+$_['heading_title']    = '备份 / 恢复';
 
 // Text
-$_['text_success']      = 'Success: You have successfully modified your database!';
+$_['text_success']      = '成功: 已修改数据库！';
 
-$_['text_backup']       = 'Backing up table %s records %s to %s records';
-$_['text_restore']      = 'Restoring %s of %s';
-$_['text_option']       = 'Backup Options';
-$_['text_history']      = 'Backup History';
-$_['text_progress']     = 'Progress';
-$_['text_import']       = 'For large backup files it is better to upload the SQL file via FTP to the <strong>~/storage/backup/</strong> directory.';
+$_['text_backup']       = '备份表 %s 记录 %s 到 %s 记录';
+$_['text_restore']      = '恢复 %s 自 %s';
+$_['text_option']       = '备份选项';
+$_['text_history']      = '备份历史';
+$_['text_progress']     = '进度';
+$_['text_import']       = '对于大的备份SQL文件，使用FTP方式上传到<strong>~/storage/backup/</strong>目录下为好。';
 
 // Column
-$_['column_filename']   = 'Filename';
-$_['column_size']       = 'Size';
-$_['column_date_added'] = 'Date Added';
-$_['column_action']     = 'Action';
+$_['column_filename']   = '文件名';
+$_['column_size']       = '体积大小';
+$_['column_date_added'] = '添加日期';
+$_['column_action']     = '操作';
 
 // Entry
-$_['entry_progress']    = 'Progress';
-$_['entry_export']      = 'Export';
+$_['entry_progress']   	= '进程';
+$_['entry_export']     	= '导出备份';
 
 // Error
-$_['error_permission']  = 'Warning: You do not have permission to modify Backup &amp; Restore!';
-$_['error_export']      = 'Warning: You must select at least one table to export!';
-$_['error_table']       = 'Table %s is not in the allowed list!';
-$_['error_file']        = 'File could not be found!';
-$_['error_directory']   = 'Directory could not be found!';
+$_['error_permission'] 	= '警告：您没有权限修改备份！';
+$_['error_export']      = '警告: 选择至少一个表进行导出！';
+$_['error_table']       = '表 %s 不在被允许范围内！';
+$_['error_file']        = '找不到文件！';
+$_['error_directory']   = '找不到文件夹！';

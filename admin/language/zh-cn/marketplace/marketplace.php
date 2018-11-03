@@ -1,74 +1,74 @@
 <?php
 // Heading
-$_['heading_title']      = 'Extension Marketplace';
+$_['heading_title']      = '扩展功能商城';
 
 // Text
-$_['text_success']       = 'Success: You have modified extensions!';
-$_['text_list']          = 'Extension List';
-$_['text_filter']        = 'Filter';
-$_['text_search']        = 'Search for extensions and themes';
-$_['text_category']      = 'Categories';
-$_['text_all']           = 'All';
-$_['text_theme']         = 'Themes';
-$_['text_marketplace']   = 'Marketplaces';
-$_['text_language']      = 'Languages';
-$_['text_payment']       = 'Payment';
-$_['text_shipping']      = 'Shipping';
-$_['text_module']        = 'Modules';
-$_['text_total']         = 'Order Totals';
+$_['text_success']       = '成功: 已修改扩展功能!';
+$_['text_list']          = '扩展功能列表 - (在线教程: <a href="http://www.mycncart.com/blog-104.html" target="_blank">http://www.mycncart.com/blog-104.html</a>)';
+$_['text_filter']        = '筛选';
+$_['text_search']        = '搜寻扩展功能及模板主题';
+$_['text_category']      = '分类';
+$_['text_all']           = '所有';
+$_['text_theme']         = '模板主题';
+$_['text_marketplace']   = '商城市场';
+$_['text_language']      = '语言';
+$_['text_payment']       = '支付方式';
+$_['text_shipping']      = '配送方式';
+$_['text_module']        = '模组';
+$_['text_total']         = '订单项目';
 $_['text_feed']          = 'Feeds';
-$_['text_report']        = 'Reports';
-$_['text_other']         = 'Other';
-$_['text_free']          = 'Free';
-$_['text_paid']          = 'Paid';
-$_['text_purchased']     = 'Purchased';
-$_['text_recommended']   = 'Recommended';
-$_['text_date_modified'] = 'Date Modified';
-$_['text_date_added']    = 'Date Added';
-$_['text_rating']        = 'Rating';
-$_['text_reviews']       = 'reviews';
-$_['text_compatibility'] = 'Compatibility';
-$_['text_downloaded']    = 'Downloaded';
-$_['text_member_since']  = 'Member since:';
-$_['text_price']         = 'Price';
-$_['text_partner']       = 'Developed by OpenCart Partner';
-$_['text_support']       = '12 Months free support';
-$_['text_documentation'] = 'Documentation Included';
-$_['text_sales']         = 'Sales';
-$_['text_comment']       = 'Comments';
-$_['text_download']      = 'Downloading';
-$_['text_install']       = 'Installing';
-$_['text_comment_add']   = 'Leave your comment';
-$_['text_write']         = 'Write your comment here..';
-$_['text_purchase']      = 'Please confirm who you are!';
-$_['text_pin']           = 'Please enter your 4 digit PIN number. This PIN number is to protect your account.';
-$_['text_secure']        = 'Do not give your PIN to any one including developers. If you require an extension seller to install an extension for you then you should email them the required extension.';
-$_['text_name']          = 'Download Name';
-$_['text_progress']      = 'Progress';
-$_['text_available']     = 'Available Installs';
-$_['text_action']        = 'Action';
+$_['text_report']        = '报告';
+$_['text_other']         = '其他';
+$_['text_free']          = '免费';
+$_['text_paid']          = '已支付';
+$_['text_purchased']     = '已购买';
+$_['text_recommended']   = '推荐';
+$_['text_date_modified'] = '修改日期';
+$_['text_date_added']    = '添加日期';
+$_['text_rating']        = '评级';
+$_['text_reviews']       = '评论';
+$_['text_compatibility'] = '兼容性';
+$_['text_downloaded']    = '已下载';
+$_['text_member_since']  = '会员自：';
+$_['text_price']         = '价格';
+$_['text_partner']       = '由 OpenCart/MyCnCart 合作者开发';
+$_['text_support']       = '12 个月免费支持';
+$_['text_documentation'] = '包含文档';
+$_['text_sales']         = '促销';
+$_['text_comment']       = '评论';
+$_['text_download']      = '下载中';
+$_['text_install']       = '安装中';
+$_['text_comment_add']   = '发表评论';
+$_['text_write']         = '此处填写评论';
+$_['text_purchase']      = '请确认您的身份！';
+$_['text_pin']           = '请输入 4 位 PIN 数字，该数字保护您的帐户。';
+$_['text_secure']        = '不要将您的　PIN　给任何人，包含开发者。如果你希望插件销售者为您安装该插件，您可以发邮件给该插件作者。';
+$_['text_name']          = '下载名称';
+$_['text_progress']      = '进度';
+$_['text_available']     = '可用安装';
+$_['text_action']        = '操作';
 
 // Entry
 $_['entry_pin']          = 'PIN';
 
 // Tab
-$_['tab_description']    = 'Description';
-$_['tab_documentation']  = 'Documentation';
-$_['tab_download']       = 'Download';
-$_['tab_comment']        = 'Comment';
+$_['tab_description']    = '描述';
+$_['tab_documentation']  = '文档';
+$_['tab_download']       = '下载';
+$_['tab_comment']        = '评论';
 
 // Button
-$_['button_opencart']    = 'Marketplace API';
-$_['button_purchase']    = 'Purchase';
-$_['button_view_all']    = 'View all extensions';
-$_['button_get_support'] = 'Get Support';
-$_['button_comment']     = 'Comment';
-$_['button_reply']       = 'Reply';
-$_['button_forgot_pin']  = 'Forgot PIN?';
+$_['button_opencart']    = '商城 API';
+$_['button_purchase']    = '购买';
+$_['button_view_all']    = '查看所有扩展功能';
+$_['button_get_support'] = '获取支持';
+$_['button_comment']     = '评论';
+$_['button_reply']       = '回复';
+$_['button_forgot_pin']  = '忘记了 PIN？';
 
 // Error
-$_['error_permission']   = 'Warning: You do not have permission to modify extensions!';
-$_['error_opencart']     = 'Warning: You must enter your OpenCart API information before you can make any purchases!';
-$_['error_install']      = 'Extension installation taking place please wait a few seconds before trying to install!';
-$_['error_purchase']     = 'Extension could not be purchased!';
-$_['error_download']     = 'Extension could not be downloaded!';
+$_['error_permission']   = '警告: 无权限修改扩展功能！';
+$_['error_opencart']     = '警告: 需要输入 OpenCa/MyCnCartrt API 信息以进行购买操作！';
+$_['error_install']      = '正在安装扩展功能中，请耐心等待。!';
+$_['error_purchase']     = '无法购买扩展功能!';
+$_['error_download']     = '无法下载扩展功能!';

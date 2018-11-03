@@ -1,42 +1,42 @@
 <?php
 // Heading
-$_['heading_title']     = 'Marketing Tracking';
+$_['heading_title']     = '推广跟踪';
 
 // Text
-$_['text_success']      = 'Success: You have modified marketing tracking!';
-$_['text_list']         = 'Marketing Tracking List';
-$_['text_add']          = 'Add Marketing Tracking';
-$_['text_edit']         = 'Edit Marketing Tracking';
-$_['text_filter']       = 'Filter';
-$_['text_history']      = 'History';
-$_['text_history_add']  = 'Add History';
-$_['text_report']       = 'Report';
+$_['text_success']      = '成功: 已修改推广跟踪！';
+$_['text_list']         = '推广跟踪列表 - (在线教程: <a href="http://www.mycncart.com/blog-92.html" target="_blank">http://www.mycncart.com/blog-92.html</a>)';
+$_['text_add']          = '添加推广跟踪';
+$_['text_edit']         = '编辑推广跟踪';
+$_['text_filter']       = '筛选';
+$_['text_history']      = '历史记录';
+$_['text_history_add']  = '添加历史记录';
+$_['text_report']       = '报表';
 
 // Column
-$_['column_name']       = 'Campaign Name';
-$_['column_code']       = 'Code';
-$_['column_clicks']     = 'Clicks';
-$_['column_orders']     = 'Orders';
+$_['column_name']       = '活动名称';
+$_['column_code']       = '跟踪代码';
+$_['column_clicks']     = '点击量';
+$_['column_orders']     = '订单';
 $_['column_ip']         = 'IP';
-$_['column_account']    = 'Accounts';
-$_['column_store']      = 'Store';
-$_['column_country']    = 'Country';
-$_['column_date_added'] = 'Date Added';
-$_['column_action']     = 'Action';
+$_['column_account']    = '账户';
+$_['column_store']      = '店铺';
+$_['column_country']    = '国家';
+$_['column_date_added'] = '添加日期';
+$_['column_action']     = '操作';
 
 // Entry
-$_['entry_name']        = 'Campaign Name';
-$_['entry_description'] = 'Campaign Description';
-$_['entry_code']        = 'Tracking Code';
-$_['entry_example']     = 'Examples';
-$_['entry_date_added']  = 'Date Added';
+$_['entry_name']        = '活动名称';
+$_['entry_description'] = '活动描述';
+$_['entry_code']        = '跟踪代码';
+$_['entry_example']     = '案例';
+$_['entry_date_added']  = '添加日期';
 
 // Help
-$_['help_code']         = 'The tracking code that will be used to track marketing campaigns.';
-$_['help_example']      = 'So the system can track referrals you need to add the tracking code to the end of the URL linking to your site.';
+$_['help_code']         = '用来跟踪推广活动的跟踪码。';
+$_['help_example']      = '系统可以跟踪被推荐人，你至需要将跟踪码加到URL链接的后面。';
 
 // Error
-$_['error_permission']  = 'Warning: You do not have permission to modify marketing tracking!';
-$_['error_name']        = 'Campaign must be between 1 and 32 characters!';
-$_['error_code']        = 'Tracking Code required!';
-$_['error_exists']      = 'Tracking code is being used by another campaign!';
+$_['error_permission']  = '警告: 无权限修改推广跟踪！';
+$_['error_name']        = '活动名称必须为1-32字符！';
+$_['error_code']        = '跟踪代码必填！';
+$_['error_exists']      = '跟踪码被其他活动使用中!';
