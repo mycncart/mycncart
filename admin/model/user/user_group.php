@@ -82,4 +82,32 @@ class ModelUserUserGroup extends Model {
 			$this->db->query("UPDATE " . DB_PREFIX . "user_group SET permission = '" . $this->db->escape(json_encode($data)) . "' WHERE user_group_id = '" . (int)$user_group_id . "'");
 		}
 	}
+	
+	public function getSystemPermisions() {
+		$permission_group_data = array();
+
+		$permission_group_query = $this->db->query("SELECT permission_group_id, name FROM " . DB_PREFIX . "permission_group WHERE status = 1 ORDER BY sort_order, name");
+
+		foreach ($permission_group_query->rows as $permission_group) {
+			$permission_data = array();
+
+			$permission_query = $this->db->query("SELECT permission_id, name, controller FROM " . DB_PREFIX . "permission WHERE permission_group_id = '" . (int)$permission_group['permission_group_id'] . "' ORDER BY sort_order, name");
+
+			foreach ($permission_query->rows as $permission) {
+				$permission_data[] = array(
+					'permission_id' 	=> $permission['permission_id'],
+					'name'         		=> $permission['name'],
+					'controller'        => $permission['controller']
+				);
+			}
+
+			$permission_group_data[] = array(
+				'permission_group_id' => $permission_group['permission_group_id'],
+				'name'               => $permission_group['name'],
+				'permissions'          => $permission_data
+			);
+		}
+
+		return $permission_group_data;
+	}
 }

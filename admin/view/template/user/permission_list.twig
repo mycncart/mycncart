@@ -3,7 +3,8 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="float-right">
-	  <a href="{{ generate_all }}" data-toggle="tooltip" title="{{ button_generate_all }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+	  <a href="{{ generate_all }}" data-toggle="tooltip" title="{{ button_generate_all }}" class="btn btn-primary"><i class="fas fa-greater-than"></i></a>
+	  <a href="{{ repair }}" data-toggle="tooltip" title="{{ button_rebuild }}" class="btn btn-primary"><i class="fas fa-sync"></i></a>
 	  <a href="{{ add }}" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
         <button type="button" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger" onclick="confirm('{{ text_confirm }}') ? $('#form-permission').submit() : false;"><i class="fas fa-trash-alt"></i></button>
       </div>
@@ -26,69 +27,108 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
       </div>
     {% endif %}
-    <div class="card">
-      <div class="card-header"><i class="fas fa-list"></i> {{ text_list }}</div>
-      <div class="card-body">
-        <form action="{{ delete }}" method="post" enctype="multipart/form-data" id="form-permission">
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-              <thead>
-                <tr>
-                  <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').trigger('click');"/></td>
-                  <td class="text-left">{% if sort == 'p.name' %}
-                      <a href="{{ sort_name }}" class="{{ order|lower }}">{{ column_name }}</a>
-                    {% else %}
-                      <a href="{{ sort_name }}">{{ column_name }}</a>
-                    {% endif %}</td>
-                  <td class="text-left">{% if sort == 'permission_group' %}
-                      <a href="{{ sort_permission_group }}" class="{{ order|lower }}">{{ column_permission_group }}</a>
-                    {% else %}
-                      <a href="{{ sort_permission_group }}">{{ column_permission_group }}</a>
-                    {% endif %}</td>
-				  <td class="text-left">{% if sort == 'p.controller' %}
-                      <a href="{{ sort_controller }}" class="{{ order|lower }}">{{ column_controller }}</a>
-                    {% else %}
-                      <a href="{{ sort_controller }}">{{ column_controller }}</a>
-                    {% endif %}</td>
-                  <td class="text-right">{% if sort == 'p.sort_order' %}
-                      <a href="{{ sort_sort_order }}" class="{{ order|lower }}">{{ column_sort_order }}</a>
-                    {% else %}
-                      <a href="{{ sort_sort_order }}">{{ column_sort_order }}</a>
-                    {% endif %}</td>
-                  <td class="text-right">{{ column_action }}</td>
-                </tr>
-              </thead>
-              <tbody>
-                {% if permissions %}
-                  {% for permission in permissions %}
-                    <tr>
-                      <td class="text-center">{% if permission.permission_id in selected %}
-                          <input type="checkbox" name="selected[]" value="{{ permission.permission_id }}" checked="checked"/>
-                        {% else %}
-                          <input type="checkbox" name="selected[]" value="{{ permission.permission_id }}"/>
-                        {% endif %}</td>
-                      <td class="text-left">{{ permission.name }}</td>
-                      <td class="text-left">{{ permission.permission_group }}</td>
-					  <td class="text-left">{{ permission.controller }}</td>
-                      <td class="text-right">{{ permission.sort_order }}</td>
-                      <td class="text-right"><a href="{{ permission.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a></td>
-                    </tr>
-                  {% endfor %}
-                {% else %}
-                  <tr>
-                    <td class="text-center" colspan="6">{{ text_no_results }}</td>
-                  </tr>
-                {% endif %}
-              </tbody>
-            </table>
-          </div>
-        </form>
-        <div class="row">
-          <div class="col-sm-6 text-left">{{ pagination }}</div>
-          <div class="col-sm-6 text-right">{{ results }}</div>
-        </div>
-      </div>
-    </div>
+  <div class="row">
+	<div id="filter-permission" class="col-md-3 col-sm-12 order-md-9 d-none d-md-block mb-3">
+	  <div class="card">
+		<div class="card-header"><i class="fas fa-filter"></i> {{ text_filter }}</div>
+		<div class="card-body">
+		  <div class="form-group">
+			<label class="col-form-label" for="input-permission-group">{{ entry_permission_group }}</label> <select name="filter_permission_group_id" id="input-permission-group" class="form-control">
+			  <option value=""></option>
+			  {% for permission_group in permission_groups %}
+				{% if permission_group.permission_group_id == filter_permission_group_id %}
+				  <option value="{{ permission_group.permission_group_id }}" selected="selected">{{ order_status.name }}</option>
+				{% else %}
+				  <option value="{{ permission_group.permission_group_id }}">{{ permission_group.name }}</option>
+				{% endif %}
+			  {% endfor %}
+			</select>
+		  </div>
+		  <div class="form-group text-right">
+			<button type="button" id="button-filter" class="btn btn-primary"><i class="fas fa-filter"></i> {{ button_filter }}</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="col-md-9 col-sm-12">
+		<div class="card">
+		  <div class="card-header"><i class="fas fa-list"></i> {{ text_list }}</div>
+		  <div class="card-body">
+			<form action="{{ delete }}" method="post" enctype="multipart/form-data" id="form-permission">
+			  <div class="table-responsive">
+				<table class="table table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').trigger('click');"/></td>
+					  <td class="text-left">{% if sort == 'p.name' %}
+						  <a href="{{ sort_name }}" class="{{ order|lower }}">{{ column_name }}</a>
+						{% else %}
+						  <a href="{{ sort_name }}">{{ column_name }}</a>
+						{% endif %}</td>
+					  <td class="text-left">{% if sort == 'permission_group' %}
+						  <a href="{{ sort_permission_group }}" class="{{ order|lower }}">{{ column_permission_group }}</a>
+						{% else %}
+						  <a href="{{ sort_permission_group }}">{{ column_permission_group }}</a>
+						{% endif %}</td>
+					  <td class="text-left">{% if sort == 'p.controller' %}
+						  <a href="{{ sort_controller }}" class="{{ order|lower }}">{{ column_controller }}</a>
+						{% else %}
+						  <a href="{{ sort_controller }}">{{ column_controller }}</a>
+						{% endif %}</td>
+					  <td class="text-right">{% if sort == 'p.sort_order' %}
+						  <a href="{{ sort_sort_order }}" class="{{ order|lower }}">{{ column_sort_order }}</a>
+						{% else %}
+						  <a href="{{ sort_sort_order }}">{{ column_sort_order }}</a>
+						{% endif %}</td>
+					  <td class="text-right">{{ column_action }}</td>
+					</tr>
+				  </thead>
+				  <tbody>
+					{% if permissions %}
+					  {% for permission in permissions %}
+						<tr>
+						  <td class="text-center">{% if permission.permission_id in selected %}
+							  <input type="checkbox" name="selected[]" value="{{ permission.permission_id }}" checked="checked"/>
+							{% else %}
+							  <input type="checkbox" name="selected[]" value="{{ permission.permission_id }}"/>
+							{% endif %}</td>
+						  <td class="text-left">{{ permission.name }}</td>
+						  <td class="text-left">{{ permission.permission_group }}</td>
+						  <td class="text-left">{{ permission.controller }}</td>
+						  <td class="text-right">{{ permission.sort_order }}</td>
+						  <td class="text-right"><a href="{{ permission.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a></td>
+						</tr>
+					  {% endfor %}
+					{% else %}
+					  <tr>
+						<td class="text-center" colspan="6">{{ text_no_results }}</td>
+					  </tr>
+					{% endif %}
+				  </tbody>
+				</table>
+			  </div>
+			</form>
+			<div class="row">
+			  <div class="col-sm-6 text-left">{{ pagination }}</div>
+			  <div class="col-sm-6 text-right">{{ results }}</div>
+			</div>
+		  </div>
+       </div>
+	  </div>
+	</div>
   </div>
 </div>
+<script type="text/javascript"><!--
+$('#button-filter').on('click', function() {
+	var url = '';
+
+	var filter_permission_group_id = $('select[name=\'filter_permission_group_id\']').val();
+
+	if (filter_permission_group_id !== '') {
+		url += '&filter_permission_group_id=' + encodeURIComponent(filter_permission_group_id);
+	}
+
+	location = 'index.php?route=user/permission&user_token={{ user_token }}' + url;
+});
+//--></script>
 {{ footer }}

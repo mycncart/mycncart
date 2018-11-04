@@ -460,10 +460,26 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
-			if ($this->user->hasPermission('access', 'user/user_permission')) {
+			if ($this->user->hasPermission('access', 'user/user_group')) {
 				$user[] = array(
 					'name'	   => $this->language->get('text_user_group'),
-					'href'     => $this->url->link('user/user_permission', 'user_token=' . $this->session->data['user_token']),
+					'href'     => $this->url->link('user/user_group', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+			
+			if ($this->user->hasPermission('access', 'user/permission_group')) {
+				$user[] = array(
+					'name'	   => $this->language->get('text_permission_group'),
+					'href'     => $this->url->link('user/permission_group', 'user_token=' . $this->session->data['user_token']),
+					'children' => array()
+				);
+			}
+			
+			if ($this->user->hasPermission('access', 'user/permission')) {
+				$user[] = array(
+					'name'	   => $this->language->get('text_permission'),
+					'href'     => $this->url->link('user/permission', 'user_token=' . $this->session->data['user_token']),
 					'children' => array()
 				);
 			}

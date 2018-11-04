@@ -25,12 +25,8 @@ class ModelUserPermission extends Model {
 	public function getPermissions($data = array()) {
 		$sql = "SELECT *, (SELECT pd.name FROM " . DB_PREFIX . "permission_group pd WHERE pd.permission_group_id = p.permission_group_id) AS permission_group FROM " . DB_PREFIX . "permission p WHERE p.permission_id != 0";
 
-		if (!empty($data['filter_name'])) {
-			$sql .= " AND p.name LIKE '" . $this->db->escape((string)$data['filter_name']) . "%'";
-		}
-
 		if (!empty($data['filter_permission_group_id'])) {
-			$sql .= " AND a.permission_group_id = '" . (int)$data['filter_permission_group_id'] . "'";
+			$sql .= " AND p.permission_group_id = '" . (int)$data['filter_permission_group_id'] . "'";
 		}
 
 		$sort_data = array(
@@ -69,8 +65,14 @@ class ModelUserPermission extends Model {
 		return $query->rows;
 	}
 
-	public function getTotalPermissions() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "permission");
+	public function getTotalPermissions($data = array()) {
+		$sql = "SELECT COUNT(*) AS total, name, controller, permission_group_id FROM " . DB_PREFIX . "permission WHERE permission_id != 0";
+		
+		if (!empty($data['filter_permission_group_id'])) {
+			$sql .= " AND permission_group_id = '" . (int)$data['filter_permission_group_id'] . "'";
+		}
+		
+		$query = $this->db->query($sql);
 
 		return $query->row['total'];
 	}
@@ -85,6 +87,67 @@ class ModelUserPermission extends Model {
 		$query = $this->db->query("SELECT permission_id FROM " . DB_PREFIX . "permission WHERE controller LIKE '" . $controller . "'");
 
 		return $query->row;
+	}
+	
+	public function repairPermissions() {
+		$ignore = array(
+			'common/dashboard',
+			'common/startup',
+			'common/login',
+			'common/logout',
+			'common/forgotten',
+			'common/reset',			
+			'common/footer',
+			'common/header',
+			'error/not_found',
+			'error/permission'
+		);
+
+		$permissions = array();
+
+		$files = array();
+
+		// Make path into an array
+		$path = array(DIR_APPLICATION . 'controller/*');
+
+		// While the path array is still populated keep looping through
+		while (count($path) != 0) {
+			$next = array_shift($path);
+
+			foreach (glob($next) as $file) {
+				// If directory add to path array
+				if (is_dir($file)) {
+					$path[] = $file . '/*';
+				}
+
+				// Add the file to the files to be deleted array
+				if (is_file($file)) {
+					$files[] = $file;
+				}
+			}
+		}
+
+		// Sort the file array
+		sort($files);
+					
+		foreach ($files as $file) {
+			$controller = substr($file, strlen(DIR_APPLICATION . 'controller/'));
+
+			$permission = substr($controller, 0, strrpos($controller, '.'));
+
+			if (!in_array($permission, $ignore)) {
+				$permissions[] = $permission;
+			}
+		}
+		
+		$current_permissions = $this->getPermissions();
+		
+		foreach ($current_permissions as $current_permission) {
+			if (!in_array($current_permission['controller'], $permissions)) {
+				$this->deletePermission($current_permission['permission_id']);
+			}
+		}
+		
 	}
 	
 }

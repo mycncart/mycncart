@@ -96,3 +96,5 @@ $_['text_paypal_search']        = 'Search';
 $_['text_complete_status']      = 'Orders Completed';
 $_['text_processing_status']    = 'Orders Processing';
 $_['text_other_status']         = 'Other Statuses';
+$_['text_permission_group']     = 'Permission Groups'; 
+$_['text_permission']		    = 'Pmermissions'; 

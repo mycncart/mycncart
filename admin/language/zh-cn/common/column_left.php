@@ -96,3 +96,5 @@ $_['text_paypal_search']             = '检索';
 $_['text_complete_status']           = '已完成订单'; 
 $_['text_processing_status']         = '处理中订单'; 
 $_['text_other_status']              = '其他状态'; 
+$_['text_permission_group']          = '权限分组'; 
+$_['text_permission']		         = '权限资源'; 
