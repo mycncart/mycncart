@@ -98,3 +98,4 @@ $_['text_processing_status']         = '处理中订单';
 $_['text_other_status']              = '其他状态'; 
 $_['text_permission_group']          = '权限分组'; 
 $_['text_permission']		         = '权限资源'; 
+$_['text_option_group']		         = '商品模型'; 
