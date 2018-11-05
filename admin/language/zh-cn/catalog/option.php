@@ -28,6 +28,7 @@ $_['column_action']       = '操作';
 
 // Entry
 $_['entry_name']          = '选项名称';
+$_['entry_option_group']  = '商品模型';
 $_['entry_type']          = '类型';
 $_['entry_option_value']  = '选项值';
 $_['entry_image']         = '图像';

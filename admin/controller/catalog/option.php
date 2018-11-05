@@ -114,7 +114,7 @@ class ControllerCatalogOption extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'od.name';
+			$sort = 'name';
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -308,22 +308,27 @@ class ControllerCatalogOption extends Controller {
 		$this->load->model('localisation/language');
 
 		$data['languages'] = $this->model_localisation_language->getLanguages();
+		
 
-		if (isset($this->request->post['option_description'])) {
-			$data['option_description'] = $this->request->post['option_description'];
+		if (isset($this->request->post['name'])) {
+			$data['name'] = $this->request->post['name'];
 		} elseif (!empty($option_info)) {
-			$data['option_description'] = $this->model_catalog_option->getOptionDescriptions($this->request->get['option_id']);
+			$data['name'] = $option_info['name'];
 		} else {
-			$data['option_description'] = array();
+			$data['name'] = '';
+		}
+		
+		if (isset($this->request->post['option_group_id'])) {
+			$data['option_group_id'] = $this->request->post['option_group_id'];
+		} elseif (!empty($option_info)) {
+			$data['option_group_id'] = $option_info['option_group_id'];
+		} else {
+			$data['option_group_id'] = '';
 		}
 
-		if (isset($this->request->post['type'])) {
-			$data['type'] = $this->request->post['type'];
-		} elseif (!empty($option_info)) {
-			$data['type'] = $option_info['type'];
-		} else {
-			$data['type'] = '';
-		}
+		$this->load->model('catalog/option_group');
+
+		$data['option_groups'] = $this->model_catalog_option_group->getOptionGroups();
 
 		if (isset($this->request->post['sort_order'])) {
 			$data['sort_order'] = $this->request->post['sort_order'];
@@ -336,7 +341,7 @@ class ControllerCatalogOption extends Controller {
 		if (isset($this->request->post['option_value'])) {
 			$option_values = $this->request->post['option_value'];
 		} elseif (!empty($option_info)) {
-			$option_values = $this->model_catalog_option->getOptionValueDescriptions($this->request->get['option_id']);
+			$option_values = $this->model_catalog_option->getOptionValues($this->request->get['option_id']);
 		} else {
 			$option_values = array();
 		}
@@ -356,7 +361,7 @@ class ControllerCatalogOption extends Controller {
 
 			$data['option_values'][] = array(
 				'option_value_id'          => $option_value['option_value_id'],
-				'option_value_description' => $option_value['option_value_description'],
+				'name' 					   => $option_value['name'],
 				'image'                    => $image,
 				'thumb'                    => $this->model_tool_image->resize(html_entity_decode($thumb, ENT_QUOTES, 'UTF-8'), 100, 100),
 				'sort_order'               => $option_value['sort_order']
@@ -376,17 +381,11 @@ class ControllerCatalogOption extends Controller {
 		if (!$this->user->hasPermission('modify', 'catalog/option')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
-
-		foreach ($this->request->post['option_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['name']) < 1) || (utf8_strlen($value['name']) > 128)) {
-				$this->error['name'][$language_id] = $this->language->get('error_name');
-			}
+		
+		if ((utf8_strlen($this->request->post['name']) < 1) || (utf8_strlen($this->request->post['name']) > 128)) {
+			$this->error['name'] = $this->language->get('error_name');
 		}
-
-		if (($this->request->post['type'] == 'select' || $this->request->post['type'] == 'radio' || $this->request->post['type'] == 'checkbox') && !isset($this->request->post['option_value'])) {
-			$this->error['warning'] = $this->language->get('error_type');
-		}
-
+		
 		if (isset($this->request->post['option_value'])) {
 			if ($this->request->get['option_id']) {
 				$option_id = $this->request->get['option_id'];
@@ -419,11 +418,9 @@ class ControllerCatalogOption extends Controller {
 
 		if (isset($this->request->post['option_value'])) {
 			foreach ($this->request->post['option_value'] as $option_value_id => $option_value) {
-				foreach ($option_value['option_value_description'] as $language_id => $option_value_description) {
-					if ((utf8_strlen($option_value_description['name']) < 1) || (utf8_strlen($option_value_description['name']) > 128)) {
-						$this->error['option_value'][$option_value_id][$language_id] = $this->language->get('error_option_value');
+					if ((utf8_strlen($option_value['name']) < 1) || (utf8_strlen($option_value['name']) > 128)) {
+						$this->error['option_value'][$option_value_id] = $this->language->get('error_option_value');
 					}
-				}
 			}
 		}
 
