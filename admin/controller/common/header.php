@@ -11,6 +11,12 @@ class ControllerCommonHeader extends Controller {
 		$data['scripts'] = $this->document->getScripts();
 		$data['lang'] = $this->language->get('code');
 		$data['direction'] = $this->language->get('direction');
+		
+		if (is_file(DIR_IMAGE . $this->config->get('config_admin_logo'))) {
+			$data['logo'] = HTTPS_CATALOG . 'image/' . $this->config->get('config_admin_logo');
+		} else {
+			$data['logo'] = '';
+		}
 
 		$this->load->language('common/header');
 		

@@ -778,6 +778,18 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$data['icon'] = $data['placeholder'];
 		}
+		
+		if (isset($this->request->post['config_admin_logo'])) {
+			$data['config_admin_logo'] = $this->request->post['config_admin_logo'];
+		} else {
+			$data['config_admin_logo'] = $this->config->get('config_admin_logo');
+		}
+
+		if (is_file(DIR_IMAGE . html_entity_decode($data['config_admin_logo'], ENT_QUOTES, 'UTF-8'))) {
+			$data['admin_logo'] = $this->model_tool_image->resize(html_entity_decode($data['config_admin_logo'], ENT_QUOTES, 'UTF-8'), 100, 100);
+		} else {
+			$data['admin_logo'] = $data['placeholder'];
+		}
 
 		if (isset($this->request->post['config_mail_engine'])) {
 			$data['config_mail_engine'] = $this->request->post['config_mail_engine'];

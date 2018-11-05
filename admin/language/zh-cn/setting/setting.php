@@ -118,6 +118,7 @@ $_['entry_error_display']              	= '显示错误';
 $_['entry_error_log']                  	= '日志错误';
 $_['entry_error_filename']             	= '错误日志文件名';
 $_['entry_status']                     	= '状态';
+$_['entry_admin_logo']               	= '网站后台 Logo';
 
 // Tab
 $_['tab_product']                    	= '商品';

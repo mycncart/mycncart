@@ -118,6 +118,7 @@ $_['entry_error_display']            = 'Display Errors';
 $_['entry_error_log']                = 'Log Errors';
 $_['entry_error_filename']           = 'Error Log Filename';
 $_['entry_status']                   = 'Status';
+$_['entry_admin_logo']               = 'Admin Logo';
 
 // Tab
 $_['tab_product']                    = 'Products';
