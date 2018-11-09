@@ -115,4 +115,12 @@ class ModelCatalogOption extends Model {
 
 		return $query->row['total'];
 	}
+	
+	public function getOptionsByOptionGroup($option_group_id) {
+		$sql = "SELECT * FROM `" . DB_PREFIX . "option` WHERE option_group_id = " . $option_group_id . "  ORDER BY sort_order";
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
 }

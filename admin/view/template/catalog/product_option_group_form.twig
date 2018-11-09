@@ -53,7 +53,8 @@
           <fieldset>
             <legend>{{ text_option_value }}</legend>
             <div id="ajax-option-data">
-              
+              <div id="ajax-option-table1"></div>
+			  <div id="ajax-option-table2"></div>
               
             </div>
           </fieldset>
@@ -88,18 +89,18 @@ $('input[name=\'product\']').autocomplete({
 <script type="text/javascript"><!--
 $('select[name=\'option_group_id\']').on('change', function() {
 	$.ajax({
-		url: 'index.php?route=catalog/product_option_group/ajaxoptiondata&user_token={{ user_token }}&option_group_id=' + this.value,
-		dataType: 'json',
+		url: 'index.php?route=catalog/product_option_group/ajaxtable1&user_token={{ user_token }}&product_option_group_id={{ product_option_group_id }}&product_id={{ product_id }}&option_group_id=' + this.value,
+		dataType: 'html',
 		beforeSend: function() {
 			$('select[name=\'option_group_id\']').prop('disabled', true);
 		},
 		complete: function() {
 			$('select[name=\'option_group_id\']').prop('disabled', false);
 		},
-		success: function(json) {
+		success: function(html) {
 		
-			alert('Ajax 触发成功');
-			
+			$('#ajax-option-table1').html(html);
+			alert('输出成功');
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -109,4 +110,29 @@ $('select[name=\'option_group_id\']').on('change', function() {
 
 $('select[name=\'option_group_id\']').trigger('change');
 //--></script>
+
+<script type="text/javascript"><!--
+function showhint() {
+alert('hello');
+	var foo= $(".btn-success");
+	$(foo).each(function() {
+	alert(this.dataset.option_id);
+	}) 
+}
+//--></script>
+
+<script type="text/javascript"><!--
+function change_value(ovid) {
+	if ($("#button_option_value_id_"+ovid).hasClass("btn-default")) {
+    	$("#button_option_value_id_"+ovid).removeClass("btn-default").addClass('btn-success');
+	} else {
+		$("#button_option_value_id_"+ovid).removeClass("btn-success").addClass('btn-default');
+	}
+	
+	showhint();
+}
+//--></script>
+
+
+
 {{ footer }}

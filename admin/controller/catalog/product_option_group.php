@@ -400,13 +400,17 @@ class ControllerCatalogProductOptionGroup extends Controller {
 		}
 
 		$data['cancel'] = $this->url->link('catalog/product_option_group', 'user_token=' . $this->session->data['user_token'] . $url);
+		
+		$data['product_option_group_id'] = '';
 
 		if (isset($this->request->get['product_option_group_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$product_option_group_info = $this->model_catalog_product_option_group->getProductOptionGroup($this->request->get['product_option_group_id']);
+			
+			$data['product_option_group_id'] = $this->request->get['product_option_group_id'];
 		}
 
 		$data['user_token'] = $this->session->data['user_token'];
-
+		
 		if (isset($this->request->post['product_id'])) {
 			$data['product_id'] = $this->request->post['product_id'];
 		} elseif (!empty($product_option_info)) {
@@ -494,11 +498,42 @@ class ControllerCatalogProductOptionGroup extends Controller {
 		return !$this->error;
 	}
 	
-	public function ajaxoptiondata() {
-		$json = array();
+	public function ajaxtable1() {
+		$data['options'] = array();
+		$product_id = $this->request->get['product_id'];
+		$product_option_group_id = $this->request->get['product_option_group_id'];
+		$option_group_id = $this->request->get['option_group_id'];
+		
+		$this->load->model('catalog/option');
+		
+		if ($option_group_id && $product_id && $product_option_group_id) {
+			
+		}
+		
+		if ($option_group_id && (!$product_id) && (!$product_option_group_id)) {
+			
+			$option_datas = $this->model_catalog_option->getOptionsByOptionGroup($option_group_id);
+			
+			foreach ($option_datas as $option_data) {
+				
+				$option_values = $this->model_catalog_option->getOptionValues($option_data['option_id']);
+				
+				$data['options'][] = array(
+					'name'	=> $option_data['name'],
+					'option_id'	=> $option_data['option_id'],
+					'option_values'	=> $option_values,
+				);
+				
+				echo $this->response->setOutput($this->load->view('catalog/option_table1', $data));
+			}
+			
+		}
+		
+		if ($option_group_id && (!$product_id) && (!$product_option_group_id)) {
+			
+		}
 
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
+		
 	}
+	
 }
