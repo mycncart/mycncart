@@ -87,49 +87,81 @@ $('input[name=\'product\']').autocomplete({
 //--></script>
 
 <script type="text/javascript"><!--
-$('select[name=\'option_group_id\']').on('change', function() {
+function getSelectedValues() {
+	var a = new Array();
+	var foo= $(".btn-success");
+	var i = 0;
+	$(foo).each(function() {
+		a[i] = this.dataset.option_value_id;
+		i++;
+	})
+	
+	return a;
+}
+//--></script>
+
+<script type="text/javascript"><!--
+function getTable2(ogid, d='') {
 	$.ajax({
-		url: 'index.php?route=catalog/product_option_group/ajaxtable1&user_token={{ user_token }}&product_option_group_id={{ product_option_group_id }}&product_id={{ product_id }}&option_group_id=' + this.value,
+		url: 'index.php?route=catalog/product_option_group/ajaxtable2&user_token={{ user_token }}&product_option_group_id={{ product_option_group_id }}&product_id={{ product_id }}&option_group_id=' + ogid + '&ova=' + d,
 		dataType: 'html',
-		beforeSend: function() {
-			$('select[name=\'option_group_id\']').prop('disabled', true);
-		},
-		complete: function() {
-			$('select[name=\'option_group_id\']').prop('disabled', false);
-		},
 		success: function(html) {
-		
-			$('#ajax-option-table1').html(html);
-			alert('输出成功');
+			//显示table2
+			$('#ajax-option-table2').html(html);
+			
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});
+	
+	
+};
+
+//--></script>
+
+<script type="text/javascript"><!--
+$('select[name=\'option_group_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=catalog/product_option_group/ajaxtable1&user_token={{ user_token }}&product_option_group_id={{ product_option_group_id }}&product_id={{ product_id }}&option_group_id=' + this.value,
+		dataType: 'html',
+		success: function(html) {
+			//显示table1
+			$('#ajax-option-table1').html(html);
+			var option_group_id = this.value;
+			getTable2(option_group_id);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+	
+	
 });
 
 $('select[name=\'option_group_id\']').trigger('change');
+
+
 //--></script>
 
-<script type="text/javascript"><!--
-function showhint() {
-alert('hello');
-	var foo= $(".btn-success");
-	$(foo).each(function() {
-	alert(this.dataset.option_id);
-	}) 
-}
-//--></script>
+
 
 <script type="text/javascript"><!--
 function change_value(ovid) {
+	
 	if ($("#button_option_value_id_"+ovid).hasClass("btn-default")) {
     	$("#button_option_value_id_"+ovid).removeClass("btn-default").addClass('btn-success');
 	} else {
 		$("#button_option_value_id_"+ovid).removeClass("btn-success").addClass('btn-default');
 	}
 	
-	showhint();
+	var selected_option_group_id = $("#input-option-group option:selected").val();
+	
+	var c = getSelectedValues();
+	
+	
+	getTable2(selected_option_group_id, c);
+	
 }
 //--></script>
 

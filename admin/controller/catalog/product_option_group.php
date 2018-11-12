@@ -416,7 +416,7 @@ class ControllerCatalogProductOptionGroup extends Controller {
 		} elseif (!empty($product_option_info)) {
 			$data['product_id'] = $product_option_info['product_id'];
 		} else {
-			$data['product_id'] = '';
+			$data['product_id'] = 0;
 		}
 
 		if (isset($this->request->post['product'])) {
@@ -432,7 +432,7 @@ class ControllerCatalogProductOptionGroup extends Controller {
 		} elseif (!empty($product_option_group_info)) {
 			$data['option_group_id'] = $product_option_group_info['option_group_id'];
 		} else {
-			$data['option_group_id'] = '';
+			$data['option_group_id'] = 0;
 		}
 		
 		$this->load->model('catalog/option_group');
@@ -535,5 +535,125 @@ class ControllerCatalogProductOptionGroup extends Controller {
 
 		
 	}
+	
+	public function ajaxtable2() {
+		$this->load->model('catalog/option');
+		$data['option_value_combinations'] = array();
+		$product_id = $this->request->get['product_id'];
+		$product_option_group_id = $this->request->get['product_option_group_id'];
+		$option_group_id = $this->request->get['option_group_id'];
+		$option_values_selected = explode(',', $this->request->get['ova']);
+		
+		$option_ids = array();
+		if ($option_values_selected) {
+			foreach ($option_values_selected as $option_value_id) {
+				//get option_id array
+				$option_value_info = $this->model_catalog_option->getOptionValue($option_value_id);
+				
+				if ($option_value_info) {
+					$option_info = $this->model_catalog_option->getOption($option_value_info['option_id']);
+					$option_ids[] = array(
+						'option_id' => $option_value_info['option_id'],
+						'sort_order' => $option_info['sort_order'],
+					);
+				}
+				//echo $option_value_id.'<br>';
+			}
+			
+			//array_unique($option_ids, SORT_REGULAR);
+			$option_ids = $this->multi_unique($option_ids);
+			
+			echo "<pre>";
+			print_r($option_ids);
+			echo "</pre>";
+			
+			/*
+			$one = array(
+				'a'=>'one',
+				'b'=>'two',
+			);
+			
+			$two = array(
+				'a'=>'one',
+				'b'=>'two',
+			);
+			
+			$three = array(
+				'a'=>'one',
+				'b'=>'two',
+			);
+			
+			$four = array(
+				'apple' => $one,
+				'orange' => $two,
+				'blue' => $three
+			);
+			
+			echo "<pre>";
+			print_r($four);
+			echo "</pre>";
+			*/
+			
+			$hello = $this->combineDika($option_ids);
+			
+			echo "<pre>";
+			print_r($hello);
+			echo "</pre>";
+			
+			
+			
+
+		} else {
+			
+		}
+		
+
+		
+	}
+	
+	public function multi_unique($array) {
+		$return = array();
+		foreach($array as $key=>$v) {
+			if(!in_array($v, $return)) {
+				$return[$key]=$v;
+			}
+		}
+		
+		return $return;
+	}
+	
+	public function combineDika() {
+	$data = func_get_args();
+	$data = current($data);
+	$cnt = count($data);
+	$result = array();
+    $arr1 = array_shift($data);
+	foreach($arr1 as $key=>$item) 
+	{
+		$result[] = array($item);
+	}		
+
+	foreach($data as $key=>$item) 
+	{                                
+		$result = $this->combineArray($result,$item);
+	}
+	return $result;
+	}
+	
+	
+	public function combineArray($arr1,$arr2) {		 
+	$result = array();
+	foreach ($arr1 as $item1) 
+	{
+		foreach ($arr2 as $item2) 
+		{
+			$temp = $item1;
+			$temp[] = $item2;
+			$result[] = $temp;
+		}
+	}
+	return $result;
+}
+
 	
 }
