@@ -1,0 +1,78 @@
+.standard-body .full-width .container {
+	max-width: none;
+	width: 1262px;
+}
+
+.no-responsive body {
+	min-width: 1262px;
+}
+
+.standard-body .fixed .background {
+	width: 1222px;
+	max-width: none;
+}
+
+.main-fixed {
+	width: 1222px;
+	max-width: none;
+}
+
+@media (min-width:1098px) and (max-width:1262px) {
+	.responsive .standard-body .full-width .container {
+		width: 1098px;
+	}
+	
+	.responsive .standard-body .fixed .background {
+		width: 1058px;
+	}
+	
+	.responsive .main-fixed {
+		width: 1058px;
+	}
+}
+
+@media (min-width:966px) and (max-width:1098px) {
+	.responsive .standard-body .full-width .container {
+		width: 966px;
+	}
+	
+	.responsive .standard-body .fixed .background {
+		width: 926px;
+	}
+	
+	.responsive .main-fixed {
+		width: 926px;
+	}
+}
+
+@media (min-width:768px) and (max-width:966px) {
+	.responsive .standard-body .full-width .container {
+		width: 768px;
+	}
+	
+	.responsive .standard-body .fixed .background {
+		width: 728px;
+	}
+	
+	.responsive .main-fixed {
+		width: 728px;
+	}
+}
+	
+@media (max-width:768px) {
+	.responsive .standard-body .full-width .container {
+		width: auto;
+	}
+	
+	.responsive .standard-body .fixed .background {
+		width: auto;
+	}
+	
+	.responsive .main-fixed {
+		width: auto;
+	}
+}
+
+.container .container {
+	width: auto !important;
+}
