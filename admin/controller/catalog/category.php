@@ -246,6 +246,7 @@ class ControllerCatalogCategory extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
+		$data['sort_category_id'] = $this->url->link('catalog/category', 'user_token=' . $this->session->data['user_token'] . '&sort=category_id' . $url);
 		$data['sort_name'] = $this->url->link('catalog/category', 'user_token=' . $this->session->data['user_token'] . '&sort=name' . $url);
 		$data['sort_sort_order'] = $this->url->link('catalog/category', 'user_token=' . $this->session->data['user_token'] . '&sort=sort_order' . $url);
 
@@ -354,18 +355,46 @@ class ControllerCatalogCategory extends Controller {
 
 		$data['user_token'] = $this->session->data['user_token'];
 
-		$this->load->model('localisation/language');
-
-		$data['languages'] = $this->model_localisation_language->getLanguages();
-
-		if (isset($this->request->post['category_description'])) {
-			$data['category_description'] = $this->request->post['category_description'];
+		if (isset($this->request->post['name'])) {
+			$data['name'] = $this->request->post['name'];
 		} elseif (!empty($category_info)) {
-			$data['category_description'] = $this->model_catalog_category->getCategoryDescriptions($this->request->get['category_id']);
+			$data['name'] = $category_info['name'];
 		} else {
-			$data['category_description'] = array();
+			$data['name'] = '';
 		}
-
+		
+		if (isset($this->request->post['description'])) {
+			$data['description'] = $this->request->post['description'];
+		} elseif (!empty($category_info)) {
+			$data['description'] = $category_info['description'];
+		} else {
+			$data['description'] = '';
+		}
+		
+		if (isset($this->request->post['meta_title'])) {
+			$data['meta_title'] = $this->request->post['meta_title'];
+		} elseif (!empty($category_info)) {
+			$data['meta_title'] = $category_info['meta_title'];
+		} else {
+			$data['meta_title'] = '';
+		}
+		
+		if (isset($this->request->post['meta_description'])) {
+			$data['meta_description'] = $this->request->post['meta_description'];
+		} elseif (!empty($category_info)) {
+			$data['meta_description'] = $category_info['meta_description'];
+		} else {
+			$data['meta_description'] = '';
+		}
+		
+		if (isset($this->request->post['meta_keyword'])) {
+			$data['meta_keyword'] = $this->request->post['meta_keyword'];
+		} elseif (!empty($category_info)) {
+			$data['meta_keyword'] = $category_info['meta_keyword'];
+		} else {
+			$data['meta_keyword'] = '';
+		}
+		
 		if (isset($this->request->post['path'])) {
 			$data['path'] = $this->request->post['path'];
 		} elseif (!empty($category_info)) {

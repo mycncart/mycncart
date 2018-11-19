@@ -34,6 +34,11 @@
                 <tr>
                   <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').trigger('click');"/></td>
                   <td class="text-left">{% if sort %}
+                      <a href="{{ sort_category_id }}" class="{{ order|lower }}">{{ column_id }}</a>
+                    {% else %}
+                      <a href="{{ sort_category_id }}">{{ column_id }}</a>
+                    {% endif %}</td>
+				  <td class="text-left">{% if sort %}
                       <a href="{{ sort_name }}" class="{{ order|lower }}">{{ column_name }}</a>
                     {% else %}
                       <a href="{{ sort_name }}">{{ column_name }}</a>
@@ -55,14 +60,15 @@
                         {% else %}
                           <input type="checkbox" name="selected[]" value="{{ category.category_id }}"/>
                         {% endif %}</td>
-                      <td class="text-left">{{ category.name }}</td>
+                      <td class="text-left">{{ category.category_id }}</td>
+					  <td class="text-left">{{ category.name }}</td>
                       <td class="text-right">{{ category.sort_order }}</td>
                       <td class="text-right"><a href="{{ category.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a></td>
                     </tr>
                   {% endfor %}
                 {% else %}
                   <tr>
-                    <td class="text-center" colspan="4">{{ text_no_results }}</td>
+                    <td class="text-center" colspan="5">{{ text_no_results }}</td>
                   </tr>
                 {% endif %}
               </tbody>
