@@ -1,0 +1,9 @@
+.so-page-builder .container-fluid{padding:0; overflow:hidden;}.so-page-builder .container{padding:0; overflow:hidden;}.so-page-builder section{overflow:hidden;}
+/* Style Promotion Box */ 
+#promotion_box_e1ga { background-color:#ddd}#promotion_box_e1ga {; border-radius:3px; margin-bottom:15px; background-color:#ddd }#promotion_box_e1ga a.cta-dbtn { border-radius:3px; color:#fff; background:#4e9e41;}#promotion_box_e1ga a.cta-dbtn:hover { background:#2e6b24;}#promotion_box_e1ga .cta-content > h3 { color: #ffffff;}#promotion_box_e1ga .cta-content div { color:#000;}#promotion_box_e1ga .cta-content h3 { color:#000; margin:0; padding:0}@media only screen and (min-width: 980px){#promotion_box_e1ga.arrow-box {position: relative;padding-right:52px;}#promotion_box_e1ga.arrow-box:before{content: "";width: 0px;height: 0px;position: absolute;border-style: solid;border-color:transparent transparent transparent #FFF  ;border-width: 52px;	top:0px;left: 0;z-index: 1;}#promotion_box_e1ga.arrow-box:after{content: "";	width: 0px;	height: 0px;position: absolute;	border-style: solid;border-color: #FFF #FFF #FFF transparent ;border-width: 52px ;	top:0px;right: 0;z-index: 1;}#promotion_box_e1ga.arrow-box .cta-content {margin:0 52px}#promotion_box_e1ga.arrow-box a.cta-dbtn {margin-right:52px}}#promotion_box_e1ga{width:100%%;}
+/* Style Fancy Text */ 
+#fancy_text_sabg{color:#fe2626; font-size:40px;}
+/* Style Points */ 
+#points_y2h0{max-width:50%}
+#points_y2h01.yt-single-point{top:30%; left: 30%; list-style:none}
+#points_y2h02.yt-single-point{top:58%; left: 44%; list-style:none}

@@ -1,0 +1,58 @@
+ul.yt-accordion {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  clear: both;
+}
+ul.yt-accordion li.yt-accordion-group {
+  margin-bottom: 5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ul.yt-accordion li.yt-accordion-group h3.accordion-heading {
+  padding: 9px 15px;
+  margin: 0;
+  line-height: 22px;
+  cursor: pointer;
+  font-size: 13px;
+  background: #f1f1f1;
+}
+
+ul.yt-accordion li.yt-accordion-group h3.accordion-heading .fa-plus-circle {
+  text-align: left;
+}
+ul.yt-accordion li.yt-accordion-group h3.accordion-heading .fa-plus-circle:before {
+  font-size: 14px;
+}
+ul.yt-accordion li.yt-accordion-group h3.accordion-heading.active .fa-plus-circle:before {
+  content: "\f056";
+}
+ul.yt-accordion li.yt-accordion-group h3.accordion-heading.active .fa-plus:before {
+  content: "\f068";
+}
+ul.yt-accordion li.yt-accordion-group h3.accordion-heading.active .fa-folder:before {
+  content: "\f07c";
+}
+ul.yt-accordion li.yt-accordion-group h3.accordion-heading.active .fa-arrows-v:before {
+  content: "\f07e";
+}
+ul.yt-accordion li.yt-accordion-group h3.accordion-heading.active .fa-arrow-circle-o-up:before {
+  content: "\f01a";
+}
+ul.yt-accordion li.yt-accordion-group h3.accordion-heading.active .fa-arrow-right:before {
+  content: "\f063";
+}
+ul.yt-accordion li.yt-accordion-group h3.accordion-heading.active .fa-caret-right:before {
+  content: "\f0d7";
+}
+ul.yt-accordion li.yt-accordion-group h3.accordion-heading.active .fa-chevron-right:before {
+  content: "\f078";
+}
+ul.yt-accordion li.yt-accordion-group .yt-accordion-inner {
+  background: #fff;
+  padding: 9px 15px;
+}
+ul.yt-accordion.line li.yt-accordion-group .yt-accordion-inner {
+  border-top: 1px solid #ccc;
+}

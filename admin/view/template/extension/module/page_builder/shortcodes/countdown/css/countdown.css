@@ -1,0 +1,109 @@
+.yt-countdown-wrapper {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+
+.yt-countdown-content .yt-cd-timer span > span:nth-child(1) {
+	font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+	font-weight: bold;
+}
+
+.yt-countdown-left {
+	text-align: left;
+}
+.yt-countdown-right {
+	text-align: right;
+}
+.yt-countdown-center {
+	text-align: center;
+}
+.yt-countdown-wrapper .yt-cd-day-data {color: #444444;}
+/*text style*/
+.yt-countdown-text-bottom .yt-countdown-content .yt-cd-timer > span {
+	display: inline-block;
+	text-align: center;
+}
+
+.yt-countdown-text-bottom .yt-countdown-content .yt-cd-timer > span > span:nth-child(1){
+	display: block;
+}
+.yt-countdown-text-bottom .yt-countdown-content .yt-cd-timer > span span[class*="text"] {
+	line-height: normal !important;
+}
+
+/*divider style*/
+.yt-cd-divider-vertical_line .yt-countdown-content .yt-cd-timer > span, 
+.yt-cd-divider-comma .yt-countdown-content .yt-cd-timer > span,
+.yt-cd-divider-colon .yt-countdown-content .yt-cd-timer > span, 
+.yt-cd-divider-dot .yt-countdown-content .yt-cd-timer > span,
+.yt-cd-divider-horizontal_line .yt-countdown-content .yt-cd-timer > span {
+	position: relative;
+	margin-right: 25px;
+	padding-right: 25px;
+}
+
+.yt-countdown-content .yt-cd-timer > span:last-child {
+	margin-right: 0;
+	padding-right: 0;
+}
+.yt-countdown-content .yt-cd-timer > span:last-child::after {
+	display: none;
+}
+
+/*spacer divider*/
+.yt-cd-divider-spacer .yt-countdown-content .yt-cd-timer > span {
+	margin-right: 25px;
+}
+.yt-cd-divider-spacer .yt-countdown-content .yt-cd-timer > span:last-child {
+	margin-right: 0;
+}
+
+
+/*comma divider*/
+div[class*="divider"] .yt-countdown-content .yt-cd-timer > span:after {
+	position: absolute;
+	font-weight: bold;
+}
+
+.yt-cd-divider-comma .yt-countdown-content .yt-cd-timer > span:after {
+	content: ',';
+	right: -10px;
+	bottom: 0px;
+
+}
+/*dot divider*/
+.yt-cd-divider-dot .yt-countdown-content .yt-cd-timer > span:after {
+	content: '.';
+	right: -10px;
+}
+
+/*colon divider*/
+.yt-cd-divider-colon .yt-countdown-content .yt-cd-timer > span:after {
+	content: ':';
+	bottom: 25% !important;
+	right: -10px;
+	margin-bottom: -3%;
+}
+
+/*vertical line*/
+.yt-cd-divider-vertical_line .yt-countdown-content .yt-cd-timer > span:after {
+	position: absolute;
+	content: '';
+	right: 3px;
+	top: 0;
+	height: 100%;
+	width: 1px;
+	background: rgba(0,0,0,0.1);
+}
+
+/*horizontal line*/
+.yt-cd-divider-horizontal_line .yt-countdown-content .yt-cd-timer > span:after {
+	content: '';
+	height: 2px;
+	width: 15px;
+	right: -10px;
+	background: rgba(0,0,0,0.1);
+	bottom: 25% !important;
+	margin-bottom: 2%;
+}

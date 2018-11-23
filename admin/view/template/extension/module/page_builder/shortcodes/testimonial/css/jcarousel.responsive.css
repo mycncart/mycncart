@@ -1,0 +1,110 @@
+.jcarousel-wrapper {
+    position: relative;
+}
+
+/** Carousel **/
+
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.jcarousel ul {
+    width: 20000em;
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jcarousel li {
+    width: 100%;
+    float: left;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #fff
+}
+.jcarousel li{
+    margin-right: 20px;
+}
+/*
+.jcarousel blockquote {
+    display: block;
+    max-width: 100%;
+    height: auto !important;
+}*/
+
+/** Carousel Controls **/
+.jcarousel-control-prev{
+    left:5%;
+}
+.jcarousel-control-next{
+    right:5%;
+}
+.jcarousel-control-prev,
+.jcarousel-control-next {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    color: #969696;
+    text-decoration: none;
+    font: 100px/0 Arial, sans-serif;
+    top:50%; margin-top:25px;
+}
+.image .jcarousel-control-prev{ left: 32%;}
+.image .jcarousel-control-next { right:35%;}
+@media only screen and (max-width:360px){
+    .image .jcarousel-control-prev{ left: 30%;}
+    .image .jcarousel-control-next { right:30%;}
+    .jcarousel-control-prev,
+    .jcarousel-control-next {
+        font: 70px/70px Arial, sans-serif;
+    }
+}
+
+/** Carousel Pagination **/
+
+.jcarousel-pagination {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    margin: 0;
+}
+
+.jcarousel-pagination a {
+    text-decoration: none;
+    display: inline-block;
+
+    font-size: 11px;
+    height: 10px;
+    width: 10px;
+    line-height: 10px;
+
+    background: #fff;
+    color: #4E443C;
+    border-radius: 10px;
+    text-indent: -9999px;
+
+    margin-right: 7px;
+
+
+    -webkit-box-shadow: 0 0 2px #4E443C;
+    -moz-box-shadow: 0 0 2px #4E443C;
+    box-shadow: 0 0 2px #4E443C;
+}
+
+.jcarousel-pagination a.active {
+    background: #4E443C;
+    color: #fff;
+    opacity: 1;
+
+    -webkit-box-shadow: 0 0 2px #F0EFE7;
+    -moz-box-shadow: 0 0 2px #F0EFE7;
+    box-shadow: 0 0 2px #F0EFE7;
+}

@@ -1,0 +1,43 @@
+
+.yt-box {
+	margin: 0 0 1.5em 0;
+	border-width: 2px;
+	border-style: solid;
+	overflow: hidden;
+}
+.yt-box-title {
+	display: block;
+	padding: 0.5em 1em;
+	font-weight: bold;
+	font-size: 1.1em;
+}
+.yt-box-content {
+	background-color: #fff;
+	color: #444;
+	padding: 1em;
+}
+.yt-box-style-soft .yt-box-title {
+	background-image: url('../images/style-soft.png');
+	background-position: 0 0;
+	background-repeat: repeat-x;
+}
+.yt-box-style-glass .yt-box-title {
+	background-image: url('../images/style-glass.png');
+	background-position: 0 50%;
+	background-repeat: repeat-x;
+}
+.yt-box-style-bubbles .yt-box-title {
+	background-image: url('../images/style-bubbles.png');
+	background-position: 0 50%;
+	background-repeat: repeat-x;
+}
+.yt-box-style-noise .yt-box-title {
+	background-image: url('../images/style-noise.png');
+	background-position: 0 0;
+	background-repeat: repeat-x;
+}
+
+
+.yt-box-content > *:first-child { margin-top: 0; }
+
+.yt-box-content > *:last-child { margin-bottom: 0; }

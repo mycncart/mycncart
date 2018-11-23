@@ -1,0 +1,1466 @@
+{{ header }}{{ column_left }}
+<div id="content">
+	<div class="page-header">
+	  <div class="container-fluid">
+		<div class="float-right">
+			<button type="submit" form="form-featured" data-toggle="tooltip" title="{{ entry_button_save }}" class="btn btn-primary" onclick="$('#action').val('save');$('#form-featured').submit();"><i class="fas fa-save"></i> {{ button_save }}</button>
+			<a class="btn btn-success" onclick="$('#action').val('save_edit');$('#form-featured').submit();" data-toggle="tooltip" title="{{ button_save_and_edit }}"><i class="fas fa-pencil-square-o"></i> {{ button_save_and_edit }}</a>
+			<a class="btn btn-info" onclick="$('#action').val('save_new');$('#form-featured').submit();" data-toggle="tooltip" title="{{ button_save_and_new }}"><i class="fas fa-book"></i>  {{ button_save_and_new }}</a>
+			<a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-danger"><i class="fas fa-reply"></i>  {{ button_cancel }}</a>  
+		</div>
+		<h1>{{ heading_title }}</h1>
+		<ol class="breadcrumb">
+		  {% for breadcrumb in breadcrumbs %}
+			<li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+		  {% endfor %}
+		</ol>
+	  </div>
+	</div>
+	<div class="container-fluid">
+		{% if error_warning %}
+		  <div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> {{ error_warning }}
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		  </div>
+		{% endif %}
+		{% if success %}
+		<div class="alert alert-success alert-dismissible"><i class="fas fa-exclamation-circle"></i>{{ success }}
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		</div>
+		{% endif %}
+		<div class="card">
+			<div class="card-header">
+				<h3><i class="fas fa-pencil"></i> {{ subheading }}</h3>
+			</div>
+			<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-featured" class="form-horizontal">
+				<div class="card-body">
+					<div class="rows">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item">
+								<a href="{{ link }}" class="nav-link {% if selectedid == 0 %} active {% endif %}"> <span class="fas fa-plus"></span>
+									{{ button_add_module }}
+								</a>
+							</li>
+							{% set i = 0 %}
+							{% for module in moduletabs %}
+								<li role="presentation" class="nav-item">
+									<a href="{{ link }}&module_id={{ module.module_id }}" class="nav-link {% if module.module_id == selectedid %} active {% endif %}">
+										<span class="fas fa-pencil"></span>
+										{{ module.name }}
+									</a>
+								</li>
+							{% endfor %}
+							{% set i = i + 1 %}
+						</ul>
+					</div>
+					<div class="rows">
+						{% set module_row = 1 %}
+						{% for key, module in modules %}
+							
+							<div class="row">
+							
+							<div clsss="col-sm-12 col-md-4 col-lg-4">
+							
+								{% if selectedid %}
+								<div class="float-left">
+									<a class="duplicate btn btn-primary" onclick="return duplicateModule(this)" href="{{ action }}&duplicate=1"><span><i class="fas fa-copy"></i> {{ entry_button_duplicate }}</span></a>
+									<a class="remove btn btn-danger" onclick="return deleteModule(this)" href="{{ action }}&delete=1"><span><i class="fas fa-remove"></i> {{ entry_button_delete }}</span></a>
+								</div>
+								{% endif %}
+								
+								
+								<input type="hidden" name="action" id="action" value="" />
+								<div class="d-none"><textarea name="page_builder[{{key }}][config]" class="hidden-content-layout hide">{{ module.page_builder }}</textarea></div>
+							</div>
+							
+									
+								<div id="tab-module{{ module_row }}" class="col-sm-12 col-md-8 col-lg-8">
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label" for="input-name">{{ entry_name }}</label>
+										<div class="col-sm-10">
+												<input type="text" name="name" value="{{ module.name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+											{% if error.name %}
+											<div class="text-danger col-sm-12">
+												{{ error.name }}
+											</div>
+											{% endif %}
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label" for="input-status">{{ entry_status }}</label>
+										<div class="col-sm-10">
+												<select name="status" id="input-status" class="form-control">
+													{% if module.status %}
+														<option value="1" selected="selected">{{ text_enabled }}</option>
+														<option value="0">{{ text_disabled }}</option>
+													{% else %}
+														<option value="1">{{ text_enabled }}</option>
+														<option value="0" selected="selected">{{ text_disabled }}</option>
+													{% endif %}
+												</select>
+										</div>
+									</div>
+									<hr>
+								</div>
+								
+								</div>
+							
+							
+							<div class="tab-pane">
+								<div class="row">
+									<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 text-center">
+										<div class="add-row-new col-lg-3" data-toggle="modal" data-target="#config_row" data-backdrop="static" data-keyboard="false"> <i class="fas fa-plus"></i>
+											{{ text_add_row }}
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 text-center">
+										<label class="control-label"><span data-toggle="tooltip" title="{{ text_show_number_col_desc }}">{{ text_show_number_col }}</span></label>
+										<div class="btn-group button-enablegrid">
+											<button class="btn btn-default show-column mcc-page-screens" onclick="$('.layout-builder').addClass('show-column').removeClass('hide-column');" type="button" data-screensTitle="栅格"><span class="fas fa-check-square"></span></button>
+											<button class="btn btn-default hide-column mcc-page-screens" onclick="$('.layout-builder').removeClass('show-column').addClass('hide-column');" type="button" data-screensTitle="显示行"><span class="fas fa-square"></span></button>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 text-center">
+										<label class="control-label"><span data-toggle="tooltip" title="{{ text_design_in_desc }}">{{ text_design_in }} </span></label>
+										<div class="btn-group change-screens">
+											<button class="btn btn-default active mcc-page-screens" data-option="lg_col" type="button" data-placement="top" data-screensTitle="{{ text_change_col_lg }}"><span class="fas fa-desktop"></span></button>
+											<button class="btn btn-default mcc-page-screens" data-option="md_col" type="button" data-placement="top" data-screensTitle="{{ text_change_col_md }}"><span class="fas fa-laptop"></span></button>
+											<button class="btn btn-default mcc-page-screens" data-option="sm_col" type="button" data-placement="top" data-screensTitle="{{ text_change_col_sm }}"> <span class="fas fa-tablet"></span></button>
+											<button class="btn btn-default mcc-page-screens" data-option="xs_col" type="button" data-placement="top" data-screensTitle="{{ text_change_col_xs }}"><span class="fas fa-mobile"></span> </button>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 text-center">
+										<label class="control-label"><span data-toggle="tooltip" title="{{ text_import_data_desc }}">{{ text_import_data }} </span></label>
+										<div class="select-import btn-group">
+											<select name="import_theme" class="form-control">
+												<option value="0">{{ text_select_theme }}</option>
+												<option value="1">{{ text_theme_start }}</option>
+											</select>
+										</div>
+										<div class="button-import btn-group">
+											<button class="btn btn-default btn-import_data" onclick="$('#action').val('import_data');$('#form-featured').submit();">{{ text_import_data }}</button>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="layout-builder-wrapper">
+									<div id="layout-builder{{ key }}" class="layout-builder">
+										<div class="mcc-col-content">
+											<div class="inner-col"></div>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-lg-4 col-lg-offset-4">
+										<div class="add-row-new pull-center" data-toggle="modal" data-target="#config_row" data-backdrop="static" data-keyboard="false"> <i class="fas fa-plus"></i>
+											{{ text_add_row }}
+										</div>
+									</div>
+								</div>
+							</div>
+							{% set module_row = module_row + 1 %}
+						{% endfor %}
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+
+<div id="config_row" class="modal modal-message modal-info fade" tabindex="-1" role="dialog" data-sub="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{{ text_config_row }}</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="tab-pane">
+						<ul class="nav nav-tabs" id="mcc_row_settings">
+							<li>
+								<a href="#row_config" data-toggle="tab">
+									{{ entry_config }}
+								</a>
+							</li>
+							<li>
+								<a href="#row_advanced_setting" data-toggle="tab">
+									{{ entry_advanced }}
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div class="tab-pane" id="row_config">
+							<div class="form-group">
+								<label for="number_col" class="control-label col-sm-6">{{ text_col_num }}:</label>
+								<div class="col-sm-6">
+									<select name="number-col" class="form-control" id="number_col">
+										{% for i in 1..12 %}
+											<option value="{{ i }}">{{ i }} {% if i== 1 %} {{ text_item }} {% else %} {{ text_items }} {%endif %}</option>
+										{% endfor %}
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="row_advanced_setting">
+							<div class="form-group">
+								<label for="screens_active" class="control-label col-sm-6">{{ text_screen_active }}:</label>
+								<div class="col-sm-6">
+									<select name="screens-active" class="form-control" id="screens_active">
+										<option value="lg_col">{{ text_large_col }}</option>
+										<option value="md_col">{{ text_medium_col }}</option>
+										<option value="sm_col">{{ text_small_col }}</option>
+										<option value="xs_col">{{ text_extra_col }}</option>
+									</select>
+								</div>
+							</div>
+							<hr>
+							<h4 style="font-weight:bold">{{ text_style_width_column }}</h4>
+							<div class="form-group">
+								<label for="large_col_cr" class="control-label col-sm-6">{{ text_large_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="large-col" class="form-control" id="large_col_cr">
+										{% for i in 1..12 %}
+											<option value="{{ i }}" {% if i==3 %} {{ "selected" }} {% endif %}>
+												{{ i }} {% if i==1 %} {{ text_col }} {% else %} {{ text_cols }} {% endif %}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="medium_col_cr" class="control-label col-sm-6">{{ text_medium_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="medium-col" class="form-control" id="medium_col_cr">
+										{% for i in 1..12 %}
+											<option value="{{ i }}" {% if i==4 %} {{ "selected" }} {% endif %}>
+												{{ i }} {% if i==1 %} {{ text_col }} {% else %} {{ text_cols }} {% endif %}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="small_col_cr" class="control-label col-sm-6">{{ text_small_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="small-col" class="form-control" id="small_col_cr">
+										{% for i in 1..12 %}
+											<option value="{{ i }}" {% if i==6 %} {{ "selected" }} {% endif %}>
+												{{ i }} {% if i==1 %} {{ text_col }} {% else %} {{ text_cols }} {% endif %}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="extra_col_cr" class="control-label col-sm-6">{{ text_extra_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="extra-col" class="form-control" id="extra_col_cr">
+										{% for i in 1..12 %}
+											<option value="{{ i }}" {% if i==12 %} {{ "selected" }} {% endif %}>
+												{{ i }} {% if i==1 %} {{ text_col }} {% else %} {{ text_cols }} {% endif %}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary submit-save pull-left"><i class="fas fa-save"></i> {{ text_save_all }}</button>
+				<button type="button" class="btn btn-success submit"><i class="fas fa-pencil-square-o"></i> {{ text_save_change }}</button>
+				<button type="button" class="btn btn-danger mcc-close" data-dismiss="modal"><i class="fas fa-times"></i> {{ text_close }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="config_column" class="modal fade" tabindex="-1" role="dialog" data-sub="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{{ text_config_col }}</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="tab-pane">
+						<ul class="nav nav-tabs" id="mcc_col_settings">
+							<li>
+								<a href="#col_config" data-toggle="tab">
+									{{ entry_config }}
+								</a>
+							</li>
+							<li>
+								<a href="#col_advanced_setting" data-toggle="tab">
+									{{ entry_advanced }}
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div class="tab-pane" id="col_config">
+							<div class="form-group">
+								<label for="number_col" class="control-label col-sm-6">{{ text_col_num }}:</label>
+								<div class="col-sm-6">
+									<select name="number-col" class="form-control" id="number_col">
+										{% for i in 1..12 %}
+											<option value="{{ i }}">{{ i }} {% if i == 1 %} {{ text_item }} {% else %} {{ text_items }} {% endif %}</option>
+										{% endfor %}
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="col_advanced_setting">
+							<div class="form-group">
+								<label for="large_col_cc" class="control-label col-sm-6">{{ text_large_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="large-col" class="form-control" id="large_col_cc">
+										{% for i in 1..12 %}
+											<option value="{{ i }}" {% if i==3 %} {{ "selected" }} {% endif %}>
+												{{ i }} {% if i==1 %} {{ text_col }} {% else %} {{ text_cols }} {% endif %}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="medium_col_cc" class="control-label col-sm-6">{{ text_medium_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="medium-col" class="form-control" id="medium_col_cc">
+										{% for i in 1..12 %}
+											<option value="{{ i }}" {% if i==4 %} {{ "selected" }} {% endif %}>
+												{{ i }} {% if i==1 %} {{ text_col }} {% else %} {{ text_cols }} {% endif %}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="small_col_cc" class="control-label col-sm-6">{{ text_small_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="small-col" class="form-control" id="small_col_cc">
+										{% for i in 1..12 %}
+											<option value="{{ i }}" {% if i==6 %} {{ "selected" }} {% endif %}>
+												{{ i }} {% if i==1 %} {{ text_col }} {% else %} {{ text_cols }} {% endif %}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="extra_col_cc" class="control-label col-sm-6">{{ text_extra_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="extra-col" class="form-control" id="extra_col_cc">
+										{% for i in 1..12 %}
+											<option value="{{ i }}" {% if i==12 %} {{ "selected" }} {% endif %}>
+												{{ i }} {% if i==1 %} {{ text_col }} {% else %} {{ text_cols }} {% endif %}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary submit-save pull-left"><i class="fas fa-save"></i> {{ text_save_all }}</button>
+				<button type="button" class="btn btn-success submit"><i class="fas fa-pencil-square-o"></i> {{ text_save_change }}</button>
+				<button type="button" class="btn btn-danger mcc-close" data-dismiss="modal"><i class="fas fa-times"></i> {{ text_close }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="style_row" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{{ text_row_style }}</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="tab-pane">
+						<ul class="nav nav-tabs" id="mcc_row_style">
+							<li>
+								<a href="#row_style" data-toggle="tab">
+									{{ entry_style }}
+								</a>
+							</li>
+							<li>
+								<a href="#row_advanced_style" data-toggle="tab">
+									{{ entry_advanced }}
+								</a>
+							</li>
+							<li class="row-parent">
+								<a href="#row_section_style" data-toggle="tab">
+									{{ text_row_section }}
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div class="tab-pane" id="row_style">
+							<input class="form-control" id="row_text_class_id" type="hidden" name="text_class_id" />
+							<div class="form-group">
+								<label for="row_text_class" class="control-label col-sm-4">{{ text_css_class }}:</label>
+								<div class="col-sm-8">
+									<input class="form-control" id="row_text_class" type="text" name="text_class" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="row_container_fluid" class="control-label col-sm-4">{{ text_row_container_fluid }}:</label>
+								<div class="col-sm-8">
+									<select name="row_container_fluid" class="form-control" id="row_container_fluid">
+										<option value="1">{{ text_yes }}</option>
+										<option value="0">{{ text_no }}</option>
+									</select>
+								</div>
+							</div>
+							<hr>
+							<h4 style="font-weight:bold">{{ text_text }}</h4>
+							<div class="form-group">
+								<label for="row_text_color" class="control-label col-sm-4">{{ text_color }}:</label>
+								<div class="col-sm-8">
+									<span class="row-text-color">
+									<span class="row-text-color-wheel"></span>
+									<input type="text" name="text_color" value="" id="row_text_color" class="row-text-color-value" />
+									</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="row_link_color" class="control-label col-sm-4">{{ link_color }}:</label>
+								<div class="col-sm-8">
+									<span class="row-link-color">
+									<span class="row-link-color-wheel"></span>
+									<input type="text" name="link_color" value="" id="row_link_color" class="row-link-color-value" />
+									</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="row_link_hover_color" class="control-label col-sm-4">{{ link_hover_color }}:</label>
+								<div class="col-sm-8">
+									<span class="row-link-hover-color">
+									<span class="row-link-hover-color-wheel"></span>
+									<input type="text" name="link_hover_color" value="" id="row_link_hover_color" class="row-link-hover-color-value" />
+									</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="row_heading_color" class="control-label col-sm-4">{{ heading_color }}:</label>
+								<div class="col-sm-8">
+									<span class="row-heading-color">
+									<span class="row-heading-color-wheel"></span>
+									<input type="text" name="heading_color" value="" id="row_heading_color" class="row-heading-color-value" />
+									</span>
+								</div>
+							</div>
+							<hr>
+							<h4 style="font-weight:bold">{{ text_background }}</h4>
+							<div class="form-group">
+								<label for="row_background_type" class="control-label col-sm-4">{{ text_background_type }}:</label>
+								<div class="col-sm-8">
+									<select name="background_type" class="form-control" id="row_background_type">
+										<option value="0">{{ text_background_none }}</option>
+										<option value="1">{{ text_background_color }}</option>
+										<option value="2">{{ text_background_photo }}</option>
+										<option value="3">{{ text_background_video }}</option>
+									</select>
+								</div>
+							</div>
+							<div class="row-background row-background-color" style="display:none">
+								<hr>
+								<h4 style="font-weight:bold">{{ text_background }} {{ text_background_color }}</h4>
+								<div class="form-group">
+									<label for="row_bg_color" class="control-label col-sm-4">{{ text_bg_color }}:</label>
+									<div class="col-sm-8">
+										<span class="row-bg-color">
+										<span class="row-bg-color-wheel"></span>
+										<input type="text" name="bg_color" value="" id="row_bg_color" class="row-bg-color-value" />
+										</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="row_bg_opacity" class="control-label col-sm-4">{{ text_bg_opacity }}:</label>
+									<div class="col-sm-8">
+										<input type="text" name="bg_opacity" id="bg_opacity" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="row-background row-background-photo" style="display:none">
+								<hr>
+								<h4 style="font-weight:bold">{{ text_background }} {{ text_background_photo }}</h4>
+								<div class="form-group">
+									<label class="control-label col-sm-4">{{ text_bg_image }}: </label>
+									<div class="col-sm-8">
+										<a href="" id="thumb-image{{ rand }}" data-toggle="image" class="img-thumbnail">
+											<img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" width="100" height="100"/>
+										</a>
+										<input class="form-control imageuploaded" type="hidden" data-base="{{ HTTP_CATALOG }}image/catalog/" name="bg_image" id="uploadimage{{ rand }}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-4">{{ text_bg_repeat }}: </label>
+									<div class="col-sm-8">
+										<select name="bg_repeat" class="form-control" id="bg_repeat">
+											<option value="no-repeat">{{ text_background_none }}</option>
+											<option value="repeat">{{ text_background_repeat }}</option>
+											<option value="repeat-x">{{ text_background_horizontal }}</option>
+											<option value="repeat-y">{{ text_background_vertical }}</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-4">{{ text_bg_position }}: </label>
+									<div class="col-sm-8">
+										<select name="bg_position" class="form-control" id="bg_position">
+											<option value="left top">{{ text_bg_position_left_top }}</option>
+											<option value="left center">{{ text_bg_position_left_center }}</option>
+											<option value="left bottom">{{ text_bg_position_left_bottom }}</option>
+											<option value="right top">{{ text_bg_position_right_top }}</option>
+											<option value="right center">{{ text_bg_position_right_center }}</option>
+											<option value="right bottom">{{ text_bg_position_right_bottom }}</option>
+											<option value="center top">{{ text_bg_position_center_top }}</option>
+											<option value="center center">{{ text_bg_position_center }}</option>
+											<option value="center bottom">{{ text_bg_position_center_bottom }}</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-4">{{ text_bg_attachment }}: </label>
+									<div class="col-sm-8">
+										<select name="bg_attachment" class="form-control" id="bg_attachment">
+											<option value="scroll">{{ text_background_attachment_scroll }}</option>
+											<option value="fixed">{{ text_background_attachment_fixed }}</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-4">{{ text_bg_scale }}: </label>
+									<div class="col-sm-8">
+										<select name="bg_scale" class="form-control" id="bg_scale">
+											<option value="">{{ text_background_none }}</option>
+											<option value="auto">{{ text_background_scale_auto }}</option>
+											<option value="contain">{{ text_background_scale_contain }}</option>
+											<option value="cover">{{ text_background_scale_cover }}</option>
+											<option value="initial">{{ text_background_scale_initial }}</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="row-background row-background-video" style="display:none">
+								<hr>
+								<h4 style="font-weight:bold">{{ text_background }} {{ text_background_video }}</h4>
+								<div class="form-group">
+									<label for="row_video_type" class="control-label col-sm-4">{{ text_video_type }}:</label>
+									<div class="col-sm-8">
+										<select name="video_type" class="form-control" id="row_video_type">
+											<option value="0">{{ text_video_youtube }}</option>
+											<option value="1">{{ text_video_webm }}</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="row_link_video" class="control-label col-sm-4">{{ text_link_video }}:</label>
+									<div class="col-sm-8">
+										<input class="form-control" id="row_link_video" type="text" name="link_video" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="row_advanced_style">
+							<hr>
+							<h4 style="font-weight:bold">{{ text_margin }}</h4>
+							<div class="form-group">
+								<label for="row_margin" class="control-label col-sm-4">{{ text_margin }}:</label>
+								<div class="col-sm-8">
+									<input class="form-control" id="row_margin" type="text" name="margin" placeholder="10px 10px 10px 10px" />
+								</div>
+							</div>
+							<hr>
+							<h4 style="font-weight:bold">{{ text_padding }}</h4>
+							<div class="form-group">
+								<label for="row_padding" class="control-label col-sm-4">{{ text_padding }}:</label>
+								<div class="col-sm-8">
+									<input class="form-control" id="row_padding" type="text" name="padding" placeholder="10px 10px 10px 10px" />
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="row_section_style">
+							<div class="form-group">
+								<label for="row_section" class="control-label col-sm-4">{{ text_row_section }}:</label>
+								<div class="col-sm-8">
+									<select name="row_section" class="form-control" id="row_section">
+										<option value="0">{{ text_no }}</option>
+										<option value="1">{{ text_yes }}</option>
+									</select>
+								</div>
+							</div>
+							<div class="row-section-id" style="display:none">
+								<div class="form-group">
+									<label for="row_section_id" class="control-label col-sm-4">{{ text_row_section_id }}:</label>
+									<div class="col-sm-8">
+										<input class="form-control" id="row_section_id" type="text" name="row_section_id" />
+									</div>
+								</div>
+							</div>
+							<div class="row-section-class" style="display:none">
+								<div class="form-group">
+									<label for="row_section_class" class="control-label col-sm-4">{{ text_row_section_class }}:</label>
+									<div class="col-sm-8">
+										<input class="form-control" id="row_section_class" type="text" name="row_section_class" />
+									</div>
+								</div>
+							</div>
+							<div class="row-section-style" style="display:none">
+								<hr>
+								<h4 style="font-weight:bold">{{ text_background }}</h4>
+								<div class="form-group">
+									<label for="section_background_type" class="control-label col-sm-4">{{ text_background_type }}:</label>
+									<div class="col-sm-8">
+										<select name="section_background_type" class="form-control" id="section_background_type">
+											<option value="0">{{ text_background_none }}</option>
+											<option value="1">{{ text_background_color }}</option>
+											<option value="2">{{ text_background_photo }}</option>
+											<option value="3">{{ text_background_video }}</option>
+										</select>
+									</div>
+								</div>
+								<div class="section-background section-background-color" style="display:none">
+									<hr>
+									<h4 style="font-weight:bold">{{ text_background_color }}</h4>
+									<div class="form-group">
+										<label for="section_bg_color" class="control-label col-sm-4">{{ text_bg_color }}:</label>
+										<div class="col-sm-8">
+											<span class="section-bg-color">
+											<span class="section-bg-color-wheel"></span>
+											<input type="text" name="section_bg_color" value="" id="section_bg_color" class="section-bg-color-value" />
+											</span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="section_bg_opacity" class="control-label col-sm-4">{{ text_bg_opacity }}:</label>
+										<div class="col-sm-8">
+											<input type="text" name="section_bg_opacity" id="section_bg_opacity" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="section-background section-background-photo" style="display:none">
+									<hr>
+									<h4 style="font-weight:bold">{{ text_background_photo }}</h4>
+									<div class="form-group">
+										<label class="control-label col-sm-4">{{ text_bg_image }}: </label>
+										<div class="col-sm-8">
+											<a href="" id="thumb-image-{{ rand }}" data-toggle="image" class="img-thumbnail">
+												<img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" width="100" height="100"/>
+											</a>
+											<input class="form-control imageuploaded" type="hidden" data-base="{{ HTTP_CATALOG }}image/catalog/" name="section_bg_image" id="uploadimage-{{ rand }}" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-4">{{ text_bg_repeat }}: </label>
+										<div class="col-sm-8">
+											<select name="section_bg_repeat" class="form-control" id="section_bg_repeat">
+												<option value="no-repeat">{{ text_background_none }}</option>
+												<option value="repeat">{{ text_background_repeat }}</option>
+												<option value="repeat-x">{{ text_background_horizontal }}</option>
+												<option value="repeat-y">{{ text_background_vertical }}</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-4">{{ text_bg_position }}: </label>
+										<div class="col-sm-8">
+											<select name="section_bg_position" class="form-control" id="section_bg_position">
+												<option value="left top">{{ text_bg_position_left_top }}</option>
+												<option value="left center">{{ text_bg_position_left_center }}</option>
+												<option value="left bottom">{{ text_bg_position_left_bottom }}</option>
+												<option value="right top">{{ text_bg_position_right_top }}</option>
+												<option value="right center">{{ text_bg_position_right_center }}</option>
+												<option value="right bottom">{{ text_bg_position_right_bottom }}</option>
+												<option value="center top">{{ text_bg_position_center_top }}</option>
+												<option value="center center">{{ text_bg_position_center }}</option>
+												<option value="center bottom">{{ text_bg_position_center_bottom }}</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-4">{{ text_bg_attachment }}: </label>
+										<div class="col-sm-8">
+											<select name="section_bg_attachment" class="form-control" id="section_bg_attachment">
+												<option value="scroll">{{ text_background_attachment_scroll }}</option>
+												<option value="fixed">{{ text_background_attachment_fixed }}</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-4">{{ text_bg_scale }}: </label>
+										<div class="col-sm-8">
+											<select name="section_bg_scale" class="form-control" id="section_bg_scale">
+												<option value="">{{ text_background_none }}</option>
+												<option value="auto">{{ text_background_scale_auto }}</option>
+												<option value="contain">{{ text_background_scale_contain }}</option>
+												<option value="cover">{{ text_background_scale_cover }}</option>
+												<option value="initial">{{ text_background_scale_initial }}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="section-background section-background-video" style="display:none">
+									<hr>
+									<h4 style="font-weight:bold">{{ text_background }} {{ text_background_video }}</h4>
+									<div class="form-group">
+										<label for="section_video_type" class="control-label col-sm-4">{{ text_video_type }}:</label>
+										<div class="col-sm-8">
+											<select name="section_video_type" class="form-control" id="section_video_type">
+												<option value="0">{{ text_video_youtube }}</option>
+												<option value="1">{{ text_video_webm }}</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="section_link_video" class="control-label col-sm-4">{{ text_link_video }}:</label>
+										<div class="col-sm-8">
+											<input class="form-control" id="section_link_video" type="text" name="section_link_video" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary submit-save pull-left"><i class="fas fa-save"></i> {{ text_save_all }}</button>
+				<button type="button" class="btn btn-success submit"><i class="fas fa-pencil-square-o"></i> {{ text_save_change }}</button>
+				<button type="button" class="btn btn-danger mcc-close" data-dismiss="modal"><i class="fas fa-times"></i> {{ text_close }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="style_col" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{{ text_col_style }}</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="tab-pane">
+						<ul class="nav nav-tabs" id="mcc_col_style">
+							<li>
+								<a href="#col_style" data-toggle="tab">
+									{{ entry_config }}
+								</a>
+							</li>
+							<li>
+								<a href="#col_advanced_style" data-toggle="tab">
+									{{ entry_advanced }}
+								</a>
+							</li>
+							<li>
+								<a href="#col_responsive_layout" data-toggle="tab">
+									{{ text_responsive_layout }}
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div class="tab-pane" id="col_style">
+							<input class="form-control" id="col_text_class_id" type="hidden" name="text_class_id" />
+							<div class="form-group">
+								<label for="col_text_class" class="control-label col-sm-4">{{ text_css_class }}:</label>
+								<div class="col-sm-8">
+									<input class="form-control" id="col_text_class" type="text" name="text_class" />
+								</div>
+							</div>
+							<hr>
+							<h4 style="font-weight:bold">{{ text_text }}</h4>
+							<div class="form-group">
+								<label for="col_text_color" class="control-label col-sm-4">{{ text_color }}:</label>
+								<div class="col-sm-8">
+									<span class="col-text-color">
+										<span class="col-text-color-wheel"></span>
+										<input type="text" name="text_color" value="" id="col_text_color" class="col-text-color-value" />
+									</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="col_link_color" class="control-label col-sm-4">{{ link_color }}:</label>
+								<div class="col-sm-8">
+									<span class="col-link-color">
+										<span class="col-link-color-wheel"></span>
+										<input type="text" name="link_color" value="" id="col_link_color" class="col-link-color-value" />
+									</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="col_link_hover_color" class="control-label col-sm-4">{{ link_hover_color }}:</label>
+								<div class="col-sm-8">
+									<span class="col-link-hover-color">
+										<span class="col-link-hover-color-wheel"></span>
+										<input type="text" name="link_hover_color" value="" id="col_link_hover_color" class="col-link-hover-color-value" />
+									</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="col_heading_color" class="control-label col-sm-4">{{ heading_color }}:</label>
+								<div class="col-sm-8">
+									<span class="col-heading-color">
+										<span class="col-heading-color-wheel"></span>
+										<input type="text" name="heading_color" value="" id="col_heading_color" class="col-heading-color-value" />
+									</span>
+								</div>
+							</div>
+							<hr>
+							<h4 style="font-weight:bold">{{ text_background }}</h4>
+							<div class="form-group">
+								<label for="col_background_type" class="control-label col-sm-4">{{ text_background_type }}:</label>
+								<div class="col-sm-8">
+									<select name="background_type" class="form-control" id="col_background_type">
+										<option value="0">{{ text_background_none }}</option>
+										<option value="1">{{ text_background_color }}</option>
+										<option value="2">{{ text_background_photo }}</option>
+										<option value="3">{{ text_background_video }}</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-background col-background-color" style="display:none">
+								<hr>
+								<h4 style="font-weight:bold">{{ text_background_color }}</h4>
+								<div class="form-group">
+									<label for="col_bg_color" class="control-label col-sm-4">{{ text_bg_color }}:</label>
+									<div class="col-sm-8">
+										<span class="col-bg-color">
+											<span class="col-bg-color-wheel"></span>
+											<input type="text" name="bg_color" value="" id="col_bg_color" class="col-bg-color-value" />
+										</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="row_bg_opacity" class="control-label col-sm-4">{{ text_bg_opacity }}:</label>
+									<div class="col-sm-8">
+										<input type="text" name="bg_opacity" id="bg_opacity" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="col-background col-background-photo" style="display:none">
+								<hr>
+								<h4 style="font-weight:bold">{{ text_background_photo }}</h4>
+								<div class="form-group">
+									<label class="control-label col-sm-4">{{ text_bg_image }}: </label>
+									<div class="col-sm-8">
+										<a href="" id="thumb-image{{ rand_col }}" data-toggle="image" class="img-thumbnail">
+											<img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" width="100" height="100"/>
+										</a>
+										<input class="form-control imageuploaded" type="hidden" data-base="{{ HTTP_CATALOG }}image/catalog/" name="bg_image" id="uploadimage{{ rand_col }}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-4">{{ text_bg_repeat }}: </label>
+									<div class="col-sm-8">
+										<select name="bg_repeat" class="form-control" id="bg_repeat">
+											<option value="no-repeat">{{ text_background_none }}</option>
+											<option value="repeat">{{ text_background_repeat }}</option>
+											<option value="repeat-x">{{ text_background_horizontal }}</option>
+											<option value="repeat-y">{{ text_background_vertical }}</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-4">{{ text_bg_position }}: </label>
+									<div class="col-sm-8">
+										<select name="bg_position" class="form-control" id="bg_position">
+											<option value="left top">{{ text_bg_position_left_top }}</option>
+											<option value="left center">{{ text_bg_position_left_center }}</option>
+											<option value="left bottom">{{ text_bg_position_left_bottom }}</option>
+											<option value="right top">{{ text_bg_position_right_top }}</option>
+											<option value="right center">{{ text_bg_position_right_center }}</option>
+											<option value="right bottom">{{ text_bg_position_right_bottom }}</option>
+											<option value="center top">{{ text_bg_position_center_top }}</option>
+											<option value="center center">{{ text_bg_position_center }}</option>
+											<option value="center bottom">{{ text_bg_position_center_bottom }}</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-4">{{ text_bg_attachment }}: </label>
+									<div class="col-sm-8">
+										<select name="bg_attachment" class="form-control" id="bg_attachment">
+											<option value="scroll">{{ text_background_attachment_scroll }}</option>
+											<option value="fixed">{{ text_background_attachment_fixed }}</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-4">{{ text_bg_scale }}: </label>
+									<div class="col-sm-8">
+										<select name="bg_scale" class="form-control" id="bg_scale">
+											<option value="">{{ text_background_none }}</option>
+											<option value="auto">{{ text_background_scale_auto }}</option>
+											<option value="contain">{{ text_background_scale_contain }}</option>
+											<option value="cover">{{ text_background_scale_cover }}</option>
+											<option value="initial">{{ text_background_scale_initial }}</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-background col-background-video" style="display:none">
+								<hr>
+								<h4 style="font-weight:bold">{{ text_background }} {{ text_background_video }}</h4>
+								<div class="form-group">
+									<label for="col_video_type" class="control-label col-sm-4">{{ text_video_type }}:</label>
+									<div class="col-sm-8">
+										<select name="col_video_type" class="form-control" id="col_video_type">
+											<option value="0">{{ text_video_youtube }}</option>
+											<option value="1">{{ text_video_webm }}</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="col_link_video" class="control-label col-sm-4">{{ text_link_video }}:</label>
+									<div class="col-sm-8">
+										<input class="form-control" id="col_link_video" type="text" name="col_link_video" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="col_advanced_style">
+							<hr>
+							<h4 style="font-weight:bold">{{ text_margin }}</h4>
+							<div class="form-group">
+								<label for="col_margin" class="control-label col-sm-4">{{ text_margin }}:</label>
+								<div class="col-sm-8">
+									<input class="form-control" id="col_margin" type="text" name="margin" placeholder="10px 10px 10px 10px" />
+								</div>
+							</div>
+							<hr>
+							<h4 style="font-weight:bold">{{ text_padding }}</h4>
+							<div class="form-group">
+								<label for="col_padding" class="control-label col-sm-4">{{ text_padding }}:</label>
+								<div class="col-sm-8">
+									<input class="form-control" id="col_padding" type="text" name="padding" placeholder="10px 10px 10px 10px" />
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="col_responsive_layout">
+							<div class="form-group">
+								<label for="large_col" class="control-label col-sm-6">{{ text_large_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="lg_col" class="form-control" id="large_col">
+										{% for i in 1..12 %}
+											<option value="{{ i }}">
+												{{ i }} {{ i==1 ? text_col : text_cols }}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="medium_col" class="control-label col-sm-6">{{ text_medium_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="md_col" class="form-control" id="medium_col">
+										{% for i in 1..12 %}
+											<option value="{{ i }}">
+												{{ i }} {{ i==1 ? text_col : text_cols }}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="small_col" class="control-label col-sm-6">{{ text_small_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="sm_col" class="form-control" id="small_col">
+										{% for i in 1..12 %}
+											<option value="{{ i }}">
+												{{ i }} {{ i==1 ? text_col : text_cols }}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="extra_col" class="control-label col-sm-6">{{ text_extra_col_ }}:</label>
+								<div class="col-sm-6">
+									<select name="xs_col" class="form-control" id="extra_col">
+										{% for i in 1..12 %}
+											<option value="{{ i }}">
+												{{ i }} {{ i==1 ? text_col : text_cols }}
+											</option>
+										{% endfor %}
+										<option value="15">
+											15 {{ text_cols }}
+										</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary submit-save pull-left"><i class="fas fa-save"></i> {{ text_save_all }}</button>
+				<button type="button" class="btn btn-success submit"><i class="fas fa-pencil-square-o"></i> {{ text_save_change }}</button>
+				<button type="button" class="btn btn-danger mcc-close" data-dismiss="modal"><i class="fas fa-times"></i> {{ text_close }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="config_module" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{{ text_add_module }}</h4>
+			</div>
+			<div class="modal-body">
+				<div id="listmods">
+					<div class="row">
+					{% set i = 0 %} 
+
+					{% for key, ext in extensions %}
+						<div class="col-sm-4 mod-widget">
+							<div class="mod-head">
+								{{ ext.name|striptags }}
+							</div>
+							<div class="mod-items">
+
+								{% for emod in ext.module %}
+								<div class="module-item mcc-page-widget" data-module="{{ emod.module }}" data-type="module" data-name="{{ emod.name }}">
+							
+									<div class="w-inner">
+										<div class="mcc-page-wicon"><i class="fas fa-university"></i></div>
+										<div class="widget-title">
+											<p>{{ emod.name }}</p>
+											<span class="widget-title-edit">{{ emod.code }}</span>
+										</div>
+									</div>
+									<div class="widget-tool">
+										<div data-icontitle="{{ text_java_sortModule }}" class="mcc-page-wsort mcc-page-icon-widget"><i class="fas fa-arrows-alt"></i></div>
+										<div data-iconTitle="{{ text_java_deleteModule }}" class="mcc-page-wdelete mcc-page-icon-widget"><i class="fas fa-minus-circle"></i></div>
+										<div data-icontitle="{{ text_java_editModule }}" class="mcc-page-wedit mcc-page-icon-widget" data-module="{{key}}" data-href="{{ ourl.link('extension/module/'~key,'module_id='~emod.id~'&user_token='~user_token, true) }}" >
+										<i class='fas fa-edit'> </i>
+										</div>
+										<div data-iconTitle="{{ text_java_copyModule }}" class="mcc-page-wcopy mcc-page-icon-widget"><i class="fas fa-copy"></i></div>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						{% set i = i + 1 %}
+					{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger mcc-close" data-dismiss="modal"><i class="fas fa-times"></i> {{ text_close }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="config_shortcode" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="header_shortcodes_plugin">
+					<div id="yt-generator-filter">
+						{% for group, label in groupsYT %}
+							<a href="javascript:;" data-filter="{{ group }}">{{ label }}</a>
+						{% endfor %}
+					</div>
+					<div id="yt-generator_box_search">
+						<input name="yt_generator_search" id="yt-generator-search" value="" placeholder="Search for shortcodes" type="text">
+					</div>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="wpo-widgetslist">
+					<div class="row yt-generator-choices">
+						<div class="col-lg-12">
+							{% set i = 0 %}
+							{% for name, shortcode in shortcoders %}
+							{% set i = i + 1 %}
+							{% if i%3 == 1 %}
+							<div class="row-shortcode">
+							{% endif %}
+								<div class="wapper-shortcode">
+									<div class="shortcode-item mcc-page-widget" data-group="{{ shortcode.group }}" data-name="{{ shortcode.name }}" data-shortcode="{{ name }}" data-desc="{{ shortcode.desc }}" data-type="shortcode">
+										<div class="widget-tool">
+											<div data-icontitle="{{ text_java_sortShortcode }}" class="mcc-page-wsort mcc-page-icon-widget"><i class="fas fa-arrows-alt"></i></div>
+											<div data-icontitle="{{ text_java_deleteShortcode }}" class="mcc-page-wdelete mcc-page-icon-widget"><i class="fas fa-minus-circle"></i></div>
+											<div data-icontitle="{{ text_java_editShortcode }}" class="mcc-page-wedit mcc-page-icon-widget"><i class="fas fa-edit"></i></div>
+											<div data-icontitle="{{ text_java_copyShortcode }}" class="mcc-page-wcopy mcc-page-icon-widget"><i class="fas fa-copy"></i></div>
+										</div>
+										<div class="w-inner">
+											<div class="mcc-page-wicon"><i class="fas fa-{{ shortcode.icon }}"></i></div>
+											<div class="widget-title">
+												<p class="widget-title-shortcode"></p>
+												<span class="widget-title-edit">{{ shortcode.name }}</span>
+												
+												
+											</div>
+										</div>
+										<textarea name="content_shortcode" class="hidden-content-shortcode hide"></textarea>
+									</div>
+								</div>
+
+							{% if i%3 == 0 or i == shortcoders|length %}
+							</div>
+							{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="wpo-widgetform"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info pull-left yt-generator-home"> {{ text_backtolist }}</button>
+				<button type="button" class="btn btn-primary submit-save pull-left"><i class="fas fa-save"></i> {{ text_save_all }}</button>
+				<button type="button" class="btn btn-success submit"><i class="fas fa-pencil-square-o"></i> {{ text_save_change }}</button>
+				<button type="button" class="btn btn-danger mcc-close" data-dismiss="modal"><i class="fas fa-times"></i> {{ text_close }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="edit_shortcode" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{{ text_edit_shortcode }}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="wpo-widgetform"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary submit-save pull-left"><i class="fas fa-save"></i> {{ text_save_all }}</button>
+				<button type="button" class="btn btn-success submit"><i class="fas fa-pencil-square-o"></i> {{ text_save_change }}</button>
+				<button type="button" class="btn btn-danger mcc-close" data-dismiss="modal"><i class="fas fa-times"></i> {{ text_close }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="edit_module" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{{ text_edit_module }}</h4>
+			</div>
+			<div class="modal-body">
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger mcc-close" data-dismiss="modal"><i class="fas fa-times"></i> {{ text_close }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+<link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+<script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
+<script type="text/javascript">
+	$('#mcc_row_settings a:first,#mcc_row_style a:first,#mcc_col_settings a:first,#mcc_col_style a:first,#language a:first').tab('show');
+	/* Random string */
+	function randString(n) {
+		if (!n) {
+			n = 5;
+		}
+		var text = '';
+		var possible = 'abcdefghijklmnopqrstuvwxyz0123456789';
+		for (var i = 0; i < n; i++) {
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
+		}
+		return text;
+	}
+
+	/* Change background type Row */
+	$('#row_background_type').change(function() {
+		var row_background_type = $(this).val();
+		switch (row_background_type) {
+			case '0':
+				$('.row-background').hide();
+				break;
+			case '1':
+				$('.row-background').hide();
+				$('.row-background-color').show();
+				break;
+			case '2':
+				$('.row-background').hide();
+				$('.row-background-photo').show();
+				break;
+			case '3':
+				$('.row-background').hide();
+				$('.row-background-video').show();
+				break;
+		}
+	});
+
+	/* Change video type Row */
+	$('#row_video_type').change(function() {
+		var row_video_type = $(this).val();
+		switch (row_video_type) {
+			case '0':
+				$('#row_link_video').val("YE7VzlLtp-4");
+				break;
+			case '1':
+				$('#row_link_video').val("http://video.webmfiles.org/big-buck-bunny_trailer.webm");
+				break;
+		}
+	});
+
+	/* Show section Row */
+	$('#row_section').change(function() {
+		var row_section = $(this).val();
+		switch (row_section) {
+			case '0':
+				$('.row-section-id,.row-section-class,.row-section-style').hide();
+				break;
+			case '1':
+				$('.row-section-id,.row-section-class,.row-section-style').show();
+				break;
+		}
+	});
+	
+	/* Change background type Section */
+	$('#section_background_type').change(function() {
+		var row_background_type = $(this).val();
+		switch (row_background_type) {
+			case '0':
+				$('.section-background').hide();
+				break;
+			case '1':
+				$('.section-background').hide();
+				$('.section-background-color').show();
+				break;
+			case '2':
+				$('.section-background').hide();
+				$('.section-background-photo').show();
+				break;
+			case '3':
+				$('.section-background').hide();
+				$('.section-background-video').show();
+				break;
+		}
+	});
+	
+	/* Change video type Section */
+	$('#section_video_type').change(function() {
+		var section_video_type = $(this).val();
+		switch (section_video_type) {
+			case '0':
+				$('#section_link_video').val("YE7VzlLtp-4");
+				break;
+			case '1':
+				$('#section_link_video').val("http://video.webmfiles.org/big-buck-bunny_trailer.webm");
+				break;
+		}
+	});
+	
+	/* Change background type Col */
+	$('#col_background_type').change(function() {
+		var col_background_type = $(this).val();
+		switch (col_background_type) {
+			case '0':
+				$('.col-background').hide();
+				break;
+			case '1':
+				$('.col-background').hide();
+				$('.col-background-color').show();
+				break;
+			case '2':
+				$('.col-background').hide();
+				$('.col-background-photo').show();
+				break;
+			case '3':
+				$('.col-background').hide();
+				$('.col-background-video').show();
+				break;
+		}
+	});
+	
+	/* Change video type Col */
+	$('#col_video_type').change(function() {
+		var col_video_type = $(this).val();
+		switch (col_video_type) {
+			case '0':
+				$('#col_link_video').val("YE7VzlLtp-4");
+				break;
+			case '1':
+				$('#col_link_video').val("http://video.webmfiles.org/big-buck-bunny_trailer.webm");
+				break;
+		}
+	});
+	
+	/* Add new Image */
+	function addImage() {
+		var key_add_image = "";
+		$('.yt-generator-isp-add-media').click(function() {
+			key_add_image = randString(10);
+			$('#yt-generator-attr-image').append("<span><a href='' id='thumb-image" + key_add_image +
+				"' data-toggle='image' class='img-thumbnail'><img src='{{ placeholder }}' alt='' title='' data-placeholder='{{ placeholder }}' width='100' height='100' /></a><input class='form-control imageuploaded' type='hidden' data-base='{{ HTTP_CATALOG }}image/catalog/'  name='media_image{}' id='uploadimage" +
+				key_add_image + "' value='no_image.png'/><i class='fas fa-times'></i></span>");
+		});
+	}
+
+	var languagesDefault = "{{ languagesDefault }}";
+	var textDelete = "{{ text_java_textDelete }}";
+	var textDuplicate = "{{ text_java_textDuplicate }}";
+	var textPreview = "{{ text_java_textPreview }}";
+	var textCol = [];
+	textCol["col"] = "{{ text_java_col }}";
+	textCol["cols"] = "{{ text_java_cols }}";
+	textCol["sortCol"] = "{{ text_java_sortCol }}";
+	textCol["deleteCol"] = "{{ text_java_deleteCol }}";
+	textCol["editCol"] = "{{ text_java_editCol }}";
+	textCol["duplicateCol"] = "{{ text_java_duplicateCol }}";
+	textCol["addRow"] = "{{ text_java_addRow }}";
+	textCol["addModule"] = "{{ text_java_addModule }}";
+	textCol["addShortcode"] = "{{ text_java_addShortcode }}";
+	var textRow = [];
+	textRow["row"] = "{{ text_java_row }}";
+	textRow["sortRow"] = "{{ text_java_sortRow }}";
+	textRow["deleteRow"] = "{{ text_java_deleteRow }}";
+	textRow["editRow"] = "{{ text_java_editRow }}";
+	textRow["duplicateRow"] = "{{ text_java_duplicateRow }}";
+	textRow["addCol"] = "{{ text_java_addCol }}";
+	var textShortcode = [];
+	textShortcode["editShortcode"] = "{{ text_edit_shortcode }}";
+	$(".layout-builder-wrapper").each(function() {
+		$($(".layout-builder", this)).mcc_page_builder($(".hidden-content-layout").val());
+	});
+/* Accordion List Module */
+	$(document).ready(function(){
+		$(document).on('click',"#listmods .mod-head" , function(){
+			$(this).parent().find('.mod-items').slideToggle();
+		});
+	});
+/*Get data layout*/
+	function getData( container ){
+		var result = new Array();	
+		$( container ).children('.mcc-col-content').children('.inner-col').children(".mcc-page-row").each( function(){
+			_row = $(this);
+			var data = _row.data('rowData');
+			data.cols = new Array();
+			$(_row).children('.inner-row').children( '.mcc-page-col' ).each( function(){
+				var _col = $(this).data('colData');
+				_col.widgets = new Array();
+				$(this).children('.mcc-col-content').children('.inner-col').children('.mcc-page-content').children('.mcc-page-widget').each( function(){  
+					var wd = new Object();
+					wd.name = $(this).data('name');
+					wd.module = $(this).data('module');
+					wd.type = $(this).data('type');
+					if($(this).data('name') != 'module'){
+						wd.shortcode = $(this).data('shortcode');
+						wd.content = $(this).children('.hidden-content-shortcode').val();
+					}
+					_col.widgets.push( wd );
+				}); 
+				_col.rows = new Array();
+				if( $(this).children('.mcc-col-content').children('.inner-col').children( '.mcc-page-row' ).length > 0 ){
+					_col.rows = getData( this );
+				}
+				data.cols.push( _col );
+			} );
+			result.push( data ); 			
+		} );
+		
+		return result;	
+	}
+/*Submit form*/
+	function submitForm(){
+		$( "#form-featured" ).submit( function(){
+			$(".layout-builder-wrapper").each( function(){
+				var result = getData( $(this).find(".layout-builder") );
+				var data = JSON.stringify( result );  
+				$(".hidden-content-layout").html( data );
+			} );
+			return true; 
+		} );
+	}
+	submitForm();
+	
+/*Show Column*/
+	function showNumColumn(){
+		$(".button-enablegrid .hide-column" ).click();
+	}
+	showNumColumn();
+/* Alert Box Before Action */
+	function deleteModule(node) {
+		return confirm(textDelete);
+	}
+	function duplicateModule(node) {
+		return confirm(textDuplicate);
+	}
+	/*function previewModule(node) {
+		if(confirm(textPreview)){
+			var result = getData( $("#form-featured").find(".layout-builder") );
+			var data = JSON.stringify( result );  
+			var ajax_url = window.location.href;
+			$.ajax({
+				type: "POST",
+				url: ajax_url,
+				data: {
+					preview_page: 1,
+					data: data
+				},
+				beforeSend: function () {
+					$(".layout-builder-wrapper").addClass('yt-generator-loading');
+				},
+				success: function (data) {
+					console.log("111");
+				},
+				dataType: "json"
+			});
+		}
+	}	*/
+</script>
+
+{{ footer }}

@@ -1,0 +1,89 @@
+/**
+ * Farbtastic Color Picker 1.2
+ * © 2008 Steven Wittens
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+.farbtastic {
+  position: relative;
+  z-index: 1;
+}
+.farbtastic * {
+  position: absolute;
+  cursor: crosshair;
+}
+.farbtastic, .farbtastic .wheel {
+  width: 195px;
+  height: 195px;
+}
+.farbtastic .color, .farbtastic .overlay {
+  top: 47px;
+  left: 47px;
+  width: 101px;
+  height: 101px;
+}
+.farbtastic .wheel {
+  background: url(images/wheel.png) no-repeat;
+  width: 195px;
+  height: 195px;
+}
+.farbtastic .overlay {
+  background: url(images/mask.png) no-repeat;
+}
+.farbtastic .marker {
+  width: 17px;
+  height: 17px;
+  margin: -8px 0 0 -8px;
+  overflow: hidden; 
+  background: url(images/marker.png) no-repeat;
+}
+.row-text-color,.row-link-color,.row-link-hover-color,.row-heading-color,.row-bg-color,
+.col-text-color,.col-bg-color,.section-bg-color,
+.section-text-color{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
+.row-text-color input,.row-link-color input,.row-link-hover-color input,.row-heading-color input,.row-bg-color input,
+.col-text-color input,.col-link-color input,.col-link-hover-color input,.col-heading-color input,.col-bg-color input,
+.section-text-color input,.section-bg-color input{
+	border: 1px solid #CCCCCC;
+    height: auto;
+    margin: 0;
+    padding: 7px 10px;
+    width: 99%;
+    border-radius: 3px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    box-shadow: none;
+}
+.row-text-color-wheel,.row-link-color-wheel,.row-link-hover-color-wheel,.row-heading-color-wheel,.row-bg-color-wheel,
+.section-text-color-wheel,.section-bg-color-wheel,
+.col-text-color-wheel,.col-link-color-wheel,.col-link-hover-color-wheel,.col-heading-color-wheel,.col-bg-color-wheel {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 9999;
+	display: none;
+	border: 1px solid #aaa;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background: #fff;
+	-webkit-box-shadow: 0 2px 5px #ccc;
+	-moz-box-shadow: 0 2px 5px #ccc;
+	box-shadow: 0 2px 5px #ccc;
+}
