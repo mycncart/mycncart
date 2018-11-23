@@ -15,6 +15,11 @@ $_['text_content_top']    = '内容顶部';
 $_['text_content_bottom'] = '内容底部';
 $_['text_column_left']    = '左列';
 $_['text_column_right']   = '右列';
+$_['text_footer_top']     = '页脚顶部';
+$_['text_footer_left']    = '页脚左列';
+$_['text_footer_middle']  = '页脚中列';
+$_['text_footer_right']   = '页脚右列';
+$_['text_footer_bottom']  = '页脚底部';
 
 // Column
 $_['column_name']         = '布局排版名称';
