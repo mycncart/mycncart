@@ -1,0 +1,12 @@
+.yt-counter-wrapper.clearfix.yt-counter-none{	text-align:center;}
+.yt-counter-wrapper.clearfix.yt-counter-left{	text-align:left;}
+.yt-counter-wrapper.clearfix.yt-counter-right{	text-align:right;}
+.yt-counter-number { line-height: normal; color: #444444;}
+.yt-counter-text { line-height: normal; color: #666666;}
+.yt-counter-wrapper {padding: 15px 30px; margin-bottom: 10px}
+.yt-counter-icon i {color: #444444;}
+.yt-counter-icon{ margin:0 5px;}
+.yt-counter-desc,.yt-counter-icon,.yt-counter-number {   display:inline-block;}
+.yt-counter-right .yt-counter-number {	text-align: right;}
+.yt-counter-right .yt-counter-desc {    float: right;    text-align: right;    margin-right: 20px;}
+.yt-counter-right .yt-counter-icon {    float: right;    padding-top: 5px;}

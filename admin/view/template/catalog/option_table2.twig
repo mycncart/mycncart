@@ -1,0 +1,62 @@
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+	    <td class="text-left">组合名称</td>
+		<td class="text-left">图像</td>
+        <td class="text-left">销售价</td>
+        <td class="text-left">成本价</td>
+        <td class="text-left">库存</td>
+        <td class="text-left">SKU</td>
+		<td class="text-left">积分</td>
+		<td class="text-left">重量</td>
+		
+		<td class="text-left">操作</td>
+      </tr>
+    </thead>
+    <tbody>
+		   <tr>
+		    <td class="text-left"></td>
+			<td class="text-left"></td>
+            <td class="text-left"><input id="item_price" value="0" style="width:100px;"></td>
+            <td class="text-left"><input id="item_cost_price" value="0" style="width:100px;"></td>
+            <td class="text-left"><input id="item_quantity" value="0" style="width:100px;"></td>
+            <td class="text-left"><input id="item_sku" value="0" style="width:100px;"></td>
+			<td class="text-left"><input id="item_points" value="0" style="width:100px;"></td>
+            <td class="text-left"><input id="item_weight" value="0" style="width:100px;"></td>
+			
+			<td class="text-left"><button id="item_fill" type="button" class="btn btn-primary">批量填充</button></td>
+          </tr>
+		  
+      {% if items %}
+        {% for item in items %}
+          <tr>
+		        <td class="text-left">{{ item.title }} <input name="item[{{ item.number }}][title]" value="{{ item.title }}" type="hidden"><input name="item[{{ item.number }}][combination]" value="{{ item.number }}" type="hidden"></td>
+      			<td class="text-left">
+      				<div class="card">
+      				  <img src="{{ item.thumb }}" alt="" title="" id="thumb-image{{ item.number }}" data-placeholder="{{ placeholder }}" class="card-img-top"/> <input type="hidden" name="item[{{ item.number }}][image]" value="{{ item.image }}" id="input-image{{ item.number }}"/>
+      				  <div class="card-body">
+      					<button type="button" data-toggle="image" data-target="#input-image{{ item.number }}" data-thumb="#thumb-image{{ item.number }}" class="btn btn-primary btn-sm btn-block"><i class="fas fa-pencil-alt"></i> {{ button_edit }}</button>
+      					<button type="button" data-toggle="clear" data-target="#input-image{{ item.number }}" data-thumb="#thumb-image{{ item.number }}" class="btn btn-warning btn-sm btn-block"><i class="fas fa-trash-alt"></i> {{ button_clear }}</button>
+      				  </div>
+      				</div>
+      			</td>
+            <td class="text-left"><input name="item[{{ item.number }}][price]" value="{{ item.price }}" {% if item.status == "0" %}class="combination-readonly" readonly="readonly"{% endif %} style="width:80px;"></td>
+            <td class="text-left"><input name="item[{{ item.number }}][cost_price]" value="{{ item.cost_price }}" {% if item.status == "0" %}class="combination-readonly" readonly="readonly"{% endif %} style="width:80px;"></td>
+            <td class="text-left"><input name="item[{{ item.number }}][quantity]" value="{{ item.quantity }}" {% if item.status == "0" %}class="combination-readonly" readonly="readonly"{% endif %} style="width:80px;"></td>
+            <td class="text-left"><input name="item[{{ item.number }}][sku]" value="{{ item.sku }}" {% if item.status == "0" %}class="combination-readonly" readonly="readonly"{% endif %} style="width:80px;"></td>
+			     <td class="text-left"><input name="item[{{ item.number }}][points]" value="{{ item.points }}" {% if item.status == "0" %}class="combination-readonly" readonly="readonly"{% endif %} style="width:80px;"></td>
+            <td class="text-left"><input name="item[{{ item.number }}][weight]" value="{{ item.weight }}" {% if item.status == "0" %}class="combination-readonly" readonly="readonly"{% endif %} style="width:80px;"></td>
+			       
+			       <td class="text-left"><button type="button" class="btn btn-warning delete_item">{% if item.status == "0" %}有效{% else %}无效{% endif %}</button></td>
+             <input type="hidden" class="combination-status" name="item[{{ item.number }}][status]" value="{{ item.status }}">
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td class="text-center" colspan="9">{{ text_no_results }}</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>

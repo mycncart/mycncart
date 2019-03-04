@@ -1,0 +1,10 @@
+.yt-skills {
+  font-weight: bold;
+  color: #333;
+}
+.yt-skills .form-group {
+  margin-bottom: 25px;
+}
+.yt-skills .form-group strong {
+  text-transform: capitalize;
+}

@@ -1,0 +1,190 @@
+/**
+ * @version 2.5
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ * @copyright (c) 2012 YouTech Company. All Rights Reserved.
+ * @author YouTech Company http://www.smartaddons.com
+ *
+ */
+/* --Bootstrap Backend--*/
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#yt_shorcodes {
+  display: inline-block;
+  position: relative;
+  font-size: 12px;
+  vertical-align: text-top;
+  margin: 0 10px;
+  float: left;
+}
+#yt_shorcodes .button-shortcodes {
+	float:left;
+  display: inline-block;
+  padding: 0px 6px;
+  margin-bottom: 0;
+  font-size: 12px;
+  height: 25px;
+  line-height: 25px;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid #cccccc;
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  background-color: #6fa8c9;
+  background-image: -moz-linear-gradient(top, #76b1d3, #659ab9);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#76b1d3), to(#659ab9));
+  background-image: -webkit-linear-gradient(top, #76b1d3, #659ab9);
+  background-image: -o-linear-gradient(top, #76b1d3, #659ab9);
+  background-image: linear-gradient(to bottom, #76b1d3, #659ab9);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff76b1d3', endColorstr='#ff659ab9', GradientType=0);
+}
+#yt_shorcodes .button-shortcodes.btn-text {
+  float: left;
+  -webkit-border-radius: 0 4px 4px 0px;
+  -moz-border-radius: 0 4px 4px 0px;
+  border-radius: 0 4px 4px 0px;
+}
+#yt_shorcodes .button-shortcodes.btn-act {
+  margin-left: -1px;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+}
+#yt_shorcodes span.arrow {
+  display: inline-block;
+  border-bottom: 4px solid #000000;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  content: "";
+  margin-top: 10px;
+}
+#yt_shorcodes ul {
+  background: #FFF;
+  display: none;
+  position: absolute;
+  padding: 3px 0;
+  margin: 5px 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+#yt_shorcodes.open {
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+#yt_shorcodes.open ul {
+  left: 0;
+  bottom: 26px;
+  width: 540px;
+  display: block;
+  padding: 10px;
+  z-index: 11;
+}
+#yt_shorcodes.open ul li {
+  display: block;
+  padding: 0;
+  margin-bottom: 5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 25%;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  line-height: 18px;
+}
+#yt_shorcodes.open ul li  .fa{font-size:16px;min-width:14px;color:#3f81a7;}
+#yt_shorcodes.open ul li.allShortcode {
+  width: 100%;
+  margin: 10px 0;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#yt_shorcodes.open ul li.allShortcode > a {
+  margin: 0 1em;
+  color: white;
+  text-align: center;
+  border-radius: 3px;
+  padding: 8px;
+  font-size: 13px;
+  background: #3f81a7;
+}
+#yt_shorcodes.open ul li.allShortcode > a:hover {
+  background-color: #6fa8c9;
+}
+#yt_shorcodes.open ul li:hover {
+  background-color: #5792b4;
+  background-image: -moz-linear-gradient(top, #679dbc, #3f81a7);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#679dbc), to(#3f81a7));
+  background-image: -webkit-linear-gradient(top, #679dbc, #3f81a7);
+  background-image: -o-linear-gradient(top, #679dbc, #3f81a7);
+  background-image: linear-gradient(to bottom, #679dbc, #3f81a7);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff679dbc', endColorstr='#ff3f81a7', GradientType=0);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+#yt_shorcodes.open ul li:hover:before {
+  color: #fff;
+}
+#yt_shorcodes.open ul li:hover a {
+  text-decoration: none;
+  color: #fff;
+}
+#yt_shorcodes.open ul li:hover  .fa{
+	color: #fff;
+}
+#yt_shorcodes.open ul li a {
+  display: block;
+  color: #666;
+  line-height: normal;
+  padding: 5px;
+}
+.btn-toolbar {
+  width: 100%;
+}
+.yt_btn.button-primary{
+	background: #1a3867;
+	color:#fff;
+}
+.yt-generator-isp-source .yt_btn.button-primary:hover,.yt-generator-isp-source .yt_btn.button-primary:focus{
+	color:#ff0;
+}

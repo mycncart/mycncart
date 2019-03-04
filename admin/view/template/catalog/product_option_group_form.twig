@@ -1,0 +1,217 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="float-right">
+        <button type="submit" form="form-product-option-group" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fas fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-light"><i class="fas fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ol class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+          <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+	{% if error_warning %}
+      <div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> {{ error_warning }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    {% endif %}
+    <div class="card">
+      <div class="card-header"><i class="fas fa-pencil-alt"></i> {{ text_form }}</div>
+      <div class="card-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-product-option-group">
+          <fieldset>
+            <legend>{{ text_option }}</legend>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="input-product">{{ entry_product }}</label>
+              <div class="col-sm-10">
+                <input type="text" name="product" value="{{ product }}" placeholder="{{ entry_product }}" id="input-product" class="form-control"/> <input type="hidden" name="product_id" value="{{ product_id }}"/>
+              </div>
+            </div>
+            <div class="form-group row">
+			  <label class="col-sm-2 col-form-label" for="input-option-group">{{ entry_option_group }}</label>
+			  <div class="col-sm-10">
+				<select name="option_group_id" id="input-option-group" class="form-control">
+				  <option value="0">{{ text_select_option_group }}</option>
+				  {% for option_group in option_groups %}
+					{% if option_group.option_group_id == option_group_id %}
+					  <option value="{{ option_group.option_group_id }}" selected="selected">{{ option_group.name }}</option>
+					{% else %}
+					  <option value="{{ option_group.option_group_id }}">{{ option_group.name }}</option>
+					{% endif %}
+				  {% endfor %}
+				</select>
+				{% if error_option_group %}
+				  <div class="invalid-tooltip">{{ error_option_group }}</div>
+				{% endif %}
+			  </div>
+			</div>
+          </fieldset>
+          <fieldset>
+            <legend>{{ text_option_value }}</legend>
+            <div id="ajax-option-data">
+              <div id="ajax-option-table1"></div>
+			  <div id="ajax-option-table2"></div>
+              
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript"><!--
+//自动获取商品
+$('input[name=\'product\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['product_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'product\']').val(item['label']);
+		$('input[name=\'product_id\']').val(item['value']);
+	}
+});
+//--></script>
+
+<script type="text/javascript"><!--
+//获取被选择的选项值
+function getSelectedValues() {
+	var a = new Array();
+	var foo= $(".btn-success");
+	var i = 0;
+	$(foo).each(function() {
+		a[i] = this.dataset.option_value_id;
+		i++;
+	})
+	
+	return a;
+}
+//--></script>
+
+<script type="text/javascript"><!--
+//获取选项值组合表table2
+function getTable2(ogid, d='') {
+	$.ajax({
+		url: 'index.php?route=catalog/product_option_group/ajaxtable2&user_token={{ user_token }}&product_option_group_id={{ product_option_group_id }}&product_id={{ product_id }}&option_group_id=' + ogid + '&ova=' + d,
+		dataType: 'html',
+		success: function(html) {
+			//显示table2
+			$('#ajax-option-table2').html(html);
+			
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+	
+	
+};
+
+//--></script>
+
+<script type="text/javascript"><!--
+//商品模型变化时，触发table1和table2
+$('select[name=\'option_group_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=catalog/product_option_group/ajaxtable1&user_token={{ user_token }}&product_option_group_id={{ product_option_group_id }}&product_id={{ product_id }}&option_group_id=' + this.value,
+		dataType: 'html',
+		success: function(html) {
+			//显示table1
+			$('#ajax-option-table1').html(html);
+			var option_group_id = this.value;
+			var c = getSelectedValues();
+			getTable2(option_group_id, c);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+	
+	
+});
+
+$('select[name=\'option_group_id\']').trigger('change');
+
+
+//--></script>
+
+
+
+<script type="text/javascript"><!--
+//选项值有变化时改变选项值颜色，并获取选项值组合table2
+function change_value(ovid = '') {
+	if (ovid) {
+		if ($("#button_option_value_id_"+ovid).hasClass("btn-default")) {
+	    	$("#button_option_value_id_"+ovid).removeClass("btn-default").addClass('btn-success');
+		} else {
+			$("#button_option_value_id_"+ovid).removeClass("btn-success").addClass('btn-default');
+		}
+	}
+	
+	var selected_option_group_id = $("#input-option-group option:selected").val();
+	
+	var c = getSelectedValues();
+	
+	
+	getTable2(selected_option_group_id, c);
+	
+}
+//--></script>
+
+<script type="text/javascript"><!--
+//规格批量填充
+$(function () {
+	$(document).on("click", '#item_fill', function () {
+    	var item_price_fill = $("#item_price").val();
+        var item_cost_price_fill = $("#item_cost_price").val();
+		var item_quantity_fill = $("#item_quantity").val();
+        var item_points_fill = $("#item_points").val();
+        var item_weight_fill = $("#item_weight").val();
+        var item_sku_fill = $("#item_sku").val();
+        $("input[name$='[price]']").val(item_price_fill);
+        $("input[name$='[quantity]']").val(item_quantity_fill);
+        $("input[name$='[cost_price]']").val(item_cost_price_fill);
+        $("input[name$='[points]']").val(item_points_fill);
+        $("input[name$='[weight]']").val(item_weight_fill);
+		$("input[name$='[sku]']").val(item_sku_fill);
+           
+    })
+})
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).on("click", '.delete_item', function (e) {
+    if($(this).text() == '无效'){
+    	$(this).parent().parent().find('input').attr('readonly','readonly');
+    	$(this).parent().parent().find('.combination-status').attr("value",'0');
+    	$(this).parent().parent().find('input').addClass("combination-readonly");
+    	
+
+    	$(this).text('有效');
+    }else{
+        $(this).text('无效');
+        $(this).parent().parent().find('input').removeAttr('readonly');
+        $(this).parent().parent().find('.combination-status').attr("value",'1');
+        $(this).parent().parent().find('input').removeClass("combination-readonly");
+    }
+})
+//--></script>
+
+
+
+{{ footer }}

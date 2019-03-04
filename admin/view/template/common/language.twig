@@ -1,0 +1,16 @@
+ <li class="nav-item dropdown border-left">
+  <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">
+  {% for language in languages %}
+	  {% if language.code == code %}
+	  <img src="language/{{ language.code }}/{{ language.code }}.png" alt="{{ language.name }}" title="{{ language.name }}"> {{ language.name }}
+	  {% endif %}
+  {% endfor %}
+  <i class="fas fa-caret-down fa-fw"></i></a>
+  
+  <div class="dropdown-menu dropdown-menu-right">
+	  {% for language in languages %}
+	  <a href="{{ language.href }}" class="dropdown-item"><img src="language/{{ language.code }}/{{ language.code }}.png" alt="{{ language.name }}" title="{{ language.name }}"/> {{ language.name }}</a>
+	  {% endfor %}
+  </div>
+  
+</li>

@@ -1,0 +1,229 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+[class^="fa-"],
+.glyphicon,
+[class*=" fa-"] {
+  margin: 0 0 0 5px;
+}
+#yt_shorcodes.open ul li.item:before {
+  margin: 1px 5px 0 8px;
+  float: right;
+}
+ol.linenums {
+  margin: 0 33px 0 0;
+}
+ol.linenums li {
+  padding: 3px 12px 3px 0;
+}
+.prettyprint.linenums {
+  box-shadow: -40px 0 0 #FBFBFC inset, -41px 0 0 #ECECF0 inset;
+}
+.pull-left {
+  float: right;
+}
+.pull-right {
+  float: left;
+}
+ul.yt-accordion {
+  margin: 0;
+}
+ul.yt-accordion li.accordion-group h3.accordion-heading .icon-plus-sign {
+  text-align: left;
+  margin: 0 0 0 5px;
+}
+.yt-boxquote {
+  border-left: none;
+  border-right: 5px solid #eee;
+  padding: 0 15px 0 0;
+}
+.yt-boxquote.pull-right {
+  margin: 0 20px 0 0;
+}
+.yt-boxquote.pull-left {
+  margin: 0 0 0 20px;
+}
+.yt-list.type-disc li:before,
+.yt-list.type-circle li:before,
+.yt-list.type-check li:before,
+.yt-list.type-arrow li:before,
+.yt-list.type-star li:before {
+  margin: 0 0 0 10px;
+  display: inline-block;
+}
+.yt-list[class*="type-numblocks"] > li {
+  padding: 0 45px 0 0;
+}
+.yt-list[class*="type-numblocks"] > li:before {
+  float: right;
+  margin: 5px -45px 15px 10px;
+}
+.yt-list[class*="type-smallnumber"] > li {
+  padding: 0 30px 0 0;
+}
+.yt-list[class*="type-smallnumber"] > li:before {
+  float: right;
+  margin: 0 -30px 15px 10px;
+}
+.btn [class^="icon-"] {
+  margin: 0 0 0 5px;
+}
+.yt-dropcap {
+  float: right;
+  margin: -1px 0 0 5px;
+}
+.yt-dropcap.square {
+  margin: 5px 0 0 10px;
+}
+.yt-dropcap.round {
+  margin: 5px 0 0 10px;
+}
+.yt-gallery ul li {
+  float: right;
+}
+.pp_default .pp_content_container .pp_content .pp_details .pp_close {
+  right: auto;
+  left: 0;
+}
+.pp_default .pp_content_container .pp_content .pp_details .pp_description {
+  margin: 5px 0 5px 50px;
+}
+ul.thumbnails {
+  margin: 0;
+}
+.yt-lightbox.image-left {
+  float: right;
+  margin: 0 0 20px 20px;
+}
+.yt-lightbox.image-right {
+  float: left;
+  margin: 0 20px 20px 0;
+}
+div.yt-tabs ul.nav-tabs li {
+  float: right;
+}
+div.yt-tabs ul.nav-tabs li a {
+  margin: 0 0 0 5px;
+}
+div.yt-tabs.vertical {
+  margin: 0 120px 0 0;
+}
+div.yt-tabs.vertical ul.nav-tabs {
+  float: right;
+  margin: 0 -120px 0 0;
+}
+div.yt-tabs.vertical ul.nav-tabs li a.active {
+  background: #606060;
+  color: #fff;
+}
+div.yt-tabs.vertical ul.nav-tabs li a.active:before {
+  border-bottom: 16px solid transparent;
+  border-left: transparent;
+  border-right: 15px solid #606060;
+  border-top: 16px solid transparent;
+  right: auto;
+  left: -15px;
+}
+div.yt-tabs.vertical div.tab-content {
+  padding: 0 40px 0 0;
+}
+div.yt-tabs.vertical.style-green ul.nav-tabs li a:before {
+  border-right: 15px solid #85B24E;
+}
+div.yt-tabs.vertical.style-blue ul.nav-tabs li a:before {
+  border-right: 15px solid #61A5CA;
+}
+div.yt-tabs.vertical.style-red ul.nav-tabs li a:before {
+  border-right: 15px solid #E02C26;
+}
+div.yt-tabs.vertical.style-oranges ul.nav-tabs li a:before {
+  border-right: 15px solid #E2A738;
+}
+.yt-testimonial {
+  margin: 0 60px 0 0;
+}
+.yt-testimonial:before {
+  left: auto;
+  right: -60px;
+  content: "\f10e";
+}
+.yt-testimonial small i {
+  margin: 0 0 0 5px;
+}
+.yt-testimonial.tm-avatar:before,
+.yt-testimonial.tm-avatar:after {
+  left: auto;
+  right: 25px;
+  border-color: #CCCCCC #CCCCCC transparent transparent;
+}
+.yt-testimonial.tm-avatar:after {
+  right: 26px;
+  border-color: #FFFFFF #FFFFFF transparent transparent;
+}
+.yt-testimonial.tm-avatar .testimonial-avatar {
+  left: auto;
+  right: 0;
+}
+.yt-testimonial.tm-avatar .testimonial-avatar img {
+  float: right;
+  margin: 0 0 0 10px;
+}
+div.yt-divider .scroll-top i {
+  margin: 0 0 0 5px;
+}
+ul.yt-toggle-box li h3.toggle-box-head.active {
+  -webkit-border-radius: 0 0 0 4px;
+  -moz-border-radius: 0 0 0 4px;
+  border-radius: 0 0 0 4px;
+}
+ul.yt-toggle-box li h3.toggle-box-head span {
+  float: left;
+  border-left: none;
+  border-right: 1px solid #E2E2E2;
+  border-radius: 4px 0 0 0;
+}
+.highlighter.prettyprint[class*=" linenums:"] {
+  box-shadow: -37px 0 0 #DBE1E7 inset, -40px 0 0 #95A7B9 inset;
+}
+div.yt-youtube.pull-left,
+div.yt-vimeo.pull-left,
+div.yt-gmap.pull-left {
+  margin: 0 0 1em 1em;
+}
+div.yt-youtube.pull-right,
+div.yt-vimeo.pull-right,
+div.yt-gmap.pull-right {
+  margin: 0 1em 1em 0;
+}
+div.yt-slider-carousel .carousel-caption {
+  text-align: right;
+}
+div.yt-slider-carousel.pull-right {
+  margin: 0 30px 30px 0;
+}
+div.yt-slider-carousel.pull-left {
+  margin: 0 0 30px 30px;
+}

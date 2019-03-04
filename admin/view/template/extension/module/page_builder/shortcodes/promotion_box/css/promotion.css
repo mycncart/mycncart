@@ -1,0 +1,99 @@
+
+
+/* Call to action */
+.promotion {
+  padding: 20px 25px;
+  background: rgba(0, 0, 0, 0.2);
+  min-height: 63px;
+}
+
+.promotion .cta-dbtn {
+float: right;
+padding: 18px 30px;
+font-size: 18px;
+margin: 2px 0 0px 20px;
+text-decoration: none;
+}
+.promotion h3 {
+  font-size: 22px;
+  line-height: 32px;
+  margin: 0;
+}
+.promotion p {margin: 5px 0 10px 0;}
+
+.visible-phone {
+  display: none !important;
+}
+
+.promotion.cta-align-left {
+	text-align: left;
+}
+.promotion.cta-align-right {
+	text-align: right;
+}
+.promotion.cta-align-right a.cta-dbtn {
+	float: left;
+	margin-left: 0;
+	margin-right: 20px; 
+}
+.promotion.cta-align-center {
+	text-align: center;
+}
+.promotion.cta-align-center a.hidden-phone {
+	display: none;
+}
+.promotion.cta-align-center a.visible-phone {
+	float: none !important;
+	display: inline-block !important;
+	margin-top: 20px;
+	margin-left: 0;
+	min-width: 130px;
+	padding: 12px 30px;
+}
+
+.promotion.cta-align-center .cta-content > div {margin-top: 10px; max-height:32px;}
+.promotion .cta-content div {max-height:32px; overflow:hidden}
+@media (max-width: 767px) {
+	/* Call to action */
+	.promotion .cta-dbtn {
+		float: none !important;
+		margin-top: 18px;
+		margin-left: 0;
+		text-align: center;
+	}
+	.promotion .cta-content {
+		text-align: center;
+	}
+	.visible-phone {
+	    display: inherit !important;
+	}
+	.hidden-phone {
+		display: none !important;
+	}
+	.promotion.cta-align-center a.visible-phone {
+		display: block !important;
+	}
+}
+
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+	
+}
+
+
+@media only screen and (max-width: 480px) {
+
+	.promotion .cta-dbtn {
+		padding: 9px 7px;
+		margin-top: 18px;
+		margin-left: 0;
+		font-size: 17px;
+		text-align: center;
+	}
+	.promotion .cta-content {
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 340px) {
+	
+}
