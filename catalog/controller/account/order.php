@@ -150,6 +150,8 @@ class ControllerAccountOrder extends Controller {
 				$data['success'] = '';
 			}
 
+			$data['order_sn'] = $order_info['order_sn'];
+
 			if ($order_info['invoice_no']) {
 				$data['invoice_no'] = $order_info['invoice_prefix'] . $order_info['invoice_no'];
 			} else {

@@ -100,6 +100,7 @@ class ControllerCheckoutConfirm extends Controller {
 
 			$this->load->language('checkout/checkout');
 
+			$order_data['order_sn'] = date('YmdHis').rand(1000,9999);
 			$order_data['invoice_prefix'] = $this->config->get('config_invoice_prefix');
 			$order_data['store_id'] = $this->config->get('config_store_id');
 			$order_data['store_name'] = $this->config->get('config_name');
