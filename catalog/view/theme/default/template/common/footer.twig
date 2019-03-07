@@ -44,13 +44,26 @@
     </div>
     <hr>
     <p>{{ powered }}</p>
-    <!--
-OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
-Please donate via PayPal to donate@opencart.com
-//-->
+ <!--
+MyCnCart 是开源软件。 请保留底部的【技术支持 MyCnCart】。 MyCnCart商标由青岛万物一体网络科技有限公司拥有。 如需移除底部的MyCnCart商标，请购买高级版。
+//--> 
   </div>
 </footer>
 {% for script in scripts %}
   <script src="{{ script }}" type="text/javascript"></script>
 {% endfor %}
+<script><!--
+var dt1 = new Date();
+window.onbeforeunload = function(){
+
+  var dt2 = new Date();
+  var ms = dt2.getTime() - dt1.getTime();
+  $.ajax({
+    url: 'index.php?route=tool/census&product_id={{ product_id }}&dtime=' + ms + '&visit_token={{ visit_token }}',
+    dataType: 'json',
+  });
+}
+
+
+//--></script>
 </body></html>

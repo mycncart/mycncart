@@ -65,6 +65,39 @@ class ControllerCommonFooter extends Controller {
 			$this->model_tool_online->addOnline($ip, $this->customer->getId(), $url, $referer);
 		}
 
+		//Census visitors
+		$this->load->model('catalog/visitor');
+
+		$ip = getIp();
+
+		$visitor['ip'] = $ip;
+
+		$visitor['country'] = getLocation($ip);
+			
+		$visitor['browser'] = getBrowser($ip);
+
+		$visitor['referer'] = getFromPage();
+
+		$visitor['current_page'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
+
+		$visitor['visit_time'] = date("Y-m-d H:i:s");
+
+		$visitor['start_time'] = time();
+
+		if (isset($this->request->get['product_id'])) {
+			$visitor['product_id'] = $this->request->get['product_id'];
+		} else {
+			$visitor['product_id'] = 0;
+		}
+			
+		$visitor['visit_token'] = token(32);
+
+		$data['visit_token'] = $visitor['visit_token'];
+
+		$visitor['store_id'] = $this->config->get('config_store_id');
+
+		$this->model_catalog_visitor->addVisitor($visitor);
+
 		$data['scripts'] = $this->document->getScripts('footer');
 
 		return $this->load->view('common/footer', $data);

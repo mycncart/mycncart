@@ -1,0 +1,158 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="float-right">
+        <button type="button" data-toggle="tooltip" title="{{ button_filter }}" onclick="$('#filter-visitor').toggleClass('d-none');" class="btn btn-light d-md-none"><i class="fas fa-filter"></i></button>
+        <a href="{{ refresh }}" data-toggle="tooltip" title="{{ button_refresh }}" class="btn btn-light"><i class="fas fa-sync"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ol class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+          <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    
+    <div class="card">
+      <div class="card-header"><i class="fas fa-list"></i> {{ text_filter }}</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3 col-sm-12 order-md-9 d-none d-md-block mb-3">
+            <div class="form-group">
+              <label class="control-label" for="input-ip">{{ entry_ip }}</label>
+              <input type="text" name="filter_ip" value="{{ filter_ip }}" id="input-ip" placeholder="{{ entry_ip }}" i class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12 order-md-9 d-none d-md-block mb-3">
+            <div class="form-group">
+              <label class="control-label" for="input-product-id">{{ entry_product_id }}</label>
+              <input type="text" name="filter_product_id" value="{{ filter_product_id }}" id="input-product-id" placeholder="{{ entry_product_id }}" i class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12 order-md-9 d-none d-md-block mb-3">
+            <div class="form-group">
+              <label class="control-label" for="input-store">{{ entry_store }}</label>
+              <select name="filter_store_id" id="input-store" class="form-control">
+                {% if store.store_id == '' %}
+                <option value="" selected="selected"></option>
+                {% endif %}
+                {% for store in stores %}
+                {% if store.store_id == filter_store_id %}
+                  {% if filter_store_id != '' %}
+                  <option value="{{ store.store_id }}" selected="selected">{{ store.name }}</option>
+                  {% else %}
+                  <option value="{{ store.store_id }}">{{ store.name }}</option>
+                  {% endif %}
+                {% else %}
+                <option value="{{ store.store_id }}">{{ store.name }}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12 order-md-9 d-none d-md-block mt-4">
+            <div class="form-group text-left">
+              <button type="button" id="button-filter" class="btn btn-light"><i class="fas fa-filter"></i> {{ button_filter }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+
+        <div class="card">
+          <div class="card-header"><i class="fas fa-list"></i> {{ text_list }}</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <td class="text-left">{{ column_id }}</td>
+                    <td class="text-left">{{ column_store }}</td>
+                    <td class="text-left">{{ column_visit_time }}</td>
+                    <td class="text-left">{{ column_referer }}</td>
+                    <td class="text-left">{{ column_current_page }}</td>
+                    <td class="text-left">{{ column_ip }}</td>
+                    <td class="text-left">{{ column_country }}</td>
+                    <td class="text-left">{{ column_product_id }}</td>
+                    <td class="text-left">{{ column_browser }}</td>
+                    <td class="text-left">{{ column_d_time }}</td>
+                    <td class="text-right">{{ column_action }}</td>
+                  </tr>
+                </thead>
+                <tbody>
+
+                 {% if visitors %}
+                {% for visitor in visitors %}
+                <tr>
+                  <td class="text-left">{{ visitor.visitor_id }}</td>
+                  <td class="text-left">{{ visitor.store }}</td>
+                  <td class="text-left">{{ visitor.visit_time }}</td>
+                  <td class="text-left">{{ visitor.referer }}</td>
+                  <td class="text-left">{{ visitor.current_page }}</td>
+                  <td class="text-left">{{ visitor.ip }}</td>
+                  <td class="text-left">{{ visitor.country }}</td>
+                  <td class="text-left">{{ visitor.product_id }}</td>
+                  <td class="text-left">{{ visitor.browser }}</td>
+                  <td class="text-left">{{ visitor.d_time }}</td>
+                 
+
+                  <td class="text-right">
+                    {% if visitor.block_status %}
+                    <a href="{{ visitor.cancel }}" class="btn btn-danger">{{ text_cancel_block }}</a>
+                    {% else %}
+                    <a href="{{ visitor.block }}" class="btn btn-primary">{{ text_block }}</a>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                  <td class="text-center" colspan="11">{{ text_no_results }}</td>
+                </tr>
+                {% endif %}
+                </tbody>
+
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 text-left">{{ pagination }}</div>
+              <div class="col-sm-6 text-right">{{ results }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript"><!--
+$('#button-filter').on('click', function() {
+	var url = 'index.php?route=report/visitor&user_token={{ user_token }}';
+
+	var filter_product_id = $('input[name=\'filter_product_id\']').val();
+
+	if (filter_product_id) {
+		url += '&filter_product_id=' + encodeURIComponent(filter_product_id);
+	}
+
+	var filter_ip = $('input[name=\'filter_ip\']').val();
+
+	if (filter_ip) {
+		url += '&filter_ip=' + encodeURIComponent(filter_ip);
+	}
+
+  var filter_store_id = $('select[name=\'filter_store_id\']').val();
+
+  if (filter_store_id !== '') {
+    url += '&filter_store_id=' + encodeURIComponent(filter_store_id);
+  }
+
+	location = url;
+});
+//--></script> 
+
+</div>
+{{ footer }}
