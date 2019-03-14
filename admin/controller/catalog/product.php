@@ -711,18 +711,6 @@ class ControllerCatalogProduct extends Controller {
 			$data['price'] = '';
 		}
 
-		$this->load->model('catalog/recurring');
-
-		$data['recurrings'] = $this->model_catalog_recurring->getRecurrings();
-
-		if (isset($this->request->post['product_recurring'])) {
-			$data['product_recurrings'] = $this->request->post['product_recurring'];
-		} elseif (!empty($product_info)) {
-			$data['product_recurrings'] = $this->model_catalog_product->getRecurrings($product_info['product_id']);
-		} else {
-			$data['product_recurrings'] = array();
-		}
-
 		$this->load->model('localisation/tax_class');
 
 		$data['tax_classes'] = $this->model_localisation_tax_class->getTaxClasses();
@@ -1039,6 +1027,40 @@ class ControllerCatalogProduct extends Controller {
 			);
 		}
 
+		$data['DIR_IMAGES'] = DIR_IMAGE;
+
+		if (isset($this->request->post['product_videos'])) {
+			$product_videos = $this->request->post['product_videos'];
+		} elseif (isset($this->request->get['product_id'])) {
+			$product_videos = $this->model_catalog_product->getProductVideos($this->request->get['product_id']);
+		} else {
+			$product_videos = array();
+		}
+
+		
+		$data['product_videos'] = array();
+	
+		foreach ($product_videos as $product_video) {
+		
+			if (is_file(DIR_IMAGE . $product_video['video_thumb'])) {
+				$image = $product_video['video_thumb'];
+				$thumb = $product_video['video_thumb'];
+			} else {
+				$image = '';
+				$thumb = 'no_image.png';
+			}
+			
+			$data['product_videos'][] = array(
+				'video_link' => $product_video['video_link'],
+				'vimeo_link' => $product_video['vimeo_link'],
+				'upload_file' => $product_video['upload_file'],
+				'video_type' => $product_video['video_type'],
+				'video_image' => $image,
+				'video_thumb' => $this->model_tool_image->resize($thumb, 100, 100),
+				'sort_order' => $product_video['sort_order']
+			);
+		}
+
 		// Downloads
 		$this->load->model('catalog/download');
 
@@ -1189,6 +1211,93 @@ class ControllerCatalogProduct extends Controller {
 		}
 
 		return !$this->error;
+	}
+
+	public function uploadVideo(){
+		$json = array();
+			 
+		// Check user has permission
+		if (!$this->user->hasPermission('modify', 'catalog/product')) {
+			$json['error'] = $this->language->get('error_permission');
+		}
+	
+		if (!$json) {
+			if (!empty($this->request->files['file']['name']) && is_file($this->request->files['file']['tmp_name'])) {
+				// Sanitize the filename
+				$filename = basename(html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8'));
+
+				// Validate the filename length
+				if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 128)) {
+					$json['error'] = $this->language->get('error_filename');
+				}
+
+				// Allowed file extension types
+				$allowed = array();
+
+				$extension_allowed = preg_replace('~\r?\n~', "\n", $this->config->get('config_file_ext_allowed'));
+
+				//$filetypes = explode("\n", $extension_allowed);
+									
+				$filetypes = array('mp4', 'webm', 'ogv', '3gp');
+				
+				foreach ($filetypes as $filetype) {
+					$allowed[] = trim($filetype);
+				}
+
+				if (!in_array(strtolower(substr(strrchr($filename, '.'), 1)), $allowed)) {
+					$json['error'] = $this->language->get('error_filetype');
+				}
+
+				// Allowed file mime types
+				$allowed = array();
+
+				$mime_allowed = preg_replace('~\r?\n~', "\n", $this->config->get('config_file_mime_allowed'));
+
+				//$filetypes = explode("\n", $mime_allowed);
+				$filetypes = array('video/mp4',  'video/webm', 'video/ogg',  'video/3gp');
+				foreach ($filetypes as $filetype) {
+					$allowed[] = trim($filetype);
+				}
+
+				if (!in_array($this->request->files['file']['type'], $allowed)) {
+					$json['error'] = $this->language->get('error_filetype');
+				}
+
+				// Check to see if any PHP files are trying to be uploaded
+				$content = file_get_contents($this->request->files['file']['tmp_name']);
+
+				if (preg_match('/\<\?php/i', $content)) {
+					$json['error'] = $this->language->get('error_filetype');
+				}
+
+				// Return any upload error
+				if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
+					$json['error'] = $this->language->get('error_upload_' . $this->request->files['file']['error']);
+				}
+			} else {
+				$json['error'] = $this->language->get('error_upload');
+			}
+		}		
+
+		if (!$json) {
+			$file = $filename;
+			
+			$dir_path = DIR_IMAGE . "videos/";
+
+			if(is_dir($dir_path) === false){
+				mkdir($dir_path, 0777, true);
+			}
+
+			move_uploaded_file($this->request->files['file']['tmp_name'], $dir_path . $file);
+
+			$json['filename'] = 'videos/' . $file;
+			$json['mask'] = $filename;
+
+			$json['success_upload'] = $this->language->get('text_upload');
+		}
+		
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));			 
 	}
 
 	public function autocomplete() {

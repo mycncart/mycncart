@@ -73,7 +73,16 @@ $_['entry_related']          = 'Related Products';
 $_['entry_tag']              = 'Product Tags';
 $_['entry_reward']           = 'Reward Points';
 $_['entry_layout']           = 'Layout Override';
-$_['entry_recurring']        = 'Recurring Profile';
+$_['entry_video']          	 = 'Video';
+$_['entry_youtube']        	 = 'Youtube Profile';
+$_['entry_youku']        	 = 'Youku Profile';
+$_['entry_tudou']        	 = 'Tudou Profile';
+$_['entry_tencent']        	 = 'Tencent Profile';
+$_['entry_vimeo']          	 = 'Vimeo Id';
+$_['entry_video_thumb']    	 = 'Video Thumb Image';	
+$_['entry_video_type']     	 = 'Video Type';
+$_['entry_video_link']     	 = 'Video Profile';
+$_['entry_upload']         	 = 'Upload Video';
 
 // Help
 $_['help_sku']               = 'Stock Keeping Unit';
@@ -100,3 +109,8 @@ $_['error_meta_title']       = 'Meta Title must be greater than 1 and less than 
 $_['error_model']            = 'Product Model must be greater than 1 and less than 64 characters!';
 $_['error_seo']              = 'SEO URL keyword required!';
 $_['error_keyword']          = 'SEO URL must be unique!';
+$_['error_upload']      	 = 'Upload required!';
+$_['error_filename']    	 = 'Filename must be between 3 and 128 characters!';
+$_['error_exists']      	 = 'File does not exist!';
+$_['error_mask']        	 = 'Mask must be between 3 and 128 characters!';
+$_['error_filetype']    	 = 'Invalid file type!, Please upload mp4, webm, ogv, 3gp.';

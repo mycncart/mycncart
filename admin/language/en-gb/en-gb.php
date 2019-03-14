@@ -27,13 +27,13 @@ $_['text_loading']                  = 'Loading...';
 $_['text_no_results']               = 'No results!';
 $_['text_confirm']                  = 'Are you sure?';
 $_['text_home']                     = 'Home';
+$_['text_loading']         			= 'Uploading....';
 
 // Button
 $_['button_add']                    = 'Add New';
 $_['button_delete']                 = 'Delete';
 $_['button_save']                   = 'Save';
 $_['button_cancel']                 = 'Cancel';
-$_['button_cancel_recurring']       = 'Cancel Recurring Payments';
 $_['button_continue']               = 'Continue';
 $_['button_clear']                  = 'Clear';
 $_['button_close']                  = 'Close';
@@ -62,7 +62,6 @@ $_['button_product_add']            = 'Add Product';
 $_['button_filter_add']             = 'Add Filter';
 $_['button_option_add']             = 'Add Option';
 $_['button_option_value_add']       = 'Add Option Value';
-$_['button_recurring_add']          = 'Add Recurring';
 $_['button_discount_add']           = 'Add Discount';
 $_['button_special_add']            = 'Add Special';
 $_['button_image_add']              = 'Add Image';
@@ -98,12 +97,12 @@ $_['button_currency']               = 'Refresh Currency Values';
 $_['button_apply']                  = 'Apply';
 $_['button_category_add']           = 'Add Category';
 $_['button_order']                  = 'View Order';
-$_['button_order_recurring']        = 'View Recurring Order';
 $_['button_buy']                    = 'Buy';
 $_['button_restore']                = 'Restore';
 $_['button_run']                    = 'Run Cron Job';
 $_['button_backup']                 = 'Backup';
 $_['button_developer']              = 'Developer Setting';
+$_['button_video_add']     			= 'Add Video';
 
 // Tab
 $_['tab_affiliate']                 = 'Affiliate';
@@ -141,10 +140,10 @@ $_['tab_sale']                      = 'Sales';
 $_['tab_marketing']                 = 'Marketing';
 $_['tab_online']                    = 'People Online';
 $_['tab_activity']                  = 'Recent Activity';
-$_['tab_recurring']                 = 'Recurring';
 $_['tab_report']                    = 'Report';
 $_['tab_action']                    = 'Action';
 $_['tab_google']                    = 'Google';
+$_['tab_video']            			= 'Video';
 
 // Error
 $_['error_exception']               = 'Error Code(%s): %s in %s on line %s';

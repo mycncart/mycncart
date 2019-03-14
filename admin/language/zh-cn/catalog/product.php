@@ -73,7 +73,16 @@ $_['entry_related']          = '相关商品';
 $_['entry_tag']          	 = '商品标签';
 $_['entry_reward']           = '奖励积分';
 $_['entry_layout']           = '布局排版覆盖';
-$_['entry_recurring']        = '分期付款';
+$_['entry_video']          	 = '视频';
+$_['entry_youtube']        	 = 'Youtube 视频';
+$_['entry_youku']        	 = '优酷视频';
+$_['entry_tudou']        	 = '土豆视频';
+$_['entry_tencent']        	 = '腾讯视频';
+$_['entry_vimeo']          	 = 'Vimeo Id';
+$_['entry_video_thumb']    	 = '视频缩略图';	
+$_['entry_video_type']     	 = '视频类型';
+$_['entry_video_link']     	 = '视频参数';
+$_['entry_upload']         	 = '上传视频';
 
 // Help
 $_['help_sku']               = 'Stock Keeping Unit';
@@ -100,3 +109,8 @@ $_['error_meta_title']       = 'Meta 标题必须介于1-255字符之间！';
 $_['error_model']            = '商品型号必须介于1-64字符之间！';
 $_['error_seo']              = 'SEO URL 关键词必填!';
 $_['error_keyword']          = '该 SEO URL 必须全站唯一！';
+$_['error_upload']      	 = '商城文件必填！';
+$_['error_filename']    	 = '文件名必须介于 3 到 128 字符之间！';
+$_['error_exists']      	 = '文件不存在！';
+$_['error_mask']        	 = '掩码必须介于 3 到 128 字符之间！';
+$_['error_filetype']    	 = '无效文件类型！允许的类型包含： mp4, webm, ogv, 3gp.';

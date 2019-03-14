@@ -33,7 +33,6 @@ $_['button_add']                    = '新增';
 $_['button_delete']                 = '删除';
 $_['button_save']                   = '保存';
 $_['button_cancel']                 = '取消';
-$_['button_cancel_recurring']       = '取消分期付款';
 $_['button_continue']               = '继续';
 $_['button_clear']                  = '清除';
 $_['button_close']                  = '关闭';
@@ -62,7 +61,6 @@ $_['button_product_add']            = '添加商品';
 $_['button_filter_add']             = '添加筛选';
 $_['button_option_add']             = '添加选项';
 $_['button_option_value_add']       = '添加选项值';
-$_['button_recurring_add']          = 'Add Recurring';
 $_['button_discount_add']           = '添加批发折扣价';
 $_['button_special_add']            = '添加特价优惠';
 $_['button_image_add']              = '添加图片';
@@ -98,12 +96,13 @@ $_['button_currency']               = '刷新货币值';
 $_['button_apply']                  = '使用';
 $_['button_category_add']           = '添加分类';
 $_['button_order']                  = '查看订单';
-$_['button_order_recurring']        = '查看分期付款订单';
 $_['button_buy']                    = '购买';
 $_['button_restore']                = '恢复';
 $_['button_run']                    = '运行定时任务';
 $_['button_backup']                 = '备份';
 $_['button_developer']              = '开发者参数';
+$_['button_video_add']     			= '添加视频';
+$_['text_loading']         			= '上传中......';
 
 // Tab
 $_['tab_affiliate']                 = '推广会员';
@@ -141,10 +140,10 @@ $_['tab_sale']                      = '销售';
 $_['tab_marketing']                 = '营销';
 $_['tab_online']                    = '在线会员';
 $_['tab_activity']                  = '最新活动';
-$_['tab_recurring']                 = '分期付款';
 $_['tab_report']                    = '报表';
 $_['tab_action']                    = '操作';
 $_['tab_google']                    = '谷歌';
+$_['tab_video']            			= '视频';
 
 // Error
 $_['error_exception']               = '错读代码(%s): %s in %s on line %s';
