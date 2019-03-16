@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
  */
 
@@ -21,20 +21,6 @@ CKEDITOR.editorConfig = function( config ) {
 	config.codemirror_theme = 'monokai';
 	config.toolbar = 'Custom';
 	config.smiley_columns = 8;
-
-	config.toolbar_Custom = [
-		['Source'],
-		['Maximize'],
-		['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
-		['NumberedList','BulletedList','-','Outdent','Indent'],
-		['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
-		['SpecialChar'],
-		['Smiley'],
-		'/',
-		['Undo','Redo'],
-		['Font','FontSize'],
-		['TextColor','BGColor'],
-		['Link','Unlink','Anchor'],
-		['Image','Table','HorizontalRule','MyCnCart']
-	];
+	
+	config.toolbar = 'Full'; 
 };
