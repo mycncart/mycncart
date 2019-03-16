@@ -17,9 +17,10 @@ CKEDITOR.editorConfig = function( config ) {
 	config.resize_enabled = false;
 	config.htmlEncodeOutput = false;
 	config.entities = false;
-	config.extraPlugins = 'mycncart,codemirror'; //
+	config.extraPlugins = 'mycncart,codemirror,smiley'; //
 	config.codemirror_theme = 'monokai';
 	config.toolbar = 'Custom';
+	config.smiley_columns = 8;
 
 	config.toolbar_Custom = [
 		['Source'],
@@ -28,6 +29,7 @@ CKEDITOR.editorConfig = function( config ) {
 		['NumberedList','BulletedList','-','Outdent','Indent'],
 		['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
 		['SpecialChar'],
+		['Smiley'],
 		'/',
 		['Undo','Redo'],
 		['Font','FontSize'],
