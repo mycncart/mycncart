@@ -20,7 +20,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraPlugins = 'mycncart,codemirror,smiley'; //
 	config.codemirror_theme = 'monokai';
 	config.toolbar = 'Custom';
-	config.smiley_columns = 8;
+	config.smiley_columns = 16;
 	
 	config.toolbar = 'Full'; 
 };

@@ -815,3 +815,13 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 .combination-readonly {
     background: #ccc;
 }
+
+/*modify for ckeditor*/
+.cke_dialog_ui_html {
+    max-height:350px !important;
+    overflow: auto;
+}
+
+.cke_dialog_contents_body {
+    min-width:600px !important;
+}
