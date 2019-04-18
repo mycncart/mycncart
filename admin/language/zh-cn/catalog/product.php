@@ -1,16 +1,18 @@
 <?php
 // Heading
-$_['heading_title']          = '商品';
+$_['heading_title']          		= '商品';
 
 // Text
-$_['text_success']           = '成功: 已经修改商品！';
-$_['text_list']              = '商品列表';
-$_['text_add']               = '添加商品';
-$_['text_edit']              = '编辑商品';
-$_['text_filter']            = '筛选';
-$_['text_default']           = '默认';
-$_['text_option']            = '选项';
-$_['text_keyword']           = '不要用空格，使用-链接 SEO URL 关键字，确保该关键词为全站唯一。';
+$_['text_success']           		= '成功: 已经修改商品！';
+$_['text_list']              		= '商品列表';
+$_['text_add']               		= '添加商品';
+$_['text_edit']              		= '编辑商品';
+$_['text_filter']            		= '筛选';
+$_['text_default']           		= '默认';
+$_['text_option']        	 		= '关联商品模型';
+$_['text_option_value']  			= '关联商品规格';
+$_['text_select_option_group']  	= '---选择商品模型---';
+$_['text_keyword']           		= '不要用空格，使用-链接 SEO URL 关键字，确保该关键词为全站唯一。';
 
 // Column
 $_['column_name']            = '商品名称';
@@ -83,6 +85,7 @@ $_['entry_video_thumb']    	 = '视频缩略图';
 $_['entry_video_type']     	 = '视频类型';
 $_['entry_video_link']     	 = '视频参数';
 $_['entry_upload']         	 = '上传视频';
+$_['entry_option_group']     = '商品模型';
 
 // Help
 $_['help_sku']               = 'Stock Keeping Unit';

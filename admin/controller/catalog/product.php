@@ -936,6 +936,20 @@ class ControllerCatalogProduct extends Controller {
 			}
 		}
 
+		//Options
+		if (isset($this->request->post['option_group_id'])) {
+			$data['option_group_id'] = $this->request->post['option_group_id'];
+		} elseif (!empty($product_info)) {
+			$data['option_group_id'] = $product_info['option_group_id'];
+		} else {
+			$data['option_group_id'] = 0;
+		}
+
+		$this->load->model('catalog/option_group');
+
+		$data['option_groups'] = $this->model_catalog_option_group->getOptionGroups();
+
+		//Specials
 		$this->load->model('customer/customer_group');
 
 		$data['customer_groups'] = $this->model_customer_customer_group->getCustomerGroups();
@@ -1386,5 +1400,262 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	public function ajaxtable1() {
+		$data['options'] = array();
+		$product_id = $this->request->get['product_id'];
+		//$product_option_group_id = $this->request->get['product_option_group_id'];
+		$option_group_id = $this->request->get['option_group_id'];
+
+		$this->load->model('catalog/option');
+		$this->load->model('catalog/product');
+
+		//新增
+		if ($option_group_id && (!$product_id)) {
+			$option_datas = $this->model_catalog_option->getOptionsByOptionGroup($option_group_id);
+
+			foreach ($option_datas as $option_data) {
+				//新增时将选项值设定为0-未选
+				$option_values = array();
+				$option_ones = $this->model_catalog_option->getOptionValues($option_data['option_id']);
+
+				foreach ($option_ones as $one) {
+					$option_values[] = array(
+						'option_value_id' => $one['option_value_id'],
+						'name'	=> $one['name'],
+						'choosen' => '0',
+					);
+				}
+
+				$data['options'][] = array(
+					'name'	=> $option_data['name'],
+					'option_id'	=> $option_data['option_id'],
+					'option_values'	=> $option_values,
+
+				);
+
+				echo $this->response->setOutput($this->load->view('catalog/option_table1', $data));
+			}
+		}
+
+		//编辑
+		if ($option_group_id && $product_id) {
+
+			$product_option_value_combinations = $this->model_catalog_product->getProductOptionValueCombinations($product_id);
+
+
+			//编辑时获取已经选定的商品选项值
+			$exist = array();
+			
+			foreach ($product_option_value_combinations as $combination) {
+				$value = explode('_', $combination['option_value_combination']);
+				$exist = array_merge($value, $exist);
+			}
+
+			$existing = array_unique($exist);
+
+			/*
+
+			$data['existing_value_ids'] = $existing;
+
+			$c = '';
+			foreach($existing as $a=>$b){
+				$c.= ", ".$b;
+			}
+
+			$data['existing_value_string'] = $c;
+			*/
+			//echo $c;exit;
+			
+
+			$option_datas = $this->model_catalog_option->getOptionsByOptionGroup($option_group_id);
+
+			foreach ($option_datas as $option_data) {
+				$option_values = array();
+				$option_ones = $this->model_catalog_option->getOptionValues($option_data['option_id']);
+
+				foreach ($option_ones as $one) {
+					$option_values[] = array(
+						'option_value_id' => $one['option_value_id'],
+						'name'	=> $one['name'],
+						'choosen' => in_array($one['option_value_id'], $existing) ? '1' : '0',
+					);
+				}
+
+
+				$data['options'][] = array(
+					'name'	=> $option_data['name'],
+					'option_id'	=> $option_data['option_id'],
+					'option_values'	=> $option_values,
+				);
+
+				echo $this->response->setOutput($this->load->view('catalog/option_table1', $data));
+			}
+
+		}
+
+		
+
+		
+	}
+
+	
+
+	public function ajaxtable2() {
+		$this->load->model('catalog/option');
+		$this->load->model('catalog/product');
+		$data['option_value_combinations'] = array();
+		$product_id = $this->request->get['product_id'];
+		//$product_option_group_id = $this->request->get['product_option_group_id'];
+		$option_group_id = $this->request->get['option_group_id'];
+		$option_values_selected = explode(',', $this->request->get['ova']);
+
+		$option_value_ids = array();
+		$option_ids = array();
+		if ($option_values_selected) {
+			foreach ($option_values_selected as $option_value_id) {
+				
+				$option_value_info = $this->model_catalog_option->getOptionValue($option_value_id);
+
+				if ($option_value_info) {
+					$option_info = $this->model_catalog_option->getOption($option_value_info['option_id']);
+					$option_value_ids[$option_value_info['option_id']][] = array(
+						'option_value_id' => $option_value_id,
+					);
+					
+					
+				}
+
+			}
+
+			//echo "<pre>";
+			//print_r($option_ids);
+			//echo "</pre>";
+			
+			$this->load->model('tool/image');
+			
+			$thumb = 'no_image.png';
+			
+			$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+			
+			
+			//获取选项值组合
+			$data['items'] = array();
+			$one = $this->combineDika($option_value_ids);
+
+			foreach ($one as $two) {
+				$four = '';
+				$five = '';
+				$i = count($two);
+				$j = 0;
+				foreach ($two as $three) {
+					
+					$option_value_info = $this->model_catalog_option->getOptionValue($three['option_value_id']);
+
+					if ($j < ($i - 1)) {
+						$four .= $three['option_value_id'].'_';
+						$five .= $option_value_info['name'].'-';
+						
+					} else {
+						$four .= $three['option_value_id'];
+						$five .= $option_value_info['name'];
+					}
+					
+					$j ++;
+					
+				}
+
+				$combine_info = $this->model_catalog_product->getInfoByCombination($product_id, $four);
+
+				if ($combine_info) {
+
+			
+
+					if ($combine_info['image']) {
+						$combine_thumb = $this->model_tool_image->resize(html_entity_decode($combine_info['image'], ENT_QUOTES, 'UTF-8'), 100, 100);
+					} else {
+						$combine_thumb = $this->model_tool_image->resize(html_entity_decode($thumb, ENT_QUOTES, 'UTF-8'), 100, 100);
+					}
+
+					$data['items'][] = array(
+						'number' => $four,
+						'title' => $five,
+						'image' => $combine_info['image'],
+						'thumb' => $combine_thumb,
+						'price' => $combine_info['price'],
+						'cost_price' => $combine_info['cost_price'],
+						'quantity' => $combine_info['quantity'],
+						'points' => $combine_info['points'],
+						'weight' => $combine_info['weight'],
+						'sku' => $combine_info['sku'],
+						'status' => $combine_info['status'],
+					);
+
+				} else {
+				
+					$data['items'][] = array(
+						'number' => $four,
+						'title' => $five,
+						'image' => '',
+						'thumb' => $this->model_tool_image->resize(html_entity_decode($thumb, ENT_QUOTES, 'UTF-8'), 100, 100),
+						'price' => '',
+						'cost_price' => '',
+						'quantity' => '',
+						'points' => '',
+						'weight' => '',
+						'sku' => '',
+						'status' => '1',
+					);
+				}
+			}
+			
+			/*
+			echo "<pre>";
+			print_r($data['items']);
+			echo "</pre>";
+			exit;
+			*/
+			
+			echo $this->response->setOutput($this->load->view('catalog/option_table2', $data));
+
+		} else {
+
+		}
+
+	}
+
+	public function combineDika() {
+		$receive_data = func_get_args();
+		$receive_data = current($receive_data);
+		$cnt = count($receive_data);
+		$result = array();
+		$arr1 = array_shift($receive_data);
+		
+		if ($arr1) {
+			foreach($arr1 as $key=>$item) {
+				$result[] = array($item);
+			}		
+
+			foreach($receive_data as $key=>$item) {                                
+				$result = $this->combineArray($result,$item);
+			}
+
+		}
+		return $result;
+	}
+
+	public function combineArray($arr1,$arr2) {		 
+		$result = array();
+		
+		foreach ($arr1 as $item1) {
+			foreach ($arr2 as $item2) {
+				$temp = $item1;
+				$temp[] = $item2;
+				$result[] = $temp;
+			}
+		}
+	
+		return $result;
 	}
 }

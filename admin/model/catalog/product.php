@@ -110,6 +110,16 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
+		if (isset($data['option_group_id'])) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET option_group_id = '" . (int)$data['option_group_id'] . "' WHERE product_id = '" . (int)$product_id . "'");
+
+			if (isset($data['item'])) {
+				foreach ($data['item'] as $item) {
+					$this->db->query("INSERT INTO `" . DB_PREFIX . "product_option_value` SET product_id = '" . (int)$product_id . "', option_value_combination = '" . $this->db->escape($item['combination']) . "', combination_name = '" . $this->db->escape($item['title']) . "', image = '" . $this->db->escape($item['image']) . "', quantity = '" . (int)$item['quantity'] . "', cost_price = '" . (float)$item['cost_price'] . "', price = '" . (float)$item['price'] . "', points = '" . (int)$item['points'] . "', weight = '" . (float)$item['weight'] . "', sku = '" . $this->db->escape($item['sku']) . "', status = '" . (int)$item['status'] . "'");
+				}
+			}
+		}
+
 		$this->cache->delete('product');
 
 		return $product_id;
@@ -247,6 +257,18 @@ class ModelCatalogProduct extends Model {
 		if (isset($data['product_layout'])) {
 			foreach ($data['product_layout'] as $store_id => $layout_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_layout SET product_id = '" . (int)$product_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
+			}
+		}
+
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "'");
+
+		if (isset($data['option_group_id'])) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET option_group_id = '" . (int)$data['option_group_id'] . "' WHERE product_id = '" . (int)$data['product_id'] . "'");
+
+			if (isset($data['item'])) {
+				foreach ($data['item'] as $item) {
+					$this->db->query("INSERT INTO `" . DB_PREFIX . "product_option_value` SET product_id = '" . (int)$product_id . "', option_value_combination = '" . $this->db->escape($item['combination']) . "', combination_name = '" . $this->db->escape($item['title']) . "', image = '" . $this->db->escape($item['image']) . "', quantity = '" . (int)$item['quantity'] . "', cost_price = '" . (float)$item['cost_price'] . "', price = '" . (float)$item['price'] . "', points = '" . (int)$item['points'] . "', weight = '" . (float)$item['weight'] . "', sku = '" . $this->db->escape($item['sku']) . "', status = '" . (int)$item['status'] . "'");
+				}
 			}
 		}
 
@@ -632,5 +654,18 @@ class ModelCatalogProduct extends Model {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_to_layout WHERE layout_id = '" . (int)$layout_id . "'");
 
 		return $query->row['total'];
+	}
+
+	public function getInfoByCombination($product_id, $option_value_combination) {
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "' AND option_value_combination = '" . $option_value_combination . "'");
+
+		return $query->row;
+	}
+
+	public function getProductOptionValueCombinations($product_id) {
+		$query = $this->db->query("SELECT product_option_value_id, option_value_combination FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "'");
+
+		return $query->rows;
 	}
 }

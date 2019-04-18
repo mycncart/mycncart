@@ -1,15 +1,17 @@
 <?php
 // Heading
-$_['heading_title']          = 'Products';
+$_['heading_title']          		= 'Products';
 
 // Text
-$_['text_success']           = 'Success: You have modified products!';
-$_['text_list']              = 'Product List';
-$_['text_add']               = 'Add Product';
-$_['text_edit']              = 'Edit Product';
-$_['text_filter']            = 'Filter';
-$_['text_default']           = 'Default';
-$_['text_option']            = 'Options';
+$_['text_success']           		= 'Success: You have modified products!';
+$_['text_list']              		= 'Product List';
+$_['text_add']               		= 'Add Product';
+$_['text_edit']             		= 'Edit Product';
+$_['text_filter']            		= 'Filter';
+$_['text_default']          		= 'Default';
+$_['text_option']            		= 'Options';
+$_['text_option_value']  			= 'Opton Values';
+$_['text_select_option_group']  	= '---Select Option Group---';
 $_['text_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the SEO URL is globally unique.';
 
 // Column
@@ -83,6 +85,7 @@ $_['entry_video_thumb']    	 = 'Video Thumb Image';
 $_['entry_video_type']     	 = 'Video Type';
 $_['entry_video_link']     	 = 'Video Profile';
 $_['entry_upload']         	 = 'Upload Video';
+$_['entry_option_group']     = 'Option Group';
 
 // Help
 $_['help_sku']               = 'Stock Keeping Unit';
