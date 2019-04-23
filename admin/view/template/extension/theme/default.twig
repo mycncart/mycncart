@@ -41,6 +41,21 @@
               </div>
             </div>
             <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="input-mobile-directory">{{ entry_mobile_directory }}</label>
+              <div class="col-sm-10">
+                <select name="theme_default_mobile_directory" id="input-mobile-directory" class="form-control">
+                  {% for directory in directories %}
+                    {% if directory == theme_default_mobile_directory %}
+                      <option value="{{ directory }}" selected="selected">{{ directory }}</option>
+                    {% else %}
+                      <option value="{{ directory }}">{{ directory }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <small class="form-text text-muted">{{ help_directory }}</small>
+              </div>
+            </div>
+            <div class="form-group row">
               <label class="col-sm-2 col-form-label" for="input-status">{{ entry_status }}</label>
               <div class="col-sm-10">
                 <select name="theme_default_status" id="input-status" class="form-control">

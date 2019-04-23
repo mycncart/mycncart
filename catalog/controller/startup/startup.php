@@ -225,6 +225,18 @@ class ControllerStartupStartup extends Controller {
 		// Encryption
 		$this->registry->set('encryption', new Encryption());
 
+		//Detect
+		$this->registry->set('detect', new Detect());
+
+
+		if (isset($this->session->data['device_mobile'])) {
+			
+		} elseif ($this->detect->isMobile() || $this->detect->isTablet()) {
+			$this->session->data['device_mobile'] = true;
+		} else {
+			$this->session->data['device_mobile'] = false;
+		}
+
 		/*
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "startup` WHERE ORDER BY store_id ASC");
 

@@ -11,7 +11,8 @@ $_['text_product']                     = '商品';
 $_['text_image']                       = '图像';
 
 // Entry
-$_['entry_directory']                  = '主题目录';
+$_['entry_directory']                  = 'PC 主题目录';
+$_['entry_mobile_directory']           = '移动端主题目录';
 $_['entry_status']                     = '状态';
 $_['entry_product_limit']              = '每页默认显示数量';
 $_['entry_product_description_length'] = '列表时商品描述字数';

@@ -9,7 +9,11 @@ class ControllerEventTheme extends Controller {
 
 		// If the default theme is selected we need to know which directory its pointing to
 		if ($this->config->get('config_theme') == 'default') {
-			$directory = $this->config->get('theme_default_directory');
+			if ($this->session->data['device_mobile']) {
+				$directory = $this->config->get('theme_default_mobile_directory');
+			} else {
+				$directory = $this->config->get('theme_default_directory');
+			}
 		} else {
 			$directory = $this->config->get('config_theme');
 		}

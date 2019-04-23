@@ -10,6 +10,7 @@ class ControllerExtensionThemeDefault extends Controller {
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+
 			$this->model_setting_setting->editSetting('theme_default', $this->request->post, $this->request->get['store_id']);
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -126,7 +127,15 @@ class ControllerExtensionThemeDefault extends Controller {
 			$data['theme_default_directory'] = $setting_info['theme_default_directory'];
 		} else {
 			$data['theme_default_directory'] = 'default';
-		}		
+		}
+
+		if (isset($this->request->post['theme_default_mobile_directory'])) {
+			$data['theme_default_mobile_directory'] = $this->request->post['theme_default_mobile_directory'];
+		} elseif (isset($setting_info['theme_default_mobile_directory'])) {
+			$data['theme_default_mobile_directory'] = $setting_info['theme_default_mobile_directory'];
+		} else {
+			$data['theme_default_mobile_directory'] = 'default';
+		}
 
 		$data['directories'] = array();
 
