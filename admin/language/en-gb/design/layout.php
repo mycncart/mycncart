@@ -9,12 +9,14 @@ $_['text_add']            = 'Add Layout';
 $_['text_edit']           = 'Edit Layout';
 $_['text_remove']         = 'Remove';
 $_['text_route']          = 'Choose the store and routes to be used with this layout';
-$_['text_module']         = 'Choose the position of the modules';
+$_['text_pc_module']      = 'Choose the position of the modules for PC';
+$_['text_mobile_module']  = 'Choose the position of the modules for Mobiles & Tablets';
 $_['text_default']        = 'Default';
 $_['text_content_top']    = 'Content Top';
 $_['text_content_bottom'] = 'Content Bottom';
 $_['text_column_left']    = 'Column Left';
 $_['text_column_right']   = 'Column Right';
+$_['text_mobile_content'] = 'Mobile Content';
 
 // Column
 $_['column_name']         = 'Layout Name';

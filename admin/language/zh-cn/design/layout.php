@@ -9,12 +9,14 @@ $_['text_add']            = '添加布局排版';
 $_['text_edit']           = '编辑布局排版';
 $_['text_remove']         = '移除';
 $_['text_route']          = '选择店铺和路由以便该布局使用';
-$_['text_module']         = '选择模组的位置';
+$_['text_pc_module']      = '选择PC电脑端模组的位置';
+$_['text_mobile_module']  = '选择移动端模组的位置';
 $_['text_default']        = '默认';
 $_['text_content_top']    = '内容顶部';
 $_['text_content_bottom'] = '内容底部';
 $_['text_column_left']    = '左列';
 $_['text_column_right']   = '右列';
+$_['text_mobile_content'] = '移动端';
 
 // Column
 $_['column_name']         = '布局排版名称';
