@@ -24,4 +24,4 @@ $_['text_telephone']    = '电话';
 $_['text_fax']          = '传真';
 $_['text_email']        = 'Email';
 $_['button_email']      = '使用 Email 联系我们';
-$_['text_pc_footer_hint'] 		= "PC电脑端底部区域";
+$_['text_mobile_footer_hint'] 		= "移动端底部区域";

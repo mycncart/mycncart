@@ -13,8 +13,8 @@ class ControllerCommonHome extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 		} else {
-			echo "Mobile Home";exit;
-			$data['mobile_content'] = $this->load->controller('common/mobile_content');
+			//echo "Mobile Home";exit;
+			//$data['mobile_content'] = $this->load->controller('common/mobile_content');
 			$data['mobile_footer'] = $this->load->controller('common/mobile_footer');
 			$data['mobile_header'] = $this->load->controller('common/mobile_header');
 		}

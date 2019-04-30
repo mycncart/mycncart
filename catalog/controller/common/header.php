@@ -30,6 +30,9 @@ class ControllerCommonHeader extends Controller {
 		$data['direction'] = $this->language->get('direction');
 
 		$data['name'] = $this->config->get('config_name');
+		$data['theme_default_directory'] = $this->config->get('theme_default_directory');
+
+		
 
 		if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
 			$data['logo'] = $this->config->get('config_url') . 'image/' . $this->config->get('config_logo');
@@ -39,6 +42,7 @@ class ControllerCommonHeader extends Controller {
 
 		$this->load->language('common/header');
 
+		
 		// Wishlist
 		if ($this->customer->isLogged()) {
 			$this->load->model('account/wishlist');
@@ -71,6 +75,7 @@ class ControllerCommonHeader extends Controller {
 		$data['search'] = $this->load->controller('common/search');
 		$data['cart'] = $this->load->controller('common/cart');
 		$data['menu'] = $this->load->controller('common/menu');
+		
 
 		return $this->load->view('common/header', $data);
 	}

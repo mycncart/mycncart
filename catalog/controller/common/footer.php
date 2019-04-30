@@ -3,6 +3,7 @@ class ControllerCommonFooter extends Controller {
 	public function index() {
 		$this->load->language('common/footer');
 
+		
 		$this->load->model('catalog/information');
 
 		$data['informations'] = array();
@@ -99,6 +100,7 @@ class ControllerCommonFooter extends Controller {
 		$this->model_catalog_visitor->addVisitor($visitor);
 
 		$data['scripts'] = $this->document->getScripts('footer');
+		
 
 		return $this->load->view('common/footer', $data);
 	}

@@ -24,4 +24,4 @@ $_['text_telephone']    = 'Telephone';
 $_['text_fax']          = 'Fax';
 $_['text_email']        = 'Email';
 $_['button_email']      = 'Contact us by email';
-$_['text_pc_footer_hint'] 		= "PC Footer Hints";
+$_['text_mobile_footer_hint'] 		= "Mobile Footer Hints";

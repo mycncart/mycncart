@@ -2,7 +2,7 @@
 class ControllerCommonMobileFooter extends Controller {
 	public function index() {
 		$this->load->language('common/mobile_footer');
-
+		
 		$this->load->model('catalog/information');
 
 		$data['informations'] = array();
@@ -99,6 +99,7 @@ class ControllerCommonMobileFooter extends Controller {
 		$this->model_catalog_visitor->addVisitor($visitor);
 
 		$data['scripts'] = $this->document->getScripts('mobile_footer');
+		
 
 		return $this->load->view('common/mobile_footer', $data);
 	}

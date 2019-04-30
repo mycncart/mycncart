@@ -39,6 +39,7 @@ class ControllerCommonMobileHeader extends Controller {
 
 		$this->load->language('common/mobile_header');
 
+		/*
 		// Wishlist
 		if ($this->customer->isLogged()) {
 			$this->load->model('account/wishlist');
@@ -71,6 +72,7 @@ class ControllerCommonMobileHeader extends Controller {
 		$data['search'] = $this->load->controller('common/search');
 		$data['cart'] = $this->load->controller('common/cart');
 		$data['menu'] = $this->load->controller('common/menu');
+		*/
 
 		return $this->load->view('common/mobile_header', $data);
 	}
