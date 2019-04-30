@@ -1207,6 +1207,20 @@ class Detect
         return false;
     }
 
+
+    /**
+     * Check if the device is not a tablet and is not mobile.
+     */
+    public function isPC()
+    {
+        
+        if ($this->isMobile() || $this->isTablet()) {
+            return false;
+        }
+
+        return true;
+    }
+
     /**
      * This method checks for a certain property in the
      * userAgent.
