@@ -84,7 +84,7 @@ div.required .col-form-label:before {
   background-color: #EEEEEE;
   border-bottom: 1px solid #e2e2e2;
   padding: 5px 0;
-  margin: 0 0 20px 0;
+  margin: 0px;
   min-height: 32px;
   font-family: "Microsoft YaHei",tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
 
@@ -136,15 +136,42 @@ div.required .col-form-label:before {
   color: #FF0036;
 }
 
+/*顶部下拉鼠标hover时自动打开*/
+#top .dropdown {
+  z-index: 9000;
+}
+
+#top .dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+#top .dropdown-menu{
+  margin-top: 0;
+}
+
+.pcheader {
+  margin-bottom: 0;
+  min-width: 990px;
+  background: #fff;
+  height: 130px;
+  margin-top: 0 !important;
+  width: auto !important;
+  position: relative;
+  z-index: 1000;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* logo */
 #logo {
   margin: 0 0 10px 0;
   img {
-    max-width: 200px;
+    max-width: 240px;
   }
 }
 
 /* search */
+/*
 #search {
   margin-bottom: 10px;
 
@@ -161,6 +188,13 @@ div.required .col-form-label:before {
     padding: 0.57rem 35px;
     text-shadow: 0 1px 0 #FFF;
   }
+}
+*/
+#search {
+    float: right;
+    width: 625px;
+    padding-top: 38px;
+    overflow: hidden;
 }
 
 /* cart */
@@ -1037,4 +1071,12 @@ footer {
   .card {
     margin-bottom: 20px;
   }
+}
+
+body, button, input, select, textarea {
+    font: 12px/1.5 tahoma,arial,"\5b8b\4f53";
+    font-weight: normal;
+    font-size: 12px;
+    font-family: tahoma, arial, "宋体";
+    -ms-overflow-style: scrollbar;
 }
