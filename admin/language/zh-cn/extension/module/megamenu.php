@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']       				= ' 主菜单管理器';
+$_['heading_title']       				= '主菜单管理器';
 
 //Text
 $_['text_extension']   					= '扩充功能';

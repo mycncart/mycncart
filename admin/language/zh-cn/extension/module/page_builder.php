@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']    					= 'MyCnCart 专业版 - 页面设计器';
+$_['heading_title']    					= '页面设计器';
 
 // Text
 $_['text_module']              	 		= '模组';
