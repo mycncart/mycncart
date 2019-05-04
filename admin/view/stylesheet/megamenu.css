@@ -21,11 +21,11 @@ td > i {
 	color:#FFF;*/
 }
 .quickdel{
-	background:url(../image/filemanager/edit-delete.png) no-repeat center center;
+	background:url(../image/megamenu/delete.png) no-repeat center center;
 	
 }
 .quickedit{
-	background:url(../image/filemanager/edit-rename.png) no-repeat center center;
+	background:url(../image/megamenu/config.png) no-repeat center center;
 }
 .quickedit, .quickdel{
 	float:right;
