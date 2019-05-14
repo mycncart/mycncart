@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="https://pages.kaola.com/" />
+<script> function delBaseTag() { var headElem = document.getElementsByTagName("head")[0]; var deleteNode = headElem && headElem.getElementsByTagName("base")[0]; deleteNode && headElem.removeChild(deleteNode); } window.__isPagesDomain = window.location.hostname.indexOf('pages.kaola.com') > -1; window.__isPagesDomain && delBaseTag();
+</script>
+<script defer="defer"> function removeBase() { !window.__isPagesDomain && setTimeout(delBaseTag, 1000); } if (window.addEventListener) { window.addEventListener('load', removeBase, false); } else if (window.attachEvent) { window.attachEvent('onload', removeBase); } else { window.onload = removeBase; }
+</script>
+<meta charset="utf-8"/> <title>网易考拉</title>
+<meta http-equiv="x-ua-compatible" content="IE=EDGE"/> <link rel="shortcut icon" href="//haitao.nos.netease.com/db986938-c9d1-4dbf-b8d1-8df63c977453.ico" />
+<link rel="preconnect" href="//pages.kaola.com"> <link rel="dns-prefetch" href="//pages.kl.126.net"> <link rel="dns-prefetch" href="//w.kl.126.net"> <link rel="dns-prefetch" href="//haitao.nos.netease.com"> <link rel="dns-prefetch" href="//haitao.nosdn1.127.net"> <link rel="dns-prefetch" href="//haitao.nosdn2.127.net"> <link rel="dns-prefetch" href="//haitao.nosdn3.127.net"> <link rel="dns-prefetch" href="//haitao.nosdn4.127.net"> <link rel="dns-prefetch" href="//haitao.nosdn5.127.net"> <link rel="preconnect" href="//ts.163.com"> <link rel="stylesheet" type="text/css" href="//pages.kl.126.net/css/??/base/vendor-92f62ae068.css,/base/heel-73e2c8811e.css,/base/vendor-pc-69e9c8d70a.css,/pages/pc/index-0c6ea8db81.css?_tv=201905132016403" />
+<link rel="stylesheet" type="text/css" href="//pages.kl.126.net/css/??/components/reg_60025_nav/pc/index-7e60a30a5a.css,/components/reg_60021_goods_floor/pc/index-89944c7203.css,/components/reg_60035_ec_rules/pc/index-b1d524963a.css,/components/reg_60023_hot_brand/pc/index-487ce5ad9c.css,/components/reg_60028_recommend/pc/index-d7f95e7c65.css,/components/reg_60027_modal/pc/index-4e36c883c3.css,/components/reg_60020_daily_new/pc/index-5d11cac176.css,/components/reg_60019_flashsale/pc/index-1064c6b7bb.css,/components/reg_60026_slider/pc/index-542023782a.css,/components/reg_60029_sidebar/pc/index-41e2b739c6.css,/components/reg_10001_img_hotarea/pc/index-2f4704f5c1.css?_tv=201905132016403" />
+<script>
+var _ej = function (e) { function n(e, n, r) { var s = e; "string" == typeof e && (s = { msg: e, url: n, line: r, ie8: 1 }), t.push(s, 1) } var t = { list: [], push: function (e, n, r) { t.list.push({ message: e, level: n, type: r }), t.onPush && t.onPush() } }; return e.attachEvent ? e.attachEvent("onerror", n) : e.addEventListener("error", n), t }(window);
+</script>
+<script>
+!function(p,r,i,f,c,a,s,u){ var n,t=!1,d=!1,o=!1,l=!1,y=function(e){(e.e||e.p||e.f&&-1<e.f.indexOf("capture")||e.f&&-1<e.f.indexOf("showReportDialog"))&&(o=!0,v(n)),y.data.push(e)};function m(n){if(!d){d=!0;var e,t=r.getElementsByTagName(i)[0],o=r.createElement(i);o.src=s,o.crossorigin="anonymous",o.addEventListener("load",function(){try{p[f]=g,p[c]=h;var e=p[a],o=e.init;e.init=function(e){var n=u;for(var t in e)Object.prototype.hasOwnProperty.call(e,t)&&(n[t]=e[t]);o(n)},function(e,n){try{e&&e();for(var t=y.data,o=!1,r=!1,i=0;i<t.length;i++)if(t[i].f){r=!0;var c=t[i];!1===o&&"init"!==c.f&&n.init(),o=!0,n[c.f].apply(n,c.a)}!1===r&&n.init();for(var a=p[f],i=0;i<t.length;i++)t[i].e?a.apply(p,t[i].e):t[i].p&&n.captureException(t[i].p)}catch(e){console.error(e)}}(n,e)}catch(e){console.error(e)}}),"Promise"in window?t.parentNode.insertBefore(o,t):((e=r.createElement(i)).src="https://w.kl.126.net/public/activity-wap/promise8.1.0.js",e.crossorigin="anonymous",e.async=!1,t.parentNode.insertBefore(e,t),setTimeout(function(){t.parentNode.insertBefore(o,t)},500))}}function v(e){o&&l&&m(e)}y.data=[],p[a]={onLoad:function(e){t?(o=!0,v(e)):n=e},forceLoad:function(){l=o=t=!0,setTimeout(function(){v(n)})},allowSdk:function(){l=!0,setTimeout(function(){v(n)})}},["init","addBreadcrumb","captureMessage","captureException","captureEvent","configureScope","withScope","showReportDialog"].forEach(function(e){p[a][e]=function(){y({f:e,a:arguments})}});var g=p[f];p[f]=function(e,n,t,o,r){y({e:[].slice.call(arguments)}),g&&g.apply(p,arguments)};var h=p[c];p[c]=function(e){y({p:e.reason}),h&&h.apply(p,arguments)}
+}(window,document,"script","onerror","onunhandledrejection","Sentry","https://w.kl.126.net/public/activity-wap/sentry4.3.4.js", { environment: 'onlinejd', release: 'onlinejd-e9053c2', dsn: 'https://a619b8e7bdd34521a4aca7e93f16c76e@sentry.kaola.com/54' }
+),Sentry.configureScope(function(e){var n,t=(n=RegExp("P_INFO[^;]+").exec(document.cookie),decodeURIComponent(n?n.toString().replace(/^[^=]+./,""):"").split("|")[0]||"unknown");e.setTag("cookie_account",t)});
+</script>
+<script type="text/javascript"> window.$KL_ERROR_MSG_FILTER = ["Script error","SecurityError","Network error","Microsoft Internet","Network request failed","内存不足","网络连接已中断","参数无效","存储不足，无法完成此操作","存储空间不足，无法完成此操作","内存资源不足，无法完成此操作","Out of memory","指定资源下载失败","文件或目录损坏且无法读取","fgjs","https://rev.da.netease.com/da.js","resource/link","KgWebMobileCall","registerQYNativeHandlers","UCShellJava.sdkEventFire","Non-Error exception captured with keys","Can't find variable: mraid","Can't find variable: cordova","Access is denied","operation was aborted","user denied permission","Assignment is forbidden for sandboxed iframes","vivoNewsDetailPage","api.passsharetext"];
+</script>
+<script src="https://w.kl.126.net/dist_rcommon/monitor/performance.1.1.5.js" crossorigin async></script>
+</head>
+<body style="background-color:#f0f0f0;"> <div class="m-topnotice m-topnotice-img" data-id="264" id="topnotice" data-closetype="0" style="background:#D22147;">
+<a href="https://pages.kaola.com/pages/activity/521.shtml?from=topBanner&zn=top" target="_blank" class="pic">
+<img class="opacity1" src="//haitao.nos.netease.com/online2019051339d2e.jpg" />
+</a>
+<img src="//haitao.nos.netease.com/online2019051339d2e.jpg" class="hide2"/>
+</div>
+<nav id="topNav">
+<div id="topNavWrap" class="clearfix">
+<div id="topNavLeft"></div>
+<div id="topNavLeft2" class="f-hkdn f-hkdnact">
+<a class="app" href="//app.kaola.com" rel="nofollow" data-param="from=topDownload&zn=top">
+手机考拉 <span class="m-notice">
+<img src="https://haitao.nos.netease.com/9c6b0d6c-4a71-4018-8fb6-46496f51caff.png" width="116px" height="116px">
+<strong class="txt">下载APP<br>领1000元新人礼包</strong>
+<span class="arrow">
+<span class="arr"></span>
+<span class="arr1"></span>
+</span>
+</span>
+</a>
+</div>
+<ul id="topNavRight">
+<li class="dropmenu greenhand" id="js-greenhand" data-isindex="1">
+<div class="mcDropMenuBox dropMenuBoxActive">
+<a class="toplevel topNavHolder nolink" href="javascript:void(0)" rel="nofollow"><i class="w-icon w-icon-speaker">&nbsp;</i>新人礼</a><span class="sep">|</span>
+<div class="mcDropMenu">
+<img alt="新人礼" id="js-greenhandimg"/>
+<p>新人礼已放入您的购物车，您只需结算和新人礼相同仓库的商品即可免费拿走它!</p>
+</div>
+</div>
+</li>
+<li class="f-hkdn f-hkdnact">
+<a href="javascript:;" class="toplevel newnav checkin" rel="nofollow">每日签到</a><span class="sep">|</span>
+</li>
+<li><a class="toplevel" href="//buy.kaola.com/personal/my_order_new.html" user="true" rel="nofollow" data-param="zn=top">我的订单</a><span class="sep">|</span></li>
+<li class="dropmenu personal" id="j-dropmenuPersonal">
+<div class="mcDropMenuBox">
+<a class="toplevel topNavHolder" href="//buy.kaola.com/personal/my_order_new.html" user="true" rel="nofollow" data-param="zn=top">个人中心<i class="arr"></i><em class="w-icon w-icon-14" style="display:none;" id="personalTips"></em></a><span class="sep f-hkdn f-hkdnact">|</span>
+<div class="mcDropMenu">
+<a href="//you.kaola.com/personal/my_coupon.html" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">我的优惠券<i class="w-icon w-icon-15" style="display:none;" id="couponTip"></i></span></a>
+<a href="//you.kaola.com/personal/my_redpacket.html" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">我的红包<i class="w-icon w-icon-15" style="display:none;" id="redpacketTip"></i></span></a>
+<a href="//user.kaola.com/personal/my_point/index.html" user="true" rel="nofollow" data-param="zn=top">
+<span class="cnt">我的考拉豆</span>
+</a>
+<span class="spliter"></span>
+<a href="//www.kaola.com/personal/account_management.html" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">帐号管理</span></a>
+<a href="//buy.kaola.com/personal/authentication.html" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">我的实名认证</span></a>
+<span class="spliter"></span>
+<a href="//user.kaola.com/personal/listfavorite.html" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">我收藏的商品</span></a>
+<a href="//user.kaola.com/personal/brands.html" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">我关注的品牌</span></a>
+<span class="spliter"></span>
+<a href="//afs.kaola.com/personal/service_records.html" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">售后管理<i class="w-icon w-icon-14" style="display:none;" id="aftersaleTip"></i></span></a>
+</div>
+</div>
+<div class="m-notice f-dn" id="j-newPartnerNotice">
+<p>进入<span class="red">”个人中心 - 合伙小队“</span><br/>了解更多返利详情！</p>
+<span class="arrow">
+<span class="arr"></span>
+<span class="arr1"></span>
+</span>
+<span class="iconfont close" title="关闭">&#xe61b;</span>
+</div>
+</li>
+<li class="dropmenu service f-hkdn f-hkdnact">
+<div class="mcDropMenuBox">
+<a class="toplevel topNavHolder nolink" href="javascript:void(0);" rel="nofollow">客户服务<i class="arr"></i></a><span class="sep">|</span>
+<div class="mcDropMenu">
+<a class="contact j-openService" rel="nofollow" data-category="联系客服" data-event="顶部通栏点击数" data-label=""><i class="w-icon w-icon-contact"></i>联系客服</a>
+<a class="help" href="//you.kaola.com/footer/index.html?key=footer_faq" rel="nofollow" data-param="zn=top"><i class="w-icon w-icon-help">&nbsp;</i>帮助中心</a>
+<a class="j-propertyProtection" href="//activity.kaola.com/propertyProtection.html" rel="nofollow" data-param="zn=top"><i class="act-icon-prp">&nbsp;</i>知识产权保护</a>
+<a class="rule" href="//activity.kaola.com/footer/ecLaw/index.html" rel="nofollow" data-param="zn=top"><i class="w-icon w-icon-rule">&nbsp;</i>规则中心</a>
+</div>
+</div>
+</li>
+<li class="dropmenu recharge f-hkdn f-hkdnact">
+<div class="mcDropMenuBox">
+<a class="toplevel topNavHolder nolink" href="javascript:void(0);" rel="nofollow">充值中心<i class="arr"></i></a><span class="sep">|</span>
+<div class="mcDropMenu">
+<a href="//buy.kaola.com/recharge/recharge_page.html" rel="nofollow" data-param="zn=top">话费流量</a>
+<a id="gameRecharge" href="//pages.kaola.com/pages/activity/gamesem.shtml" rel="nofollow" data-param="zn=top">游戏充值</a>
+<a href="//buy.kaola.com/recharge/recharge_page_appstore.html" rel="nofollow" data-param="zn=top">AppStore充值卡</a>
+</div>
+</div>
+</li>
+<li class="cinform f-hkdn f-hkdnact">
+<div class="mcDropMenuBox">
+<a class="toplevel topNavHolder nolink" href="javascript:void(0);" rel="nofollow">消费者权益<i class="arr"></i></a><span class="sep">|</span>
+<div class="mcDropMenu">
+<a id="customerInform" href="//you.kaola.com/footer/inform.html" rel="nofollow" data-param="zn=top">消费者告知书</a>
+<a href="//pages.kaola.com/pages/activity/d701af3cd2464b47bd5c4de6a671b3a5.shtml" rel="nofollow" data-param="zn=top">消费投诉公示</a>
+</div>
+</div>
+</li>
+<li class="dropmenu more f-hkdn f-hkdnact">
+<div class="mcDropMenuBox focuson">
+<a class="toplevel topNavHolder nolink" href="javascript:void(0);" rel="nofollow">更多<i class="arr"></i></a>
+<div class="mcDropMenu">
+<a id="addFavBtn" href="javascript:;" rel="nofollow">收藏本站</a>
+<a class="wb clearfix" href="http://weibo.com/u/5448480859" target="_blank" rel="nofollow">
+<span class="txt">新浪微博</span>
+<span class="m-notice m-notice-1">
+<img src="//haitao.nos.netease.com/48b72cfe-e953-4164-b0bd-b0cf7ba557d5.png" width="100px" height="100px"/>
+<span class="arrow">
+<span class="arr"></span>
+<span class="arr1"></span>
+</span>
+</span>
+</a>
+<a class="nolink clearfix" href="javascript:void(0);" rel="nofollow">
+<span class="txt">微信公众号</span>
+<span class="m-notice">
+<img src="//haitao.nos.netease.com/161cc13b-ec21-4083-9cc9-7b4b38c0a8d8.png" width="100px" height="100px"/>
+<span class="arrow">
+<span class="arr"></span>
+<span class="arr1"></span>
+</span>
+</span>
+</a>
+<a class="yixin nolink clearfix" href="javascript:void(0);" rel="nofollow">
+<span class="txt">易信公众号</span>
+<span class="m-notice m-notice-2">
+<img src="//haitao.nos.netease.com/3ce0a576-d672-45b6-96fa-f53267f1ee81.png" width="100px" height="100px"/>
+<span class="arrow">
+<span class="arr"></span>
+<span class="arr1"></span>
+</span>
+</span>
+</a>
+<a class="cooperation" href="//activity.kaola.com/merchants.html?type=en" rel="nofollow" data-param="zn=top">招商合作</a>
+<a class="richjob" href="https://hr.163.com" rel="nofollow" data-param="zn=top" target="_blank">考拉招聘</a>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+<script type="text/javascript">
+(function () {
+var insertJs = function(src, cb) {
+var s = document.createElement('script');
+s.type = 'text/javascript';
+s.async = 'async';
+s.src = src;
+document.body.appendChild(s);
+s.onload = function() {
+cb && cb();
+};
+};
+insertJs('https://afs.kaola.com/sdk/script/cs-script.js', function() {
+var _sdk = window.__kaolaCsScriptUrl__ || '';
+if(_sdk) {
+insertJs(_sdk);
+} else {
+console.log('获取考拉客服SDK失败');
+}
+});
+})();
+</script>
+<script type="text/javascript">
+document.domain = 'kaola.com';
+</script>
+<!--[if lte IE 8]>
+<script src="https://haitao.nos.netease.com/1c462c9b-0c09-4413-9e38-b7e4f8aa0362.js"></script>
+<![endif]-->
+<nav id="topTabPlaceHolder" class="f-dn"></nav>
+<header id="docHead" class="j-indexTopFixed">
+<div id="docHeadWrap">
+<a href="//www.kaola.com/" class="logokaola " title="网易考拉" data-param="zn=top" ></a>
+<div class="logo f-dn"><a class="logokaolalt " href="//www.kaola.com/" data-param="zn=top"></a></div>
+<div class="m-searchiptbox m-searchiptbox-1">
+<div id="topsearchbox">
+<div id="topsearch">
+<div class="wrap">
+<input id="topSearchInput" type="text" />
+</div>
+<span class='topsearchboxBackGround'>
+<span id="topSearchBtn" class=""></span>
+</span>
+<span class="w-icon w-icon-26"></span>
+</div>
+<div class="m-searchhint">
+<ul id="searchhintlist" style="display:none;"></ul>
+</div>
+</div>
+<ul id="suggestlist" class="m-suggestlist clearfix">
+<li>
+<a target="_blank" class="suggestitem"
+href="/search.html?zn=top&key=面膜" datakey="面膜"
+>面膜</a>
+</li>
+<li>
+<span class="sep">|</span><a target="_blank" class="suggestitem"
+href="/search.html?zn=top&key=口红" datakey="口红"
+>口红</a>
+</li>
+<li>
+<span class="sep">|</span><a target="_blank" class="suggestitem"
+href="/search.html?zn=top&key=减肥" datakey="减肥"
+>减肥</a>
+</li>
+<li>
+<span class="sep">|</span><a target="_blank" class="bold showcolor suggestitem"
+href="https://pages.kaola.com/pages/activity/jkbxmqf8pagerw.shtml?navindex=6&amp;zn=top&amp;zn=top&amp;searchRefer=suggestion&amp;referPosition=4"
+>全球工厂店</a>
+</li>
+<li>
+<span class="sep">|</span><a target="_blank" class="suggestitem"
+href="/search.html?zn=top&key=运动鞋" datakey="运动鞋"
+>运动鞋</a>
+</li>
+<li>
+<span class="sep">|</span><a target="_blank" class="suggestitem"
+href="/search.html?zn=top&key=项链" datakey="项链"
+>项链</a>
+</li>
+<li>
+<span class="sep">|</span><a target="_blank" class="suggestitem"
+href="/search.html?zn=top&key=女包" datakey="女包"
+>女包</a>
+</li>
+<li>
+<span class="sep">|</span><a target="_blank" class="suggestitem"
+href="/search.html?zn=top&key=电动牙刷" datakey="电动牙刷"
+>电动牙刷</a>
+</li>
+</ul>
+</div>
+<a target="_blank" href="//buy.kaola.com/cart.html" data-param="from=navigation&zn=top" rel="nofollow" class="m-shopcartnew f-hkdn m-shopcartnew-1">
+<i class="shop-cart-icon"></i><span class="wrap">购物车<b class="num" id="newcartnum" style="display:none">0</b></span>
+</a>
+</div>
+</header>
+<nav id="topTabBox">
+<div id="topTab" class="clearfix f-hkdn">
+<div id="topCats" class="navitm-cats ">
+<div class="toplevel">
+<div class="lineicon"><i></i><i></i><i></i></div><span>所有分类</span>
+</div>
+<ul class="catitmlst j-catmenu" data-lazyload=1>
+<li class="catli j-catli multi-icon-catli" style="height: 41.8181818182px;line-height:41.8181818182px;"
+data-index="0" data-effect="1"
+data-categoryId="1470"
+data-link="https://pages.kaola.com/pages/activity/pcmeizhuang.shtml?zn=top&zp=category-1">
+<img class="icon" src="//haitao.nos.netease.com/1cet9magj32_40_40.png?imageView&thumbnail=20x20&quality=100"><img class="icon iconhv" src="//haitao.nos.netease.com/1cet9me3j68_40_40.png?imageView&thumbnail=20x20&quality=100"><span class="t">美容彩妆</span><i class="iconfont arr">&#xe61f;</i><em class="vcenter"></em> <em class="seg"></em>
+</li>
+<li class="catli j-catli multi-icon-catli" style="height: 41.8181818182px;line-height:41.8181818182px;"
+data-index="1" data-effect="1"
+data-categoryId="2619"
+data-link="https://pages.kaola.com/pages/activity/2faed7715d5940dda0d5b678238bb55b.shtml?zn=top&zp=category-2">
+<img class="icon" src="//haitao.nos.netease.com/1cet9lmhg85_40_40.png?imageView&thumbnail=20x20&quality=100"><img class="icon iconhv" src="//haitao.nos.netease.com/1cet9ls7k45_40_40.png?imageView&thumbnail=20x20&quality=100"><span class="t">母婴儿童</span><i class="iconfont arr">&#xe61f;</i><em class="vcenter"></em> <em class="seg"></em>
+</li>
+<li class="catli j-catli multi-icon-catli" style="height: 41.8181818182px;line-height:41.8181818182px;"
+data-index="2" data-effect="1"
+data-categoryId="2883"
+data-link="https://pages.kaola.com/pages/activity/31fe9e01e47c4d109a695cc0ddd7fa76.shtml?zn=top&zp=category-3">
+<img class="icon" src="//haitao.nos.netease.com/1cet9no5t81_40_40.png?imageView&thumbnail=20x20&quality=100"><img class="icon iconhv" src="//haitao.nos.netease.com/1cet9nrmp35_40_40.png?imageView&thumbnail=20x20&quality=100"><span class="t">营养保健</span><i class="iconfont arr">&#xe61f;</i><em class="vcenter"></em> <em class="seg"></em>
+</li>
+<li class="catli j-catli multi-icon-catli" style="height: 41.8181818182px;line-height:41.8181818182px;"
+data-index="3" data-effect="1"
+data-categoryId="6781"
+data-link="https://pages.kaola.com/pages/activity/shumajiadian.shtml?zn=top&zp=category-4">
+<img class="icon" src="//haitao.nos.netease.com/1cet9ogop45_40_40.png?imageView&thumbnail=20x20&quality=100"><img class="icon iconhv" src="//haitao.nos.netease.com/1cet9ojpr14_40_40.png?imageView&thumbnail=20x20&quality=100"><span class="t">数码家电</span><i class="iconfont arr">&#xe61f;</i><em class="vcenter"></em> <em class="seg"></em>
+</li>
+<li class="catli j-catli multi-icon-catli" style="height: 41.8181818182px;line-height:41.8181818182px;"
+data-index="4" data-effect="1"
+data-categoryId="20491"
+data-link="https://pages.kaola.com/pages/activity/pcjiajugehu.shtml?zn=top&zp=category-5">
+<img class="icon" src="//haitao.nos.netease.com/1cet9n9g361_40_40.png?imageView&thumbnail=20x20&quality=100"><img class="icon iconhv" src="//haitao.nos.netease.com/1cet9ndou57_40_40.png?imageView&thumbnail=20x20&quality=100"><span class="t">个人洗护</span><i class="iconfont arr">&#xe61f;</i><em class="vcenter"></em> <em class="seg"></em>
+</li>
+<li class="catli j-catli multi-icon-catli" style="height: 41.8181818182px;line-height:41.8181818182px;"
+data-index="5" data-effect="1"
+data-categoryId="17588"
+data-link="https://pages.kaola.com/pages/activity/fushipindao.shtml?zn=top&zp=category-6">
+<img class="icon" src="//haitao.nos.netease.com/1cet9peo633_40_40.png?imageView&thumbnail=20x20&quality=100"><img class="icon iconhv" src="//haitao.nos.netease.com/1cet9pia154_40_40.png?imageView&thumbnail=20x20&quality=100"><span class="t">服饰鞋靴</span><i class="iconfont arr">&#xe61f;</i><em class="vcenter"></em> <em class="seg"></em>
+</li>
+<li class="catli j-catli multi-icon-catli" style="height: 41.8181818182px;line-height:41.8181818182px;"
+data-index="6" data-effect="1"
+data-categoryId="9693"
+data-link="https://pages.kaola.com/pages/activity/0eb8abf386e2408f823f1724367a5e53.shtml#top?zn=top&zp=category-7">
+<img class="icon" src="//haitao.nos.netease.com/1cet9p5fv45_40_40.png?imageView&thumbnail=20x20&quality=100"><img class="icon iconhv" src="//haitao.nos.netease.com/1cet9p8db3_40_40.png?imageView&thumbnail=20x20&quality=100"><span class="t">运动户外</span><i class="iconfont arr">&#xe61f;</i><em class="vcenter"></em> <em class="seg"></em>
+</li>
+<li class="catli j-catli multi-icon-catli" style="height: 41.8181818182px;line-height:41.8181818182px;"
+data-index="7" data-effect="1"
+data-categoryId="3667"
+data-link="https://pages.kaola.com/pages/activity/jj5glwp6pagesh.shtml?zn=top&zp=category-8">
+<img class="icon" src="//haitao.nos.netease.com/1cet9o36p76_40_40.png?imageView&thumbnail=20x20&quality=100"><img class="icon iconhv" src="//haitao.nos.netease.com/1cet9o6e796_40_40.png?imageView&thumbnail=20x20&quality=100"><span class="t">手表配饰</span><i class="iconfont arr">&#xe61f;</i><em class="vcenter"></em> <em class="seg"></em>
+</li>
+<li class="catli j-catli multi-icon-catli" style="height: 41.8181818182px;line-height:41.8181818182px;"
+data-index="8" data-effect="1"
+data-categoryId="2892"
+data-link="https://pages.kaola.com/pages/activity/3360481be95c45ed84e5c247cb295f42.shtml?zn=top&zp=category-9">
+<img class="icon" src="//haitao.nos.netease.com/1cet9mvrc65_40_40.png?imageView&thumbnail=20x20&quality=100"><img class="icon iconhv" src="//haitao.nos.netease.com/1cet9msvd91_40_40.png?imageView&thumbnail=20x20&quality=100"><span class="t">轻奢</span><i class="iconfont arr">&#xe61f;</i><em class="vcenter"></em> <em class="seg"></em>
+</li>
+<li class="catli j-catli multi-icon-catli" style="height: 41.8181818182px;line-height:41.8181818182px;"
+data-index="9" data-effect="1"
+data-categoryId="2722"
+data-link="https://pages.kaola.com/pages/activity/lifehome.shtml?zn=top&zp=category-10">
+<img class="icon" src="//haitao.nos.netease.com/1cvslvedr99_40_40.png?imageView&thumbnail=20x20&quality=100"><img class="icon iconhv" src="//haitao.nos.netease.com/1cvslvjhg58_40_40.png?imageView&thumbnail=20x20&quality=100"><span class="t">家居生活</span><i class="iconfont arr">&#xe61f;</i><em class="vcenter"></em> <em class="seg"></em>
+</li>
+<li class="catli j-catli multi-icon-catli" style="height: 41.8181818182px;line-height:41.8181818182px;"
+data-index="10" data-effect="1"
+data-categoryId="2885"
+data-link="https://pages.kaola.com/pages/activity/jgeiwniopagerv.shtml?zn=top&zp=category-11">
+<img class="icon" src="//haitao.nos.netease.com/1cet9or5050_40_40.png?imageView&thumbnail=20x20&quality=100"><img class="icon iconhv" src="//haitao.nos.netease.com/1cet9oun595_40_40.png?imageView&thumbnail=20x20&quality=100"><span class="t">环球美食</span><i class="iconfont arr">&#xe61f;</i><em class="vcenter"></em>
+</li>
+</ul>
+</div>
+<ul id="funcTab" class="clearfix">
+<li class="navitm " data-effect="1">
+<a class="toplevel" href="//www.kaola.com" data-param="navindex=1&zn=top" target="_blank">
+首页
+</a>
+</li>
+<li class="navitm " data-effect="1">
+<a class="toplevel" href="https://activity.kaola.com/activity/flashSaleIndex/show.html" data-param="navindex=2&zn=top" target="_blank">
+今日限时购
+</a>
+</li>
+<li class="navitm " data-effect="1">
+<a class="toplevel" href="https://activity.kaola.com/activity/newArrival.html" data-param="navindex=3&zn=top" target="_blank">
+每日上新
+</a>
+</li>
+<li class="navitm " data-effect="1">
+<a class="toplevel" href="https://pages.kaola.com/pages/activity/Statt.shtml" data-param="navindex=4&zn=top" target="_blank">
+国家馆
+</a>
+</li>
+<li class="navitm " data-effect="1">
+<a class="toplevel" href="https://pages.kaola.com/pages/activity/overseasflagship.shtml" data-param="navindex=5&zn=top" target="_blank">
+海外旗舰店
+</a>
+</li>
+<li class="navitm " data-effect="1">
+<a class="toplevel" href="https://pages.kaola.com/pages/activity/jkbxmqf8pagerw.shtml" data-param="navindex=6&zn=top" target="_blank">
+工厂店
+</a>
+</li>
+<li class="navitm " data-effect="1">
+<a class="toplevel" href="https://pages.kaola.com/pages/activity/pinzhinaifen-pc.shtml" data-param="navindex=7&zn=top" target="_blank">
+品质奶粉
+</a>
+</li>
+<li class="navitm " data-effect="1">
+<a class="toplevel" href="https://pages.kaola.com/pages/activity/95bbf2f59ea34339baab9fb163df75f7.shtml" data-param="navindex=8&zn=top" target="_blank">
+人气面膜
+</a>
+</li>
+<li class="navitm " data-effect="1">
+<a class="toplevel" href="https://pages.kaola.com/pages/activity/d789154597fb4a92b54c2c7d6a046f50.shtml" data-param="navindex=9&zn=top" target="_blank">
+礼品卡
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="g-box pc-index-box" id="j-box"></div> <footer id="docFoot">
+<div class="footBgWrap">
+<div class="box">
+<div id="btmlist">
+<ul class="clearfix">
+<li>
+<div class="btmIcon">正</div>
+<strong class="tit">正品承诺</strong>
+<span class="desc">正品保障 假一赔十</span>
+</li>
+<li>
+<div class="btmIcon">低</div>
+<strong class="tit">低价保障</strong>
+<span class="desc">缩减中间环节 确保低价</span>
+</li>
+<li>
+<div class="btmIcon">退</div>
+<strong class="tit">30天无忧退货</strong>
+<span class="desc">国内退货 售后无忧</span>
+</li>
+<li class="last">
+<div class="btmIcon">邮</div>
+<strong class="tit">满88包邮</strong>
+<span class="desc">部分特殊商品除外</span>
+</li>
+</ul>
+</div>
+<div id="guideList">
+<ul class="clearfix">
+<li class="bd_none first">
+<a href="//www.kaola.com/" class="logokaola" title="网易考拉" data-param="zn=footer"></a>
+<div class="focuson">
+<span class="label">关注我们</span>
+<a class="itm" href="http://weibo.com/u/5448480859" target="_blank" rel="nofollow">
+<em class="w-icon follow-us-icon weibo-icon"></em>
+<span class="m-notice m-notice-1">
+<img src="//haitao.nos.netease.com/48b72cfe-e953-4164-b0bd-b0cf7ba557d5.png" width="100px" height="100px"/>
+<span class="arrow">
+<span class="arr"></span>
+<span class="arr1"></span>
+</span>
+</span>
+</a>
+<a class="itm nolink" href="javascript:void(0);" rel="nofollow">
+<em class="w-icon follow-us-icon weixin-icon"></em>
+<span class="m-notice">
+<img src="//haitao.nos.netease.com/161cc13b-ec21-4083-9cc9-7b4b38c0a8d8.png" width="100px" height="100px"/>
+<span class="arrow">
+<span class="arr"></span>
+<span class="arr1"></span>
+</span>
+</span>
+</a>
+<a class="itm nolink" href="javascript:void(0);" rel="nofollow">
+<em class="w-icon follow-us-icon yixin-icon"></em>
+<span class="m-notice m-notice-2">
+<img src="//haitao.nos.netease.com/3ce0a576-d672-45b6-96fa-f53267f1ee81.png" width="100px" height="100px"/>
+<span class="arrow">
+<span class="arr"></span>
+<span class="arr1"></span>
+</span>
+</span>
+</a>
+</div>
+</li>
+<li>
+<dl>
+<dt><em>考拉保障</em></dt>
+<dd><a target="_blank" href="//pages.kaola.com/pages/activity/0b4317da69e04c6ea6babc88b1917876.shtml" title="假一赔十" rel="nofollow" data-param="zn=footer">假一赔十</a></dd>
+<dd><a target="_blank" href="//you.kaola.com/footer/supervisereport.html" title="廉正监督" rel="nofollow" data-param="zn=footer">廉正监督</a></dd>
+</dl>
+</li>
+<li>
+<dl>
+<dt><em>新手指南</em></dt>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_buy" target="_blank" title="购物流程">购物流程</a></dd>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_epay" target="_blank" title="支付方式">支付方式</a></dd>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_tariff" target="_blank" title="通关税费">通关税费</a></dd>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_faq" target="_blank" title="常见问题">常见问题</a></dd>
+</dl>
+</li>
+<li>
+<dl>
+<dt><em>售后服务</em></dt>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_returnpolicy" target="_blank" title="退货政策">退货政策</a></dd>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_returnprocess" target="_blank" title="退货流程">退货流程</a></dd>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_refund" target="_blank" title="退款说明">退款说明</a></dd>
+<dd><a title="联系客服" class="j-openService">联系客服</a></dd>
+</dl>
+</li>
+<li>
+<dl>
+<dt><em>物流配送</em></dt>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_deliverymode" target="_blank" title="配送方式">配送方式</a></dd>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_deliveryservice" target="_blank" title="配送服务">配送服务</a></dd>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_freight" target="_blank" title="运费标准">运费标准</a></dd>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_logistracking" target="_blank" title="物流跟踪">物流跟踪</a></dd>
+</dl>
+</li>
+<li>
+<dl>
+<dt><em>关于我们</em></dt>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_contactus" target="_blank" title="联系我们" rel="nofollow">联系我们</a></dd>
+<dd><a target="_blank" href="//activity.kaola.com/merchants.html?type=en" title="招商合作" rel="nofollow" data-param="zn=footer">招商合作</a></dd>
+<dd><a target="_blank" href="http://cps.kaola.com/" title="销售联盟" rel="nofollow" data-param="zn=footer">销售联盟</a></dd>
+<dd><a href="//you.kaola.com/footer/index.html?key=footer_ceomailbox" target="_blank" title="CEO邮箱" rel="nofollow">CEO邮箱</a></dd>
+</dl>
+</li>
+<li class="bd_none item last">
+<img src="https://haitao.nos.netease.com/880b10ac-5714-4c1b-89a9-e24c2302ac79.png" width="108px" height="108px"/>
+<span>扫描下载手机版</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="aboutNEST">
+<a href="https://netease.gcs-web.com/?no_protofix" rel="nofollow" target="_blank" title="About NetEase">About NetEase</a> - <a href="http://gb.corp.163.com/gb/about/overview.html?no_protofix" rel="nofollow" target="_blank" title="公司简介">公司简介</a> - <a href="http://gb.corp.163.com/gb/contactus.html?no_protofix" rel="nofollow" target="_blank" title="联系方法">联系方法</a> - <a href="//www.kaola.com/footer/friendlylink.shtml" target="_blank" title="友情链接" data-param="zn=footer">友情链接</a> - <a href="http://hr.163.com/?no_protofix" rel="nofollow" target="_blank" title="招聘信息">招聘信息</a> - <a href="http://help.163.com/?no_protofix" rel="nofollow" target="_blank" title="客户服务">客户服务</a> - <a href="https://www.kaola.com/common/page.html?key=Privacy_policy" rel="nofollow" target="_blank" title="隐私政策">隐私政策</a> - <a href="http://emarketing.163.com/?no_protofix" rel="nofollow" target="_blank" title="网络营销">网络营销</a> - <a href="//www.kaola.com/" target="_blank" title="网易考拉" data-param="zn=footer">网易考拉</a>
+<br>
+<span class="m-license">网络文化经营许可证：浙网文[2019]1372-138号</span>
+<span class="m-license">增值电信业务经营许可证：浙B2-20160288</span>
+<span class="m-license"><a href="//pages.kaola.com/pages/activity/Businessentity.shtml" rel="nofollow" target="_blank" title="自营经营者信息">自营经营者信息</a></span>
+<span class="m-license">（浙）网械平台备字[2018]第00007号</span>
+<br>
+<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010802002216&no_protofix" class="m-license m-license-1">
+<img src="//haitao.nos.netease.com/f28aa8ee818a42bf832341f605eccefb.png"/>
+</a>
+<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010802002216&no_protofix" >
+<span style="margin: 0px 0px 0px 5px;">浙公网安备 33010802002216号</span>
+</a>
+<span class="m-license">网易公司版权所有&copy;1997-2019</span>
+<a target="_blank" href="//haitao.nos.netease.com/d37ac4eb-016f-485b-9577-04ae7e0f4bbd.jpg" >
+<span style="margin: 0px 0px 0px 20px;">互联网药品信息服务资格证书编号（浙）-2017-0027</span>
+</a>
+<span class="m-license">浙ICP备16011229号-6</span>
+<div class="f-tac"><a id='___szfw_logo___' href='//credit.szfw.org/CX20170920030507330453.html' target='_blank'><img style="height:30px; margin:5px 15px 0 0;" src='//haitao.nos.netease.com/86998579-754f-4f2c-b800-5dae6404a1f6.png' border='0' /></a><span id="KXYZ"><a href="https://ss.knet.cn/verifyseal.dll?sn=e15040881010058239iy2f000000&amp;ct=df&amp;a=1&amp;pa=20160215" id="kx_verify" tabindex="-1" target="_blank" kx_type="图标式" style="display:inline-block;"><img src="//haitao.nos.netease.com/d720d83b55a04b6f932ea845c673c5bf.png" alt="可信网站"></a></span><a class="u-shield" href="http://idinfo.zjaic.gov.cn/bscx.do?method=lzxx&id=3301083301980000040550&no_protofix" target="_blank"><img src="//haitao.nos.netease.com/d071c0de-5360-4dcb-915a-f9f9bb62a9d5.gif" alt="工商营业执照网上标识"></a></div>
+<span class="u-envname"></span>
+</div>
+</footer>
+<script id="ToptabUrlList">
+var hasFixedToptabs=true;
+window.NEJ_CONF = window.NEJ_CONF || {};
+window.NEJ_CONF.blank = "https://haitao.nos.netease.com/d1f968ab-0d15-4e27-9e92-58804ef3a979_1_1.gif";
+window.NEJ_CONF.p_frame = [
+"https://www.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://market.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://activity.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://community.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://mall.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://goods.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://tradenj.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://buy.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://you.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://trade.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://gw.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://user.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://search.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://element.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://huodong.kaola.com/fedproxy/nej_proxy_frame.html",
+"https://comment.kaola.com/fedproxy/nej_proxy_frame.html"
+];
+window.__cdnBaseUrl = "//mm.bst.126.net/";
+document.body.removeChild(document.getElementById('ToptabUrlList'));
+</script>
+<script type="text/javascript" id="js-page-config">
+window.__domainUrl = "//www.kaola.com/";
+window.__homeDomainUrl = "//home.kaola.com/";
+window.__mallDomainUrl = "//mall.kaola.com/";
+window.__cdnRoute = "wangsu";
+window.__nosCdnBackupMap = {"dilian":{"haitao.nos.netease.com":"haitao.noskl.127.net","haitao.nosdn1.127.net":"haitao.noskl1.127.net","haitao.nosdn2.127.net":"haitao.noskl2.127.net","haitao.nosdn3.127.net":"haitao.noskl3.127.net","haitao.nosdn4.127.net":"haitao.noskl4.127.net","haitao.nosdn5.127.net":"haitao.noskl5.127.net"}};
+var cfgnode = document.getElementById('js-page-config');
+cfgnode.parentNode.removeChild(cfgnode);
+</script>
+<script>
+window.anstipamActiCheatSwitch = 0;
+window.anstipamActiCheatToken = '';
+window.anstipamActiCheatValidate = '';
+</script>
+<script type="text/javascript">
+function __getResLoader(t,e,n){var a={"haitao.nos.netease.com":"haitao.noskl.127.net","haitao.nosdn1.127.net":"haitao.noskl1.127.net","haitao.nosdn2.127.net":"haitao.noskl2.127.net","haitao.nosdn3.127.net":"haitao.noskl3.127.net","haitao.nosdn4.127.net":"haitao.noskl4.127.net","haitao.nosdn5.127.net":"haitao.noskl5.127.net","w.kl.126.net":"y.kl.126.net","mm.bst.126.net":"p.kl.126.net","m.kaola.com":"m.kaola.com"};function o(t){var e=function(t){var e=/https?\:\/\/([^\/]+)/i.exec(t);return e?e[1]:""}(t);if(!e)return"";var n=a[e];if(!n)for(var o in a)if(a.hasOwnProperty(o)&&a[o]===e){n=o;break}return n?t.replace(e,n):t}function r(e,n,a){var r=o(e);if(r){var s=t.createElement("script");s.src=r,s.type="text/javascript",s.onerror=a,s.onload=a,s.async=!1,s.__retry=1,t.body.appendChild(s)}}function s(e,n,a){var r=o(e);if(r){var s=t.createElement("link");s.rel="stylesheet",s.type="text/css",s.href=r,s.media="all",s.onerror=a,s.onload=a,s.__retry=1,t.head.appendChild(s)}}function i(t,e,n){var a=o(t);a&&(e.onerror=n,e.onload=n,e.setAttribute("data-src-beforefix",e.src),e.getAttribute("data-src")&&e.setAttribute("data-src",a),e.src=a,e.__retry=1)}return function(){if(n&&n.length){var t=[];n.forEach(function(e){e.__processed||e.__retry||(e.__processed=1,t.push(e))}),t.forEach(function(t){var e,n=(e=t)[{LINK:"href",SCRIPT:"src",IMG:"src"}[e.tagName]];n&&function(t,e,n){var a,o={js:r,css:s,image:i},c=t.split("?")[0];c.match(/\.css$/)?a="css":c.match(/\.js$/)?a="js":c.match(/\.(jpg|jpeg|png|webp)$/)&&(a="image"),a&&o[a](t,e,n)}(n,t,function(t){})})}}}!function(t,e,n){if(Array.prototype.some){var a=__getResLoader&&__getResLoader(t,e,n);setTimeout(function(){!function t(){a(),n&&(n.length=0),setTimeout(function(){t()},2e3)}()},2e3)}}(document,window,window.__et);
+</script>
+<script type="text/javascript"> (function(document,datracker,root){function loadJsSDK(){var script,first_script;script=document.createElement("script");script.type="text/javascript";script.async=true;script.src="https://hubble-js-bucket.nosdn.127.net/DATracker.globals.1.6.8.js";first_script=document.getElementsByTagName("script")[0];first_script.parentNode.insertBefore(script,first_script)}if(!datracker["__SV"]){var win=window;var gen_fn,functions,i,lib_name="DATracker";window[lib_name]=datracker;datracker["_i"]=[];datracker["init"]=function(token,config,name){var target=datracker;if(typeof(name)!=="undefined"){target=datracker[name]=[]}else{name=lib_name}target["people"]=target["people"]||[];target["abtest"]=target["abtest"]||[];target["toString"]=function(no_stub){var str=lib_name;if(name!==lib_name){str+="."+name}if(!no_stub){str+=" (stub)"}return str};target["people"]["toString"]=function(){return target.toString(1)+".people (stub)"};function _set_and_defer(target,fn){var split=fn.split(".");if(split.length==2){target=target[split[0]];fn=split[1]}target[fn]=function(){target.push([fn].concat(Array.prototype.slice.call(arguments,0)))}}functions="get_user_id track_heatmap register_attributes register_attributes_once clear_attributes unregister_attributes current_attributes single_pageview disable time_event get_appStatus track set_userId track_pageview track_links track_forms register register_once alias unregister identify login logout signup name_tag set_config reset people.set people.set_once people.set_realname people.set_country people.set_province people.set_city people.set_age people.set_gender people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.set_populationWithAccount people.set_location people.set_birthday people.set_region people.set_account abtest.get_variation abtest.async_get_variable".split(" ");for(i=0;i<functions.length;i++){_set_and_defer(target,functions[i])}datracker["_i"].push([token,config,name])};datracker["__SV"]=1.6;loadJsSDK()}})(document,window["DATracker"]||[],window); var appKey = ('onlinejd' == 'onlinejd' || 'onlinejd' == 'betajd') ? 'MA-930E-151AE827FE90' : 'MA-9D91-EB5CB60CCF7A'; DATracker.init(appKey, {truncateLength: 255,persistence: "localStorage",cross_subdomain_cookie: false});
+</script>
+<script> window.isDevelopment=!!0; window.carryDomainSwitch = true; </script> <script>
+(function (){ var ua = window.navigator.userAgent.toLowerCase(); var isMobile = ua.indexOf('mobile') > -1; var urlReg = /pages\.kaola\.com(\.hk)?\/pages\/activity\/(.+?)\.s?html(\?[^#]*)?/; var isPagesActLink = window.location.href.match(urlReg); if(isMobile && isPagesActLink){ window.location.href = window.location.href.replace(urlReg, function(match, $1, $2, $3) { return 'weex.kaola.com' + ($1 || '') + '/activity/pages/' + $2 + '.html' + ($3 || '') + ($3 && $3.length > 1 ? '&' : '?') + 'back2url=' + encodeURIComponent('https://m.kaola.com'); }); }
+})();
+</script>
+<script type="text/javascript" src="//pages.kl.126.net/js/??/base/common-1cd457d8e3.js,/base/vendor-cb9849343f.js,/base/heel-b540f5839e.js?_tv=201905132016403"></script> <script type="text/javascript" src="//pages.kl.126.net/js/??/base/vendor-pc-52d7f2568c.js,/pages/common/init-3fb5e5708a.js?_tv=201905132016403"></script>
+<script type="text/javascript" src="//pages.kl.126.net/js/??/components/reg_60035_ec_rules/pc/index-87a71310cb.js,/components/reg_60020_daily_new/pc/index-526db7e370.js,/components/reg_60029_sidebar/pc/index-57e32aa80a.js,/components/reg_60028_recommend/pc/index-010a3b97ba.js,/components/reg_60019_flashsale/pc/index-41a9668020.js,/components/reg_60021_goods_floor/pc/index-375de97da3.js,/components/reg_60023_hot_brand/pc/index-e9b45a4515.js,/components/reg_10001_img_hotarea/pc/index-0a0814b0b3.js,/components/reg_60025_nav/pc/index-7bce08af49.js,/components/reg_60026_slider/pc/index-a49cfcfbd8.js,/components/reg_60027_modal/pc/index-c0d7937579.js?_tv=201905132016403" onload="window.cbRegComboJsLoaded('/js/??/components/reg_60035_ec_rules/pc/index-87a71310cb.js,/components/reg_60020_daily_new/pc/index-526db7e370.js,/components/reg_60029_sidebar/pc/index-57e32aa80a.js,/components/reg_60028_recommend/pc/index-010a3b97ba.js,/components/reg_60019_flashsale/pc/index-41a9668020.js,/components/reg_60021_goods_floor/pc/index-375de97da3.js,/components/reg_60023_hot_brand/pc/index-e9b45a4515.js,/components/reg_10001_img_hotarea/pc/index-0a0814b0b3.js,/components/reg_60025_nav/pc/index-7bce08af49.js,/components/reg_60026_slider/pc/index-a49cfcfbd8.js,/components/reg_60027_modal/pc/index-c0d7937579.js')"></script>
+<script src="//pages.kaola.com/pages/frame/data/b8b317bd55374be4bcf49f76e9d52c69.shtml?type=2"></script> <script src="//pages.kl.126.net/js/pages/pc/index-b2f6a0ee73.js"></script> <script> if (window.attachEvent) { window.attachEvent("onload", addClass); } else if (window.addEventListener) { window.addEventListener("load", addClass, false); } function addClass() { var query = (window.location.search || '').split('?')[1] || ''; var match = query.match(/navindex=([\d]+)/i) || []; var navIndex = match[1]; if(navIndex > 0) { var tab = document.getElementById("funcTab") || {}; var tabItem = tab.children && tab.children[navIndex - 1] || {}; tabItem.className = (tabItem.className || '') + ' active'; } }
+</script>
+<script> window.addEventListener('load', function(){ (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PLXC8J'); })
+</script>
+<script type="text/javascript"> (function(i, s, ob, g, r, a, m) { i['AnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].ops = i[r].ops || []).push(arguments); }; a = s.createElement(ob); a.type = "text/javascript"; m = s.getElementsByTagName(ob)[0]; a.async = false; a.src = g; m.parentNode.insertBefore(a, m); })(window, document, 'script', '//rev.da.netease.com/da.js','_dapush'); _dapush('create', 'DA-A250-E78A2EEA7B9E'); _dapush('page_view');
+</script>
+<!--mfv='201905132016403'-->
+</body>
+</html>
