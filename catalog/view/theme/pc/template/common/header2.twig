@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html dir="{{ direction }}" lang="{{ lang }}">
+<head>
+  	<meta charset="UTF-8"/>
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<title>{{ title }}</title>
+  	<base href="{{ base }}"/>
+  	{% if description %}
+    	<meta name="description" content="{{ description }}"/>
+  	{% endif %}
+  	{% if keywords %}
+    	<meta name="keywords" content="{{ keywords }}"/>
+  	{% endif %}
+  	<script src="catalog/view/javascript/jquery/jquery-3.3.1.min.js" type="text/javascript"></script>
+  	<link href="catalog/view/theme/default/stylesheet/bootstrap.css" rel="stylesheet" media="screen"/>
+  	<script src="catalog/view/javascript/bootstrap/js/popper.min.js" type="text/javascript"></script>
+ 	<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+  	<link href="catalog/view/javascript/font-awesome/css/all.min.css" rel="stylesheet" type="text/css"/>
+  	<link href="catalog/view/theme/{{ theme_default_directory }}/stylesheet/stylesheet.css" rel="stylesheet">
+  	{% for style in styles %}
+    	<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}"/>
+  	{% endfor %}
+  	{% for script in scripts %}
+    	<script src="{{ script }}" type="text/javascript"></script>
+  	{% endfor %}
+  	<script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+  	{% for link in links %}
+    	<link href="{{ link.href }}" rel="{{ link.rel }}"/>
+  	{% endfor %}
+
+  	<link href="//pages.kl.126.net/css/??/base/vendor-92f62ae068.css" rel="stylesheet" type="text/css"/>
+
+  	<link href="//pages.kl.126.net/css/??/base/heel-73e2c8811e.css" rel="stylesheet" type="text/css"/>
+  	<link href="//pages.kl.126.net/css/??/base/vendor-pc-69e9c8d70a.css" rel="stylesheet" type="text/css"/>
+  	<link href="//pages.kl.126.net/css/??/pages/pc/index-0c6ea8db81.css?_tv=201905132016403" rel="stylesheet" type="text/css"/>
+
+  	<link href="//pages.kl.126.net/css/??/components/reg_60025_nav/pc/index-7e60a30a5a.css" rel="stylesheet" type="text/css"/>
+  	<link href="//pages.kl.126.net/css/??/components/reg_60021_goods_floor/pc/index-89944c7203.css" rel="stylesheet" type="text/css"/>
+
+  	<link href="//pages.kl.126.net/css/??/components/reg_60035_ec_rules/pc/index-b1d524963a.css" rel="stylesheet" type="text/css"/>
+  	<link href="//pages.kl.126.net/css/??/components/reg_60023_hot_brand/pc/index-487ce5ad9c.css" rel="stylesheet" type="text/css"/>
+  	<link href="//pages.kl.126.net/css/??/components/reg_60028_recommend/pc/index-d7f95e7c65.css" rel="stylesheet" type="text/css"/>
+  	<link href="//pages.kl.126.net/css/??/components/reg_60027_modal/pc/index-4e36c883c3.css" rel="stylesheet" type="text/css"/>
+
+
+
+  	<link href="//pages.kl.126.net/css/??/components/reg_60020_daily_new/pc/index-5d11cac176.css" rel="stylesheet" type="text/css"/>
+
+  	<link href="//pages.kl.126.net/css/??/components/reg_60019_flashsale/pc/index-1064c6b7bb.css" rel="stylesheet" type="text/css"/>
+
+  	<link href="//pages.kl.126.net/css/??/components/reg_60026_slider/pc/index-542023782a.css" rel="stylesheet" type="text/css"/>
+  	<link href="//pages.kl.126.net/css/??/components/reg_60029_sidebar/pc/index-41e2b739c6.css" rel="stylesheet" type="text/css"/>
+
+  	<link href="//pages.kl.126.net/css/??/components/reg_10001_img_hotarea/pc/index-2f4704f5c1.css?_tv=201905132016403" rel="stylesheet" type="text/css"/>
+
+
+
+<script>
+var _ej = function (e) { function n(e, n, r) { var s = e; "string" == typeof e && (s = { msg: e, url: n, line: r, ie8: 1 }), t.push(s, 1) } var t = { list: [], push: function (e, n, r) { t.list.push({ message: e, level: n, type: r }), t.onPush && t.onPush() } }; return e.attachEvent ? e.attachEvent("onerror", n) : e.addEventListener("error", n), t }(window);
+</script>
+
+  	{% for analytic in analytics %}
+    	{{ analytic }}
+  	{% endfor %}
+</head>
+<body style="background-color:#f0f0f0;">
+	{% if cookie %}
+	  {{ cookie }}
+	{% endif %}
+
+  	<div class="container-fluid">
+  		<!----top baner start----->
+		<div class="m-topnotice m-topnotice-img" data-id="264" id="topnotice" data-closetype="0" style="background:#D22147;">
+			<a href="#" target="_blank" class="pic"><img class="opacity1" src="//haitao.nos.netease.com/online2019051339d2e.jpg" /></a>
+			<img src="//haitao.nos.netease.com/online2019051339d2e.jpg" class="hide2"/>
+		</div>
+		<!----top baner end----->
+  	</div>
+
+  	<!----top nav bar start------->
+	<nav id="topNav">
+		<div id="topNavWrap" class="clearfix">
+			<div id="topNavLeft"></div>
+			<div id="topNavLeft2" class="f-hkdn f-hkdnact">
+				<a class="app" href="#" rel="nofollow" data-param="from=topDownload&zn=top">手机考拉 <span class="m-notice"><img src="https://haitao.nos.netease.com/9c6b0d6c-4a71-4018-8fb6-46496f51caff.png" width="116px" height="116px"><strong class="txt">下载APP<br>领1000元新人礼包</strong><span class="arrow"><span class="arr"></span><span class="arr1"></span></span></span></a>
+			</div>
+
+			<ul id="topNavRight">
+				<li class="dropmenu greenhand" id="js-greenhand" data-isindex="1">
+					<div class="mcDropMenuBox dropMenuBoxActive">
+						<a class="toplevel topNavHolder nolink" href="javascript:void(0)" rel="nofollow"><i class="w-icon w-icon-speaker">&nbsp;</i>新人礼</a>
+						<span class="sep">|</span>
+						<div class="mcDropMenu">
+							<img alt="新人礼" id="js-greenhandimg"/>
+							<p>新人礼已放入您的购物车，您只需结算和新人礼相同仓库的商品即可免费拿走它!</p>
+						</div>
+					</div>
+				</li>
+
+				<li class="f-hkdn f-hkdnact">
+					<a href="javascript:;" class="toplevel newnav checkin" rel="nofollow">每日签到</a>
+					<span class="sep">|</span>
+				</li>
+
+				<li>
+					<a class="toplevel" href="#" user="true" rel="nofollow" data-param="zn=top">我的订单</a>
+					<span class="sep">|</span>
+				</li>
+
+				<li class="dropmenu personal" id="j-dropmenuPersonal">
+					<div class="mcDropMenuBox">
+						<a class="toplevel topNavHolder" href="#" user="true" rel="nofollow" data-param="zn=top">个人中心<i class="arr"></i><em class="w-icon w-icon-14" style="display:none;" id="personalTips"></em></a>
+						<span class="sep f-hkdn f-hkdnact">|</span>
+						<div class="mcDropMenu">
+							<a href="#" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">我的优惠券<i class="w-icon w-icon-15" style="display:none;" id="couponTip"></i></span></a>
+							<a href="#" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">我的红包<i class="w-icon w-icon-15" style="display:none;" id="redpacketTip"></i></span></a>
+							<a href="#" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">我的考拉豆</span></a>
+							<span class="spliter"></span>
+							<a href="#" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">帐号管理</span></a>
+							<a href="#" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">我的实名认证</span></a>
+							<span class="spliter"></span>
+							<a href="#" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">我收藏的商品</span></a>
+							<a href="#" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">我关注的品牌</span></a>
+							<span class="spliter"></span>
+							<a href="#" user="true" rel="nofollow" data-param="zn=top"><span class="cnt">售后管理<i class="w-icon w-icon-14" style="display:none;" id="aftersaleTip"></i></span></a>
+						</div>
+					</div>
+
+					<div class="m-notice f-dn" id="j-newPartnerNotice">
+						<p>进入<span class="red">”个人中心 - 合伙小队“</span><br/>了解更多返利详情！</p>
+						<span class="arrow">
+							<span class="arr"></span>
+							<span class="arr1"></span>
+						</span>
+						<span class="iconfont close" title="关闭">&#xe61b;</span>
+					</div>
+				</li>
+
+				<li class="dropmenu service f-hkdn f-hkdnact">
+					<div class="mcDropMenuBox">
+						<a class="toplevel topNavHolder nolink" href="javascript:void(0);" rel="nofollow">客户服务<i class="arr"></i></a>
+						<span class="sep">|</span>
+						<div class="mcDropMenu">
+							<a class="contact j-openService" rel="nofollow" data-category="联系客服" data-event="顶部通栏点击数" data-label=""><i class="w-icon w-icon-contact"></i>联系客服</a>
+							<a class="help" href="#" rel="nofollow" data-param="zn=top"><i class="w-icon w-icon-help">&nbsp;</i>帮助中心</a>
+							<a class="j-propertyProtection" href="//activity.kaola.com/propertyProtection.html" rel="nofollow" data-param="zn=top"><i class="act-icon-prp">&nbsp;</i>知识产权保护</a>
+							<a class="rule" href="#" rel="nofollow" data-param="zn=top"><i class="w-icon w-icon-rule">&nbsp;</i>规则中心</a>
+						</div>
+					</div>
+				</li>
+
+				<li class="dropmenu recharge f-hkdn f-hkdnact">
+					<div class="mcDropMenuBox">
+						<a class="toplevel topNavHolder nolink" href="javascript:void(0);" rel="nofollow">充值中心<i class="arr"></i></a>
+						<span class="sep">|</span>
+						<div class="mcDropMenu">
+							<a href="#" rel="nofollow" data-param="zn=top">话费流量</a>
+							<a id="gameRecharge" href="#" rel="nofollow" data-param="zn=top">游戏充值</a>
+							<a href="#" rel="nofollow" data-param="zn=top">AppStore充值卡</a>
+						</div>
+					</div>
+				</li>
+
+				<li class="cinform f-hkdn f-hkdnact">
+					<div class="mcDropMenuBox">
+						<a class="toplevel topNavHolder nolink" href="javascript:void(0);" rel="nofollow">消费者权益<i class="arr"></i></a>
+						<span class="sep">|</span>
+						<div class="mcDropMenu">
+							<a id="customerInform" href="#" rel="nofollow" data-param="zn=top">消费者告知书</a>
+							<a href="#" rel="nofollow" data-param="zn=top">消费投诉公示</a>
+						</div>
+					</div>
+				</li>
+
+				<li class="dropmenu more f-hkdn f-hkdnact">
+					<div class="mcDropMenuBox focuson">
+						<a class="toplevel topNavHolder nolink" href="javascript:void(0);" rel="nofollow">更多<i class="arr"></i></a>
+						<div class="mcDropMenu">
+							<a id="addFavBtn" href="javascript:;" rel="nofollow">收藏本站</a>
+							<a class="wb clearfix" href="#" target="_blank" rel="nofollow">
+								<span class="txt">新浪微博</span>
+								<span class="m-notice m-notice-1">
+									<img src="//haitao.nos.netease.com/48b72cfe-e953-4164-b0bd-b0cf7ba557d5.png" width="100px" height="100px"/>
+									<span class="arrow">
+										<span class="arr"></span>
+										<span class="arr1"></span>
+									</span>
+								</span>
+							</a>
+							<a class="nolink clearfix" href="javascript:void(0);" rel="nofollow">
+								<span class="txt">微信公众号</span>
+								<span class="m-notice">
+									<img src="//haitao.nos.netease.com/161cc13b-ec21-4083-9cc9-7b4b38c0a8d8.png" width="100px" height="100px"/>
+									<span class="arrow">
+										<span class="arr"></span>
+										<span class="arr1"></span>
+									</span>
+								</span>
+							</a>
+
+							<a class="yixin nolink clearfix" href="javascript:void(0);" rel="nofollow">
+								<span class="txt">易信公众号</span>
+								<span class="m-notice m-notice-2">
+									<img src="//haitao.nos.netease.com/3ce0a576-d672-45b6-96fa-f53267f1ee81.png" width="100px" height="100px"/>
+									<span class="arrow">
+										<span class="arr"></span>
+										<span class="arr1"></span>
+									</span>
+								</span>
+							</a>
+							<a class="cooperation" href="#" rel="nofollow" data-param="zn=top">招商合作</a>
+							<a class="richjob" href="#" rel="nofollow" data-param="zn=top" target="_blank">考拉招聘</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<!----top nav bar end------->
