@@ -17,7 +17,7 @@
   	<script src="catalog/view/javascript/bootstrap/js/popper.min.js" type="text/javascript"></script>
  	<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
   	<link href="catalog/view/javascript/font-awesome/css/all.min.css" rel="stylesheet" type="text/css"/>
-  	<link href="catalog/view/theme/{{ theme_default_directory }}/stylesheet/stylesheet.css" rel="stylesheet">
+  	
   	{% for style in styles %}
     	<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}"/>
   	{% endfor %}
@@ -28,6 +28,13 @@
   	{% for link in links %}
     	<link href="{{ link.href }}" rel="{{ link.rel }}"/>
   	{% endfor %}
+
+  	<script src="catalog/view/javascript/jquery/swiper/js/swiper.min.js" type="text/javascript"></script>
+  	<link href="catalog/view/javascript/jquery/swiper/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+  	<link href="catalog/view/javascript/jquery/swiper/css/mycncart.css" rel="stylesheet" type="text/css"/>
+
+
+  	<link href="catalog/view/theme/{{ theme_default_directory }}/stylesheet/stylesheet.css" rel="stylesheet">
 
   	{% for analytic in analytics %}
     	{{ analytic }}
@@ -188,4 +195,191 @@
   		</div>
   	</header>
 
+
+  	<div id="slider">
+  		<div class="swiper-container">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-1.jpg"></div>
+		        <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-2.jpg"></div>
+		        <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-3.jpg"></div>
+		        <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-4.jpg"></div>
+		        <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-5.jpg"></div>
+		        <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-6.jpg"></div>
+		        <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-7.jpg"></div>
+		    </div>
+		    <div class="swiper-pagination"></div>
+		    <div class="swiper-button-prev"></div>
+		    <div class="swiper-button-next"></div>
+
+		</div>
+  	</div>
+
   	
+<script>
+  var mySwiper = new Swiper ('.swiper-container', {
+
+    direction: 'horizontal',
+    loop: true,
+	autoplay: {
+    	delay: 5000,
+    	disableOnInteraction: false,
+  	},
+
+
+    pagination: {
+      el: '.swiper-pagination',
+    },
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+      hiddenClass: '.swiper-button-hidden',
+    },
+
+
+
+  })
+
+
+  </script>
+
+<div class="sell-block">
+	<div class="container">
+	  	<div class="sellpoint">
+	  		<a class="itm" href="#" target="_blank" id="auto-id-1558916975802"><i class="fas fa-rocket"></i><span class="txt">网店自营</span></a>
+	  		<a class="itm" href="#" target="_blank"><i class="fas fa-globe"></i><span class="txt">全球直采</span></a>
+	  		<a class="itm" href="#" target="_blank"><i class="fab fa-product-hunt"></i><span class="txt">假一赔十</span></a>
+	  		<a class="itm" href="#" target="_blank"><i class="fas fa-hands-helping"></i><span class="txt">售后无忧</span></a>
+	  	</div>
+	  	<div class="download">
+	  		
+	  		<a class="itm" href="#" target="_blank"><i class="fas fa-mobile-alt"></i>领考拉1000元新人礼，APP下单更享手机价</a>
+	  	</div>
+  	</div>
+</div>
+
+
+<div class="static-banner">
+	<div class="container">
+		<div class="row">
+			<div class="col-3 static-pic"><img src="image/catalog/demo/banners/banner-1.png"></div>
+			<div class="col-3 static-pic"><img src="image/catalog/demo/banners/banner-2.png"></div>
+			<div class="col-3 static-pic"><img src="image/catalog/demo/banners/banner-3.png"></div>
+			<div class="col-3 static-pic"><img src="image/catalog/demo/banners/banner-4.png"></div>
+		</div>
+	</div>
+</div>
+
+<div class="special-channel">
+	<div class="container">
+		<article class="">
+							<h2 class="">
+								<span class="big">今日限时购</span>本场还剩<span id="j-dltimebox" class="timebox" leftms="12239469" ><i>0</i><i class="collapse">3</i><span class="split-dot">:</span><i>0</i><i class="collapse">5</i><span class="split-dot">:</span><i>2</i><i class="collapse">1</i></span>
+
+								<a class="more" href="#" target="_blank">进入限时购频道&gt;&gt;</a>
+							</h2>
+
+							<section class="cnt f-cb" >
+								<ul class="goodslist" >
+
+									<li class="goods f-cb" >
+										<a href="#" class="pic" target="_blank" >
+											<img class="img-lazyload u-loaded" src="#" title="CROCS 卡骆驰女鞋情侣拖鞋休闲凉鞋时钟带洞洞鞋11016" >
+										</a>
+										<div class="detail" >
+											<h3 class="intro" >
+												<a href="#" target="_blank" title="时钟带洞洞鞋">时钟带洞洞鞋</a>
+											</h3>
+											<h3 class="shortTitle" >
+												<a href="#" target="_blank" title="CROCS 卡骆驰女鞋情侣拖鞋休闲凉鞋时钟带洞洞鞋11016">CROCS 卡骆驰女鞋情侣拖鞋休闲凉鞋时钟带洞洞鞋11016</a>
+											</h3>
+											<p class="price" >
+												<b >¥</b>185<span >¥</span><del >281</del>
+											</p>
+											<div class="process" >
+												<b style="width: 100%;" ></b>
+											</div>
+
+											<p class="processText" >剩余999999件</p>
+
+											<a class="btn f-hover" href="#" target="_blank" >立即抢购</a>
+
+										</div>
+									</li>
+
+									<li class="goods f-cb" >
+										<a href="//www.kaola.com/product/2762201.html" class="pic" target="_blank" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-2&amp;zn=limitBuy" >
+											<img class="img-lazyload u-loaded" src="//pop.nosdn.127.net/982d2d5a-47be-4543-bfd3-8a3820b8af53?imageView&amp;thumbnail=188x0&amp;quality=85" title="【包税！ 两包装】ATREUS玫瑰黄金凝胶软膜 补水滋润 500g/包 不配用具" >
+										</a>
+										<div class="detail" >
+											<h3 class="intro" >
+												<a href="//www.kaola.com/product/2762201.html" target="_blank" title="保水保湿 提亮肤色" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-2&amp;zn=limitBuy" >保水保湿 提亮肤色</a>
+											</h3>
+											<h3 class="shortTitle" >
+												<a href="//www.kaola.com/product/2762201.html" target="_blank" title="【包税！ 两包装】ATREUS玫瑰黄金凝胶软膜 补水滋润 500g/包 不配用具" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-2&amp;zn=limitBuy" >【包税！ 两包装】ATREUS玫瑰黄金凝胶软膜 补水滋润 500g/包 不配用具</a>
+											</h3>
+											<p class="price" >
+												<b >¥</b>165<span >¥</span><del >458</del>
+											</p>
+											<div class="process" >
+												<b style="width: 99.8%;" ></b>
+											</div>
+											<p class="processText" >剩余499件</p>
+											<a class="btn f-hover" href="//www.kaola.com/product/2762201.html" target="_blank" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-2&amp;zn=limitBuy" >立即抢购</a>
+										</div>
+									</li>
+
+									<li class="goods f-cb" >
+										<a href="//www.kaola.com/product/2808867.html" class="pic" target="_blank" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-3&amp;zn=limitBuy" >
+											<img class="img-lazyload u-loaded" src="//pop.nosdn.127.net/f8ae804e-65b4-4384-9413-4c669ab94e52?imageView&amp;thumbnail=188x0&amp;quality=85" title="【送同品牌内裤】YPL遇光变色棒球帽子&amp;第三代光速美体瘦腿裤猫步款" >
+										</a>
+										<div class="detail" >
+											<h3 class="intro" >
+												<a href="//www.kaola.com/product/2808867.html" target="_blank" title="遇光变色 秒速瘦腿" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-3&amp;zn=limitBuy" >遇光变色 秒速瘦腿</a>
+											</h3>
+											<h3 class="shortTitle" >
+												<a href="//www.kaola.com/product/2808867.html" target="_blank" title="【送同品牌内裤】YPL遇光变色棒球帽子&amp;第三代光速美体瘦腿裤猫步款" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-3&amp;zn=limitBuy" >【送同品牌内裤】YPL遇光变色棒球帽子&amp;第三代光速美体瘦腿裤猫步款</a>
+											</h3>
+											<p class="price" >
+												<b >¥</b>159<span >¥</span><del >299</del>
+											</p>
+											<div class="process" >
+												<b style="width: 99.8%;" ></b>
+											</div>
+											<p class="processText" >剩余599件</p>
+											<a class="btn f-hover" href="//www.kaola.com/product/2808867.html" target="_blank" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-3&amp;zn=limitBuy" >立即抢购</a>
+										</div>
+									</li>
+
+									<li class="goods f-cb" >
+										<a href="//www.kaola.com/product/1390865.html" class="pic" target="_blank" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-4&amp;zn=limitBuy" >
+											<img class="img-lazyload u-loaded" src="//haitao.nosdn2.127.net/iup68srx61_800_800.jpg?imageView&amp;thumbnail=188x0&amp;quality=85" title="Swisse 补铁养血片 30片/瓶 3瓶" >
+										</a>
+										<div class="detail" >
+											<h3 class="intro" >
+												<a href="//www.kaola.com/product/1390865.html" target="_blank" title="富含VC，促进铁吸收" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-4&amp;zn=limitBuy" >富含VC，促进铁吸收</a>
+											</h3>
+											<h3 class="shortTitle" >
+												<a href="//www.kaola.com/product/1390865.html" target="_blank" title="Swisse 补铁养血片 30片/瓶 3瓶" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-4&amp;zn=limitBuy" >Swisse 补铁养血片 30片/瓶 3瓶</a>
+											</h3>
+											<p class="price" >
+												<b >¥</b>149<span >¥</span><del >399</del>
+											</p>
+											<div class="process" >
+												<b style="width: 99.5%;" ></b>
+											</div>
+											<p class="processText" >剩余199件</p>
+											<a class="btn f-hover" href="//www.kaola.com/product/1390865.html" target="_blank" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-mid-4&amp;zn=limitBuy" >立即抢购</a>
+										</div>
+									</li>
+								</ul>
+
+								<aside class="aside" >
+									<a href="https://www.kaola.com/activity/flashSaleIndex/show.html?ri=home&amp;zid=20181031200341620FlashSale11601046&amp;zp=limitBuy-right-1&amp;zn=limitBuy" class="pic" target="_blank" data-param="ri=home&amp;zid=20190513111458176FlashSale99877246&amp;zp=limitBuy-right-1&amp;zn=limitBuy" >
+										<img class="img-lazyload u-loaded" src="https://haitao.nos.netease.com/b4tuVloTTDR8TULR01J0x2O4_260_380T1811012000_260_380.png?imageView&amp;thumbnail=260x380&amp;quality=95" >
+									</a>
+								</aside>
+							</section>
+						</article>
+	</div>
+</div>

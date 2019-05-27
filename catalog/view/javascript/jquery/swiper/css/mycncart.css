@@ -1,0 +1,30 @@
+.swiper-container img {
+	width: 100%;
+}
+
+/* Desktop */
+@media (min-width: 768px){
+	.swiper-container .swiper-button-prev {
+		opacity: 0;
+		/*left: -20px;*/
+	}
+
+
+	.swiper-container .swiper-button-next {
+		opacity: 0;
+		/*right: -20px;*/
+	}
+
+	.swiper-container:hover .swiper-button-prev {
+		opacity: 0.7;
+		left: 50px;*/
+		color: #333;
+
+	}
+
+	.swiper-container:hover .swiper-button-next {
+		opacity: 0.7;
+		right: 50px;
+		color: #333;
+	}
+}
