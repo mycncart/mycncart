@@ -7,10 +7,11 @@ class ControllerExtensionModuleMegamenu extends Controller {
 		
 		$this->load->language('extension/module/megamenu');
 
-		$config_theme = $this->config->get('config_theme');
+		$theme_default_directory = $this->config->get('theme_default_directory');
+		//echo $theme_default_directory;exit;
 		
-		if (file_exists('catalog/view/theme/' . $config_theme . '/stylesheet/megamenu/style.css')) {
-			$this->document->addStyle('catalog/view/theme/' . $config_theme . '/stylesheet/megamenu/style.css');
+		if (file_exists('catalog/view/theme/' . $theme_default_directory . '/javascript/megamenu/megamenu.css')) {
+			$this->document->addStyle('catalog/view/theme/' . $theme_default_directory . '/javascript/megamenu/megamenu.css');
 		} else {
 			echo '缺少菜单css文件';
 		}		
