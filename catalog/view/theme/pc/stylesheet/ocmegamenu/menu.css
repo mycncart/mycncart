@@ -63,7 +63,7 @@
     margin-bottom: 19px;
 }
 .mega-menu-container .a-mega-second-link:hover, .mega-menu-container .widget-html-title:hover,.mcc-menu .ul-top-items .mega-menu-container .a-mega-third-link:hover {
-   color: #fedc19 !important;
+   color: #ff5160 !important;
 }
 .mcc-menu .ul-top-items .mega-menu-container .a-mega-third-link {
     font-size: 14px;
@@ -73,7 +73,7 @@
     padding: 2px 0;
 }
 .mega-menu-container .a-mega-third-link:hover {
-   color: #fff !important;
+   color: #ff5160 !important;
 }
 .mega-menu-container h4,.mega-menu-container h5 {
     margin: 0;
