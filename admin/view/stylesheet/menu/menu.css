@@ -87,6 +87,7 @@
     bottom: 5%;
     left: 5%;
     right: 5%;
+    overflow: auto;
 }
 #form-container a.a-close {
     color: #fff;
@@ -175,25 +176,30 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
 .frm-container .frm-body .frm-group .btn-widget {
     border-radius: 18px;
     background-color: #dcdcdc;
     color: #000;
     border: none;
 }
+
 .frm-container .frm-body .frm-group .btn-widget:hover, .frm-container .frm-body .frm-group .btn-widget:active,
 .frm-container .frm-body .frm-group .btn-widget:focus, .frm-container .frm-body .frm-group .btn-widget:visited {
     background-color: #000;
     color: #fff;
 }
+
 .frm-container .frm-body .frm-info {
     font-style: italic;
     margin: 5px 0 10px 15px;
 }
+
 .frm-container .frm-body .frm-loader-img {
     width: 34px;
     display: none;
 }
+
 .frm-container .frm-body .widget-container {
     display: block;
     float: left;
@@ -208,23 +214,36 @@
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
 }
+
 .frm-container .frm-body {
     display: inline-block;
     vertical-align: top;
     width: 100%;
     height: 100%;
 }
+
 .frm-body .frm-button {
     position: absolute;
     left: 15px;
     bottom: 15px;
     width: 14%;
 }
-.frm-body .frm-button .btn-submit { width: 100%; }
-.widget-container .p-widget-items {text-align: center;top: 40%;position: relative;font-weight: bold;font-size: x-large;}
+.frm-body .frm-button .btn-submit { 
+    width: 100%; 
+}
+
+.widget-container .p-widget-items {
+    text-align: center;
+    top: 40%;
+    position: relative;
+    font-weight: bold;
+    font-size: x-large;
+}
+
 .widget-block {
     position: relative;
     margin: 10px 0;
+    float: left;
 }
 .widget-block.w-transition {
     -webkit-transition: all 1s ease;
@@ -244,11 +263,22 @@
     right: 15px;
     padding: 10px;
 }
-.widget-block .widget-configuration .option { margin-bottom: 10px; }
-.widget-block .widget-configuration .option input[type='text'] {width: 100%;padding-left: 5px;font-size: 12px;line-height: 20px;}
+
+.widget-block .widget-configuration .option { 
+    margin-bottom: 10px; 
+}
+
+.widget-block .widget-configuration .option input[type='text'] {
+    width: 100%;
+    padding-left: 5px;
+    font-size: 12px;
+    line-height: 20px;
+}
+
 .widget-block .widget-configuration.active {
     display: block;
 }
+
 .widget-content {
     border: 1px solid #A4A4A4;
     padding: 10px;
@@ -256,27 +286,33 @@
     background: #fff;
     font-size: 12px;
 }
+
 .widget-content .widget-resize-action {
     float: left;
     width: 100%;
 }
+
 .widget-content .widget-resize-action .a-left {
     color: #848484;
     float: left;
     margin: 0 5px;
 }
+
 .widget-content .widget-resize-action .a-left:hover {
     color: #000;
     float: left;
     margin: 0 5px;
 }
+
 .widget-content .widget-resize-action .a-right {
     float: right;
     margin: 0 5px;
 }
+
 .widget-content .widget-resize-action .a-delete {
     color: red;
 }
+
 .widget-content .widget-name-container {
     float: left;
     width: 100%;
@@ -285,17 +321,21 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 .widget-content .widget-name-container .name {
     font-weight: bold;
     margin-left: 5px;
 }
+
 .modal {
     z-index: 3050;
 }
+
 .widget-block.ui-state-highlight {
     background: none;
     border: none;
 }
+
 .widget-block.ui-state-highlight .widget-content {
     height: 62px;
     background: #FAFAFA;
@@ -303,16 +343,30 @@
     border: #A4A4A4;
     border-radius: 3px;
 }
+
 .frm-container .frm-body .sub-form-container {
     margin: 0 15px;
 }
+
 .frm-container .frm-body .sub-form-container .frm-group {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-.sub-frm { max-height: 530px; }
-.sub-frm .btn-sub-item { width: 100px; color: #fff; background-color: #1e91cf; }
-.sub-frm .btn-sub-item .fa { margin: 5px;}
+
+.sub-frm { 
+    max-height: 530px; 
+}
+
+.sub-frm .btn-sub-item { 
+    width: 100px; 
+    color: #fff; 
+    background-color: #1e91cf; 
+}
+
+.sub-frm .btn-sub-item .fa { 
+    margin: 5px;
+}
+
 @media (max-width: 1600px) {
     .frm-container .frm-body .widget-container {
         height: 440px;
@@ -322,9 +376,11 @@
     .frm-container .frm-body {
         font-size: smaller;
     }
+
     .frm-container .frm-body .widget-container {
         height: 335px;
     }
+
     #form-container {
         width: 90%;
         height: 90%;
@@ -333,16 +389,20 @@
         left: 5%;
         right: 5%;
     }
+
     #form-container a.a-close {
         top: 2%;
     }
+
     .frm-container .frm-body .frm-group {
         padding-top: 10px;
         padding-bottom: 10px;
     }
+
     .frm-container .frm-body .frm-group .btn-widget {
         font-size: 12px;
     }
+    
     .frm-container .frm-body .frm-loader-img {
         width: 27px;
     }

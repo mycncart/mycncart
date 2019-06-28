@@ -1,0 +1,75 @@
+<a class="a-close" onclick="mccmenu.closeForm()"><i class="fas fa-times" aria-hidden="true"></i></a>
+
+<div class="page-header">
+    <div class="container-fluid">
+      <div class="float-right">
+        <button type="button" onclick="mccmenu.submitSubItemForm({{ menu_id }})" class="btn btn-primary"><i class="fas fa-save"></i> {{ button_save }}</button>
+      </div>
+      <h1>{{ text_item_form }}</h1>
+    </div>
+</div>
+
+<div class="container-fluid">
+    {% if error_warning %}
+      <div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> {{ error_warning }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    {% endif %}
+    <div class="card">
+        <div class="card-body">
+            <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-menu-item">
+                <div class="form-group row required">
+                    <label class="col-sm-2 col-form-label" for="input-item-name">{{ entry_item_name }}</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="input-item-name" class="form-control" value="{{ name }}" name="name" />
+                        {% if error_name %}
+                        <div class="invalid-tooltip">{{ error_name }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="input-status">{{ entry_status }}</label>
+                    <div class="col-sm-10">
+                        <select name="status" id="input-status" class="form-control">
+                            {% if status %}
+                            <option value="1" selected="selected">{{ text_enabled }}</option>
+                            <option value="0">{{ text_disabled }}</option>
+                            {% else %}
+                            <option value="1">{{ text_enabled }}</option>
+                            <option value="0" selected="selected">{{ text_disabled }}</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="input-title">{{ entry_title }}</label>
+                    <div class="col-sm-10">
+                        {% for language in languages %}
+                        <div class="input-group">
+                            <span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</span>
+                            <input type="text" name="title[{{ language.language_id }}]" value="{{ title[language.language_id] ? title[language.language_id] : '' }}" placeholder="" id="input-title{{ language.language_id }}" class="form-control" />
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="input-link">{{ entry_link }}</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="input-link" name="link" value="{{ link }}" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="input-position">{{ entry_position }}</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="input-position" name="position" value="{{ position }}" class="form-control" />
+                    </div>
+                </div>
+                
+                <input type="hidden" id="parent-menu-item-id" name="parent_menu_item_id" value="{{ parent_menu_item_id }}" />
+                <input type="hidden" id="menu_level" name="level" value="{{ level }}" />
+            </form>
+
+        </div>      
+
+    </div>
+</div>

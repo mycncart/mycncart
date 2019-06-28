@@ -1,5 +1,5 @@
 {{ header }}{{ column_left }}
-<div id="content">
+<div id="content" class="frm-container">
   <div class="page-header">
     <div class="container-fluid">
       <div class="float-right">
@@ -28,7 +28,7 @@
     <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-menu" class="form-horizontal">
       <div class="row">
 
-        <div class="col-lg-3 col-md-12 order-lg-9 d-none d-lg-block mb-3">
+        <div class="col-lg-3 col-md-12 order-lg-1 d-none d-lg-block mb-3">
           <div class="card">
             
             <div class="card-body">
@@ -69,15 +69,17 @@
           </div>
         </div>
 
-        <div class="col-lg-9 col-md-12">
+        <div class="col-lg-9 col-md-12 order-lg-2 frm-right">
           <div class="card">
             
             <div class="card-body">
               <div class="form-group">
+                <div class="row">
                 <div class="col-sm-6 col-text"><h4>{{ text_menu_item_settings }}</h4></div>
                 <div class="col-sm-6 control-label col-btn">
-                  <button type="button" class="btn btn-widget" onclick="ocmegamenu.appendTopItemNewForm('{{ top_items_form_url }}')"><i class="fa fa-plus"></i> {{ text_add_top_item }}</button>
-                  <button type="button" class="btn btn-widget btn-delete" onclick="ocmegamenu.deleteCheckItems()"><i class="fa fa-trash"></i> {{ text_delete_items }}</button>
+                  <button type="button" class="btn btn-primary" onclick="mccmenu.appendTopItemNewForm('{{ top_items_form_url }}')"><i class="fas fa-plus"></i> {{ text_add_top_item }}</button>
+                  <button type="button" class="btn btn-primary btn-delete" onclick="mccmenu.deleteCheckItems()"><i class="fas fa-trash"></i> {{ text_delete_items }}</button>
+                </div>
                 </div>
               </div>
               
@@ -98,9 +100,9 @@
                           </div>
                         </div>
                         <div class="action col-sm-6">
-                          <a href="javascript:void(0)" onclick="ocmegamenu.appendTopItemNewForm('{{ top_item.url }}')" class="a-config"><i class="fa fa-cogs"></i></a>
-                          <a href="javascript:void(0)" onclick="ocmegamenu.deleteMenuItem('{{ top_item.del_url }}')" class="a-delete"><i class="fa fa-trash"></i></a>
-                          <a href="javascript:void(0)" onclick="ocmegamenu.appendAddSubItemForm('{{ top_item.menu_item_id }}', '2')" class="a-config"><i class="fa fa-plus"></i> {{ text_add_sub_item }}</a>
+                          <a href="javascript:void(0)" onclick="mccmenu.appendTopItemNewForm('{{ top_item.url }}')" class="a-config"><i class="fas fa-edit"></i> Edit</a>
+                          <a href="javascript:void(0)" onclick="mccmenu.deleteMenuItem('{{ top_item.del_url }}')" class="a-delete"><i class="fas fa-trash"> Delete</i></a>
+                          <a href="javascript:void(0)" onclick="mccmenu.appendAddSubItemForm('{{ top_item.menu_item_id }}', '2')" class="a-config"><i class="fas fa-plus"></i> {{ text_add_sub_item }}</a>
                         </div>
                       </div>
                       
@@ -119,9 +121,9 @@
                               </div>
                             </div>
                             <div class="action col-sm-6">
-                              <a href="javascript:void(0)" onclick="ocmegamenu.appendEditSubItemForm('{{ sub_item.item_id }}')" class="a-config"><i class="fa fa-cogs"></i></a>
-                              <a href="javascript:void(0)" onclick="ocmegamenu.deleteMenuItem('{{ sub_item.del_url }}')" class="a-delete"><i class="fa fa-trash"></i></a>
-                              <a href="javascript:void(0)" onclick="ocmegamenu.appendAddSubItemForm('{{ sub_item.item_id }}', '3')" class="a-config"><i class="fa fa-plus"></i> {{ text_add_sub_item }}</a>
+                              <a href="javascript:void(0)" onclick="mccmenu.appendEditSubItemForm('{{ sub_item.item_id }}')" class="a-config"><i class="fas fa-edit"></i> Edit</a>
+                              <a href="javascript:void(0)" onclick="mccmenu.deleteMenuItem('{{ sub_item.del_url }}')" class="a-delete"><i class="fas fa-trash"></i> Delete</a>
+                              <a href="javascript:void(0)" onclick="mccmenu.appendAddSubItemForm('{{ sub_item.item_id }}', '3')" class="a-config"><i class="fas fa-plus"></i> {{ text_add_sub_item }}</a>
                             </div>
                           </div>
                           
@@ -134,14 +136,14 @@
                                     <div class="del-action">
                                       <input type="checkbox" class="ck-del sub-ck-del" value="{{ s_item.item_id }}" />
                                     </div>
-                                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                    <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
                                     <div class="name">
                                       <span>{{ s_item.name }}</span>
                                     </div>
                                   </div>
                                   <div class="action col-sm-6">
-                                    <a href="javascript:void(0)" onclick="ocmegamenu.appendEditSubItemForm('{{ s_item.item_id }}')" class="a-config"><i class="fa fa-cogs"></i></a>
-                                    <a href="javascript:void(0)" onclick="ocmegamenu.deleteMenuItem('{{ s_item.del_url }}')" class="a-delete"><i class="fa fa-trash"></i></a>
+                                    <a href="javascript:void(0)" onclick="mccmenu.appendEditSubItemForm('{{ s_item.item_id }}')" class="a-config"><i class="fas fa-edit"></i> Edit</a>
+                                    <a href="javascript:void(0)" onclick="mccmenu.deleteMenuItem('{{ s_item.del_url }}')" class="a-delete"><i class="fa fa-trash"></i></a>
                                   </div>
                                 </div>
                             

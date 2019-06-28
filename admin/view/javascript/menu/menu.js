@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    ocmegamenu.initSortMenuItem();
+    mccmenu.initSortMenuItem();
 });
 
-var ocmegamenu = {
+var mccmenu = {
     'initSortMenuItem' : function () {
         $('.top_sortable').sortable({
             placeholder: "ui-state-highlight ui-top-highlight",
@@ -119,7 +119,7 @@ var ocmegamenu = {
             },
             success : function (json) {
                 if(json['submit'] === true) {
-                    ocmegamenu.getItemsToContainer(menu_id);
+                    mccmenu.getItemsToContainer(menu_id);
                 } else {
                     flag = false;
                     $('#form-container-bg').show();
@@ -152,7 +152,7 @@ var ocmegamenu = {
             },
             success : function (json) {
                 if(json['submit'] === true) {
-                    ocmegamenu.getItemsToContainer(menu_id);
+                    mccmenu.getItemsToContainer(menu_id);
                 } else {
                     flag = false;
                     $('#form-container-bg').show();
@@ -189,7 +189,7 @@ var ocmegamenu = {
                 success     : function (json) {
                     var menu_id = json['menu_id'];
                     if(json['result'] === true) {
-                        ocmegamenu.getItemsToContainer(menu_id);
+                        mccmenu.getItemsToContainer(menu_id);
                     } else {
                         result = false;
                     }
@@ -201,7 +201,7 @@ var ocmegamenu = {
                             '            <button type="button" class="close" data-dismiss="alert">&times;</button>\n' +
                             '        </div>');
                     }
-                    ocmegamenu.closeForm();
+                    mccmenu.closeForm();
                 }
             });
         }
@@ -246,7 +246,7 @@ var ocmegamenu = {
                     success     : function (json) {
                         var menu_id = json['menu_id'];
                         if(json['result'] === true) {
-                            ocmegamenu.getItemsToContainer(menu_id);
+                            mccmenu.getItemsToContainer(menu_id);
                         } else {
                             result = false;
                         }
@@ -258,7 +258,7 @@ var ocmegamenu = {
                                 '            <button type="button" class="close" data-dismiss="alert">&times;</button>\n' +
                                 '        </div>');
                         }
-                        ocmegamenu.closeForm();
+                        mccmenu.closeForm();
                     }
                 });
             }
@@ -296,9 +296,9 @@ var ocmegamenu = {
                         html += '           <div class="name"><span>' + top_items[i]['name'] + '</span></div>';
                         html += '       </div>';
                         html += '       <div class="action col-sm-6">';
-                        html += '           <a href="javascript:void(0)" onclick="ocmegamenu.appendTopItemNewForm(\'' + top_items[i]['url'] + '\')" class="a-config"><i class="fa fa-cogs"></i></a>';
-                        html += '           <a href="javascript:void(0)" onclick="ocmegamenu.deleteMenuItem(\'' + top_items[i]['del_url'] + '\')" class="a-delete"><i class="fa fa-trash"></i></a>';
-                        html += '           <a href="javascript:void(0)" onclick="ocmegamenu.appendAddSubItemForm(\'' + top_items[i]['menu_item_id'] + '\', \'2\')" class="a-config"><i class="fa fa-plus"></i> ' + text_add_sub_item + '</a>';
+                        html += '           <a href="javascript:void(0)" onclick="mccmenu.appendTopItemNewForm(\'' + top_items[i]['url'] + '\')" class="a-config"><i class="fas fa-edit"></i></a>';
+                        html += '           <a href="javascript:void(0)" onclick="mccmenu.deleteMenuItem(\'' + top_items[i]['del_url'] + '\')" class="a-delete"><i class="fas fa-trash"></i></a>';
+                        html += '           <a href="javascript:void(0)" onclick="mccmenu.appendAddSubItemForm(\'' + top_items[i]['menu_item_id'] + '\', \'2\')" class="a-config"><i class="fas fa-plus"></i> ' + text_add_sub_item + '</a>';
                         html += '       </div>';
                         html += '   </div>';
 
@@ -316,9 +316,9 @@ var ocmegamenu = {
                                 html += '           <div class="name"><span>' + sub_items[j]['name'] + '</span></div>';
                                 html += '       </div>';
                                 html += '       <div class="action col-sm-6">';
-                                html += '           <a href="javascript:void(0)" onclick="ocmegamenu.appendEditSubItemForm(\'' + sub_items[j]['item_id'] + '\')" class="a-config"><i class="fa fa-cogs"></i></a>';
-                                html += '           <a href="javascript:void(0)" onclick="ocmegamenu.deleteMenuItem(\'' + sub_items[j]['del_url'] + '\')" class="a-delete"><i class="fa fa-trash"></i></a>';
-                                html += '           <a href="javascript:void(0)" onclick="ocmegamenu.appendAddSubItemForm(\'' + sub_items[j]['item_id'] + '\', \'3\')" class="a-config"><i class="fa fa-plus"></i> ' + text_add_sub_item + '</a>';
+                                html += '           <a href="javascript:void(0)" onclick="mccmenu.appendEditSubItemForm(\'' + sub_items[j]['item_id'] + '\')" class="a-config"><i class="fas fa-edit"></i></a>';
+                                html += '           <a href="javascript:void(0)" onclick="mccmenu.deleteMenuItem(\'' + sub_items[j]['del_url'] + '\')" class="a-delete"><i class="fas fa-trash"></i></a>';
+                                html += '           <a href="javascript:void(0)" onclick="mccmenu.appendAddSubItemForm(\'' + sub_items[j]['item_id'] + '\', \'3\')" class="a-config"><i class="fas fa-plus"></i> ' + text_add_sub_item + '</a>';
                                 html += '       </div>';
                                 html += '   </div>';
 
@@ -336,8 +336,8 @@ var ocmegamenu = {
                                         html += '           <div class="name"><span>' + s_items[k]['name'] + '</span></div>';
                                         html += '       </div>';
                                         html += '       <div class="action col-sm-6">';
-                                        html += '           <a href="javascript:void(0)" onclick="ocmegamenu.appendEditSubItemForm(\'' + s_items[k]['item_id'] + '\')" class="a-config"><i class="fa fa-cogs"></i></a>';
-                                        html += '           <a href="javascript:void(0)" onclick="ocmegamenu.deleteMenuItem(\'' + s_items[k]['del_url'] + '\')" class="a-delete"><i class="fa fa-trash"></i></a>';
+                                        html += '           <a href="javascript:void(0)" onclick="mccmenu.appendEditSubItemForm(\'' + s_items[k]['item_id'] + '\')" class="a-config"><i class="fas fa-edit"></i></a>';
+                                        html += '           <a href="javascript:void(0)" onclick="mccmenu.deleteMenuItem(\'' + s_items[k]['del_url'] + '\')" class="a-delete"><i class="fas fa-trash"></i></a>';
                                         html += '       </div>';
                                         html += '   </div>';
                                         html += '   <input type="hidden" class="sub-item-position3" name="sub_item_position3[' + s_items[k]['item_id'] + ']" value="' + s_items[k]['position'] + '"/>';
@@ -362,8 +362,8 @@ var ocmegamenu = {
                 $('.menu_item_container').html(html);
             },
             complete    : function () {
-                ocmegamenu.initSortMenuItem();
-                ocmegamenu.closeForm();
+                mccmenu.initSortMenuItem();
+                mccmenu.closeForm();
             }
         });
     },
@@ -392,10 +392,10 @@ var ocmegamenu = {
                         html += '<div class="widget-block col-sm-2">';
                         html += '   <div class="widget-content">';
                         html += '       <div class="widget-resize-action">';
-                        html += '           <a class="a-resize-minus a-left" onclick="ocmegamenu.decreaseColumn($(this))"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>';
-                        html += '           <a class="a-resize-plus a-left" onclick="ocmegamenu.increaseColumn($(this))"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>';
-                        html += '           <a class="a-delete a-right" onclick="ocmegamenu.deleteWidget($(this))"><i class="fa fa-times-circle" aria-hidden="true"></i></a>';
-                        html += '           <a class="a-config a-right" onclick="ocmegamenu.showWidgetConfiguration($(this))"><i class="fa fa-cogs" aria-hidden="true"></i></a>';
+                        html += '           <a class="a-resize-minus a-left" onclick="mccmenu.decreaseColumn($(this))"><i class="fas fa-chevron-left" aria-hidden="true"></i></a>';
+                        html += '           <a class="a-resize-plus a-left" onclick="mccmenu.increaseColumn($(this))"><i class="fas fa-chevron-right" aria-hidden="true"></i></a>';
+                        html += '           <a class="a-delete a-right" onclick="mccmenu.deleteWidget($(this))"><i class="fas fa-times-circle" aria-hidden="true"></i></a>';
+                        html += '           <a class="a-config a-right" onclick="mccmenu.showWidgetConfiguration($(this))"><i class="fas fa-edit" aria-hidden="true"></i></a>';
                         html += '       </div>';
                         html += '       <div class="widget-name-container">';
                         html += '           <i class="fa fa-star" aria-hidden="true"></i><span class="name">' + child_categories[i]['name'] + '</span>';
@@ -427,8 +427,8 @@ var ocmegamenu = {
             },
             complete: function() {
                 $('.frm-loader-img').hide();
-                ocmegamenu.checkBoxClick();
-                ocmegamenu.initSortMenuItem();
+                mccmenu.checkBoxClick();
+                mccmenu.initSortMenuItem();
             }
         });
     },
@@ -458,13 +458,13 @@ var ocmegamenu = {
         html += '<div class="widget-block col-sm-'+ widget_cols +'">';
         html += '   <div class="widget-content">';
         html += '       <div class="widget-resize-action">';
-        html += '           <a class="a-resize-minus a-left" onclick="ocmegamenu.decreaseColumn($(this))"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>';
-        html += '           <a class="a-resize-plus a-left" onclick="ocmegamenu.increaseColumn($(this))"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>';
-        html += '           <a class="a-delete a-right" onclick="ocmegamenu.deleteWidget($(this))"><i class="fa fa-times-circle" aria-hidden="true"></i></a>';
-        html += '           <a class="a-config a-right" onclick="ocmegamenu.showWidgetConfiguration($(this))"><i class="fa fa-cogs" aria-hidden="true"></i></a>';
+        html += '           <a class="a-resize-minus a-left" onclick="mccmenu.decreaseColumn($(this))"><i class="fas fa-chevron-left" aria-hidden="true"></i></a>';
+        html += '           <a class="a-resize-plus a-left" onclick="mccmenu.increaseColumn($(this))"><i class="fas fa-chevron-right" aria-hidden="true"></i></a>';
+        html += '           <a class="a-delete a-right" onclick="mccmenu.deleteWidget($(this))"><i class="fas fa-times-circle" aria-hidden="true"></i></a>';
+        html += '           <a class="a-config a-right" onclick="mccmenu.showWidgetConfiguration($(this))"><i class="fas fa-edit" aria-hidden="true"></i></a>';
         html += '       </div>';
         html += '       <div class="widget-name-container">';
-        html += '           <i class="fa fa-star" aria-hidden="true"></i><span class="name">...</span>';
+        html += '           <i class="fas fa-star" aria-hidden="true"></i><span class="name">...</span>';
         html += '       </div>';
         html += '   </div>';
 
@@ -495,7 +495,7 @@ var ocmegamenu = {
             html += '</div>';
 
             $.ajax({
-                url : 'index.php?route=extension/module/ocmegamenu/getLanguageData&user_token=' + user_token,
+                url : 'index.php?route=extension/module/mccmenu/getLanguageData&user_token=' + user_token,
                 type: 'get',
                 success : function (json) {
                     $.each(json['languages'], function (item, value) {
@@ -515,9 +515,9 @@ var ocmegamenu = {
                 },
                 complete : function () {
                     $('#ul-widget-html-' + i + ' a:first').tab('show');
-                    ocmegamenu.initSortMenuItem();
-                    ocmegamenu.initSummerNote();
-                    ocmegamenu.checkBoxClick();
+                    mccmenu.initSortMenuItem();
+                    mccmenu.initSummerNote();
+                    mccmenu.checkBoxClick();
                 }
             });
         }
@@ -532,7 +532,7 @@ var ocmegamenu = {
             html += '</div>';
 
             $.ajax({
-                url : 'index.php?route=extension/module/ocmegamenu/getLanguageData&user_token=' + user_token,
+                url : 'index.php?route=extension/module/mccmenu/getLanguageData&user_token=' + user_token,
                 type: 'get',
                 success : function (json) {
                     $.each(json['languages'], function (item, value) {
@@ -551,8 +551,8 @@ var ocmegamenu = {
                 },
                 complete : function () {
                     $('#ul-widget-link-' + i + ' a:first').tab('show');
-                    ocmegamenu.initSortMenuItem();
-                    ocmegamenu.checkBoxClick();
+                    mccmenu.initSortMenuItem();
+                    mccmenu.checkBoxClick();
                 }
             });
         }
@@ -581,11 +581,11 @@ var ocmegamenu = {
 
         $('#widget-type-'+ sub_content_type +'-container').append(html);
 
-        ocmegamenu.initSortMenuItem();
-        ocmegamenu.chooseCategory();
-        ocmegamenu.chooseProduct();
-        ocmegamenu.initSummerNote();
-        ocmegamenu.checkBoxClick();
+        mccmenu.initSortMenuItem();
+        mccmenu.chooseCategory();
+        mccmenu.chooseProduct();
+        mccmenu.initSummerNote();
+        mccmenu.checkBoxClick();
     },
 
     'deleteWidget'  : function (element) {
@@ -606,7 +606,7 @@ var ocmegamenu = {
             element.closest('.widget-block').removeClass().addClass('widget-block').addClass('w-transition').addClass('col-sm-' + cols);
         }
 
-        ocmegamenu.initSortMenuItem();
+        mccmenu.initSortMenuItem();
     },
 
     'decreaseColumn' : function (element) {
@@ -618,7 +618,7 @@ var ocmegamenu = {
             element.closest('.widget-block').removeClass().addClass('widget-block').addClass('w-transition').addClass('col-sm-' + cols);
         }
 
-        ocmegamenu.initSortMenuItem();
+        mccmenu.initSortMenuItem();
     },
 
     'showWidgetConfiguration'   : function (element) {
@@ -646,7 +646,7 @@ var ocmegamenu = {
         $('.w-category').customAutoComplete({
             'source': function(request, response) {
                 $.ajax({
-                    url: 'index.php?route=extension/module/ocmegamenu/autoCompleteCategory&user_token=' + user_token + '&filter_name=' +  encodeURIComponent(request),
+                    url: 'index.php?route=extension/module/mccmenu/autoCompleteCategory&user_token=' + user_token + '&filter_name=' +  encodeURIComponent(request),
                     dataType: 'json',
                     success: function(json) {
                         response($.map(json, function(item) {
@@ -776,11 +776,11 @@ var ocmegamenu = {
                                     url: 'index.php?route=common/filemanager&user_token=' + getURLVar('user_token'),
                                     dataType: 'html',
                                     beforeSend: function() {
-                                        $('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+                                        $('#button-image i').replaceWith('<i class="fas fa-circle-o-notch fa-spin"></i>');
                                         $('#button-image').prop('disabled', true);
                                     },
                                     complete: function() {
-                                        $('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
+                                        $('#button-image i').replaceWith('<i class="fas fa-upload"></i>');
                                         $('#button-image').prop('disabled', false);
                                     },
                                     success: function(html) {
