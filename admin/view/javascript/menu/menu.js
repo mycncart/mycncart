@@ -495,18 +495,18 @@ var mccmenu = {
             html += '</div>';
 
             $.ajax({
-                url : 'index.php?route=extension/module/mccmenu/getLanguageData&user_token=' + user_token,
+                url : 'index.php?route=design/menu/getLanguageData&user_token=' + user_token,
                 type: 'get',
                 success : function (json) {
                     $.each(json['languages'], function (item, value) {
-                        $('#ul-widget-html-' + i).append('<li><a href="#widget-html-language' + value.language_id + '-' + i + '" data-toggle="tab">' +
+                        $('#ul-widget-html-' + i).append('<li class="nav-item"><a class="nav-link" href="#widget-html-language' + value.language_id + '-' + i + '" data-toggle="tab">' +
                             '<img src="language/' + value.code + '/' + value.code + '.png" title="' + value.name + '" /> ' + value.name + '</a></li>');
                         
                         var tab_html = '';
                         tab_html += '<div class="tab-pane" id="widget-html-language' + value.language_id + '-' + i + '">';
                         tab_html += '   <div class="option"><input type="text" name="widget['+ sub_content_type +'][' + i + '][name][' + value.language_id + ']" placeholder="' + text_title + '" /></div>';
                         tab_html += '   <div class="option">';
-                        tab_html += '       <textarea data-toggle="summernote" rows="10" class="w-html-content" name="widget['+ sub_content_type +'][' + i + '][content][' + value.language_id + ']" placeholder="' + text_html + '"></textarea>';
+                        tab_html += '       <textarea data-toggle="ckeditor" data-lang="zh-cn" class="w-html-content" name="widget['+ sub_content_type +'][' + i + '][content][' + value.language_id + ']" placeholder="' + text_html + '"></textarea>';
                         tab_html += '   </div>';
                         tab_html += '</div>';
                         
@@ -516,7 +516,9 @@ var mccmenu = {
                 complete : function () {
                     $('#ul-widget-html-' + i + ' a:first').tab('show');
                     mccmenu.initSortMenuItem();
-                    mccmenu.initSummerNote();
+                    /*mccmenu.initSummerNote();*/
+                    $('textarea[data-toggle=\'ckeditor\']').ckeditor();
+
                     mccmenu.checkBoxClick();
                 }
             });
@@ -532,11 +534,11 @@ var mccmenu = {
             html += '</div>';
 
             $.ajax({
-                url : 'index.php?route=extension/module/mccmenu/getLanguageData&user_token=' + user_token,
+                url : 'index.php?route=design/menu/getLanguageData&user_token=' + user_token,
                 type: 'get',
                 success : function (json) {
                     $.each(json['languages'], function (item, value) {
-                        $('#ul-widget-link-' + i).append('<li><a href="#widget-link-language' + value.language_id + '-' + i + '" data-toggle="tab">' +
+                        $('#ul-widget-link-' + i).append('<li class="nav-item"><a class="nav-link" href="#widget-link-language' + value.language_id + '-' + i + '" data-toggle="tab">' +
                             '<img src="language/' + value.code + '/' + value.code + '.png" title="' + value.name + '" /> ' +
                             value.name +
                             '</a></li>');
@@ -646,7 +648,7 @@ var mccmenu = {
         $('.w-category').customAutoComplete({
             'source': function(request, response) {
                 $.ajax({
-                    url: 'index.php?route=extension/module/mccmenu/autoCompleteCategory&user_token=' + user_token + '&filter_name=' +  encodeURIComponent(request),
+                    url: 'index.php?route=design/menu/autoCompleteCategory&user_token=' + user_token + '&filter_name=' +  encodeURIComponent(request),
                     dataType: 'json',
                     success: function(json) {
                         response($.map(json, function(item) {
@@ -897,7 +899,7 @@ var mccmenu = {
 
                         if (!json[i]['category']) {
                             // ungrouped items
-                            html += '<li data-value="' + json[i]['value'] + '"><a href="#">' + json[i]['label'] + '</a></li>';
+                            html += '<li class="dropdown-item" data-value="' + json[i]['value'] + '"><a href="#">' + json[i]['label'] + '</a></li>';
                         } else {
                             // grouped items
                             name = json[i]['category'];
@@ -913,7 +915,7 @@ var mccmenu = {
                         html += '<li class="dropdown-header">' + name + '</li>';
 
                         for (j = 0; j < category[name].length; j++) {
-                            html += '<li data-value="' + category[name][j]['value'] + '"><a href="#">&nbsp;&nbsp;&nbsp;' + category[name][j]['label'] + '</a></li>';
+                            html += '<li class="dropdown-item" data-value="' + category[name][j]['value'] + '"><a href="#">&nbsp;&nbsp;&nbsp;' + category[name][j]['label'] + '</a></li>';
                         }
                     }
                 }

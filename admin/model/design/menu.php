@@ -352,4 +352,24 @@ class ModelDesignMenu extends Model {
 
         return $menu_description_data;
     }
+
+    public function getMenuList($data = array()) {
+        $sql = "SELECT * FROM `" . DB_PREFIX . "menu`";
+
+        if (isset($data['start']) || isset($data['limit'])) {
+            if ($data['start'] < 0) {
+                $data['start'] = 0;
+            }
+
+            if ($data['limit'] < 1) {
+                $data['limit'] = 20;
+            }
+
+            $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+        }
+
+        $query = $this->db->query($sql);
+
+        return $query->rows;
+    }
 }

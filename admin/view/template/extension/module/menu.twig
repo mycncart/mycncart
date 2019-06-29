@@ -1,0 +1,407 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="float-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fas fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-light"><i class="fas fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ol class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+          <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+      <div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> {{ error_warning }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    {% endif %}
+    <div class="card">
+      <div class="card-header"><i class="fas fa-pencil-alt"></i> {{ text_edit }}</div>
+      <div class="card-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module">
+          <fieldset>
+            <legend>{{ text_general_setting }}</legend>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="input-name">{{ entry_name }}</label>
+              <div class="col-sm-10">
+                <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+                {% if error_name %}
+                <div class="text-danger">{{ error_name }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="input-status">{{ entry_status }}</label>
+              <div class="col-sm-4">
+                <select name="status" id="input-status" class="form-control">
+                  {% if status %}
+                  <option value="1" selected="selected">{{ text_enabled }}</option>
+                  <option value="0">{{ text_disabled }}</option>
+                  {% else %}
+                  <option value="1">{{ text_enabled }}</option>
+                  <option value="0" selected="selected">{{ text_disabled }}</option>
+                  {% endif %}
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="input-menu">{{ entry_choose_menu }}</label>
+              <div class="col-sm-4">
+                <select name="menu" id="input-menu" class="form-control">
+                  {% if menus %}
+                  {% for m in menus %}
+                  <option value="{{ m.id }}" {% if menu == m.id %} selected="selected" {% endif %}>{{ m.name }}</option>
+                  {% endfor %}
+                  {% else %}
+                  <option>{{ text_no_menus }}</option>
+                  {% endif %}
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="input-effect">{{ entry_effect }}</label>
+              <div class="col-sm-4">
+                <select name="effect" id="input-effect" class="form-control">
+                  <option value="none"  {% if effect == 'none' %}  selected="selected" {% endif %}>{{ text_none }} </option>
+                  <option value="fade"  {% if effect == 'fade' %}  selected="selected" {% endif %}>{{ text_fade }} </option>
+                  <option value="slide" {% if effect == 'slide' %} selected="selected" {% endif %}>{{ text_slide }}</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>{{ text_menu_bar_setting }}</legend>
+            <div class="form-group row hidden">
+                            <label class="col-sm-2 col-form-label" for="input-menu-height">{{ entry_menu_height }}</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="menu_height" value="{{ menu_height }}" id="input-menu-height" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-menu-bg">{{ entry_menu_background }}</label>
+                            <div class="col-sm-2">
+                                <input type="text" id="input-menu-bg" class="jscolor form-control" name="menu_bg" value="{{ menu_bg }}" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-menu-text-color">{{ entry_menu_text_color }}</label>
+                            <div class="col-sm-2">
+                                <input type="text" id="input-menu-text-color" class="jscolor form-control" name="menu_text_color" value="{{ menu_text_color }}" />
+                            </div>
+              <div class="col-sm-4 col-form-label" style="text-align: left">
+                                <i class="fa fa-exclamation-circle"></i> <i>{{ text_for_vermenu_and_mobile }}</i>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-menu-padding">{{ entry_menu_padding }}</label>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_top }}</span></div>
+                                <input type="text" class="form-control" name="menu_pd_top" value="{{ menu_pd_top }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_right }}</span></div>
+                                <input type="text" class="form-control" name="menu_pd_right" value="{{ menu_pd_right }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_bottom }}</span></div>
+                                <input type="text" class="form-control" name="menu_pd_bottom" value="{{ menu_pd_bottom }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_left }}</span></div>
+                                <input type="text" class="form-control" name="menu_pd_left" value="{{ menu_pd_left }}" />
+                            </div>
+              <div class="col-sm-2 col-form-label" style="text-align: left">
+                                <i class="fa fa-exclamation-circle"></i> <i>{{ text_for_vermenu_and_mobile }}</i>
+                            </div>
+                        </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>{{ text_top_item_setting }}</legend>
+            <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-item-bg">{{ entry_item_background }}</label>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_static }}</span></div>
+                                <input type="text" id="input-item-bg" class="jscolor form-control" name="item_bg" value="{{ item_bg }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_hover }}</span></div>
+                                <input type="text" id="input-item-bg-hover" class="jscolor form-control" name="item_bg_hover" value="{{ item_bg_hover }}" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-item-font">{{ entry_item_font }}</label>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_color }}</span></div>
+                                <input type="text" id="input-item-font" class="jscolor form-control" name="item_font_color" value="{{ item_font_color }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_size }}</span></div>
+                                <input type="text" id="input-item-font-size" class="form-control" name="item_font_size" value="{{ item_font_size }}" />
+                            </div>
+              <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_line_height }}</span></div>
+                                <input type="text" id="input-item-line-height" class="form-control" name="item_line_height" value="{{ item_line_height }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_transform }}</span></div>
+                                <select name="item_font_transform" id="input-item-font-transform" class="form-control">
+                                    <option value="none"        {% if item_font_transform == 'none' %}        selected="selected" {% endif %}>{{ text_normal }}    </option>
+                                    <option value="capitalize"  {% if item_font_transform == 'capitalize' %}  selected="selected" {% endif %}>{{ text_capitalize }}</option>
+                                    <option value="uppercase"   {% if item_font_transform == 'uppercase' %}   selected="selected" {% endif %}>{{ text_uppercase }} </option>
+                                    <option value="lowercase"   {% if item_font_transform == 'lowercase' %}   selected="selected" {% endif %}>{{ text_lowercase }} </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_weight }}</span></div>
+                                <select name="item_font_weight" id="input-item-font-weigth" class="form-control">
+                                    <option value="300" {% if item_font_weight == '300' %} selected="selected" {% endif %}>{{ text_light ~ ' (300)'}} </option>
+                                    <option value="400" {% if item_font_weight == '400' %} selected="selected" {% endif %}>{{ text_normal ~ ' (400)'}}  </option>
+                                    <option value="500" {% if item_font_weight == '500' %} selected="selected" {% endif %}>{{ text_medium ~ ' (500)'}}  </option>
+                                    <option value="600" {% if item_font_weight == '600' %} selected="selected" {% endif %}>{{ text_semibold ~ ' (600)'}}  </option>
+                                    <option value="700" {% if item_font_weight == '700' %} selected="selected" {% endif %}>{{ text_bold ~ ' (700)'}}  </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-item-font-hover">{{ entry_item_font ~ ' (' ~ text_hover ~ ')' }}</label>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_color }}</span></div>
+                                <input type="text" id="input-item-font-hover" class="jscolor form-control" name="item_font_color_hover" value="{{ item_font_color_hover }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_weight }}</span></div>
+                                <select name="item_font_weight_hover" id="input-item-font-weigth-hover" class="form-control">
+                                    <option value="300" {% if item_font_weight_hover == '300' %} selected="selected" {% endif %}>{{ text_light ~ ' (300)'}} </option>
+                                    <option value="400" {% if item_font_weight_hover == '400' %} selected="selected" {% endif %}>{{ text_normal ~ ' (400)'}}  </option>
+                                    <option value="500" {% if item_font_weight_hover == '500' %} selected="selected" {% endif %}>{{ text_medium ~ ' (500)'}}  </option>
+                                    <option value="600" {% if item_font_weight_hover == '600' %} selected="selected" {% endif %}>{{ text_semibold ~ ' (600)'}}  </option>
+                                    <option value="700" {% if item_font_weight_hover == '700' %} selected="selected" {% endif %}>{{ text_bold ~ ' (700)'}}  </option>
+                                </select>
+                            </div>
+                        </div>
+            <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-item-padding">{{ entry_item_padding }}</label>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_top }}</span></div>
+                                <input type="text" class="form-control" name="item_pd_top" value="{{ item_pd_top }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_right }}</span></div>
+                                <input type="text" class="form-control" name="item_pd_right" value="{{ item_pd_right }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_bottom }}</span></div>
+                                <input type="text" class="form-control" name="item_pd_bottom" value="{{ item_pd_bottom }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_left }}</span></div>
+                                <input type="text" class="form-control" name="item_pd_left" value="{{ item_pd_left }}" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-item-show">{{ entry_number_items }}</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="item_show" value="{{ item_show }}" id="input-item-show" class="form-control" />
+                            </div>
+                            <div class="col-sm-6 col-form-label" style="text-align: left">
+                                <i class="fa fa-exclamation-circle"></i> <i>{{ text_for_vermenu }}</i>
+                            </div>
+                        </div>
+
+          </fieldset>
+
+          <fieldset>
+            <legend>{{ text_mega_menu_setting }}</legend>
+            <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-mega-menu-bg">{{ entry_menu_background }}</label>
+                            <div class="col-sm-2">
+                                <input type="text" id="input-mega-menu-bg" class="jscolor form-control" name="mega_menu_bg" value="{{ mega_menu_bg }}" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-mega-second-link-color">{{ entry_menu_second_link_color }}</label>
+                            <div class="col-sm-2">
+                                <input type="text" id="input-mega-second-link-color" class="jscolor form-control" name="mega_second_link_color" value="{{ mega_second_link_color }}" />
+                            </div>
+                        </div>
+            <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-mega-third-link-color">{{ entry_menu_third_link_color }}</label>
+                            <div class="col-sm-2">
+                                <input type="text" id="input-mega-third-link-color" class="jscolor form-control" name="mega_third_link_color" value="{{ mega_third_link_color }}" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-mega-menu-width">{{ entry_menu_width }}</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="input-mega-menu-width" class="form-control" name="mega_menu_width" value="{{ mega_menu_width }}" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="input-mega-menu-padding">{{ entry_menu_padding }}</label>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_top }}</span></div>
+                                <input type="text" class="form-control" name="mega_menu_pd_top" value="{{ mega_menu_pd_top }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_right }}</span></div>
+                                <input type="text" class="form-control" name="mega_menu_pd_right" value="{{ mega_menu_pd_right }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_bottom }}</span></div>
+                                <input type="text" class="form-control" name="mega_menu_pd_bottom" value="{{ mega_menu_pd_bottom }}" />
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-sp"><span>{{ text_left }}</span></div>
+                                <input type="text" class="form-control" name="mega_menu_pd_left" value="{{ mega_menu_pd_left }}" />
+                            </div>
+                        </div>
+
+          </fieldset>
+
+          <fieldset>
+            <legend>{{ text_flyout_menu_setting }}</legend>
+            <ul class="nav nav-tabs">
+                            <li class="nav-item"><a class="nav-link active" href="#tab-second-item" data-toggle="tab">{{ tab_second_item }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#tab-third-item" data-toggle="tab">{{ tab_third_item }}</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-second-item">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="input-second-item-bg">{{ entry_item_background }}</label>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_static }}</span></div>
+                                        <input type="text" id="input-second-item-bg" class="jscolor form-control" name="second_item_bg" value="{{ second_item_bg }}" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_hover }}</span></div>
+                                        <input type="text" id="input-second-item-bg-hover" class="jscolor form-control" name="second_item_bg_hover" value="{{ second_item_bg_hover }}" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="input-second-item-font">{{ entry_item_font }}</label>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_color }}</span></div>
+                                        <input type="text" id="input-second-item-font" class="jscolor form-control" name="second_item_font_color" value="{{ second_item_font_color }}" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_size }}</span></div>
+                                        <input type="text" id="input-second-item-font-size" class="form-control" name="second_item_font_size" value="{{ second_item_font_size }}" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_transform }}</span></div>
+                                        <select name="second_item_font_transform" id="input-second-item-font-transform" class="form-control">
+                                            <option value="none"        {% if second_item_font_transform == 'none' %}        selected="selected" {% endif %}>{{ text_normal }}    </option>
+                                            <option value="capitalize"  {% if second_item_font_transform == 'capitalize' %}  selected="selected" {% endif %}>{{ text_capitalize }}</option>
+                                            <option value="uppercase"   {% if second_item_font_transform == 'uppercase' %}   selected="selected" {% endif %}>{{ text_uppercase }} </option>
+                                            <option value="lowercase"   {% if second_item_font_transform == 'lowercase' %}   selected="selected" {% endif %}>{{ text_lowercase }} </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_weight }}</span></div>
+                                        <select name="second_item_font_weight" id="input-second-item-font-weigth" class="form-control">
+                                            <option value="300" {% if second_item_font_weight == '300' %} selected="selected" {% endif %}>{{ text_light ~ ' (300)'}} </option>
+                                            <option value="400" {% if second_item_font_weight == '400' %} selected="selected" {% endif %}>{{ text_normal ~ ' (400)'}}  </option>
+                                            <option value="500" {% if second_item_font_weight == '500' %} selected="selected" {% endif %}>{{ text_medium ~ ' (500)'}}  </option>
+                                            <option value="600" {% if second_item_font_weight == '600' %} selected="selected" {% endif %}>{{ text_semibold ~ ' (600)'}}  </option>
+                                            <option value="700" {% if second_item_font_weight == '700' %} selected="selected" {% endif %}>{{ text_bold ~ ' (700)'}}  </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="input-second-item-font-hover">{{ entry_item_font ~ ' (' ~ text_hover ~ ')' }}</label>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_color }}</span></div>
+                                        <input type="text" id="input-second-item-font-hover" class="jscolor form-control" name="second_item_font_color_hover" value="{{ second_item_font_color_hover }}" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_weight }}</span></div>
+                                        <select name="second_item_font_weight_hover" id="input-second-item-font-weigth-hover" class="form-control">
+                                            <option value="300" {% if second_item_font_weight_hover == '300' %} selected="selected" {% endif %}>{{ text_light ~ ' (300)'}} </option>
+                                            <option value="400" {% if second_item_font_weight_hover == '400' %} selected="selected" {% endif %}>{{ text_normal ~ ' (400)'}}  </option>
+                                            <option value="500" {% if second_item_font_weight_hover == '500' %} selected="selected" {% endif %}>{{ text_medium ~ ' (500)'}}  </option>
+                                            <option value="600" {% if second_item_font_weight_hover == '600' %} selected="selected" {% endif %}>{{ text_semibold ~ ' (600)'}}  </option>
+                                            <option value="700" {% if second_item_font_weight_hover == '700' %} selected="selected" {% endif %}>{{ text_bold ~ ' (700)'}}  </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab-third-item">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="input-third-item-bg">{{ entry_item_background }}</label>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_static }}</span></div>
+                                        <input type="text" id="input-third-item-bg" class="jscolor form-control" name="third_item_bg" value="{{ third_item_bg }}" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_hover }}</span></div>
+                                        <input type="text" id="input-third-item-bg-hover" class="jscolor form-control" name="third_item_bg_hover" value="{{ third_item_bg_hover }}" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="input-third-item-font">{{ entry_item_font }}</label>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_color }}</span></div>
+                                        <input type="text" id="input-third-item-font" class="jscolor form-control" name="third_item_font_color" value="{{ third_item_font_color }}" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_size }}</span></div>
+                                        <input type="text" id="input-third-item-font-size" class="form-control" name="third_item_font_size" value="{{ third_item_font_size }}" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_transform }}</span></div>
+                                        <select name="third_item_font_transform" id="input-third-item-font-transform" class="form-control">
+                                            <option value="none"        {% if third_item_font_transform == 'none' %}        selected="selected" {% endif %}>{{ text_normal }}    </option>
+                                            <option value="capitalize"  {% if third_item_font_transform == 'capitalize' %}  selected="selected" {% endif %}>{{ text_capitalize }}</option>
+                                            <option value="uppercase"   {% if third_item_font_transform == 'uppercase' %}   selected="selected" {% endif %}>{{ text_uppercase }} </option>
+                                            <option value="lowercase"   {% if third_item_font_transform == 'lowercase' %}   selected="selected" {% endif %}>{{ text_lowercase }} </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_weight }}</span></div>
+                                        <select name="third_item_font_weight" id="input-third-item-font-weigth" class="form-control">
+                                            <option value="300" {% if third_item_font_weight == '300' %} selected="selected" {% endif %}>{{ text_light ~ ' (300)'}} </option>
+                                            <option value="400" {% if third_item_font_weight == '400' %} selected="selected" {% endif %}>{{ text_normal ~ ' (400)'}}  </option>
+                                            <option value="500" {% if third_item_font_weight == '500' %} selected="selected" {% endif %}>{{ text_medium ~ ' (500)'}}  </option>
+                                            <option value="600" {% if third_item_font_weight == '600' %} selected="selected" {% endif %}>{{ text_semibold ~ ' (600)'}}  </option>
+                                            <option value="700" {% if third_item_font_weight == '700' %} selected="selected" {% endif %}>{{ text_bold ~ ' (700)'}}  </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="input-third-item-font-hover">{{ entry_item_font ~ ' (' ~ text_hover ~ ')' }}</label>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_color }}</span></div>
+                                        <input type="text" id="input-third-item-font-hover" class="jscolor form-control" name="third_item_font_color_hover" value="{{ third_item_font_color_hover }}" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-sp"><span>{{ text_weight }}</span></div>
+                                        <select name="third_item_font_weight_hover" id="input-third-item-font-weigth-hover" class="form-control">
+                                            <option value="300" {% if third_item_font_weight_hover == '300' %} selected="selected" {% endif %}>{{ text_light ~ ' (300)'}} </option>
+                                            <option value="400" {% if third_item_font_weight_hover == '400' %} selected="selected" {% endif %}>{{ text_normal ~ ' (400)'}}  </option>
+                                            <option value="500" {% if third_item_font_weight_hover == '500' %} selected="selected" {% endif %}>{{ text_medium ~ ' (500)'}}  </option>
+                                            <option value="600" {% if third_item_font_weight_hover == '600' %} selected="selected" {% endif %}>{{ text_semibold ~ ' (600)'}}  </option>
+                                            <option value="700" {% if third_item_font_weight_hover == '700' %} selected="selected" {% endif %}>{{ text_bold ~ ' (700)'}}  </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+          </fieldset>
+
+
+
+          
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}
