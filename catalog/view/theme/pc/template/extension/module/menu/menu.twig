@@ -1,0 +1,691 @@
+<style>
+    #mcc-menu-{{ module_id }} .mcc-menu-bar {
+        background: {{ menu_setting.menu_bg }};
+        color: {{ menu_setting.menu_text_color }};
+		padding: {{ menu_setting.menu_pd_top }} {{ menu_setting.menu_pd_right }} {{ menu_setting.menu_pd_bottom }} {{ menu_setting.menu_pd_left }};
+		position: relative;
+    }
+    #mcc-menu-{{ module_id }}.mcc-menu-bar {
+        background: {{ menu_setting.menu_bg }};
+        color: {{ menu_setting.menu_text_color }};
+    }
+    #mcc-menu-{{ module_id }} .ul-top-items .li-top-item {
+        background: {{ menu_setting.item_bg }};
+        color: {{ menu_setting.item_font_color }};
+    }
+    #mcc-menu-{{ module_id }} .ul-top-items .li-top-item .a-top-link {
+        padding: {{ menu_setting.item_pd_top }} {{ menu_setting.item_pd_right }} {{ menu_setting.item_pd_bottom }} {{ menu_setting.item_pd_left }};
+        color: {{ menu_setting.item_font_color }};
+        font-size: {{ menu_setting.item_font_size }};
+        line-height: {{ menu_setting.item_line_height }};
+        text-transform: {{ menu_setting.item_font_transform }};
+        font-weight: {{ menu_setting.item_font_weight }};
+    }
+    #mcc-menu-{{ module_id }} .ul-top-items .li-top-item:hover, #mcc-menu-{{ module_id }} .ul-top-items .li-top-item.active {
+        background: {{ menu_setting.item_bg_hover }};
+        color: {{ menu_setting.item_font_color_hover }};
+    }
+    #mcc-menu-{{ module_id }} .ul-top-items .li-top-item:hover .a-top-link, #mcc-menu-{{ module_id }} .ul-top-items .li-top-item.active .a-top-link{
+        color: {{ menu_setting.item_font_color_hover }};
+        font-weight: {{ menu_setting.item_font_weight_hover }};
+    }
+    #mcc-menu-{{ module_id }} .mega-menu-container {
+        width: {{ menu_setting.mega_menu_width }};
+        background: {{ menu_setting.mega_menu_bg }};
+        padding: {{ menu_setting.mega_menu_pd_top }} {{ menu_setting.mega_menu_pd_right }} {{ menu_setting.mega_menu_pd_bottom }} {{ menu_setting.mega_menu_pd_left }};
+        
+    }
+    #mcc-menu-{{ module_id }} .mega-menu-container .a-mega-second-link,#mcc-menu-{{ module_id }} .mega-menu-container .widget-html-title {
+        color: {{ menu_setting.mega_second_link_color }};
+    }
+	#mcc-menu-{{ module_id }} .mega-menu-container .a-mega-third-link {
+        color: {{ menu_setting.mega_third_link_color }};
+    }
+    #mcc-menu-{{ module_id }} .ul-second-items .li-second-items {
+        background: {{ menu_setting.second_item_bg }};
+        color: {{ menu_setting.second_item_font_color }};
+    }
+    #mcc-menu-{{ module_id }} .ul-second-items .li-second-items:hover, #mcc-menu-{{ module_id }} .ul-second-items .li-second-items.active {
+        background: {{ menu_setting.second_item_bg_hover }};
+        color: {{ menu_setting.second_item_font_color_hover }};
+    }
+    #mcc-menu-{{ module_id }} .ul-second-items .li-second-items .a-second-link {
+        color: {{ menu_setting.second_item_font_color }};
+        font-size: {{ menu_setting.second_item_font_size }};
+        text-transform: {{ menu_setting.second_item_font_transform }};
+        font-weight: {{ menu_setting.second_item_font_weight }};
+    }
+    #mcc-menu-{{ module_id }} .ul-second-items .li-second-items:hover .a-second-link, #mcc-menu-{{ module_id }} .ul-second-items .li-second-items.active .a-second-link {
+        color: {{ menu_setting.second_item_font_color_hover }};
+        font-weight: {{ menu_setting.second_item_font_weight_hover }};
+    }
+    #mcc-menu-{{ module_id }} .ul-third-items .li-third-items {
+        background: {{ menu_setting.third_item_bg }};
+    }
+    #mcc-menu-{{ module_id }} .ul-third-items .li-third-items:hover, #mcc-menu-{{ module_id }} .ul-third-items .li-third-items.active {
+        background: {{ menu_setting.third_item_bg_hover }};
+    }
+    #mcc-menu-{{ module_id }} .ul-third-items .li-third-items .a-third-link {
+        color: {{ menu_setting.third_item_font_color }};
+        font-size: {{ menu_setting.third_item_font_size }};
+        text-transform: {{ menu_setting.third_item_font_transform }};
+        font-weight: {{ menu_setting.third_item_font_weight }};
+    }
+    #mcc-menu-{{ module_id }} .ul-third-items .li-third-items:hover .a-third-link, #mcc-menu-{{ module_id }} .ul-third-items .li-third-items.active .a-third-link {
+        color: {{ menu_setting.third_item_font_color_hover }};
+        font-weight: {{ menu_setting.third_item_font_weight_hover }};
+    }
+</style>
+{% if warning %}
+{% else %}
+    
+
+    {% set item_show = menu_setting.item_show %}
+    {% if menu_type == "vertical" %}
+    {% set count = 0 %}
+    <div class="col-ver hidden-md hidden-sm hidden-xs">
+        <div class="mcc-menu vertical-menu visible-lg visible-md" id="mcc-menu-{{ module_id }}">
+            {% if items %}
+                <input type="hidden" id="menu-effect-{{ module_id }}" class="menu-effect" value="{{ menu_setting.effect }}" />
+                <div class="mcc-menu-bar">
+                    <div class="left"><i class="lnr lnr-text-align-left"></i> <span>{{ text_vertical_bar }}</span></div>
+                    <div class="right"><i class="icon ion-ios-arrow-down" aria-hidden="true"></i></div>
+                </div>
+                <ul class="ul-top-items">
+                    {% for top_item in items %}
+                        {% if top_item.status %}
+                            {% set count = count + 1 %}
+                            <li class="li-top-item {{ top_item.item_align }} {{ (count > item_show) ? 'over' : '' }}">
+                                {% if top_item.has_link %}
+                                    <a class="a-top-link a-item" href="{{ top_item.link }}">
+                                        {% if top_item.icon %}
+                                            <img src="{{ top_item.icon }}" class="top-icon"/>
+                                        {% endif %}
+                                        {% if top_item.has_title %}
+                                            <span>{{ top_item.title }}</span>
+                                        {% endif %}
+                                        {% if top_item.has_child %}
+                                            <i class="ion-ios-arrow-right" aria-hidden="true"></i>
+                                        {% endif %}
+                                    </a>
+                                {% else %}
+                                    <a class="a-top-link a-item" href="javascript:void(0)">
+                                        {% if top_item.icon %}
+                                            <img src="{{ top_item.icon }}" class="top-icon"/>
+                                        {% endif %}
+                                        {% if top_item.has_title %}
+                                            <span>{{ top_item.title }}</span>
+                                        {% endif %}
+                                        {% if top_item.has_child %}
+                                            <i class="ion-ios-arrow-right" aria-hidden="true"></i>
+                                        {% endif %}
+                                    </a>
+                                {% endif %}
+                                {% if top_item.has_child %}
+                                    <!-- Mega Menu -->
+                                    {% if top_item.sub_menu_type == "mega" %}
+                                        {% if top_item.sub_menu_content_type == 'children' %}
+                                            <div class="mega-menu-container sub-menu-container {% if menu_setting.mega_menu_width == '100%' %} full-width {% endif %}">
+                                                {% if top_item.sub_items|length > 0 %}
+                                                    {% for sub_item2 in top_item.sub_items %}
+                                                        {% if sub_item2.status %}
+                                                            <div class="{% if top_item.sub_menu_content_columns %}col-md-{{ top_item.sub_menu_content_columns }}{% endif %} sub-item2-content"
+                                                                    {% if top_item.sub_menu_content_columns == false %} style="width: 20%;" data-cols="12/5" {% else %} data-cols="{{ top_item.sub_menu_content_columns }}" {% endif %} >
+                                                                <h4><a class="a-mega-second-link" href="{{ sub_item2.link }}">{{ sub_item2.title }}</a></h4>
+                                                                {% if sub_item2.sub_items|length > 0 %}
+                                                                    <div class="sub_item3-content">
+                                                                        {% for sub_item3 in sub_item2.sub_items %}
+                                                                            {% if sub_item3.status %}
+                                                                                <h5><a class="a-mega-third-link" href="{{ sub_item3.link }}">{{ sub_item3.title }}</a></h5>
+                                                                            {% endif %}
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                {% endif %}
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                        {% else %}
+                                            {% if top_item.sub_menu_content|length > 0 %}
+                                                <div class="mega-menu-container sub-menu-container {% if menu_setting.mega_menu_width == '100%' %} full-width {% endif %}">
+                                                    <div class="row">
+													{% for type,widgets in top_item.sub_menu_content %}
+                                                        {% if type == "category" %}
+                                                            {% if widgets|length > 0 %}
+                                                                {% for widget in widgets %}
+                                                                    <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
+                                                                        {% if widget.image %}
+                                                                            <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                        {% endif %}
+                                                                        <h4><a class="a-mega-second-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+                                                                        {% if widget.children|length > 0 %}
+                                                                            <div class="sub_item3-content">
+                                                                                {% for c_category in widget.children %}
+                                                                                    <h5><a class="a-mega-third-link" href="{{ c_category.link }}">{{ c_category.title }}</a></h5>
+                                                                                {% endfor %}
+                                                                            </div>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        {% endif %}
+
+                                                        {% if type == "widget" %}
+                                                            {% if widgets|length > 0 %}
+                                                                {% for widget in widgets %}
+                                                                    {% if widget.type == "category" %}
+                                                                        <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
+                                                                            {% if widget.image %}
+                                                                                <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                            {% endif %}
+                                                                            <h4><a class="a-mega-second-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+                                                                            {% if widget.children|length > 0 %}
+                                                                                <div class="sub_item3-content">
+                                                                                    {% for c_category in widget.children %}
+                                                                                        <h5><a class="a-mega-third-link" href="{{ c_category.link }}">{{ c_category.title }}</a></h5>
+                                                                                    {% endfor %}
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                    {% endif %}
+
+                                                                    {% if widget.type == "product" %}
+                                                                        <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
+                                                                            {% if widget.image %}
+                                                                                <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                            {% endif %}
+                                                                            <h4><a class="a-mega-second-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+                                                                        </div>
+                                                                    {% endif %}
+
+                                                                    {% if widget.type == "html" %}
+                                                                        <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
+                                                                            {% if widget.title %}
+																			<h4><strong>{{ widget.title }}</strong></h4>
+																			{% endif %}
+                                                                            {{ widget.content }}
+                                                                        </div>
+                                                                    {% endif %}
+
+                                                                    {% if widget.type == "link" %}
+                                                                        <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
+                                                                            <h4><a class="a-mega-second-link a-widget-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+                                                                        </div>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
+													</div>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+
+                                    <!-- Flyout Menu -->
+                                    {% if top_item.sub_menu_type == "flyout" %}
+                                        {% if top_item.sub_menu_content_type == 'children' %}
+                                            {% if top_item.sub_items|length > 0 %}
+                                                <div class="flyout-menu-container sub-menu-container {{ top_item.item_align }}">
+                                                    <ul class="ul-second-items">
+                                                        {% for sub_item2 in top_item.sub_items %}
+                                                            {% if sub_item2.status %}
+                                                                <li class="li-second-items">
+                                                                    <a href="{{ sub_item2.link }}" class="a-second-link a-item">
+                                                                        <span class="a-second-title">{{ sub_item2.title }}</span>
+                                                                        {% if sub_item2.sub_items|length > 0 %}
+                                                                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                                        {% endif %}
+                                                                    </a>
+                                                                    {% if sub_item2.sub_items|length > 0 %}
+                                                                        <div class="flyout-third-items {{ top_item.item_align }}">
+                                                                            <ul class="ul-third-items">
+                                                                                {% for sub_item3 in sub_item2.sub_items %}
+                                                                                    {% if sub_item3.status %}
+                                                                                        <li class="li-third-items">
+                                                                                            <a href="{{ sub_item3.link }}" class="a-third-link"><span class="a-third-title">{{ sub_item3.title }}</span></a>
+                                                                                        </li>
+                                                                                    {% endif %}
+                                                                                {% endfor %}
+                                                                            </ul>
+                                                                        </div>
+                                                                    {% endif %}
+                                                                </li>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+
+                                        {% if top_item.sub_menu_content_type == 'category' %}
+                                            {% if top_item.sub_menu_content|length > 0 %}
+                                                <div class="flyout-menu-container sub-menu-container {{ top_item.item_align }}">
+                                                    <ul class="ul-second-items">
+                                                        {% for type,widgets in top_item.sub_menu_content %}
+                                                            {% if type == "category" %}
+                                                                {% if widgets|length > 0 %}
+                                                                    {% for widget in widgets %}
+                                                                        <li class="li-second-items">
+                                                                            <a href="{{ widget.link }}" class="a-second-link a-item">
+                                                                                <span class="a-second-title">{{ widget.title }}</span>
+                                                                                {% if widget.children|length > 0 %}
+                                                                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                                                {% endif %}
+                                                                            </a>
+                                                                            {% if widget.children|length > 0 %}
+                                                                                <div class="flyout-third-items {{ top_item.item_align }}">
+                                                                                    <ul class="ul-third-items">
+                                                                                        {% for c_category in widget.children %}
+                                                                                            <li class="li-third-items">
+                                                                                                <a href="{{ c_category.link }}" class="a-third-link"><span class="a-third-title">{{ c_category.title }}</span></a>
+                                                                                            </li>
+                                                                                        {% endfor %}
+                                                                                    </ul>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </li>
+                                                                    {% endfor %}
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if count > item_show %}
+                        <li class="li-top-item li-over li-plus">
+                            <a href="javascript:void(0);" class="a-top-link a-plus a-over"><span>{{ text_more }}</span></a>
+                        </li>
+                        <li class="li-top-item li-over li-minus over">
+                            <a href="javascript:void(0);" class="a-top-link a-minus a-over"><span>{{ text_close }}</span></a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+
+    {% if menu_type == "horizontal" %}
+    <div class="col-hoz ">
+        <div class="mcc-menu horizontal-menu mcc-menu-bar visible-lg" id="mcc-menu-{{ module_id }}">
+            
+            {% if items %}
+                <input type="hidden" id="menu-effect-{{ module_id }}" class="menu-effect" value="{{ menu_setting.effect }}" />
+                <ul class="ul-top-items">
+                    {% for top_item in items %}
+                        {% if top_item.status %}
+                            <li class="li-top-item {{ top_item.item_align }}" style="float: {{ top_item.item_align }}">
+                                {% if top_item.has_link %}
+                                    <a class="a-top-link" href="{{ top_item.link }}">
+                                        {% if top_item.icon %}
+                                            <img src="{{ top_item.icon }}" class="top-icon"/>
+                                        {% endif %}
+                                        {% if top_item.has_title %}
+                                            <span>{{ top_item.title }}</span>
+                                        {% endif %}
+                                        {% if top_item.has_child %}
+                                            <i class="ion-ios-arrow-down" aria-hidden="true"></i>
+                                        {% endif %}
+                                    </a>
+                                {% else %}
+                                    <a class="a-top-link a-item" href="javascript:void(0)">
+                                        {% if top_item.icon %}
+                                            <img src="{{ top_item.icon }}" class="top-icon"/>
+                                        {% endif %}
+                                        {% if top_item.has_title %}
+                                            <span>{{ top_item.title }}</span>
+                                        {% endif %}
+                                        {% if top_item.has_child %}
+                                            <i class="ion-ios-arrow-down" aria-hidden="true"></i>
+                                        {% endif %}
+                                    </a>
+                                {% endif %}
+                                {% if top_item.has_child %}
+                                    <!-- Mega Menu -->
+                                    {% if top_item.sub_menu_type == "mega" %}
+                                        {% if top_item.sub_menu_content_type == 'children' %}
+                                            <div class="mega-menu-container sub-menu-container {{ top_item.item_align }} {% if menu_setting.mega_menu_width == '100%' %} full-width {% endif %}">
+                                                {% if top_item.sub_items|length > 0 %}
+                                                    {% for sub_item2 in top_item.sub_items %}
+                                                        {% if sub_item2.status %}
+                                                            <div class="{% if top_item.sub_menu_content_columns %}col-md-{{ top_item.sub_menu_content_columns }}{% endif %} sub-item2-content"
+                                                                    {% if top_item.sub_menu_content_columns == false %} style="width: 20%;" data-cols="12/5" {% else %} data-cols="{{ top_item.sub_menu_content_columns }}" {% endif %} >
+                                                                <h4><a class="a-mega-second-link" href="{{ sub_item2.link }}">{{ sub_item2.title }}</a></h4>
+                                                                {% if sub_item2.sub_items|length > 0 %}
+                                                                    <div class="sub_item3-content">
+                                                                        {% for sub_item3 in sub_item2.sub_items %}
+                                                                            {% if sub_item3.status %}
+                                                                                <h5><a class="a-mega-third-link" href="{{ sub_item3.link }}">{{ sub_item3.title }}</a></h5>
+                                                                            {% endif %}
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                {% endif %}
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+
+                                        {% if top_item.sub_menu_content_type == 'category' %}
+                                            {% if top_item.sub_menu_content|length > 0 %}
+                                                <div class="mega-menu-container sub-menu-container {{ top_item.item_align }} {% if menu_setting.mega_menu_width == '100%' %} full-width {% endif %}">
+                                                    <div class="row">
+                                                    {% for type,widgets in top_item.sub_menu_content %}
+                                                        {% if type == "category" %}
+                                                            {% if widgets|length > 0 %}
+                                                                {% for widget in widgets %}
+                                                                    <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
+                                                                        {% if widget.image %}
+                                                                            <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                        {% endif %}
+                                                                        <h4><a class="a-mega-second-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+                                                                        {% if widget.children|length > 0 %}
+                                                                            <div class="sub_item3-content">
+                                                                                {% for c_category in widget.children %}
+                                                                                    <h5><a class="a-mega-third-link" href="{{ c_category.link }}">{{ c_category.title }}</a></h5>
+                                                                                {% endfor %}
+                                                                            </div>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+
+                                        {% if top_item.sub_menu_content_type == 'widget' %}
+                                            {% if top_item.sub_menu_content|length > 0 %}
+                                                <div class="mega-menu-container sub-menu-container {{ top_item.item_align }} {% if menu_setting.mega_menu_width == '100%' %} full-width {% endif %}">
+                                                    <div class="row">
+                                                    {% for type,widgets in top_item.sub_menu_content %}
+                                                        {% if type == "widget" %}
+                                                            {% if widgets|length > 0 %}
+                                                                {% for widget in widgets %}
+                                                                    {% if widget.type == "category" %}
+                                                                        <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
+                                                                            {% if widget.image %}
+                                                                                <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                            {% endif %}
+                                                                            <h4><a class="a-mega-second-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+                                                                            {% if widget.children|length > 0 %}
+                                                                                <div class="sub_item3-content">
+                                                                                    {% for c_category in widget.children %}
+                                                                                        <h5><a class="a-mega-third-link" href="{{ c_category.link }}">{{ c_category.title }}</a></h5>
+                                                                                    {% endfor %}
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                    {% endif %}
+
+                                                                    {% if widget.type == "product" %}
+                                                                        <div class="col-md-{{ widget.cols }} sub-item2-content sub-product" data-cols="{{ widget.cols }}">
+                                                                            {% if widget.image %}
+                                                                                <a href="{{ widget.link }}"><img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" /></a>
+                                                                            {% endif %}
+                                                                            <h4><a class="a-mega-second-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+                                                                            <div class="price-box">
+                                                                            {% if not widget.special %}
+                                                                                <p class="regular-price"><span class="price">{{ widget.price }}</span></p>
+                                                                            {% else %}
+                                                                                <p class="special-price"><span class="price">{{ widget.special }}</span></p>
+                                                                                <p class="old-price"><span class="price">{{ widget.price }}</span></p>                        
+                                                                            {% endif %}
+                                                                            </div>
+                                                                        </div>
+                                                                    {% endif %}
+
+                                                                    {% if widget.type == "html" %}
+                                                                        <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
+                                                                            <p class="widget-html-title">{{ widget.title }}</p>
+                                                                            <div>{{ widget.content }}</div>
+                                                                        </div>
+                                                                    {% endif %}
+
+                                                                    {% if widget.type == "link" %}
+                                                                        <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
+                                                                            <h4><a class="a-mega-second-link a-widget-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+                                                                        </div>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+
+                                    <!-- Flyout Menu -->
+                                    {% if top_item.sub_menu_type == "flyout" %}
+                                        {% if top_item.sub_menu_content_type == 'children' %}
+                                            {% if top_item.sub_items|length > 0 %}
+                                                <div class="flyout-menu-container sub-menu-container {{ top_item.item_align }}">
+                                                    <ul class="ul-second-items">
+                                                        {% for sub_item2 in top_item.sub_items %}
+                                                            {% if sub_item2.status %}
+                                                                <li class="li-second-items">
+                                                                    <a href="{{ sub_item2.link }}" class="a-second-link a-item">
+                                                                        <span class="a-second-title">{{ sub_item2.title }}</span>
+                                                                        {% if sub_item2.sub_items|length > 0 %}
+                                                                            {% if top_item.item_align == 'left' %}
+                                                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                                            {% endif %}
+                                                                            {% if top_item.item_align == 'right' %}
+                                                                                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                                                            {% endif %}
+                                                                        {% endif %}
+                                                                    </a>
+                                                                    {% if sub_item2.sub_items|length > 0 %}
+                                                                        <div class="flyout-third-items {{ top_item.item_align }}">
+                                                                            <ul class="ul-third-items">
+                                                                                {% for sub_item3 in sub_item2.sub_items %}
+                                                                                    {% if sub_item3.status %}
+                                                                                        <li class="li-third-items">
+                                                                                            <a href="{{ sub_item3.link }}" class="a-third-link"><span class="a-third-title">{{ sub_item3.title }}</span></a>
+                                                                                        </li>
+                                                                                    {% endif %}
+                                                                                {% endfor %}
+                                                                            </ul>
+                                                                        </div>
+                                                                    {% endif %}
+                                                                </li>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+
+                                        {% if top_item.sub_menu_content_type == 'category' %}
+                                            {% if top_item.sub_menu_content|length > 0 %}
+                                                <div class="flyout-menu-container sub-menu-container {{ top_item.item_align }}">
+                                                    <ul class="ul-second-items">
+                                                        {% for type,widgets in top_item.sub_menu_content %}
+                                                            {% if type == "category" %}
+                                                                {% if widgets|length > 0 %}
+                                                                    {% for widget in widgets %}
+                                                                        <li class="li-second-items">
+                                                                            <a href="{{ widget.link }}" class="a-second-link a-item">
+                                                                                <span class="a-second-title">{{ widget.title }}</span>
+                                                                                {% if widget.children|length > 0 %}
+                                                                                    {% if top_item.item_align == 'left' %}
+                                                                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                                                    {% endif %}
+                                                                                    {% if top_item.item_align == 'right' %}
+                                                                                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                                                                    {% endif %}
+                                                                                {% endif %}
+                                                                            </a>
+                                                                            {% if widget.children|length > 0 %}
+                                                                                <div class="flyout-third-items {{ top_item.item_align }}">
+                                                                                    <ul class="ul-third-items">
+                                                                                        {% for c_category in widget.children %}
+                                                                                            <li class="li-third-items">
+                                                                                                <a href="{{ c_category.link }}" class="a-third-link"><span class="a-third-title">{{ c_category.title }}</span></a>
+                                                                                            </li>
+                                                                                        {% endfor %}
+                                                                                    </ul>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </li>
+                                                                    {% endfor %}
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+       </div>       
+    </div>
+    {% endif %}
+
+    {% if menu_type == "mobile" %}
+        <div class="mcc-menu mobile-menu hidden-lg " id="mcc-menu-{{ module_id }}">
+            {% if items %}
+                <input type="hidden" id="menu-effect-{{ module_id }}" class="menu-effect" value="{{ menu_setting.effect }}" />
+                <div class="mcc-menu-bar">
+                    <div class="left"><i class="lnr lnr-text-align-left"></i> <span>{{ text_mobile_bar }}</span></div>
+                    <div class="right"><i class="icon ion-ios-arrow-down" aria-hidden="true"></i></div>
+                </div>
+                <ul class="ul-top-items">
+                    {% for top_item in items %}
+                        {% if top_item.status %}
+                            <li class="li-top-item">
+                                {% if top_item.has_link %}
+                                    <a class="a-top-link a-item" href="{{ top_item.link }}">
+                                        {% if top_item.icon %}
+                                            <img src="{{ top_item.icon }}" class="top-icon"/>
+                                        {% endif %}
+                                        {% if top_item.has_title %}
+                                            <span>{{ top_item.title }}</span>
+                                        {% endif %}
+                                    </a>
+                                    {% if top_item.has_child and top_item.sub_menu_content_type != 'widget' %}
+                                        <span class="top-click-show a-click-show">
+                                            <i class="ion-ios-arrow-down" aria-hidden="true"></i>
+                                            <i class="ion-ios-arrow-up" aria-hidden="true"></i>
+                                        </span>
+                                    {% endif %}
+                                {% else %}
+                                    <a class="a-top-link a-item" href="javascript:void(0)">
+                                        {% if top_item.icon %}
+                                            <img src="{{ top_item.icon }}" class="top-icon"/>
+                                        {% endif %}
+                                        {% if top_item.has_title %}
+                                            <span>{{ top_item.title }}</span>
+                                        {% endif %}
+                                    </a>
+                                    {% if top_item.has_child and top_item.sub_menu_content_type != 'widget' %}
+                                        <span class="top-click-show a-click-show">
+                                            <i class="ion-ios-arrow-down" aria-hidden="true"></i>
+                                            <i class="ion-ios-arrow-up" aria-hidden="true"></i>
+                                        </span>
+                                    {% endif %}
+                                {% endif %}
+                                {% if top_item.has_child %}
+                                    {% if top_item.sub_menu_content_type == 'children' %}
+                                        {% if top_item.sub_items|length > 0 %}
+                                            <div class="sub-menu-container">
+                                                <ul class="ul-second-items">
+                                                    {% for sub_item2 in top_item.sub_items %}
+                                                        {% if sub_item2.status %}
+                                                            <li class="li-second-items">
+                                                                <a href="{{ sub_item2.link }}" class="a-second-link a-item">
+                                                                    <span class="a-second-title">{{ sub_item2.title }}</span>
+                                                                </a>
+                                                                {% if sub_item2.sub_items|length > 0 %}
+                                                                    <span class="second-click-show a-click-show">
+                                                                        <i class="ion-ios-arrow-down" aria-hidden="true"></i>
+                                                                        <i class="ion-ios-arrow-up" aria-hidden="true"></i>
+                                                                    </span>
+                                                                {% endif %}
+                                                                {% if sub_item2.sub_items|length > 0 %}
+                                                                    <div class="flyout-third-items">
+                                                                        <ul class="ul-third-items">
+                                                                            {% for sub_item3 in sub_item2.sub_items %}
+                                                                                {% if sub_item3.status %}
+                                                                                    <li class="li-third-items">
+                                                                                        <a href="{{ sub_item3.link }}" class="a-third-link"><span class="a-third-title">{{ sub_item3.title }}</span></a>
+                                                                                    </li>
+                                                                                {% endif %}
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    </div>
+                                                                {% endif %}
+                                                            </li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+
+                                    {% if top_item.sub_menu_content_type == 'category' %}
+                                        {% if top_item.sub_menu_content|length > 0 %}
+                                            <div class="sub-menu-container">
+                                                <ul class="ul-second-items">
+                                                    {% for type,widgets in top_item.sub_menu_content %}
+                                                        {% if type == "category" %}
+                                                            {% if widgets|length > 0 %}
+                                                                {% for widget in widgets %}
+                                                                    <li class="li-second-items">
+                                                                        <a href="{{ widget.link }}" class="a-second-link a-item">
+                                                                            <span class="a-second-title">{{ widget.title }}</span>
+                                                                        </a>
+                                                                        {% if widget.children|length > 0 %}
+                                                                            <span class="second-click-show a-click-show">
+                                                                                <i class="ion-ios-arrow-down" aria-hidden="true"></i>
+                                                                                <i class="ion-ios-arrow-up" aria-hidden="true"></i>
+                                                                            </span>
+                                                                        {% endif %}
+                                                                        {% if widget.children|length > 0 %}
+                                                                            <div class="flyout-third-items">
+                                                                                <ul class="ul-third-items">
+                                                                                    {% for c_category in widget.children %}
+                                                                                        <li class="li-third-items">
+                                                                                            <a href="{{ c_category.link }}" class="a-third-link"><span class="a-third-title">{{ c_category.title }}</span></a>
+                                                                                        </li>
+                                                                                    {% endfor %}
+                                                                                </ul>
+                                                                            </div>
+                                                                        {% endif %}
+                                                                    </li>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endif %}

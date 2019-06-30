@@ -74,8 +74,9 @@ class ControllerCommonHeader extends Controller {
 		$data['currency'] = $this->load->controller('common/currency');
 		$data['search'] = $this->load->controller('common/search');
 		$data['cart'] = $this->load->controller('common/cart');
-		$data['menu'] = $this->load->controller('common/menu');
-		$data['content_menu'] = $this->load->controller('extension/module/megamenu');
+		//$data['menu'] = $this->load->controller('common/menu');
+		$data['megamenu'] = $this->load->controller('common/megamenu');
+		//echo $data['megamenu'];exit;
 		
 
 		return $this->load->view('common/header', $data);
