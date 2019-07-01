@@ -88,8 +88,8 @@
             {% if items %}
                 <input type="hidden" id="menu-effect-{{ module_id }}" class="menu-effect" value="{{ menu_setting.effect }}" />
                 <div class="mcc-menu-bar">
-                    <div class="left"><i class="lnr lnr-text-align-left"></i> <span>{{ text_vertical_bar }}</span></div>
-                    <div class="right"><i class="icon ion-ios-arrow-down" aria-hidden="true"></i></div>
+                    <div class="left"><i class="fas fa-bars"></i> <span>{{ text_vertical_bar }}</span></div>
+                    <div class="right"><i class="fas fa-angle-down" aria-hidden="true"></i></div>
                 </div>
                 <ul class="ul-top-items">
                     {% for top_item in items %}
@@ -105,7 +105,7 @@
                                             <span>{{ top_item.title }}</span>
                                         {% endif %}
                                         {% if top_item.has_child %}
-                                            <i class="ion-ios-arrow-right" aria-hidden="true"></i>
+                                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
                                         {% endif %}
                                     </a>
                                 {% else %}
@@ -117,7 +117,7 @@
                                             <span>{{ top_item.title }}</span>
                                         {% endif %}
                                         {% if top_item.has_child %}
-                                            <i class="ion-ios-arrow-right" aria-hidden="true"></i>
+                                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
                                         {% endif %}
                                     </a>
                                 {% endif %}
@@ -333,7 +333,7 @@
                                             <span>{{ top_item.title }}</span>
                                         {% endif %}
                                         {% if top_item.has_child %}
-                                            <i class="ion-ios-arrow-down" aria-hidden="true"></i>
+                                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
                                         {% endif %}
                                     </a>
                                 {% else %}
@@ -345,7 +345,7 @@
                                             <span>{{ top_item.title }}</span>
                                         {% endif %}
                                         {% if top_item.has_child %}
-                                            <i class="ion-ios-arrow-down" aria-hidden="true"></i>
+                                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
                                         {% endif %}
                                     </a>
                                 {% endif %}
@@ -567,7 +567,7 @@
                 <input type="hidden" id="menu-effect-{{ module_id }}" class="menu-effect" value="{{ menu_setting.effect }}" />
                 <div class="mcc-menu-bar">
                     <div class="left"><i class="lnr lnr-text-align-left"></i> <span>{{ text_mobile_bar }}</span></div>
-                    <div class="right"><i class="icon ion-ios-arrow-down" aria-hidden="true"></i></div>
+                    <div class="right"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
                 </div>
                 <ul class="ul-top-items">
                     {% for top_item in items %}
@@ -584,8 +584,8 @@
                                     </a>
                                     {% if top_item.has_child and top_item.sub_menu_content_type != 'widget' %}
                                         <span class="top-click-show a-click-show">
-                                            <i class="ion-ios-arrow-down" aria-hidden="true"></i>
-                                            <i class="ion-ios-arrow-up" aria-hidden="true"></i>
+                                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                            <i class="fas fa-chevron-up" aria-hidden="true"></i>
                                         </span>
                                     {% endif %}
                                 {% else %}
@@ -599,8 +599,8 @@
                                     </a>
                                     {% if top_item.has_child and top_item.sub_menu_content_type != 'widget' %}
                                         <span class="top-click-show a-click-show">
-                                            <i class="ion-ios-arrow-down" aria-hidden="true"></i>
-                                            <i class="ion-ios-arrow-up" aria-hidden="true"></i>
+                                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                            <i class="fas fa-chevron-up" aria-hidden="true"></i>
                                         </span>
                                     {% endif %}
                                 {% endif %}
@@ -617,8 +617,8 @@
                                                                 </a>
                                                                 {% if sub_item2.sub_items|length > 0 %}
                                                                     <span class="second-click-show a-click-show">
-                                                                        <i class="ion-ios-arrow-down" aria-hidden="true"></i>
-                                                                        <i class="ion-ios-arrow-up" aria-hidden="true"></i>
+                                                                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                                                        <i class="fas fa-chevron-up" aria-hidden="true"></i>
                                                                     </span>
                                                                 {% endif %}
                                                                 {% if sub_item2.sub_items|length > 0 %}
@@ -656,8 +656,8 @@
                                                                         </a>
                                                                         {% if widget.children|length > 0 %}
                                                                             <span class="second-click-show a-click-show">
-                                                                                <i class="ion-ios-arrow-down" aria-hidden="true"></i>
-                                                                                <i class="ion-ios-arrow-up" aria-hidden="true"></i>
+                                                                                <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                                                                <i class="fas fa-chevron-up" aria-hidden="true"></i>
                                                                             </span>
                                                                         {% endif %}
                                                                         {% if widget.children|length > 0 %}

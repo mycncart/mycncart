@@ -16,21 +16,10 @@ class ModelDesignMenu extends Model {
 
 	public function editMenu($menu_id, $data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "menu SET name = '" . $this->db->escape((string)$data['name']) . "', status = '" . (int)$data['status'] . "' WHERE menu_id = '" . (int)$menu_id . "'");
-
-		$this->db->query("DELETE FROM " . DB_PREFIX . "menu_image WHERE menu_id = '" . (int)$menu_id . "'");
-
-		if (isset($data['menu_image'])) {
-			foreach ($data['menu_image'] as $language_id => $value) {
-				foreach ($value as $menu_image) {
-					$this->db->query("INSERT INTO " . DB_PREFIX . "menu_image SET menu_id = '" . (int)$menu_id . "', language_id = '" . (int)$language_id . "', title = '" .  $this->db->escape($menu_image['title']) . "', link = '" .  $this->db->escape($menu_image['link']) . "', image = '" .  $this->db->escape($menu_image['image']) . "', sort_order = '" . (int)$menu_image['sort_order'] . "'");
-				}
-			}
-		}
 	}
 
 	public function deleteMenu($menu_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "menu WHERE menu_id = '" . (int)$menu_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "menu_image WHERE menu_id = '" . (int)$menu_id . "'");
 	}
 
 	public function getMenu($menu_id) {

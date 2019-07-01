@@ -1194,4 +1194,47 @@ class ControllerDesignMenu extends Controller {
         $this->response->setOutput(json_encode($json));
     }
 
+    public function deleteMultipleItems() {
+        $this->load->language('design/menu');
+
+        $this->load->model('design/menu');
+
+        if (isset($this->request->get['menu_id'])) {
+            $menu_id = $this->request->get['menu_id'];
+        } else {
+            $menu_id = 0;
+        }
+
+        $json = array();
+
+        $json['menu_id'] = $menu_id;
+
+        if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+            $post_data = $this->request->post;
+
+            if(isset($post_data['top_items'])) {
+                $top_items = $post_data['top_items'];
+
+                foreach ($top_items as $top_item_id) {
+                    $this->model_design_menu->deleteTopItem($top_item_id);
+                }
+            }
+
+            if(isset($post_data['sub_items'])) {
+                $sub_items = $post_data['sub_items'];
+
+                foreach ($sub_items as $sub_item_id) {
+                    $this->model_design_menu->deleteSubItem($sub_item_id);
+                }
+            }
+
+            $json['result'] = true;
+        } else {
+            $json['result'] = false;
+        }
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
+
 }
