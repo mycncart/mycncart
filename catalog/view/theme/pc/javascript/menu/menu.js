@@ -61,17 +61,21 @@ $(document).ready(function () {
     });
 
     $('.vertical-menu .mcc-menu-bar').click(function () {
+        
         var effect = $(this).closest('.mcc-menu').find('.menu-effect').val();
         if(effect == "none") {
             $('.vertical-menu .ul-top-items').toggle();
+            
         }
 
         if(effect == "fade") {
             $('.vertical-menu .ul-top-items').fadeToggle();
+            
         }
 
         if(effect == "slide") {
             $('.vertical-menu .ul-top-items').slideToggle();
+            
         }
     });
 

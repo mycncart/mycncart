@@ -33,8 +33,8 @@
     <link href="catalog/view/javascript/jquery/swiper/css/swiper.min.css" rel="stylesheet" type="text/css"/>
     <link href="catalog/view/javascript/jquery/swiper/css/mycncart.css" rel="stylesheet" type="text/css"/>
 
-    <script src="catalog/view/theme/{{ theme_default_directory }}/javascript/ocmegamenu/menu.js" ></script>
-    <link href="catalog/view/theme/{{ theme_default_directory }}/stylesheet/ocmegamenu/menu.css" rel="stylesheet" />
+    <script src="catalog/view/theme/{{ theme_default_directory }}/javascript/menu/menu.js" ></script>
+    <link href="catalog/view/theme/{{ theme_default_directory }}/stylesheet/menu/menu.css" rel="stylesheet" />
 
     <link href="catalog/view/theme/{{ theme_default_directory }}/stylesheet/stylesheet.css" rel="stylesheet">
 
@@ -46,7 +46,8 @@
   {% if cookie %}
     {{ cookie }}
   {% endif %}
-
+    {{ header_top }}
+    {#
     <div class="container-fluid" id="top-banner">
       <!----top baner start----->
     <div class="row">
@@ -54,6 +55,7 @@
       
     </div>
     <!----top baner end----->
+    #}
     </div>
     <div id="top">
       <div class="container">
@@ -192,7 +194,7 @@
     <div class="top-menu fix">
       <div class="container">
         <div class="container-inner">
-          {{ megamenu }}  
+          {{ header_bottom }}  
         </div>
       </div>
     </div>
@@ -853,3 +855,7 @@
     </div>
   </div>
 </footer>
+
+<script type="text/javascript"><!--
+$('.vertical-menu .ul-top-items').toggle();
+//--></script>

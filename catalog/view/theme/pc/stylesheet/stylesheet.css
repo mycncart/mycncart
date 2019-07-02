@@ -351,7 +351,7 @@ z-index: 9;
 /*销售提示*/
 .sell-block {
     position: relative;
-    z-index: 12;
+    z-index: 6;
     margin-top: -45px;
     margin-bottom: 20px;
     height: 45px;

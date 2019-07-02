@@ -12,11 +12,12 @@ $_['text_route']          = '选择店铺和路由以便该布局使用';
 $_['text_pc_module']      = '选择PC电脑端模组的位置';
 $_['text_mobile_module']  = '选择移动端模组的位置';
 $_['text_default']        = '默认';
-$_['text_megamenu']    	  = '菜单栏';
 $_['text_content_top']    = '内容顶部';
 $_['text_content_bottom'] = '内容底部';
 $_['text_column_left']    = '左列';
 $_['text_column_right']   = '右列';
+$_['text_header_top']  	  = '页顶上部';
+$_['text_header_bottom']  = '页顶底部';
 $_['text_mobile_content'] = '移动端';
 
 // Column

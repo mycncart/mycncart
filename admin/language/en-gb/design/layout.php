@@ -12,11 +12,12 @@ $_['text_route']          = 'Choose the store and routes to be used with this la
 $_['text_pc_module']      = 'Choose the position of the modules for PC';
 $_['text_mobile_module']  = 'Choose the position of the modules for Mobiles & Tablets';
 $_['text_default']        = 'Default';
-$_['text_megamenu']    	  = 'Megamenu';
 $_['text_content_top']    = 'Content Top';
 $_['text_content_bottom'] = 'Content Bottom';
 $_['text_column_left']    = 'Column Left';
 $_['text_column_right']   = 'Column Right';
+$_['text_header_top']  	  = 'Header Top';
+$_['text_header_bottom']  = 'Header Bottom';
 $_['text_mobile_content'] = 'Mobile Content';
 
 // Column
