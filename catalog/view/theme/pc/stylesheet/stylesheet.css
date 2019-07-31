@@ -58,6 +58,7 @@ li.dropdown:hover > .dropdown-menu {
 
 .dropdown-menu {
   margin: 0px;
+  font-size: 12px;
 }
 
 .dropdown-menu a:hover {
@@ -339,11 +340,11 @@ z-index: 9;
 
 /*幻灯片*/
 
-#slider {
+.full-slider {
   clear: both;
 }
 
-#slider .swiper-container .swiper-pagination {
+.full-slider .swiper-container .swiper-pagination {
   left: -240px;
   bottom: 70px;
 }

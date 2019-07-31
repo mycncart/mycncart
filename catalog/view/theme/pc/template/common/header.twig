@@ -85,34 +85,8 @@
                     </p>
                   </div>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="catalog/language/zh-cn/zh-cn.png" alt="简体中文" title="简体中文">    
-                <span class="d-none d-md-inline">简体中文</span>
-                
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="#" class="dropdown-item">英语</a>
-                <a href="#" class="dropdown-item">法语</a>
-                <a href="#" class="dropdown-item">繁体中文</a>
-                  </div>
-                </li>
-                <li class="nav-item dropdown">
-                  
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <strong>$</strong>
-                  <span class="d-none d-md-inline">美元</span>
-                  
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a href="#" class="dropdown-item">USD$ 美元</a>
-                  <a href="#" class="dropdown-item">USD$ 美元</a>
-                  <a href="#" class="dropdown-item">USD$ 美元</a>
-                    </div>
-                    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-currency">
-                      <input type="hidden" name="code" value=""/> <input type="hidden" name="redirect" value="{{ redirect }}"/>
-                    </form>
-                </li>
+                {{ language }}
+                {{ currency }}
                 
               </ul>
               
@@ -199,93 +173,7 @@
       </div>
     </div>
 
-    {#
-    <div id="top-menu">
-      <div class="container">
-        <div class="row">
-          <div class="container-inner">
-            
-            <div class="col-hoz">
-              <nav class="navbar navbar-expand-lg ">
-              
-
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">首页</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">今日限时购</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">每日上新</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">品质奶粉</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      更多分类
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">电子商品</a>
-                      <a class="dropdown-item" href="#">家具装修</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">所有该分类</a>
-                    </div>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">人气面膜</a>
-                  </li>
-                </ul>
-                
-              </div>
-            </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    #}
-
-
-    <div id="slider">
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-1.jpg"></div>
-            <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-2.jpg"></div>
-            <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-3.jpg"></div>
-            <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-4.jpg"></div>
-            <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-5.jpg"></div>
-            <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-6.jpg"></div>
-            <div class="swiper-slide"><img src="image/catalog/demo/slider/slider-7.jpg"></div>
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-    </div>
-    </div>
-
     
-<script>
-  var mySwiper = new Swiper ('.swiper-container', {
-    direction: 'horizontal',
-    loop: true,
-  autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-      hiddenClass: '.swiper-button-hidden',
-    },
-  })
-  </script>
 
 <div class="sell-block">
   <div class="container">
